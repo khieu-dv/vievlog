@@ -2,28 +2,9 @@
 
 A robust, efficient, and engaging foundation for your eCommerce projects, designed for seamless integration, rapid development, and maximum profitability.
 
-- [🚀 Live Demo](https://relivator.com)
-- [📚 Documentation](https://docs.reliverse.org/relivator)
-- [💬 Discord Community](https://discord.gg/Pb8uKbwpsJ)
-- [💖 Support on Patreon](https://patreon.com/blefnk)
-
-## Quick Start
-
-Ensure [Git](https://git-scm.com/downloads), [Node.js](https://nodejs.org/en), and [Bun](https://bun.sh) are installed, then:
-
-1. `bun i -g @reliverse/cli`
-2. `reliverse cli`
-3. Choose _✨ Create a brand new project_
-4. Provide/skip details about your project
-5. It's ready—enjoy! 😊
-
-## Support VieTopik
+- [🚀 Live Demo](https://vietopik.com)
 
 
-If you found VieTopik helpful, please consider:
-
-- Starring this [GitHub repository](https://github.com/blefnk/relivator)
-- Supporting via [Patreon](https://patreon.com/blefnk), [GitHub Sponsors](https://github.com/sponsors/blefnk), or [PayPal](https://paypal.me/blefony)
 
 ## Tech Stack
 
