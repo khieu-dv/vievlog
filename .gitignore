@@ -4,5 +4,4 @@ tsconfig.tsbuildinfo
 next-env.d.ts
 .vercel
 .next
-.env
 .yarn
