@@ -286,7 +286,7 @@ export default function HomePage() {
                     </Button>
                   </Link>
                 </div>
-                <div className="flex flex-wrap gap-5 text-sm text-muted-foreground">
+                {/* <div className="flex flex-wrap gap-5 text-sm text-muted-foreground">
                   <div className="flex items-center gap-1.5">
                     <Truck className="h-5 w-5 text-primary/70" />
                     <span>{t("content.freeAccess")}</span>
@@ -295,12 +295,12 @@ export default function HomePage() {
                     <Clock className="h-5 w-5 text-primary/70" />
                     <span>{t("content.expertInstructors")}</span>
                   </div>
-                </div>
+                </div> */}
               </div>
               <div className="relative mx-auto hidden aspect-square w-full max-w-md overflow-hidden rounded-xl border lg:block">
                 <div className="absolute inset-0 z-10 bg-gradient-to-tr from-primary/20 via-transparent to-transparent" />
                 <Image
-                  src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+                  src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
                   alt="Shopping experience"
                   fill
                   className="object-cover"
