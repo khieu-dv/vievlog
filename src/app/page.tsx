@@ -398,42 +398,6 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Features Section */}
-        <section id="features" className="bg-muted/50 py-12 md:py-16">
-          <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="mb-8 flex flex-col items-center text-center">
-              <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-                {t("content.topikExam")}
-              </h2>
-              <div className="mt-2 h-1 w-12 rounded-full bg-primary" />
-              <p className="mt-4 max-w-2xl text-center text-muted-foreground md:text-lg">
-                {t("content.whyChooseVieTopik")}
-              </p>
-            </div>
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {features.map((feature) => (
-                <Card
-                  key={feature.title}
-                  className="border-none bg-background shadow-sm"
-                >
-                  <CardHeader className="pb-2">
-                    <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
-                      {feature.icon}
-                    </div>
-                    <CardTitle>{feature.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <CardDescription className="text-base">
-                      {feature.description}
-                    </CardDescription>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
-
         {/* Testimonials */}
         <section className="py-12 md:py-16">
           <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

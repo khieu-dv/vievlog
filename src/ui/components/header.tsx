@@ -45,8 +45,7 @@ export function Header({ showAuth = true }: HeaderProps) {
   const navigation = [
     { name: t("content.home"), href: "/" },
     // { name: t("content.topiks"), href: "/topiks" },
-    { name: t("content.courses"), href: "/lesson-category" },
-    { name: t("content.grammar"), href: "/grammars" },];
+    { name: t("content.grammar"), href: "/diagrams" },];
 
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -81,46 +80,6 @@ export function Header({ showAuth = true }: HeaderProps) {
                     </li>
                   );
                 })}
-
-                {/* Topiks dropdown menu */}
-                <li>
-                  <DropdownMenu>
-                    <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary">
-                      <span className={cn(
-                        pathname?.startsWith("/products") ? "text-primary font-semibold" : "text-muted-foreground"
-                      )}>
-                        {t("content.topiks")}
-                      </span>
-                      <ChevronDown className="h-4 w-4" />
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="start">
-                      <DropdownMenuItem asChild>
-                        <Link
-                          href="/products"
-                          className={cn(
-                            "flex w-full cursor-pointer",
-                            pathname === "/products" ? "text-primary font-semibold" : ""
-                          )}
-                        >
-                          {t("header.utils.topikExams") || "Đề thi Topik"}
-                        </Link>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem asChild>
-                        <Link
-                          href="/topik-schedule"
-                          className={cn(
-                            "flex w-full cursor-pointer",
-                            pathname === "/topik-schedule" ? "text-primary font-semibold" : ""
-                          )}
-                        >
-                          {t("header.utils.topikSchedule") || "Lịch thi Topik"}
-                        </Link>
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </li>
-
-
 
 
               </ul>
@@ -283,35 +242,6 @@ export function Header({ showAuth = true }: HeaderProps) {
                 </Link>
               );
             })}
-
-            {/* ✅ Thêm mục Topiks cho mobile */}
-            <div className="pt-2">
-              <p className="px-3 text-sm font-semibold text-muted-foreground">{t("content.topiks")}</p>
-              <Link
-                href="/products"
-                className={cn(
-                  "block py-2 px-3 text-base font-medium rounded-md",
-                  pathname === "/products"
-                    ? "bg-primary/10 text-primary"
-                    : "text-foreground hover:bg-muted/50 hover:text-primary"
-                )}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {t("header.utils.topikExams") || "Đề thi Topik"}
-              </Link>
-              <Link
-                href="/topik-schedule"
-                className={cn(
-                  "block py-2 px-3 text-base font-medium rounded-md",
-                  pathname === "/topik-schedule"
-                    ? "bg-primary/10 text-primary"
-                    : "text-foreground hover:bg-muted/50 hover:text-primary"
-                )}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {t("header.utils.topikSchedule") || "Lịch thi Topik"}
-              </Link>
-            </div>
 
 
           </div>
