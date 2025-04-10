@@ -1,15 +1,33 @@
 // app/posts/page.jsx
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Header } from "~/ui/components/header";
 import { Footer } from "~/ui/components/footer";
-import { PostCard } from "../components/PostCard";
-import { Button } from "~/ui/primitives/button";
 import { useTranslation } from "react-i18next";
+import axios from "axios";
+import PocketBase from 'pocketbase';
+import { Heart, MessageCircle, Share2, Bookmark, MoreHorizontal, Send } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { useSession } from "../../lib/auth-client_v2";
 
 export default function PostsPage() {
     const { t } = useTranslation();
+    const loadMoreRef = useRef(null);
+    const { data: session } = useSession();
+    const pb = new PocketBase(process.env.NEXT_PUBLIC_POCKETBASE_URL || 'https://pocketbase.vietopik.com');
+
+    interface Comment {
+        id: string;
+        postId: string;
+        userId: string;
+        userName: string;
+        userAvatar: string;
+        content: string;
+        created: string;
+    }
+
     interface Post {
         id: string;
         title: string;
@@ -24,135 +42,417 @@ export default function PostsPage() {
         likes: number;
         commentCount: number;
         tags: string[];
+        comments?: Comment[];
     }
 
     const [posts, setPosts] = useState<Post[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
+    const [page, setPage] = useState(1);
+    const [hasMore, setHasMore] = useState(true);
+    const [commentInputs, setCommentInputs] = useState<{ [key: string]: string }>({});
+    const [submittingComment, setSubmittingComment] = useState<{ [key: string]: boolean }>({});
+    const postsPerPage = 20;
+
+    const fetchPosts = async (pageNumber: number) => {
+        if (isLoading) return;
+
+        setIsLoading(true);
+        try {
+            const response = await axios.get(
+                `${process.env.NEXT_PUBLIC_API_URL}/collections/posts_tbl/records`, {
+                params: {
+                    page: pageNumber,
+                    perPage: postsPerPage,
+                    //  sort: '-publishedAt'
+                }
+            }
+            );
+
+            const result = response.data;
+
+            const mappedPosts = result.items.map((item: any) => ({
+                id: item.id,
+                title: item.title,
+                excerpt: item.excerpt,
+                publishedAt: item.created || item.publishedAt,
+                coverImage: item.coverImage || "",
+                author: {
+                    name: item.author?.name || "Anonymous",
+                    avatar: item.author?.avatar || "/default-avatar.png",
+                },
+                likes: item.likes || 0,
+                commentCount: item.commentCount || 0,
+                tags: item.tags || [],
+                comments: []
+            }));
+
+            if (pageNumber === 1) {
+                setPosts(mappedPosts);
+            } else {
+                setPosts(prevPosts => [...prevPosts, ...mappedPosts]);
+            }
+
+            setHasMore(mappedPosts.length === postsPerPage);
+
+            // Fetch comments for each post
+            mappedPosts.forEach((post: Post) => {
+                fetchCommentsForPost(post.id);
+            });
+
+        } catch (error) {
+            console.error("Failed to fetch posts:", error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const fetchCommentsForPost = async (postId: string) => {
+        try {
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/collections/comments_tbl/records`, {
+                params: {
+                    page: 1,
+                    perPage: 5,
+                    filter: `postId="${postId}"`,
+                    sort: '-created'
+                }
+            });
+            // const response = await pb.collection('comments_tbl').getList(1, 5, {
+            //     filter: `postId="${postId}"`,
+            //     sort: '-created'
+            // });
+
+            // Update the post with comments
+            setPosts(prevPosts => {
+                return prevPosts.map(post => {
+                    if (post.id === postId) {
+                        return {
+                            ...post,
+                            comments: response.data.items.map((item: any) => ({
+                                id: item.id,
+                                postId: item.postId,
+                                userId: item.userId,
+                                userName: item.userName,
+                                userAvatar: item.userAvatar,
+                                content: item.content,
+                                created: item.created,
+                            })),
+                            commentCount: response.data.totalItems
+                        };
+                    }
+                    return post;
+                });
+            });
+        } catch (error) {
+            console.error(`Failed to fetch comments for post ${postId}:`, error);
+        }
+    };
+
+    const handleCommentInputChange = (postId: string, value: string) => {
+        setCommentInputs(prev => ({
+            ...prev,
+            [postId]: value
+        }));
+    };
+
+    const handleSubmitComment = async (postId: string) => {
+        const content = commentInputs[postId];
+        if (!content?.trim() || submittingComment[postId]) return;
+
+        // Check if user is logged in
+        if (!session?.user) {
+            alert("Please log in to comment.");
+            return;
+        }
+
+        setSubmittingComment(prev => ({
+            ...prev,
+            [postId]: true
+        }));
+
+        try {
+            const commentData = {
+                postId: postId,
+                userId: session.user.id,
+                userName: session.user.name || "User",
+                userAvatar: session.user.image || "/default-avatar.png",
+                content: content,
+                lessonId: "" // Leave empty if not applicable
+            };
+
+            const record = await pb.collection('comments_tbl').create(commentData);
+
+            // Clear input
+            setCommentInputs(prev => ({
+                ...prev,
+                [postId]: ""
+            }));
+
+            // Refresh comments for this post
+            fetchCommentsForPost(postId);
+
+            // Update comment count
+            setPosts(prevPosts => {
+                return prevPosts.map(post => {
+                    if (post.id === postId) {
+                        return {
+                            ...post,
+                            commentCount: (post.commentCount || 0) + 1
+                        };
+                    }
+                    return post;
+                });
+            });
+        } catch (error) {
+            console.error("Failed to post comment:", error);
+            alert("Failed to post comment. Please try again.");
+        } finally {
+            setSubmittingComment(prev => ({
+                ...prev,
+                [postId]: false
+            }));
+        }
+    };
 
     useEffect(() => {
-        // In a real application, you would fetch from an API
-        // This is mock data for demonstration
-        setTimeout(() => {
-            setPosts([
-                {
-                    id: "1",
-                    title: "Getting Started with TOPIK I: A Beginner's Guide",
-                    excerpt: "TOPIK I is designed for beginners to intermediate Korean language learners. This guide will help you understand what to expect and how to prepare effectively for the test.",
-                    content: "TOPIK I is designed for beginners to intermediate Korean language learners. This guide will help you understand what to expect and how to prepare effectively for the test. The TOPIK I test consists of two sections: Listening and Reading. Each section tests different aspects of your Korean language proficiency.\n\nIn the Listening section, you'll be tested on your ability to understand spoken Korean in various contexts, from simple conversations to announcements and short talks. The Reading section assesses your ability to read and understand written Korean, including vocabulary, grammar, and comprehension.\n\nTo prepare for TOPIK I, it's recommended to:\n1. Study basic Korean vocabulary and grammar\n2. Practice listening to Korean conversations, news, or podcasts\n3. Read Korean texts regularly, from simple sentences to short paragraphs\n4. Take practice tests to familiarize yourself with the test format\n5. Join study groups or language exchange programs to practice with others",
-                    publishedAt: "2025-03-15T10:00:00Z",
-                    coverImage: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-                    author: {
-                        name: "Min-Ji Kim",
-                        avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
-                    },
-                    likes: 42,
-                    commentCount: 8,
-                    tags: ["TOPIK I", "Beginner", "Study Guide"]
-                },
-                {
-                    id: "2",
-                    title: "Advanced Korean Grammar Patterns for TOPIK II",
-                    excerpt: "This post explores complex grammar patterns that frequently appear in TOPIK II tests. Master these patterns to improve your score significantly.",
-                    content: "This post explores complex grammar patterns that frequently appear in TOPIK II tests. Master these patterns to improve your score significantly.\n\nTOPIK II tests advanced Korean language skills, and a solid understanding of complex grammar patterns is essential for achieving a high score. Here, we'll dive into some of the most frequently tested grammar patterns in the TOPIK II exam.\n\n1. -는 바와 같이 (as mentioned earlier/as stated)\n2. -는 한 (as long as/to the extent that)\n3. -는 커녕 (far from/let alone)\n4. -는 반면에 (while/whereas)\n5. -더니만 (had been doing and then)\n\nEach of these patterns has specific usage rules and nuances that you need to understand to use them correctly. We'll examine each pattern in detail, providing examples and practice exercises to help you master them.",
-                    publishedAt: "2025-03-10T14:30:00Z",
-                    coverImage: "https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-                    author: {
-                        name: "Sung-Ho Park",
-                        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
-                    },
-                    likes: 35,
-                    commentCount: 12,
-                    tags: ["TOPIK II", "Advanced", "Grammar"]
-                },
-                {
-                    id: "3",
-                    title: "Common Mistakes to Avoid in TOPIK Reading Section",
-                    excerpt: "Learn about the typical errors made by test-takers in the reading comprehension section and how to avoid them in your preparation.",
-                    content: "Learn about the typical errors made by test-takers in the reading comprehension section and how to avoid them in your preparation.\n\nThe reading section of the TOPIK test can be challenging, especially under time pressure. Many test-takers make common mistakes that can be easily avoided with proper awareness and preparation. Here are the most frequent errors to watch out for:\n\n1. Misinterpreting the question: Always read the question carefully to understand exactly what is being asked.\n\n2. Falling for distractors: Test creators often include answer choices that contain words from the text but don't actually answer the question.\n\n3. Focusing too much on unknown words: Don't get stuck on vocabulary you don't know. Try to understand the overall meaning from context.\n\n4. Poor time management: The reading section requires efficient time use. Don't spend too much time on difficult questions.\n\n5. Ignoring context clues: The surrounding sentences often provide important context for understanding difficult passages.\n\nBy being aware of these common pitfalls and practicing strategies to avoid them, you can significantly improve your performance on the TOPIK reading section.",
-                    publishedAt: "2025-03-05T09:15:00Z",
-                    coverImage: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-                    author: {
-                        name: "Ji-Woo Lee",
-                        avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
-                    },
-                    likes: 27,
-                    commentCount: 6,
-                    tags: ["TOPIK", "Reading", "Test Preparation"]
-                },
-                {
-                    id: "4",
-                    title: "Listening Comprehension Strategies for TOPIK",
-                    excerpt: "This article provides effective strategies to enhance your listening skills for the TOPIK exam, including practice resources and tips.",
-                    content: "This article provides effective strategies to enhance your listening skills for the TOPIK exam, including practice resources and tips.\n\nListening comprehension is a crucial part of the TOPIK exam, and many test-takers find it challenging. Here are some strategies to improve your listening skills:\n\n1. **Active Listening**: Practice active listening by focusing on the speaker's tone, intonation, and context clues.\n2. **Use Authentic Materials**: Listen to Korean podcasts, news broadcasts, and conversations to familiarize yourself with different accents and speaking speeds.\n3. **Practice with Mock Tests**: Take practice tests under timed conditions to simulate the exam environment.\n4. **Note-taking**: Develop a note-taking system that works for you. Jot down key points while listening to help retain information.\n5. **Review and Reflect**: After listening exercises, review what you understood and identify areas for improvement.",
-                    publishedAt: "2025-02-28T11:45:00Z",
-                    coverImage: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-                    author: {
-                        name: "Hye-Jin Choi",
-                        avatar: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
-                    },
-                    likes: 50,
-                    commentCount: 15,
-                    tags: ["TOPIK", "Listening", "Strategies"]
-                },
-                {
-                    id: "5",
-                    title: "Writing Tips for TOPIK II: Crafting a Strong Essay",
-                    excerpt: "This post offers practical tips for writing a compelling essay in the TOPIK II exam, including structure, vocabulary, and common pitfalls.",
-                    content: "This post offers practical tips for writing a compelling essay in the TOPIK II exam, including structure, vocabulary, and common pitfalls.\n\nWriting a strong essay in the TOPIK II exam is essential for achieving a high score. Here are some tips to help you craft a compelling essay:\n\n1. **Understand the Prompt**: Carefully read the essay prompt and ensure you understand what is being asked.\n2. **Plan Your Structure**: A clear structure is vital. Typically, an essay should include an introduction, body paragraphs, and a conclusion.\n3. **Use Appropriate Vocabulary**: Use varied vocabulary and grammar structures to demonstrate your language proficiency.\n4. **Practice Time Management**: Allocate time for planning, writing, and reviewing your essay.\n5. **Proofread**: Leave time to proofread your essay for grammatical errors and clarity.",
-                    publishedAt: "2025-02-20T13:30:00Z",
-                    coverImage: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-                    author: {
-                        name: "Soo-Yeon Kim",
-                        avatar: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
-                    },
-                    likes: 38,
-                    commentCount: 10,
-                    tags: ["TOPIK II", "Writing", "Essay"]
-                }
-            ]);
-            setIsLoading(false);
-        }, 1000);
+        fetchPosts(1);
     }, []);
 
+    const handleLoadMore = () => {
+        const nextPage = page + 1;
+        setPage(nextPage);
+        fetchPosts(nextPage);
+    };
+
+    // Format date to relative time (e.g., "2 hours ago")
+    interface FormatRelativeTime {
+        (dateString: string): string;
+    }
+
+    const formatRelativeTime: FormatRelativeTime = (dateString) => {
+        const date = new Date(dateString);
+        const now = new Date();
+        const diffInSeconds = Math.floor((now.getTime() - date.getTime()) / 1000);
+
+        if (diffInSeconds < 60) return `${diffInSeconds} seconds ago`;
+        if (diffInSeconds < 3600) return `${Math.floor(diffInSeconds / 60)} minutes ago`;
+        if (diffInSeconds < 86400) return `${Math.floor(diffInSeconds / 3600)} hours ago`;
+        if (diffInSeconds < 604800) return `${Math.floor(diffInSeconds / 86400)} days ago`;
+        if (diffInSeconds < 2592000) return `${Math.floor(diffInSeconds / 604800)} weeks ago`;
+
+        return date.toLocaleDateString();
+    };
+
     return (
-        <>
+        <div className="min-h-screen bg-gray-100">
             <Header />
-            <main className="flex-1">
-                <section className="bg-gradient-to-b from-muted/50 to-background py-12 md:py-16">
-                    <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                        <div className="mb-8 flex flex-col items-center text-center">
-                            <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
-                                Korean Language Learning Blog
-                            </h1>
-                            <div className="mt-2 h-1 w-12 rounded-full bg-primary" />
-                            <p className="mt-4 max-w-2xl text-center text-muted-foreground">
-                                Explore our latest articles, tips and techniques for mastering Korean
-                            </p>
-                        </div>
-
-                        {isLoading ? (
-                            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-                                {[1, 2, 3].map((i) => (
-                                    <div key={i} className="h-96 animate-pulse rounded-lg bg-muted"></div>
-                                ))}
-                            </div>
-                        ) : (
-                            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-                                {posts.map((post) => (
-                                    <PostCard key={post.id} post={post} />
-                                ))}
-                            </div>
-                        )}
-
-                        <div className="mt-10 flex justify-center">
-                            <Button variant="outline" className="group h-12 px-8">
-                                Load More
-                            </Button>
-                        </div>
+            <main className="pt-16 pb-10">
+                <div className="container mx-auto max-w-2xl px-4">
+                    {/* Page Header */}
+                    <div className="mb-6 text-center">
+                        <h1 className="text-3xl font-bold text-gray-900">Korean Language Learning</h1>
+                        <p className="mt-2 text-gray-600">
+                            Explore our latest articles, tips and techniques for mastering Korean
+                        </p>
                     </div>
-                </section>
+
+                    {/* Posts Feed */}
+                    {posts.length === 0 && isLoading ? (
+                        Array(3).fill(0).map((_, i) => (
+                            <div key={i} className="mb-4 rounded-lg bg-white p-4 shadow">
+                                <div className="flex items-center">
+                                    <div className="h-10 w-10 animate-pulse rounded-full bg-gray-200"></div>
+                                    <div className="ml-3">
+                                        <div className="h-4 w-40 animate-pulse rounded bg-gray-200"></div>
+                                        <div className="mt-1 h-3 w-24 animate-pulse rounded bg-gray-200"></div>
+                                    </div>
+                                </div>
+                                <div className="mt-4 h-4 w-full animate-pulse rounded bg-gray-200"></div>
+                                <div className="mt-2 h-4 w-3/4 animate-pulse rounded bg-gray-200"></div>
+                                <div className="mt-4 h-64 w-full animate-pulse rounded bg-gray-200"></div>
+                            </div>
+                        ))
+                    ) : (
+                        posts.map((post) => (
+                            <div key={post.id} className="mb-4 overflow-hidden rounded-lg bg-white shadow">
+                                {/* Post Header */}
+                                <div className="flex items-center justify-between p-4">
+                                    <div className="flex items-center">
+                                        <div className="h-10 w-10 overflow-hidden rounded-full">
+                                            <Image
+                                                src={post.author.avatar}
+                                                alt={post.author.name}
+                                                width={40}
+                                                height={40}
+                                                className="h-full w-full object-cover"
+                                            />
+                                        </div>
+                                        <div className="ml-3">
+                                            <p className="font-medium text-gray-900">{post.author.name}</p>
+                                            <p className="text-xs text-gray-500">{formatRelativeTime(post.publishedAt)}</p>
+                                        </div>
+                                    </div>
+                                    <button className="rounded-full p-2 text-gray-400 hover:bg-gray-100">
+                                        <MoreHorizontal size={20} />
+                                    </button>
+                                </div>
+
+                                {/* Post Content */}
+                                <div className="px-4 pb-2">
+                                    <Link href={`/posts/${post.id}`}>
+                                        <h3 className="mb-2 text-xl font-semibold text-gray-900 hover:text-blue-600">{post.title}</h3>
+                                    </Link>
+                                    <p className="mb-4 text-gray-700">{post.excerpt}</p>
+                                </div>
+
+                                {/* Post Image */}
+                                {post.coverImage && (
+                                    <div className="relative aspect-video w-full">
+                                        <Image
+                                            src={post.coverImage}
+                                            alt={post.title}
+                                            fill
+                                            className="object-cover"
+                                        />
+                                    </div>
+                                )}
+
+                                {/* Post Tags */}
+                                {post.tags && post.tags.length > 0 && (
+                                    <div className="flex flex-wrap gap-2 px-4 pt-3">
+                                        {post.tags.map((tag, index) => (
+                                            <span key={index} className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-600">
+                                                #{tag}
+                                            </span>
+                                        ))}
+                                    </div>
+                                )}
+
+                                {/* Post Stats */}
+                                <div className="mt-1 flex items-center justify-between border-b border-gray-100 px-4 py-2">
+                                    <div className="flex items-center text-sm text-gray-500">
+                                        <div className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-100 text-blue-500">
+                                            <Heart size={12} fill="currentColor" />
+                                        </div>
+                                        <span className="ml-1">{post.likes}</span>
+                                    </div>
+                                    <div className="text-sm text-gray-500">
+                                        {post.commentCount} comments
+                                    </div>
+                                </div>
+
+                                {/* Post Actions */}
+                                <div className="flex border-b border-gray-100 text-gray-500">
+                                    <button className="flex flex-1 items-center justify-center py-3 hover:bg-gray-50">
+                                        <Heart size={20} className="mr-2" />
+                                        <span>Like</span>
+                                    </button>
+                                    <button className="flex flex-1 items-center justify-center py-3 hover:bg-gray-50">
+                                        <MessageCircle size={20} className="mr-2" />
+                                        <span>Comment</span>
+                                    </button>
+                                    <button className="flex flex-1 items-center justify-center py-3 hover:bg-gray-50">
+                                        <Share2 size={20} className="mr-2" />
+                                        <span>Share</span>
+                                    </button>
+                                </div>
+
+                                {/* Comments Section */}
+                                {post.comments && post.comments.length > 0 && (
+                                    <div className="border-b border-gray-100 px-4 py-2">
+                                        {post.comments.map((comment) => (
+                                            <div key={comment.id} className="mb-3 flex">
+                                                <div className="h-8 w-8 flex-shrink-0 overflow-hidden rounded-full">
+                                                    <Image
+                                                        src={comment.userAvatar || "/default-avatar.png"}
+                                                        alt={comment.userName}
+                                                        width={32}
+                                                        height={32}
+                                                        className="h-full w-full object-cover"
+                                                    />
+                                                </div>
+                                                <div className="ml-2">
+                                                    <div className="rounded-2xl bg-gray-100 px-3 py-2">
+                                                        <p className="text-sm font-medium text-gray-900">{comment.userName}</p>
+                                                        <p className="text-sm text-gray-700">{comment.content}</p>
+                                                    </div>
+                                                    <div className="mt-1 flex items-center space-x-3 pl-2 text-xs text-gray-500">
+                                                        <span>{formatRelativeTime(comment.created)}</span>
+                                                        <button className="font-medium">Like</button>
+                                                        <button className="font-medium">Reply</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ))}
+
+                                        {post.commentCount > post.comments.length && (
+                                            <button
+                                                onClick={() => fetchCommentsForPost(post.id)}
+                                                className="mt-1 text-sm font-medium text-gray-500 hover:text-gray-700"
+                                            >
+                                                View more comments
+                                            </button>
+                                        )}
+                                    </div>
+                                )}
+
+                                {/* Comment Box */}
+                                <div className="flex items-center p-4">
+                                    <div className="h-8 w-8 flex-shrink-0 overflow-hidden rounded-full bg-gray-200">
+                                        {session?.user?.image && (
+                                            <Image
+                                                src={session.user.image}
+                                                alt={session.user.name || "User"}
+                                                width={32}
+                                                height={32}
+                                                className="h-full w-full object-cover"
+                                            />
+                                        )}
+                                    </div>
+                                    <div className="ml-2 flex flex-grow items-center rounded-full bg-gray-100 pr-2">
+                                        <input
+                                            type="text"
+                                            placeholder="Write a comment..."
+                                            className="flex-grow bg-transparent px-4 py-2 text-sm outline-none"
+                                            value={commentInputs[post.id] || ''}
+                                            onChange={(e) => handleCommentInputChange(post.id, e.target.value)}
+                                            onKeyPress={(e) => {
+                                                if (e.key === 'Enter') {
+                                                    handleSubmitComment(post.id);
+                                                }
+                                            }}
+                                        />
+                                        <button
+                                            onClick={() => handleSubmitComment(post.id)}
+                                            disabled={submittingComment[post.id] || !commentInputs[post.id]?.trim()}
+                                            className="flex h-8 w-8 items-center justify-center rounded-full text-blue-500 hover:bg-blue-50 disabled:opacity-50"
+                                        >
+                                            {submittingComment[post.id] ? (
+                                                <div className="h-4 w-4 animate-spin rounded-full border-2 border-blue-500 border-t-transparent"></div>
+                                            ) : (
+                                                <Send size={16} />
+                                            )}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        ))
+                    )}
+
+                    {/* Load More Button */}
+                    {hasMore && (
+                        <div className="mt-4 text-center" ref={loadMoreRef}>
+                            <button
+                                onClick={handleLoadMore}
+                                disabled={isLoading}
+                                className="rounded-md bg-white px-6 py-2.5 text-sm font-medium text-blue-600 shadow hover:bg-gray-50 disabled:opacity-70"
+                            >
+                                {isLoading ? 'Loading...' : 'See More Posts'}
+                            </button>
+                        </div>
+                    )}
+                </div>
             </main>
             <Footer />
-        </>
+        </div>
     );
 }

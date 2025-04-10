@@ -179,28 +179,6 @@ export default function HomePage() {
     },
   ];
 
-  // Features for the why choose us section
-  const features = [
-    {
-      title: t("content.beginnerKorean"),
-      description:
-        "Learn Korean with high-quality lessons and resources at absolutely no cost.",
-      icon: <Truck className="h-6 w-6 text-primary" />,
-    },
-    {
-      title: t("content.intermediateKorean"),
-      description:
-        "Learn Korean with high-quality lessons and resources at absolutely no cost.",
-      icon: <ShoppingBag className="h-6 w-6 text-primary" />,
-    },
-    {
-      title: t("content.advancedKorean"),
-      description:
-        "Learn Korean with high-quality lessons and resources at absolutely no cost.",
-      icon: <Clock className="h-6 w-6 text-primary" />,
-    },
-  ];
-
   // Testimonials for the testimonial carousel
   const testimonials = [
     {
