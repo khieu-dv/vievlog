@@ -21,7 +21,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // Thử xác thực token
     pb.authStore.save(token, null); // Gán token để xác thực người dùng hiện tại
-    await pb.collection("users").authRefresh(); // Kiểm tra token có hợp lệ không
+    await pb.collection("users_tbl").authRefresh(); // Kiểm tra token có hợp lệ không
 
     pb.authStore.clear(); // Xóa session khỏi PocketBase client
 

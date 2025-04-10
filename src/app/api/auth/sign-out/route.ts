@@ -17,7 +17,7 @@ export async function POST(request: Request) {
     pb.authStore.save(token, null);
 
     // Xác thực token bằng cách gọi authRefresh (nếu token không hợp lệ sẽ throw)
-    await pb.collection("users").authRefresh();
+    await pb.collection("users_tbl").authRefresh();
 
     // Xóa session
     pb.authStore.clear();

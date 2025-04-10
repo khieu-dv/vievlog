@@ -16,7 +16,7 @@ export async function signUp({
   password: string;
   passwordConfirm: string;
 }) {
-  return await pb.collection("users").create({
+  return await pb.collection("users_tbl").create({
     username,
     email,
     password,
@@ -26,7 +26,7 @@ export async function signUp({
 
 // Đăng nhập
 export async function signIn(email: string, password: string) {
-  return await pb.collection("users").authWithPassword(email, password);
+  return await pb.collection("users_tbl").authWithPassword(email, password);
 }
 
 // Lấy thông tin người dùng từ PocketBase authStore
