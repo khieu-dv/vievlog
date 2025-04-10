@@ -275,12 +275,12 @@ export default function HomePage() {
                   </p>
                 </div>
                 <div className="flex flex-col gap-3 sm:flex-row">
-                  <Link href="/products">
+                  <Link href="/posts">
                     <Button size="lg" className="h-12 gap-1.5 px-8">
-                      {t("content.startLearningNow")} <ArrowRight className="h-4 w-4" />
+                      View All Post <ArrowRight className="h-4 w-4" />
                     </Button>
                   </Link>
-                  <Link href="/lesson-category">
+                  <Link href="/diagrams">
                     <Button variant="outline" size="lg" className="h-12 px-8">
                       View All Lessons <ArrowRight className="h-4 w-4" />
                     </Button>
