@@ -46,11 +46,7 @@ export function Header({ showAuth = true }: HeaderProps) {
     { name: t("content.home"), href: "/" },
     // { name: t("content.topiks"), href: "/topiks" },
     { name: t("content.courses"), href: "/lesson-category" },
-    { name: t("content.grammar"), href: "/grammars" },
-    { name: t("content.game"), href: "https://viegame.vercel.app/" }, // Thêm link Game
-    // { name: "Features", href: "/#features" },
-    // { name: "Pricing", href: "/#pricing" },
-  ];
+    { name: t("content.grammar"), href: "/grammars" },];
 
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">

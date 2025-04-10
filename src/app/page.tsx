@@ -20,6 +20,9 @@ import {
 import { desc } from "drizzle-orm";
 import { useTranslation } from "react-i18next";
 import { ContactButton } from "./components/contact-button";
+import PocketBase from "pocketbase";
+import axios from "axios";
+
 
 // Simple post card component specifically for the homepage
 interface Post {
@@ -237,111 +240,36 @@ export default function HomePage() {
 
   // Load blog posts for the homepage
   useEffect(() => {
-    // In a real application, you would fetch from an API
-    // This is mock data for demonstration
-    setTimeout(() => {
-      setPosts([
-        {
-          id: "1",
-          title: "Getting Started with TOPIK I: A Beginner's Guide",
-          excerpt: "TOPIK I is designed for beginners to intermediate Korean language learners. This guide will help you understand what to expect and how to prepare effectively for the test.",
-          publishedAt: "2025-03-15T10:00:00Z",
-          coverImage: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    const fetchPosts = async () => {
+      try {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/collections/posts_tbl/records`);
+
+        const result = response.data; // Giả sử response trả về mảng bài viết
+
+        const mappedPosts = result.items.map((item: any) => ({
+          id: item.id,
+          title: item.title,
+          excerpt: item.excerpt,
+          publishedAt: item.created || item.publishedAt,
+          coverImage: item.coverImage || "",
           author: {
-            name: "Min-Ji Kim",
-            avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+            name: item.author?.name || "Anonymous",
+            avatar: item.author?.avatar || "/default-avatar.png",
           },
-          likes: 42,
-          commentCount: 8,
-          tags: ["TOPIK I", "Beginner", "Study Guide"]
-        },
-        {
-          id: "2",
-          title: "Advanced Korean Grammar Patterns for TOPIK II",
-          excerpt: "This post explores complex grammar patterns that frequently appear in TOPIK II tests. Master these patterns to improve your score significantly.",
-          publishedAt: "2025-03-10T14:30:00Z",
-          coverImage: "https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-          author: {
-            name: "Sung-Ho Park",
-            avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
-          },
-          likes: 35,
-          commentCount: 12,
-          tags: ["TOPIK II", "Advanced", "Grammar"]
-        },
-        {
-          id: "3",
-          title: "Common Mistakes to Avoid in TOPIK Reading Section",
-          excerpt: "Learn about the typical errors made by test-takers in the reading comprehension section and how to avoid them in your preparation.",
-          publishedAt: "2025-03-05T09:15:00Z",
-          coverImage: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-          author: {
-            name: "Ji-Woo Lee",
-            avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
-          },
-          likes: 27,
-          commentCount: 6,
-          tags: ["TOPIK", "Reading", "Test Preparation"]
-        },
-        {
-          id: "4",
-          title: "Listening Comprehension Strategies for TOPIK",
-          excerpt: "This article provides effective strategies to enhance your listening skills for the TOPIK exam, including practice resources and tips.",
-          publishedAt: "2025-02-28T11:45:00Z",
-          coverImage: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-          author: {
-            name: "Hye-Jin Choi",
-            avatar: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
-          },
-          likes: 50,
-          commentCount: 15,
-          tags: ["TOPIK", "Listening", "Strategies"]
-        },
-        {
-          id: "5",
-          title: "Writing Tips for TOPIK II: Crafting a Strong Essay",
-          excerpt: "This post offers practical tips for writing a compelling essay in the TOPIK II exam, including structure, vocabulary, and common pitfalls.",
-          publishedAt: "2025-02-20T13:30:00Z",
-          coverImage: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-          author: {
-            name: "Soo-Yeon Kim",
-            avatar: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
-          },
-          likes: 38,
-          commentCount: 10,
-          tags: ["TOPIK II", "Writing", "Essay"]
-        },
-        {
-          id: "6",
-          title: "Mastering TOPIK Vocabulary: Effective Memory Techniques",
-          excerpt: "Explore proven methods to memorize and retain Korean vocabulary for the TOPIK exam, including spaced repetition and memory association techniques.",
-          publishedAt: "2025-02-15T09:00:00Z",
-          coverImage: "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-          author: {
-            name: "Jae-Hoon Park",
-            avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
-          },
-          likes: 45,
-          commentCount: 14,
-          tags: ["TOPIK", "Vocabulary", "Memory Techniques"]
-        },
-        {
-          id: "7",
-          title: "TOPIK Test Day: What to Expect and How to Prepare",
-          excerpt: "A comprehensive guide to help you navigate test day with confidence, including what to bring, timing strategies, and last-minute preparation tips.",
-          publishedAt: "2025-02-10T11:30:00Z",
-          coverImage: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-          author: {
-            name: "Yoon-Ah Kim",
-            avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
-          },
-          likes: 33,
-          commentCount: 9,
-          tags: ["TOPIK", "Test Preparation", "Exam Day"]
-        }
-      ]);
-      setIsLoadingPosts(false);
-    }, 1000);
+          likes: item.likes || 0,
+          commentCount: item.commentCount || 0,
+          tags: item.tags || [],
+        }));
+
+        setPosts(mappedPosts);
+      } catch (error) {
+        console.error("Failed to fetch posts:", error);
+      } finally {
+        setIsLoadingPosts(false);
+      }
+    };
+
+    fetchPosts();
   }, []);
 
   return (
@@ -406,79 +334,6 @@ export default function HomePage() {
           <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
         </section>
 
-        {/* Featured Categories */}
-        <section className="py-12 md:py-16">
-          <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="mb-8 flex flex-col items-center text-center">
-              <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-                Topik by Category
-              </h2>
-              <div className="mt-2 h-1 w-12 rounded-full bg-primary" />
-              <p className="mt-4 max-w-2xl text-center text-muted-foreground">
-                {t("content.learnKorean")}
-              </p>
-            </div>
-            <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
-              {categories.map((category) => (
-                <Link
-                  key={category.name}
-                  href={`/products?category=${category.name.toLowerCase()}`}
-                  className="group relative flex flex-col overflow-hidden rounded-lg border bg-card transition-all duration-200 hover:shadow-md"
-                >
-                  <div className="relative aspect-[4/3] overflow-hidden">
-                    <div className="absolute inset-0 z-10 bg-gradient-to-t from-background/80 to-transparent" />
-                    <Image
-                      src={category.image}
-                      alt={category.name}
-                      fill
-                      className="object-cover transition duration-300 group-hover:scale-105"
-                    />
-                  </div>
-                  <div className="relative z-20 -mt-6 p-4">
-                    <div className="mb-1 text-lg font-medium">
-                      {category.name}
-                    </div>
-                    <p className="text-sm text-muted-foreground">
-                      {category.productCount} tests
-                    </p>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Featured Topiks */}
-        <section className="bg-muted/50 py-12 md:py-16">
-          <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="mb-8 flex flex-col items-center text-center">
-              <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-                Featured Topiks
-              </h2>
-              <div className="mt-2 h-1 w-12 rounded-full bg-primary" />
-              <p className="mt-4 max-w-2xl text-center text-muted-foreground">
-                Check out our latest and most Topiks items
-              </p>
-            </div>
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {featuredTopiks.map((product) => (
-                <TopicCard
-                  key={product.id}
-                  variant="list"
-                  topic={product}
-                />
-              ))}
-            </div>
-            <div className="mt-10 flex justify-center">
-              <Link href="/products">
-                <Button variant="outline" size="lg" className="group h-12 px-8">
-                  View All Topiks
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </section>
 
         {/* Blog Posts Section - Modified to horizontal scrolling */}
         <section className="py-12 md:py-16">
