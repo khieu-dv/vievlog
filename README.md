@@ -3,14 +3,15 @@
 A modern, open-source web project built with **Next.js**, **PocketBase**, and **TailwindCSS** to support learning Korean (TOPIK).
 
 <p align="center">
-  <img src="./public/screenshot1.png" width="200" />
-  <img src="./public/screenshot2.png" width="200" />
-  <img src="./public/screenshot3.png" width="200" />
+  <img src="./public/screenshot4.png" width="400" />
+
+  <img src="./public/screenshot1.png" width="400" />
 </p>
 
 <p align="center">
-  <img src="./public/screenshot4.png" width="200" />
-  <img src="./public/screenshot5.png" width="200" />
+  <img src="./public/screenshot5.png" width="400" />
+    <img src="./public/screenshot2.png" width="400" />
+
 </p>
 
 
