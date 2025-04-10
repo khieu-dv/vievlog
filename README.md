@@ -37,22 +37,4 @@ If you found VieTopik helpful, please consider:
 - **Code Quality Tools**: [ESLint](https://eslint.org), [Biome](https://biomejs.dev), [Knip](https://knip.dev)
 - **Forms**: [🏗️ TanStack Form](https://tanstack.com/form)
 
-> **Note:**
-> VieTopik v1.3.0 has been renamed to **Versator**. If you prefer using [Clerk](https://clerk.com) for authentication and [Stripe](https://stripe.com) for payments, explore the Versator [Demo](https://versator.relivator.com/en), [Repository](https://github.com/blefnk/versator), or [Documentation](https://docs.reliverse.org/versator).
 
-## Available Commands
-
-| Command              | Description                                    |
-| -------------------- | ---------------------------------------------- |
-| `bun build`          | Builds the project                             |
-| `bun dev`            | Starts the development server                  |
-| `bun db:push`        | Applies database schema changes                |
-| `bun db:auth`        | Updates `src/db/schema/users.ts`               |
-| `bun db:studio`      | Opens Drizzle ORM visual editor                |
-| `bun ui`             | Installs shadcn/ui components                  |
-| `bun latest`         | Updates all dependencies                       |
-| `bun check`          | Runs type checks, linting, and formatting      |
-
-## License
-
-MIT © [blefnk Nazar Kornienko](https://github.com/blefnk)
