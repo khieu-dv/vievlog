@@ -1,0 +1,99 @@
+{
+  "header": {
+    "utils": {
+      "login": "Innskráning",
+      "logout": "Útskráning",
+      "inquiry": "Hafðu samband",
+      "manager": "Framkvæmdastjóri",
+      "topikExams": "Próf efni",
+      "topikSchedule": "Tímasetningarefni"
+    }
+  },
+  "body": {
+    "utils": {
+      "loading": "Hleðslukennsla ...",
+      "notFound": "Engin gögn sem finnast í þessum flokki.",
+      "inquiry": "Hafðu samband",
+      "manager": "Framkvæmdastjóri"
+    }
+  },
+  "content": {
+    "title": "Vietopik - Lærðu kóresku ókeypis",
+    "home": "Heim",
+    "topiks": "Efni",
+    "courses": "Námskeið",
+    "grammar": "Málfræði",
+    "game": "Leikur",
+    "features": "Eiginleikar",
+    "logIn": "Skráðu þig inn",
+    "signUp": "Skráðu þig",
+    "toggleTheme": "Skipta þema",
+    "newCollection": "Nýtt safn í boði",
+    "oneStopPlatform": "Fullkominn kóreska námspallur þinn",
+    "startLearningNow": "Prófefni",
+    "whyChooseVieTopik": "Af hverju að velja Vietopik?",
+    "freeAccess": "Ókeypis aðgangur",
+    "learnKorean": "Lærðu kóreska með hágæða kennslustundir frá sérfræðingum á nákvæmlega engan kostnað.",
+    "expertInstructors": "Sérfræðingar leiðbeinendur",
+    "learnFromExperts": "Lærðu af móðurmálum og reyndum kennurum.",
+    "anytimeAnywhere": "Hvenær sem er, hvar sem er",
+    "learnAtYourOwnPace": "Nám á eigin hraða með ótakmarkaðan aðgang að kennslustundum.",
+    "comprehensiveCurriculum": "Alhliða námskrá",
+    "coverAllAspects": "Frá byrjendum til framhaldsstigs, sem nær yfir málfræði, orðaforða og samtal.",
+    "topikExam": "Master The Topic Próf",
+    "topikI": "Efni i",
+    "topikI_tests": "12 æfingarpróf",
+    "topikII": "Topic II",
+    "topikII_tests": "15 æfingarpróf",
+    "viewAllTopiks": "Skoðaðu öll efni próf",
+    "featuredCourses": "Löguð námskeið",
+    "beginnerKorean": "Byrjendur kóreska",
+    "intermediateKorean": "Milli kóresku",
+    "advancedKorean": "Háþróaður kóreskur",
+    "getStartedForFree": "Byrjaðu ókeypis",
+    "whatOurLearnersSay": "Það sem nemendur okkar segja",
+    "testimonial1": {
+      "quote": "\"Vietopik hjálpaði mér að búa mig undir Topik prófið mitt á áhrifaríkan hátt. Lærdómurinn er vel skipulagður og auðvelt að fylgja!\"",
+      "name": "Nguyen minh anh",
+      "role": "Alþjóðlegur námsmaður"
+    },
+    "testimonial2": {
+      "quote": "„Að læra kóreska hefur aldrei verið auðveldara! Skipulögð kennslustundir gera allt einfalt og skemmtilegt.“",
+      "name": "Tran Hai Nam",
+      "role": "Skrifstofustarfsmaður"
+    },
+    "testimonial3": {
+      "quote": "„Þökk sé Vietopik hefur hlustunar- og talhæfni mín batnað verulega á aðeins þremur mánuðum!“",
+      "name": "Le Thanh Huong",
+      "role": "Háskólanemi"
+    },
+    "vieTopik": "Vietopik",
+    "yourOneStopShop": "Einn stöðvunarvettvangur þinn til að ná tökum á kóresku. Fáðu aðgang að úrvals auðlindum ókeypis og ná tungumálamarkmiðum þínum í dag!",
+    "connectWithUs": "Tengjast okkur",
+    "socialMedia": {
+      "facebook": "Facebook",
+      "twitter": "Twitter",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn"
+    },
+    "company": {
+      "aboutUs": "Um okkur",
+      "careers": "Starfsferill",
+      "blog": "Blogg",
+      "contact": "Hafðu samband"
+    },
+    "support": {
+      "helpCenter": "Hjálparmiðstöð",
+      "faq": "Algengar spurningar",
+      "privacyPolicy": "Persónuverndarstefna",
+      "termsOfService": "Þjónustuskilmálar"
+    },
+    "footer": {
+      "copyright": "© 2025 Vietopik. Öll réttindi áskilin."
+    },
+    "metadata": {
+      "lesson": "Skoðaðu nýjustu kennslustundirnar okkar og finndu eitthvað sem þú munt elska.",
+      "grammar": "Laus málfræði skýringarmynd"
+    }
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "header": {
+    "utils": {
+      "login": "Đăng nhập",
+      "logout": "Đăng xuất",
+      "inquiry": "Liên hệ với chúng tôi",
+      "manager": "Giám đốc",
+      "topikExams": "Chủ đề kỳ thi",
+      "topikSchedule": "Lịch trình chủ đề"
+    }
+  },
+  "body": {
+    "utils": {
+      "loading": "Tải các bài học ...",
+      "notFound": "Không có dữ liệu tìm thấy trong danh mục này.",
+      "inquiry": "Liên hệ với chúng tôi",
+      "manager": "Giám đốc"
+    }
+  },
+  "content": {
+    "title": "Vietopik - Tìm hiểu miễn phí Hàn Quốc",
+    "home": "Trang chủ",
+    "topiks": "Chủ đề",
+    "courses": "Khóa học",
+    "grammar": "Ngữ pháp",
+    "game": "Trò chơi",
+    "features": "Đặc trưng",
+    "logIn": "Đăng nhập",
+    "signUp": "Đăng ký",
+    "toggleTheme": "Chuyển đổi chủ đề",
+    "newCollection": "Bộ sưu tập mới có sẵn",
+    "oneStopPlatform": "Nền tảng học tập Hàn Quốc cuối cùng của bạn",
+    "startLearningNow": "Chủ đề thi",
+    "whyChooseVieTopik": "Why Choose VieTopik?",
+    "freeAccess": "Truy cập miễn phí",
+    "learnKorean": "Tìm hiểu tiếng Hàn với những bài học chất lượng cao từ các chuyên gia hoàn toàn không phải trả giá.",
+    "expertInstructors": "Giáo viên hướng dẫn chuyên gia",
+    "learnFromExperts": "Học hỏi từ người bản ngữ và giáo viên có kinh nghiệm.",
+    "anytimeAnywhere": "Bất cứ lúc nào, bất cứ nơi nào",
+    "learnAtYourOwnPace": "Nghiên cứu theo tốc độ của riêng bạn với quyền truy cập không giới hạn vào các bài học.",
+    "comprehensiveCurriculum": "Chương trình giảng dạy toàn diện",
+    "coverAllAspects": "Từ người mới bắt đầu đến cấp độ nâng cao, bao gồm ngữ pháp, từ vựng và cuộc trò chuyện.",
+    "topikExam": "Làm chủ bài kiểm tra chủ đề",
+    "topikI": "Chủ đề i",
+    "topikI_tests": "12 bài kiểm tra thực hành",
+    "topikII": "Chủ đề II",
+    "topikII_tests": "15 bài kiểm tra thực hành",
+    "viewAllTopiks": "Xem tất cả các bài kiểm tra chủ đề",
+    "featuredCourses": "Các khóa học nổi bật",
+    "beginnerKorean": "Người mới bắt đầu Hàn Quốc",
+    "intermediateKorean": "Trung cấp Hàn Quốc",
+    "advancedKorean": "Nâng cao Hàn Quốc",
+    "getStartedForFree": "Bắt đầu miễn phí",
+    "whatOurLearnersSay": "Những người học của chúng tôi nói gì",
+    "testimonial1": {
+      "quote": "\"Vietopik đã giúp tôi chuẩn bị cho bài kiểm tra Topik của tôi một cách hiệu quả. Các bài học có cấu trúc tốt và dễ theo dõi!\"",
+      "name": "Nguyen Minh Anh",
+      "role": "Sinh viên quốc tế"
+    },
+    "testimonial2": {
+      "quote": "\"Học tiếng Hàn chưa bao giờ dễ dàng hơn! Những bài học có cấu trúc làm cho mọi thứ đơn giản và vui vẻ.\"",
+      "name": "Tran Hai Nam",
+      "role": "Nhân viên văn phòng"
+    },
+    "testimonial3": {
+      "quote": "\"Nhờ Vietopik, kỹ năng nghe và nói của tôi đã được cải thiện đáng kể chỉ trong ba tháng!\"",
+      "name": "Le Thanh Huong",
+      "role": "Sinh viên đại học"
+    },
+    "vieTopik": "VieTopik",
+    "yourOneStopShop": "Nền tảng một cửa của bạn để thành thạo Hàn Quốc. Truy cập tài nguyên cao cấp miễn phí và đạt được mục tiêu ngôn ngữ của bạn ngay hôm nay!",
+    "connectWithUs": "Kết nối với chúng tôi",
+    "socialMedia": {
+      "facebook": "Facebook",
+      "twitter": "Twitter",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn"
+    },
+    "company": {
+      "aboutUs": "Về chúng tôi",
+      "careers": "Sự nghiệp",
+      "blog": "Blog",
+      "contact": "Liên hệ"
+    },
+    "support": {
+      "helpCenter": "Trung tâm trợ giúp",
+      "faq": "Câu hỏi thường gặp",
+      "privacyPolicy": "Chính sách bảo mật",
+      "termsOfService": "Điều khoản dịch vụ"
+    },
+    "footer": {
+      "copyright": "© 2025 Vietopik. Tất cả quyền được bảo lưu."
+    },
+    "metadata": {
+      "lesson": "Duyệt những bài học mới nhất của chúng tôi và tìm thấy thứ gì đó bạn sẽ yêu thích.",
+      "grammar": "Sơ đồ ngữ pháp có sẵn"
+    }
+  }
+}

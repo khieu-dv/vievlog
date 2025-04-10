@@ -1,0 +1,99 @@
+{
+  "header": {
+    "utils": {
+      "login": "Prijava",
+      "logout": "Odjava",
+      "inquiry": "Kontaktirajte nas",
+      "manager": "Menadžer",
+      "topikExams": "Tema ispita",
+      "topikSchedule": "Raspored tema"
+    }
+  },
+  "body": {
+    "utils": {
+      "loading": "Lekcije za utovar ...",
+      "notFound": "U ovoj kategoriji nisu pronađeni podaci.",
+      "inquiry": "Kontaktirajte nas",
+      "manager": "Menadžer"
+    }
+  },
+  "content": {
+    "title": "Vietopik - Naučite korejski besplatno",
+    "home": "Dom",
+    "topiks": "Teme",
+    "courses": "Tečajevi",
+    "grammar": "Gramatika",
+    "game": "Igra",
+    "features": "Značajke",
+    "logIn": "Prijaviti se",
+    "signUp": "Prijaviti se",
+    "toggleTheme": "Tema prebacivanja",
+    "newCollection": "Dostupna nova kolekcija",
+    "oneStopPlatform": "Vaša krajnja korejska platforma za učenje",
+    "startLearningNow": "Tema ispita",
+    "whyChooseVieTopik": "Zašto odabrati Vietopik?",
+    "freeAccess": "Besplatan pristup",
+    "learnKorean": "Naučite korejski s visokokvalitetnim lekcijama stručnjaka bez ikakvih troškova.",
+    "expertInstructors": "Stručni instruktori",
+    "learnFromExperts": "Učite od zavičajnih govornika i iskusnih učitelja.",
+    "anytimeAnywhere": "Bilo kada, bilo gdje",
+    "learnAtYourOwnPace": "Studirajte vlastitim tempom neograničenim pristupom lekcijama.",
+    "comprehensiveCurriculum": "Sveobuhvatni kurikulum",
+    "coverAllAspects": "Od početnika do naprednih razina, pokrivajući gramatiku, vokabular i razgovor.",
+    "topikExam": "Savladati ispit za temu",
+    "topikI": "Tema I",
+    "topikI_tests": "12 testova prakse",
+    "topikII": "Tema II",
+    "topikII_tests": "15 testova za vježbanje",
+    "viewAllTopiks": "Pogledajte sve testove teme",
+    "featuredCourses": "Izdvojeni tečajevi",
+    "beginnerKorean": "Početnički korejski",
+    "intermediateKorean": "Srednji korejski",
+    "advancedKorean": "Napredni Korejski",
+    "getStartedForFree": "Započnite besplatno",
+    "whatOurLearnersSay": "Što kažu naši polaznici",
+    "testimonial1": {
+      "quote": "\"Vietopik mi je pomogao da se učinkovito pripremim za ispit Topik. Lekcije su dobro strukturirane i lako ih je pratiti!\"",
+      "name": "Nguyen minh anh",
+      "role": "Međunarodni student"
+    },
+    "testimonial2": {
+      "quote": "\"Učenje korejskog nikada nije bilo lakše! Strukturirane lekcije čine sve jednostavnim i zabavnim.\"",
+      "name": "Tran Hai Nam",
+      "role": "Uredski radnik"
+    },
+    "testimonial3": {
+      "quote": "\"Zahvaljujući Vietopiku, moje vještine slušanja i govora značajno su se poboljšale u roku od samo tri mjeseca!\"",
+      "name": "Le Thanh Huong",
+      "role": "Sveučilišni student"
+    },
+    "vieTopik": "Vietopik",
+    "yourOneStopShop": "Vaša platforma za savladavanje korejskih. Pristupite premium resursima besplatno i ostvarite svoje jezične ciljeve danas!",
+    "connectWithUs": "Povežite se s nama",
+    "socialMedia": {
+      "facebook": "Facebook",
+      "twitter": "Cvrkut",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn"
+    },
+    "company": {
+      "aboutUs": "O nama",
+      "careers": "Karijera",
+      "blog": "Blog",
+      "contact": "Kontakt"
+    },
+    "support": {
+      "helpCenter": "Centar za pomoć",
+      "faq": "FAQ",
+      "privacyPolicy": "Pravila o privatnosti",
+      "termsOfService": "Uvjeti pružanja usluge"
+    },
+    "footer": {
+      "copyright": "© 2025 Vietopik. Sva prava pridržana."
+    },
+    "metadata": {
+      "lesson": "Pregledajte naše najnovije lekcije i pronađite nešto što će vam se svidjeti.",
+      "grammar": "Dostupni gramatički dijagrami"
+    }
+  }
+}

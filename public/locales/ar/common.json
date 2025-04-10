@@ -1,0 +1,99 @@
+{
+  "header": {
+    "utils": {
+      "login": "تسجيل الدخول",
+      "logout": "تسجيل الخروج",
+      "inquiry": "اتصل بنا",
+      "manager": "مدير",
+      "topikExams": "موضوع الامتحانات",
+      "topikSchedule": "موضوع الجدول"
+    }
+  },
+  "body": {
+    "utils": {
+      "loading": "تحميل الدروس ...",
+      "notFound": "لا توجد بيانات موجودة في هذه الفئة.",
+      "inquiry": "اتصل بنا",
+      "manager": "مدير"
+    }
+  },
+  "content": {
+    "title": "Vietopik - تعلم الكورية مجانًا",
+    "home": "بيت",
+    "topiks": "موضوعات",
+    "courses": "دورات",
+    "grammar": "قواعد",
+    "game": "لعبة",
+    "features": "سمات",
+    "logIn": "تسجيل الدخول",
+    "signUp": "اشتراك",
+    "toggleTheme": "تبديل موضوع",
+    "newCollection": "مجموعة جديدة متاحة",
+    "oneStopPlatform": "منصة التعلم الكورية النهائية الخاصة بك",
+    "startLearningNow": "موضوع الامتحان",
+    "whyChooseVieTopik": "لماذا تختار Vietopik؟",
+    "freeAccess": "وصول مجاني",
+    "learnKorean": "تعلم الكوري مع دروس عالية الجودة من الخبراء دون أي تكلفة على الإطلاق.",
+    "expertInstructors": "المدربون الخبراء",
+    "learnFromExperts": "تعلم من المتحدثين الأصليين والمعلمين ذوي الخبرة.",
+    "anytimeAnywhere": "في أي وقت ، في أي مكان",
+    "learnAtYourOwnPace": "دراسة في وتيرتك مع وصول غير محدود إلى الدروس.",
+    "comprehensiveCurriculum": "منهج شامل",
+    "coverAllAspects": "من المبتدئين إلى المستويات المتقدمة ، تغطي القواعد النحوية والمفردات والمحادثة.",
+    "topikExam": "إتقان امتحان الموضوع",
+    "topikI": "الموضوع أنا",
+    "topikI_tests": "12 اختبارات الممارسة",
+    "topikII": "الموضوع الثاني",
+    "topikII_tests": "15 اختبارات الممارسة",
+    "viewAllTopiks": "عرض جميع اختبارات الموضوعات",
+    "featuredCourses": "دورات مميزة",
+    "beginnerKorean": "كوري المبتدئ",
+    "intermediateKorean": "الكورية الوسيطة",
+    "advancedKorean": "كوري المتقدم",
+    "getStartedForFree": "ابدأ مجانًا",
+    "whatOurLearnersSay": "ماذا يقول متعلمونا",
+    "testimonial1": {
+      "quote": "\"ساعدني Vietopik في الاستعداد لامتحان Topik بشكل فعال. الدروس هي منظمة جيدة التنظيم وسهلة المتابعة!\"",
+      "name": "نغوين مينه آنه",
+      "role": "طالب دولي"
+    },
+    "testimonial2": {
+      "quote": "\"إن تعلم الكورية لم يكن أسهل أبدًا! الدروس المنظمة تجعل كل شيء بسيطًا وممتعًا.\"",
+      "name": "تران هاي نام",
+      "role": "عامل المكتب"
+    },
+    "testimonial3": {
+      "quote": "\"بفضل Vietopik ، تحسنت مهاراتي في الاستماع والتحدث بشكل كبير خلال ثلاثة أشهر فقط!\"",
+      "name": "لو ثانه هوونغ",
+      "role": "طالب الجامعة"
+    },
+    "vieTopik": "فييتوبيك",
+    "yourOneStopShop": "منصة شدة واحدة لإتقان الكورية. الوصول إلى الموارد الممتازة مجانًا وتحقيق أهداف لغتك اليوم!",
+    "connectWithUs": "تواصل معنا",
+    "socialMedia": {
+      "facebook": "فيسبوك",
+      "twitter": "تغريد",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn"
+    },
+    "company": {
+      "aboutUs": "معلومات عنا",
+      "careers": "وظائف",
+      "blog": "مدونة",
+      "contact": "اتصال"
+    },
+    "support": {
+      "helpCenter": "مركز المساعدة",
+      "faq": "التعليمات",
+      "privacyPolicy": "سياسة الخصوصية",
+      "termsOfService": "شروط الخدمة"
+    },
+    "footer": {
+      "copyright": "© 2025 Vietopik. جميع الحقوق محفوظة."
+    },
+    "metadata": {
+      "lesson": "تصفح أحدث دروسنا وابحث عن شيء ستحبه.",
+      "grammar": "مخططات القواعد المتاحة"
+    }
+  }
+}

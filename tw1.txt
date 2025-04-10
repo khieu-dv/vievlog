@@ -1,0 +1,2881 @@
+<table class="basic_table table_list">
+				<caption>시험일정 안내 표로 구분, 회차, 점수기간(대한민국), 시험일, 시험수준, 접수, 성적발표일 정보 제공</caption>
+        		<colgroup>
+		        <col width="90px">
+		        <col width="85px">
+		        <col width="220px">
+		        <col width="110px">
+				<col width="105px">
+				<col width="110px">
+		        <col width="100px">
+		        <col width="116px">
+		        <col width="*">
+		        </colgroup>
+        		<thead>
+		          <tr>
+		            <th rowspan="2">Category</th>
+		            <th rowspan="2">Session</th>
+		            <th rowspan="2">Registration period (Korea)</th>
+		            <th colspan="3">Exam date</th>
+		            <th rowspan="2">Test level</th>
+		            <th rowspan="2">Register</th>
+		            <th rowspan="2">Score announcement date</th>
+		          </tr>
+		          <tr>
+		            <th>Korea</th>
+		            <th>Americas, Europe, Africa, and Oceania</th>
+		            <th class="th_r">Asia</th>
+		          </tr>
+        		</thead>
+		        <tbody>
+	        		
+			 			
+					          <tr>
+								
+									
+
+									
+										<td>TOPIK IBT</td>
+									
+
+									
+								
+								
+									
+					            	
+					            	
+					            		<td>10</td>
+					            	
+					            
+					            <td>
+					            	<div>
+					            	
+										
+									
+									
+										2025.09.23
+									
+									
+									
+										
+									
+									
+										(Tue)
+									
+					                ~
+					                
+										
+									
+									
+										2025.09.29
+									
+									
+						            
+										
+									
+									
+										(Mon)
+									
+					                </div>
+					                
+					                <div class="badge_box hide-on-mobile">
+									
+										
+											<span class="badge">Registration is set to open</span>
+										
+										
+										
+									
+					                </div>
+					                
+					                
+					                
+					                
+					                
+					                <!-- 20240328 기준 토픽마당 공지사항 링크   -->
+					                
+					                <!-- 20240116 기준 토픽마당 공지사항 링크   -->
+					                
+					            	
+					            </td>
+					            <td>
+								
+					            		
+					            		
+							            	
+												
+											
+											
+												11.29
+												<!--  나중에 비교용 -->
+											
+											
+								             	
+													
+												
+												
+													(Sat)
+													<!--  나중에 비교용 -->
+												
+							                
+					            		
+					                         
+					            </td>
+					            <!-- IBT4회 미주 일정 DB 입력없이 임시로 입력 (요청게시판) -->
+					            <td>
+					            	
+										
+							            	
+							            	    
+							            		
+							            		    -
+							            		
+							            		
+							            	
+					            		
+					            		
+					            			
+					            </td>
+					            <!-- 시험일(아시아) -->
+					            <td>
+					            <!-- IBT시범시행 5,6회는 국외시행만 있어서 시험일 없애기 -->
+					            <!-- IBT 2,3,4회 아시아 시험일 제거요청(임성규) -->
+					            <!-- PBT98회 아시아 시험일 임시로 없애기 -->
+					            
+					            
+					            
+					            
+					            	
+										
+											
+												
+												
+													
+														
+													
+													
+														11.29
+														<!--  나중에 비교용 -->
+													
+								               		
+										               	
+															
+														
+														
+															(Sat)
+															<!--  나중에 비교용 -->
+														
+													
+																	            	
+							            	
+										
+					            		
+					            	
+					            	
+					            
+					            
+					            </td>
+					            <td>
+									
+									
+									     TOPIK Ⅰ<br>
+									
+									     TOPIK Ⅱ<br>
+									
+					            </td>
+								
+									
+										<td><span class="btns btns_s btns_plan cursor_no">Registration is set to open</span></td>
+									
+									
+									
+									
+								
+					            <td>
+					            	
+					            		
+					            		
+							            	
+												
+											
+											
+												12.19
+												<!--  나중에 비교용 -->
+											
+											
+											
+												
+											
+											
+												(Fri)
+												<!--  나중에 비교용 -->
+											
+											
+												
+											
+											
+												15:00
+												<!--  나중에 비교용 -->
+											
+					            		
+					            	
+					            </td>
+					          </tr>
+			       		
+					          <tr>
+								
+									
+										<td>TOPIK PBT</td>
+									
+
+									
+
+									
+								
+								
+									
+					            	
+					            	
+					            		<td>103</td>
+					            	
+					            
+					            <td>
+					            	<div>
+					            	
+										
+									
+									
+										2025.09.02
+									
+									
+									
+										
+									
+									
+										(Tue)
+									
+					                ~
+					                
+										
+									
+									
+										2025.09.08
+									
+									
+						            
+										
+									
+									
+										(Mon)
+									
+					                </div>
+					                
+					                <div class="badge_box hide-on-mobile">
+									
+										
+											<span class="badge">Registration is set to open</span>
+										
+										
+										
+									
+					                </div>
+					                
+					                
+					                
+					                
+					                
+					                <!-- 20240328 기준 토픽마당 공지사항 링크   -->
+					                
+					                <!-- 20240116 기준 토픽마당 공지사항 링크   -->
+					                
+					            	
+					            </td>
+					            <td>
+								
+					            		
+					            		
+							            	
+												
+											
+											
+												11.16
+												<!--  나중에 비교용 -->
+											
+											
+								             	
+													
+												
+												
+													(Sun)
+													<!--  나중에 비교용 -->
+												
+							                
+					            		
+					                         
+					            </td>
+					            <!-- IBT4회 미주 일정 DB 입력없이 임시로 입력 (요청게시판) -->
+					            <td>
+					            	
+										
+							            	
+							            	    
+							            		
+							            		    -
+							            		
+							            		
+							            	
+					            		
+					            		
+					            			
+					            </td>
+					            <!-- 시험일(아시아) -->
+					            <td>
+					            <!-- IBT시범시행 5,6회는 국외시행만 있어서 시험일 없애기 -->
+					            <!-- IBT 2,3,4회 아시아 시험일 제거요청(임성규) -->
+					            <!-- PBT98회 아시아 시험일 임시로 없애기 -->
+					            
+					            
+					            
+					            
+					            	
+										
+											
+												
+												
+													
+														
+													
+													
+														11.16
+														<!--  나중에 비교용 -->
+													
+								               		
+										               	
+															
+														
+														
+															(Sun)
+															<!--  나중에 비교용 -->
+														
+													
+																	            	
+							            	
+										
+					            		
+					            	
+					            	
+					            
+					            
+					            </td>
+					            <td>
+									
+									
+									     TOPIK Ⅰ<br>
+									
+									     TOPIK Ⅱ<br>
+									
+					            </td>
+								
+									
+										<td><span class="btns btns_s btns_plan cursor_no">Registration is set to open</span></td>
+									
+									
+									
+									
+								
+					            <td>
+					            	
+					            		
+					            		
+							            	
+												
+											
+											
+												12.23
+												<!--  나중에 비교용 -->
+											
+											
+											
+												
+											
+											
+												(Tue)
+												<!--  나중에 비교용 -->
+											
+											
+												
+											
+											
+												15:00
+												<!--  나중에 비교용 -->
+											
+					            		
+					            	
+					            </td>
+					          </tr>
+			       		
+					          <tr>
+								
+									
+
+									
+										<td>TOPIK IBT</td>
+									
+
+									
+								
+								
+									
+					            	
+					            	
+					            		<td>9</td>
+					            	
+					            
+					            <td>
+					            	<div>
+					            	
+										
+									
+									
+										2025.08.26
+									
+									
+									
+										
+									
+									
+										(Tue)
+									
+					                ~
+					                
+										
+									
+									
+										2025.09.01
+									
+									
+						            
+										
+									
+									
+										(Mon)
+									
+					                </div>
+					                
+					                <div class="badge_box hide-on-mobile">
+									
+										
+											<span class="badge">Registration is set to open</span>
+										
+										
+										
+									
+					                </div>
+					                
+					                
+					                
+					                
+					                
+					                <!-- 20240328 기준 토픽마당 공지사항 링크   -->
+					                
+					                <!-- 20240116 기준 토픽마당 공지사항 링크   -->
+					                
+					            	
+					            </td>
+					            <td>
+								
+					            		
+					            		
+							            	
+												
+											
+											
+												10.25
+												<!--  나중에 비교용 -->
+											
+											
+								             	
+													
+												
+												
+													(Sat)
+													<!--  나중에 비교용 -->
+												
+							                
+					            		
+					                         
+					            </td>
+					            <!-- IBT4회 미주 일정 DB 입력없이 임시로 입력 (요청게시판) -->
+					            <td>
+					            	
+										
+							            	
+							            	    
+							            		
+							            		    -
+							            		
+							            		
+							            	
+					            		
+					            		
+					            			
+					            </td>
+					            <!-- 시험일(아시아) -->
+					            <td>
+					            <!-- IBT시범시행 5,6회는 국외시행만 있어서 시험일 없애기 -->
+					            <!-- IBT 2,3,4회 아시아 시험일 제거요청(임성규) -->
+					            <!-- PBT98회 아시아 시험일 임시로 없애기 -->
+					            
+					            
+					            
+					            
+					            	
+										
+											
+												
+												
+													
+														
+													
+													
+														10.25
+														<!--  나중에 비교용 -->
+													
+								               		
+										               	
+															
+														
+														
+															(Sat)
+															<!--  나중에 비교용 -->
+														
+													
+																	            	
+							            	
+										
+					            		
+					            	
+					            	
+					            
+					            
+					            </td>
+					            <td>
+									
+									
+									     TOPIK Ⅰ<br>
+									
+									     TOPIK Ⅱ<br>
+									
+					            </td>
+								
+									
+										<td><span class="btns btns_s btns_plan cursor_no">Registration is set to open</span></td>
+									
+									
+									
+									
+								
+					            <td>
+					            	
+					            		
+					            		
+							            	
+												
+											
+											
+												11.14
+												<!--  나중에 비교용 -->
+											
+											
+											
+												
+											
+											
+												(Fri)
+												<!--  나중에 비교용 -->
+											
+											
+												
+											
+											
+												15:00
+												<!--  나중에 비교용 -->
+											
+					            		
+					            	
+					            </td>
+					          </tr>
+			       		
+					          <tr>
+								
+									
+
+									
+
+									
+										<td>TOPIK <br>Speaking</td>
+									
+								
+								
+									
+					            	
+					            	
+					            		<td>9</td>
+					            	
+					            
+					            <td>
+					            	<div>
+					            	
+										
+									
+									
+										2025.08.26
+									
+									
+									
+										
+									
+									
+										(Tue)
+									
+					                ~
+					                
+										
+									
+									
+										2025.09.01
+									
+									
+						            
+										
+									
+									
+										(Mon)
+									
+					                </div>
+					                
+					                <div class="badge_box hide-on-mobile">
+									
+										
+											<span class="badge">Registration is set to open</span>
+										
+										
+										
+									
+					                </div>
+					                
+					                
+					                
+					                
+					                
+					                <!-- 20240328 기준 토픽마당 공지사항 링크   -->
+					                
+					                <!-- 20240116 기준 토픽마당 공지사항 링크   -->
+					                
+					            	
+					            </td>
+					            <td>
+								
+					            		
+					            		
+							            	
+												
+											
+											
+												10.25
+												<!--  나중에 비교용 -->
+											
+											
+								             	
+													
+												
+												
+													(Sat)
+													<!--  나중에 비교용 -->
+												
+							                
+					            		
+					                         
+					            </td>
+					            <!-- IBT4회 미주 일정 DB 입력없이 임시로 입력 (요청게시판) -->
+					            <td>
+					            	
+										
+					            		
+					            			-
+					            		
+					            			
+					            </td>
+					            <!-- 시험일(아시아) -->
+					            <td>
+					            <!-- IBT시범시행 5,6회는 국외시행만 있어서 시험일 없애기 -->
+					            <!-- IBT 2,3,4회 아시아 시험일 제거요청(임성규) -->
+					            <!-- PBT98회 아시아 시험일 임시로 없애기 -->
+					            
+					            
+					            
+					            
+					            	
+										
+					            		
+					            			-
+					            		
+					            	
+					            	
+					            
+					            
+					            </td>
+					            <td>
+									
+									
+									     말하기 평가<br>
+									
+					            </td>
+								
+									
+										<td><span class="btns btns_s btns_plan cursor_no">Registration is set to open</span></td>
+									
+									
+									
+									
+								
+					            <td>
+					            	
+					            		
+					            		
+							            	
+												
+											
+											
+												11.17
+												<!--  나중에 비교용 -->
+											
+											
+											
+												
+											
+											
+												(Mon)
+												<!--  나중에 비교용 -->
+											
+											
+												
+											
+											
+												15:00
+												<!--  나중에 비교용 -->
+											
+					            		
+					            	
+					            </td>
+					          </tr>
+			       		
+					          <tr>
+								
+									
+										<td>TOPIK PBT</td>
+									
+
+									
+
+									
+								
+								
+									
+					            	
+					            	
+					            		<td>102</td>
+					            	
+					            
+					            <td>
+					            	<div>
+					            	
+										
+									
+									
+										2025.08.05
+									
+									
+									
+										
+									
+									
+										(Tue)
+									
+					                ~
+					                
+										
+									
+									
+										2025.08.11
+									
+									
+						            
+										
+									
+									
+										(Mon)
+									
+					                </div>
+					                
+					                <div class="badge_box hide-on-mobile">
+									
+										
+											<span class="badge">Registration is set to open</span>
+										
+										
+										
+									
+					                </div>
+					                
+					                
+					                
+					                
+					                
+					                <!-- 20240328 기준 토픽마당 공지사항 링크   -->
+					                
+					                <!-- 20240116 기준 토픽마당 공지사항 링크   -->
+					                
+					            	
+					            </td>
+					            <td>
+								
+					            		
+					            		
+							            	
+												
+											
+											
+												10.19
+												<!--  나중에 비교용 -->
+											
+											
+								             	
+													
+												
+												
+													(Sun)
+													<!--  나중에 비교용 -->
+												
+							                
+					            		
+					                         
+					            </td>
+					            <!-- IBT4회 미주 일정 DB 입력없이 임시로 입력 (요청게시판) -->
+					            <td>
+					            	
+										
+							            	
+							            	    
+							            		
+							            		
+								            		
+														
+													
+													
+														10.18
+														<!--  나중에 비교용 -->
+													
+								           		 	
+										               
+															
+														
+														
+															(Sat)
+															<!--  나중에 비교용 -->
+														
+													 
+							            		
+							            	
+					            		
+					            		
+					            			
+					            </td>
+					            <!-- 시험일(아시아) -->
+					            <td>
+					            <!-- IBT시범시행 5,6회는 국외시행만 있어서 시험일 없애기 -->
+					            <!-- IBT 2,3,4회 아시아 시험일 제거요청(임성규) -->
+					            <!-- PBT98회 아시아 시험일 임시로 없애기 -->
+					            
+					            
+					            
+					            
+					            	
+										
+											
+												
+												
+													
+														
+													
+													
+														10.19
+														<!--  나중에 비교용 -->
+													
+								               		
+										               	
+															
+														
+														
+															(Sun)
+															<!--  나중에 비교용 -->
+														
+													
+																	            	
+							            	
+										
+					            		
+					            	
+					            	
+					            
+					            
+					            </td>
+					            <td>
+									
+									
+									     TOPIK Ⅰ<br>
+									
+									     TOPIK Ⅱ<br>
+									
+					            </td>
+								
+									
+										<td><span class="btns btns_s btns_plan cursor_no">Registration is set to open</span></td>
+									
+									
+									
+									
+								
+					            <td>
+					            	
+					            		
+					            		
+							            	
+												
+											
+											
+												12.11
+												<!--  나중에 비교용 -->
+											
+											
+											
+												
+											
+											
+												(Thu)
+												<!--  나중에 비교용 -->
+											
+											
+												
+											
+											
+												15:00
+												<!--  나중에 비교용 -->
+											
+					            		
+					            	
+					            </td>
+					          </tr>
+			       		
+					          <tr>
+								
+									
+
+									
+										<td>TOPIK IBT</td>
+									
+
+									
+								
+								
+									
+					            	
+					            	
+					            		<td>8</td>
+					            	
+					            
+					            <td>
+					            	<div>
+					            	
+										
+									
+									
+										2025.07.15
+									
+									
+									
+										
+									
+									
+										(Tue)
+									
+					                ~
+					                
+										
+									
+									
+										2025.07.21
+									
+									
+						            
+										
+									
+									
+										(Mon)
+									
+					                </div>
+					                
+					                <div class="badge_box hide-on-mobile">
+									
+										
+											<span class="badge">Registration is set to open</span>
+										
+										
+										
+									
+					                </div>
+					                
+					                
+					                
+					                
+					                
+					                <!-- 20240328 기준 토픽마당 공지사항 링크   -->
+					                
+					                <!-- 20240116 기준 토픽마당 공지사항 링크   -->
+					                
+					            	
+					            </td>
+					            <td>
+								
+					            		
+					            		
+							            	
+												
+											
+											
+												09.13
+												<!--  나중에 비교용 -->
+											
+											
+								             	
+													
+												
+												
+													(Sat)
+													<!--  나중에 비교용 -->
+												
+							                
+					            		
+					                         
+					            </td>
+					            <!-- IBT4회 미주 일정 DB 입력없이 임시로 입력 (요청게시판) -->
+					            <td>
+					            	
+										
+							            	
+							            	    
+							            		
+							            		    -
+							            		
+							            		
+							            	
+					            		
+					            		
+					            			
+					            </td>
+					            <!-- 시험일(아시아) -->
+					            <td>
+					            <!-- IBT시범시행 5,6회는 국외시행만 있어서 시험일 없애기 -->
+					            <!-- IBT 2,3,4회 아시아 시험일 제거요청(임성규) -->
+					            <!-- PBT98회 아시아 시험일 임시로 없애기 -->
+					            
+					            
+					            
+					            
+					            	
+										
+											
+												
+												
+													
+														
+													
+													
+														09.13
+														<!--  나중에 비교용 -->
+													
+								               		
+										               	
+															
+														
+														
+															(Sat)
+															<!--  나중에 비교용 -->
+														
+													
+																	            	
+							            	
+										
+					            		
+					            	
+					            	
+					            
+					            
+					            </td>
+					            <td>
+									
+									
+									     TOPIK Ⅰ<br>
+									
+									     TOPIK Ⅱ<br>
+									
+					            </td>
+								
+									
+										<td><span class="btns btns_s btns_plan cursor_no">Registration is set to open</span></td>
+									
+									
+									
+									
+								
+					            <td>
+					            	
+					            		
+					            		
+							            	
+												
+											
+											
+												10.02
+												<!--  나중에 비교용 -->
+											
+											
+											
+												
+											
+											
+												(Thu)
+												<!--  나중에 비교용 -->
+											
+											
+												
+											
+											
+												15:00
+												<!--  나중에 비교용 -->
+											
+					            		
+					            	
+					            </td>
+					          </tr>
+			       		
+					          <tr>
+								
+									
+										<td>TOPIK PBT</td>
+									
+
+									
+
+									
+								
+								
+									
+					            	
+					            	
+					            		<td>101</td>
+					            	
+					            
+					            <td>
+					            	<div>
+					            	
+										
+									
+									
+										2025.05.13
+									
+									
+									
+										
+									
+									
+										(Tue)
+									
+					                ~
+					                
+										
+									
+									
+										2025.05.19
+									
+									
+						            
+										
+									
+									
+										(Mon)
+									
+					                </div>
+					                
+					                <div class="badge_box hide-on-mobile">
+									
+										
+											<span class="badge">Registration is set to open</span>
+										
+										
+										
+									
+					                </div>
+					                
+					                
+					                
+					                
+					                
+					                <!-- 20240328 기준 토픽마당 공지사항 링크   -->
+					                
+					                <!-- 20240116 기준 토픽마당 공지사항 링크   -->
+					                
+					            	
+					            </td>
+					            <td>
+								
+					            		
+					            		
+							            	
+												
+											
+											
+												07.13
+												<!--  나중에 비교용 -->
+											
+											
+								             	
+													
+												
+												
+													(Sun)
+													<!--  나중에 비교용 -->
+												
+							                
+					            		
+					                         
+					            </td>
+					            <!-- IBT4회 미주 일정 DB 입력없이 임시로 입력 (요청게시판) -->
+					            <td>
+					            	
+										
+							            	
+							            	    
+							            		
+							            		
+								            		
+														
+													
+													
+														07.12
+														<!--  나중에 비교용 -->
+													
+								           		 	
+										               
+															
+														
+														
+															(Sat)
+															<!--  나중에 비교용 -->
+														
+													 
+							            		
+							            	
+					            		
+					            		
+					            			
+					            </td>
+					            <!-- 시험일(아시아) -->
+					            <td>
+					            <!-- IBT시범시행 5,6회는 국외시행만 있어서 시험일 없애기 -->
+					            <!-- IBT 2,3,4회 아시아 시험일 제거요청(임성규) -->
+					            <!-- PBT98회 아시아 시험일 임시로 없애기 -->
+					            
+					            
+					            
+					            
+					            	
+										
+											
+												
+												
+													
+														
+													
+													
+														07.13
+														<!--  나중에 비교용 -->
+													
+								               		
+										               	
+															
+														
+														
+															(Sun)
+															<!--  나중에 비교용 -->
+														
+													
+																	            	
+							            	
+										
+					            		
+					            	
+					            	
+					            
+					            
+					            </td>
+					            <td>
+									
+									
+									     TOPIK Ⅰ<br>
+									
+									     TOPIK Ⅱ<br>
+									
+					            </td>
+								
+									
+										<td><span class="btns btns_s btns_plan cursor_no">Registration is set to open</span></td>
+									
+									
+									
+									
+								
+					            <td>
+					            	
+					            		
+					            		
+							            	
+												
+											
+											
+												08.21
+												<!--  나중에 비교용 -->
+											
+											
+											
+												
+											
+											
+												(Thu)
+												<!--  나중에 비교용 -->
+											
+											
+												
+											
+											
+												15:00
+												<!--  나중에 비교용 -->
+											
+					            		
+					            	
+					            </td>
+					          </tr>
+			       		
+					          <tr>
+								
+									
+
+									
+										<td>TOPIK IBT</td>
+									
+
+									
+								
+								
+									
+					            	
+					            	
+					            		<td>7</td>
+					            	
+					            
+					            <td>
+					            	<div>
+					            	
+										
+									
+									
+										2025.04.15
+									
+									
+									
+										
+									
+									
+										(Tue)
+									
+					                ~
+					                
+										
+									
+									
+										2025.04.21
+									
+									
+						            
+										
+									
+									
+										(Mon)
+									
+					                </div>
+					                
+					                <div class="badge_box hide-on-mobile">
+									
+										
+											<span class="badge">Registration is set to open</span>
+										
+										
+										
+									
+					                </div>
+					                
+					                
+					                
+					                
+					                
+					                <!-- 20240328 기준 토픽마당 공지사항 링크   -->
+					                
+					                <!-- 20240116 기준 토픽마당 공지사항 링크   -->
+					                
+					            	
+					            </td>
+					            <td>
+								
+					            		
+					            		
+							            	
+												
+											
+											
+												06.14
+												<!--  나중에 비교용 -->
+											
+											
+								             	
+													
+												
+												
+													(Sat)
+													<!--  나중에 비교용 -->
+												
+							                
+					            		
+					                         
+					            </td>
+					            <!-- IBT4회 미주 일정 DB 입력없이 임시로 입력 (요청게시판) -->
+					            <td>
+					            	
+										
+							            	
+							            	    
+							            		
+							            		    -
+							            		
+							            		
+							            	
+					            		
+					            		
+					            			
+					            </td>
+					            <!-- 시험일(아시아) -->
+					            <td>
+					            <!-- IBT시범시행 5,6회는 국외시행만 있어서 시험일 없애기 -->
+					            <!-- IBT 2,3,4회 아시아 시험일 제거요청(임성규) -->
+					            <!-- PBT98회 아시아 시험일 임시로 없애기 -->
+					            
+					            
+					            
+					            
+					            	
+										
+											
+												
+												
+													
+														
+													
+													
+														06.14
+														<!--  나중에 비교용 -->
+													
+								               		
+										               	
+															
+														
+														
+															(Sat)
+															<!--  나중에 비교용 -->
+														
+													
+																	            	
+							            	
+										
+					            		
+					            	
+					            	
+					            
+					            
+					            </td>
+					            <td>
+									
+									
+									     TOPIK Ⅰ<br>
+									
+									     TOPIK Ⅱ<br>
+									
+					            </td>
+								
+									
+										<td><span class="btns btns_s btns_plan cursor_no">Registration is set to open</span></td>
+									
+									
+									
+									
+								
+					            <td>
+					            	
+					            		
+					            		
+							            	
+												
+											
+											
+												07.04
+												<!--  나중에 비교용 -->
+											
+											
+											
+												
+											
+											
+												(Fri)
+												<!--  나중에 비교용 -->
+											
+											
+												
+											
+											
+												15:00
+												<!--  나중에 비교용 -->
+											
+					            		
+					            	
+					            </td>
+					          </tr>
+			       		
+					          <tr>
+								
+									
+
+									
+
+									
+										<td>TOPIK <br>Speaking</td>
+									
+								
+								
+									
+					            	
+					            	
+					            		<td>8</td>
+					            	
+					            
+					            <td>
+					            	<div>
+					            	
+										
+									
+									
+										2025.04.15
+									
+									
+									
+										
+									
+									
+										(Tue)
+									
+					                ~
+					                
+										
+									
+									
+										2025.04.21
+									
+									
+						            
+										
+									
+									
+										(Mon)
+									
+					                </div>
+					                
+					                <div class="badge_box hide-on-mobile">
+									
+										
+											<span class="badge">Registration is set to open</span>
+										
+										
+										
+									
+					                </div>
+					                
+					                
+					                
+					                
+					                
+					                <!-- 20240328 기준 토픽마당 공지사항 링크   -->
+					                
+					                <!-- 20240116 기준 토픽마당 공지사항 링크   -->
+					                
+					            	
+					            </td>
+					            <td>
+								
+					            		
+					            		
+							            	
+												
+											
+											
+												06.14
+												<!--  나중에 비교용 -->
+											
+											
+								             	
+													
+												
+												
+													(Sat)
+													<!--  나중에 비교용 -->
+												
+							                
+					            		
+					                         
+					            </td>
+					            <!-- IBT4회 미주 일정 DB 입력없이 임시로 입력 (요청게시판) -->
+					            <td>
+					            	
+										
+					            		
+					            			-
+					            		
+					            			
+					            </td>
+					            <!-- 시험일(아시아) -->
+					            <td>
+					            <!-- IBT시범시행 5,6회는 국외시행만 있어서 시험일 없애기 -->
+					            <!-- IBT 2,3,4회 아시아 시험일 제거요청(임성규) -->
+					            <!-- PBT98회 아시아 시험일 임시로 없애기 -->
+					            
+					            
+					            
+					            
+					            	
+										
+					            		
+					            			-
+					            		
+					            	
+					            	
+					            
+					            
+					            </td>
+					            <td>
+									
+									
+									     말하기 평가<br>
+									
+					            </td>
+								
+									
+										<td><span class="btns btns_s btns_plan cursor_no">Registration is set to open</span></td>
+									
+									
+									
+									
+								
+					            <td>
+					            	
+					            		
+					            		
+							            	
+												
+											
+											
+												07.07
+												<!--  나중에 비교용 -->
+											
+											
+											
+												
+											
+											
+												(Mon)
+												<!--  나중에 비교용 -->
+											
+											
+												
+											
+											
+												15:00
+												<!--  나중에 비교용 -->
+											
+					            		
+					            	
+					            </td>
+					          </tr>
+			       		
+					          <tr>
+								
+									
+										<td>TOPIK PBT</td>
+									
+
+									
+
+									
+								
+								
+									
+					            	
+					            	
+					            		<td>100</td>
+					            	
+					            
+					            <td>
+					            	<div>
+					            	
+										
+									
+									
+										2025.03.11
+									
+									
+									
+										
+									
+									
+										(Tue)
+									
+					                ~
+					                
+										
+									
+									
+										2025.03.17
+									
+									
+						            
+										
+									
+									
+										(Mon)
+									
+					                </div>
+					                
+					                <div class="badge_box hide-on-mobile">
+									
+										
+										
+										
+									
+					                </div>
+					                
+										<div class="badge_box">
+					            			<a href="/TWINFO/TWINFO0011.do?bbsId=BBSMSTR00076&amp;nttId=128443&amp;nttClCode1=ALL&amp;pageIndex=1">
+					            			
+						            			
+						            			<span class="badge badge_new">
+						            			Go to Overseas Application Info
+						            			</span>
+						            			
+						            			
+					            			
+					            			</a>
+					            		</div>
+					            	
+					                
+					                
+					                
+					                
+					                <!-- 20240328 기준 토픽마당 공지사항 링크   -->
+					                
+					                <!-- 20240116 기준 토픽마당 공지사항 링크   -->
+					                
+					            	
+					            </td>
+					            <td>
+								
+					            		
+					            		
+							            	
+												
+											
+											
+												05.11
+												<!--  나중에 비교용 -->
+											
+											
+								             	
+													
+												
+												
+													(Sun)
+													<!--  나중에 비교용 -->
+												
+							                
+					            		
+					                         
+					            </td>
+					            <!-- IBT4회 미주 일정 DB 입력없이 임시로 입력 (요청게시판) -->
+					            <td>
+					            	
+										
+							            	
+							            	    
+							            		
+							            		    -
+							            		
+							            		
+							            	
+					            		
+					            		
+					            			
+					            </td>
+					            <!-- 시험일(아시아) -->
+					            <td>
+					            <!-- IBT시범시행 5,6회는 국외시행만 있어서 시험일 없애기 -->
+					            <!-- IBT 2,3,4회 아시아 시험일 제거요청(임성규) -->
+					            <!-- PBT98회 아시아 시험일 임시로 없애기 -->
+					            
+					            
+					            
+					            
+					            	
+										
+											
+												
+												
+													
+														
+													
+													
+														05.11
+														<!--  나중에 비교용 -->
+													
+								               		
+										               	
+															
+														
+														
+															(Sun)
+															<!--  나중에 비교용 -->
+														
+													
+																	            	
+							            	
+										
+					            		
+					            	
+					            	
+					            
+					            
+					            </td>
+					            <td>
+									
+									
+									     TOPIK Ⅰ<br>
+									
+									     TOPIK Ⅱ<br>
+									
+					            </td>
+								
+									
+									
+									
+									
+										<td><a span="" class="btns btns_s btns_no cursor_no">Registration is now closed</a></td>
+									
+								
+					            <td>
+					            	
+					            		
+					            		
+							            	
+												
+											
+											
+												06.26
+												<!--  나중에 비교용 -->
+											
+											
+											
+												
+											
+											
+												(Thu)
+												<!--  나중에 비교용 -->
+											
+											
+												
+											
+											
+												15:00
+												<!--  나중에 비교용 -->
+											
+					            		
+					            	
+					            </td>
+					          </tr>
+			       		
+					          <tr>
+								
+									
+										<td>TOPIK PBT</td>
+									
+
+									
+
+									
+								
+								
+									
+					            	
+					            	
+					            		<td>99</td>
+					            	
+					            
+					            <td>
+					            	<div>
+					            	
+										
+									
+									
+										2025.02.11
+									
+									
+									
+										
+									
+									
+										(Tue)
+									
+					                ~
+					                
+										
+									
+									
+										2025.02.17
+									
+									
+						            
+										
+									
+									
+										(Mon)
+									
+					                </div>
+					                
+					                <div class="badge_box hide-on-mobile">
+									
+										
+										
+										
+									
+					                </div>
+					                
+										<div class="badge_box">
+					            			<a href="/TWINFO/TWINFO0011.do?bbsId=BBSMSTR00076&amp;nttId=128146&amp;nttClCode1=ALL&amp;pageIndex=1">
+					            			
+						            			
+						            			<span class="badge badge_new">
+						            			Go to Overseas Application Info
+						            			</span>
+						            			
+						            			
+					            			
+					            			</a>
+					            		</div>
+					            	
+					                
+					                
+					                
+					                
+					                <!-- 20240328 기준 토픽마당 공지사항 링크   -->
+					                
+					                <!-- 20240116 기준 토픽마당 공지사항 링크   -->
+					                
+					            	
+					            </td>
+					            <td>
+								
+					            		
+					            		
+							            	
+												
+											
+											
+												04.13
+												<!--  나중에 비교용 -->
+											
+											
+								             	
+													
+												
+												
+													(Sun)
+													<!--  나중에 비교용 -->
+												
+							                
+					            		
+					                         
+					            </td>
+					            <!-- IBT4회 미주 일정 DB 입력없이 임시로 입력 (요청게시판) -->
+					            <td>
+					            	
+										
+							            	
+							            	    
+							            		
+							            		
+								            		
+														
+													
+													
+														04.12
+														<!--  나중에 비교용 -->
+													
+								           		 	
+										               
+															
+														
+														
+															(Sat)
+															<!--  나중에 비교용 -->
+														
+													 
+							            		
+							            	
+					            		
+					            		
+					            			
+					            </td>
+					            <!-- 시험일(아시아) -->
+					            <td>
+					            <!-- IBT시범시행 5,6회는 국외시행만 있어서 시험일 없애기 -->
+					            <!-- IBT 2,3,4회 아시아 시험일 제거요청(임성규) -->
+					            <!-- PBT98회 아시아 시험일 임시로 없애기 -->
+					            
+					            
+					            
+					            
+					            	
+										
+											
+												
+												
+													
+														
+													
+													
+														04.13
+														<!--  나중에 비교용 -->
+													
+								               		
+										               	
+															
+														
+														
+															(Sun)
+															<!--  나중에 비교용 -->
+														
+													
+																	            	
+							            	
+										
+					            		
+					            	
+					            	
+					            
+					            
+					            </td>
+					            <td>
+									
+									
+									     TOPIK Ⅰ<br>
+									
+									     TOPIK Ⅱ<br>
+									
+					            </td>
+								
+									
+									
+									
+									
+										<td><a span="" class="btns btns_s btns_no cursor_no">Registration is now closed</a></td>
+									
+								
+					            <td>
+					            	
+					            		
+					            		
+							            	
+												
+											
+											
+												05.30
+												<!--  나중에 비교용 -->
+											
+											
+											
+												
+											
+											
+												(Fri)
+												<!--  나중에 비교용 -->
+											
+											
+												
+											
+											
+												15:00
+												<!--  나중에 비교용 -->
+											
+					            		
+					            	
+					            </td>
+					          </tr>
+			       		
+					          <tr>
+								
+									
+
+									
+										<td>TOPIK IBT</td>
+									
+
+									
+								
+								
+									
+					            	
+					            	
+					            		<td>6</td>
+					            	
+					            
+					            <td>
+					            	<div>
+					            	
+										
+									
+									
+										2025.01.14
+									
+									
+									
+										
+									
+									
+										(Tue)
+									
+					                ~
+					                
+										
+									
+									
+										2025.01.20
+									
+									
+						            
+										
+									
+									
+										(Mon)
+									
+					                </div>
+					                
+					                <div class="badge_box hide-on-mobile">
+									
+										
+										
+										
+									
+					                </div>
+					                
+										<div class="badge_box">
+					            			<a href="/TWINFO/TWINFO0011.do?bbsId=BBSMSTR00076&amp;nttId=128210&amp;nttClCode1=ALL&amp;pageIndex=1">
+					            			
+						            			
+						            			
+						            			<span class="badge badge_newIbt">
+						            			Go to Overseas Application Info
+						            			</span>
+						            			
+					            			
+					            			</a>
+					            		</div>
+					            	
+					                
+					                
+					                
+					                
+					                <!-- 20240328 기준 토픽마당 공지사항 링크   -->
+					                
+					                <!-- 20240116 기준 토픽마당 공지사항 링크   -->
+					                
+					            	
+					            </td>
+					            <td>
+								
+					            		
+					            		
+							            	
+												
+											
+											
+												03.22
+												<!--  나중에 비교용 -->
+											
+											
+								             	
+													
+												
+												
+													(Sat)
+													<!--  나중에 비교용 -->
+												
+							                
+					            		
+					                         
+					            </td>
+					            <!-- IBT4회 미주 일정 DB 입력없이 임시로 입력 (요청게시판) -->
+					            <td>
+					            	
+										
+							            	
+							            	    
+							            	        03.22 (토)
+							            	    
+							            		
+							            		
+							            	
+					            		
+					            		
+					            			
+					            </td>
+					            <!-- 시험일(아시아) -->
+					            <td>
+					            <!-- IBT시범시행 5,6회는 국외시행만 있어서 시험일 없애기 -->
+					            <!-- IBT 2,3,4회 아시아 시험일 제거요청(임성규) -->
+					            <!-- PBT98회 아시아 시험일 임시로 없애기 -->
+					            
+					            
+					            
+					            
+					            	
+										
+											
+												
+												
+													
+														
+													
+													
+														03.22
+														<!--  나중에 비교용 -->
+													
+								               		
+										               	
+															
+														
+														
+															(Sat)
+															<!--  나중에 비교용 -->
+														
+													
+																	            	
+							            	
+										
+					            		
+					            	
+					            	
+					            
+					            
+					            </td>
+					            <td>
+									
+									
+									     TOPIK Ⅰ<br>
+									
+									     TOPIK Ⅱ<br>
+									
+					            </td>
+								
+									
+									
+									
+									
+										<td><a span="" class="btns btns_s btns_no cursor_no">Registration is now closed</a></td>
+									
+								
+					            <td>
+					            	
+					            		
+					            		
+							            	
+												
+											
+											
+												04.11
+												<!--  나중에 비교용 -->
+											
+											
+											
+												
+											
+											
+												(Fri)
+												<!--  나중에 비교용 -->
+											
+											
+												
+											
+											
+												15:00
+												<!--  나중에 비교용 -->
+											
+					            		
+					            	
+					            </td>
+					          </tr>
+			       		
+					          <tr>
+								
+									
+
+									
+
+									
+										<td>TOPIK <br>Speaking</td>
+									
+								
+								
+									
+					            	
+					            	
+					            		<td>7</td>
+					            	
+					            
+					            <td>
+					            	<div>
+					            	
+										
+									
+									
+										2025.01.14
+									
+									
+									
+										
+									
+									
+										(Tue)
+									
+					                ~
+					                
+										
+									
+									
+										2025.01.20
+									
+									
+						            
+										
+									
+									
+										(Mon)
+									
+					                </div>
+					                
+					                <div class="badge_box hide-on-mobile">
+									
+										
+										
+										
+									
+					                </div>
+					                
+					                
+					                
+					                
+					                
+					                <!-- 20240328 기준 토픽마당 공지사항 링크   -->
+					                
+					                <!-- 20240116 기준 토픽마당 공지사항 링크   -->
+					                
+					            	
+					            </td>
+					            <td>
+								
+					            		
+					            		
+							            	
+												
+											
+											
+												03.22
+												<!--  나중에 비교용 -->
+											
+											
+								             	
+													
+												
+												
+													(Sat)
+													<!--  나중에 비교용 -->
+												
+							                
+					            		
+					                         
+					            </td>
+					            <!-- IBT4회 미주 일정 DB 입력없이 임시로 입력 (요청게시판) -->
+					            <td>
+					            	
+										
+					            		
+					            			-
+					            		
+					            			
+					            </td>
+					            <!-- 시험일(아시아) -->
+					            <td>
+					            <!-- IBT시범시행 5,6회는 국외시행만 있어서 시험일 없애기 -->
+					            <!-- IBT 2,3,4회 아시아 시험일 제거요청(임성규) -->
+					            <!-- PBT98회 아시아 시험일 임시로 없애기 -->
+					            
+					            
+					            
+					            
+					            	
+										
+					            		
+					            			-
+					            		
+					            	
+					            	
+					            
+					            
+					            </td>
+					            <td>
+									
+									
+									     말하기 평가<br>
+									
+					            </td>
+								
+									
+									
+									
+									
+										<td><a span="" class="btns btns_s btns_no cursor_no">Registration is now closed</a></td>
+									
+								
+					            <td>
+					            	
+					            		
+					            		
+							            	
+												
+											
+											
+												04.14
+												<!--  나중에 비교용 -->
+											
+											
+											
+												
+											
+											
+												(Mon)
+												<!--  나중에 비교용 -->
+											
+											
+												
+											
+											
+												15:00
+												<!--  나중에 비교용 -->
+											
+					            		
+					            	
+					            </td>
+					          </tr>
+			       		
+					          <tr>
+								
+									
+
+									
+										<td>TOPIK IBT</td>
+									
+
+									
+								
+								
+									
+					            	
+					            	
+					            		<td>5</td>
+					            	
+					            
+					            <td>
+					            	<div>
+					            	
+										
+									
+									
+										2024.12.17
+									
+									
+									
+										
+									
+									
+										(Tue)
+									
+					                ~
+					                
+										
+									
+									
+										2024.12.23
+									
+									
+						            
+										
+									
+									
+										(Mon)
+									
+					                </div>
+					                
+					                <div class="badge_box hide-on-mobile">
+									
+										
+										
+										
+									
+					                </div>
+					                
+					                
+										<div class="badge_box">
+					            			<a href="/TWINFO/TWINFO0011.do?bbsId=BBSMSTR00076&amp;nttId=127825&amp;nttClCode1=ALL&amp;pageIndex=1"><span class="badge badge_newIbt">Go to Overseas Application Info</span></a>
+					            		</div>
+					            	
+					                
+					                
+					                
+					                <!-- 20240328 기준 토픽마당 공지사항 링크   -->
+					                
+					                <!-- 20240116 기준 토픽마당 공지사항 링크   -->
+					                
+					            	
+					            </td>
+					            <td>
+								
+					            		
+					            		
+							            	
+												
+											
+											
+												02.22
+												<!--  나중에 비교용 -->
+											
+											
+								             	
+													
+												
+												
+													(Sat)
+													<!--  나중에 비교용 -->
+												
+							                
+					            		
+					                         
+					            </td>
+					            <!-- IBT4회 미주 일정 DB 입력없이 임시로 입력 (요청게시판) -->
+					            <td>
+					            	
+										
+							            	
+							            	    
+							            		
+							            		    -
+							            		
+							            		
+							            	
+					            		
+					            		
+					            			
+					            </td>
+					            <!-- 시험일(아시아) -->
+					            <td>
+					            <!-- IBT시범시행 5,6회는 국외시행만 있어서 시험일 없애기 -->
+					            <!-- IBT 2,3,4회 아시아 시험일 제거요청(임성규) -->
+					            <!-- PBT98회 아시아 시험일 임시로 없애기 -->
+					            
+					            
+					            
+					            
+					            	
+										
+											
+												
+												
+													
+														
+													
+													
+														02.22
+														<!--  나중에 비교용 -->
+													
+								               		
+										               	
+															
+														
+														
+															(Sat)
+															<!--  나중에 비교용 -->
+														
+													
+																	            	
+							            	
+										
+					            		
+					            	
+					            	
+					            
+					            
+					            </td>
+					            <td>
+									
+									
+									     TOPIK Ⅰ<br>
+									
+									     TOPIK Ⅱ<br>
+									
+					            </td>
+								
+									
+									
+									
+									
+										<td><a span="" class="btns btns_s btns_no cursor_no">Registration is now closed</a></td>
+									
+								
+					            <td>
+					            	
+					            		
+					            		
+							            	
+												
+											
+											
+												03.14
+												<!--  나중에 비교용 -->
+											
+											
+											
+												
+											
+											
+												(Fri)
+												<!--  나중에 비교용 -->
+											
+											
+												
+											
+											
+												20:00
+												<!--  나중에 비교용 -->
+											
+					            		
+					            	
+					            </td>
+					          </tr>
+			       		
+					          <tr>
+								
+									
+										<td>TOPIK PBT</td>
+									
+
+									
+
+									
+								
+								
+									
+					            	
+					            	
+					            		<td>98</td>
+					            	
+					            
+					            <td>
+					            	<div>
+					            	
+										
+									
+									
+										2024.12.10
+									
+									
+									
+										
+									
+									
+										(Tue)
+									
+					                ~
+					                
+										
+									
+									
+										2024.12.16
+									
+									
+						            
+										
+									
+									
+										(Mon)
+									
+					                </div>
+					                
+					                <div class="badge_box hide-on-mobile">
+									
+										
+										
+										
+									
+					                </div>
+					                
+					                
+					                
+					                
+					                
+					                <!-- 20240328 기준 토픽마당 공지사항 링크   -->
+					                
+					                <!-- 20240116 기준 토픽마당 공지사항 링크   -->
+					                
+					            	
+					            </td>
+					            <td>
+								
+					            		
+					            		
+							            	
+												
+											
+											
+												01.19
+												<!--  나중에 비교용 -->
+											
+											
+								             	
+													
+												
+												
+													(Sun)
+													<!--  나중에 비교용 -->
+												
+							                
+					            		
+					                         
+					            </td>
+					            <!-- IBT4회 미주 일정 DB 입력없이 임시로 입력 (요청게시판) -->
+					            <td>
+					            	
+										
+							            	
+							            	    
+							            		
+							            		    -
+							            		
+							            		
+							            	
+					            		
+					            		
+					            			
+					            </td>
+					            <!-- 시험일(아시아) -->
+					            <td>
+					            <!-- IBT시범시행 5,6회는 국외시행만 있어서 시험일 없애기 -->
+					            <!-- IBT 2,3,4회 아시아 시험일 제거요청(임성규) -->
+					            <!-- PBT98회 아시아 시험일 임시로 없애기 -->
+					            
+					            
+					                -   
+					            
+					            
+					            
+					            </td>
+					            <td>
+									
+									
+									     TOPIK Ⅰ<br>
+									
+									     TOPIK Ⅱ<br>
+									
+					            </td>
+								
+									
+									
+									
+									
+										<td><a span="" class="btns btns_s btns_no cursor_no">Registration is now closed</a></td>
+									
+								
+					            <td>
+					            	
+					            		
+					            		
+							            	
+												
+											
+											
+												02.27
+												<!--  나중에 비교용 -->
+											
+											
+											
+												
+											
+											
+												(Thu)
+												<!--  나중에 비교용 -->
+											
+											
+												
+											
+											
+												15:00
+												<!--  나중에 비교용 -->
+											
+					            		
+					            	
+					            </td>
+					          </tr>
+			       		
+              		
+		              
+		        </tbody>
+      	</table>

@@ -1,0 +1,99 @@
+{
+  "header": {
+    "utils": {
+      "login": "Banye",
+      "logout": "Logout",
+      "inquiry": "Kpọtụrụ anyị",
+      "manager": "Onyeisi oru",
+      "topikExams": "Nyocha isiokwu",
+      "topikSchedule": "Usoro oge"
+    }
+  },
+  "body": {
+    "utils": {
+      "loading": "Na-ebubata ihe ị na-eme ...",
+      "notFound": "Enweghị data achọtara na ụdị a.",
+      "inquiry": "Kpọtụrụ anyị",
+      "manager": "Onyeisi oru"
+    }
+  },
+  "content": {
+    "title": "Vietpik - Mụta Korean n'efu",
+    "home": "Ulo",
+    "topiks": "Isiokwu",
+    "courses": "Nkuzi",
+    "grammar": "Utoaususu",
+    "game": "Egwuruegwu",
+    "features": "EGO",
+    "logIn": "Banye",
+    "signUp": "debanye aha",
+    "toggleTheme": "Isiokwu ntụgharị",
+    "newCollection": "Nchịkọta ọhụrụ dị",
+    "oneStopPlatform": "Mwepu akwukwo nke ndi Koree kachasi",
+    "startLearningNow": "Isiokwu nyocha",
+    "whyChooseVieTopik": "Kedu ihe kpatara Họrọ Vietpik?",
+    "freeAccess": "Nnweta n'efu",
+    "learnKorean": "Mụọ Korean nwere nkuzi dị elu site n'aka ndị ọkachamara na-efu efu.",
+    "expertInstructors": "Ndị nkuzi ọkachamara",
+    "learnFromExperts": "Mụta n'aka ndị ọkà mmụta obodo na ndị nkuzi nwere ahụmahụ.",
+    "anytimeAnywhere": "Oge obula, ebe obula",
+    "learnAtYourOwnPace": "Na-amụ ihe na aka gị na nsị na-akparaghị ókè maka nkuzi.",
+    "comprehensiveCurriculum": "Usoro mmụta zuru oke",
+    "coverAllAspects": "Site na mbido gaa ọkwa dị elu, na-ekpuchi ụtọ asụsụ, okwu na mkparịta ụka.",
+    "topikExam": "Nlele Master",
+    "topikI": "Isiokwu m",
+    "topikI_tests": "12 Emekere ule",
+    "topikII": "Isiokwu II",
+    "topikII_tests": "15 Mee nnwale",
+    "viewAllTopiks": "Lelee nnwale niile",
+    "featuredCourses": "Egosiputa nkuzi",
+    "beginnerKorean": "Onye na-amalite Korean",
+    "intermediateKorean": "Etiti Korean",
+    "advancedKorean": "Korean di elu",
+    "getStartedForFree": "Bido n'efu",
+    "whatOurLearnersSay": "Ihe Ndị Na-amụrụ Anyị Na-ekwu",
+    "testimonial1": {
+      "quote": "\"Vietpik nyeere m aka ịkwadebe maka My Topik nke ọma. Ihe ọmụmụ a na-ahazi nke ọma ma dịkwa mfe ịgbaso!\"",
+      "name": "Nguyen Minh Ah",
+      "role": "Ụmụ akwụkwọ mba ụwa"
+    },
+    "testimonial2": {
+      "quote": "\"Ihe ndị Korea enwetụbeghị mfe!",
+      "name": "Tran Haa Nam",
+      "role": "Onye ọrụ ọrụ"
+    },
+    "testimonial3": {
+      "quote": "\"Daalụ Vietpik, ịge ntị m na ikwu okwu m na-ekwuala nke ukwuu n'ime naanị ọnwa atọ!\"",
+      "name": "Le thy huoon",
+      "role": "Nwa akwụkwọ mahadum"
+    },
+    "vieTopik": "Vitaik",
+    "yourOneStopShop": "Nkwụghachi ụgwọ gị na-akwụsị. Ngwongwo adịbeghị adịchaghị n'efu maka nnwere onwe ma mezuo ebumnuche asụsụ gị taa!",
+    "connectWithUs": "Jikọọ anyị",
+    "socialMedia": {
+      "facebook": "Facebook",
+      "twitter": "Tadter",
+      "instagram": "Instagram",
+      "linkedin": "ReingeDin"
+    },
+    "company": {
+      "aboutUs": "Gbasara anyị",
+      "careers": "Nlekọta",
+      "blog": "Blog",
+      "contact": "Omuma mmadu"
+    },
+    "support": {
+      "helpCenter": "Enyemaka Center",
+      "faq": "Ajụjụ",
+      "privacyPolicy": "amụma nzuzo",
+      "termsOfService": "Usoro Ọrụ"
+    },
+    "footer": {
+      "copyright": "© 2025 Vietpik. Ikike niile echekwabara."
+    },
+    "metadata": {
+      "lesson": "Chọgharịa ihe mmụta kachasị ọhụrụ ma chọta ihe ị ga-ahụ n'anya.",
+      "grammar": "Anwụ"
+    }
+  }
+}

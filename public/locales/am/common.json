@@ -1,0 +1,99 @@
+{
+  "header": {
+    "utils": {
+      "login": "ይግቡ",
+      "logout": "ውጣ",
+      "inquiry": "እኛን ያግኙን",
+      "manager": "ሥራ አስኪያጅ",
+      "topikExams": "የፕሮግራም ርዕስ",
+      "topikSchedule": "ርዕስ ፕሮግራም"
+    }
+  },
+  "body": {
+    "utils": {
+      "loading": "ትምህርቶችን በመጫን ላይ ...",
+      "notFound": "በዚህ ምድብ ውስጥ ምንም ውሂብ አልተገኘም.",
+      "inquiry": "እኛን ያግኙን",
+      "manager": "ሥራ አስኪያጅ"
+    }
+  },
+  "content": {
+    "title": "ቫይቶቶክ - ኮሪያን በነፃ ይማሩ",
+    "home": "ቤት",
+    "topiks": "ርዕሰ ጉዳዮች",
+    "courses": "ኮርሶች",
+    "grammar": "ሰዋስው",
+    "game": "ጨዋታ",
+    "features": "ባህሪዎች",
+    "logIn": "ይግቡ",
+    "signUp": "ይመዝገቡ",
+    "toggleTheme": "ጭብጥ",
+    "newCollection": "አዲስ ስብስብ ይገኛል",
+    "oneStopPlatform": "የመጨረሻው የኮሪያ ቋንቋ መድረክዎ",
+    "startLearningNow": "ፈተና",
+    "whyChooseVieTopik": "Vioptopik ን ለምን ይምረጡ?",
+    "freeAccess": "ነፃ መዳረሻ",
+    "learnKorean": "በጭራሽ ከባለሙያዎች ከፍተኛ ጥራት ካላቸው የባለሙያዎች ከፍተኛ ጥራት ካላቸው ትምህርቶች ጋር ኮሪያንን ይማሩ.",
+    "expertInstructors": "የባለሙያ አስተማሪዎች",
+    "learnFromExperts": "ከአገሬው ተናጋሪዎች እና ተሞክሮ ካላቸው አስተማሪዎች ይማሩ.",
+    "anytimeAnywhere": "በማንኛውም ጊዜ, በየትኛውም ቦታ",
+    "learnAtYourOwnPace": "ባልተገደበ የመዳረሻ መዳረሻ አማካኝነት በራስዎ ፍጥነት ጥናት ያድርጉ.",
+    "comprehensiveCurriculum": "አጠቃላይ ሥርዓተ-ትምህርት",
+    "coverAllAspects": "ከጀማሪ እስከ ከፍተኛ ደረጃዎች, የሰዋስው, የቃላት ዘይቤዎችን እና ውይይት ይሸፍኑ.",
+    "topikExam": "የርዕስ ፈተናውን ማስተር",
+    "topikI": "ርዕስ እኔ",
+    "topikI_tests": "12 ልምዶች",
+    "topikII": "ርዕስ II",
+    "topikII_tests": "15 ልምዶች",
+    "viewAllTopiks": "ሁሉንም አርዕስት ፈተናዎች ይመልከቱ",
+    "featuredCourses": "ተለይተው የቀረቡ ኮርሶች",
+    "beginnerKorean": "የጀማሪ ኮሪያ",
+    "intermediateKorean": "መካከለኛ ኮሪያኛ",
+    "advancedKorean": "የላቀ ኮሪያኛ",
+    "getStartedForFree": "በነፃ ይጀምሩ",
+    "whatOurLearnersSay": "ተማሪዎቹ የሚሉት ነገር",
+    "testimonial1": {
+      "quote": "\"አርቶቶክ ለፕሬክ ፈተናዬ እንድዘጋጅ ረድቶኛል. ትምህርቶቹ በጥሩ ሁኔታ የተዋቀሩ እና ለመከተል ቀላል ናቸው!\"",
+      "name": "Nguyen minh ah ah",
+      "role": "ዓለም አቀፍ ተማሪ"
+    },
+    "testimonial2": {
+      "quote": "\"ኮሪያን መማር ቀላል ሆኖ አያውቅም! የተዋቀሩ ትምህርቶች ሁሉንም ቀላል እና አዝናኝ ያደርጋሉ.\"",
+      "name": "Tran hoi nam",
+      "role": "የቢሮ ሰራተኛ"
+    },
+    "testimonial3": {
+      "quote": "\"ለቪኦቶፕክ ምስጋና, የማሰማት እና የንግግር ችሎቴ በሦስት ወር ጊዜ ውስጥ በሦስት ወር ጊዜ ውስጥ ተሻሽሏል!\"",
+      "name": "Lhamh hugo",
+      "role": "የዩኒቨርሲቲ ተማሪ"
+    },
+    "vieTopik": "ቪቶቶፕላክ",
+    "yourOneStopShop": "የኮሪያን የመውደቅ አቋራጭ መድረክዎ. ዋና ሀብቶችን በነፃ ይድረሱ እና ዛሬ የቋንቋዎን ግቦችዎን ይድረሱ!",
+    "connectWithUs": "ከእኛ ጋር ይገናኙ",
+    "socialMedia": {
+      "facebook": "ፌስቡክ",
+      "twitter": "ትዊተር",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn"
+    },
+    "company": {
+      "aboutUs": "ስለ እኛ",
+      "careers": "ሙያዎች",
+      "blog": "ብሎግ",
+      "contact": "እውቂያ"
+    },
+    "support": {
+      "helpCenter": "የእገዛ ማዕከል",
+      "faq": "ተዘውትረው የሚጠየቁ ጥያቄዎች",
+      "privacyPolicy": "የግላዊነት ፖሊሲ",
+      "termsOfService": "የአገልግሎት ውሎች"
+    },
+    "footer": {
+      "copyright": "© 2025 ቪሊቶፕክ. ሁሉም መብቶች የተጠበቁ ናቸው."
+    },
+    "metadata": {
+      "lesson": "የቅርብ ጊዜ ትምህርታችንን ያስሱ እና የሚወዱትን ነገር ይፈልጉ.",
+      "grammar": "የሚገኘው የሰዋስ እርባታ ሥዕላዊ መግለጫዎች"
+    }
+  }
+}

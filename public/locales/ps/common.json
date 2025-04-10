@@ -1,0 +1,99 @@
+{
+  "header": {
+    "utils": {
+      "login": "ننوتل",
+      "logout": "وتل",
+      "inquiry": "موږ سره اړیکه ونیسئ",
+      "manager": "مدیر",
+      "topikExams": "موضوع ازموینه کوي",
+      "topikSchedule": "د مهالویش موضوع"
+    }
+  },
+  "body": {
+    "utils": {
+      "loading": "د درسونو ډکول ...",
+      "notFound": "پدې کټګورۍ کې هیڅ معلومات ندي موندل شوي.",
+      "inquiry": "موږ سره اړیکه ونیسئ",
+      "manager": "مدیر"
+    }
+  },
+  "content": {
+    "title": "viipopic - د وړیا لپاره کوریا زده کونکی",
+    "home": "کور",
+    "topiks": "سرلیکونه",
+    "courses": "کورسونه",
+    "grammar": "ګرامر",
+    "game": "لوبه",
+    "features": "ب Features ې",
+    "logIn": "ننوتل",
+    "signUp": "ګډون کول",
+    "toggleTheme": "د توغندیو تھیم",
+    "newCollection": "نوې مجموعه شتون لري",
+    "oneStopPlatform": "ستاسو د اتزینا د زده کړې پلیټ فارم",
+    "startLearningNow": "موضوع",
+    "whyChooseVieTopik": "ولې viilopic غوره کړئ؟",
+    "freeAccess": "وړیا لاسرسی",
+    "learnKorean": "د کارپوهانو څخه د لوړ کیفیت درسونو سره کوریا زده کړئ.",
+    "expertInstructors": "د ماهر ښوونکي",
+    "learnFromExperts": "له اصلي سپینوونکو او تجربه لرونکو ښوونکو څخه زده کړئ.",
+    "anytimeAnywhere": "هر وخت، هرچیرې",
+    "learnAtYourOwnPace": "درسونو ته د غیر محدود لاسرسي سره په خپل سرعت مطالعه وکړئ.",
+    "comprehensiveCurriculum": "هراړخیز نصاب",
+    "coverAllAspects": "له پیل څخه پرمختللي کچې ته، ګرامر، قاموس، او خبرو اترو پوښل.",
+    "topikExam": "د موضوع ازموینه ماسټرۍ",
+    "topikI": "موضوع i",
+    "topikI_tests": "د 12 تمرینونو ازمونې",
+    "topikII": "ii موضوع",
+    "topikII_tests": "د ورزشونو ازموینې",
+    "viewAllTopiks": "د ټولو موضوعاتو ازموینې وګورئ",
+    "featuredCourses": "ب uredi ه شوي کورسونه",
+    "beginnerKorean": "د پیل کونکي کوریا",
+    "intermediateKorean": "منځمهاله کوریا",
+    "advancedKorean": "پرمختللی کوریا",
+    "getStartedForFree": "د وړیا لپاره پیل وکړئ",
+    "whatOurLearnersSay": "زموږ زده کونکي وايي چې زموږ زده کونکي وايي",
+    "testimonial1": {
+      "quote": "\"Viilopic زما سره په مؤثره توګه زموږ د ټاپ ټیک ازموینې لپاره چمتووالی کې مرسته وکړه. درسونه ښه جوړ شوي او په تعقیب ښه دي!\"",
+      "name": "نګینین منه Ah",
+      "role": "نړیوال زده کونکی"
+    },
+    "testimonial2": {
+      "quote": "\"د کوریا زده کړه هیڅکله اسانه نه وه! جوړښتي درسونه هرڅه ساده او ساتیري کوي.\"",
+      "name": "ټران های نوم",
+      "role": "د دفتر کارګر"
+    },
+    "testimonial3": {
+      "quote": "\"د viipopic څخه مننه، زما د اوریدلو او هویت مهارتونه د دریو میاشتو په جریان کې د پام وړ وده کړې!\"",
+      "name": "لی هونینګ",
+      "role": "د پوهنتون محصل"
+    },
+    "vieTopik": "Vieilopick",
+    "yourOneStopShop": "ستاسو د مدیر د ماسټرۍ لپاره ستاسو یو بند پلیټفارم. د وړیا لپاره پریمیم سرچینې وړیا او نن ورځ خپل د ژبې اهداف ترلاسه کړئ!",
+    "connectWithUs": "له موږ سره اړیکه ونیسئ",
+    "socialMedia": {
+      "facebook": "فیسبوک",
+      "twitter": "ټویټر",
+      "instagram": "انسټاګرام",
+      "linkedin": "لینکولین"
+    },
+    "company": {
+      "aboutUs": "زموږ په اړه",
+      "careers": "کیریر",
+      "blog": "بلاګ",
+      "contact": "تماس"
+    },
+    "support": {
+      "helpCenter": "د مرستې مرکز",
+      "faq": "پوښتنې",
+      "privacyPolicy": "د محرمیت تګلاره",
+      "termsOfService": "د خدمت شرطونه"
+    },
+    "footer": {
+      "copyright": "© 2025 Viilopick. ټول حقونه خوندي دي."
+    },
+    "metadata": {
+      "lesson": "زموږ وروستي درسونه وپلورئ او یو څه ومومئ چې تاسو یې مینه لرئ.",
+      "grammar": "د ګرامر ډیاګرامونه شتون لري"
+    }
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "header": {
+    "utils": {
+      "login": "Bejelentkezés",
+      "logout": "Kilátás",
+      "inquiry": "Vegye fel velünk a kapcsolatot",
+      "manager": "Menedzser",
+      "topikExams": "Vizsgák témája",
+      "topikSchedule": "Téma ütemezése"
+    }
+  },
+  "body": {
+    "utils": {
+      "loading": "Letöltési órák ...",
+      "notFound": "Ebben a kategóriában nincs adatok.",
+      "inquiry": "Vegye fel velünk a kapcsolatot",
+      "manager": "Menedzser"
+    }
+  },
+  "content": {
+    "title": "Vietopik - tanulj meg koreai -t ingyen",
+    "home": "Otthon",
+    "topiks": "Témák",
+    "courses": "Tanfolyamok",
+    "grammar": "Nyelvtan",
+    "game": "Játék",
+    "features": "Jellemzők",
+    "logIn": "Bejelentkezik",
+    "signUp": "Feliratkozás",
+    "toggleTheme": "Váltás téma",
+    "newCollection": "Új gyűjtemény elérhető",
+    "oneStopPlatform": "A végső koreai tanulási platformod",
+    "startLearningNow": "Vizsga téma",
+    "whyChooseVieTopik": "Miért válassza a Vietopikot?",
+    "freeAccess": "Ingyenes hozzáférés",
+    "learnKorean": "Tanuljon meg koreai-t, kiváló minőségű tanulságokkal a szakértőktől, egyáltalán költség nélkül.",
+    "expertInstructors": "Szakértői oktatók",
+    "learnFromExperts": "Tanuljon meg anyanyelvűektől és tapasztalt tanároktól.",
+    "anytimeAnywhere": "Bármikor, bárhol",
+    "learnAtYourOwnPace": "Tanuljon saját tempójában, korlátlan hozzáféréssel az órákhoz.",
+    "comprehensiveCurriculum": "Átfogó tanterv",
+    "coverAllAspects": "A kezdőtől a fejlett szintekig, a nyelvtan, a szókincs és a beszélgetés lefedésével.",
+    "topikExam": "Mestere a témát",
+    "topikI": "I. téma",
+    "topikI_tests": "12 gyakorlati teszt",
+    "topikII": "II.",
+    "topikII_tests": "15 Gyakorlati tesztek",
+    "viewAllTopiks": "Tekintse meg az összes téma tesztet",
+    "featuredCourses": "Kiemelt tanfolyamok",
+    "beginnerKorean": "Kezdő koreai",
+    "intermediateKorean": "Közbenső koreai",
+    "advancedKorean": "Haladó koreai",
+    "getStartedForFree": "Kezdje el ingyen",
+    "whatOurLearnersSay": "Amit a tanulóink ​​mondanak",
+    "testimonial1": {
+      "quote": "\"A Vietopik segített nekem hatékonyan felkészülni a Topik vizsgára. Az órák jól felépítettek és könnyen követhetők!\"",
+      "name": "Nguyen Minh anh",
+      "role": "Nemzetközi hallgató"
+    },
+    "testimonial2": {
+      "quote": "\"A koreai tanulás még soha nem volt ilyen egyszerű! A strukturált tanulságok mindent egyszerűvé és szórakoztatóvá tesznek.\"",
+      "name": "Tran hai nam",
+      "role": "Irodai munkás"
+    },
+    "testimonial3": {
+      "quote": "\"A Vietopiknak köszönhetően a hallgatási és beszédkészségem mindössze három hónapon belül jelentősen javult!\"",
+      "name": "Le Thanh Huong",
+      "role": "Egyetemi hallgató"
+    },
+    "vieTopik": "Vietopik",
+    "yourOneStopShop": "Az egyablakos platformod a koreai elsajátításhoz. Hozzáférjen a prémium erőforrásokhoz ingyen, és érje el ma nyelvi céljait!",
+    "connectWithUs": "Lépjen kapcsolatba velünk",
+    "socialMedia": {
+      "facebook": "Facebook",
+      "twitter": "Twitter",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn"
+    },
+    "company": {
+      "aboutUs": "Rólunk",
+      "careers": "Karrier",
+      "blog": "Blog",
+      "contact": "Érintkezés"
+    },
+    "support": {
+      "helpCenter": "Súgó központ",
+      "faq": "GYIK",
+      "privacyPolicy": "Adatvédelmi irányelv",
+      "termsOfService": "Szolgáltatási feltételek"
+    },
+    "footer": {
+      "copyright": "© 2025 Vietopik. Minden jog fenntartva."
+    },
+    "metadata": {
+      "lesson": "Böngésszen a legújabb leckéinkkel, és találjon valamit, amit szeret.",
+      "grammar": "Elérhető nyelvtani diagramok"
+    }
+  }
+}

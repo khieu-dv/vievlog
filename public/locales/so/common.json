@@ -1,0 +1,99 @@
+{
+  "header": {
+    "utils": {
+      "login": "Soo iibsasho",
+      "logout": "Ka saarid",
+      "inquiry": "Nala soo xiriir",
+      "manager": "Maamule",
+      "topikExams": "Tijaabada mawduucyada",
+      "topikSchedule": "Jadwalka mawduuca"
+    }
+  },
+  "body": {
+    "utils": {
+      "loading": "Loading casharro ...",
+      "notFound": "Wax xog ah lagama helin qaybtaan.",
+      "inquiry": "Nala soo xiriir",
+      "manager": "Maamule"
+    }
+  },
+  "content": {
+    "title": "Vietopik - Ka baro Kuuriyada bilaashka ah",
+    "home": "Guri",
+    "topiks": "Mawduujooyin",
+    "courses": "Koorasyo",
+    "grammar": "Naxwe",
+    "game": "Cayaar",
+    "features": "Astaamaha",
+    "logIn": "Soo gal",
+    "signUp": "Is-qor",
+    "toggleTheme": "Toggle theme",
+    "newCollection": "Ururinta cusub ee la heli karo",
+    "oneStopPlatform": "Xoogga waxbarasho ee ugu dambeysa ee Kuuriya",
+    "startLearningNow": "Mawduuca imtixaanka",
+    "whyChooseVieTopik": "Maxaad u doorataa vietopik?",
+    "freeAccess": "Marin bilaash ah",
+    "learnKorean": "Ka baro Kuuriyada casharro tayo sare leh oo khubaro ah gabi ahaanba kharash la'aan.",
+    "expertInstructors": "Macallimiinta khabiirada",
+    "learnFromExperts": "Wax ka baro kuwa ku hadla dadka ku hadla iyo macallimiin khibrad leh.",
+    "anytimeAnywhere": "Markasta, meel kasta",
+    "learnAtYourOwnPace": "Wax ka barto xawaarahaaga adiga oo leh marin aan xadidneyn casharro.",
+    "comprehensiveCurriculum": "Manhaj dhammaystiran",
+    "coverAllAspects": "Laga bilaabo bilowga ah ee heerar sare, oo daboolaya naxwaha, ereyada, iyo wada hadalka.",
+    "topikExam": "Macallin imtixaanka mawduuca",
+    "topikI": "Mawduuca i",
+    "topikI_tests": "12 tijaabooyin ku celcelis ah",
+    "topikII": "Mawduuc II",
+    "topikII_tests": "15 Tijaabooyin ku celcelis ah",
+    "viewAllTopiks": "Eeg dhammaan imtixaannada mowduucyada",
+    "featuredCourses": "Koorsooyin la soo bandhigay",
+    "beginnerKorean": "Bilowga Kuuriyada",
+    "intermediateKorean": "Kuuriyada Dhexe",
+    "advancedKorean": "Kordhinta Kuuriyada",
+    "getStartedForFree": "Bilow bilaash bilaash ah",
+    "whatOurLearnersSay": "Waxa ay bartaan tahay inay bartaan",
+    "testimonial1": {
+      "quote": "\"Vietopik wuxuu iga caawiyay inaan u diyaar garoobo imtixaankeyga Topik si wax ku ool ah. Casharradu waa mid hagaagsan oo ay fududahay in la raaco!\"",
+      "name": "Nguyen MinH anh",
+      "role": "Arday Caalamiga ah"
+    },
+    "testimonial2": {
+      "quote": "\"Barashada Kuuriyaanka waligeed ma fududaan! Casharada qaabeysan waxay wax walba ku sameeyaan wax kasta oo fudud oo xiiso leh.\"",
+      "name": "Tran Hai nam",
+      "role": "Shaqaale xafiis"
+    },
+    "testimonial3": {
+      "quote": "\"Thanks to vietopik, dhageysigeyga iyo xirfadahayga ayaa si weyn u soo wanaagsanaaday seddex bilood gudahood!\"",
+      "name": "Le egh hong",
+      "role": "Arday Jaamacadda"
+    },
+    "vieTopik": "Vietopik",
+    "yourOneStopShop": "Maskaxdaada hal-joogsi ah ee loogu talagalay sahaminta Kuuriyada. Ka hel kheyraadka lacagta qiyaamaha si bilaash ah oo loo gaaro luuqadahaaga luuqaddaada maanta!",
+    "connectWithUs": "Nala xiriir",
+    "socialMedia": {
+      "facebook": "Farsamo la'aan",
+      "twitter": "Twitter",
+      "instagram": "Instagram",
+      "linkedin": "Xiriir lagu yeero"
+    },
+    "company": {
+      "aboutUs": "Naga ku saabsan",
+      "careers": "Xirfadaha",
+      "blog": "Blog",
+      "contact": "Xiriir"
+    },
+    "support": {
+      "helpCenter": "Xarunta caawinta",
+      "faq": "Warqad maqas",
+      "privacyPolicy": "Qaanuunka Arrimaha Khaaska ah",
+      "termsOfService": "Shuruudaha Adeegga"
+    },
+    "footer": {
+      "copyright": "© 2025 vietopik. Dhamaan xuquuqaha ayaa ilaaliya."
+    },
+    "metadata": {
+      "lesson": "Baro casharadeena ugu dambeeyay oo hel wax aad jeclaan doonto.",
+      "grammar": "Jaangooyada naxwaha ee la heli karo"
+    }
+  }
+}

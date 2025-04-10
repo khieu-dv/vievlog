@@ -1,0 +1,99 @@
+{
+  "header": {
+    "utils": {
+      "login": "ログイン",
+      "logout": "ログアウト",
+      "inquiry": "お問い合わせ",
+      "manager": "マネージャー",
+      "topikExams": "試験のトピック",
+      "topikSchedule": "トピックをスケジュールします"
+    }
+  },
+  "body": {
+    "utils": {
+      "loading": "レッスンの読み込み...",
+      "notFound": "このカテゴリにはデータが見つかりません。",
+      "inquiry": "お問い合わせ",
+      "manager": "マネージャー"
+    }
+  },
+  "content": {
+    "title": "Vietopik  - 韓国語を無料で学ぶ",
+    "home": "家",
+    "topiks": "トピック",
+    "courses": "コース",
+    "grammar": "文法",
+    "game": "ゲーム",
+    "features": "特徴",
+    "logIn": "ログイン",
+    "signUp": "サインアップ",
+    "toggleTheme": "テーマを切り替えます",
+    "newCollection": "新しいコレクションが利用可能です",
+    "oneStopPlatform": "あなたの究極の韓国学習プラットフォーム",
+    "startLearningNow": "試験のトピック",
+    "whyChooseVieTopik": "なぜvietopikを選ぶのですか？",
+    "freeAccess": "無料アクセス",
+    "learnKorean": "専門家からの質の高いレッスンで韓国語をまったく無料で学びましょう。",
+    "expertInstructors": "専門家のインストラクター",
+    "learnFromExperts": "ネイティブスピーカーや経験豊富な教師から学びます。",
+    "anytimeAnywhere": "いつでも、どこでも",
+    "learnAtYourOwnPace": "レッスンへの無制限のアクセスで自分のペースで勉強してください。",
+    "comprehensiveCurriculum": "包括的なカリキュラム",
+    "coverAllAspects": "初心者から高度なレベルまで、文法、語彙、会話をカバーします。",
+    "topikExam": "トピック試験をマスターします",
+    "topikI": "トピックi",
+    "topikI_tests": "12の練習テスト",
+    "topikII": "トピックII",
+    "topikII_tests": "15の練習テスト",
+    "viewAllTopiks": "すべてのトピックテストを表示します",
+    "featuredCourses": "注目のコース",
+    "beginnerKorean": "初心者の韓国語",
+    "intermediateKorean": "中級の韓国語",
+    "advancedKorean": "高度な韓国語",
+    "getStartedForFree": "無料で始めましょう",
+    "whatOurLearnersSay": "私たちの学習者が言うこと",
+    "testimonial1": {
+      "quote": "「Vietopikは、Topik試験に効果的に準備するのに役立ちました。レッスンは十分に構造化されており、簡単にフォローできます！」",
+      "name": "Nguyen Minh Anh",
+      "role": "留学生"
+    },
+    "testimonial2": {
+      "quote": "「韓国語を学ぶことはかつてないほど容易になりました！構造化されたレッスンは、すべてをシンプルで楽しいものにします。」",
+      "name": "Tran Hai Nam",
+      "role": "オフィスワーカー"
+    },
+    "testimonial3": {
+      "quote": "「Vietopikのおかげで、私のリスニングとスピーキングのスキルはわずか3か月以内に大幅に向上しました！」",
+      "name": "ル・タン・フオン",
+      "role": "大学生"
+    },
+    "vieTopik": "Vietopik",
+    "yourOneStopShop": "韓国語をマスターするためのワンストッププラットフォーム。プレミアムリソースに無料でアクセスし、今日の言語目標を達成してください！",
+    "connectWithUs": "私たちとつながります",
+    "socialMedia": {
+      "facebook": "Facebook",
+      "twitter": "ツイッター",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn"
+    },
+    "company": {
+      "aboutUs": "私たちについて",
+      "careers": "キャリア",
+      "blog": "ブログ",
+      "contact": "接触"
+    },
+    "support": {
+      "helpCenter": "ヘルプセンター",
+      "faq": "よくある質問",
+      "privacyPolicy": "プライバシーポリシー",
+      "termsOfService": "利用規約"
+    },
+    "footer": {
+      "copyright": "©2025 Vietopik。無断転載を禁じます。"
+    },
+    "metadata": {
+      "lesson": "私たちの最新のレッスンを閲覧して、あなたが好きなものを見つけてください。",
+      "grammar": "利用可能な文法図"
+    }
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "header": {
+    "utils": {
+      "login": "Giriş",
+      "logout": "Çıxmaq",
+      "inquiry": "Bizimlə əlaqə saxlayın",
+      "manager": "Müdir",
+      "topikExams": "İmtahanlar mövzusu",
+      "topikSchedule": "Mövzu cədvəli"
+    }
+  },
+  "body": {
+    "utils": {
+      "loading": "Yükləmə dərsləri ...",
+      "notFound": "Bu kateqoriyada heç bir məlumat tapılmadı.",
+      "inquiry": "Bizimlə əlaqə saxlayın",
+      "manager": "Müdir"
+    }
+  },
+  "content": {
+    "title": "Vietopik - Koreyanı pulsuz öyrənin",
+    "home": "Evdə",
+    "topiks": "Mövzular",
+    "courses": "Kurs",
+    "grammar": "Qrammatika",
+    "game": "Oyun",
+    "features": "Xüsusiyyət",
+    "logIn": "Daxil olmaq",
+    "signUp": "Qeydiyyatdan keçmək",
+    "toggleTheme": "Tövsiyəni dəyişdirmək",
+    "newCollection": "Yeni kolleksiya mövcuddur",
+    "oneStopPlatform": "Ultimate Koreyanın öyrənmə platformasını",
+    "startLearningNow": "İmtahan mövzusu",
+    "whyChooseVieTopik": "Niyə Vietopik seçirsiniz?",
+    "freeAccess": "Pulsuz giriş",
+    "learnKorean": "Mütəxəssislərin yüksək keyfiyyətli dərsləri olan Koreyanın yüksək keyfiyyətli dərslərini öyrənin.",
+    "expertInstructors": "Ekspert müəllimi",
+    "learnFromExperts": "Doğma danışan və təcrübəli müəllimlərdən məlumat əldə edin.",
+    "anytimeAnywhere": "Hər an, hər yerdə",
+    "learnAtYourOwnPace": "Dərslərə məhdudiyyətsiz giriş ilə öz sürətinizlə oxuyun.",
+    "comprehensiveCurriculum": "Hərtərəfli tədris planı",
+    "coverAllAspects": "Başlanğıcdan Qrammatikanı, lüğəti və söhbətini əhatə edən qabaqcıl səviyyələrə qədər.",
+    "topikExam": "Mövzu imtahanının ustası",
+    "topikI": "Mövzu i",
+    "topikI_tests": "12 təcrübə testləri",
+    "topikII": "Mövzu II",
+    "topikII_tests": "15 təcrübə testləri",
+    "viewAllTopiks": "Bütün mövzular testlərinə baxın",
+    "featuredCourses": "Xüsusi kurslar",
+    "beginnerKorean": "Başlanğıc Koreyalı",
+    "intermediateKorean": "Aralıq koreyalı",
+    "advancedKorean": "Qabaqcıl Koreya",
+    "getStartedForFree": "Pulsuz işə başlayın",
+    "whatOurLearnersSay": "Öyrənənlərimiz nə deyirlər",
+    "testimonial1": {
+      "quote": "\"Vyetopik mənə TOPIK imtahanından səmərəli hazırlaşmağa kömək etdi. Dərslər yaxşı qurulmuş və izləmək asandır!\"",
+      "name": "Nguyen minh anh",
+      "role": "Beynəlxalq tələbə"
+    },
+    "testimonial2": {
+      "quote": "\"Koreyanı öyrənmək heç vaxt asan olmayıb! Qurulmuş dərslər hər şeyi sadə və əyləncəlidir.\"",
+      "name": "Tran hai nam",
+      "role": "İşçi"
+    },
+    "testimonial3": {
+      "quote": "\"Vyetopik sayəsində dinləmə və danışma bacarıqlarım cəmi üç ay ərzində əhəmiyyətli dərəcədə yaxşılaşdı!\"",
+      "name": "Le thanh huong",
+      "role": "Universitet şagirdi"
+    },
+    "vieTopik": "Vyetopik",
+    "yourOneStopShop": "Koreyanın mənimsənilməsi üçün bir pəncərə platformasın. PREMIUM RESURSLARI pulsuz və bu gün dil hədəflərinizi əldə edin!",
+    "connectWithUs": "Bizimlə əlaqə qurun",
+    "socialMedia": {
+      "facebook": "Facebook",
+      "twitter": "Twitter",
+      "instagram": "İnstaqram",
+      "linkedin": "Linkedin"
+    },
+    "company": {
+      "aboutUs": "Haqqımızda",
+      "careers": "Karyera",
+      "blog": "Macal",
+      "contact": "Əlaqə"
+    },
+    "support": {
+      "helpCenter": "Kömək mərkəzi",
+      "faq": "Faq",
+      "privacyPolicy": "Məxfilik Siyasəti",
+      "termsOfService": "Xidmət şərtləri"
+    },
+    "footer": {
+      "copyright": "© 2025 Vietopik. Bütün hüquqlar qorunur."
+    },
+    "metadata": {
+      "lesson": "Ən son dərslərimizi gözdən keçirin və sevəcəyiniz bir şey tapın.",
+      "grammar": "Mövcud qrammatika diaqramları"
+    }
+  }
+}

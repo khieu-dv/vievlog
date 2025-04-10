@@ -1,0 +1,99 @@
+{
+  "header": {
+    "utils": {
+      "login": "Logg inn",
+      "logout": "Logging",
+      "inquiry": "Kontakt oss",
+      "manager": "Leder",
+      "topikExams": "Eksamener emne",
+      "topikSchedule": "Planlegg emne"
+    }
+  },
+  "body": {
+    "utils": {
+      "loading": "Laster leksjoner ...",
+      "notFound": "Ingen data funnet i denne kategorien.",
+      "inquiry": "Kontakt oss",
+      "manager": "Leder"
+    }
+  },
+  "content": {
+    "title": "Vietopik - lær koreansk gratis",
+    "home": "Hjem",
+    "topiks": "Emner",
+    "courses": "Kurs",
+    "grammar": "Grammatikk",
+    "game": "Spill",
+    "features": "Funksjoner",
+    "logIn": "Logg inn",
+    "signUp": "Registrer deg",
+    "toggleTheme": "Veksle tema",
+    "newCollection": "Ny samling tilgjengelig",
+    "oneStopPlatform": "Din ultimate koreanske læringsplattform",
+    "startLearningNow": "Eksamensemne",
+    "whyChooseVieTopik": "Hvorfor velge Vietopik?",
+    "freeAccess": "Gratis tilgang",
+    "learnKorean": "Lær koreansk med høykvalitetsundervisning fra eksperter til absolutt ingen kostnader.",
+    "expertInstructors": "Ekspertinstruktører",
+    "learnFromExperts": "Lær av morsmål og erfarne lærere.",
+    "anytimeAnywhere": "Når som helst, hvor som helst",
+    "learnAtYourOwnPace": "Studer i ditt eget tempo med ubegrenset tilgang til leksjoner.",
+    "comprehensiveCurriculum": "Omfattende læreplan",
+    "coverAllAspects": "Fra nybegynner til avanserte nivåer, som dekker grammatikk, ordforråd og samtale.",
+    "topikExam": "Mestre emneeksamen",
+    "topikI": "Emne i",
+    "topikI_tests": "12 praksisprøver",
+    "topikII": "Emne II",
+    "topikII_tests": "15 praksisprøver",
+    "viewAllTopiks": "Se alle emner tester",
+    "featuredCourses": "Utvalgte kurs",
+    "beginnerKorean": "Nybegynnerkoreansk",
+    "intermediateKorean": "Mellomkoreansk",
+    "advancedKorean": "Advanced Korean",
+    "getStartedForFree": "Kom i gang gratis",
+    "whatOurLearnersSay": "Hva elevene våre sier",
+    "testimonial1": {
+      "quote": "\"Vietopik hjalp meg med å forberede meg på Topik-eksamenen min effektivt. Leksjonene er godt strukturerte og enkle å følge!\"",
+      "name": "Nguyen Minh Anh",
+      "role": "Internasjonal student"
+    },
+    "testimonial2": {
+      "quote": "\"Å lære koreansk har aldri vært enklere! De strukturerte leksjonene gjør alt enkelt og morsomt.\"",
+      "name": "Tran Hai Nam",
+      "role": "Kontorarbeider"
+    },
+    "testimonial3": {
+      "quote": "\"Takket være Vietopik har lytte- og taleferdighetene mine forbedret seg betydelig i løpet av bare tre måneder!\"",
+      "name": "Le Thanh Huong",
+      "role": "Universitetsstudent"
+    },
+    "vieTopik": "Vietopik",
+    "yourOneStopShop": "Din one-stop-plattform for å mestre koreansk. Få tilgang til premium ressurser gratis og oppnå språkmålene dine i dag!",
+    "connectWithUs": "Koble til oss",
+    "socialMedia": {
+      "facebook": "Facebook",
+      "twitter": "Twitter",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn"
+    },
+    "company": {
+      "aboutUs": "Om oss",
+      "careers": "Karrierer",
+      "blog": "Blogg",
+      "contact": "Kontakt"
+    },
+    "support": {
+      "helpCenter": "Hjelp sentrum",
+      "faq": "FAQ",
+      "privacyPolicy": "Personvernregler",
+      "termsOfService": "Tjenestevilkår"
+    },
+    "footer": {
+      "copyright": "© 2025 Vietopik. Alle rettigheter forbeholdt."
+    },
+    "metadata": {
+      "lesson": "Bla gjennom de siste leksjonene våre og finn noe du vil elske.",
+      "grammar": "Tilgjengelige grammatikkdiagrammer"
+    }
+  }
+}

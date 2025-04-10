@@ -1,0 +1,99 @@
+{
+  "header": {
+    "utils": {
+      "login": "Login",
+      "logout": "Logout",
+      "inquiry": "Contact Us",
+      "manager": "Manager",
+      "topikExams": "TOPIK Exams",
+      "topikSchedule": "TOPIK Schedule"
+    }
+  },
+  "body": {
+    "utils": {
+      "loading": "Loading lessons...",
+      "notFound": "No data found in this category.",
+      "inquiry": "Contact Us",
+      "manager": "Manager"
+    }
+  },
+  "content": {
+    "title": "VieTopik – Learn Korean for Free",
+    "home": "Home",
+    "topiks": "Topiks",
+    "courses": "Courses",
+    "grammar": "Grammar",
+    "game": "Game",
+    "features": "Features",
+    "logIn": "Log in",
+    "signUp": "Sign up",
+    "toggleTheme": "Toggle theme",
+    "newCollection": "New Collection Available",
+    "oneStopPlatform": "Your Ultimate Korean Learning Platform",
+    "startLearningNow": "Topik Exam",
+    "whyChooseVieTopik": "Why Choose VieTopik?",
+    "freeAccess": "Free Access",
+    "learnKorean": "Learn Korean with high-quality lessons from experts at absolutely no cost.",
+    "expertInstructors": "Expert Instructors",
+    "learnFromExperts": "Learn from native speakers and experienced teachers.",
+    "anytimeAnywhere": "Anytime, Anywhere",
+    "learnAtYourOwnPace": "Study at your own pace with unlimited access to lessons.",
+    "comprehensiveCurriculum": "Comprehensive Curriculum",
+    "coverAllAspects": "From beginner to advanced levels, covering grammar, vocabulary, and conversation.",
+    "topikExam": "Master the TOPIK Exam",
+    "topikI": "TOPIK I",
+    "topikI_tests": "12 practice tests",
+    "topikII": "TOPIK II",
+    "topikII_tests": "15 practice tests",
+    "viewAllTopiks": "View All TOPIK Tests",
+    "featuredCourses": "Featured Courses",
+    "beginnerKorean": "Beginner's Korean",
+    "intermediateKorean": "Intermediate Korean",
+    "advancedKorean": "Advanced Korean",
+    "getStartedForFree": "Get Started for Free",
+    "whatOurLearnersSay": "What Our Learners Say",
+    "testimonial1": {
+      "quote": "\"VieTopik helped me prepare for my TOPIK exam effectively. The lessons are well-structured and easy to follow!\"",
+      "name": "Nguyen Minh Anh",
+      "role": "International Student"
+    },
+    "testimonial2": {
+      "quote": "\"Learning Korean has never been easier! The structured lessons make everything simple and fun.\"",
+      "name": "Tran Hai Nam",
+      "role": "Office Worker"
+    },
+    "testimonial3": {
+      "quote": "\"Thanks to VieTopik, my listening and speaking skills have improved significantly within just three months!\"",
+      "name": "Le Thanh Huong",
+      "role": "University Student"
+    },
+    "vieTopik": "VieTopik",
+    "yourOneStopShop": "Your one-stop platform for mastering Korean. Access premium resources for free and achieve your language goals today!",
+    "connectWithUs": "Connect With Us",
+    "socialMedia": {
+      "facebook": "Facebook",
+      "twitter": "Twitter",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn"
+    },
+    "company": {
+      "aboutUs": "About Us",
+      "careers": "Careers",
+      "blog": "Blog",
+      "contact": "Contact"
+    },
+    "support": {
+      "helpCenter": "Help Center",
+      "faq": "FAQ",
+      "privacyPolicy": "Privacy Policy",
+      "termsOfService": "Terms of Service"
+    },
+    "footer": {
+      "copyright": "© 2025 VieTopik. All rights reserved."
+    },
+    "metadata": {
+      "lesson": "Browse our latest lessons and find something you'll love.",
+      "grammar": "Available Grammar Diagrams"
+    }
+  }
+}

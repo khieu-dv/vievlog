@@ -1,0 +1,99 @@
+{
+  "header": {
+    "utils": {
+      "login": "Tizimga kirish",
+      "logout": "Chiqish",
+      "inquiry": "Biz bilan bog'lanish",
+      "manager": "Menejer",
+      "topikExams": "Imtihon mavzulari",
+      "topikSchedule": "Mavzular jadvali"
+    }
+  },
+  "body": {
+    "utils": {
+      "loading": "Darslarni yuklash ...",
+      "notFound": "Ushbu toifadagi ma'lumotlar topilmadi.",
+      "inquiry": "Biz bilan bog'lanish",
+      "manager": "Menejer"
+    }
+  },
+  "content": {
+    "title": "Vetopik - BEPUL BEPUL BERADI",
+    "home": "Uy",
+    "topiks": "Mavzular",
+    "courses": "Kurslar",
+    "grammar": "Grammatika",
+    "game": "O'yin",
+    "features": "Xususiyatlari",
+    "logIn": "Tizimga kirish",
+    "signUp": "Ro'yxatdan o'tish",
+    "toggleTheme": "Mavzuni almashtirish",
+    "newCollection": "Yangi to'plam mavjud",
+    "oneStopPlatform": "Sizning yakuniy koreysni o'rganish platformasi",
+    "startLearningNow": "Imtihon mavzusi",
+    "whyChooseVieTopik": "Nega Vetopikni tanlaysizmi?",
+    "freeAccess": "Bepul kirish",
+    "learnKorean": "Mutaxassislardan mutaxassislarning sifatli saboqlari bo'lgan koreys tilini o'rganing.",
+    "expertInstructors": "Ekspert instruktorlari",
+    "learnFromExperts": "Ona tilida so'zlashadigan va tajribali o'qituvchidan o'rganing.",
+    "anytimeAnywhere": "Istalgan vaqtda, istalgan joyda",
+    "learnAtYourOwnPace": "Darslarga cheksiz kirish bilan o'zingizning tezligingizda o'rganing.",
+    "comprehensiveCurriculum": "Keng qamrovli o'quv dasturi",
+    "coverAllAspects": "Boshlang'ichdan ilg'or darajalarga, grammatika, lug'at va suhbatni qamrab oladi.",
+    "topikExam": "Mavzularni imtihonni o'tkazing",
+    "topikI": "Mavzu men",
+    "topikI_tests": "12 Amaliy sinov sinovlari",
+    "topikII": "II Mavzu",
+    "topikII_tests": "15 Amaliy sinov sinovlari",
+    "viewAllTopiks": "Testlarni ko'rish",
+    "featuredCourses": "Tanlangan kurslar",
+    "beginnerKorean": "Boshlang'ich koreyalik",
+    "intermediateKorean": "Oraliq koreys",
+    "advancedKorean": "Ilg'or koreyalik",
+    "getStartedForFree": "Bepul boshlash",
+    "whatOurLearnersSay": "Bizning o'quvchilarimiz nima deyishadi",
+    "testimonial1": {
+      "quote": "\"Vetopik menga\" Topik \"imtihonimni samarali tayyorlashga yordam berdi. Darslar yaxshi tuzilgan va osongina kuzatib borish oson!\"",
+      "name": "Nguyen minh anh",
+      "role": "Xalqaro talaba"
+    },
+    "testimonial2": {
+      "quote": "\"Koreyaning o'rganish hech qachon oson bo'lmaganida! Tarkibiy darslar hamma narsani sodda va qiziqarli qiladi.\"",
+      "name": "Name Tran Hai",
+      "role": "Ofis ishchisi"
+    },
+    "testimonial3": {
+      "quote": "\"Vetopik tufayli, mening tinglash va so'zlash qobiliyatim uch oy ichida sezilarli darajada yaxshilandi!\"",
+      "name": "Leanh huong",
+      "role": "Universitet talabasi"
+    },
+    "vieTopik": "Vietopik",
+    "yourOneStopShop": "Koreysni o'zlashtirish uchun bitta-bekat platformangiz. FOYDALANISH MUHOFAZA QILISh UChUN MUHOFAZA QILISh UChUN MUHOFAZA QILISh VA FAQATNING MA'LUMOTLARI!",
+    "connectWithUs": "Biz bilan bog'laning",
+    "socialMedia": {
+      "facebook": "Facebook",
+      "twitter": "Tvitter",
+      "instagram": "Instagram",
+      "linkedin": "Linkedin"
+    },
+    "company": {
+      "aboutUs": "Biz haqimizda",
+      "careers": "Karyeralar",
+      "blog": "Blog",
+      "contact": "Aloqa qilmoq"
+    },
+    "support": {
+      "helpCenter": "Yordam markazi",
+      "faq": "TSS",
+      "privacyPolicy": "Maxfiylik siyosati",
+      "termsOfService": "Xizmat shartlari"
+    },
+    "footer": {
+      "copyright": "© 2025 Vetopik. Barcha huquqlar himoyalangan."
+    },
+    "metadata": {
+      "lesson": "Bizning so'nggi darslarimizni ko'rib chiqing va sevgan narsani toping.",
+      "grammar": "Mavjud grammatik diagrammalar"
+    }
+  }
+}

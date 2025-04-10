@@ -1,0 +1,99 @@
+{
+  "header": {
+    "utils": {
+      "login": "Mewngofnodi",
+      "logout": "Logiadau",
+      "inquiry": "Cysylltwch â ni",
+      "manager": "Rheolwr",
+      "topikExams": "Pwnc Arholiadau",
+      "topikSchedule": "Pwnc Amserlen"
+    }
+  },
+  "body": {
+    "utils": {
+      "loading": "Gwersi Llwytho ...",
+      "notFound": "Ni ddarganfuwyd data yn y categori hwn.",
+      "inquiry": "Cysylltwch â ni",
+      "manager": "Rheolwr"
+    }
+  },
+  "content": {
+    "title": "Vietopik - Dysgu Corea am ddim",
+    "home": "Nghartrefi",
+    "topiks": "Phynciau",
+    "courses": "Nghyrsiau",
+    "grammar": "Gramadeg",
+    "game": "Gêm",
+    "features": "Nodweddion",
+    "logIn": "Mewngofnodi",
+    "signUp": "Arwyddo",
+    "toggleTheme": "Thema togl",
+    "newCollection": "Casgliad newydd ar gael",
+    "oneStopPlatform": "Eich platfform dysgu Corea yn y pen draw",
+    "startLearningNow": "Pwnc Arholiad",
+    "whyChooseVieTopik": "Pam Dewis Vietopik?",
+    "freeAccess": "Mynediad am ddim",
+    "learnKorean": "Dysgu Corea gyda gwersi o ansawdd uchel gan arbenigwyr am ddim cost o gwbl.",
+    "expertInstructors": "Hyfforddwyr arbenigol",
+    "learnFromExperts": "Dysgu gan siaradwyr brodorol ac athrawon profiadol.",
+    "anytimeAnywhere": "Unrhyw bryd, unrhyw le",
+    "learnAtYourOwnPace": "Astudiwch ar eich cyflymder eich hun gyda mynediad diderfyn i wersi.",
+    "comprehensiveCurriculum": "Cwricwlwm Cynhwysfawr",
+    "coverAllAspects": "O ddechreuwyr i lefelau uwch, gan gwmpasu gramadeg, geirfa a sgwrs.",
+    "topikExam": "Meistrolwch yr arholiad pwnc",
+    "topikI": "Pwnc I.",
+    "topikI_tests": "12 Prawf Ymarfer",
+    "topikII": "Pwnc II",
+    "topikII_tests": "15 Prawf Ymarfer",
+    "viewAllTopiks": "Gweld yr holl brofion pwnc",
+    "featuredCourses": "Cyrsiau dan sylw",
+    "beginnerKorean": "Corea dechreuwyr",
+    "intermediateKorean": "Corea Canolradd",
+    "advancedKorean": "Corea Uwch",
+    "getStartedForFree": "Dechreuwch am ddim",
+    "whatOurLearnersSay": "Yr hyn y mae ein dysgwyr yn ei ddweud",
+    "testimonial1": {
+      "quote": "\"Fe wnaeth Vietopik fy helpu i baratoi ar gyfer fy arholiad TOPIK yn effeithiol. Mae'r gwersi wedi'u strwythuro'n dda ac yn hawdd eu dilyn!\"",
+      "name": "Nguyen Minh anh",
+      "role": "Myfyriwr Rhyngwladol"
+    },
+    "testimonial2": {
+      "quote": "\"Ni fu dysgu Corea erioed yn haws! Mae'r gwersi strwythuredig yn gwneud popeth yn syml ac yn hwyl.\"",
+      "name": "Tran hai nam",
+      "role": "Swyddfa"
+    },
+    "testimonial3": {
+      "quote": "\"Diolch i Vietopik, mae fy sgiliau gwrando a siarad wedi gwella'n sylweddol o fewn tri mis yn unig!\"",
+      "name": "Le Thanh Huong",
+      "role": "Myfyriwr Prifysgol"
+    },
+    "vieTopik": "Vietopik",
+    "yourOneStopShop": "Eich platfform un stop ar gyfer meistroli Corea. Cyrchwch adnoddau premiwm am ddim a chyflawnwch eich nodau iaith heddiw!",
+    "connectWithUs": "Cysylltu â Ni",
+    "socialMedia": {
+      "facebook": "Facebook",
+      "twitter": "Twitter",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn"
+    },
+    "company": {
+      "aboutUs": "Amdanom Ni",
+      "careers": "Gyrfaoedd",
+      "blog": "Blogiwyd",
+      "contact": "Nghyswllt"
+    },
+    "support": {
+      "helpCenter": "Canolfan Gymorth",
+      "faq": "Cwestiynau Cyffredin",
+      "privacyPolicy": "Polisi Preifatrwydd",
+      "termsOfService": "Telerau Gwasanaeth"
+    },
+    "footer": {
+      "copyright": "© 2025 Vietopik. Cedwir pob hawl."
+    },
+    "metadata": {
+      "lesson": "Porwch ein gwersi diweddaraf a dewch o hyd i rywbeth y byddwch chi'n ei garu.",
+      "grammar": "Diagramau gramadeg sydd ar gael"
+    }
+  }
+}

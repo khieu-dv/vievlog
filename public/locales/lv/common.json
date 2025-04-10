@@ -1,0 +1,99 @@
+{
+  "header": {
+    "utils": {
+      "login": "Pieteikšanās",
+      "logout": "Atteikšanās",
+      "inquiry": "Sazinieties ar mums",
+      "manager": "Vadītājs",
+      "topikExams": "Eksāmenu tēma",
+      "topikSchedule": "Ieplānošanas tēma"
+    }
+  },
+  "body": {
+    "utils": {
+      "loading": "Iekraušanas nodarbības ...",
+      "notFound": "Šajā kategorijā nav atrasti dati.",
+      "inquiry": "Sazinieties ar mums",
+      "manager": "Vadītājs"
+    }
+  },
+  "content": {
+    "title": "Vjetopik - mācīties korejiešu valodu bez maksas",
+    "home": "Mājas",
+    "topiks": "Tēmas",
+    "courses": "Kursi",
+    "grammar": "Gramatika",
+    "game": "Spēle",
+    "features": "Funkcijas",
+    "logIn": "Iespraust",
+    "signUp": "Pierakstīties",
+    "toggleTheme": "Pārslēgt tēmu",
+    "newCollection": "Pieejama jauna kolekcija",
+    "oneStopPlatform": "Jūsu galvenā korejiešu mācību platforma",
+    "startLearningNow": "Eksāmena tēma",
+    "whyChooseVieTopik": "Kāpēc izvēlēties Vietopik?",
+    "freeAccess": "Brīva pieeja",
+    "learnKorean": "Apgūstiet korejiešu valodu ar augstas kvalitātes nodarbībām no ekspertu bez maksas.",
+    "expertInstructors": "Ekspertu instruktori",
+    "learnFromExperts": "Mācieties no vietējiem runātājiem un pieredzējušiem skolotājiem.",
+    "anytimeAnywhere": "Jebkurā laikā, jebkur",
+    "learnAtYourOwnPace": "Mācieties savā tempā ar neierobežotu piekļuvi nodarbībām.",
+    "comprehensiveCurriculum": "Visaptveroša mācību programma",
+    "coverAllAspects": "No iesācēja līdz uzlabotam līmenim, aptverot gramatiku, vārdu krājumu un sarunu.",
+    "topikExam": "Apgūt tēmas eksāmenu",
+    "topikI": "I tēma",
+    "topikI_tests": "12 prakses testi",
+    "topikII": "II tēma",
+    "topikII_tests": "15 prakses testi",
+    "viewAllTopiks": "Skatiet visus tēmu testus",
+    "featuredCourses": "Piedāvātie kursi",
+    "beginnerKorean": "Iesācēja korejiete",
+    "intermediateKorean": "Starpposma korejiešu valoda",
+    "advancedKorean": "Padziļināta korejiešu valoda",
+    "getStartedForFree": "Sāciet bez maksas",
+    "whatOurLearnersSay": "Ko saka mūsu izglītojamie",
+    "testimonial1": {
+      "quote": "\"Vietopik man palīdzēja efektīvi sagatavoties savam Topik eksāmenam. Nodarbības ir labi strukturētas un viegli izpildāmas!\"",
+      "name": "Nguyen Minh anh",
+      "role": "Starptautiskais students"
+    },
+    "testimonial2": {
+      "quote": "\"Korejas mācīšanās nekad nav bijusi tik vienkārša! Strukturētās nodarbības padara visu vienkāršu un jautru.\"",
+      "name": "Tran Hai Nam",
+      "role": "Biroja darbinieks"
+    },
+    "testimonial3": {
+      "quote": "\"Pateicoties Vjetopikam, manas klausīšanās un runāšanas prasmes ir ievērojami uzlabojušās tikai trīs mēnešu laikā!\"",
+      "name": "Le Thanh Huong",
+      "role": "Universitātes students"
+    },
+    "vieTopik": "Vjetopika",
+    "yourOneStopShop": "Jūsu vienas pieturas platforma korejiešu apgūšanai. Piekļūstiet premium resursiem bez maksas un sasniedziet savus valodas mērķus jau šodien!",
+    "connectWithUs": "Sazinieties ar mums",
+    "socialMedia": {
+      "facebook": "Facebook",
+      "twitter": "Čivināt",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn"
+    },
+    "company": {
+      "aboutUs": "Par mums",
+      "careers": "Karjera",
+      "blog": "Blogot",
+      "contact": "Saskare"
+    },
+    "support": {
+      "helpCenter": "Palīdzības centrs",
+      "faq": "FAQ",
+      "privacyPolicy": "Konfidencialitātes politika",
+      "termsOfService": "Pakalpojuma noteikumi"
+    },
+    "footer": {
+      "copyright": "© 2025 Vietopik. Visas tiesības aizsargātas."
+    },
+    "metadata": {
+      "lesson": "Pārlūkojiet mūsu jaunākās nodarbības un atrodiet kaut ko, kas jums patiks.",
+      "grammar": "Pieejamās gramatikas diagrammas"
+    }
+  }
+}

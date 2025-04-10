@@ -1,0 +1,99 @@
+{
+  "header": {
+    "utils": {
+      "login": "เข้าสู่ระบบ",
+      "logout": "ออกจากระบบ",
+      "inquiry": "ติดต่อเรา",
+      "manager": "ผู้จัดการ",
+      "topikExams": "สอบหัวข้อ",
+      "topikSchedule": "กำหนดการ"
+    }
+  },
+  "body": {
+    "utils": {
+      "loading": "กำลังโหลดบทเรียน ...",
+      "notFound": "ไม่พบข้อมูลในหมวดหมู่นี้",
+      "inquiry": "ติดต่อเรา",
+      "manager": "ผู้จัดการ"
+    }
+  },
+  "content": {
+    "title": "Vietopik - เรียนรู้ภาษาเกาหลีฟรี",
+    "home": "บ้าน",
+    "topiks": "หัวข้อ",
+    "courses": "หลักสูตร",
+    "grammar": "ไวยากรณ์",
+    "game": "เกม",
+    "features": "คุณสมบัติ",
+    "logIn": "เข้าสู่ระบบ",
+    "signUp": "ลงทะเบียน",
+    "toggleTheme": "ธีมสลับ",
+    "newCollection": "มีคอลเลกชันใหม่",
+    "oneStopPlatform": "แพลตฟอร์มการเรียนรู้ที่ดีที่สุดของเกาหลี",
+    "startLearningNow": "หัวข้อสอบ",
+    "whyChooseVieTopik": "ทำไมต้องเลือก Vietopik?",
+    "freeAccess": "การเข้าถึงฟรี",
+    "learnKorean": "เรียนรู้ภาษาเกาหลีด้วยบทเรียนคุณภาพสูงจากผู้เชี่ยวชาญโดยไม่มีค่าใช้จ่ายอย่างแน่นอน",
+    "expertInstructors": "อาจารย์ผู้เชี่ยวชาญ",
+    "learnFromExperts": "เรียนรู้จากเจ้าของภาษาและครูที่มีประสบการณ์",
+    "anytimeAnywhere": "ทุกที่ทุกเวลา",
+    "learnAtYourOwnPace": "ศึกษาด้วยความเร็วของคุณเองด้วยการเข้าถึงบทเรียนไม่ จำกัด",
+    "comprehensiveCurriculum": "หลักสูตรที่ครอบคลุม",
+    "coverAllAspects": "จากระดับเริ่มต้นถึงระดับขั้นสูงครอบคลุมไวยากรณ์คำศัพท์และการสนทนา",
+    "topikExam": "เชี่ยวชาญในการสอบหัวข้อ",
+    "topikI": "หัวข้อ I",
+    "topikI_tests": "12 การทดสอบการฝึกฝน",
+    "topikII": "หัวข้อ II",
+    "topikII_tests": "15 การทดสอบการฝึกฝน",
+    "viewAllTopiks": "ดูการทดสอบหัวข้อทั้งหมด",
+    "featuredCourses": "หลักสูตรเด่น",
+    "beginnerKorean": "เกาหลีเริ่มต้น",
+    "intermediateKorean": "เกาหลีกลาง",
+    "advancedKorean": "เกาหลีขั้นสูง",
+    "getStartedForFree": "เริ่มต้นฟรี",
+    "whatOurLearnersSay": "สิ่งที่ผู้เรียนของเราพูด",
+    "testimonial1": {
+      "quote": "\"Vietopik ช่วยให้ฉันเตรียมพร้อมสำหรับการสอบ topik ของฉันได้อย่างมีประสิทธิภาพบทเรียนมีโครงสร้างที่ดีและง่ายต่อการติดตาม!\"",
+      "name": "Nguyen Minh Anh",
+      "role": "นักศึกษาต่างชาติ"
+    },
+    "testimonial2": {
+      "quote": "\"การเรียนรู้ภาษาเกาหลีไม่เคยง่ายกว่านี้บทเรียนที่มีโครงสร้างทำให้ทุกอย่างง่ายและสนุก\"",
+      "name": "Tran Hai Nam",
+      "role": "คนงานสำนักงาน"
+    },
+    "testimonial3": {
+      "quote": "\"ขอบคุณ Vietopik ทักษะการฟังและการพูดของฉันดีขึ้นอย่างมากภายในสามเดือน!\"",
+      "name": "Le Thanh Huong",
+      "role": "นักศึกษามหาวิทยาลัย"
+    },
+    "vieTopik": "เวียติก",
+    "yourOneStopShop": "แพลตฟอร์มแบบครบวงจรของคุณสำหรับการเรียนรู้ภาษาเกาหลี เข้าถึงทรัพยากรพรีเมี่ยมฟรีและบรรลุเป้าหมายภาษาของคุณวันนี้!",
+    "connectWithUs": "เชื่อมต่อกับเรา",
+    "socialMedia": {
+      "facebook": "Facebook",
+      "twitter": "Twitter",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn"
+    },
+    "company": {
+      "aboutUs": "เกี่ยวกับเรา",
+      "careers": "อาชีพ",
+      "blog": "บล็อก",
+      "contact": "ติดต่อ"
+    },
+    "support": {
+      "helpCenter": "ศูนย์ช่วยเหลือ",
+      "faq": "คำถามที่พบบ่อย",
+      "privacyPolicy": "นโยบายความเป็นส่วนตัว",
+      "termsOfService": "ข้อกำหนด"
+    },
+    "footer": {
+      "copyright": "© 2025 Vietopik สงวนลิขสิทธิ์"
+    },
+    "metadata": {
+      "lesson": "เรียกดูบทเรียนล่าสุดของเราและค้นหาสิ่งที่คุณจะรัก",
+      "grammar": "ไดอะแกรมไวยากรณ์ที่มีอยู่"
+    }
+  }
+}

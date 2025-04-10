@@ -1,0 +1,99 @@
+{
+  "header": {
+    "utils": {
+      "login": "Logáil isteach",
+      "logout": "Logáil amach",
+      "inquiry": "Déan teagmháil linn",
+      "manager": "Bainisteoir",
+      "topikExams": "Topaic Scrúduithe",
+      "topikSchedule": "Topaic Sceideal"
+    }
+  },
+  "body": {
+    "utils": {
+      "loading": "Ceachtanna a luchtú ...",
+      "notFound": "Níl aon sonraí le fáil sa chatagóir seo.",
+      "inquiry": "Déan teagmháil linn",
+      "manager": "Bainisteoir"
+    }
+  },
+  "content": {
+    "title": "Vietopik - Foghlaim Cóiré saor in aisce",
+    "home": "Áit",
+    "topiks": "Ábhair",
+    "courses": "Cúrsaí",
+    "grammar": "Gramadaí",
+    "game": "Cluiche",
+    "features": "Bheith",
+    "logIn": "Logáil isteach",
+    "signUp": "Sínigh",
+    "toggleTheme": "Téama toggle",
+    "newCollection": "Bailiúchán nua ar fáil",
+    "oneStopPlatform": "Do ardán foghlama Cóiré deiridh",
+    "startLearningNow": "Ábhar scrúdaithe",
+    "whyChooseVieTopik": "Cén fáth a roghnaíonn Vietopik?",
+    "freeAccess": "Rochtain saor in aisce",
+    "learnKorean": "Foghlaim Cóiré le ceachtanna ardcháilíochta ó shaineolaithe gan aon chostas.",
+    "expertInstructors": "Teagascóirí saineolacha",
+    "learnFromExperts": "Foghlaim ó chainteoirí dúchais agus ó mhúinteoirí a bhfuil taithí acu.",
+    "anytimeAnywhere": "Am ar bith, áit ar bith",
+    "learnAtYourOwnPace": "Déan staidéar ar do luas féin le rochtain neamhtheoranta ar cheachtanna.",
+    "comprehensiveCurriculum": "Curaclam cuimsitheach",
+    "coverAllAspects": "Ó thosaitheoirí go leibhéil ardleibhéil, ag clúdach gramadaí, stór focal, agus comhrá.",
+    "topikExam": "Máistir an scrúdú topaice",
+    "topikI": "Topaic I.",
+    "topikI_tests": "12 Tástálacha Cleachtais",
+    "topikII": "Topaic II",
+    "topikII_tests": "15 Tástálacha Cleachtais",
+    "viewAllTopiks": "Féach na tástálacha topaicí go léir",
+    "featuredCourses": "Cúrsaí Réadmhaoin",
+    "beginnerKorean": "Cóiré tosaitheoirí",
+    "intermediateKorean": "Cóiré idirmheánach",
+    "advancedKorean": "Cóiré chun cinn",
+    "getStartedForFree": "Tús a chur le saor in aisce",
+    "whatOurLearnersSay": "Cad a deir ár bhfoghlaimeoirí",
+    "testimonial1": {
+      "quote": "\"Chabhraigh Vietopik liom ullmhú do mo scrúdú Topik go héifeachtach. Tá na ceachtanna dea-struchtúrtha agus éasca le leanúint!\"",
+      "name": "Nguyen Minh Anh",
+      "role": "Mac léinn idirnáisiúnta"
+    },
+    "testimonial2": {
+      "quote": "\"Ní raibh sé níos éasca riamh an Chóiré a fhoghlaim! Déanann na ceachtanna struchtúrtha gach rud simplí agus spraíúil.\"",
+      "name": "Tran hai nam",
+      "role": "Oibrí oifige"
+    },
+    "testimonial3": {
+      "quote": "\"A bhuíochas le Vietopik, tá feabhas suntasach tagtha ar mo chuid scileanna éisteachta agus labhartha laistigh de thrí mhí amháin!\"",
+      "name": "Le Thanh Huong",
+      "role": "Mac léinn ollscoile"
+    },
+    "vieTopik": "Víteogadh",
+    "yourOneStopShop": "Do ardán ilfhreastail chun Cóiré a mháistir. Rochtain ar acmhainní préimhe saor in aisce agus do spriocanna teanga a bhaint amach inniu!",
+    "connectWithUs": "Ceangail linn",
+    "socialMedia": {
+      "facebook": "Facebook",
+      "twitter": "Teanntán",
+      "instagram": "Dearagram",
+      "linkedin": "LinkedIn"
+    },
+    "company": {
+      "aboutUs": "Maidir Linn",
+      "careers": "Gairm bheatha",
+      "blog": "Blagáil",
+      "contact": "Lionsa"
+    },
+    "support": {
+      "helpCenter": "Ionad cabhrach",
+      "faq": "Ceisteanna CCanna",
+      "privacyPolicy": "Polasaí Príobháideachta",
+      "termsOfService": "Téarmaí Seirbhíse"
+    },
+    "footer": {
+      "copyright": "© 2025 Vietopik. Gach ceart ar cosaint."
+    },
+    "metadata": {
+      "lesson": "Brabhsáil ár gceachtanna is déanaí agus faigh rud éigin a bhfuil grá agat dó.",
+      "grammar": "Léaráidí gramadaí atá ar fáil"
+    }
+  }
+}

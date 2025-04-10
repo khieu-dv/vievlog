@@ -1,0 +1,99 @@
+{
+  "header": {
+    "utils": {
+      "login": "Prisijungimas",
+      "logout": "Atsijungimas",
+      "inquiry": "Susisiekite su mumis",
+      "manager": "Vadybininkas",
+      "topikExams": "Egzaminų tema",
+      "topikSchedule": "Tvarkaraščio tema"
+    }
+  },
+  "body": {
+    "utils": {
+      "loading": "Įkeliamos pamokos ...",
+      "notFound": "Šioje kategorijoje nėra duomenų.",
+      "inquiry": "Susisiekite su mumis",
+      "manager": "Vadybininkas"
+    }
+  },
+  "content": {
+    "title": "Vietopikas - mokykis korėjiečių nemokamai",
+    "home": "Namai",
+    "topiks": "Temos",
+    "courses": "Kursai",
+    "grammar": "Gramatika",
+    "game": "Žaidimas",
+    "features": "Savybės",
+    "logIn": "Prisijunkite",
+    "signUp": "Prisiregistruokite",
+    "toggleTheme": "Perjunkite temą",
+    "newCollection": "Galima nauja kolekcija",
+    "oneStopPlatform": "Jūsų galutinė Korėjos mokymosi platforma",
+    "startLearningNow": "Egzamino tema",
+    "whyChooseVieTopik": "Kodėl verta rinktis Vietopiką?",
+    "freeAccess": "Nemokama prieiga",
+    "learnKorean": "Išmokykite korėjiečių su aukštos kokybės ekspertų pamokomis nemokamai.",
+    "expertInstructors": "Ekspertų instruktoriai",
+    "learnFromExperts": "Sužinokite iš gimtosios kalbų ir patyrusių mokytojų.",
+    "anytimeAnywhere": "Bet kada, bet kur",
+    "learnAtYourOwnPace": "Studijuokite savo tempu, naudodami neribotą prieigą prie pamokų.",
+    "comprehensiveCurriculum": "Išsami mokymo programa",
+    "coverAllAspects": "Nuo pradedančiųjų iki pažengusiųjų lygių, apimant gramatiką, žodyną ir pokalbį.",
+    "topikExam": "Įvaldyti temos egzaminą",
+    "topikI": "I tema",
+    "topikI_tests": "12 praktikos testų",
+    "topikII": "II tema",
+    "topikII_tests": "15 praktikos testų",
+    "viewAllTopiks": "Peržiūrėkite visus temų testus",
+    "featuredCourses": "Rodomi kursai",
+    "beginnerKorean": "Pradedančiųjų korėjietis",
+    "intermediateKorean": "Tarpinis korėjietis",
+    "advancedKorean": "Pažengęs korėjietis",
+    "getStartedForFree": "Pradėkite nemokamai",
+    "whatOurLearnersSay": "Ką sako mūsų besimokantieji",
+    "testimonial1": {
+      "quote": "\"Vietopikas padėjo man efektyviai pasiruošti savo„ Topik “egzaminui. Pamokos yra gerai struktūruotos ir lengvai stebimos!\"",
+      "name": "Nguyen Minh Anh",
+      "role": "Tarptautinis studentas"
+    },
+    "testimonial2": {
+      "quote": "\"Korėjos išmokimui dar niekada nebuvo lengviau! Struktūrizuotos pamokos daro viską paprastą ir linksmą\".",
+      "name": "„Tran Hai Nam“",
+      "role": "Biuro darbuotojas"
+    },
+    "testimonial3": {
+      "quote": "\"Vietopiko dėka mano klausymo ir kalbėjimo įgūdžiai per tris mėnesius labai pagerėjo!\"",
+      "name": "Le Thanh Huong",
+      "role": "Universiteto studentas"
+    },
+    "vieTopik": "Vietopikas",
+    "yourOneStopShop": "Jūsų „vieno langelio“ platforma, skirta įsisavinti korėjiečių kalbą. Prieiga prie „Premium“ išteklių nemokamai ir pasiekite savo kalbos tikslus šiandien!",
+    "connectWithUs": "Susisiekti su mumis",
+    "socialMedia": {
+      "facebook": "„Facebook“",
+      "twitter": "„Twitter“",
+      "instagram": "„Instagram“",
+      "linkedin": "„LinkedIn“"
+    },
+    "company": {
+      "aboutUs": "Apie mus",
+      "careers": "Karjera",
+      "blog": "Dienoraštis",
+      "contact": "Susisiekite"
+    },
+    "support": {
+      "helpCenter": "Pagalbos centras",
+      "faq": "DUK",
+      "privacyPolicy": "Privatumo politika",
+      "termsOfService": "Aptarnavimo sąlygos"
+    },
+    "footer": {
+      "copyright": "© 2025 Vietopikas. Visos teisės saugomos."
+    },
+    "metadata": {
+      "lesson": "Naršykite mūsų naujausias pamokas ir raskite tai, kas jums patiks.",
+      "grammar": "Galimos gramatikos diagramos"
+    }
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "header": {
+    "utils": {
+      "login": "Aanmeld",
+      "logout": "Logout",
+      "inquiry": "Kontak ons",
+      "manager": "Bestuurderes",
+      "topikExams": "Onderwerp van die eksamen",
+      "topikSchedule": "Skedule onderwerp"
+    }
+  },
+  "body": {
+    "utils": {
+      "loading": "Laai lesse ...",
+      "notFound": "Geen gegewens in hierdie kategorie gevind nie.",
+      "inquiry": "Kontak ons",
+      "manager": "Bestuurderes"
+    }
+  },
+  "content": {
+    "title": "Vietopik - Leer Koreaans gratis",
+    "home": "Tuiste",
+    "topiks": "Onderwerpe",
+    "courses": "Kursusse",
+    "grammar": "Grammatika",
+    "game": "Wild",
+    "features": "Funksies",
+    "logIn": "Teken in",
+    "signUp": "Aanmeld",
+    "toggleTheme": "Skakel tema",
+    "newCollection": "Nuwe versameling beskikbaar",
+    "oneStopPlatform": "U uiteindelike Koreaanse leerplatform",
+    "startLearningNow": "Eksamenonderwerp",
+    "whyChooseVieTopik": "Waarom kies Vietopik?",
+    "freeAccess": "Gratis toegang",
+    "learnKorean": "Leer Koreaans met lesse van hoë gehalte van kundiges teen absoluut geen koste nie.",
+    "expertInstructors": "Deskundige instrukteurs",
+    "learnFromExperts": "Leer by moedertaalsprekers en ervare onderwysers.",
+    "anytimeAnywhere": "Enige tyd, oral",
+    "learnAtYourOwnPace": "Bestudeer in u eie tempo met onbeperkte toegang tot lesse.",
+    "comprehensiveCurriculum": "Uitgebreide kurrikulum",
+    "coverAllAspects": "Van beginner tot gevorderde vlakke, wat grammatika, woordeskat en gesprek dek.",
+    "topikExam": "Bemeester die onderwerpeksamen",
+    "topikI": "Onderwerp i",
+    "topikI_tests": "12 Oefeningstoetse",
+    "topikII": "Onderwerp II",
+    "topikII_tests": "15 oefentoetse",
+    "viewAllTopiks": "Kyk na alle onderwerpe toetse",
+    "featuredCourses": "Gewilde kursusse",
+    "beginnerKorean": "Beginner se Koreaanse",
+    "intermediateKorean": "Tussentydse Koreaans",
+    "advancedKorean": "Gevorderde Koreaans",
+    "getStartedForFree": "Begin gratis",
+    "whatOurLearnersSay": "Wat ons leerders sê",
+    "testimonial1": {
+      "quote": "'Vietopik het my gehelp om voor te berei op my topik-eksamen. Die lesse is goed gestruktureer en maklik om te volg!'",
+      "name": "Nguyen minh anh",
+      "role": "Internasionale student"
+    },
+    "testimonial2": {
+      "quote": "\"Die leer van Koreaans was nog nooit so maklik nie! Die gestruktureerde lesse maak alles eenvoudig en lekker.\"",
+      "name": "Tran Hai Nam",
+      "role": "Kantoorwerker"
+    },
+    "testimonial3": {
+      "quote": "'Danksy Vietopik het my luister- en praatvaardighede binne drie maande aansienlik verbeter!'",
+      "name": "Le Thanh Huong",
+      "role": "Universiteitstudent"
+    },
+    "vieTopik": "Vietopik",
+    "yourOneStopShop": "U eenstopplatform om Koreaans te bemeester. Toegang tot premium hulpbronne gratis en bereik vandag u taaldoelwitte!",
+    "connectWithUs": "Kontak met ons",
+    "socialMedia": {
+      "facebook": "Facebook",
+      "twitter": "Twitter",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn"
+    },
+    "company": {
+      "aboutUs": "Oor ons",
+      "careers": "Loopbane",
+      "blog": "Blog",
+      "contact": "Kontak"
+    },
+    "support": {
+      "helpCenter": "Help Sentrum",
+      "faq": "Vrae",
+      "privacyPolicy": "Privaatheidsbeleid",
+      "termsOfService": "Diensvoorwaardes"
+    },
+    "footer": {
+      "copyright": "© 2025 Vietopik. Alle regte voorbehou."
+    },
+    "metadata": {
+      "lesson": "Kyk na ons nuutste lesse en vind iets waarvoor u sal hou.",
+      "grammar": "Beskikbare grammatikasiagramme"
+    }
+  }
+}

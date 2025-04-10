@@ -1,0 +1,99 @@
+{
+  "header": {
+    "utils": {
+      "login": "כְּנִיסָה לַמַעֲרֶכֶת",
+      "logout": "יציאה",
+      "inquiry": "צרו קשר",
+      "manager": "מְנַהֵל",
+      "topikExams": "נושא הבחינות",
+      "topikSchedule": "נושא לוח הזמנים"
+    }
+  },
+  "body": {
+    "utils": {
+      "loading": "טוען שיעורי ...",
+      "notFound": "לא נמצאו נתונים בקטגוריה זו.",
+      "inquiry": "צרו קשר",
+      "manager": "מְנַהֵל"
+    }
+  },
+  "content": {
+    "title": "Vietopik - למד קוריאני בחינם",
+    "home": "בַּיִת",
+    "topiks": "נושאים",
+    "courses": "קורסים",
+    "grammar": "דִקדוּק",
+    "game": "מִשְׂחָק",
+    "features": "תכונות",
+    "logIn": "התחבר",
+    "signUp": "הירשם",
+    "toggleTheme": "נושא הנושא",
+    "newCollection": "אוסף חדש זמין",
+    "oneStopPlatform": "פלטפורמת הלמידה הקוריאנית האולטימטיבית שלך",
+    "startLearningNow": "נושא הבחינה",
+    "whyChooseVieTopik": "למה לבחור בוויטופיק?",
+    "freeAccess": "גישה חינם",
+    "learnKorean": "למדו קוריאנית עם שיעורים איכותיים של מומחים ללא עלות לחלוטין.",
+    "expertInstructors": "מדריכים מומחים",
+    "learnFromExperts": "למדו מדוברי שפת אם ומורים מנוסים.",
+    "anytimeAnywhere": "בכל זמן ובכל מקום",
+    "learnAtYourOwnPace": "למד בקצב שלך עם גישה בלתי מוגבלת לשיעורים.",
+    "comprehensiveCurriculum": "תכנית לימודים מקיפה",
+    "coverAllAspects": "מהמתחיל לרמות מתקדמות, המכסה דקדוק, אוצר מילים ושיחה.",
+    "topikExam": "שלט בבחינת הנושא",
+    "topikI": "נושא i",
+    "topikI_tests": "12 מבחני תרגול",
+    "topikII": "נושא ב '",
+    "topikII_tests": "15 מבחני תרגול",
+    "viewAllTopiks": "צפה בכל מבחני הנושאים",
+    "featuredCourses": "קורסים מוצגים",
+    "beginnerKorean": "הקוריאני של המתחילים",
+    "intermediateKorean": "קוריאני ביניים",
+    "advancedKorean": "קוריאנית מתקדמת",
+    "getStartedForFree": "התחל בחינם",
+    "whatOurLearnersSay": "מה הלומדים שלנו אומרים",
+    "testimonial1": {
+      "quote": "\"Vietopik עזר לי להתכונן לבחינת Topik ביעילות. השיעורים הם מובנים היטב וקלים לעקוב אחריהם!\"",
+      "name": "Nguyen Minh Anh",
+      "role": "סטודנט בינלאומי"
+    },
+    "testimonial2": {
+      "quote": "\"לימוד קוריאני מעולם לא היה קל יותר! השיעורים המובנים הופכים את הכל לפשוט ומהנה.\"",
+      "name": "טראן חי נאם",
+      "role": "עובד משרד"
+    },
+    "testimonial3": {
+      "quote": "\"בזכות ויטופיק, כישורי ההאזנה והדיבור שלי השתפרו משמעותית תוך שלושה חודשים בלבד!\"",
+      "name": "Le Thanh Huong",
+      "role": "סטודנט באוניברסיטה"
+    },
+    "vieTopik": "Vietopik",
+    "yourOneStopShop": "הפלטפורמה האחת-עצירתית שלך לשליטה בקוריאנית. גישה למשאבי פרימיום בחינם ולהשיג את יעדי השפה שלך עוד היום!",
+    "connectWithUs": "התחבר אלינו",
+    "socialMedia": {
+      "facebook": "פייסבוק",
+      "twitter": "לְצַפְצֵף",
+      "instagram": "אינסטגרם",
+      "linkedin": "לינקדאין"
+    },
+    "company": {
+      "aboutUs": "עלינו",
+      "careers": "קריירה",
+      "blog": "בלוג",
+      "contact": "מַגָע"
+    },
+    "support": {
+      "helpCenter": "מרכז עזרה",
+      "faq": "שאלות נפוצות",
+      "privacyPolicy": "מדיניות פרטיות",
+      "termsOfService": "תנאי שירות"
+    },
+    "footer": {
+      "copyright": "© 2025 Vietopik. כֹּל הַזְכוּיוֹת שְׁמוּרוֹת."
+    },
+    "metadata": {
+      "lesson": "עיין בשיעורים האחרונים שלנו ומצא משהו שתאהב.",
+      "grammar": "דיאגרמות דקדוק זמינות"
+    }
+  }
+}

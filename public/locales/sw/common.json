@@ -1,0 +1,99 @@
+{
+  "header": {
+    "utils": {
+      "login": "Ingia",
+      "logout": "Kuingia",
+      "inquiry": "Wasiliana nasi",
+      "manager": "Meneja",
+      "topikExams": "Mada ya mitihani",
+      "topikSchedule": "Ratiba ya mada"
+    }
+  },
+  "body": {
+    "utils": {
+      "loading": "Kupakia masomo ...",
+      "notFound": "Hakuna data inayopatikana katika jamii hii.",
+      "inquiry": "Wasiliana nasi",
+      "manager": "Meneja"
+    }
+  },
+  "content": {
+    "title": "Vietopik - Jifunze Kikorea bure",
+    "home": "Nyumbani",
+    "topiks": "Mada",
+    "courses": "Kozi",
+    "grammar": "Sarufi",
+    "game": "Mchezo",
+    "features": "Vipengee",
+    "logIn": "Ingia",
+    "signUp": "Jisajili",
+    "toggleTheme": "Kubadilisha mandhari",
+    "newCollection": "Mkusanyiko mpya unapatikana",
+    "oneStopPlatform": "Jukwaa lako la mwisho la kujifunza Kikorea",
+    "startLearningNow": "Mada ya mitihani",
+    "whyChooseVieTopik": "Kwa nini Uchague Vietopik?",
+    "freeAccess": "Ufikiaji wa bure",
+    "learnKorean": "Jifunze Kikorea na masomo ya hali ya juu kutoka kwa wataalam bila gharama yoyote.",
+    "expertInstructors": "Waalimu wa wataalam",
+    "learnFromExperts": "Jifunze kutoka kwa wasemaji wa asili na waalimu wenye uzoefu.",
+    "anytimeAnywhere": "Wakati wowote, mahali popote",
+    "learnAtYourOwnPace": "Jifunze kwa kasi yako mwenyewe na ufikiaji usio na kikomo wa masomo.",
+    "comprehensiveCurriculum": "Mtaala kamili",
+    "coverAllAspects": "Kutoka kwa viwango vya juu hadi viwango vya juu, kufunika sarufi, msamiati, na mazungumzo.",
+    "topikExam": "Mwalimu Mtihani wa Mada",
+    "topikI": "Mada i",
+    "topikI_tests": "Vipimo 12 vya mazoezi",
+    "topikII": "Mada ya II",
+    "topikII_tests": "Vipimo 15 vya mazoezi",
+    "viewAllTopiks": "Angalia vipimo vyote vya mada",
+    "featuredCourses": "Kozi zilizoangaziwa",
+    "beginnerKorean": "Kikorea cha Kompyuta",
+    "intermediateKorean": "Kikorea cha kati",
+    "advancedKorean": "Kikorea cha hali ya juu",
+    "getStartedForFree": "Anza bure",
+    "whatOurLearnersSay": "Wanafunzi wetu wanasema nini",
+    "testimonial1": {
+      "quote": "\"Vietopik alinisaidia kujiandaa kwa mtihani wangu wa Topik kwa ufanisi. Masomo yameundwa vizuri na ni rahisi kufuata!\"",
+      "name": "Nguyen Minh Anh",
+      "role": "Mwanafunzi wa Kimataifa"
+    },
+    "testimonial2": {
+      "quote": "\"Kujifunza Kikorea haijawahi kuwa rahisi! Masomo yaliyopangwa hufanya kila kitu kuwa rahisi na cha kufurahisha.\"",
+      "name": "Tran Hai Nam",
+      "role": "Mfanyakazi wa ofisi"
+    },
+    "testimonial3": {
+      "quote": "\"Asante kwa Vietopik, ujuzi wangu wa kusikiliza na kuongea umeimarika sana ndani ya miezi mitatu tu!\"",
+      "name": "Le Thanh Huong",
+      "role": "Mwanafunzi wa Chuo Kikuu"
+    },
+    "vieTopik": "Vietopik",
+    "yourOneStopShop": "Jukwaa lako moja la kusimamia Kikorea. Fikia rasilimali za malipo ya bure na kufikia malengo yako ya lugha leo!",
+    "connectWithUs": "Ungana na sisi",
+    "socialMedia": {
+      "facebook": "Facebook",
+      "twitter": "Twitter",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn"
+    },
+    "company": {
+      "aboutUs": "Kuhusu sisi",
+      "careers": "Kazi",
+      "blog": "Blogi",
+      "contact": "Wasiliana"
+    },
+    "support": {
+      "helpCenter": "Kituo cha Msaada",
+      "faq": "Maswali",
+      "privacyPolicy": "Sera ya faragha",
+      "termsOfService": "Masharti ya Huduma"
+    },
+    "footer": {
+      "copyright": "© 2025 Vietopik. Haki zote zimehifadhiwa."
+    },
+    "metadata": {
+      "lesson": "Vinjari masomo yetu ya hivi karibuni na upate kitu ambacho utapenda.",
+      "grammar": "Mchoro unaopatikana wa sarufi"
+    }
+  }
+}

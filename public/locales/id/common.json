@@ -1,0 +1,99 @@
+{
+  "header": {
+    "utils": {
+      "login": "Login",
+      "logout": "Logout",
+      "inquiry": "Hubungi kami",
+      "manager": "Manajer",
+      "topikExams": "TOPIK Exams",
+      "topikSchedule": "TOPIK Schedule"
+    }
+  },
+  "body": {
+    "utils": {
+      "loading": "Muat Pelajaran ...",
+      "notFound": "Tidak ada data yang ditemukan dalam kategori ini.",
+      "inquiry": "Hubungi kami",
+      "manager": "Manajer"
+    }
+  },
+  "content": {
+    "title": "Vietopik - Belajar Korea secara gratis",
+    "home": "Rumah",
+    "topiks": "Topik",
+    "courses": "Kursus",
+    "grammar": "Tata bahasa",
+    "game": "Permainan",
+    "features": "Fitur",
+    "logIn": "Masuk",
+    "signUp": "Mendaftar",
+    "toggleTheme": "Tema tema",
+    "newCollection": "Koleksi baru tersedia",
+    "oneStopPlatform": "Platform Pembelajaran Korea Utama Anda",
+    "startLearningNow": "Topik Exam",
+    "whyChooseVieTopik": "Mengapa Memilih Vietopik?",
+    "freeAccess": "Akses gratis",
+    "learnKorean": "Pelajari bahasa Korea dengan pelajaran berkualitas tinggi dari para ahli tanpa biaya sama sekali.",
+    "expertInstructors": "Instruktur ahli",
+    "learnFromExperts": "Belajar dari penutur asli dan guru yang berpengalaman.",
+    "anytimeAnywhere": "Kapan saja, di mana saja",
+    "learnAtYourOwnPace": "Belajar dengan kecepatan Anda sendiri dengan akses tak terbatas ke pelajaran.",
+    "comprehensiveCurriculum": "Kurikulum Komprehensif",
+    "coverAllAspects": "Dari level pemula hingga lanjutan, mencakup tata bahasa, kosa kata, dan percakapan.",
+    "topikExam": "Master the TOPIK Exam",
+    "topikI": "TOPIK I",
+    "topikI_tests": "12 Tes Latihan",
+    "topikII": "TOPIK II",
+    "topikII_tests": "15 Tes latihan",
+    "viewAllTopiks": "View All TOPIK Tests",
+    "featuredCourses": "Kursus unggulan",
+    "beginnerKorean": "Korea pemula",
+    "intermediateKorean": "Korea menengah",
+    "advancedKorean": "Korea tingkat lanjut",
+    "getStartedForFree": "Mulailah secara gratis",
+    "whatOurLearnersSay": "Apa yang dikatakan pelajar kita",
+    "testimonial1": {
+      "quote": "\"Vietopik membantu saya mempersiapkan diri untuk ujian Topik saya secara efektif. Pelajarannya terstruktur dengan baik dan mudah diikuti!\"",
+      "name": "Nguyen Minh Anh",
+      "role": "Siswa Internasional"
+    },
+    "testimonial2": {
+      "quote": "\"Belajar Korea tidak pernah semudah ini! Pelajaran terstruktur membuat segalanya menjadi sederhana dan menyenangkan.\"",
+      "name": "Tran hai nam",
+      "role": "Pekerja kantor"
+    },
+    "testimonial3": {
+      "quote": "\"Terima kasih kepada Vietopik, keterampilan mendengarkan dan berbicara saya telah meningkat secara signifikan hanya dalam waktu tiga bulan!\"",
+      "name": "Le Thanh Huong",
+      "role": "Mahasiswa"
+    },
+    "vieTopik": "Vietopik",
+    "yourOneStopShop": "Platform satu atap Anda untuk menguasai bahasa Korea. Akses sumber daya premium secara gratis dan raih tujuan bahasa Anda hari ini!",
+    "connectWithUs": "Terhubung dengan kami",
+    "socialMedia": {
+      "facebook": "Facebook",
+      "twitter": "Twitter",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn"
+    },
+    "company": {
+      "aboutUs": "Tentang kami",
+      "careers": "Karier",
+      "blog": "Blog",
+      "contact": "Kontak"
+    },
+    "support": {
+      "helpCenter": "Pusat Bantuan",
+      "faq": "FAQ",
+      "privacyPolicy": "Kebijakan Privasi",
+      "termsOfService": "Ketentuan Layanan"
+    },
+    "footer": {
+      "copyright": "© 2025 Vietopik. Semua hak dilindungi undang -undang."
+    },
+    "metadata": {
+      "lesson": "Jelajahi pelajaran terbaru kami dan temukan sesuatu yang akan Anda sukai.",
+      "grammar": "Diagram tata bahasa yang tersedia"
+    }
+  }
+}

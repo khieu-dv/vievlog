@@ -1,0 +1,99 @@
+{
+  "header": {
+    "utils": {
+      "login": "Sessió d’inici de sessió",
+      "logout": "Registre",
+      "inquiry": "Poseu -vos en contacte amb nosaltres",
+      "manager": "Gerent",
+      "topikExams": "Exàmens Tema",
+      "topikSchedule": "Programació del tema"
+    }
+  },
+  "body": {
+    "utils": {
+      "loading": "Carregant lliçons ...",
+      "notFound": "No es troben dades en aquesta categoria.",
+      "inquiry": "Poseu -vos en contacte amb nosaltres",
+      "manager": "Gerent"
+    }
+  },
+  "content": {
+    "title": "Vietopik: aprendre coreà de franc",
+    "home": "Casa",
+    "topiks": "Temes",
+    "courses": "Cursos",
+    "grammar": "Gramàtica",
+    "game": "Joc",
+    "features": "Funcions",
+    "logIn": "Iniciar sessió",
+    "signUp": "Registrar -se",
+    "toggleTheme": "Tema de commutació",
+    "newCollection": "Nova col·lecció disponible",
+    "oneStopPlatform": "La vostra definitiva plataforma d’aprenentatge coreà",
+    "startLearningNow": "Tema de l'examen",
+    "whyChooseVieTopik": "Per què triar el viietopic?",
+    "freeAccess": "Accés gratuït",
+    "learnKorean": "Apreneu coreà amb lliçons d’alta qualitat d’experts sense cap cost.",
+    "expertInstructors": "Instructors experts",
+    "learnFromExperts": "Apreneu dels parlants nadius i dels professors amb experiència.",
+    "anytimeAnywhere": "En qualsevol moment, a qualsevol lloc",
+    "learnAtYourOwnPace": "Estudieu al vostre ritme amb un accés il·limitat a les lliçons.",
+    "comprehensiveCurriculum": "Currículum integral",
+    "coverAllAspects": "De principiants a nivells avançats, que abasta la gramàtica, el vocabulari i la conversa.",
+    "topikExam": "Domina l'examen de temes",
+    "topikI": "Tema I",
+    "topikI_tests": "12 proves de pràctica",
+    "topikII": "Tema II",
+    "topikII_tests": "15 Proves de pràctica",
+    "viewAllTopiks": "Consulteu totes les proves de temes",
+    "featuredCourses": "Cursos destacats",
+    "beginnerKorean": "Corea dels principiants",
+    "intermediateKorean": "Coreà intermedi",
+    "advancedKorean": "Coreà avançat",
+    "getStartedForFree": "Comenceu de franc",
+    "whatOurLearnersSay": "El que diuen els nostres aprenents",
+    "testimonial1": {
+      "quote": "\"El vietopik m'ha ajudat a preparar-me per al meu examen de Topik de manera eficaç. Les lliçons estan ben estructurades i fàcils de seguir!\"",
+      "name": "Nguyen Minh Anh",
+      "role": "Estudiant internacional"
+    },
+    "testimonial2": {
+      "quote": "\"Aprendre coreà no ha estat mai més fàcil! Les lliçons estructurades fan que tot sigui senzill i divertit\".",
+      "name": "Tran Hai Nam",
+      "role": "Treballadora de l'oficina"
+    },
+    "testimonial3": {
+      "quote": "\"Gràcies al viietopic, les meves habilitats d'escolta i parla han millorat significativament en només tres mesos!\"",
+      "name": "Le Thanh Huong",
+      "role": "Estudiant universitari"
+    },
+    "vieTopik": "Vietopic",
+    "yourOneStopShop": "La vostra plataforma única per dominar coreà. Accediu als recursos premium de forma gratuïta i assoliu els vostres objectius d’idioma avui mateix.",
+    "connectWithUs": "Connecta amb nosaltres",
+    "socialMedia": {
+      "facebook": "Facebook",
+      "twitter": "Twitter",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn"
+    },
+    "company": {
+      "aboutUs": "Sobre nosaltres",
+      "careers": "Carreres de carreres",
+      "blog": "Bloc",
+      "contact": "Contacte"
+    },
+    "support": {
+      "helpCenter": "Ajuda Centre",
+      "faq": "Cap",
+      "privacyPolicy": "Política de privadesa",
+      "termsOfService": "Condicions del servei"
+    },
+    "footer": {
+      "copyright": "© 2025 Vietopic. Tots els drets reservats."
+    },
+    "metadata": {
+      "lesson": "Busqueu les nostres darreres lliçons i trobeu alguna cosa que us encantarà.",
+      "grammar": "Diagrames de gramàtica disponibles"
+    }
+  }
+}

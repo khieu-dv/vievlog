@@ -1,0 +1,99 @@
+{
+  "header": {
+    "utils": {
+      "login": "Sisselogimine",
+      "logout": "Väljalogimine",
+      "inquiry": "Võtke meiega ühendust",
+      "manager": "Juhataja",
+      "topikExams": "Eksamite teema",
+      "topikSchedule": "Ajakava teema"
+    }
+  },
+  "body": {
+    "utils": {
+      "loading": "Tundide laadimine ...",
+      "notFound": "Selles kategoorias pole andmeid.",
+      "inquiry": "Võtke meiega ühendust",
+      "manager": "Juhataja"
+    }
+  },
+  "content": {
+    "title": "Vietopik - õppige korea keelt tasuta",
+    "home": "Kodu",
+    "topiks": "Teemad",
+    "courses": "Kursused",
+    "grammar": "Grammatika",
+    "game": "Mängumäng",
+    "features": "Omadused",
+    "logIn": "Sisse logima",
+    "signUp": "Registreeruma",
+    "toggleTheme": "Lülitage teema",
+    "newCollection": "Saadaval uus kollektsioon",
+    "oneStopPlatform": "Teie ülim Korea õppeplatvorm",
+    "startLearningNow": "Eksamiteema",
+    "whyChooseVieTopik": "Miks valida Vietopik?",
+    "freeAccess": "Tasuta juurdepääs",
+    "learnKorean": "Õppige korea keelt ekspertide kvaliteetsete õppetundidega absoluutselt tasuta.",
+    "expertInstructors": "Ekspertide juhendajad",
+    "learnFromExperts": "Õppige emakeelena kõnelejatelt ja kogenud õpetajatelt.",
+    "anytimeAnywhere": "Igal ajal ja igal pool",
+    "learnAtYourOwnPace": "Uurige oma tempos piiramatu juurdepääsuga tundidele.",
+    "comprehensiveCurriculum": "Põhjalik õppekava",
+    "coverAllAspects": "Alates algajast kuni arenenud tasemeni, hõlmates grammatikat, sõnavara ja vestlust.",
+    "topikExam": "Tee teemaeksam",
+    "topikI": "I teema",
+    "topikI_tests": "12 harjutustesti",
+    "topikII": "II teema",
+    "topikII_tests": "15 praktikatesti",
+    "viewAllTopiks": "Vaadake kõiki teemasid",
+    "featuredCourses": "Esitletud kursused",
+    "beginnerKorean": "Algaja korealane",
+    "intermediateKorean": "Vahepealne Korea",
+    "advancedKorean": "Arenenud korea",
+    "getStartedForFree": "Alustage tasuta",
+    "whatOurLearnersSay": "Mida meie õppijad ütlevad",
+    "testimonial1": {
+      "quote": "\"Vietopik aitas mul tõhusalt oma Topiku eksamiks valmistuda. Tunnid on hästi struktureeritud ja seda on lihtne jälgida!\"",
+      "name": "Nguyen Minh anh",
+      "role": "Rahvusvaheline tudeng"
+    },
+    "testimonial2": {
+      "quote": "\"Korea õppimine pole kunagi olnud lihtsam! Struktureeritud õppetunnid muudavad kõik lihtsaks ja lõbusaks.\"",
+      "name": "Tran Hai Nam",
+      "role": "Kontoritöötaja"
+    },
+    "testimonial3": {
+      "quote": "\"Tänu Vietopikule on minu kuulamis- ja rääkimisoskus vaid kolme kuu jooksul märkimisväärselt paranenud!\"",
+      "name": "Le Thanh Huong",
+      "role": "Ülikooli tudeng"
+    },
+    "vieTopik": "Vietopik",
+    "yourOneStopShop": "Teie One-Stop platvorm Korea valdamiseks. Premium -ressurssidele juurde pääsege tasuta ja saavutage oma keeleeesmärgid juba täna!",
+    "connectWithUs": "Võtke meiega ühendust",
+    "socialMedia": {
+      "facebook": "Facebook",
+      "twitter": "Twitter",
+      "instagram": "Instagram",
+      "linkedin": "Linkedin"
+    },
+    "company": {
+      "aboutUs": "Meist",
+      "careers": "Karjäär",
+      "blog": "Ajaveeb",
+      "contact": "Kontakt"
+    },
+    "support": {
+      "helpCenter": "Abikeskus",
+      "faq": "KKK",
+      "privacyPolicy": "Privaatsuspoliitika",
+      "termsOfService": "Teenuse tingimused"
+    },
+    "footer": {
+      "copyright": "© 2025 Vietopik. Kõik õigused kaitstud."
+    },
+    "metadata": {
+      "lesson": "Sirvige meie viimaseid õppetunde ja leidke midagi, mis teile meeldib.",
+      "grammar": "Saadaolevad grammatikaskeemid"
+    }
+  }
+}

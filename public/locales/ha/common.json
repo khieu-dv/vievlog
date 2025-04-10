@@ -1,0 +1,99 @@
+{
+  "header": {
+    "utils": {
+      "login": "Shiga",
+      "logout": "Logout",
+      "inquiry": "Tuntube mu",
+      "manager": "Manaja",
+      "topikExams": "Yayi gwaji",
+      "topikSchedule": "Jadawalin taken"
+    }
+  },
+  "body": {
+    "utils": {
+      "loading": "Loading Darussan ...",
+      "notFound": "Babu bayanan da aka samo a wannan rukunin.",
+      "inquiry": "Tuntube mu",
+      "manager": "Manaja"
+    }
+  },
+  "content": {
+    "title": "Vietopik - Koyi Koriya kyauta",
+    "home": "Gida",
+    "topiks": "Batutuwa",
+    "courses": "Darussan",
+    "grammar": "Nahawu",
+    "game": "Wasa",
+    "features": "Fasas",
+    "logIn": "Shiga",
+    "signUp": "Yi rajista",
+    "toggleTheme": "Rubutun taken",
+    "newCollection": "Sabuwar tarin",
+    "oneStopPlatform": "Dandalinku na Koriya Korean",
+    "startLearningNow": "Jarrabawa taken",
+    "whyChooseVieTopik": "Me yasa Zabi Vietopik?",
+    "freeAccess": "Dama dama",
+    "learnKorean": "Koyi Koriya tare da darussan masu inganci daga masana a ba da tsada.",
+    "expertInstructors": "Kwararrun Malami",
+    "learnFromExperts": "Koya daga asalin masu magana da malamai.",
+    "anytimeAnywhere": "Kowane lokaci, ko'ina",
+    "learnAtYourOwnPace": "Yi karatu a cikin hanzari tare da damar da ba a iyakance ba ga darussan.",
+    "comprehensiveCurriculum": "Cikakkar magani",
+    "coverAllAspects": "Daga Mai farawa zuwa matakan ci gaba, rufe nahawu, ƙamus, da taɗi.",
+    "topikExam": "Jagora Jagora",
+    "topikI": "Taken i",
+    "topikI_tests": "12 Ayyukan gwaji",
+    "topikII": "Topic II",
+    "topikII_tests": "15 Aiwatar da Gwaji",
+    "viewAllTopiks": "Duba dukkan gwaje-gwajen batutuwa",
+    "featuredCourses": "Darussan fasalin",
+    "beginnerKorean": "Mafarin Koriya",
+    "intermediateKorean": "Matsakaici matsakaici",
+    "advancedKorean": "Babbar Koriya",
+    "getStartedForFree": "Fara kyauta",
+    "whatOurLearnersSay": "Abin da Xalibanmu suka ce",
+    "testimonial1": {
+      "quote": "\"Vietopik ya taimake ni shirya don jarrabawar ta bayyana. Darussan suna da tsari da sauƙin bi!\"",
+      "name": "Nguyen Minh Anh Anh Anh Anh",
+      "role": "Dalibin kasa da kasa"
+    },
+    "testimonial2": {
+      "quote": "\"Koyo Korean bai taba zama sauki ba! Darasi na tsari ya yi komai mai sauki da nishadi.\"",
+      "name": "Tran Hai Nam",
+      "role": "Ma'aikacin ofis"
+    },
+    "testimonial3": {
+      "quote": "\"Godiya ga Vietofik, da kuma kwarewar magana da magana sun inganta sosai a cikin watanni uku kawai.\"",
+      "name": "Le Thaid",
+      "role": "Dalibin jami'a"
+    },
+    "vieTopik": "Vietopik",
+    "yourOneStopShop": "Platformaya na tsayawa na tsoratarwa na Koriya. Samun damar samar da kayayyaki don kyauta kuma cimma burin ku a yau!",
+    "connectWithUs": "Haɗa tare da mu",
+    "socialMedia": {
+      "facebook": "Facebook",
+      "twitter": "Twitter",
+      "instagram": "Instagram",
+      "linkedin": "Linɗada"
+    },
+    "company": {
+      "aboutUs": "Game da mu",
+      "careers": "Kula",
+      "blog": "Talla",
+      "contact": "Hulɗa"
+    },
+    "support": {
+      "helpCenter": "Cibiyar Taimako",
+      "faq": "Faq",
+      "privacyPolicy": "takardar kebantawa",
+      "termsOfService": "Sharuɗɗan sabis"
+    },
+    "footer": {
+      "copyright": "© 2025 Vietopik. Dukkan hakkoki."
+    },
+    "metadata": {
+      "lesson": "Bincika darussan sabon darussan mu kuma nemo wani abu zaka kauna.",
+      "grammar": "Akwai zane nahammar nahawu"
+    }
+  }
+}

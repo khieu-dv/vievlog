@@ -1,0 +1,99 @@
+{
+  "header": {
+    "utils": {
+      "login": "Se connecter",
+      "logout": "Déconnexion",
+      "inquiry": "Contactez-nous",
+      "manager": "Directeur",
+      "topikExams": "Sujet des examens",
+      "topikSchedule": "Sujet de planification"
+    }
+  },
+  "body": {
+    "utils": {
+      "loading": "Chargement des cours ...",
+      "notFound": "Aucune donnée trouvée dans cette catégorie.",
+      "inquiry": "Contactez-nous",
+      "manager": "Directeur"
+    }
+  },
+  "content": {
+    "title": "Vietopik - Apprenez le coréen gratuitement",
+    "home": "Maison",
+    "topiks": "Sujets",
+    "courses": "Cours",
+    "grammar": "Grammaire",
+    "game": "Jeu",
+    "features": "Caractéristiques",
+    "logIn": "Se connecter",
+    "signUp": "S'inscrire",
+    "toggleTheme": "Thème de basculement",
+    "newCollection": "Nouvelle collection disponible",
+    "oneStopPlatform": "Votre plateforme d'apprentissage coréen ultime",
+    "startLearningNow": "Sujet d'examen",
+    "whyChooseVieTopik": "Pourquoi choisir Vietopik?",
+    "freeAccess": "Accès gratuit",
+    "learnKorean": "Apprenez coréen avec des leçons de haute qualité d'experts sans frais.",
+    "expertInstructors": "Instructeurs experts",
+    "learnFromExperts": "Apprenez des locuteurs natifs et des enseignants expérimentés.",
+    "anytimeAnywhere": "À tout moment, n'importe où",
+    "learnAtYourOwnPace": "Étudiez à votre rythme avec un accès illimité aux leçons.",
+    "comprehensiveCurriculum": "Programme d'études complet",
+    "coverAllAspects": "Des niveaux débutants aux niveaux avancés, couvrant la grammaire, le vocabulaire et la conversation.",
+    "topikExam": "Maître l'examen du sujet",
+    "topikI": "Sujet I",
+    "topikI_tests": "12 Tests de pratique",
+    "topikII": "Sujet II",
+    "topikII_tests": "15 Tests de pratique",
+    "viewAllTopiks": "Afficher tous les tests de sujets",
+    "featuredCourses": "Cours en vedette",
+    "beginnerKorean": "Coréen débutant",
+    "intermediateKorean": "Coréen intermédiaire",
+    "advancedKorean": "Coréen avancé",
+    "getStartedForFree": "Commencez gratuitement",
+    "whatOurLearnersSay": "Ce que nos apprenants disent",
+    "testimonial1": {
+      "quote": "\"Vietopik m'a aidé à me préparer efficacement à mon examen Topik. Les leçons sont bien structurées et faciles à suivre!\"",
+      "name": "Nguyen Minh Anh",
+      "role": "Étudiant international"
+    },
+    "testimonial2": {
+      "quote": "\"Apprendre le coréen n'a jamais été aussi simple! Les leçons structurées rendent tout simple et amusant.\"",
+      "name": "Tran hai nam",
+      "role": "Travailleur de bureau"
+    },
+    "testimonial3": {
+      "quote": "\"Grâce à Vietopik, mes compétences d'écoute et de parole se sont considérablement améliorées en seulement trois mois!\"",
+      "name": "Le Thanh Huong",
+      "role": "Étudiant à l'université"
+    },
+    "vieTopik": "Vietopik",
+    "yourOneStopShop": "Votre plate-forme à guichet unique pour maîtriser le coréen. Accédez aux ressources premium gratuitement et atteignez vos objectifs linguistiques dès aujourd'hui!",
+    "connectWithUs": "Connectez-vous avec nous",
+    "socialMedia": {
+      "facebook": "Facebook",
+      "twitter": "Gazouillement",
+      "instagram": "Instagram",
+      "linkedin": "Liendin"
+    },
+    "company": {
+      "aboutUs": "À propos de nous",
+      "careers": "Carrières",
+      "blog": "Bloguer",
+      "contact": "Contact"
+    },
+    "support": {
+      "helpCenter": "Centre d'aide",
+      "faq": "FAQ",
+      "privacyPolicy": "politique de confidentialité",
+      "termsOfService": "Conditions de service"
+    },
+    "footer": {
+      "copyright": "© 2025 Vietopik. Tous droits réservés."
+    },
+    "metadata": {
+      "lesson": "Parcourez nos dernières leçons et trouvez quelque chose que vous aimerez.",
+      "grammar": "Diagrammes de grammaire disponibles"
+    }
+  }
+}

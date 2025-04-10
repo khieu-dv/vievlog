@@ -1,0 +1,99 @@
+{
+  "header": {
+    "utils": {
+      "login": "登入",
+      "logout": "註銷",
+      "inquiry": "聯繫我們",
+      "manager": "主管",
+      "topikExams": "考試主題",
+      "topikSchedule": "時間表主題"
+    }
+  },
+  "body": {
+    "utils": {
+      "loading": "加載課...",
+      "notFound": "在此類別中找不到數據。",
+      "inquiry": "聯繫我們",
+      "manager": "主管"
+    }
+  },
+  "content": {
+    "title": "Vietopik  - 免費學習韓語",
+    "home": "家",
+    "topiks": "主題",
+    "courses": "課程",
+    "grammar": "文法",
+    "game": "遊戲",
+    "features": "特徵",
+    "logIn": "登入",
+    "signUp": "報名",
+    "toggleTheme": "切換主題",
+    "newCollection": "可用的新系列",
+    "oneStopPlatform": "您的最終韓國學習平台",
+    "startLearningNow": "考試主題",
+    "whyChooseVieTopik": "為什麼選擇Vietopik？",
+    "freeAccess": "免費訪問",
+    "learnKorean": "從專家那裡學習高質量的課程的韓國人，絕對沒有成本。",
+    "expertInstructors": "專家講師",
+    "learnFromExperts": "向母語人士和經驗豐富的老師學習。",
+    "anytimeAnywhere": "隨時隨地",
+    "learnAtYourOwnPace": "以自己的步調學習，無限訪問課程。",
+    "comprehensiveCurriculum": "全面的課程",
+    "coverAllAspects": "從初學者到高級級別，涵蓋語法，詞彙和對話。",
+    "topikExam": "掌握主題考試",
+    "topikI": "主題i",
+    "topikI_tests": "12個練習測試",
+    "topikII": "主題II",
+    "topikII_tests": "15個練習測試",
+    "viewAllTopiks": "查看所有主題測試",
+    "featuredCourses": "特色課程",
+    "beginnerKorean": "初學者的韓語",
+    "intermediateKorean": "中級韓國",
+    "advancedKorean": "韓國高級",
+    "getStartedForFree": "免費入門",
+    "whatOurLearnersSay": "我們的學習者怎麼說",
+    "testimonial1": {
+      "quote": "“ Vietopik幫助我為Topik考試做準備。課程結構良好，易於遵循！”",
+      "name": "Nguyen Minh Anh",
+      "role": "國際學生"
+    },
+    "testimonial2": {
+      "quote": "“學習韓語從未如此簡單！結構化的課程使一切變得簡單而有趣。”",
+      "name": "Tran Hai Nam",
+      "role": "辦公室工作人員"
+    },
+    "testimonial3": {
+      "quote": "“感謝Vietopik，我的聽力和說話技巧在短短三個月內就大大提高了！”",
+      "name": "Le Thanh Huong",
+      "role": "大學生"
+    },
+    "vieTopik": "Vietopik",
+    "yourOneStopShop": "您掌握韓語的一站式平台。免費訪問高級資源，並立即實現您的語言目標！",
+    "connectWithUs": "與我們聯繫",
+    "socialMedia": {
+      "facebook": "Facebook",
+      "twitter": "嘰嘰喳喳",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn"
+    },
+    "company": {
+      "aboutUs": "關於我們",
+      "careers": "職業",
+      "blog": "部落格",
+      "contact": "接觸"
+    },
+    "support": {
+      "helpCenter": "幫助中心",
+      "faq": "FAQ",
+      "privacyPolicy": "隱私政策",
+      "termsOfService": "服務條款"
+    },
+    "footer": {
+      "copyright": "©2025 Vietopik。版權所有。"
+    },
+    "metadata": {
+      "lesson": "瀏覽我們的最新課程，找到您喜歡的東西。",
+      "grammar": "可用的語法圖"
+    }
+  }
+}

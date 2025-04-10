@@ -1,0 +1,99 @@
+{
+  "header": {
+    "utils": {
+      "login": "Login",
+      "logout": "Logout",
+      "inquiry": "Ikkuntattjana",
+      "manager": "Maniġer",
+      "topikExams": "Suġġett tal-eżamijiet",
+      "topikSchedule": "Skeda t-tema"
+    }
+  },
+  "body": {
+    "utils": {
+      "loading": "Tagħbija Lezzjonijiet ...",
+      "notFound": "Ma tinstab l-ebda dejta f'din il-kategorija.",
+      "inquiry": "Ikkuntattjana",
+      "manager": "Maniġer"
+    }
+  },
+  "content": {
+    "title": "Vietopik - Tgħallem Korean b'xejn",
+    "home": "Id-dar",
+    "topiks": "Topiks",
+    "courses": "Korsijiet",
+    "grammar": "Grammatika",
+    "game": "Logħba",
+    "features": "Karatteristiċi",
+    "logIn": "Idħol",
+    "signUp": "Irreġistra",
+    "toggleTheme": "Toggle Tema",
+    "newCollection": "Kollezzjoni ġdida disponibbli",
+    "oneStopPlatform": "Il-pjattaforma aħħarija tat-tagħlim Korean tiegħek",
+    "startLearningNow": "Suġġett tal-eżami",
+    "whyChooseVieTopik": "Għaliex tagħżel Vietopik?",
+    "freeAccess": "Aċċess b'xejn",
+    "learnKorean": "Tgħallem il-Korean b'lezzjonijiet ta 'kwalità għolja minn esperti assolutament bla ħlas.",
+    "expertInstructors": "Għalliema esperti",
+    "learnFromExperts": "Tgħallem minn kelliema nattivi u għalliema b'esperjenza.",
+    "anytimeAnywhere": "F'kull ħin, kullimkien",
+    "learnAtYourOwnPace": "Studja bil-pass tiegħek b'aċċess illimitat għal-lezzjonijiet.",
+    "comprehensiveCurriculum": "Kurrikulu komprensiv",
+    "coverAllAspects": "Minn Bidu għal Livelli Avvanzati, li jkopru l-grammatika, il-vokabularju, u l-konversazzjoni.",
+    "topikExam": "Kaptan l-eżami tas-suġġett",
+    "topikI": "Suġġett i",
+    "topikI_tests": "12 Testijiet tal-Prattika",
+    "topikII": "Suġġett II",
+    "topikII_tests": "15 Testijiet tal-Prattika",
+    "viewAllTopiks": "Ara t-testijiet tas-suġġetti kollha",
+    "featuredCourses": "Korsijiet dehru",
+    "beginnerKorean": "Korean tal-Bidu",
+    "intermediateKorean": "Korean intermedju",
+    "advancedKorean": "Korean avvanzat",
+    "getStartedForFree": "Ibda b'xejn",
+    "whatOurLearnersSay": "Dak li jgħidu l-istudenti tagħna",
+    "testimonial1": {
+      "quote": "\"Vietopik għenni nipprepara għall-eżami Topik tiegħi b'mod effettiv. Il-lezzjonijiet huma strutturati sew u faċli biex isegwu!\"",
+      "name": "Nguyen Minh Anh",
+      "role": "Student internazzjonali"
+    },
+    "testimonial2": {
+      "quote": "\"It-tagħlim tal-Korean qatt ma kien aktar faċli! Il-lezzjonijiet strutturati jagħmlu dak kollu sempliċi u divertenti.\"",
+      "name": "Tran Hai Nam",
+      "role": "Ħaddiem tal-Uffiċċju"
+    },
+    "testimonial3": {
+      "quote": "\"Grazzi lil Vietopik, il-ħiliet tiegħi ta 'smigħ u ta' taħdit tjiebu b'mod sinifikanti fi żmien tliet xhur biss!\"",
+      "name": "Le Thanh Huong",
+      "role": "Student tal-Università"
+    },
+    "vieTopik": "Vietopik",
+    "yourOneStopShop": "Il-pjattaforma one-stop tiegħek għall-ħakma tal-Koreani. Aċċess ir-riżorsi premium b'xejn u tilħaq il-miri tal-lingwa tiegħek illum!",
+    "connectWithUs": "Qabbad magħna",
+    "socialMedia": {
+      "facebook": "Facebook",
+      "twitter": "Twitter",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn"
+    },
+    "company": {
+      "aboutUs": "Dwarna",
+      "careers": "Karrieri",
+      "blog": "Blog",
+      "contact": "Kuntatt"
+    },
+    "support": {
+      "helpCenter": "Ċentru ta 'Għajnuna",
+      "faq": "FAQ",
+      "privacyPolicy": "Politika tal-Privatezza",
+      "termsOfService": "Termini tas-Servizz"
+    },
+    "footer": {
+      "copyright": "© 2025 Vietopik. Id-drittijiet kollha riżervati."
+    },
+    "metadata": {
+      "lesson": "Ibbrawżja l-aħħar lezzjonijiet tagħna u ssib xi ħaġa li tħobb.",
+      "grammar": "Dijagrammi tal-grammatika disponibbli"
+    }
+  }
+}

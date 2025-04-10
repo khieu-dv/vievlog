@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Xem ảnh WebP</title>
+    <style>
+        .image-container {
+            display: inline-block;
+            margin: 10px;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+
+        .image-container img {
+            max-width: 200px;
+            height: auto;
+            display: block;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            z-index: 10;
+            text-align: center;
+        }
+
+        .popup img {
+            max-width: 90vw;
+            max-height: 90vh;
+        }
+
+        .popup-info {
+            margin-top: 10px;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Ảnh WebP trong thư mục</h1>
+    <div id="imageGallery">
+    </div>
+
+    <div id="imagePopup" class="popup">
+        <img id="popupImage" src="" alt="Ảnh lớn">
+        <div class="popup-info">
+            Vị trí click: <span id="clickPosition"></span>
+        </div>
+        <button onclick="closePopup()">Đóng</button>
+    </div>
+
+    <div id="overlay" class="overlay" onclick="closePopup()"></div>
+
+    <script>
+        const imageGallery = document.getElementById('imageGallery');
+        const imagePopup = document.getElementById('imagePopup');
+        const popupImage = document.getElementById('popupImage');
+        const clickPosition = document.getElementById('clickPosition');
+        const overlay = document.getElementById('overlay');
+
+        function openPopup(imageSrc, event) {
+            popupImage.src = imageSrc;
+            const rect = event.target.getBoundingClientRect();
+            const x = event.clientX - rect.left; // Vị trí click tương đối trong ảnh
+            const y = event.clientY - rect.top;
+
+            const percentageX = ((x / rect.width) * 100).toFixed(2);
+            const percentageY = ((y / rect.height) * 100).toFixed(2);
+
+            clickPosition.textContent = `${percentageY}% top, ${percentageX}% left`;
+            imagePopup.style.display = 'block';
+            overlay.style.display = 'block';
+        }
+
+        function closePopup() {
+            imagePopup.style.display = 'none';
+            overlay.style.display = 'none';
+        }
+
+        // Lấy danh sách tất cả các file trong thư mục (giả định các file WebP đã được sao chép vào đây)
+        fetch('./') // Lấy danh sách file trong thư mục hiện tại
+            .then(response => response.text())
+            .then(html => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const links = doc.querySelectorAll('a[href$=".webp"]'); // Tìm các thẻ 'a' có thuộc tính 'href' kết thúc bằng '.webp'
+
+                links.forEach(link => {
+                    const imageName = link.getAttribute('href');
+                    const imageContainer = document.createElement('div');
+                    imageContainer.classList.add('image-container');
+                    const img = document.createElement('img');
+                    img.src = imageName;
+                    img.alt = imageName;
+                    img.onclick = (event) => openPopup(imageName, event);
+                    imageContainer.appendChild(img);
+                    imageGallery.appendChild(imageContainer);
+                });
+            })
+            .catch(error => {
+                console.error('Lỗi khi đọc thư mục:', error);
+                imageGallery.innerHTML = '<p>Không thể đọc danh sách ảnh.</p>';
+            });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+{
+  "header": {
+    "utils": {
+      "login": "로그인",
+      "logout": "로그 아웃",
+      "inquiry": "저희에게 연락하십시오",
+      "manager": "관리자",
+      "topikExams": "시험 주제",
+      "topikSchedule": "주제 일정"
+    }
+  },
+  "body": {
+    "utils": {
+      "loading": "로드 레슨 ...",
+      "notFound": "이 범주에서 찾은 데이터가 없습니다.",
+      "inquiry": "저희에게 연락하십시오",
+      "manager": "관리자"
+    }
+  },
+  "content": {
+    "title": "Vietopik - 한국어를 무료로 배우십시오",
+    "home": "집",
+    "topiks": "주제",
+    "courses": "행동",
+    "grammar": "문법",
+    "game": "게임",
+    "features": "특징",
+    "logIn": "로그인하십시오",
+    "signUp": "가입하십시오",
+    "toggleTheme": "테마 토글",
+    "newCollection": "새로운 컬렉션 사용 가능",
+    "oneStopPlatform": "최고의 한국 학습 플랫폼",
+    "startLearningNow": "시험 주제",
+    "whyChooseVieTopik": "왜 Vietopik을 선택합니까?",
+    "freeAccess": "무료 액세스",
+    "learnKorean": "전문가의 고품질 수업으로 한국어를 배우십시오.",
+    "expertInstructors": "전문가 강사",
+    "learnFromExperts": "원어민과 숙련 된 교사로부터 배우십시오.",
+    "anytimeAnywhere": "언제 어디서나",
+    "learnAtYourOwnPace": "수업에 대한 무제한 액세스로 자신의 속도로 공부하십시오.",
+    "comprehensiveCurriculum": "포괄적 인 커리큘럼",
+    "coverAllAspects": "초보자부터 고급 레벨, 문법, 어휘 및 대화를 다루는 것.",
+    "topikExam": "주제 시험을 마스터하십시오",
+    "topikI": "주제 i",
+    "topikI_tests": "12 연습 테스트",
+    "topikII": "주제 II",
+    "topikII_tests": "15 연습 테스트",
+    "viewAllTopiks": "모든 주제 테스트를보십시오",
+    "featuredCourses": "주요 과정",
+    "beginnerKorean": "초보자의 한국",
+    "intermediateKorean": "중간 한국",
+    "advancedKorean": "고급 한국",
+    "getStartedForFree": "무료로 시작하십시오",
+    "whatOurLearnersSay": "우리 학습자들이 말하는 것",
+    "testimonial1": {
+      "quote": "\"Vietopik은 Topik 시험을 효과적으로 준비하는 데 도움이되었습니다. 수업은 잘 구조화되고 따라 가기 쉽습니다!\"",
+      "name": "Nguyen Minh Anh",
+      "role": "국제 학생"
+    },
+    "testimonial2": {
+      "quote": "\"한국어를 배우는 것은 결코 쉬운 일이 아닙니다! 구조화 된 교훈은 모든 것을 단순하고 재미있게 만듭니다.\"",
+      "name": "트란 하이 남",
+      "role": "사무실 직원"
+    },
+    "testimonial3": {
+      "quote": "\"Vietopik 덕분에 듣기와 말하기 기술은 단 3 개월 안에 크게 향상되었습니다!\"",
+      "name": "Le Thanh Huong",
+      "role": "대학생"
+    },
+    "vieTopik": "Vietopik",
+    "yourOneStopShop": "한국을 마스터하기위한 원 스톱 플랫폼. 프리미엄 리소스에 무료로 액세스하고 오늘 언어 목표를 달성하십시오!",
+    "connectWithUs": "우리와 연결하십시오",
+    "socialMedia": {
+      "facebook": "페이스 북",
+      "twitter": "지저귀다",
+      "instagram": "인스 타 그램",
+      "linkedin": "LinkedIn"
+    },
+    "company": {
+      "aboutUs": "우리에 대해",
+      "careers": "경력",
+      "blog": "블로그",
+      "contact": "연락하다"
+    },
+    "support": {
+      "helpCenter": "도움말 센터",
+      "faq": "FAQ",
+      "privacyPolicy": "개인 정보 보호 정책",
+      "termsOfService": "서비스 약관"
+    },
+    "footer": {
+      "copyright": "© 2025 Vietopik. 모든 권리 보유."
+    },
+    "metadata": {
+      "lesson": "우리의 최신 교훈을 탐색하고 사랑하는 것을 찾으십시오.",
+      "grammar": "사용 가능한 문법 다이어그램"
+    }
+  }
+}

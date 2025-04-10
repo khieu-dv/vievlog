@@ -1,0 +1,99 @@
+{
+  "header": {
+    "utils": {
+      "login": "Log in",
+      "logout": "Deconectare",
+      "inquiry": "Contactaţi-ne",
+      "manager": "Manager",
+      "topikExams": "Subiectul examenelor",
+      "topikSchedule": "Program Subiect"
+    }
+  },
+  "body": {
+    "utils": {
+      "loading": "Lecții de încărcare ...",
+      "notFound": "Nu se găsesc date în această categorie.",
+      "inquiry": "Contactaţi-ne",
+      "manager": "Manager"
+    }
+  },
+  "content": {
+    "title": "Vietopik - Învață coreeanul gratuit",
+    "home": "Acasă",
+    "topiks": "Subiecte",
+    "courses": "Cursuri",
+    "grammar": "Gramatică",
+    "game": "Joc",
+    "features": "Caracteristici",
+    "logIn": "Log in",
+    "signUp": "Înscrieți -vă",
+    "toggleTheme": "Tema de comutare",
+    "newCollection": "Noua colecție disponibilă",
+    "oneStopPlatform": "Platforma dvs. de învățare coreeană finală",
+    "startLearningNow": "Subiectul examenului",
+    "whyChooseVieTopik": "De ce să alegeți Vietopik?",
+    "freeAccess": "Acces gratuit",
+    "learnKorean": "Învață coreeanul cu lecții de înaltă calitate de la experți fără costuri.",
+    "expertInstructors": "Instructori experți",
+    "learnFromExperts": "Aflați de la vorbitori nativi și profesori cu experiență.",
+    "anytimeAnywhere": "Oricând și oriunde",
+    "learnAtYourOwnPace": "Studiați în ritmul propriu cu acces nelimitat la lecții.",
+    "comprehensiveCurriculum": "Curriculum cuprinzător",
+    "coverAllAspects": "De la începători la niveluri avansate, care acoperă gramatica, vocabularul și conversația.",
+    "topikExam": "Stăpânește examenul de subiect",
+    "topikI": "Subiectul i",
+    "topikI_tests": "12 teste de practică",
+    "topikII": "TOPIK II",
+    "topikII_tests": "15 teste de practică",
+    "viewAllTopiks": "Vizualizați toate testele subiectelor",
+    "featuredCourses": "Cursuri prezentate",
+    "beginnerKorean": "Coreeanul începătorilor",
+    "intermediateKorean": "Coreea intermediară",
+    "advancedKorean": "Coreea avansată",
+    "getStartedForFree": "Începeți gratuit",
+    "whatOurLearnersSay": "Ce spun elevii noștri",
+    "testimonial1": {
+      "quote": "\"Vietopik m-a ajutat să mă pregătesc pentru examenul meu Topik. Lecțiile sunt bine structurate și ușor de urmărit!\"",
+      "name": "Nguyen Minh Anh",
+      "role": "Student internațional"
+    },
+    "testimonial2": {
+      "quote": "\"Învățarea coreeană nu a fost niciodată mai ușoară! Lecțiile structurate fac totul simplu și distractiv.\"",
+      "name": "Tran Hai Nam",
+      "role": "Lucrător de birou"
+    },
+    "testimonial3": {
+      "quote": "\"Mulțumesc Vietopik, abilitățile mele de ascultare și vorbire s -au îmbunătățit semnificativ în doar trei luni!\"",
+      "name": "Le Thanh Huong",
+      "role": "Student universitar"
+    },
+    "vieTopik": "Vietopik",
+    "yourOneStopShop": "Platforma dvs. unică pentru stăpânirea coreeană. Accesați resursele premium gratuite și atingeți -vă obiectivele de limbă astăzi!",
+    "connectWithUs": "Conectați -vă cu noi",
+    "socialMedia": {
+      "facebook": "Facebook",
+      "twitter": "Stare de nervozitate",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn"
+    },
+    "company": {
+      "aboutUs": "Despre noi",
+      "careers": "Cariere",
+      "blog": "Blog",
+      "contact": "Contact"
+    },
+    "support": {
+      "helpCenter": "Centrul de ajutor",
+      "faq": "FAQ",
+      "privacyPolicy": "Politica de confidențialitate",
+      "termsOfService": "Termeni de serviciu"
+    },
+    "footer": {
+      "copyright": "© 2025 Vietopik. Toate drepturile rezervate."
+    },
+    "metadata": {
+      "lesson": "Căutați cele mai recente lecții și găsiți ceva ce vă va plăcea.",
+      "grammar": "Diagrame gramaticale disponibile"
+    }
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "header": {
+    "utils": {
+      "login": "Giriş yapmak",
+      "logout": "Oturum açma",
+      "inquiry": "Bize Ulaşın",
+      "manager": "Müdür",
+      "topikExams": "Sınavlar Konu",
+      "topikSchedule": "Çizelge Konusu"
+    }
+  },
+  "body": {
+    "utils": {
+      "loading": "Yükleme dersleri ...",
+      "notFound": "Bu kategoride veri bulunamadı.",
+      "inquiry": "Bize Ulaşın",
+      "manager": "Müdür"
+    }
+  },
+  "content": {
+    "title": "Vietopik - Korece ücretsiz öğrenin",
+    "home": "Ev",
+    "topiks": "Konular",
+    "courses": "Kurslar",
+    "grammar": "Dilbilgisi",
+    "game": "Oyun",
+    "features": "Özellikler",
+    "logIn": "Giriş yapmak",
+    "signUp": "Üye olmak",
+    "toggleTheme": "Toggle teması",
+    "newCollection": "Yeni koleksiyon mevcut",
+    "oneStopPlatform": "Ultimate Kore öğrenme platformunuz",
+    "startLearningNow": "Sınav konusu",
+    "whyChooseVieTopik": "Neden Vietopik'i seçmelisiniz?",
+    "freeAccess": "Ücretsiz Erişim",
+    "learnKorean": "Koreli, uzmanlardan yüksek kaliteli derslerle kesinlikle ücretsiz olarak öğrenin.",
+    "expertInstructors": "Uzman eğitmenler",
+    "learnFromExperts": "Anadili ve deneyimli öğretmenlerden öğrenin.",
+    "anytimeAnywhere": "Her zaman, her yerde",
+    "learnAtYourOwnPace": "Derslere sınırsız erişimle kendi hızınızda çalışın.",
+    "comprehensiveCurriculum": "Kapsamlı müfredat",
+    "coverAllAspects": "Yeni başlayanlardan gelişmiş seviyelere, dilbilgisi, kelime bilgisi ve konuşmayı kapsar.",
+    "topikExam": "Konu Sınavında Usta",
+    "topikI": "Konu I",
+    "topikI_tests": "12 Uygulama Testi",
+    "topikII": "Konu II",
+    "topikII_tests": "15 Uygulama Testleri",
+    "viewAllTopiks": "Tüm Konu Testlerini Görüntüle",
+    "featuredCourses": "Öne çıkan kurslar",
+    "beginnerKorean": "Yeni başlayanlar Koreli",
+    "intermediateKorean": "Ara",
+    "advancedKorean": "Gelişmiş Korece",
+    "getStartedForFree": "Ücretsiz başlayın",
+    "whatOurLearnersSay": "Öğrencilerimiz ne diyor",
+    "testimonial1": {
+      "quote": "\"Vietopik, Topik sınavıma etkili bir şekilde hazırlanmama yardımcı oldu. Dersler iyi yapılandırılmış ve takip edilmesi kolay!\"",
+      "name": "Nguyen Minh Anh",
+      "role": "Uluslararası öğrenci"
+    },
+    "testimonial2": {
+      "quote": "\"Korece öğrenmek hiç bu kadar kolay olmamıştı! Yapısal dersler her şeyi basit ve eğlenceli hale getiriyor.\"",
+      "name": "Tran Hai Nam",
+      "role": "Ofis işçisi"
+    },
+    "testimonial3": {
+      "quote": "\"Vietopik sayesinde dinleme ve konuşma becerilerim sadece üç ay içinde önemli ölçüde iyileşti!\"",
+      "name": "Le Thanh Huong",
+      "role": "Üniversite öğrencisi"
+    },
+    "vieTopik": "Vietopik",
+    "yourOneStopShop": "Korece ustalaşmak için tek noktadan platformunuz. Premium kaynaklara ücretsiz erişin ve bugün dil hedeflerinize ulaşın!",
+    "connectWithUs": "Bizimle bağlantı kurun",
+    "socialMedia": {
+      "facebook": "Facebook",
+      "twitter": "Twitter",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn"
+    },
+    "company": {
+      "aboutUs": "Hakkımızda",
+      "careers": "Kariyer",
+      "blog": "Blog",
+      "contact": "Temas etmek"
+    },
+    "support": {
+      "helpCenter": "Yardım Merkezi",
+      "faq": "SSS",
+      "privacyPolicy": "Gizlilik Politikası",
+      "termsOfService": "Hizmet Şartları"
+    },
+    "footer": {
+      "copyright": "© 2025 Vietopik. Her hakkı saklıdır."
+    },
+    "metadata": {
+      "lesson": "En son derslerimize göz atın ve seveceğiniz bir şey bulun.",
+      "grammar": "Mevcut dilbilgisi diyagramları"
+    }
+  }
+}

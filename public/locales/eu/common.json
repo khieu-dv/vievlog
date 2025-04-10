@@ -1,0 +1,99 @@
+{
+  "header": {
+    "utils": {
+      "login": "Sartu 2.",
+      "logout": "Lodiketa",
+      "inquiry": "Jar zaitez gurekin harremanetan",
+      "manager": "Garente",
+      "topikExams": "Azterketak Gaia",
+      "topikSchedule": "Ordutegi Gaia"
+    }
+  },
+  "body": {
+    "utils": {
+      "loading": "Ikasgaiak kargatzen ...",
+      "notFound": "Ez da kategoria honetan aurkitu.",
+      "inquiry": "Jar zaitez gurekin harremanetan",
+      "manager": "Garente"
+    }
+  },
+  "content": {
+    "title": "Vietopik - ikasi koreera doan",
+    "home": "Etxe",
+    "topiks": "Gaien",
+    "courses": "Ikastaroak",
+    "grammar": "Gramatika",
+    "game": "Joko",
+    "features": "Osau",
+    "logIn": "Sarrera",
+    "signUp": "Izena eman",
+    "toggleTheme": "Txandakatu gaia",
+    "newCollection": "Bilketa berria eskuragarri",
+    "oneStopPlatform": "Zure Koreako Ikasteko Plataforma",
+    "startLearningNow": "Azterketa gaia",
+    "whyChooseVieTopik": "Zergatik aukeratu Vietopik?",
+    "freeAccess": "Sarbide librea",
+    "learnKorean": "Ikasi Koreera kalitate handiko ikasgaiekin adituek ez dute inolako kosturik.",
+    "expertInstructors": "Adituentzako begiraleak",
+    "learnFromExperts": "Ikasi bertako hiztunetatik eta esperientziadun irakasleei.",
+    "anytimeAnywhere": "Edonoiz, edonon",
+    "learnAtYourOwnPace": "Ikas ezazu zure erritmoan ikasgaietarako sarbide mugagabea duena.",
+    "comprehensiveCurriculum": "Curriculum integrala",
+    "coverAllAspects": "Hasiberritik maila aurreratuetara, gramatika, hiztegia eta elkarrizketa estali.",
+    "topikExam": "Gaiaren azterketa maisua",
+    "topikI": "Gaia I",
+    "topikI_tests": "12 praktika probak",
+    "topikII": "II gaia",
+    "topikII_tests": "15 praktika probak",
+    "viewAllTopiks": "Ikusi gai guztiak proba guztiak",
+    "featuredCourses": "Nabarmendutako ikastaroak",
+    "beginnerKorean": "Hasiberria Koreera",
+    "intermediateKorean": "Bitarteko koreera",
+    "advancedKorean": "Koreera aurreratuak",
+    "getStartedForFree": "Hasi doan",
+    "whatOurLearnersSay": "Gure ikasleek esaten dutena",
+    "testimonial1": {
+      "quote": "\"Vietopik nire Topik azterketa modu eraginkorrean prestatzen lagundu dit. Ikasgaiak ondo egituratuta eta jarraitzeko errazak dira!\"",
+      "name": "Nguyen minh anh",
+      "role": "Nazioarteko ikaslea"
+    },
+    "testimonial2": {
+      "quote": "\"Korean ikastea ez da inoiz errazagoa izan! Egituratutako ikasgaiek dena sinplea eta dibertigarria bihurtzen dute.\"",
+      "name": "Tran hai nam",
+      "role": "Bulegoko langilea"
+    },
+    "testimonial3": {
+      "quote": "\"Vietopik-i esker, nire entzuteko eta hitz egiteko trebetasunak nabarmen hobetu dira hiru hilabetetan!\"",
+      "name": "Le thanh huong",
+      "role": "Unibertsitateko ikaslea"
+    },
+    "vieTopik": "Vietopik",
+    "yourOneStopShop": "Korearra menderatzeko zure geldialdi bakarreko plataforma. Sar zaitez premium baliabideak doan eta gaur egun zure hizkuntza helburuak lortzeko!",
+    "connectWithUs": "Konektatu gurekin",
+    "socialMedia": {
+      "facebook": "Okatuok",
+      "twitter": "Twitter",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn"
+    },
+    "company": {
+      "aboutUs": "Guri buruz",
+      "careers": "Karrera",
+      "blog": "Bld",
+      "contact": "Harremanetan jarri"
+    },
+    "support": {
+      "helpCenter": "Laguntza Zentroa",
+      "faq": "Ohigai",
+      "privacyPolicy": "Pribatutasun politika",
+      "termsOfService": "Zerbitzu baldintzak"
+    },
+    "footer": {
+      "copyright": "© 2025 Vietopik. Eskubide guztiak erreserbatuak"
+    },
+    "metadata": {
+      "lesson": "Arakatu gure azken ikasgaiak eta aurkitu maite duzun zerbait.",
+      "grammar": "Eskuragarri Gramatika-diagramak"
+    }
+  }
+}

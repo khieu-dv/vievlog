@@ -1,0 +1,99 @@
+{
+  "header": {
+    "utils": {
+      "login": "Prihlásenie",
+      "logout": "Odhlásenie",
+      "inquiry": "Kontaktujte nás",
+      "manager": "Manažér",
+      "topikExams": "Téma skúšok",
+      "topikSchedule": "Téma"
+    }
+  },
+  "body": {
+    "utils": {
+      "loading": "Lekcie načítania ...",
+      "notFound": "V tejto kategórii sa nenašli žiadne údaje.",
+      "inquiry": "Kontaktujte nás",
+      "manager": "Manažér"
+    }
+  },
+  "content": {
+    "title": "Vietopik - učte sa kórejsky zadarmo",
+    "home": "Domov",
+    "topiks": "Témy",
+    "courses": "Kurzy",
+    "grammar": "Gramatika",
+    "game": "Hra",
+    "features": "Funkcie",
+    "logIn": "Prihlásiť sa",
+    "signUp": "Zaregistrovať sa",
+    "toggleTheme": "Prepínajúca téma",
+    "newCollection": "Nová zbierka je k dispozícii",
+    "oneStopPlatform": "Vaša konečná kórejská vzdelávacia platforma",
+    "startLearningNow": "Skúška",
+    "whyChooseVieTopik": "Prečo zvoliť Vietopik?",
+    "freeAccess": "Bezplatný prístup",
+    "learnKorean": "Naučte sa kórejčiny s kvalitnými lekciami od odborníkov za absolútne žiadne náklady.",
+    "expertInstructors": "Odborník",
+    "learnFromExperts": "Učte sa od rodených hovorcov a skúsených učiteľov.",
+    "anytimeAnywhere": "Kedykoľvek a kdekoľvek",
+    "learnAtYourOwnPace": "Študujte svojím vlastným tempom s neobmedzeným prístupom k lekciám.",
+    "comprehensiveCurriculum": "Komplexné učebné osnovy",
+    "coverAllAspects": "Od začiatočníkov po pokročilé úrovne, pokrytie gramatiky, slovnej zásoby a konverzácie.",
+    "topikExam": "Zvládnite skúšku témy",
+    "topikI": "Téma i",
+    "topikI_tests": "12 tréningových testov",
+    "topikII": "Téma II",
+    "topikII_tests": "15 tréningových testov",
+    "viewAllTopiks": "Prezrite si všetky témy testy",
+    "featuredCourses": "Výkladné kurzy",
+    "beginnerKorean": "Kórejský začiatočník",
+    "intermediateKorean": "Stredne pokročilý",
+    "advancedKorean": "Pokročilý kórejský",
+    "getStartedForFree": "Začnite zadarmo",
+    "whatOurLearnersSay": "Čo hovoria naši študenti",
+    "testimonial1": {
+      "quote": "„Vietopik mi pomohol efektívne sa pripraviť na moju topikskú skúšku. Lekcie sú dobre štruktúrované a ľahko sa dá sledovať!“",
+      "name": "Nguyen Minh Anh",
+      "role": "Medzinárodný študent"
+    },
+    "testimonial2": {
+      "quote": "„Učenie sa Kóreja nikdy nebolo jednoduchšie! Štruktúrované lekcie robia všetko jednoduché a zábavné.“",
+      "name": "Tran Hai Nam",
+      "role": "Kancelársky pracovník"
+    },
+    "testimonial3": {
+      "quote": "„Vietopik sa moje zručnosti v počúvaní a hovoriacich schopnostiach výrazne zlepšili za tri mesiace!“",
+      "name": "Le Thanh Huong",
+      "role": "Univerzitný študent"
+    },
+    "vieTopik": "Vietopik",
+    "yourOneStopShop": "Vaša jednorazová platforma na zvládnutie kórejčiny. Prístup prémiových zdrojov zadarmo a dosiahnite svoje jazykové ciele ešte dnes!",
+    "connectWithUs": "Spojte sa s nami",
+    "socialMedia": {
+      "facebook": "Faceborat",
+      "twitter": "Twarch",
+      "instagram": "Instagram",
+      "linkedin": "Linkedin"
+    },
+    "company": {
+      "aboutUs": "O nás",
+      "careers": "Kariéra",
+      "blog": "Blog",
+      "contact": "Kontakt"
+    },
+    "support": {
+      "helpCenter": "Centrum pomoci",
+      "faq": "Často",
+      "privacyPolicy": "Zásady ochrany osobných údajov",
+      "termsOfService": "Služobné podmienky"
+    },
+    "footer": {
+      "copyright": "© 2025 Vietopik. Všetky práva vyhradené."
+    },
+    "metadata": {
+      "lesson": "Prezrite si naše najnovšie lekcie a nájdite niečo, čo budete milovať.",
+      "grammar": "Dostupné gramatické diagramy"
+    }
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "header": {
+    "utils": {
+      "login": "Ngema",
+      "logout": "Phuma",
+      "inquiry": "Qhagamshelana nathi",
+      "manager": "Umphathi",
+      "topikExams": "IIMPENDULO Isihloko",
+      "topikSchedule": "Ishedyuli isihloko"
+    }
+  },
+  "body": {
+    "utils": {
+      "loading": "Ukulayisha izifundo ...",
+      "notFound": "Akukho datha ifunyenwe kolu luhlu.",
+      "inquiry": "Qhagamshelana nathi",
+      "manager": "Umphathi"
+    }
+  },
+  "content": {
+    "title": "I-vietopik-funda iKorea imahla",
+    "home": "Ikhaya",
+    "topiks": "Izihloko",
+    "courses": "Iikhosi",
+    "grammar": "Igrama",
+    "game": "Umdlalo",
+    "features": "Iimbonakalo",
+    "logIn": "Ngema",
+    "signUp": "Bhalisa",
+    "toggleTheme": "Guqula umxholo",
+    "newCollection": "Ingqokelela entsha",
+    "oneStopPlatform": "Iqonga lakho lokufunda laseKorea laseKorea",
+    "startLearningNow": "Umxholo wokuVumela",
+    "whyChooseVieTopik": "Kutheni ukhetha iVietopik?",
+    "freeAccess": "Ukufikelela simahla",
+    "learnKorean": "Funda iKorea inezifundo eziphakathi eziphezulu kwiingcali ngeyona ndleko.",
+    "expertInstructors": "Abahlohli beengcali",
+    "learnFromExperts": "Funda kwizithethi zemveli kunye nootitshala abanamava.",
+    "anytimeAnywhere": "Naliphi na ixesha, naphi na",
+    "learnAtYourOwnPace": "Funda ngesantya sakho ngokungena kumda kwizifundo.",
+    "comprehensiveCurriculum": "Ikharityhulamu ebanzi",
+    "coverAllAspects": "Ukusuka ekuqalekeni kwamanqanaba aphezulu, egubungela igrama, isigama, kunye nengxoxo.",
+    "topikExam": "Master isihloko sovavanyo",
+    "topikI": "Isihloko",
+    "topikI_tests": "Iimvavanyo ezili-12 zokuziqhelanisa",
+    "topikII": "Isihloko II",
+    "topikII_tests": "Iimvavanyo ezili-15 zokwenza",
+    "viewAllTopiks": "Jonga zonke iimvavanyo zemixholo",
+    "featuredCourses": "Izifundo ezibonisiweyo",
+    "beginnerKorean": "I-Korea yeKorea",
+    "intermediateKorean": "I-Korea eKorea",
+    "advancedKorean": "Advanced Korea",
+    "getStartedForFree": "Qalisa ukuba simahla",
+    "whatOurLearnersSay": "Oko Kuthethwa ngabafundi bethu",
+    "testimonial1": {
+      "quote": "\"Vietopik yandinceda ukuba ndilungiselele uviwo lwam oluphezulu. Izifundo zilungelelaniswe kakuhle kwaye kulula ukuzilandela!\"",
+      "name": "Nguyen Minh Anh",
+      "role": "Umfundi wamazwe onke"
+    },
+    "testimonial2": {
+      "quote": "\"Ukufunda iKorea ayikaze kube lula! Izifundo ezakhiweyo zenza yonke into ilula kwaye imnandi.\"",
+      "name": "Tran hai nam",
+      "role": "Umsebenzi wase-ofisini"
+    },
+    "testimonial3": {
+      "quote": "\"Enkosi kwi-vietopik, izakhono zam zokumamela kunye nokuthetha ziphucule kakhulu kwiinyanga nje ezintathu!\"",
+      "name": "Leh huong",
+      "role": "Umfundi waseyunivesithi"
+    },
+    "vieTopik": "Vietopik",
+    "yourOneStopShop": "Iqonga lakho lokumisa elinye lokufundisa iKorea. Fikelela ubutyebi be-premiyamu kwaye ufezekise iinjongo zolwimi lwakho namhlanje!",
+    "connectWithUs": "Qhagamshela nathi",
+    "socialMedia": {
+      "facebook": "Facebook",
+      "twitter": "I-twitter",
+      "instagram": "I-Instagram",
+      "linkedin": "I-LinkedIn"
+    },
+    "company": {
+      "aboutUs": "Ngathi",
+      "careers": "Imisebenzi",
+      "blog": "Ibhlog",
+      "contact": "Uqhagamshelo"
+    },
+    "support": {
+      "helpCenter": "IZiko loNcedo",
+      "faq": "FAQ",
+      "privacyPolicy": "Umthetho wabucala",
+      "termsOfService": "Imimmisele yenkonzo"
+    },
+    "footer": {
+      "copyright": "© 2025 Vietopik. Onke Amalungelo Agciniwe."
+    },
+    "metadata": {
+      "lesson": "Jonga izifundo zethu zakutshanje kwaye ufumane into oza kuyithanda.",
+      "grammar": "Igrama ekhoyo yegrama"
+    }
+  }
+}

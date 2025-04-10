@@ -1,0 +1,99 @@
+{
+  "header": {
+    "utils": {
+      "login": "Sisäänkirjautuminen",
+      "logout": "Tunkeutumis",
+      "inquiry": "Ota yhteyttä",
+      "manager": "Johtaja",
+      "topikExams": "Tenttien aihe",
+      "topikSchedule": "Aikataulu"
+    }
+  },
+  "body": {
+    "utils": {
+      "loading": "Lataus oppitunnit ...",
+      "notFound": "Tästä luokasta ei löydy tietoja.",
+      "inquiry": "Ota yhteyttä",
+      "manager": "Johtaja"
+    }
+  },
+  "content": {
+    "title": "Vietopik - Opi koreaa ilmaiseksi",
+    "home": "Kotiin",
+    "topiks": "Aiheet",
+    "courses": "Kurssit",
+    "grammar": "Kielioppi",
+    "game": "Peli",
+    "features": "Piirteet",
+    "logIn": "Kirjautua sisään",
+    "signUp": "Ilmoittautua",
+    "toggleTheme": "Kytkentä teema",
+    "newCollection": "Uusi kokoelma saatavilla",
+    "oneStopPlatform": "Lopullinen korealainen oppimisalusta",
+    "startLearningNow": "Tentti",
+    "whyChooseVieTopik": "Miksi valita vietopik?",
+    "freeAccess": "Ilmainen pääsy",
+    "learnKorean": "Opi koreaa korkealaatuisilla asiantuntijoilla ilman kustannuksia.",
+    "expertInstructors": "Asiantuntija -ohjaajat",
+    "learnFromExperts": "Opi äidinkielenään ja kokeneilta opettajilta.",
+    "anytimeAnywhere": "Milloin tahansa, missä tahansa",
+    "learnAtYourOwnPace": "Opiskele omassa tahdissasi rajoittamattoman pääsyn kanssa.",
+    "comprehensiveCurriculum": "Kattava opetussuunnitelma",
+    "coverAllAspects": "Aloittelijasta edistyneeseen tasoon kattaen kieliopin, sanaston ja keskustelun.",
+    "topikExam": "Hallitse aihekoe",
+    "topikI": "Aihe i",
+    "topikI_tests": "12 Harjoittelukokeet",
+    "topikII": "Aihe II",
+    "topikII_tests": "15 Harjoittelutestit",
+    "viewAllTopiks": "Katso kaikki aiheet testit",
+    "featuredCourses": "Esitetyt kurssit",
+    "beginnerKorean": "Aloittelijan korea",
+    "intermediateKorean": "Korealainen välituote",
+    "advancedKorean": "Edistynyt korea",
+    "getStartedForFree": "Aloita ilmaiseksi",
+    "whatOurLearnersSay": "Mitä oppijat sanovat",
+    "testimonial1": {
+      "quote": "\"Vietopik auttoi minua valmistautumaan TOPIK-kokeeseeni tehokkaasti. Oppitunnit ovat hyvin jäsenneltyjä ja helppo seurata!\"",
+      "name": "Nguyen Minh Anh",
+      "role": "Kansainvälinen opiskelija"
+    },
+    "testimonial2": {
+      "quote": "\"Korean oppiminen ei ole koskaan ollut helpompaa! Strukturoidut oppitunnit tekevät kaikesta yksinkertaista ja hauskaa.\"",
+      "name": "Tran hai nam",
+      "role": "Toimistotyöntekijä"
+    },
+    "testimonial3": {
+      "quote": "\"Vietopikin ansiosta kuuntelu- ja puhumistaidoni ovat parantuneet huomattavasti vain kolmen kuukauden kuluessa!\"",
+      "name": "Le Thanh Huong",
+      "role": "Yliopisto -opiskelija"
+    },
+    "vieTopik": "Vietopik",
+    "yourOneStopShop": "Yhden luukun alustasi korealaisen hallitsemiseksi. Pääsy premium -resursseihin ilmaiseksi ja saavuta kielitavoitteet tänään!",
+    "connectWithUs": "Yhdistä meihin",
+    "socialMedia": {
+      "facebook": "Facebook",
+      "twitter": "Viserrys",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn"
+    },
+    "company": {
+      "aboutUs": "Meistä",
+      "careers": "Ura",
+      "blog": "Blogi",
+      "contact": "Kontakti"
+    },
+    "support": {
+      "helpCenter": "Avustuskeskus",
+      "faq": "Faq",
+      "privacyPolicy": "Tietosuojakäytäntö",
+      "termsOfService": "Palvelusehdot"
+    },
+    "footer": {
+      "copyright": "© 2025 Vietopik. Kaikki oikeudet pidätetään."
+    },
+    "metadata": {
+      "lesson": "Selaa viimeisimmät oppitunnimme ja löydä jotain, jota rakastat.",
+      "grammar": "Käytettävissä olevat kielioppikaaviot"
+    }
+  }
+}

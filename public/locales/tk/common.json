@@ -1,0 +1,99 @@
+{
+  "header": {
+    "utils": {
+      "login": "Giriş",
+      "logout": "Okuwy",
+      "inquiry": "Biz bilen habarlaşyň",
+      "manager": "Dolandyryjy",
+      "topikExams": "Synag mowzugy",
+      "topikSchedule": "TERJIMEGI"
+    }
+  },
+  "body": {
+    "utils": {
+      "loading": "Sapaklary ýüklemek ...",
+      "notFound": "Bu kategoriýada maglumat tapylmady.",
+      "inquiry": "Biz bilen habarlaşyň",
+      "manager": "Dolandyryjy"
+    }
+  },
+  "content": {
+    "title": "Vieopik - koreý dilini mugt öwreniň",
+    "home": "Öý",
+    "topiks": "Mowzuklar",
+    "courses": "Kurslar",
+    "grammar": "Grammatika",
+    "game": "Oýun",
+    "features": "Aýratynlyklary",
+    "logIn": "Giriň",
+    "signUp": "Hasaba giriň",
+    "toggleTheme": "Temany üýtgetmek",
+    "newCollection": "Täze kolleksiýa bar",
+    "oneStopPlatform": "Iň soňky Koreýanyň okuw platformasy",
+    "startLearningNow": "Synag mowzugy",
+    "whyChooseVieTopik": "Näme üçin VieSPik-i saýlamaly?",
+    "freeAccess": "Mugt giriş",
+    "learnKorean": "Koreýany, düýbünden gymmatly hünärmenleriň ýokary hilli sapaklary bilen öwreniň.",
+    "expertInstructors": "Hünärmen mugallymlar",
+    "learnFromExperts": "Ýerli gürleýjilerden we tejribeli mugallymlardan öwreniň.",
+    "anytimeAnywhere": "Islendik wagt, islendik ýerde",
+    "learnAtYourOwnPace": "Sapaklara çäksiz giriş bilen öz islegiňiz boýunça okuw.",
+    "comprehensiveCurriculum": "Giňişleýin okuw meýilnamasy",
+    "coverAllAspects": "Başlandan başlap, grammatikany, sözlügi belligi we gepleşikleri öz içine alýar.",
+    "topikExam": "Mowzuk ekzameni",
+    "topikI": "Mowzuk i",
+    "topikI_tests": "12 tejribe synaglary",
+    "topikII": "MostIC II",
+    "topikII_tests": "15 tejribe synaglary",
+    "viewAllTopiks": "Thehli mowzuk synaglary görüň",
+    "featuredCourses": "Aýratyn kurslar",
+    "beginnerKorean": "Başlaýan koreý",
+    "intermediateKorean": "Aralyk Koreýa",
+    "advancedKorean": "Ösen koreý",
+    "getStartedForFree": "Mugt başlaň",
+    "whatOurLearnersSay": "Okuwçylarymyzyň aýdýanlary",
+    "testimonial1": {
+      "quote": "\"Entitekok maňa topik ekzamenime ep-esli taýýarlamaga kömek etdi. Sapaklar gowy gurluşly we yzarlamak aňsat.\"",
+      "name": "Nguyen Minh anh",
+      "role": "Halkara talyp"
+    },
+    "testimonial2": {
+      "quote": "\"Koreýany öwrenmek hiç haçan aňsat bolmandy! Guradylan sapaklar hemme zady ýönekeý we gyzykly edýär.\"",
+      "name": "Tran Hai nam",
+      "role": "Offis işgäri"
+    },
+    "testimonial3": {
+      "quote": "\"Entozitikanyň netijesi bolsa, soňky üç aýyň içinde diňlemek we gürlemek endiklerim ep-esli gowulaşdy!\"",
+      "name": "LEG HUNOON",
+      "role": "Uniwersitetiň okuwçysy"
+    },
+    "vieTopik": "Vieopik",
+    "yourOneStopShop": "Koreýa koreý ekiş üçin bir gezeklik platformaňyz. Mugt üçin mugt baha bermek we häzirki wagtda dil maksatlaryňyza ýetmek!",
+    "connectWithUs": "Biz bilen baglanyşyň",
+    "socialMedia": {
+      "facebook": "Facebook",
+      "twitter": "Watter",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn"
+    },
+    "company": {
+      "aboutUs": "Biz hakda",
+      "careers": "Hünäri",
+      "blog": "Blog",
+      "contact": "Aragatnaşyk"
+    },
+    "support": {
+      "helpCenter": "Kömek merkezi",
+      "faq": "Faktura",
+      "privacyPolicy": "Gizlinlik syýasaty",
+      "termsOfService": "Hyzmat şertleri"
+    },
+    "footer": {
+      "copyright": "© 2025-nji featotik. Rightshli hukuklar goralandyr."
+    },
+    "metadata": {
+      "lesson": "Iň soňky sapaklarymyzy gözlediň we söýýän zadyňyzy tapyň.",
+      "grammar": "Elýeterli grammatika diagrammalary"
+    }
+  }
+}

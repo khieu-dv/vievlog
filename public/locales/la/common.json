@@ -1,0 +1,99 @@
+{
+  "header": {
+    "utils": {
+      "login": "Login",
+      "logout": "Logus",
+      "inquiry": "Contact Us",
+      "manager": "Procurator",
+      "topikExams": "Exams Topic",
+      "topikSchedule": "Schedule topic"
+    }
+  },
+  "body": {
+    "utils": {
+      "loading": "Loading Lectionum ...",
+      "notFound": "Non data in hoc genus.",
+      "inquiry": "Contact Us",
+      "manager": "Procurator"
+    }
+  },
+  "content": {
+    "title": "VietPik - Disce Coreanica ad Free",
+    "home": "In domo",
+    "topiks": "Topics",
+    "courses": "Courses",
+    "grammar": "Grammatica",
+    "game": "Ludus",
+    "features": "Features",
+    "logIn": "Log in",
+    "signUp": "Subscribo",
+    "toggleTheme": "Toggle Natus",
+    "newCollection": "Available",
+    "oneStopPlatform": "Ultima Korean Doctrina Platform",
+    "startLearningNow": "Nito topic",
+    "whyChooseVieTopik": "Quid eligere Vietopik?",
+    "freeAccess": "Liberum aditus",
+    "learnKorean": "Disce Coreanica cum summus qualis Lectiones ex peritorum omnino non sumptus.",
+    "expertInstructors": "PERPOS",
+    "learnFromExperts": "Disce a indigenitis loquentium et periti doctores.",
+    "anytimeAnywhere": "Quolibet, usquam",
+    "learnAtYourOwnPace": "Studere ad tua pace cum infinitus aditus ad lectiones.",
+    "comprehensiveCurriculum": "Comprehensive curriculum",
+    "coverAllAspects": "A inceptor ad provectus campester, covering grammatica, vocabulary et colloquium.",
+    "topikExam": "Magister Topic nito",
+    "topikI": "Topic i",
+    "topikI_tests": "XII Practice probat",
+    "topikII": "Topic II",
+    "topikII_tests": "XV Practice probat",
+    "viewAllTopiks": "Omnes Topics probat",
+    "featuredCourses": "Featured cursus",
+    "beginnerKorean": "Inceptor est Coreanica",
+    "intermediateKorean": "Intermedius Coreanica",
+    "advancedKorean": "Advanced Coreanica",
+    "getStartedForFree": "Ut coepi gratis",
+    "whatOurLearnersSay": "Quid nostrum discentium dicunt",
+    "testimonial1": {
+      "quote": "\"Vietopik adiuvisti me praeparet meum Topik nito efficaciter. Lectiones bene structuram facilis sequi\"",
+      "name": "Nguyen minh anh",
+      "role": "Internationalis discipulus"
+    },
+    "testimonial2": {
+      "quote": "\"Doctrina Korean est numquam facillimus! Quod exstructa lectiones faciunt omnia simplex et fun.\"",
+      "name": "Tran hai nam",
+      "role": "Officium opificem"
+    },
+    "testimonial3": {
+      "quote": "\"Gratias ad Vietopik, marialis et loqui artes in melius significantly in iustus tres menses!\"",
+      "name": "Le Thanh Huong",
+      "role": "University Student"
+    },
+    "vieTopik": "VietPik",
+    "yourOneStopShop": "Tua unus-subsisto platform pro Mastering Coreanica. Access Premium Resources for Free et consequi tua linguae proposita hodie!",
+    "connectWithUs": "Coniungere nobiscum",
+    "socialMedia": {
+      "facebook": "Facebook",
+      "twitter": "Twitter",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn"
+    },
+    "company": {
+      "aboutUs": "De nobis",
+      "careers": "Gestas",
+      "blog": "Blog",
+      "contact": "Contactus"
+    },
+    "support": {
+      "helpCenter": "Auxilium Center",
+      "faq": "Faq",
+      "privacyPolicy": "Privacy Policy",
+      "termsOfService": "Termini servitium"
+    },
+    "footer": {
+      "copyright": "© MMXXV Vietopik. Omnes ligula."
+    },
+    "metadata": {
+      "lesson": "Browse nostra latest lessons et invenies aliquid youll 'amo.",
+      "grammar": "Available Grammatica Diagrams"
+    }
+  }
+}
