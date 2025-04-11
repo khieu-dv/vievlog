@@ -52,6 +52,8 @@ export default function PostsPage() {
     const [commentInputs, setCommentInputs] = useState<{ [key: string]: string }>({});
     const [submittingComment, setSubmittingComment] = useState<{ [key: string]: boolean }>({});
     const postsPerPage = 20;
+    const [commentPages, setCommentPages] = useState<{ [key: string]: number }>({});
+
 
     const fetchPosts = async (pageNumber: number) => {
         if (isLoading) return;
@@ -106,36 +108,39 @@ export default function PostsPage() {
         }
     };
 
-    const fetchCommentsForPost = async (postId: string) => {
+    // Sửa lại function fetchCommentsForPost để hỗ trợ phân trang
+    const fetchCommentsForPost = async (postId: string, reset: boolean = false) => {
         try {
+            const currentPage = reset ? 1 : (commentPages[postId] || 1);
+
             const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/collections/comments_tbl/records`, {
                 params: {
-                    page: 1,
+                    page: currentPage,
                     perPage: 5,
                     filter: `postId="${postId}"`,
                     sort: '-created'
                 }
             });
-            // const response = await pb.collection('comments_tbl').getList(1, 5, {
-            //     filter: `postId="${postId}"`,
-            //     sort: '-created'
-            // });
 
-            // Update the post with comments
+            // Cập nhật số trang cho bài đăng này
+            setCommentPages(prev => ({
+                ...prev,
+                [postId]: currentPage + 1
+            }));
+
+            // Cập nhật comments cho post
             setPosts(prevPosts => {
                 return prevPosts.map(post => {
                     if (post.id === postId) {
+                        // Nếu reset hoặc đây là trang đầu tiên, thay thế comments
+                        // Nếu không, thêm comments mới vào cuối danh sách hiện có
+                        const updatedComments = currentPage === 1 || reset
+                            ? response.data.items.map(mapCommentFromApi)
+                            : [...(post.comments || []), ...response.data.items.map(mapCommentFromApi)];
+
                         return {
                             ...post,
-                            comments: response.data.items.map((item: any) => ({
-                                id: item.id,
-                                postId: item.postId,
-                                userId: item.userId,
-                                userName: item.userName,
-                                userAvatar: item.userAvatar,
-                                content: item.content,
-                                created: item.created,
-                            })),
+                            comments: updatedComments,
                             commentCount: response.data.totalItems
                         };
                     }
@@ -146,6 +151,17 @@ export default function PostsPage() {
             console.error(`Failed to fetch comments for post ${postId}:`, error);
         }
     };
+
+    // Helper function để map dữ liệu comment từ API
+    const mapCommentFromApi = (item: any) => ({
+        id: item.id,
+        postId: item.postId,
+        userId: item.userId,
+        userName: item.userName,
+        userAvatar: item.userAvatar,
+        content: item.content,
+        created: item.created,
+    });
 
     const handleCommentInputChange = (postId: string, value: string) => {
         setCommentInputs(prev => ({
@@ -379,7 +395,7 @@ export default function PostsPage() {
                                                         />
                                                     ) : (
                                                         <div className="h-8 w-8 flex items-center justify-center rounded-full bg-blue-500 text-white font-semibold">
-                                                            {comment.userName.charAt(0).toUpperCase()}
+                                                            {(comment.userName || "User").charAt(0).toUpperCase()}
                                                         </div>
                                                     )}
                                                     {/* 
@@ -405,7 +421,7 @@ export default function PostsPage() {
                                             </div>
                                         ))}
 
-                                        {post.commentCount > post.comments.length && (
+                                        {post.commentCount > (post.comments?.length || 0) && (
                                             <button
                                                 onClick={() => fetchCommentsForPost(post.id)}
                                                 className="mt-1 text-sm font-medium text-gray-500 hover:text-gray-700"
