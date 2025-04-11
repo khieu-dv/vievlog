@@ -335,12 +335,12 @@ export default function PostDetailPage() {
                         <Image
                           src={comment.userAvatar}
                           alt={comment.userName}
-                          width={40}
-                          height={40}
-                          className="h-10 w-10 rounded-full object-cover"
+                          width={32}
+                          height={32}
+                          className="h-8 w-8 rounded-full object-cover"
                         />
                       ) : (
-                        <div className="h-10 w-10 flex items-center justify-center rounded-full bg-gray-300 text-white font-bold text-lg">
+                        <div className="h-8 w-8 flex items-center justify-center rounded-full bg-blue-500 text-white font-semibold">
                           {comment.userName.charAt(0).toUpperCase()}
                         </div>
                       )}
@@ -406,7 +406,7 @@ export default function PostDetailPage() {
           </div>
 
           {/* Related Posts - Optional */}
-          <div className="mt-8 rounded-lg bg-white p-4 shadow">
+          {/* <div className="mt-8 rounded-lg bg-white p-4 shadow">
             <h2 className="mb-4 text-lg font-semibold">Related Posts</h2>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               {[1, 2].map((i) => (
@@ -419,7 +419,7 @@ export default function PostDetailPage() {
                 </div>
               ))}
             </div>
-          </div>
+          </div> */}
         </div>
       </main>
       <Footer />
