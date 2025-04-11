@@ -278,13 +278,19 @@ export default function PostsPage() {
                                 <div className="flex items-center justify-between p-4">
                                     <div className="flex items-center">
                                         <div className="h-10 w-10 overflow-hidden rounded-full">
-                                            <Image
-                                                src={post.author.avatar}
-                                                alt={post.author.name}
-                                                width={40}
-                                                height={40}
-                                                className="h-full w-full object-cover"
-                                            />
+                                            {post.author.avatar && post.author.avatar !== "/default-avatar.png" ? (
+                                                <Image
+                                                    src={post.author.avatar}
+                                                    alt={post.author.name}
+                                                    width={40}
+                                                    height={40}
+                                                    className="h-10 w-10 rounded-full object-cover"
+                                                />
+                                            ) : (
+                                                <div className="h-10 w-10 flex items-center justify-center rounded-full bg-blue-500 text-white font-semibold">
+                                                    {post.author.name.charAt(0).toUpperCase()}
+                                                </div>
+                                            )}
                                         </div>
                                         <div className="ml-3">
                                             <p className="font-medium text-gray-900">{post.author.name}</p>
@@ -362,13 +368,28 @@ export default function PostsPage() {
                                         {post.comments.map((comment) => (
                                             <div key={comment.id} className="mb-3 flex">
                                                 <div className="h-8 w-8 flex-shrink-0 overflow-hidden rounded-full">
+
+                                                    {comment.userAvatar && comment.userAvatar !== "/default-avatar.png" ? (
+                                                        <Image
+                                                            src={comment.userAvatar}
+                                                            alt={comment.userName}
+                                                            width={32}
+                                                            height={32}
+                                                            className="h-8 w-8 rounded-full object-cover"
+                                                        />
+                                                    ) : (
+                                                        <div className="h-8 w-8 flex items-center justify-center rounded-full bg-blue-500 text-white font-semibold">
+                                                            {comment.userName.charAt(0).toUpperCase()}
+                                                        </div>
+                                                    )}
+                                                    {/* 
                                                     <Image
                                                         src={comment.userAvatar || "/default-avatar.png"}
                                                         alt={comment.userName}
                                                         width={32}
                                                         height={32}
                                                         className="h-full w-full object-cover"
-                                                    />
+                                                    /> */}
                                                 </div>
                                                 <div className="ml-2">
                                                     <div className="rounded-2xl bg-gray-100 px-3 py-2">
