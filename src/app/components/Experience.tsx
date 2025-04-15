@@ -2,6 +2,8 @@ import { CameraControls, Stars, Stats } from "@react-three/drei";
 import { Bloom, EffectComposer } from "@react-three/postprocessing";
 import React, { useEffect, useRef, useState } from "react";
 import { Emitter } from "./Emitter";
+import { PhotoGallery } from "../components/PhotoGallery";
+
 
 // Import type for CameraControls from drei
 import { CameraControls as CameraControlsImpl } from "@react-three/drei";
@@ -35,7 +37,9 @@ export const Experience: React.FC = () => {
         color="#ffe7ba"
       />
       <Stars fade speed={3} count={2000} />
-      {currentHash === "" && <Emitter />}
+      {/* {currentHash === "" && <Emitter />} */}
+
+      {currentHash === "" && <PhotoGallery />}
 
       <EffectComposer>
         <Bloom intensity={1.2} luminanceThreshold={1} mipmapBlur />
