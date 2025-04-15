@@ -3,20 +3,19 @@
 A modern, open-source web project built with **Next.js**, **PocketBase**, and **TailwindCSS** to support learning Korean (TOPIK).
 
 <p align="center">
-  <img src="./public/screenshot4.png" width="400" />
-
-  <img src="./public/screenshot1.png" width="400" />
+  <img src="./public/screenshot6.png" width="400" />
+  <img src="./public/screenshot7.png" width="400" />
 </p>
 
 <p align="center">
-  <img src="./public/screenshot5.png" width="400" />
-    <img src="./public/screenshot2.png" width="400" />
+  <img src="./public/screenshot8.png" width="400" />
+  <img src="./public/screenshot9.png" width="400" />
 
 </p>
 
 
 ## 🚀 Features
-
+- ✅ Generate videos from images and audio – Perfect for sending sweet messages to someone special!
 - ✅ Built with **Next.js App Router**
 - ✅ Backend powered by **PocketBase** (lightweight, easy to self-host)
 - ✅ Styled using **TailwindCSS**
