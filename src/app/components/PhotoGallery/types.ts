@@ -4,20 +4,27 @@ import { Vector3 } from "three";
 import { Texture } from "three";
 
 export interface ImageTransitionState {
-  startTime: number;
-  duration: number;
-  effectIndex: number;
-  state: 'appearing' | 'visible' | 'disappearing';
-  opacity?: number;
-  scale?: number;
-  rotation?: number;
-  translateX?: number;
-  translateY?: number;
-  translateZ?: number;
-  spinAngle?: number;
-  direction?: Vector3;
-  spinAxis?: Vector3;
-  spinSpeed?: number;
+    startTime: number;
+    duration: number;
+    effectIndex: number;
+    state: 'appearing' | 'visible' | 'disappearing';
+    opacity?: number;
+    scale?: number;
+    rotation?: number;
+    translateX?: number;
+    translateY?: number;
+    translateZ?: number;
+    spinAngle?: number;
+    direction?: Vector3;
+    spinAxis?: Vector3;
+    spinSpeed?: number;
+
+    initialScale?: number;
+    finalScale?: number;
+    initialRotation?: number;
+    hasGlowEffect?: boolean;
+    hasPulseEffect?: boolean;
+    glowIntensity?: number;
 }
 
 export interface TransitionMap {

@@ -1,3 +1,4 @@
+
 // src/components/PhotoGallery/components/Emitter.tsx
 import { useRef, useState } from "react";
 import { Camera, useFrame, useThree } from "@react-three/fiber";
@@ -35,21 +36,18 @@ export const Emitter = () => {
     const lastPositionRef = useRef<Vector3>(new Vector3());
     const tmpVector = new Vector3();
 
-    // Initial camera setup with improved settings
+    // Initial camera setup
     useEffect(() => {
         camera.position.set(0, 0, 15);
         camera.zoom = 0.1;
 
         if (camera instanceof THREE.PerspectiveCamera) {
             camera.fov = 35;
-            // Add subtle depth to the scene
-            camera.near = 0.1;
-            camera.far = 100;
         }
         camera.updateProjectionMatrix();
     }, [camera]);
 
-    // Add new image with enhanced appear transition
+    // Add new image with a random appear transition
     const addImageWithTransition = (imageIndex: number) => {
         setVisibleImages(prev => [...prev, imageIndex]);
         const randomEffectIndex = Math.floor(Math.random() * appearEffects.length);
@@ -60,17 +58,11 @@ export const Emitter = () => {
                 duration: CONFIG.APPEAR_TRANSITION_DURATION,
                 effectIndex: randomEffectIndex,
                 state: 'appearing',
-                // Add initial scale for more dramatic entrance
-                initialScale: 0.1,
-                // Add initial rotation for spinning effect
-                initialRotation: Math.random() * Math.PI * 2,
-                // Add glow effect flag
-                hasGlowEffect: Math.random() > 0.3, // 70% chance of glow effect
             },
         }));
     };
 
-    // Remove old image with enhanced disappear transition
+    // Remove old image with a random disappear transition
     const removeImageWithTransition = (imageIndex: number) => {
         const randomDirection = new Vector3(
             Math.random() * 2 - 1,
@@ -91,9 +83,7 @@ export const Emitter = () => {
                     Math.random() * 2 - 1,
                     Math.random() * 2 - 1
                 ).normalize(),
-                spinSpeed: Math.random() * 2 + 1, // Enhanced spin speed
-                // Add pulse effect flag
-                hasPulseEffect: Math.random() > 0.5, // 50% chance of pulse effect
+                spinSpeed: Math.random() * 1.5 + 0.5
             },
         }));
         setFadingImages(prev => ({ ...prev, [imageIndex]: true }));
@@ -112,7 +102,7 @@ export const Emitter = () => {
         }, CONFIG.DISAPPEAR_TRANSITION_DURATION * 1000);
     };
 
-    // Check distance from emitter to image positions with improved detection
+    // Check distance from emitter to image positions and manage display
     const checkImageTriggers = (emitterPosition: Vector3) => {
         let closestImageIndex: number = -1;
         let closestDistance: number = Infinity;
@@ -120,10 +110,7 @@ export const Emitter = () => {
         IMAGE_POSITIONS.forEach((position, index) => {
             const distance = emitterPosition.distanceTo(position);
 
-            // More responsive trigger distance
-            const dynamicDistance = CONFIG.TRIGGER_DISTANCE * (1 + Math.sin(timeRef.current) * 0.1);
-
-            if (distance < dynamicDistance && distance < closestDistance) {
+            if (distance < CONFIG.TRIGGER_DISTANCE && distance < closestDistance) {
                 closestDistance = distance;
                 closestImageIndex = index;
             }
@@ -143,23 +130,13 @@ export const Emitter = () => {
         }
     };
 
-    // Easing functions for smoother animations
-    const easeInOutQuad = (t: number): number => {
-        return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
-    };
-
-    const easeOutElastic = (t: number): number => {
-        const c4 = (2 * Math.PI) / 3;
-        return t === 0 ? 0 : t === 1 ? 1 : Math.pow(2, -10 * t) * Math.sin((t * 10 - 0.75) * c4) + 1;
-    };
-
-    // Main animation frame with enhanced motion
+    // Main animation frame
     useFrame(({ clock }, delta) => {
         const totalTime = clock.getElapsedTime();
         timeRef.current = totalTime;
 
         if (emitter.current) {
-            // Auto advance to next position with easing
+            // Auto advance to next position
             if (autoAdvanceRef.current) {
                 if (totalTime - switchTimeRef.current > CONFIG.AUTO_ADVANCE_TIME) {
                     const nextPosition = (currentPosition + 1) % IMAGE_POSITIONS.length;
@@ -168,53 +145,30 @@ export const Emitter = () => {
                 }
             }
 
-            // Enhanced movement path logic with smoother curves
+            // Movement path logic
             const currentPos = IMAGE_POSITIONS[currentPosition];
             const nextPos = IMAGE_POSITIONS[(currentPosition + 1) % IMAGE_POSITIONS.length];
             const progress = Math.min((totalTime - switchTimeRef.current) / CONFIG.AUTO_ADVANCE_TIME, 1);
+            setPathProgress(progress);
 
-            // Use easing function for smoother motion
-            const easedProgress = easeInOutQuad(progress);
-            setPathProgress(easedProgress);
-
-            // Create a more interesting path with a slight arch
-            const midPoint = new Vector3().addVectors(currentPos, nextPos).multiplyScalar(0.5);
-            midPoint.y += 2; // Add height to create an arch
-
-            // Simple quadratic bezier curve
-            if (progress < 0.5) {
-                const t = progress * 2;
-                tmpVector.copy(currentPos).lerp(midPoint, t);
-            } else {
-                const t = (progress - 0.5) * 2;
-                tmpVector.copy(midPoint).lerp(nextPos, t);
-            }
-
-            // Add more interesting motion with harmonics
-            tmpVector.x += Math.sin(totalTime * 1.5) * 0.4;
-            tmpVector.y += Math.cos(totalTime * 1) * 0.3 + Math.sin(totalTime * 0.5) * 0.2;
-            tmpVector.z += Math.sin(totalTime * 2) * 0.25;
+            // Calculate new position with some gentle motion
+            tmpVector.copy(currentPos).lerp(nextPos, progress);
+            tmpVector.x += Math.sin(totalTime * 1.5) * 0.3;
+            tmpVector.y += Math.cos(totalTime * 1) * 0.2;
+            tmpVector.z += Math.sin(totalTime * 2) * 0.15;
 
             lastPositionRef.current.copy(emitter.current.position);
-            emitter.current.position.lerp(tmpVector, delta * 2); // Faster response
+            emitter.current.position.lerp(tmpVector, delta * 1.5);
             checkImageTriggers(emitter.current.position);
 
-            // Enhanced heart animation with pulse and rotation
+            // Heart pulse animation
             if (heartMesh.current) {
-                // Combine multiple sine waves for more organic pulsing
-                const pulse =
-                    Math.sin(totalTime * 1.5) * 0.08 + // Fast pulse
-                    Math.sin(totalTime * 0.6) * 0.05 + // Slow pulse
-                    1.0; // Base size
+                const pulse = Math.sin(totalTime * 1.5) * 0.1 + 1;
                 heartMesh.current.scale.set(pulse, pulse, pulse);
-
-                // More dynamic rotation
-                heartMesh.current.rotation.y = totalTime * 0.3;
-                heartMesh.current.rotation.x = Math.sin(totalTime * 0.7) * 0.1;
-                heartMesh.current.rotation.z = Math.cos(totalTime * 0.5) * 0.05;
+                heartMesh.current.rotation.y = totalTime * 0.2;
             }
 
-            // Process image transitions with enhanced effects
+            // Process image transitions
             Object.entries(imageTransitions).forEach(([idx, transition]) => {
                 const imageIdx = parseInt(idx);
                 const elapsed = totalTime - transition.startTime;
@@ -227,20 +181,6 @@ export const Emitter = () => {
                     if (effect) {
                         Object.assign(newTransition, effect(normalizedTime));
                     }
-
-                    // Add bounce effect at the end of appearance
-                    if (normalizedTime > 0.8 && normalizedTime < 1) {
-                        const bounceProgress = (normalizedTime - 0.8) / 0.2;
-                        const bounce = Math.sin(bounceProgress * Math.PI) * 0.1;
-                        newTransition.scale = newTransition.scale || 1;
-                        newTransition.scale += bounce;
-                    }
-
-                    // Add glow effect that pulses
-                    if (transition.hasGlowEffect) {
-                        newTransition.glowIntensity = Math.sin(totalTime * 3) * 0.3 + 0.7;
-                    }
-
                     if (normalizedTime >= 1) {
                         newTransition.state = 'visible';
                     }
@@ -249,22 +189,7 @@ export const Emitter = () => {
                     if (effect) {
                         Object.assign(newTransition, effect(normalizedTime, transition.direction!));
                     }
-
-                    // Add wobble effect during disappearance
-                    if (normalizedTime < 0.7) {
-                        const wobbleAmount = (1 - normalizedTime) * 0.2;
-                        newTransition.translateX += Math.sin(totalTime * 20) * wobbleAmount;
-                        newTransition.translateY += Math.sin(totalTime * 15) * wobbleAmount;
-                    }
-
-                    newTransition.spinAngle = normalizedTime * Math.PI * 2 * (transition.spinSpeed || 1);
-
-                    // Add pulse effect during disappearance
-                    if (transition.hasPulseEffect) {
-                        const pulseSpeed = 10 + transition.spinSpeed || 5;
-                        const pulseAmount = (1 - normalizedTime) * 0.2;
-                        newTransition.scale = (newTransition.scale || 1) * (1 + Math.sin(normalizedTime * pulseSpeed) * pulseAmount);
-                    }
+                    newTransition.spinAngle = normalizedTime * Math.PI * (transition.spinSpeed || 1);
                 }
 
                 setImageTransitions(prev => ({
@@ -277,39 +202,28 @@ export const Emitter = () => {
 
     return (
         <>
-            {/* Enhanced global particle systems */}
+            {/* Global particle systems */}
             <VFXParticles
                 name="particles"
                 settings={{
-                    nbParticles: 70000, // Increased for more visual richness
-                    gravity: [0, -0.6, 0],
-                    fadeSize: [0.05, 0.25],
+                    nbParticles: 50000,
+                    gravity: [0, -0.8, 0],
+                    fadeSize: [0.08, 0.2],
                     renderMode: "billboard",
-                    intensity: 3.5,
+                    intensity: 3,
                 }}
             />
 
             <VFXParticles
                 name="heartBubbles"
                 settings={{
-                    nbParticles: 20000, // Increased for more visual richness
-                    gravity: [0, 0.4, 0],
+                    nbParticles: 15000,
+                    gravity: [0, 0.5, 0],
                     fadeSize: [0, 0],
                     renderMode: "billboard",
-                    intensity: 2.5,
+                    intensity: 2,
                 }}
             />
-
-            {/* Background atmosphere */}
-            <mesh>
-                <sphereGeometry args={[40, 32, 32]} />
-                <meshBasicMaterial
-                    color="#0a0a20"
-                    side={THREE.BackSide}
-                    opacity={0.6}
-                    transparent={true}
-                />
-            </mesh>
 
             {/* Empty HTML container */}
             <Html
@@ -324,70 +238,46 @@ export const Emitter = () => {
 
             {/* Main emitter group */}
             <group ref={emitter}>
-                {/* Heart mesh with improved materials */}
+                {/* Heart mesh */}
                 <mesh ref={heartMesh} scale={[0.6, 0.6, 0.6]}>
                     <sphereGeometry args={[0.8, 32, 32]} />
                     <meshStandardMaterial
                         color="#ff69b4"
                         emissive="#ff1493"
-                        emissiveIntensity={1.8}
-                        metalness={0.5}
+                        emissiveIntensity={1.5}
+                        metalness={0.3}
                         roughness={0.2}
                     />
                 </mesh>
 
-                {/* Add glow effect around heart */}
-                <mesh scale={[1, 1, 1]}>
-                    <sphereGeometry args={[1, 32, 32]} />
-                    <meshBasicMaterial
-                        color="#ff1493"
-                        transparent={true}
-                        opacity={0.4}
-                    />
-                </mesh>
-
-                {/* Title text with enhanced styling */}
+                {/* Title text */}
                 <Text
                     position={[0, 1, -1]}
-                    fontSize={0.35}
+                    fontSize={0.3}
                     color="#ffffff"
                     anchorX="center"
                     anchorY="middle"
-                    outlineWidth={0.04}
+                    outlineWidth={0.03}
                     outlineColor="#ff1493"
                 >
                     Khiêu ♡ Thương
                 </Text>
 
-                {/* Subtitle with animation */}
-                <Text
-                    position={[0, 0.6, -1]}
-                    fontSize={0.15}
-                    color="#f8f8f8"
-                    anchorX="center"
-                    anchorY="middle"
-                    outlineWidth={0.02}
-                    outlineColor="#87ceeb"
-                >
-                    {/* This could be dynamic based on state */}
-                    Memories in Motion
-                </Text>
-
-                {/* Enhanced particle emitters */}
+                {/* Particle emitters */}
                 <VFXEmitter
                     emitter="particles"
                     settings={{
                         loop: true,
                         duration: 1.5,
-                        nbParticles: 1000, // More particles
+                        nbParticles: 800,
                         startPositionMin: [-0.3, -0.3, -0.3],
                         startPositionMax: [0.3, 0.3, 0.3],
-                        directionMin: [-0.8, -0.2, -0.8],
-                        directionMax: [0.8, 0.8, 0.8],
-                        size: [0.03, 0.25],
-                        speed: [0.8, 5.5], // Faster particles
-                        colorStart: ["#ff69b4", "#87ceeb", "#ffb6c1", "#ffd700"], // Add gold
-                        colorEnd: ["#ff1493", "#1e90ff", "#ffffff", "#ff8c00"], // Add orange
+                        directionMin: [-0.7, -0.15, -0.7],
+                        directionMax: [0.7, 0.7, 0.7],
+                        size: [0.03, 0.2],
+                        speed: [0.7, 5],
+                        colorStart: ["#ff69b4", "#87ceeb", "#ffb6c1"],
+                        colorEnd: ["#ff1493", "#1e90ff", "#ffffff"],
                     }}
                     debug={false}
                 />
@@ -396,15 +286,15 @@ export const Emitter = () => {
                     settings={{
                         loop: true,
                         duration: 2,
-                        nbParticles: 150, // More hearts
+                        nbParticles: 100,
                         startPositionMin: [-0.3, -0.3, -0.3],
                         startPositionMax: [0.3, 0.3, 0.3],
-                        directionMin: [-0.3, 0.5, -0.3],
-                        directionMax: [0.3, 1.2, 0.3],
+                        directionMin: [-0.2, 0.4, -0.2],
+                        directionMax: [0.2, 1.2, 0.2],
                         size: [0.08, 0.3],
-                        speed: [0.5, 1.8],
-                        colorStart: ["#ff69b4", "#ffc0cb", "#ff1493"], // More pink variations
-                        colorEnd: ["#ffffff", "#ffb6c1", "#ffe4e1"], // More white variations
+                        speed: [0.4, 1.5],
+                        colorStart: ["#ff69b4", "#ffc0cb"],
+                        colorEnd: ["#ffffff", "#ffb6c1"],
                     }}
                     debug={false}
                 />
@@ -425,8 +315,7 @@ export const Emitter = () => {
                         translateY: 0,
                         translateZ: 0,
                         spinAngle: 0,
-                        state: 'visible',
-                        glowIntensity: 0 // Add default glow intensity
+                        state: 'visible'
                     }}
                     activeImage={activeImage}
                     textureRefs={textureRefs}
@@ -450,8 +339,7 @@ export const Emitter = () => {
                         translateY: 0,
                         translateZ: 0,
                         spinAngle: 0,
-                        state: 'disappearing',
-                        glowIntensity: 0 // Add default glow intensity
+                        state: 'disappearing'
                     }}
                     activeImage={activeImage}
                     textureRefs={textureRefs}
@@ -461,35 +349,22 @@ export const Emitter = () => {
                 />
             ))}
 
-            {/* Enhanced lighting */}
-            <ambientLight intensity={0.5} />
-            <pointLight position={[5, 5, 5]} intensity={0.7} color="#ffffff" />
-            <pointLight position={[-5, -5, -5]} intensity={0.3} color="#ff69b4" />
-            <spotLight
-                position={[0, 10, 0]}
-                intensity={0.4}
-                angle={0.6}
-                penumbra={0.5}
-                color="#f0f0ff"
-            />
+            {/* Lighting */}
+            <ambientLight intensity={0.4} />
+            <pointLight position={[5, 5, 5]} intensity={0.6} color="#ffffff" />
+            <pointLight position={[-5, -5, -5]} intensity={0.2} color="#ff69b4" />
 
-            {/* Enhanced camera controls */}
+            {/* Camera controls */}
             <OrbitControls
-                enableZoom={true}
-                zoomSpeed={0.5}
+                enableZoom={false}
                 enablePan={false}
                 enableRotate={true}
                 rotateSpeed={0.7}
-                minDistance={10}
-                maxDistance={25}
-                minAzimuthAngle={-Math.PI / 2} // Limit rotation to prevent disorientation
-                maxAzimuthAngle={Math.PI / 2}
-                minPolarAngle={Math.PI / 4} // Prevent looking straight down
-                maxPolarAngle={Math.PI / 1.5} // Prevent looking straight up
+                minAzimuthAngle={-Infinity}
+                maxAzimuthAngle={Infinity}
             />
-
-            {/* Add subtle fog for depth */}
-            <fog attach="fog" args={['#070720', 25, 50]} />
         </>
     );
 };
+
+
