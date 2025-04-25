@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useRef, useEffect, useState } from "react";
-import { Loader2, Play, Pause } from "lucide-react";
+import { Loader2, Play, Pause, Volume2, VolumeX } from "lucide-react";
 
 interface Video {
     id: string;
@@ -19,22 +19,34 @@ interface Video {
 interface VideoPlayerProps {
     video: Video;
     isPlaying: boolean;
+    globalMuted: boolean;
+    onMutedChange: (muted: boolean) => void;
+    playedBefore: boolean;
 }
 
-const VideoPlayer: React.FC<VideoPlayerProps> = ({ video, isPlaying }) => {
+const VideoPlayer: React.FC<VideoPlayerProps> = ({
+    video,
+    isPlaying,
+    globalMuted,
+    onMutedChange,
+    playedBefore
+}) => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    const [isMuted, setIsMuted] = useState(true);
     const [isPaused, setIsPaused] = useState(false);
     const [videoAspectRatio, setVideoAspectRatio] = useState(9 / 16); // Default aspect ratio (portrait)
     const [videoStyles, setVideoStyles] = useState({});
+    const [userInteracted, setUserInteracted] = useState(false);
 
     // Handle play/pause based on visibility and user control
     useEffect(() => {
         const videoElement = videoRef.current;
         if (!videoElement) return;
+
+        // Set muted state based on global setting
+        videoElement.muted = globalMuted;
 
         if (isPlaying && !isPaused) {
             // Preload the video when it becomes active
@@ -72,7 +84,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ video, isPlaying }) => {
                 videoElement.pause();
             }
         };
-    }, [isPlaying, isPaused]);
+    }, [isPlaying, isPaused, globalMuted]);
 
     // Handle video loading events
     useEffect(() => {
@@ -160,13 +172,28 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ video, isPlaying }) => {
         return () => window.removeEventListener('resize', updateVideoSize);
     }, [videoAspectRatio]);
 
+    // When user interacts with the page for the first time
+    useEffect(() => {
+        const handleUserInteraction = () => {
+            if (!userInteracted) {
+                setUserInteracted(true);
+                // If this is first interaction and we're the active video,
+                // try to play with audio if needed
+                if (isPlaying && playedBefore && globalMuted && videoRef.current) {
+                    // Try to unmute if we've previously played videos
+                    onMutedChange(false);
+                }
+            }
+        };
+
+        document.addEventListener('click', handleUserInteraction, { once: true });
+        return () => document.removeEventListener('click', handleUserInteraction);
+    }, [isPlaying, globalMuted, userInteracted, playedBefore, onMutedChange]);
+
     // Toggle mute state
     const toggleMute = (e: React.MouseEvent) => {
         e.stopPropagation();
-        if (videoRef.current) {
-            videoRef.current.muted = !videoRef.current.muted;
-            setIsMuted(!isMuted);
-        }
+        onMutedChange(!globalMuted);
     };
 
     // Toggle play/pause state
@@ -219,7 +246,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ video, isPlaying }) => {
                 className="object-contain z-10"
                 style={videoStyles}
                 playsInline
-                muted={isMuted}
+                muted={globalMuted}
                 loop
                 controls={false}
                 poster={video.thumbnail_url}
@@ -244,18 +271,10 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ video, isPlaying }) => {
                     className="bg-black/60 rounded-full p-3"
                     onClick={toggleMute}
                 >
-                    {isMuted ? (
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
-                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-                            <line x1="23" y1="9" x2="17" y2="15" />
-                            <line x1="17" y1="9" x2="23" y2="15" />
-                        </svg>
+                    {globalMuted ? (
+                        <VolumeX className="h-6 w-6 text-white" />
                     ) : (
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
-                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-                            <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
-                            <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
-                        </svg>
+                        <Volume2 className="h-6 w-6 text-white" />
                     )}
                 </button>
 
