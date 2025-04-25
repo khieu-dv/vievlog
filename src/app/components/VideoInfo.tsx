@@ -38,7 +38,7 @@ const VideoInfo: React.FC<VideoInfoProps> = ({ video }) => {
                     )}
                 </div>
 
-                <div className="flex flex-col items-center gap-4">
+                {/* <div className="flex flex-col items-center gap-4">
                     <Button variant="ghost" size="icon" className="rounded-full bg-black/40 text-white">
                         <Heart className="h-6 w-6" />
                         <span className="text-xs mt-1">{video.likes}</span>
@@ -53,7 +53,7 @@ const VideoInfo: React.FC<VideoInfoProps> = ({ video }) => {
                         <Share2 className="h-6 w-6" />
                         <span className="text-xs mt-1">Share</span>
                     </Button>
-                </div>
+                </div> */}
             </div>
         </div>
     );
