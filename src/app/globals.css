@@ -137,3 +137,26 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+/* app/globals.css (add this to your existing global CSS) */
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-in-out;
+}
+
+/* Additional styles to prevent touch interactions from causing text selection */
+.video-container {
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: pan-y;
+}
