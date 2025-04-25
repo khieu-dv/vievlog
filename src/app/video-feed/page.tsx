@@ -65,7 +65,6 @@ export default function Home() {
   return (
     <main className="h-screen bg-black">
       <Header />
-      <div className="mt-12" />
       <VideoFeed videos={videos} />
     </main>
   );
