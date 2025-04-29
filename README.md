@@ -91,18 +91,6 @@ yarn install
 
 ---
 
-## Configuration Details
-
-- **Ports**: The service is exposed on port `8090` (mapped to the host).
-- **Volumes**:
-  - `./pocketbase/data` → `/pb_data`: Stores PocketBase data.
-  - `./pocketbase/public` → `/pb_public`: (Optional) Public files.
-  - `./pocketbase/hooks` → `/pb_hooks`: (Optional) Custom hooks.
-- **Environment Variables**:
-  - `ENCRYPTION`: A 32-character encryption key for securing sensitive settings. Update this value in the docker-compose.yml file as needed.
-
----
-
 
 ### 4. Start the development server
 
