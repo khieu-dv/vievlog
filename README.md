@@ -73,13 +73,66 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the a
 
 ```
 vietopik/
-├── app/                # Next.js App Router pages
-├── components/         # Reusable UI components
-├── lib/                # API and PocketBase client
-├── public/             # Static assets
-├── styles/             # Tailwind CSS config and global styles
-└── pocketbase/         # Sample data/schema (optional)
+├── app/                            # Next.js App Router pages and components
+│   ├── favicon.ico                 # Favicon for the app
+│   ├── globals.css                 # Global CSS styles
+│   ├── i18n.ts                     # Internationalization setup
+│   ├── layout.tsx                  # Root layout for the app
+│   ├── page.tsx                    # Home page
+│   ├── api/                        # API routes
+│   │   ├── auth/                   # Authentication-related API routes
+│   │   └── chat/                   # Chat-related API routes
+│   ├── auth/                       # Authentication pages
+│   │   ├── layout.tsx              # Layout for authentication pages
+│   │   ├── backup-codes/           # Backup codes page
+│   │   ├── sign-in/                # Sign-in page
+│   │   ├── sign-up/                # Sign-up page
+│   │   └── two-factor/             # Two-factor authentication page
+│   ├── chat/                       # Chat-related pages
+│   ├── components/                 # Reusable components
+│   │   ├── contact-button.tsx      # Contact button component
+│   │   ├── DevToolsDetector.tsx    # DevTools detection component
+│   │   ├── Emitter.tsx             # Emitter component for animations
+│   │   └── ...                     # Other components
+│   ├── dashboard/                  # Dashboard pages
+│   ├── diagrams/                   # Grammar diagrams pages
+│   ├── grammars/                   # Grammar-related pages
+│   ├── posts/                      # Blog post pages
+│   │   ├── [id]/                   # Dynamic post detail pages
+│   │   └── page.tsx                # Posts listing page
+│   ├── profile/                    # User profile pages
+│   ├── showcase/                   # Showcase pages
+│   ├── video-feed/                 # Video feed pages
+│   └── videos/                     # Video-related pages
+├── db/                             # Database configuration and schema
+│   ├── index.ts                    # Database connection setup
+│   ├── types.ts                    # Database types
+│   └── schema/                     # Database schema definitions
+├── lib/                            # Utility libraries and services
+│   ├── auth-client.ts              # Authentication client
+│   ├── auth-client_v2.ts           # Updated authentication client
+│   ├── auth.ts                     # Authentication utilities
+│   ├── flowService.ts              # Flow-related services
+│   ├── utils.ts                    # General utility functions
+│   └── hooks/                      # Custom React hooks
+├── ui/                             # UI primitives and components
+│   ├── components/                 # Reusable UI components
+│   ├── primitives/                 # Low-level UI primitives (e.g., buttons, modals)
+│   └── layouts/                    # Layout components
+│       ├── auth-layout.tsx         # Layout for authentication pages
+│       └── dashboard-layout.tsx    # Layout for dashboard pages
+├── utils/                          # Server-side utilities
+│   └── serverI18n.ts               # Server-side internationalization utilities
 ```
+
+### Key Highlights:
+- **`app/`**: Contains all Next.js pages and components, organized by feature (e.g., `auth`, `posts`, `grammars`).
+- **`db/`**: Manages database schema and connections using Drizzle ORM.
+- **`lib/`**: Includes reusable libraries for authentication, API services, and utilities.
+- **`ui/`**: Houses reusable UI components and primitives for consistent styling.
+- **`utils/`**: Contains server-side utilities, such as internationalization helpers.
+
+This structure ensures modularity, scalability, and maintainability for the project.
 
 ---
 
