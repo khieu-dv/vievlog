@@ -51,13 +51,58 @@ yarn install
 
 ### 3. Run PocketBase (local)
 
-Download PocketBase from https://pocketbase.io, then run:
+1. **Navigate to the pocketbase-docker directory**:
 
-```bash
-./pocketbase serve
-```
+   Open your terminal and navigate to the directory containing the docker-compose.yml file:
 
-> You can also use hosted PocketBase or run with Docker if preferred.
+   ```bash
+   cd ./vietopik/pocketbase-docker
+   ```
+
+2. **Start the Docker container**:
+
+   Run the following command to start the PocketBase service:
+
+   ```bash
+   docker-compose up -d
+   ```
+
+   - The `-d` flag runs the container in detached mode (in the background).
+
+3. **Verify the service is running**:
+
+   Check the status of the PocketBase container:
+
+   ```bash
+   docker ps
+   ```
+
+   You should see a container named `pocketbase` running.
+
+4. **Access PocketBase**:
+
+   Open your browser and navigate to:
+
+   ```
+   http://localhost:8090/_/
+   ```
+
+   This will take you to the PocketBase admin interface.
+
+---
+
+## Configuration Details
+
+- **Ports**: The service is exposed on port `8090` (mapped to the host).
+- **Volumes**:
+  - `./pocketbase/data` → `/pb_data`: Stores PocketBase data.
+  - `./pocketbase/public` → `/pb_public`: (Optional) Public files.
+  - `./pocketbase/hooks` → `/pb_hooks`: (Optional) Custom hooks.
+- **Environment Variables**:
+  - `ENCRYPTION`: A 32-character encryption key for securing sensitive settings. Update this value in the docker-compose.yml file as needed.
+
+---
+
 
 ### 4. Start the development server
 
