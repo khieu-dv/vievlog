@@ -12,7 +12,7 @@ export function SignUpPageClient() {
     password: "",
     passwordConfirm: "",
   });
-  const [error, setError] = useState("");
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,15 +21,24 @@ export function SignUpPageClient() {
       ...prev,
       [name]: value,
     }));
+
+    // Clear the specific field error when user types
+    if (errors[name]) {
+      setErrors((prev) => {
+        const newErrors = { ...prev };
+        delete newErrors[name];
+        return newErrors;
+      });
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
+    setErrors({});
     setLoading(true);
 
     if (formData.password !== formData.passwordConfirm) {
-      setError("Passwords do not match.");
+      setErrors({ passwordConfirm: "Passwords do not match." });
       setLoading(false);
       return;
     }
@@ -39,7 +48,49 @@ export function SignUpPageClient() {
       router.push("/auth/sign-in?registered=true");
     } catch (err: any) {
       console.error("Signup error:", err);
-      setError(err?.message || "Registration failed. Please try again.");
+
+      try {
+        // Parse the error if it's a string
+        let errorResponse = err;
+        if (typeof err === 'string') {
+          try {
+            errorResponse = JSON.parse(err);
+          } catch (parseError) {
+            console.error("Failed to parse error string:", parseError);
+          }
+        }
+
+        // Extract field-specific errors
+        const fieldErrors: Record<string, string> = {};
+
+        // Check if the error has data field with validation errors
+        if (errorResponse?.data) {
+          console.log("Error data123:", errorResponse.data);
+          // Directly access the message in each field
+          Object.entries(errorResponse.data.data || {}).forEach(([field, fieldError]) => {
+            console.log("Raw fieldError:", field, fieldError);
+            if (
+              fieldError &&
+              typeof fieldError === 'object' &&
+              'message' in fieldError
+            ) {
+              fieldErrors[field] = fieldError.message as string;
+            }
+          });
+        }
+
+        // If we found specific field errors, use them
+        if (Object.keys(fieldErrors).length > 0) {
+          setErrors(fieldErrors);
+        } else {
+          // Otherwise fall back to the general error message
+          setErrors({ general: errorResponse?.message || "Registration failed. Please try again." });
+        }
+      } catch (handlingError) {
+        // If error handling itself fails, use a generic message
+        console.error("Error while handling error response:", handlingError);
+        setErrors({ general: "Registration failed. Please try again." });
+      }
     } finally {
       setLoading(false);
     }
@@ -52,9 +103,9 @@ export function SignUpPageClient() {
           <h1 className="text-2xl font-bold">Sign Up</h1>
         </div>
 
-        {error && (
+        {errors.general && (
           <div className="rounded-md bg-red-100 p-3 text-sm text-red-700">
-            {error}
+            {errors.general}
           </div>
         )}
 
@@ -70,9 +121,13 @@ export function SignUpPageClient() {
               required
               value={formData.username}
               onChange={handleChange}
-              className="mt-1 block w-full rounded-md border px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none"
+              className={`mt-1 block w-full rounded-md border px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none ${errors.username ? "border-red-500" : ""
+                }`}
               placeholder="test_username"
             />
+            {errors.username && (
+              <p className="mt-1 text-xs text-red-600">{errors.username}</p>
+            )}
           </div>
 
           <div>
@@ -86,9 +141,13 @@ export function SignUpPageClient() {
               required
               value={formData.email}
               onChange={handleChange}
-              className="mt-1 block w-full rounded-md border px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none"
+              className={`mt-1 block w-full rounded-md border px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none ${errors.email ? "border-red-500" : ""
+                }`}
               placeholder="test@example.com"
             />
+            {errors.email && (
+              <p className="mt-1 text-xs text-red-600">{errors.email}</p>
+            )}
           </div>
 
           <div>
@@ -102,9 +161,13 @@ export function SignUpPageClient() {
               required
               value={formData.password}
               onChange={handleChange}
-              className="mt-1 block w-full rounded-md border px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none"
+              className={`mt-1 block w-full rounded-md border px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none ${errors.password ? "border-red-500" : ""
+                }`}
               placeholder="********"
             />
+            {errors.password && (
+              <p className="mt-1 text-xs text-red-600">{errors.password}</p>
+            )}
           </div>
 
           <div>
@@ -121,9 +184,13 @@ export function SignUpPageClient() {
               required
               value={formData.passwordConfirm}
               onChange={handleChange}
-              className="mt-1 block w-full rounded-md border px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none"
+              className={`mt-1 block w-full rounded-md border px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none ${errors.passwordConfirm ? "border-red-500" : ""
+                }`}
               placeholder="********"
             />
+            {errors.passwordConfirm && (
+              <p className="mt-1 text-xs text-red-600">{errors.passwordConfirm}</p>
+            )}
           </div>
 
           <button
