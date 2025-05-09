@@ -19,6 +19,8 @@ import {
 import { ThemeToggle } from "./theme-toggle";
 import { useTranslation } from "react-i18next";
 import { languages } from "./locales";
+import FloatingChat from '../../app/components/FloatingChat';
+
 
 
 type HeaderProps = {
@@ -46,7 +48,8 @@ export function Header({ showAuth = true }: HeaderProps) {
     { name: t("content.home"), href: "/" },
     { name: "Posts", href: "/posts" },
     { name: "Videos", href: "/video-feed" },
-    { name: t("content.grammar"), href: "/diagrams" },];
+    { name: t("content.grammar"), href: "/diagrams" },
+    { name: "Chat", href: "/chat" },];
 
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -81,7 +84,6 @@ export function Header({ showAuth = true }: HeaderProps) {
                     </li>
                   );
                 })}
-
 
               </ul>
             </nav>
