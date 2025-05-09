@@ -14,15 +14,8 @@ interface ChatRoomProps {
 
 export default function ChatRoom({ room, username }: ChatRoomProps) {
     const [messages, setMessages] = useState<Message[]>([]);
-    const [socket, setSocket] = useState<WebSocket | null>(null);
 
-    // Kết nối WebSocket khi component được mount hoặc room thay đổi
     useEffect(() => {
-        // Đóng socket cũ nếu có
-        if (socket) {
-            socket.close();
-        }
-
         // Lấy tin nhắn cũ
         const fetchMessages = async () => {
             const response = await fetch(`/api/messages?roomId=${room.id}`);
@@ -34,48 +27,42 @@ export default function ChatRoom({ room, username }: ChatRoomProps) {
 
         fetchMessages();
 
-        // Kết nối WebSocket mới
-        const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
-        const newSocket = new WebSocket(`${protocol}://${window.location.host}/api/socket?roomId=${room.id}`);
+        // Kết nối bằng Server-Sent Events (SSE)
+        const eventSource = new EventSource(`/api/socket?roomId=${room.id}`);
 
-        newSocket.onopen = () => {
-            console.log('WebSocket connected');
-        };
-
-        newSocket.onmessage = (event) => {
-            const message = JSON.parse(event.data);
+        eventSource.onmessage = (event) => {
+            const message: Message = JSON.parse(event.data);
             setMessages((prevMessages) => [...prevMessages, message]);
         };
 
-        newSocket.onclose = () => {
-            console.log('WebSocket disconnected');
+        eventSource.onerror = (err) => {
+            console.error('SSE connection error:', err);
+            eventSource.close();
         };
-
-        setSocket(newSocket);
 
         // Dọn dẹp khi component unmount
         return () => {
-            if (newSocket) {
-                newSocket.close();
-            }
+            eventSource.close();
         };
     }, [room.id]);
 
-    const sendMessage = (text: string) => {
-        if (socket && socket.readyState === WebSocket.OPEN) {
-            const message: Message = {
-                id: Math.random().toString(36).substring(2, 15),
-                content: text,
-                sender: username,
-                roomId: room.id,
-                timestamp: Date.now(),
-            };
+    const sendMessage = async (text: string) => {
+        const message: Message = {
+            id: Math.random().toString(36).substring(2, 15),
+            content: text,
+            sender: username,
+            roomId: room.id,
+            timestamp: Date.now(),
+        };
 
-            socket.send(JSON.stringify(message));
+        await fetch('/api/messages', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(message),
+        });
 
-            // Optimistic update
-            setMessages((prevMessages) => [...prevMessages, message]);
-        }
+        // Optimistic update
+        setMessages((prevMessages) => [...prevMessages, message]);
     };
 
     return (

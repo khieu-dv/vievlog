@@ -1,38 +1,45 @@
-
-// API route để lấy và tạo phòng chat
-// app/api/rooms/route.ts
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 import { createRoom, getRooms } from '../../../lib/redis';
-import { Room } from '../../../lib/types';
 
+// Get all rooms
 export async function GET() {
   try {
     const rooms = await getRooms();
-    return NextResponse.json(rooms);
+    
+    return new Response(JSON.stringify(rooms), {
+      headers: { 'Content-Type': 'application/json' }
+    });
   } catch (error) {
     console.error('Error fetching rooms:', error);
-    return NextResponse.json({ error: 'Failed to fetch rooms' }, { status: 500 });
+    return new Response(JSON.stringify({ error: 'Failed to fetch rooms' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' }
+    });
   }
 }
 
+// Create a new room
 export async function POST(request: NextRequest) {
   try {
     const { name } = await request.json();
     
-    if (!name || typeof name !== 'string') {
-      return NextResponse.json({ error: 'Room name is required' }, { status: 400 });
+    if (!name) {
+      return new Response(JSON.stringify({ error: 'Room name is required' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' }
+      });
     }
     
-    const room: Room = {
-      id: Math.random().toString(36).substring(2, 15),
-      name: name.trim(),
-    };
+    const roomId = await createRoom(name);
     
-    await createRoom(room);
-    
-    return NextResponse.json(room);
+    return new Response(JSON.stringify({ id: roomId, name }), {
+      headers: { 'Content-Type': 'application/json' }
+    });
   } catch (error) {
     console.error('Error creating room:', error);
-    return NextResponse.json({ error: 'Failed to create room' }, { status: 500 });
+    return new Response(JSON.stringify({ error: 'Failed to create room' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' }
+    });
   }
 }

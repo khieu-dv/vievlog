@@ -1,19 +1,9 @@
-
-// API route để xử lý WebSocket
-// app/api/socket/route.ts
 import { NextRequest } from 'next/server';
 import { Message } from '../../../lib/types';
 import { saveMessage, publisher, subscriber } from '../../../lib/redis';
 
-
-// Chuyển sang Route Handlers API của Next.js 13+
+// Server-Sent Events (SSE) endpoint
 export async function GET(request: NextRequest) {
-  // Không thể sử dụng socket.io trực tiếp trong Next.js App Router
-  // Cần cài đặt custom server hoặc sử dụng Edge Runtime
-  
-  // Thay thế bằng giải pháp sử dụng Server-Sent Events (SSE)
-  // hoặc SWR/polling cho các trường hợp đơn giản
-  
   const url = new URL(request.url);
   const roomId = url.searchParams.get('roomId');
   
@@ -21,16 +11,16 @@ export async function GET(request: NextRequest) {
     return new Response('Room ID is required', { status: 400 });
   }
   
-  // Thiết lập SSE
+  // Set up SSE stream
   const encoder = new TextEncoder();
   const stream = new ReadableStream({
     start(controller) {
       const channelName = `chat:${roomId}`;
       
-      // Đăng ký với Redis để nhận tin nhắn
+      // Subscribe to Redis channel
       subscriber.subscribe(channelName);
       
-      // Xử lý tin nhắn từ Redis
+      // Handle messages from Redis
       const messageHandler = (channel: string, message: string) => {
         if (channel === channelName) {
           controller.enqueue(encoder.encode(`data: ${message}\n\n`));
@@ -39,18 +29,18 @@ export async function GET(request: NextRequest) {
       
       subscriber.on('message', messageHandler);
       
-      // Cung cấp cách để dọn dẹp khi kết nối đóng
+      // Cleanup function for when connection is closed
       const cleanup = () => {
         subscriber.off('message', messageHandler);
         subscriber.unsubscribe(channelName);
       };
       
-      // Lưu cleanup function để dùng sau
-      // @ts-ignore - Thêm thuộc tính tùy chỉnh
+      // Store cleanup function
+      // @ts-ignore - Custom property for cleanup
       controller.cleanup = cleanup;
     },
     cancel() {
-      // @ts-ignore - Truy cập thuộc tính tùy chỉnh
+      // @ts-ignore - Access custom property
       if (this.cleanup) this.cleanup();
     }
   });
@@ -64,7 +54,7 @@ export async function GET(request: NextRequest) {
   });
 }
 
-// API endpoint để gửi tin nhắn
+// Endpoint for sending messages
 export async function POST(request: NextRequest) {
   try {
     const message: Message = await request.json();
@@ -74,10 +64,10 @@ export async function POST(request: NextRequest) {
       return new Response('Room ID is required', { status: 400 });
     }
     
-    // Lưu tin nhắn vào Redis
+    // Save message to Redis
     await saveMessage(message);
     
-    // Phát tin nhắn đến tất cả người dùng trong phòng
+    // Publish to Redis channel
     publisher.publish(`chat:${roomId}`, JSON.stringify(message));
     
     return new Response(JSON.stringify({ success: true }), {
@@ -85,7 +75,7 @@ export async function POST(request: NextRequest) {
     });
   } catch (error) {
     console.error('Error sending message:', error);
-    return new Response(JSON.stringify({ error: 'Failed to send message' }), { 
+    return new Response(JSON.stringify({ error: 'Failed to send message' }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' }
     });

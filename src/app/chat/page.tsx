@@ -1,6 +1,3 @@
-
-// Trang chat
-// app/chat/page.tsx
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -13,38 +10,71 @@ export default function ChatPage() {
     const [newRoomName, setNewRoomName] = useState('');
     const [username, setUsername] = useState('');
     const [isUsernameSet, setIsUsernameSet] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        // Lấy danh sách phòng
+        // Attempt to retrieve username from localStorage
+        const savedUsername = localStorage.getItem('chatUsername');
+        if (savedUsername) {
+            setUsername(savedUsername);
+            setIsUsernameSet(true);
+        }
+
+        // Fetch room list
         const fetchRooms = async () => {
-            const response = await fetch('/api/rooms');
-            if (response.ok) {
-                const data = await response.json();
-                setRooms(data);
-                if (data.length > 0) {
-                    setSelectedRoom(data[0]);
+            setIsLoading(true);
+            try {
+                const response = await fetch('/api/rooms');
+                if (response.ok) {
+                    const data = await response.json();
+                    setRooms(data);
+                    // Only set selected room if we have rooms and no room is currently selected
+                    if (data.length > 0 && !selectedRoom) {
+                        setSelectedRoom(data[0]);
+                    }
+                } else {
+                    setError('Failed to load rooms');
                 }
+            } catch (error) {
+                console.error('Error fetching rooms:', error);
+                setError('Error connecting to server');
+            } finally {
+                setIsLoading(false);
             }
         };
 
         fetchRooms();
+
+        // Set up polling for room list updates
+        const intervalId = setInterval(fetchRooms, 30000); // Update every 30 seconds
+
+        return () => clearInterval(intervalId);
     }, []);
 
     const handleCreateRoom = async (e: React.FormEvent) => {
         e.preventDefault();
         if (newRoomName.trim()) {
-            const response = await fetch('/api/rooms', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ name: newRoomName }),
-            });
+            try {
+                const response = await fetch('/api/rooms', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ name: newRoomName }),
+                });
 
-            if (response.ok) {
-                const newRoom = await response.json();
-                setRooms([...rooms, newRoom]);
-                setNewRoomName('');
+                if (response.ok) {
+                    const newRoom = await response.json();
+                    setRooms(prevRooms => [...prevRooms, newRoom]);
+                    setSelectedRoom(newRoom);
+                    setNewRoomName('');
+                } else {
+                    setError('Failed to create room');
+                }
+            } catch (error) {
+                console.error('Error creating room:', error);
+                setError('Error connecting to server');
             }
         }
     };
@@ -52,6 +82,8 @@ export default function ChatPage() {
     const handleSetUsername = (e: React.FormEvent) => {
         e.preventDefault();
         if (username.trim()) {
+            // Save username to localStorage for persistence
+            localStorage.setItem('chatUsername', username);
             setIsUsernameSet(true);
         }
     };
@@ -101,28 +133,54 @@ export default function ChatPage() {
                         </button>
                     </form>
                 </div>
-                <div className="overflow-y-auto flex-grow">
-                    <ul className="space-y-2">
-                        {rooms.map((room) => (
-                            <li key={room.id}>
-                                <button
-                                    onClick={() => setSelectedRoom(room)}
-                                    className={`w-full text-left p-2 rounded ${selectedRoom?.id === room.id ? 'bg-blue-100 font-bold' : 'hover:bg-gray-100'
-                                        }`}
-                                >
-                                    {room.name}
-                                </button>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+
+                {error && (
+                    <div className="bg-red-100 text-red-700 p-2 mb-4 rounded">
+                        {error}
+                    </div>
+                )}
+
+                {isLoading ? (
+                    <div className="flex items-center justify-center p-4">
+                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-700"></div>
+                    </div>
+                ) : (
+                    <div className="overflow-y-auto flex-grow">
+                        {rooms.length === 0 ? (
+                            <p className="text-center text-gray-500 p-4">
+                                Không có phòng nào. Hãy tạo phòng mới.
+                            </p>
+                        ) : (
+                            <ul className="space-y-2">
+                                {rooms.map((room) => (
+                                    <li key={room.id}>
+                                        <button
+                                            onClick={() => setSelectedRoom(room)}
+                                            className={`w-full text-left p-2 rounded ${selectedRoom?.id === room.id
+                                                    ? 'bg-blue-100 font-bold'
+                                                    : 'hover:bg-gray-100'
+                                                }`}
+                                        >
+                                            {room.name}
+                                        </button>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </div>
+                )}
             </div>
+
             <div className="bg-white p-4 rounded-lg shadow md:col-span-3 h-full">
                 {selectedRoom ? (
                     <ChatRoom room={selectedRoom} username={username} />
                 ) : (
                     <div className="flex items-center justify-center h-full">
-                        <p className="text-gray-500">Chọn một phòng để bắt đầu trò chuyện</p>
+                        <p className="text-gray-500">
+                            {rooms.length === 0
+                                ? 'Tạo một phòng mới để bắt đầu trò chuyện'
+                                : 'Chọn một phòng để bắt đầu trò chuyện'}
+                        </p>
                     </div>
                 )}
             </div>
