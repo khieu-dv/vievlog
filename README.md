@@ -163,18 +163,19 @@ vietopik/
 │   Người A    │         │   Người B    │
 │  (ChatRoom)  │         │  (ChatRoom)  │
 └────┬─────────┘         └────┬─────────┘
-     │                        │
-     ▼                        ▼
- GET /api/socket?roomId=123  (SSE: Listen for messages)
-     │                        │
-     ▼                        ▼
-  SSE mở kết nối đến Server  ←────────┐
-                                      │
-  POST /api/messages                  │
-    gửi message M                     │
-            ▼                         │
-    Lưu M vào Redis                   │
-    Push M đến tất cả SSE clients────┘
+     │                          │
+     ▼                          ▼
+GET /api/socket?roomId=123   (SSE: Listen for messages)
+     │                          │
+     ▼                          ▼
+SSE mở kết nối đến Server   ◄───┐
+                               │
+POST /api/messages             │
+Gửi message M                  │
+     ▼                         │
+Lưu M vào Redis                │
+Push M đến tất cả SSE clients ─┘
+
 
 
 ### Key Highlights:
