@@ -158,6 +158,25 @@ vietopik/
 │   └── serverI18n.ts               # Server-side internationalization utilities
 ```
 
+
+┌──────────────┐         ┌──────────────┐
+│   Người A    │         │   Người B    │
+│  (ChatRoom)  │         │  (ChatRoom)  │
+└────┬─────────┘         └────┬─────────┘
+     │                        │
+     ▼                        ▼
+ GET /api/socket?roomId=123  (SSE: Listen for messages)
+     │                        │
+     ▼                        ▼
+  SSE mở kết nối đến Server  ←────────┐
+                                      │
+  POST /api/messages                  │
+    gửi message M                     │
+            ▼                         │
+    Lưu M vào Redis                   │
+    Push M đến tất cả SSE clients────┘
+
+
 ### Key Highlights:
 - **`app/`**: Contains all Next.js pages and components, organized by feature (e.g., `auth`, `posts`, `grammars`).
 - **`db/`**: Manages database schema and connections using Drizzle ORM.

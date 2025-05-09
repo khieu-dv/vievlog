@@ -1,6 +1,7 @@
+// app/api/socket/route.ts
 import { NextRequest } from 'next/server';
 import { Message } from '../../../lib/types';
-import { saveMessage, publisher, subscriber } from '../../../lib/redis';
+import { subscriber } from '../../../lib/redis';
 
 // Server-Sent Events (SSE) endpoint
 export async function GET(request: NextRequest) {
@@ -10,12 +11,25 @@ export async function GET(request: NextRequest) {
   if (!roomId) {
     return new Response('Room ID is required', { status: 400 });
   }
-  
+
   // Set up SSE stream
   const encoder = new TextEncoder();
   const stream = new ReadableStream({
     start(controller) {
       const channelName = `chat:${roomId}`;
+      
+      // Send initial connection event
+      controller.enqueue(encoder.encode('event: connected\ndata: {"status":"connected"}\n\n'));
+      
+      // Keep connection alive with periodic pings
+      const pingInterval = setInterval(() => {
+        try {
+          controller.enqueue(encoder.encode('event: ping\ndata: {}\n\n'));
+        } catch (err) {
+          console.error('Error sending ping, cleaning up:', err);
+          clearInterval(pingInterval);
+        }
+      }, 30000); // 30 second ping
       
       // Subscribe to Redis channel
       subscriber.subscribe(channelName);
@@ -23,7 +37,13 @@ export async function GET(request: NextRequest) {
       // Handle messages from Redis
       const messageHandler = (channel: string, message: string) => {
         if (channel === channelName) {
-          controller.enqueue(encoder.encode(`data: ${message}\n\n`));
+          try {
+            // Ensure the message can be parsed as JSON before sending
+            const parsed = JSON.parse(message);
+            controller.enqueue(encoder.encode(`data: ${message}\n\n`));
+          } catch (error) {
+            console.error('Invalid message received:', error);
+          }
         }
       };
       
@@ -31,6 +51,7 @@ export async function GET(request: NextRequest) {
       
       // Cleanup function for when connection is closed
       const cleanup = () => {
+        clearInterval(pingInterval);
         subscriber.off('message', messageHandler);
         subscriber.unsubscribe(channelName);
       };
@@ -44,40 +65,13 @@ export async function GET(request: NextRequest) {
       if (this.cleanup) this.cleanup();
     }
   });
-  
+
   return new Response(stream, {
     headers: {
       'Content-Type': 'text/event-stream',
-      'Cache-Control': 'no-cache',
-      'Connection': 'keep-alive'
+      'Cache-Control': 'no-cache, no-transform',
+      'Connection': 'keep-alive',
+      'X-Accel-Buffering': 'no' // Prevents nginx from buffering the response
     }
   });
-}
-
-// Endpoint for sending messages
-export async function POST(request: NextRequest) {
-  try {
-    const message: Message = await request.json();
-    const { roomId } = message;
-    
-    if (!roomId) {
-      return new Response('Room ID is required', { status: 400 });
-    }
-    
-    // Save message to Redis
-    await saveMessage(message);
-    
-    // Publish to Redis channel
-    publisher.publish(`chat:${roomId}`, JSON.stringify(message));
-    
-    return new Response(JSON.stringify({ success: true }), {
-      headers: { 'Content-Type': 'application/json' }
-    });
-  } catch (error) {
-    console.error('Error sending message:', error);
-    return new Response(JSON.stringify({ error: 'Failed to send message' }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' }
-    });
-  }
 }
