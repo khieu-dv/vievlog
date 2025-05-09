@@ -3,7 +3,7 @@ import { Redis } from 'ioredis';
 import { Message, Room } from './types';
 
 // Sử dụng biến môi trường
-const redisUrl = process.env.REDIS_URL || 'redis://:yourpass@local:6379';
+const redisUrl = process.env.REDIS_URL || 'redis://:yourpass@localhost:6379';
 const redis = new Redis(redisUrl);
 
 export default redis;
