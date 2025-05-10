@@ -3,13 +3,13 @@
 A modern, open-source web project built with **Next.js**, **PocketBase**, and **TailwindCSS** to support learning IT (VIEVLOG).
 
 <p align="center">
-  <img src="./public/screenshot6.png" width="400" />
-  <img src="./public/screenshot7.png" width="400" />
+  <img src="./public/screenshot10.png" width="400" />
+  <img src="./public/screenshot11.png" width="400" />
 </p>
 
 <p align="center">
-  <img src="./public/screenshot8.png" width="400" />
-  <img src="./public/screenshot9.png" width="400" />
+  <img src="./public/screenshot12.png" width="400" />
+  <img src="./public/screenshot13.png" width="400" />
 
 </p>
 
