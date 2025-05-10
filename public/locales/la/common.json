@@ -29,11 +29,11 @@
     "signUp": "Subscribo",
     "toggleTheme": "Toggle Natus",
     "newCollection": "Available",
-    "oneStopPlatform": "Ultima Korean Doctrina Platform",
+    "oneStopPlatform": "Ultima IT Doctrina Platform",
     "startLearningNow": "Nito topic",
     "whyChooseVieVlog": "Quid eligere Vietopik?",
     "freeAccess": "Liberum aditus",
-    "learnKorean": "Disce Coreanica cum summus qualis Lectiones ex peritorum omnino non sumptus.",
+    "learnIT": "Disce Coreanica cum summus qualis Lectiones ex peritorum omnino non sumptus.",
     "expertInstructors": "PERPOS",
     "learnFromExperts": "Disce a indigenitis loquentium et periti doctores.",
     "anytimeAnywhere": "Quolibet, usquam",
@@ -47,9 +47,9 @@
     "topikII_tests": "XV Practice probat",
     "viewAllTopiks": "Omnes Topics probat",
     "featuredCourses": "Featured cursus",
-    "beginnerKorean": "Inceptor est Coreanica",
-    "intermediateKorean": "Intermedius Coreanica",
-    "advancedKorean": "Advanced Coreanica",
+    "beginnerIT": "Inceptor est Coreanica",
+    "intermediateIT": "Intermedius Coreanica",
+    "advancedIT": "Advanced Coreanica",
     "getStartedForFree": "Ut coepi gratis",
     "whatOurLearnersSay": "Quid nostrum discentium dicunt",
     "testimonial1": {
@@ -58,7 +58,7 @@
       "role": "Internationalis discipulus"
     },
     "testimonial2": {
-      "quote": "\"Doctrina Korean est numquam facillimus! Quod exstructa lectiones faciunt omnia simplex et fun.\"",
+      "quote": "\"Doctrina IT est numquam facillimus! Quod exstructa lectiones faciunt omnia simplex et fun.\"",
       "name": "Tran hai nam",
       "role": "Officium opificem"
     },

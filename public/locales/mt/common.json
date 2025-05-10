@@ -18,7 +18,7 @@
     }
   },
   "content": {
-    "title": "Vietopik - Tgħallem Korean b'xejn",
+    "title": "Vietopik - Tgħallem IT b'xejn",
     "home": "Id-dar",
     "topiks": "Topiks",
     "courses": "Korsijiet",
@@ -29,11 +29,11 @@
     "signUp": "Irreġistra",
     "toggleTheme": "Toggle Tema",
     "newCollection": "Kollezzjoni ġdida disponibbli",
-    "oneStopPlatform": "Il-pjattaforma aħħarija tat-tagħlim Korean tiegħek",
+    "oneStopPlatform": "Il-pjattaforma aħħarija tat-tagħlim IT tiegħek",
     "startLearningNow": "Suġġett tal-eżami",
     "whyChooseVieVlog": "Għaliex tagħżel Vietopik?",
     "freeAccess": "Aċċess b'xejn",
-    "learnKorean": "Tgħallem il-Korean b'lezzjonijiet ta 'kwalità għolja minn esperti assolutament bla ħlas.",
+    "learnIT": "Tgħallem il-ITb'lezzjonijiet ta 'kwalità għolja minn esperti assolutament bla ħlas.",
     "expertInstructors": "Għalliema esperti",
     "learnFromExperts": "Tgħallem minn kelliema nattivi u għalliema b'esperjenza.",
     "anytimeAnywhere": "F'kull ħin, kullimkien",
@@ -47,9 +47,9 @@
     "topikII_tests": "15 Testijiet tal-Prattika",
     "viewAllTopiks": "Ara t-testijiet tas-suġġetti kollha",
     "featuredCourses": "Korsijiet dehru",
-    "beginnerKorean": "Korean tal-Bidu",
-    "intermediateKorean": "Korean intermedju",
-    "advancedKorean": "Korean avvanzat",
+    "beginnerIT": "ITtal-Bidu",
+    "intermediateIT": "ITintermedju",
+    "advancedIT": "ITavvanzat",
     "getStartedForFree": "Ibda b'xejn",
     "whatOurLearnersSay": "Dak li jgħidu l-istudenti tagħna",
     "testimonial1": {
@@ -58,7 +58,7 @@
       "role": "Student internazzjonali"
     },
     "testimonial2": {
-      "quote": "\"It-tagħlim tal-Korean qatt ma kien aktar faċli! Il-lezzjonijiet strutturati jagħmlu dak kollu sempliċi u divertenti.\"",
+      "quote": "\"It-tagħlim tal-ITqatt ma kien aktar faċli! Il-lezzjonijiet strutturati jagħmlu dak kollu sempliċi u divertenti.\"",
       "name": "Tran Hai Nam",
       "role": "Ħaddiem tal-Uffiċċju"
     },
@@ -68,7 +68,7 @@
       "role": "Student tal-Università"
     },
     "vieTopik": "Vietopik",
-    "yourOneStopShop": "Il-pjattaforma one-stop tiegħek għall-ħakma tal-Koreani. Aċċess ir-riżorsi premium b'xejn u tilħaq il-miri tal-lingwa tiegħek illum!",
+    "yourOneStopShop": "Il-pjattaforma one-stop tiegħek għall-ħakma tal-ITi. Aċċess ir-riżorsi premium b'xejn u tilħaq il-miri tal-lingwa tiegħek illum!",
     "connectWithUs": "Qabbad magħna",
     "socialMedia": {
       "facebook": "Facebook",

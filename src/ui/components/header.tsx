@@ -47,8 +47,7 @@ export function Header({ showAuth = true }: HeaderProps) {
   const navigation = [
     { name: t("content.home"), href: "/" },
     { name: "Posts", href: "/posts" },
-    { name: "Videos", href: "/video-feed" },
-    { name: t("content.grammar"), href: "/diagrams" },
+    { name: "Videos", href: "/video" },
     { name: "Chat", href: "/chat" },];
 
   return (

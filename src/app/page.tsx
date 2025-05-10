@@ -110,8 +110,8 @@ export default function HomePage() {
   const featuredTopiks = [
     {
       id: "9v0i6zzig509tk9",
-      name: "제35회 한국어능력시험 TOPIK Ⅰ 듣기",
-      description: t("content.learnKorean"),
+      name: "제35회 한국어능력시험 VIEVLOG Ⅰ 듣기",
+      description: t("content.learnIT"),
       price: 199.99,
       originalPrice: 249.99,
       image:
@@ -123,7 +123,7 @@ export default function HomePage() {
     },
     {
       id: "tph8rw2hzg51igq",
-      name: "제35회 한국어능력시험 TOPIK I 읽기",
+      name: "제35회 한국어능력시험 VIEVLOG I 읽기",
       description: t("content.learnFromExperts"),
 
       price: 299.99,
@@ -137,7 +137,7 @@ export default function HomePage() {
     },
     {
       id: "6bve930m9y8vacl",
-      name: "제35회 한국어능력시험 TOPIK Ⅱ 듣기",
+      name: "제35회 한국어능력시험 VIEVLOG Ⅱ 듣기",
       description: t("content.learnAtYourOwnPace"),
       price: 999.99,
       originalPrice: 1099.99,
@@ -150,7 +150,7 @@ export default function HomePage() {
     },
     {
       id: "giy1vhnk3w7d55c",
-      name: "제35회 한국어능력시험 TOPIK IⅠ 읽기",
+      name: "제35회 한국어능력시험 VIEVLOG IⅠ 읽기",
       description: t("content.coverAllAspects"),
       price: 149.99,
       originalPrice: 179.99,
@@ -165,13 +165,13 @@ export default function HomePage() {
 
   const categories = [
     {
-      name: "TOPIK I",
+      name: "VIEVLOG I",
       image:
         "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
       productCount: 12,
     },
     {
-      name: "TOPIK II",
+      name: "VIEVLOG II",
       image:
         "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
       productCount: 15,
@@ -271,7 +271,7 @@ export default function HomePage() {
                     </span>
                   </h1>
                   <p className="max-w-[700px] text-lg text-muted-foreground md:text-xl">
-                    {t("content.learnKorean")}
+                    {t("content.learnIT")}
                   </p>
                 </div>
                 <div className="flex flex-col gap-3 sm:flex-row">
@@ -280,22 +280,7 @@ export default function HomePage() {
                       View All Post <ArrowRight className="h-4 w-4" />
                     </Button>
                   </Link>
-                  <Link href="/diagrams">
-                    <Button variant="outline" size="lg" className="h-12 px-8">
-                      View All Lessons <ArrowRight className="h-4 w-4" />
-                    </Button>
-                  </Link>
                 </div>
-                {/* <div className="flex flex-wrap gap-5 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-1.5">
-                    <Truck className="h-5 w-5 text-primary/70" />
-                    <span>{t("content.freeAccess")}</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <Clock className="h-5 w-5 text-primary/70" />
-                    <span>{t("content.expertInstructors")}</span>
-                  </div>
-                </div> */}
               </div>
               <div className="relative mx-auto hidden aspect-square w-full max-w-md overflow-hidden rounded-xl border lg:block">
                 <div className="absolute inset-0 z-10 bg-gradient-to-tr from-primary/20 via-transparent to-transparent" />
@@ -322,7 +307,7 @@ export default function HomePage() {
               </h2>
               <div className="mt-2 h-1 w-12 rounded-full bg-primary" />
               <p className="mt-4 max-w-2xl text-center text-muted-foreground">
-                Explore our latest articles and tips for learning Korean
+                Explore our latest articles and tips for learning IT
               </p>
             </div>
 

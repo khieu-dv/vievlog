@@ -265,9 +265,9 @@ export default function PostsPage() {
                 <div className="container mx-auto max-w-2xl px-4">
                     {/* Page Header */}
                     <div className="mb-6 text-center">
-                        <h1 className="text-3xl font-bold text-gray-900">Korean Language Learning</h1>
+                        <h1 className="text-3xl font-bold text-gray-900">IT Language Learning</h1>
                         <p className="mt-2 text-gray-600">
-                            Explore our latest articles, tips and techniques for mastering Korean
+                            Explore our latest articles, tips and techniques for mastering IT
                         </p>
                     </div>
 

@@ -8,12 +8,12 @@ export interface FlowItem {
 
 // Mock data - replace with actual API calls in production
 const mockFlows: FlowItem[] = [
-  { id: 1, title: "Beginner I", description: "Korean Grammar in Use" },
-  { id: 2, title: "Beginner II", description: "Korean Grammar in Use" },
-  // { id: 3, title: "Intermetidate I", description: "Korean Grammar in Use" },
-  // { id: 4, title: "Intermetidate II", description: "Korean Grammar in Use" },
-  // { id: 5, title: "Advance I", description: "Korean Grammar in Use" },
-  // { id: 6, title: "Advance II", description: "Korean Grammar in Use" },
+  { id: 1, title: "Beginner I", description: "ITGrammar in Use" },
+  { id: 2, title: "Beginner II", description: "ITGrammar in Use" },
+  // { id: 3, title: "Intermetidate I", description: "ITGrammar in Use" },
+  // { id: 4, title: "Intermetidate II", description: "ITGrammar in Use" },
+  // { id: 5, title: "Advance I", description: "ITGrammar in Use" },
+  // { id: 6, title: "Advance II", description: "ITGrammar in Use" },
 ];
 
 export async function getFlows(): Promise<FlowItem[]> {

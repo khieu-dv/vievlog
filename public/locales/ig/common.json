@@ -18,7 +18,7 @@
     }
   },
   "content": {
-    "title": "Vietpik - Mụta Korean n'efu",
+    "title": "Vietpik - Mụta IT n'efu",
     "home": "Ulo",
     "topiks": "Isiokwu",
     "courses": "Nkuzi",
@@ -33,7 +33,7 @@
     "startLearningNow": "Isiokwu nyocha",
     "whyChooseVieVlog": "Kedu ihe kpatara Họrọ Vietpik?",
     "freeAccess": "Nnweta n'efu",
-    "learnKorean": "Mụọ Korean nwere nkuzi dị elu site n'aka ndị ọkachamara na-efu efu.",
+    "learnIT": "Mụọ IT nwere nkuzi dị elu site n'aka ndị ọkachamara na-efu efu.",
     "expertInstructors": "Ndị nkuzi ọkachamara",
     "learnFromExperts": "Mụta n'aka ndị ọkà mmụta obodo na ndị nkuzi nwere ahụmahụ.",
     "anytimeAnywhere": "Oge obula, ebe obula",
@@ -47,9 +47,9 @@
     "topikII_tests": "15 Mee nnwale",
     "viewAllTopiks": "Lelee nnwale niile",
     "featuredCourses": "Egosiputa nkuzi",
-    "beginnerKorean": "Onye na-amalite Korean",
-    "intermediateKorean": "Etiti Korean",
-    "advancedKorean": "Korean di elu",
+    "beginnerIT": "Onye na-amalite IT",
+    "intermediateIT": "Etiti IT",
+    "advancedIT": "ITdi elu",
     "getStartedForFree": "Bido n'efu",
     "whatOurLearnersSay": "Ihe Ndị Na-amụrụ Anyị Na-ekwu",
     "testimonial1": {

@@ -33,7 +33,7 @@
     "startLearningNow": "Azterketa gaia",
     "whyChooseVieVlog": "Zergatik aukeratu Vietopik?",
     "freeAccess": "Sarbide librea",
-    "learnKorean": "Ikasi Koreera kalitate handiko ikasgaiekin adituek ez dute inolako kosturik.",
+    "learnIT": "Ikasi Koreera kalitate handiko ikasgaiekin adituek ez dute inolako kosturik.",
     "expertInstructors": "Adituentzako begiraleak",
     "learnFromExperts": "Ikasi bertako hiztunetatik eta esperientziadun irakasleei.",
     "anytimeAnywhere": "Edonoiz, edonon",
@@ -47,9 +47,9 @@
     "topikII_tests": "15 praktika probak",
     "viewAllTopiks": "Ikusi gai guztiak proba guztiak",
     "featuredCourses": "Nabarmendutako ikastaroak",
-    "beginnerKorean": "Hasiberria Koreera",
-    "intermediateKorean": "Bitarteko koreera",
-    "advancedKorean": "Koreera aurreratuak",
+    "beginnerIT": "Hasiberria Koreera",
+    "intermediateIT": "Bitarteko koreera",
+    "advancedIT": "Koreera aurreratuak",
     "getStartedForFree": "Hasi doan",
     "whatOurLearnersSay": "Gure ikasleek esaten dutena",
     "testimonial1": {
@@ -58,7 +58,7 @@
       "role": "Nazioarteko ikaslea"
     },
     "testimonial2": {
-      "quote": "\"Korean ikastea ez da inoiz errazagoa izan! Egituratutako ikasgaiek dena sinplea eta dibertigarria bihurtzen dute.\"",
+      "quote": "\"ITikastea ez da inoiz errazagoa izan! Egituratutako ikasgaiek dena sinplea eta dibertigarria bihurtzen dute.\"",
       "name": "Tran hai nam",
       "role": "Bulegoko langilea"
     },

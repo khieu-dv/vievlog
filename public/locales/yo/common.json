@@ -18,7 +18,7 @@
     }
   },
   "content": {
-    "title": "Vietpopik - Kọ ẹkọ Korean fun ọfẹ",
+    "title": "Vietpopik - Kọ ẹkọ IT fun ọfẹ",
     "home": "Ile",
     "topiks": "Awọn akọle",
     "courses": "Awọn iṣẹ",
@@ -33,7 +33,7 @@
     "startLearningNow": "Aye Koko",
     "whyChooseVieVlog": "Kini idi ti Yan Vietpopik?",
     "freeAccess": "Wiwọle ọfẹ",
-    "learnKorean": "Kọ Korean pẹlu awọn ẹkọ didara-didara lati ọdọ awọn amoye ni Egba ko si idiyele.",
+    "learnIT": "Kọ IT pẹlu awọn ẹkọ didara-didara lati ọdọ awọn amoye ni Egba ko si idiyele.",
     "expertInstructors": "Awọn olukọni Ẹgbọn",
     "learnFromExperts": "Kọ ẹkọ lati ọdọ awọn agbọrọsọ abinibi ati awọn olukọ ti o ni iriri.",
     "anytimeAnywhere": "Nigbakugba, nibikibi",
@@ -47,9 +47,9 @@
     "topikII_tests": "15 Awọn idanwo adaṣe 15",
     "viewAllTopiks": "Wo gbogbo awọn idanwo akọle",
     "featuredCourses": "Awọn ẹkọ ti a ṣe ifihan",
-    "beginnerKorean": "Abere alakọbẹrẹ",
-    "intermediateKorean": "Intermediate Kolan",
-    "advancedKorean": "Is] gonce",
+    "beginnerIT": "Abere alakọbẹrẹ",
+    "intermediateIT": "Intermediate Kolan",
+    "advancedIT": "Is] gonce",
     "getStartedForFree": "Bibẹrẹ fun ọfẹ",
     "whatOurLearnersSay": "Ohun ti awọn ẹkọ wa sọ",
     "testimonial1": {
@@ -58,7 +58,7 @@
       "role": "Ọmọ ile-iwe agbaye"
     },
     "testimonial2": {
-      "quote": "\"Kọ ẹkọ Korean ko rọrun! Awọn ẹkọ ti ikede Ṣe ohun gbogbo rọrun ati igbadun.\"",
+      "quote": "\"Kọ ẹkọ IT ko rọrun! Awọn ẹkọ ti ikede Ṣe ohun gbogbo rọrun ati igbadun.\"",
       "name": "Tran hai Naa",
       "role": "Oṣiṣẹ ọfiisi"
     },
@@ -68,7 +68,7 @@
       "role": "Ọmọ ile-iwe giga"
     },
     "vieTopik": "Vietpopik",
-    "yourOneStopShop": "Syeed oju-omi-idena rẹ fun Mastering Korean. Wiwọle Ere Ere iroyin fun ọfẹ ki o ṣaṣeyọri awọn ibi-afẹde ede rẹ loni!",
+    "yourOneStopShop": "Syeed oju-omi-idena rẹ fun Mastering IT. Wiwọle Ere Ere iroyin fun ọfẹ ki o ṣaṣeyọri awọn ibi-afẹde ede rẹ loni!",
     "connectWithUs": "Sopọ pẹlu wa",
     "socialMedia": {
       "facebook": "Facebook",

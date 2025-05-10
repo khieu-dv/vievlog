@@ -33,7 +33,7 @@
     "startLearningNow": "Tentti",
     "whyChooseVieVlog": "Miksi valita vietopik?",
     "freeAccess": "Ilmainen pääsy",
-    "learnKorean": "Opi koreaa korkealaatuisilla asiantuntijoilla ilman kustannuksia.",
+    "learnIT": "Opi koreaa korkealaatuisilla asiantuntijoilla ilman kustannuksia.",
     "expertInstructors": "Asiantuntija -ohjaajat",
     "learnFromExperts": "Opi äidinkielenään ja kokeneilta opettajilta.",
     "anytimeAnywhere": "Milloin tahansa, missä tahansa",
@@ -47,18 +47,18 @@
     "topikII_tests": "15 Harjoittelutestit",
     "viewAllTopiks": "Katso kaikki aiheet testit",
     "featuredCourses": "Esitetyt kurssit",
-    "beginnerKorean": "Aloittelijan korea",
-    "intermediateKorean": "Korealainen välituote",
-    "advancedKorean": "Edistynyt korea",
+    "beginnerIT": "Aloittelijan korea",
+    "intermediateIT": "Korealainen välituote",
+    "advancedIT": "Edistynyt korea",
     "getStartedForFree": "Aloita ilmaiseksi",
     "whatOurLearnersSay": "Mitä oppijat sanovat",
     "testimonial1": {
-      "quote": "\"Vietopik auttoi minua valmistautumaan TOPIK-kokeeseeni tehokkaasti. Oppitunnit ovat hyvin jäsenneltyjä ja helppo seurata!\"",
+      "quote": "\"Vietopik auttoi minua valmistautumaan VIEVLOG-kokeeseeni tehokkaasti. Oppitunnit ovat hyvin jäsenneltyjä ja helppo seurata!\"",
       "name": "Nguyen Minh Anh",
       "role": "Kansainvälinen opiskelija"
     },
     "testimonial2": {
-      "quote": "\"Korean oppiminen ei ole koskaan ollut helpompaa! Strukturoidut oppitunnit tekevät kaikesta yksinkertaista ja hauskaa.\"",
+      "quote": "\"IToppiminen ei ole koskaan ollut helpompaa! Strukturoidut oppitunnit tekevät kaikesta yksinkertaista ja hauskaa.\"",
       "name": "Tran hai nam",
       "role": "Toimistotyöntekijä"
     },

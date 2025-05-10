@@ -29,11 +29,11 @@
     "signUp": "Yi rajista",
     "toggleTheme": "Rubutun taken",
     "newCollection": "Sabuwar tarin",
-    "oneStopPlatform": "Dandalinku na Koriya Korean",
+    "oneStopPlatform": "Dandalinku na Koriya IT",
     "startLearningNow": "Jarrabawa taken",
     "whyChooseVieVlog": "Me yasa Zabi Vietopik?",
     "freeAccess": "Dama dama",
-    "learnKorean": "Koyi Koriya tare da darussan masu inganci daga masana a ba da tsada.",
+    "learnIT": "Koyi Koriya tare da darussan masu inganci daga masana a ba da tsada.",
     "expertInstructors": "Kwararrun Malami",
     "learnFromExperts": "Koya daga asalin masu magana da malamai.",
     "anytimeAnywhere": "Kowane lokaci, ko'ina",
@@ -47,9 +47,9 @@
     "topikII_tests": "15 Aiwatar da Gwaji",
     "viewAllTopiks": "Duba dukkan gwaje-gwajen batutuwa",
     "featuredCourses": "Darussan fasalin",
-    "beginnerKorean": "Mafarin Koriya",
-    "intermediateKorean": "Matsakaici matsakaici",
-    "advancedKorean": "Babbar Koriya",
+    "beginnerIT": "Mafarin Koriya",
+    "intermediateIT": "Matsakaici matsakaici",
+    "advancedIT": "Babbar Koriya",
     "getStartedForFree": "Fara kyauta",
     "whatOurLearnersSay": "Abin da Xalibanmu suka ce",
     "testimonial1": {
@@ -58,7 +58,7 @@
       "role": "Dalibin kasa da kasa"
     },
     "testimonial2": {
-      "quote": "\"Koyo Korean bai taba zama sauki ba! Darasi na tsari ya yi komai mai sauki da nishadi.\"",
+      "quote": "\"Koyo IT bai taba zama sauki ba! Darasi na tsari ya yi komai mai sauki da nishadi.\"",
       "name": "Tran Hai Nam",
       "role": "Ma'aikacin ofis"
     },

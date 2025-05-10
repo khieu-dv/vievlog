@@ -1,6 +1,6 @@
 
 # VieVlog 🧠🇰🇷  
-A modern, open-source web project built with **Next.js**, **PocketBase**, and **TailwindCSS** to support learning Korean (TOPIK).
+A modern, open-source web project built with **Next.js**, **PocketBase**, and **TailwindCSS** to support learning IT (VIEVLOG).
 
 <p align="center">
   <img src="./public/screenshot6.png" width="400" />
@@ -135,7 +135,7 @@ vietopik/
 │   │   └── page.tsx                # Posts listing page
 │   ├── profile/                    # User profile pages
 │   ├── showcase/                   # Showcase pages
-│   ├── video-feed/                 # Video feed pages
+│   ├── video/                 # Video feed pages
 │   └── videos/                     # Video-related pages
 ├── db/                             # Database configuration and schema
 │   ├── index.ts                    # Database connection setup
@@ -191,7 +191,7 @@ This structure ensures modularity, scalability, and maintainability for the proj
 
 ## 💡 Why VieVlog?
 
-This project was created to help learners of Korean (especially TOPIK) with a clean, modern learning platform. It’s also a great starting point for developers looking to work with PocketBase and Next.js.
+This project was created to help learners of IT (especially VIEVLOG) with a clean, modern learning platform. It’s also a great starting point for developers looking to work with PocketBase and Next.js.
 
 ---
 

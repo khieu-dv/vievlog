@@ -5,8 +5,8 @@
       "logout": "Logout",
       "inquiry": "Contact Us",
       "manager": "Manager",
-      "topikExams": "TOPIK Exams",
-      "topikSchedule": "TOPIK Schedule"
+      "topikExams": "VIEVLOG Exams",
+      "topikSchedule": "VIEVLOG Schedule"
     }
   },
   "body": {
@@ -18,7 +18,7 @@
     }
   },
   "content": {
-    "title": "VieVlog – Learn Korean for Free",
+    "title": "VieVlog – Learn IT for Free",
     "home": "Home",
     "topiks": "Topiks",
     "courses": "Courses",
@@ -29,36 +29,36 @@
     "signUp": "Sign up",
     "toggleTheme": "Toggle theme",
     "newCollection": "New Collection Available",
-    "oneStopPlatform": "Your Ultimate Korean Learning Platform",
+    "oneStopPlatform": "Your Ultimate IT Learning Platform",
     "startLearningNow": "Topik Exam",
     "whyChooseVieVlog": "Why Choose VieVlog?",
     "freeAccess": "Free Access",
-    "learnKorean": "Learn Korean with high-quality lessons from experts at absolutely no cost.",
+    "learnIT": "Learn IT with high-quality lessons from experts at absolutely no cost.",
     "expertInstructors": "Expert Instructors",
     "learnFromExperts": "Learn from native speakers and experienced teachers.",
     "anytimeAnywhere": "Anytime, Anywhere",
     "learnAtYourOwnPace": "Study at your own pace with unlimited access to lessons.",
     "comprehensiveCurriculum": "Comprehensive Curriculum",
     "coverAllAspects": "From beginner to advanced levels, covering grammar, vocabulary, and conversation.",
-    "topikExam": "Master the TOPIK Exam",
-    "topikI": "TOPIK I",
+    "topikExam": "Master the VIEVLOG Exam",
+    "topikI": "VIEVLOG I",
     "topikI_tests": "12 practice tests",
-    "topikII": "TOPIK II",
+    "topikII": "VIEVLOG II",
     "topikII_tests": "15 practice tests",
-    "viewAllTopiks": "View All TOPIK Tests",
+    "viewAllTopiks": "View All VIEVLOG Tests",
     "featuredCourses": "Featured Courses",
-    "beginnerKorean": "Beginner's Korean",
-    "intermediateKorean": "Intermediate Korean",
-    "advancedKorean": "Advanced Korean",
+    "beginnerIT": "Beginner's IT",
+    "intermediateIT": "Intermediate IT",
+    "advancedIT": "Advanced IT",
     "getStartedForFree": "Get Started for Free",
     "whatOurLearnersSay": "What Our Learners Say",
     "testimonial1": {
-      "quote": "\"VieVlog helped me prepare for my TOPIK exam effectively. The lessons are well-structured and easy to follow!\"",
+      "quote": "\"VieVlog helped me prepare for my VIEVLOG exam effectively. The lessons are well-structured and easy to follow!\"",
       "name": "Nguyen Minh Anh",
       "role": "International Student"
     },
     "testimonial2": {
-      "quote": "\"Learning Korean has never been easier! The structured lessons make everything simple and fun.\"",
+      "quote": "\"Learning IT has never been easier! The structured lessons make everything simple and fun.\"",
       "name": "Tran Hai Nam",
       "role": "Office Worker"
     },
@@ -68,7 +68,7 @@
       "role": "University Student"
     },
     "vieTopik": "VieVlog",
-    "yourOneStopShop": "Your one-stop platform for mastering Korean. Access premium resources for free and achieve your language goals today!",
+    "yourOneStopShop": "Your one-stop platform for mastering IT. Access premium resources for free and achieve your language goals today!",
     "connectWithUs": "Connect With Us",
     "socialMedia": {
       "facebook": "Facebook",
