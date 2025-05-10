@@ -261,9 +261,6 @@ export default function HomePage() {
             <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
               <div className="flex flex-col justify-center space-y-6">
                 <div className="space-y-4">
-                  <div className="inline-flex items-center rounded-lg bg-primary/10 px-3 py-1 text-sm font-semibold text-primary">
-                    {t("content.newCollection")}
-                  </div>
                   <h1 className="text-4xl font-bold tracking-tighter text-foreground sm:text-5xl md:text-6xl lg:leading-[1.1]">
                     {t("content.oneStopPlatform")}{" "}
                     <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
