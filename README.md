@@ -13,6 +13,10 @@ A modern, open-source web project built with **Next.js**, **PocketBase**, and **
 
 </p>
 
+📹 Watch the full lecture here: [👉 [YouTube video link](https://www.youtube.com/watch?v=bLqeFoANuTg)]
+
+💬 Don’t forget to subscribe and leave a comment if you enjoyed it — I’ll be working hard to complete the full series soon! ❤️
+
 
 ## 🚀 Features
 - ✅ Generate videos from images and audio – Perfect for sending sweet messages to someone special!
