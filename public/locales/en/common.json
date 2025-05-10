@@ -18,7 +18,7 @@
     }
   },
   "content": {
-    "title": "VieTopik – Learn Korean for Free",
+    "title": "VieVlog – Learn Korean for Free",
     "home": "Home",
     "topiks": "Topiks",
     "courses": "Courses",
@@ -31,7 +31,7 @@
     "newCollection": "New Collection Available",
     "oneStopPlatform": "Your Ultimate Korean Learning Platform",
     "startLearningNow": "Topik Exam",
-    "whyChooseVieTopik": "Why Choose VieTopik?",
+    "whyChooseVieVlog": "Why Choose VieVlog?",
     "freeAccess": "Free Access",
     "learnKorean": "Learn Korean with high-quality lessons from experts at absolutely no cost.",
     "expertInstructors": "Expert Instructors",
@@ -53,7 +53,7 @@
     "getStartedForFree": "Get Started for Free",
     "whatOurLearnersSay": "What Our Learners Say",
     "testimonial1": {
-      "quote": "\"VieTopik helped me prepare for my TOPIK exam effectively. The lessons are well-structured and easy to follow!\"",
+      "quote": "\"VieVlog helped me prepare for my TOPIK exam effectively. The lessons are well-structured and easy to follow!\"",
       "name": "Nguyen Minh Anh",
       "role": "International Student"
     },
@@ -63,11 +63,11 @@
       "role": "Office Worker"
     },
     "testimonial3": {
-      "quote": "\"Thanks to VieTopik, my listening and speaking skills have improved significantly within just three months!\"",
+      "quote": "\"Thanks to VieVlog, my listening and speaking skills have improved significantly within just three months!\"",
       "name": "Le Thanh Huong",
       "role": "University Student"
     },
-    "vieTopik": "VieTopik",
+    "vieTopik": "VieVlog",
     "yourOneStopShop": "Your one-stop platform for mastering Korean. Access premium resources for free and achieve your language goals today!",
     "connectWithUs": "Connect With Us",
     "socialMedia": {
@@ -89,7 +89,7 @@
       "termsOfService": "Terms of Service"
     },
     "footer": {
-      "copyright": "© 2025 VieTopik. All rights reserved."
+      "copyright": "© 2025 VieVlog. All rights reserved."
     },
     "metadata": {
       "lesson": "Browse our latest lessons and find something you'll love.",

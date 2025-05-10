@@ -41,7 +41,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         <div className="container flex h-16 items-center justify-between px-4 md:px-6">
           <div className="flex items-center gap-6">
             <Link href="/" className="flex items-center gap-2">
-              <span className="text-xl font-bold">VieTopik</span>
+              <span className="text-xl font-bold">VieVlog</span>
             </Link>
             <nav className="hidden md:flex">
               <ul className="flex items-center gap-4">

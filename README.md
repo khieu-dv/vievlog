@@ -1,5 +1,5 @@
 
-# VieTopik 🧠🇰🇷  
+# VieVlog 🧠🇰🇷  
 A modern, open-source web project built with **Next.js**, **PocketBase**, and **TailwindCSS** to support learning Korean (TOPIK).
 
 <p align="center">
@@ -189,7 +189,7 @@ This structure ensures modularity, scalability, and maintainability for the proj
 
 ---
 
-## 💡 Why VieTopik?
+## 💡 Why VieVlog?
 
 This project was created to help learners of Korean (especially TOPIK) with a clean, modern learning platform. It’s also a great starting point for developers looking to work with PocketBase and Next.js.
 
