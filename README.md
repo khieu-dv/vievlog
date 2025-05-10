@@ -37,8 +37,8 @@ A modern, open-source web project built with **Next.js**, **PocketBase**, and **
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/khieu-dv/vietopik.git
-cd vietopik
+git clone https://github.com/khieu-dv/vievlog.git
+cd vievlog
 ```
 
 ### 2. Install dependencies
@@ -56,7 +56,7 @@ yarn install
    Open your terminal and navigate to the directory containing the docker-compose.yml file:
 
    ```bash
-   cd ./vietopik/pocketbase-docker
+   cd ./vievlog/pocketbase-docker
    ```
 
 2. **Start the Docker container**:
@@ -105,7 +105,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the a
 ## 📁 Folder Structure
 
 ```
-vietopik/
+vievlog/
 ├── app/                            # Next.js App Router pages and components
 │   ├── favicon.ico                 # Favicon for the app
 │   ├── globals.css                 # Global CSS styles
@@ -117,34 +117,22 @@ vietopik/
 │   │   └── chat/                   # Chat-related API routes
 │   ├── auth/                       # Authentication pages
 │   │   ├── layout.tsx              # Layout for authentication pages
-│   │   ├── backup-codes/           # Backup codes page
 │   │   ├── sign-in/                # Sign-in page
 │   │   ├── sign-up/                # Sign-up page
-│   │   └── two-factor/             # Two-factor authentication page
 │   ├── chat/                       # Chat-related pages
 │   ├── components/                 # Reusable components
 │   │   ├── contact-button.tsx      # Contact button component
 │   │   ├── DevToolsDetector.tsx    # DevTools detection component
 │   │   ├── Emitter.tsx             # Emitter component for animations
 │   │   └── ...                     # Other components
-│   ├── dashboard/                  # Dashboard pages
-│   ├── diagrams/                   # Grammar diagrams pages
-│   ├── grammars/                   # Grammar-related pages
 │   ├── posts/                      # Blog post pages
 │   │   ├── [id]/                   # Dynamic post detail pages
 │   │   └── page.tsx                # Posts listing page
 │   ├── profile/                    # User profile pages
-│   ├── showcase/                   # Showcase pages
-│   ├── video/                 # Video feed pages
 │   └── videos/                     # Video-related pages
-├── db/                             # Database configuration and schema
-│   ├── index.ts                    # Database connection setup
-│   ├── types.ts                    # Database types
-│   └── schema/                     # Database schema definitions
 ├── lib/                            # Utility libraries and services
 │   ├── auth-client.ts              # Authentication client
 │   ├── auth-client_v2.ts           # Updated authentication client
-│   ├── auth.ts                     # Authentication utilities
 │   ├── flowService.ts              # Flow-related services
 │   ├── utils.ts                    # General utility functions
 │   └── hooks/                      # Custom React hooks
@@ -159,28 +147,10 @@ vietopik/
 ```
 
 
-┌──────────────┐         ┌──────────────┐
-│   Người A    │         │   Người B    │
-│  (ChatRoom)  │         │  (ChatRoom)  │
-└────┬─────────┘         └────┬─────────┘
-     │                          │
-     ▼                          ▼
-GET /api/socket?roomId=123   (SSE: Listen for messages)
-     │                          │
-     ▼                          ▼
-SSE mở kết nối đến Server   ◄───┐
-                               │
-POST /api/messages             │
-Gửi message M                  │
-     ▼                         │
-Lưu M vào Redis                │
-Push M đến tất cả SSE clients ─┘
-
 
 
 ### Key Highlights:
 - **`app/`**: Contains all Next.js pages and components, organized by feature (e.g., `auth`, `posts`, `grammars`).
-- **`db/`**: Manages database schema and connections using Drizzle ORM.
 - **`lib/`**: Includes reusable libraries for authentication, API services, and utilities.
 - **`ui/`**: Houses reusable UI components and primitives for consistent styling.
 - **`utils/`**: Contains server-side utilities, such as internationalization helpers.
@@ -205,7 +175,7 @@ This project is licensed under the **MIT License**. Feel free to use, modify, an
 
 If you like this project, please consider:
 
-- ⭐ Giving it a star on [GitHub](https://github.com/khieu-dv/vietopik)
+- ⭐ Giving it a star on [GitHub](https://github.com/khieu-dv/vievlog)
 - 📣 Sharing with your friends or community
 
 ---
