@@ -18,7 +18,7 @@
     }
   },
   "content": {
-    "title": "Vietopik - Tìm hiểu miễn phí Hàn Quốc",
+    "title": "Vietopik - Tìm hiểu miễn phí IT",
     "home": "Trang chủ",
     "topiks": "Chủ đề",
     "courses": "Khóa học",
@@ -29,7 +29,7 @@
     "signUp": "Đăng ký",
     "toggleTheme": "Chuyển đổi chủ đề",
     "newCollection": "Bộ sưu tập mới có sẵn",
-    "oneStopPlatform": "Nền tảng học tập Hàn Quốc cuối cùng của bạn",
+    "oneStopPlatform": "Nền tảng học tập IT cuối cùng của bạn",
     "startLearningNow": "Chủ đề thi",
     "whyChooseVieVlog": "Why Choose VieVlog?",
     "freeAccess": "Truy cập miễn phí",
@@ -47,9 +47,9 @@
     "topikII_tests": "15 bài kiểm tra thực hành",
     "viewAllTopiks": "Xem tất cả các bài kiểm tra chủ đề",
     "featuredCourses": "Các khóa học nổi bật",
-    "beginnerIT": "Người mới bắt đầu Hàn Quốc",
-    "intermediateIT": "Trung cấp Hàn Quốc",
-    "advancedIT": "Nâng cao Hàn Quốc",
+    "beginnerIT": "Người mới bắt đầu IT",
+    "intermediateIT": "Trung cấp IT",
+    "advancedIT": "Nâng cao IT",
     "getStartedForFree": "Bắt đầu miễn phí",
     "whatOurLearnersSay": "Những người học của chúng tôi nói gì",
     "testimonial1": {
@@ -68,7 +68,7 @@
       "role": "Sinh viên đại học"
     },
     "vieTopik": "VieVlog",
-    "yourOneStopShop": "Nền tảng một cửa của bạn để thành thạo Hàn Quốc. Truy cập tài nguyên cao cấp miễn phí và đạt được mục tiêu ngôn ngữ của bạn ngay hôm nay!",
+    "yourOneStopShop": "Nền tảng một cửa của bạn để thành thạo IT. Truy cập tài nguyên cao cấp miễn phí và đạt được mục tiêu ngôn ngữ của bạn ngay hôm nay!",
     "connectWithUs": "Kết nối với chúng tôi",
     "socialMedia": {
       "facebook": "Facebook",
