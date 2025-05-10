@@ -18,7 +18,7 @@
     }
   },
   "content": {
-    "title": "Vietopik - Opi koreaa ilmaiseksi",
+    "title": "VieVlog - Opi koreaa ilmaiseksi",
     "home": "Kotiin",
     "topiks": "Aiheet",
     "courses": "Kurssit",
@@ -53,7 +53,7 @@
     "getStartedForFree": "Aloita ilmaiseksi",
     "whatOurLearnersSay": "Mitä oppijat sanovat",
     "testimonial1": {
-      "quote": "\"Vietopik auttoi minua valmistautumaan VIEVLOG-kokeeseeni tehokkaasti. Oppitunnit ovat hyvin jäsenneltyjä ja helppo seurata!\"",
+      "quote": "\"VieVlog auttoi minua valmistautumaan VIEVLOG-kokeeseeni tehokkaasti. Oppitunnit ovat hyvin jäsenneltyjä ja helppo seurata!\"",
       "name": "Nguyen Minh Anh",
       "role": "Kansainvälinen opiskelija"
     },
@@ -63,11 +63,11 @@
       "role": "Toimistotyöntekijä"
     },
     "testimonial3": {
-      "quote": "\"Vietopikin ansiosta kuuntelu- ja puhumistaidoni ovat parantuneet huomattavasti vain kolmen kuukauden kuluessa!\"",
+      "quote": "\"VieVlogin ansiosta kuuntelu- ja puhumistaidoni ovat parantuneet huomattavasti vain kolmen kuukauden kuluessa!\"",
       "name": "Le Thanh Huong",
       "role": "Yliopisto -opiskelija"
     },
-    "vieTopik": "Vietopik",
+    "vieTopik": "VieVlog",
     "yourOneStopShop": "Yhden luukun alustasi korealaisen hallitsemiseksi. Pääsy premium -resursseihin ilmaiseksi ja saavuta kielitavoitteet tänään!",
     "connectWithUs": "Yhdistä meihin",
     "socialMedia": {
@@ -89,7 +89,7 @@
       "termsOfService": "Palvelusehdot"
     },
     "footer": {
-      "copyright": "© 2025 Vietopik. Kaikki oikeudet pidätetään."
+      "copyright": "© 2025 VieVlog. Kaikki oikeudet pidätetään."
     },
     "metadata": {
       "lesson": "Selaa viimeisimmät oppitunnimme ja löydä jotain, jota rakastat.",

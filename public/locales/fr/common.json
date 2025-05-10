@@ -18,7 +18,7 @@
     }
   },
   "content": {
-    "title": "Vietopik - Apprenez le coréen gratuitement",
+    "title": "VieVlog - Apprenez le coréen gratuitement",
     "home": "Maison",
     "topiks": "Sujets",
     "courses": "Cours",
@@ -31,7 +31,7 @@
     "newCollection": "Nouvelle collection disponible",
     "oneStopPlatform": "Votre plateforme d'apprentissage coréen ultime",
     "startLearningNow": "Sujet d'examen",
-    "whyChooseVieVlog": "Pourquoi choisir Vietopik?",
+    "whyChooseVieVlog": "Pourquoi choisir VieVlog?",
     "freeAccess": "Accès gratuit",
     "learnIT": "Apprenez coréen avec des leçons de haute qualité d'experts sans frais.",
     "expertInstructors": "Instructeurs experts",
@@ -53,7 +53,7 @@
     "getStartedForFree": "Commencez gratuitement",
     "whatOurLearnersSay": "Ce que nos apprenants disent",
     "testimonial1": {
-      "quote": "\"Vietopik m'a aidé à me préparer efficacement à mon examen Topik. Les leçons sont bien structurées et faciles à suivre!\"",
+      "quote": "\"VieVlog m'a aidé à me préparer efficacement à mon examen Topik. Les leçons sont bien structurées et faciles à suivre!\"",
       "name": "Nguyen Minh Anh",
       "role": "Étudiant international"
     },
@@ -63,11 +63,11 @@
       "role": "Travailleur de bureau"
     },
     "testimonial3": {
-      "quote": "\"Grâce à Vietopik, mes compétences d'écoute et de parole se sont considérablement améliorées en seulement trois mois!\"",
+      "quote": "\"Grâce à VieVlog, mes compétences d'écoute et de parole se sont considérablement améliorées en seulement trois mois!\"",
       "name": "Le Thanh Huong",
       "role": "Étudiant à l'université"
     },
-    "vieTopik": "Vietopik",
+    "vieTopik": "VieVlog",
     "yourOneStopShop": "Votre plate-forme à guichet unique pour maîtriser le coréen. Accédez aux ressources premium gratuitement et atteignez vos objectifs linguistiques dès aujourd'hui!",
     "connectWithUs": "Connectez-vous avec nous",
     "socialMedia": {
@@ -89,7 +89,7 @@
       "termsOfService": "Conditions de service"
     },
     "footer": {
-      "copyright": "© 2025 Vietopik. Tous droits réservés."
+      "copyright": "© 2025 VieVlog. Tous droits réservés."
     },
     "metadata": {
       "lesson": "Parcourez nos dernières leçons et trouvez quelque chose que vous aimerez.",

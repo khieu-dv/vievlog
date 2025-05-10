@@ -18,7 +18,7 @@
     }
   },
   "content": {
-    "title": "Vietopikas - mokykis korėjiečių nemokamai",
+    "title": "VieVlogas - mokykis korėjiečių nemokamai",
     "home": "Namai",
     "topiks": "Temos",
     "courses": "Kursai",
@@ -31,7 +31,7 @@
     "newCollection": "Galima nauja kolekcija",
     "oneStopPlatform": "Jūsų galutinė Korėjos mokymosi platforma",
     "startLearningNow": "Egzamino tema",
-    "whyChooseVieVlog": "Kodėl verta rinktis Vietopiką?",
+    "whyChooseVieVlog": "Kodėl verta rinktis VieVlogą?",
     "freeAccess": "Nemokama prieiga",
     "learnIT": "Išmokykite korėjiečių su aukštos kokybės ekspertų pamokomis nemokamai.",
     "expertInstructors": "Ekspertų instruktoriai",
@@ -53,7 +53,7 @@
     "getStartedForFree": "Pradėkite nemokamai",
     "whatOurLearnersSay": "Ką sako mūsų besimokantieji",
     "testimonial1": {
-      "quote": "\"Vietopikas padėjo man efektyviai pasiruošti savo„ Topik “egzaminui. Pamokos yra gerai struktūruotos ir lengvai stebimos!\"",
+      "quote": "\"VieVlogas padėjo man efektyviai pasiruošti savo„ Topik “egzaminui. Pamokos yra gerai struktūruotos ir lengvai stebimos!\"",
       "name": "Nguyen Minh Anh",
       "role": "Tarptautinis studentas"
     },
@@ -63,11 +63,11 @@
       "role": "Biuro darbuotojas"
     },
     "testimonial3": {
-      "quote": "\"Vietopiko dėka mano klausymo ir kalbėjimo įgūdžiai per tris mėnesius labai pagerėjo!\"",
+      "quote": "\"VieVlogo dėka mano klausymo ir kalbėjimo įgūdžiai per tris mėnesius labai pagerėjo!\"",
       "name": "Le Thanh Huong",
       "role": "Universiteto studentas"
     },
-    "vieTopik": "Vietopikas",
+    "vieTopik": "VieVlogas",
     "yourOneStopShop": "Jūsų „vieno langelio“ platforma, skirta įsisavinti korėjiečių kalbą. Prieiga prie „Premium“ išteklių nemokamai ir pasiekite savo kalbos tikslus šiandien!",
     "connectWithUs": "Susisiekti su mumis",
     "socialMedia": {
@@ -89,7 +89,7 @@
       "termsOfService": "Aptarnavimo sąlygos"
     },
     "footer": {
-      "copyright": "© 2025 Vietopikas. Visos teisės saugomos."
+      "copyright": "© 2025 VieVlogas. Visos teisės saugomos."
     },
     "metadata": {
       "lesson": "Naršykite mūsų naujausias pamokas ir raskite tai, kas jums patiks.",

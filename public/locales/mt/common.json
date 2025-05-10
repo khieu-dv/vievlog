@@ -18,7 +18,7 @@
     }
   },
   "content": {
-    "title": "Vietopik - Tgħallem IT b'xejn",
+    "title": "VieVlog - Tgħallem IT b'xejn",
     "home": "Id-dar",
     "topiks": "Topiks",
     "courses": "Korsijiet",
@@ -31,7 +31,7 @@
     "newCollection": "Kollezzjoni ġdida disponibbli",
     "oneStopPlatform": "Il-pjattaforma aħħarija tat-tagħlim IT tiegħek",
     "startLearningNow": "Suġġett tal-eżami",
-    "whyChooseVieVlog": "Għaliex tagħżel Vietopik?",
+    "whyChooseVieVlog": "Għaliex tagħżel VieVlog?",
     "freeAccess": "Aċċess b'xejn",
     "learnIT": "Tgħallem il-ITb'lezzjonijiet ta 'kwalità għolja minn esperti assolutament bla ħlas.",
     "expertInstructors": "Għalliema esperti",
@@ -53,7 +53,7 @@
     "getStartedForFree": "Ibda b'xejn",
     "whatOurLearnersSay": "Dak li jgħidu l-istudenti tagħna",
     "testimonial1": {
-      "quote": "\"Vietopik għenni nipprepara għall-eżami Topik tiegħi b'mod effettiv. Il-lezzjonijiet huma strutturati sew u faċli biex isegwu!\"",
+      "quote": "\"VieVlog għenni nipprepara għall-eżami Topik tiegħi b'mod effettiv. Il-lezzjonijiet huma strutturati sew u faċli biex isegwu!\"",
       "name": "Nguyen Minh Anh",
       "role": "Student internazzjonali"
     },
@@ -63,11 +63,11 @@
       "role": "Ħaddiem tal-Uffiċċju"
     },
     "testimonial3": {
-      "quote": "\"Grazzi lil Vietopik, il-ħiliet tiegħi ta 'smigħ u ta' taħdit tjiebu b'mod sinifikanti fi żmien tliet xhur biss!\"",
+      "quote": "\"Grazzi lil VieVlog, il-ħiliet tiegħi ta 'smigħ u ta' taħdit tjiebu b'mod sinifikanti fi żmien tliet xhur biss!\"",
       "name": "Le Thanh Huong",
       "role": "Student tal-Università"
     },
-    "vieTopik": "Vietopik",
+    "vieTopik": "VieVlog",
     "yourOneStopShop": "Il-pjattaforma one-stop tiegħek għall-ħakma tal-ITi. Aċċess ir-riżorsi premium b'xejn u tilħaq il-miri tal-lingwa tiegħek illum!",
     "connectWithUs": "Qabbad magħna",
     "socialMedia": {
@@ -89,7 +89,7 @@
       "termsOfService": "Termini tas-Servizz"
     },
     "footer": {
-      "copyright": "© 2025 Vietopik. Id-drittijiet kollha riżervati."
+      "copyright": "© 2025 VieVlog. Id-drittijiet kollha riżervati."
     },
     "metadata": {
       "lesson": "Ibbrawżja l-aħħar lezzjonijiet tagħna u ssib xi ħaġa li tħobb.",

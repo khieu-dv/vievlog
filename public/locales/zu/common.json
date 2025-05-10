@@ -18,7 +18,7 @@
     }
   },
   "content": {
-    "title": "Vietopik - Funda isiKorea mahhala",
+    "title": "VieVlog - Funda isiKorea mahhala",
     "home": "Ikhaya",
     "topiks": "Izihloko",
     "courses": "Izifundo",
@@ -31,7 +31,7 @@
     "newCollection": "Iqoqo Elisha Iyatholakala",
     "oneStopPlatform": "Iplatifomu yakho yokufunda yaseKorea yokugcina",
     "startLearningNow": "Isihloko Sokuhlola",
-    "whyChooseVieVlog": "Kungani ukhethe Vietopik?",
+    "whyChooseVieVlog": "Kungani ukhethe VieVlog?",
     "freeAccess": "Ukufinyelela kwamahhala",
     "learnIT": "Funda isiKorea ngezifundo ezisezingeni eliphakeme kusuka kochwepheshe azikho.",
     "expertInstructors": "Abafundisi bezochwepheshe",
@@ -53,7 +53,7 @@
     "getStartedForFree": "Qalisa mahhala",
     "whatOurLearnersSay": "Lokho Abafundi Ba Kukusho",
     "testimonial1": {
-      "quote": "\"IVietopik yangisiza ngilungiselele ukuhlolwa kwe-topik yami ngempumelelo. Izifundo zihlelwe kahle futhi kulula ukuzilandela!\"",
+      "quote": "\"IVieVlog yangisiza ngilungiselele ukuhlolwa kwe-topik yami ngempumelelo. Izifundo zihlelwe kahle futhi kulula ukuzilandela!\"",
       "name": "Nguyen Minh anh",
       "role": "Umfundi wamazwe omhlaba"
     },
@@ -63,11 +63,11 @@
       "role": "Umsebenzi wehhovisi"
     },
     "testimonial3": {
-      "quote": "\"Ngenxa yeVietopik, amakhono ami okulalela nokukhuluma athuthuke kakhulu ezinyangeni ezintathu nje!\"",
+      "quote": "\"Ngenxa yeVieVlog, amakhono ami okulalela nokukhuluma athuthuke kakhulu ezinyangeni ezintathu nje!\"",
       "name": "ULe Thanh Huong",
       "role": "Umfundi waseyunivesithi"
     },
-    "vieTopik": "IVietopik",
+    "vieTopik": "IVieVlog",
     "yourOneStopShop": "Ipulatifomu yakho eyodwa yokumisa kahle i-KORAN. Finyelela izinsiza ze-premium mahhala futhi uzuze izinhloso zakho zolimi namuhla!",
     "connectWithUs": "Xhuma nathi",
     "socialMedia": {
@@ -89,7 +89,7 @@
       "termsOfService": "Imibandela Yensiza"
     },
     "footer": {
-      "copyright": "© 2025 Vietopik. Wonke Amalungelo Agodliwe."
+      "copyright": "© 2025 VieVlog. Wonke Amalungelo Agodliwe."
     },
     "metadata": {
       "lesson": "Dlulisa amehlo ezifundweni zethu zakamuva futhi uthole okuthile ozokuthanda.",

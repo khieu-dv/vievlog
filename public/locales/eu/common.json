@@ -18,7 +18,7 @@
     }
   },
   "content": {
-    "title": "Vietopik - ikasi koreera doan",
+    "title": "VieVlog - ikasi koreera doan",
     "home": "Etxe",
     "topiks": "Gaien",
     "courses": "Ikastaroak",
@@ -31,7 +31,7 @@
     "newCollection": "Bilketa berria eskuragarri",
     "oneStopPlatform": "Zure Koreako Ikasteko Plataforma",
     "startLearningNow": "Azterketa gaia",
-    "whyChooseVieVlog": "Zergatik aukeratu Vietopik?",
+    "whyChooseVieVlog": "Zergatik aukeratu VieVlog?",
     "freeAccess": "Sarbide librea",
     "learnIT": "Ikasi Koreera kalitate handiko ikasgaiekin adituek ez dute inolako kosturik.",
     "expertInstructors": "Adituentzako begiraleak",
@@ -53,7 +53,7 @@
     "getStartedForFree": "Hasi doan",
     "whatOurLearnersSay": "Gure ikasleek esaten dutena",
     "testimonial1": {
-      "quote": "\"Vietopik nire Topik azterketa modu eraginkorrean prestatzen lagundu dit. Ikasgaiak ondo egituratuta eta jarraitzeko errazak dira!\"",
+      "quote": "\"VieVlog nire Topik azterketa modu eraginkorrean prestatzen lagundu dit. Ikasgaiak ondo egituratuta eta jarraitzeko errazak dira!\"",
       "name": "Nguyen minh anh",
       "role": "Nazioarteko ikaslea"
     },
@@ -63,11 +63,11 @@
       "role": "Bulegoko langilea"
     },
     "testimonial3": {
-      "quote": "\"Vietopik-i esker, nire entzuteko eta hitz egiteko trebetasunak nabarmen hobetu dira hiru hilabetetan!\"",
+      "quote": "\"VieVlog-i esker, nire entzuteko eta hitz egiteko trebetasunak nabarmen hobetu dira hiru hilabetetan!\"",
       "name": "Le thanh huong",
       "role": "Unibertsitateko ikaslea"
     },
-    "vieTopik": "Vietopik",
+    "vieTopik": "VieVlog",
     "yourOneStopShop": "Korearra menderatzeko zure geldialdi bakarreko plataforma. Sar zaitez premium baliabideak doan eta gaur egun zure hizkuntza helburuak lortzeko!",
     "connectWithUs": "Konektatu gurekin",
     "socialMedia": {
@@ -89,7 +89,7 @@
       "termsOfService": "Zerbitzu baldintzak"
     },
     "footer": {
-      "copyright": "© 2025 Vietopik. Eskubide guztiak erreserbatuak"
+      "copyright": "© 2025 VieVlog. Eskubide guztiak erreserbatuak"
     },
     "metadata": {
       "lesson": "Arakatu gure azken ikasgaiak eta aurkitu maite duzun zerbait.",

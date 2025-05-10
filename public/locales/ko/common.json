@@ -18,7 +18,7 @@
     }
   },
   "content": {
-    "title": "Vietopik - 한국어를 무료로 배우십시오",
+    "title": "VieVlog - 한국어를 무료로 배우십시오",
     "home": "집",
     "topiks": "주제",
     "courses": "행동",
@@ -31,7 +31,7 @@
     "newCollection": "새로운 컬렉션 사용 가능",
     "oneStopPlatform": "최고의 한국 학습 플랫폼",
     "startLearningNow": "시험 주제",
-    "whyChooseVieVlog": "왜 Vietopik을 선택합니까?",
+    "whyChooseVieVlog": "왜 VieVlog을 선택합니까?",
     "freeAccess": "무료 액세스",
     "learnIT": "전문가의 고품질 수업으로 한국어를 배우십시오.",
     "expertInstructors": "전문가 강사",
@@ -53,7 +53,7 @@
     "getStartedForFree": "무료로 시작하십시오",
     "whatOurLearnersSay": "우리 학습자들이 말하는 것",
     "testimonial1": {
-      "quote": "\"Vietopik은 Topik 시험을 효과적으로 준비하는 데 도움이되었습니다. 수업은 잘 구조화되고 따라 가기 쉽습니다!\"",
+      "quote": "\"VieVlog은 Topik 시험을 효과적으로 준비하는 데 도움이되었습니다. 수업은 잘 구조화되고 따라 가기 쉽습니다!\"",
       "name": "Nguyen Minh Anh",
       "role": "국제 학생"
     },
@@ -63,11 +63,11 @@
       "role": "사무실 직원"
     },
     "testimonial3": {
-      "quote": "\"Vietopik 덕분에 듣기와 말하기 기술은 단 3 개월 안에 크게 향상되었습니다!\"",
+      "quote": "\"VieVlog 덕분에 듣기와 말하기 기술은 단 3 개월 안에 크게 향상되었습니다!\"",
       "name": "Le Thanh Huong",
       "role": "대학생"
     },
-    "vieTopik": "Vietopik",
+    "vieTopik": "VieVlog",
     "yourOneStopShop": "한국을 마스터하기위한 원 스톱 플랫폼. 프리미엄 리소스에 무료로 액세스하고 오늘 언어 목표를 달성하십시오!",
     "connectWithUs": "우리와 연결하십시오",
     "socialMedia": {
@@ -89,7 +89,7 @@
       "termsOfService": "서비스 약관"
     },
     "footer": {
-      "copyright": "© 2025 Vietopik. 모든 권리 보유."
+      "copyright": "© 2025 VieVlog. 모든 권리 보유."
     },
     "metadata": {
       "lesson": "우리의 최신 교훈을 탐색하고 사랑하는 것을 찾으십시오.",

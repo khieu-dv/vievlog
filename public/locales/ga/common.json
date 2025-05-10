@@ -18,7 +18,7 @@
     }
   },
   "content": {
-    "title": "Vietopik - Foghlaim Cóiré saor in aisce",
+    "title": "VieVlog - Foghlaim Cóiré saor in aisce",
     "home": "Áit",
     "topiks": "Ábhair",
     "courses": "Cúrsaí",
@@ -31,7 +31,7 @@
     "newCollection": "Bailiúchán nua ar fáil",
     "oneStopPlatform": "Do ardán foghlama Cóiré deiridh",
     "startLearningNow": "Ábhar scrúdaithe",
-    "whyChooseVieVlog": "Cén fáth a roghnaíonn Vietopik?",
+    "whyChooseVieVlog": "Cén fáth a roghnaíonn VieVlog?",
     "freeAccess": "Rochtain saor in aisce",
     "learnIT": "Foghlaim Cóiré le ceachtanna ardcháilíochta ó shaineolaithe gan aon chostas.",
     "expertInstructors": "Teagascóirí saineolacha",
@@ -53,7 +53,7 @@
     "getStartedForFree": "Tús a chur le saor in aisce",
     "whatOurLearnersSay": "Cad a deir ár bhfoghlaimeoirí",
     "testimonial1": {
-      "quote": "\"Chabhraigh Vietopik liom ullmhú do mo scrúdú Topik go héifeachtach. Tá na ceachtanna dea-struchtúrtha agus éasca le leanúint!\"",
+      "quote": "\"Chabhraigh VieVlog liom ullmhú do mo scrúdú Topik go héifeachtach. Tá na ceachtanna dea-struchtúrtha agus éasca le leanúint!\"",
       "name": "Nguyen Minh Anh",
       "role": "Mac léinn idirnáisiúnta"
     },
@@ -63,7 +63,7 @@
       "role": "Oibrí oifige"
     },
     "testimonial3": {
-      "quote": "\"A bhuíochas le Vietopik, tá feabhas suntasach tagtha ar mo chuid scileanna éisteachta agus labhartha laistigh de thrí mhí amháin!\"",
+      "quote": "\"A bhuíochas le VieVlog, tá feabhas suntasach tagtha ar mo chuid scileanna éisteachta agus labhartha laistigh de thrí mhí amháin!\"",
       "name": "Le Thanh Huong",
       "role": "Mac léinn ollscoile"
     },
@@ -89,7 +89,7 @@
       "termsOfService": "Téarmaí Seirbhíse"
     },
     "footer": {
-      "copyright": "© 2025 Vietopik. Gach ceart ar cosaint."
+      "copyright": "© 2025 VieVlog. Gach ceart ar cosaint."
     },
     "metadata": {
       "lesson": "Brabhsáil ár gceachtanna is déanaí agus faigh rud éigin a bhfuil grá agat dó.",

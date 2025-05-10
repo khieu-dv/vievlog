@@ -18,7 +18,7 @@
     }
   },
   "content": {
-    "title": "Vietopik - Tìm hiểu miễn phí IT",
+    "title": "VieVlog - Tìm hiểu miễn phí IT",
     "home": "Trang chủ",
     "topiks": "Chủ đề",
     "courses": "Khóa học",
@@ -53,7 +53,7 @@
     "getStartedForFree": "Bắt đầu miễn phí",
     "whatOurLearnersSay": "Những người học của chúng tôi nói gì",
     "testimonial1": {
-      "quote": "\"Vietopik đã giúp tôi chuẩn bị cho bài kiểm tra Topik của tôi một cách hiệu quả. Các bài học có cấu trúc tốt và dễ theo dõi!\"",
+      "quote": "\"VieVlog đã giúp tôi chuẩn bị cho bài kiểm tra Topik của tôi một cách hiệu quả. Các bài học có cấu trúc tốt và dễ theo dõi!\"",
       "name": "Nguyen Minh Anh",
       "role": "Sinh viên quốc tế"
     },
@@ -63,7 +63,7 @@
       "role": "Nhân viên văn phòng"
     },
     "testimonial3": {
-      "quote": "\"Nhờ Vietopik, kỹ năng nghe và nói của tôi đã được cải thiện đáng kể chỉ trong ba tháng!\"",
+      "quote": "\"Nhờ VieVlog, kỹ năng nghe và nói của tôi đã được cải thiện đáng kể chỉ trong ba tháng!\"",
       "name": "Le Thanh Huong",
       "role": "Sinh viên đại học"
     },
@@ -89,7 +89,7 @@
       "termsOfService": "Điều khoản dịch vụ"
     },
     "footer": {
-      "copyright": "© 2025 Vietopik. Tất cả quyền được bảo lưu."
+      "copyright": "© 2025 VieVlog. Tất cả quyền được bảo lưu."
     },
     "metadata": {
       "lesson": "Duyệt những bài học mới nhất của chúng tôi và tìm thấy thứ gì đó bạn sẽ yêu thích.",

@@ -18,7 +18,7 @@
     }
   },
   "content": {
-    "title": "Vietopik - tanulj meg koreai -t ingyen",
+    "title": "VieVlog - tanulj meg koreai -t ingyen",
     "home": "Otthon",
     "topiks": "Témák",
     "courses": "Tanfolyamok",
@@ -31,7 +31,7 @@
     "newCollection": "Új gyűjtemény elérhető",
     "oneStopPlatform": "A végső koreai tanulási platformod",
     "startLearningNow": "Vizsga téma",
-    "whyChooseVieVlog": "Miért válassza a Vietopikot?",
+    "whyChooseVieVlog": "Miért válassza a VieVlogot?",
     "freeAccess": "Ingyenes hozzáférés",
     "learnIT": "Tanuljon meg koreai-t, kiváló minőségű tanulságokkal a szakértőktől, egyáltalán költség nélkül.",
     "expertInstructors": "Szakértői oktatók",
@@ -53,7 +53,7 @@
     "getStartedForFree": "Kezdje el ingyen",
     "whatOurLearnersSay": "Amit a tanulóink ​​mondanak",
     "testimonial1": {
-      "quote": "\"A Vietopik segített nekem hatékonyan felkészülni a Topik vizsgára. Az órák jól felépítettek és könnyen követhetők!\"",
+      "quote": "\"A VieVlog segített nekem hatékonyan felkészülni a Topik vizsgára. Az órák jól felépítettek és könnyen követhetők!\"",
       "name": "Nguyen Minh anh",
       "role": "Nemzetközi hallgató"
     },
@@ -63,11 +63,11 @@
       "role": "Irodai munkás"
     },
     "testimonial3": {
-      "quote": "\"A Vietopiknak köszönhetően a hallgatási és beszédkészségem mindössze három hónapon belül jelentősen javult!\"",
+      "quote": "\"A VieVlognak köszönhetően a hallgatási és beszédkészségem mindössze három hónapon belül jelentősen javult!\"",
       "name": "Le Thanh Huong",
       "role": "Egyetemi hallgató"
     },
-    "vieTopik": "Vietopik",
+    "vieTopik": "VieVlog",
     "yourOneStopShop": "Az egyablakos platformod a koreai elsajátításhoz. Hozzáférjen a prémium erőforrásokhoz ingyen, és érje el ma nyelvi céljait!",
     "connectWithUs": "Lépjen kapcsolatba velünk",
     "socialMedia": {
@@ -89,7 +89,7 @@
       "termsOfService": "Szolgáltatási feltételek"
     },
     "footer": {
-      "copyright": "© 2025 Vietopik. Minden jog fenntartva."
+      "copyright": "© 2025 VieVlog. Minden jog fenntartva."
     },
     "metadata": {
       "lesson": "Böngésszen a legújabb leckéinkkel, és találjon valamit, amit szeret.",

@@ -18,7 +18,7 @@
     }
   },
   "content": {
-    "title": "Vietopik - lær koreansk gratis",
+    "title": "VieVlog - lær koreansk gratis",
     "home": "Hjem",
     "topiks": "Emner",
     "courses": "Kurs",
@@ -31,7 +31,7 @@
     "newCollection": "Ny samling tilgjengelig",
     "oneStopPlatform": "Din ultimate koreanske læringsplattform",
     "startLearningNow": "Eksamensemne",
-    "whyChooseVieVlog": "Hvorfor velge Vietopik?",
+    "whyChooseVieVlog": "Hvorfor velge VieVlog?",
     "freeAccess": "Gratis tilgang",
     "learnIT": "Lær koreansk med høykvalitetsundervisning fra eksperter til absolutt ingen kostnader.",
     "expertInstructors": "Ekspertinstruktører",
@@ -53,7 +53,7 @@
     "getStartedForFree": "Kom i gang gratis",
     "whatOurLearnersSay": "Hva elevene våre sier",
     "testimonial1": {
-      "quote": "\"Vietopik hjalp meg med å forberede meg på Topik-eksamenen min effektivt. Leksjonene er godt strukturerte og enkle å følge!\"",
+      "quote": "\"VieVlog hjalp meg med å forberede meg på Topik-eksamenen min effektivt. Leksjonene er godt strukturerte og enkle å følge!\"",
       "name": "Nguyen Minh Anh",
       "role": "Internasjonal student"
     },
@@ -63,11 +63,11 @@
       "role": "Kontorarbeider"
     },
     "testimonial3": {
-      "quote": "\"Takket være Vietopik har lytte- og taleferdighetene mine forbedret seg betydelig i løpet av bare tre måneder!\"",
+      "quote": "\"Takket være VieVlog har lytte- og taleferdighetene mine forbedret seg betydelig i løpet av bare tre måneder!\"",
       "name": "Le Thanh Huong",
       "role": "Universitetsstudent"
     },
-    "vieTopik": "Vietopik",
+    "vieTopik": "VieVlog",
     "yourOneStopShop": "Din one-stop-plattform for å mestre koreansk. Få tilgang til premium ressurser gratis og oppnå språkmålene dine i dag!",
     "connectWithUs": "Koble til oss",
     "socialMedia": {
@@ -89,7 +89,7 @@
       "termsOfService": "Tjenestevilkår"
     },
     "footer": {
-      "copyright": "© 2025 Vietopik. Alle rettigheter forbeholdt."
+      "copyright": "© 2025 VieVlog. Alle rettigheter forbeholdt."
     },
     "metadata": {
       "lesson": "Bla gjennom de siste leksjonene våre og finn noe du vil elske.",

@@ -18,7 +18,7 @@
     }
   },
   "content": {
-    "title": "Vietopik - učte sa kórejsky zadarmo",
+    "title": "VieVlog - učte sa kórejsky zadarmo",
     "home": "Domov",
     "topiks": "Témy",
     "courses": "Kurzy",
@@ -31,7 +31,7 @@
     "newCollection": "Nová zbierka je k dispozícii",
     "oneStopPlatform": "Vaša konečná kórejská vzdelávacia platforma",
     "startLearningNow": "Skúška",
-    "whyChooseVieVlog": "Prečo zvoliť Vietopik?",
+    "whyChooseVieVlog": "Prečo zvoliť VieVlog?",
     "freeAccess": "Bezplatný prístup",
     "learnIT": "Naučte sa kórejčiny s kvalitnými lekciami od odborníkov za absolútne žiadne náklady.",
     "expertInstructors": "Odborník",
@@ -53,7 +53,7 @@
     "getStartedForFree": "Začnite zadarmo",
     "whatOurLearnersSay": "Čo hovoria naši študenti",
     "testimonial1": {
-      "quote": "„Vietopik mi pomohol efektívne sa pripraviť na moju topikskú skúšku. Lekcie sú dobre štruktúrované a ľahko sa dá sledovať!“",
+      "quote": "„VieVlog mi pomohol efektívne sa pripraviť na moju topikskú skúšku. Lekcie sú dobre štruktúrované a ľahko sa dá sledovať!“",
       "name": "Nguyen Minh Anh",
       "role": "Medzinárodný študent"
     },
@@ -63,11 +63,11 @@
       "role": "Kancelársky pracovník"
     },
     "testimonial3": {
-      "quote": "„Vietopik sa moje zručnosti v počúvaní a hovoriacich schopnostiach výrazne zlepšili za tri mesiace!“",
+      "quote": "„VieVlog sa moje zručnosti v počúvaní a hovoriacich schopnostiach výrazne zlepšili za tri mesiace!“",
       "name": "Le Thanh Huong",
       "role": "Univerzitný študent"
     },
-    "vieTopik": "Vietopik",
+    "vieTopik": "VieVlog",
     "yourOneStopShop": "Vaša jednorazová platforma na zvládnutie kórejčiny. Prístup prémiových zdrojov zadarmo a dosiahnite svoje jazykové ciele ešte dnes!",
     "connectWithUs": "Spojte sa s nami",
     "socialMedia": {
@@ -89,7 +89,7 @@
       "termsOfService": "Služobné podmienky"
     },
     "footer": {
-      "copyright": "© 2025 Vietopik. Všetky práva vyhradené."
+      "copyright": "© 2025 VieVlog. Všetky práva vyhradené."
     },
     "metadata": {
       "lesson": "Prezrite si naše najnovšie lekcie a nájdite niečo, čo budete milovať.",

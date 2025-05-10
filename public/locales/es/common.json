@@ -18,7 +18,7 @@
     }
   },
   "content": {
-    "title": "Vietopik - Aprende coreano gratis",
+    "title": "VieVlog - Aprende coreano gratis",
     "home": "Hogar",
     "topiks": "Temas",
     "courses": "Cursos",
@@ -31,7 +31,7 @@
     "newCollection": "Nueva colección disponible",
     "oneStopPlatform": "Su mejor plataforma de aprendizaje coreano",
     "startLearningNow": "Tema del examen",
-    "whyChooseVieVlog": "¿Por qué elegir Vietopik?",
+    "whyChooseVieVlog": "¿Por qué elegir VieVlog?",
     "freeAccess": "Acceso gratuito",
     "learnIT": "Aprenda coreano con lecciones de alta calidad de expertos sin absolutamente ningún costo.",
     "expertInstructors": "Instructores expertos",
@@ -53,7 +53,7 @@
     "getStartedForFree": "Empiece gratis",
     "whatOurLearnersSay": "Lo que dicen nuestros alumnos",
     "testimonial1": {
-      "quote": "\"Vietopik me ayudó a prepararme para mi examen Topik de manera efectiva. ¡Las lecciones están bien estructuradas y fáciles de seguir!\"",
+      "quote": "\"VieVlog me ayudó a prepararme para mi examen Topik de manera efectiva. ¡Las lecciones están bien estructuradas y fáciles de seguir!\"",
       "name": "Nguyen minh anh",
       "role": "Estudiante internacional"
     },
@@ -63,11 +63,11 @@
       "role": "Trabajador de oficinas"
     },
     "testimonial3": {
-      "quote": "\"¡Gracias a Vietopik, mis habilidades para escuchar y hablar han mejorado significativamente en solo tres meses!\"",
+      "quote": "\"¡Gracias a VieVlog, mis habilidades para escuchar y hablar han mejorado significativamente en solo tres meses!\"",
       "name": "Le Thanh Huong",
       "role": "Estudiante universitario"
     },
-    "vieTopik": "Vietopik",
+    "vieTopik": "VieVlog",
     "yourOneStopShop": "Tu plataforma única para dominar a coreano. ¡Acceda a los recursos premium de forma gratuita y logre sus objetivos de idioma hoy!",
     "connectWithUs": "Conéctate con nosotros",
     "socialMedia": {
@@ -89,7 +89,7 @@
       "termsOfService": "Términos de servicio"
     },
     "footer": {
-      "copyright": "© 2025 Vietopik. Reservados todos los derechos."
+      "copyright": "© 2025 VieVlog. Reservados todos los derechos."
     },
     "metadata": {
       "lesson": "Explore nuestras últimas lecciones y encuentre algo que te encantará.",

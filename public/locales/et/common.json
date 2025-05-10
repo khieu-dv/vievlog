@@ -18,7 +18,7 @@
     }
   },
   "content": {
-    "title": "Vietopik - õppige korea keelt tasuta",
+    "title": "VieVlog - õppige korea keelt tasuta",
     "home": "Kodu",
     "topiks": "Teemad",
     "courses": "Kursused",
@@ -31,7 +31,7 @@
     "newCollection": "Saadaval uus kollektsioon",
     "oneStopPlatform": "Teie ülim Korea õppeplatvorm",
     "startLearningNow": "Eksamiteema",
-    "whyChooseVieVlog": "Miks valida Vietopik?",
+    "whyChooseVieVlog": "Miks valida VieVlog?",
     "freeAccess": "Tasuta juurdepääs",
     "learnIT": "Õppige korea keelt ekspertide kvaliteetsete õppetundidega absoluutselt tasuta.",
     "expertInstructors": "Ekspertide juhendajad",
@@ -53,7 +53,7 @@
     "getStartedForFree": "Alustage tasuta",
     "whatOurLearnersSay": "Mida meie õppijad ütlevad",
     "testimonial1": {
-      "quote": "\"Vietopik aitas mul tõhusalt oma Topiku eksamiks valmistuda. Tunnid on hästi struktureeritud ja seda on lihtne jälgida!\"",
+      "quote": "\"VieVlog aitas mul tõhusalt oma Topiku eksamiks valmistuda. Tunnid on hästi struktureeritud ja seda on lihtne jälgida!\"",
       "name": "Nguyen Minh anh",
       "role": "Rahvusvaheline tudeng"
     },
@@ -63,11 +63,11 @@
       "role": "Kontoritöötaja"
     },
     "testimonial3": {
-      "quote": "\"Tänu Vietopikule on minu kuulamis- ja rääkimisoskus vaid kolme kuu jooksul märkimisväärselt paranenud!\"",
+      "quote": "\"Tänu VieVlogule on minu kuulamis- ja rääkimisoskus vaid kolme kuu jooksul märkimisväärselt paranenud!\"",
       "name": "Le Thanh Huong",
       "role": "Ülikooli tudeng"
     },
-    "vieTopik": "Vietopik",
+    "vieTopik": "VieVlog",
     "yourOneStopShop": "Teie One-Stop platvorm Korea valdamiseks. Premium -ressurssidele juurde pääsege tasuta ja saavutage oma keeleeesmärgid juba täna!",
     "connectWithUs": "Võtke meiega ühendust",
     "socialMedia": {
@@ -89,7 +89,7 @@
       "termsOfService": "Teenuse tingimused"
     },
     "footer": {
-      "copyright": "© 2025 Vietopik. Kõik õigused kaitstud."
+      "copyright": "© 2025 VieVlog. Kõik õigused kaitstud."
     },
     "metadata": {
       "lesson": "Sirvige meie viimaseid õppetunde ja leidke midagi, mis teile meeldib.",

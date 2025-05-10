@@ -18,7 +18,7 @@
     }
   },
   "content": {
-    "title": "Vietopik - Jifunze Kikorea bure",
+    "title": "VieVlog - Jifunze Kikorea bure",
     "home": "Nyumbani",
     "topiks": "Mada",
     "courses": "Kozi",
@@ -31,7 +31,7 @@
     "newCollection": "Mkusanyiko mpya unapatikana",
     "oneStopPlatform": "Jukwaa lako la mwisho la kujifunza Kikorea",
     "startLearningNow": "Mada ya mitihani",
-    "whyChooseVieVlog": "Kwa nini Uchague Vietopik?",
+    "whyChooseVieVlog": "Kwa nini Uchague VieVlog?",
     "freeAccess": "Ufikiaji wa bure",
     "learnIT": "Jifunze Kikorea na masomo ya hali ya juu kutoka kwa wataalam bila gharama yoyote.",
     "expertInstructors": "Waalimu wa wataalam",
@@ -53,7 +53,7 @@
     "getStartedForFree": "Anza bure",
     "whatOurLearnersSay": "Wanafunzi wetu wanasema nini",
     "testimonial1": {
-      "quote": "\"Vietopik alinisaidia kujiandaa kwa mtihani wangu wa Topik kwa ufanisi. Masomo yameundwa vizuri na ni rahisi kufuata!\"",
+      "quote": "\"VieVlog alinisaidia kujiandaa kwa mtihani wangu wa Topik kwa ufanisi. Masomo yameundwa vizuri na ni rahisi kufuata!\"",
       "name": "Nguyen Minh Anh",
       "role": "Mwanafunzi wa Kimataifa"
     },
@@ -63,11 +63,11 @@
       "role": "Mfanyakazi wa ofisi"
     },
     "testimonial3": {
-      "quote": "\"Asante kwa Vietopik, ujuzi wangu wa kusikiliza na kuongea umeimarika sana ndani ya miezi mitatu tu!\"",
+      "quote": "\"Asante kwa VieVlog, ujuzi wangu wa kusikiliza na kuongea umeimarika sana ndani ya miezi mitatu tu!\"",
       "name": "Le Thanh Huong",
       "role": "Mwanafunzi wa Chuo Kikuu"
     },
-    "vieTopik": "Vietopik",
+    "vieTopik": "VieVlog",
     "yourOneStopShop": "Jukwaa lako moja la kusimamia Kikorea. Fikia rasilimali za malipo ya bure na kufikia malengo yako ya lugha leo!",
     "connectWithUs": "Ungana na sisi",
     "socialMedia": {
@@ -89,7 +89,7 @@
       "termsOfService": "Masharti ya Huduma"
     },
     "footer": {
-      "copyright": "© 2025 Vietopik. Haki zote zimehifadhiwa."
+      "copyright": "© 2025 VieVlog. Haki zote zimehifadhiwa."
     },
     "metadata": {
       "lesson": "Vinjari masomo yetu ya hivi karibuni na upate kitu ambacho utapenda.",

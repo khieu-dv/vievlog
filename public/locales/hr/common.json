@@ -18,7 +18,7 @@
     }
   },
   "content": {
-    "title": "Vietopik - Naučite korejski besplatno",
+    "title": "VieVlog - Naučite korejski besplatno",
     "home": "Dom",
     "topiks": "Teme",
     "courses": "Tečajevi",
@@ -31,7 +31,7 @@
     "newCollection": "Dostupna nova kolekcija",
     "oneStopPlatform": "Vaša krajnja korejska platforma za učenje",
     "startLearningNow": "Tema ispita",
-    "whyChooseVieVlog": "Zašto odabrati Vietopik?",
+    "whyChooseVieVlog": "Zašto odabrati VieVlog?",
     "freeAccess": "Besplatan pristup",
     "learnIT": "Naučite korejski s visokokvalitetnim lekcijama stručnjaka bez ikakvih troškova.",
     "expertInstructors": "Stručni instruktori",
@@ -53,7 +53,7 @@
     "getStartedForFree": "Započnite besplatno",
     "whatOurLearnersSay": "Što kažu naši polaznici",
     "testimonial1": {
-      "quote": "\"Vietopik mi je pomogao da se učinkovito pripremim za ispit Topik. Lekcije su dobro strukturirane i lako ih je pratiti!\"",
+      "quote": "\"VieVlog mi je pomogao da se učinkovito pripremim za ispit Topik. Lekcije su dobro strukturirane i lako ih je pratiti!\"",
       "name": "Nguyen minh anh",
       "role": "Međunarodni student"
     },
@@ -63,11 +63,11 @@
       "role": "Uredski radnik"
     },
     "testimonial3": {
-      "quote": "\"Zahvaljujući Vietopiku, moje vještine slušanja i govora značajno su se poboljšale u roku od samo tri mjeseca!\"",
+      "quote": "\"Zahvaljujući VieVlogu, moje vještine slušanja i govora značajno su se poboljšale u roku od samo tri mjeseca!\"",
       "name": "Le Thanh Huong",
       "role": "Sveučilišni student"
     },
-    "vieTopik": "Vietopik",
+    "vieTopik": "VieVlog",
     "yourOneStopShop": "Vaša platforma za savladavanje korejskih. Pristupite premium resursima besplatno i ostvarite svoje jezične ciljeve danas!",
     "connectWithUs": "Povežite se s nama",
     "socialMedia": {
@@ -89,7 +89,7 @@
       "termsOfService": "Uvjeti pružanja usluge"
     },
     "footer": {
-      "copyright": "© 2025 Vietopik. Sva prava pridržana."
+      "copyright": "© 2025 VieVlog. Sva prava pridržana."
     },
     "metadata": {
       "lesson": "Pregledajte naše najnovije lekcije i pronađite nešto što će vam se svidjeti.",

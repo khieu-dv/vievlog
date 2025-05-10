@@ -18,7 +18,7 @@
     }
   },
   "content": {
-    "title": "Vietopik - Leer Koreaans gratis",
+    "title": "VieVlog - Leer Koreaans gratis",
     "home": "Thuis",
     "topiks": "Onderwerpen",
     "courses": "Cursussen",
@@ -31,7 +31,7 @@
     "newCollection": "Nieuwe collectie beschikbaar",
     "oneStopPlatform": "Uw ultieme Koreaanse leerplatform",
     "startLearningNow": "Examenonderwerp",
-    "whyChooseVieVlog": "Waarom kiezen voor Vietopik?",
+    "whyChooseVieVlog": "Waarom kiezen voor VieVlog?",
     "freeAccess": "Gratis toegang",
     "learnIT": "Leer Koreaans met hoogwaardige lessen van experts tegen absoluut geen kosten.",
     "expertInstructors": "Deskundige instructeurs",
@@ -53,7 +53,7 @@
     "getStartedForFree": "Ga gratis aan de slag",
     "whatOurLearnersSay": "Wat onze leerlingen zeggen",
     "testimonial1": {
-      "quote": "\"Vietopik heeft me geholpen om me voor te bereiden op mijn Topik-examen effectief. De lessen zijn goed gestructureerd en gemakkelijk te volgen!\"",
+      "quote": "\"VieVlog heeft me geholpen om me voor te bereiden op mijn Topik-examen effectief. De lessen zijn goed gestructureerd en gemakkelijk te volgen!\"",
       "name": "Nguyen minh anh",
       "role": "Internationale student"
     },
@@ -63,11 +63,11 @@
       "role": "Kantoormedewerker"
     },
     "testimonial3": {
-      "quote": "\"Dankzij Vietopik zijn mijn luister- en spreekvaardigheden binnen slechts drie maanden aanzienlijk verbeterd!\"",
+      "quote": "\"Dankzij VieVlog zijn mijn luister- en spreekvaardigheden binnen slechts drie maanden aanzienlijk verbeterd!\"",
       "name": "Le Thanh Huong",
       "role": "Student"
     },
-    "vieTopik": "Vietopik",
+    "vieTopik": "VieVlog",
     "yourOneStopShop": "Uw one-stop-platform voor het beheersen van Koreaans. Toegang gratis toegang tot premium bronnen en bereik vandaag uw taaldoelen!",
     "connectWithUs": "Maak contact met ons",
     "socialMedia": {
@@ -89,7 +89,7 @@
       "termsOfService": "Voorwaarden van services"
     },
     "footer": {
-      "copyright": "© 2025 Vietopik. Alle rechten voorbehouden."
+      "copyright": "© 2025 VieVlog. Alle rechten voorbehouden."
     },
     "metadata": {
       "lesson": "Blader door onze nieuwste lessen en vind iets waar je van houdt.",

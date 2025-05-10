@@ -18,7 +18,7 @@
     }
   },
   "content": {
-    "title": "Vietopik - Koyi Koriya kyauta",
+    "title": "VieVlog - Koyi Koriya kyauta",
     "home": "Gida",
     "topiks": "Batutuwa",
     "courses": "Darussan",
@@ -31,7 +31,7 @@
     "newCollection": "Sabuwar tarin",
     "oneStopPlatform": "Dandalinku na Koriya IT",
     "startLearningNow": "Jarrabawa taken",
-    "whyChooseVieVlog": "Me yasa Zabi Vietopik?",
+    "whyChooseVieVlog": "Me yasa Zabi VieVlog?",
     "freeAccess": "Dama dama",
     "learnIT": "Koyi Koriya tare da darussan masu inganci daga masana a ba da tsada.",
     "expertInstructors": "Kwararrun Malami",
@@ -53,7 +53,7 @@
     "getStartedForFree": "Fara kyauta",
     "whatOurLearnersSay": "Abin da Xalibanmu suka ce",
     "testimonial1": {
-      "quote": "\"Vietopik ya taimake ni shirya don jarrabawar ta bayyana. Darussan suna da tsari da sauƙin bi!\"",
+      "quote": "\"VieVlog ya taimake ni shirya don jarrabawar ta bayyana. Darussan suna da tsari da sauƙin bi!\"",
       "name": "Nguyen Minh Anh Anh Anh Anh",
       "role": "Dalibin kasa da kasa"
     },
@@ -67,7 +67,7 @@
       "name": "Le Thaid",
       "role": "Dalibin jami'a"
     },
-    "vieTopik": "Vietopik",
+    "vieTopik": "VieVlog",
     "yourOneStopShop": "Platformaya na tsayawa na tsoratarwa na Koriya. Samun damar samar da kayayyaki don kyauta kuma cimma burin ku a yau!",
     "connectWithUs": "Haɗa tare da mu",
     "socialMedia": {
@@ -89,7 +89,7 @@
       "termsOfService": "Sharuɗɗan sabis"
     },
     "footer": {
-      "copyright": "© 2025 Vietopik. Dukkan hakkoki."
+      "copyright": "© 2025 VieVlog. Dukkan hakkoki."
     },
     "metadata": {
       "lesson": "Bincika darussan sabon darussan mu kuma nemo wani abu zaka kauna.",
