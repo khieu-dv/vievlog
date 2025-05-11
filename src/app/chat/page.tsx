@@ -43,9 +43,35 @@ export default function ChatPage() {
         };
 
         fetchRooms();
-        const intervalId = setInterval(fetchRooms, 30000);
-        return () => clearInterval(intervalId);
+        return () => { };
     }, []);
+
+    // Separate effect for periodic room updates that preserves the selected room
+    useEffect(() => {
+        const updateRooms = async () => {
+            try {
+                const response = await fetch('/api/rooms');
+                if (response.ok) {
+                    const data = await response.json();
+                    setRooms(prevRooms => {
+                        // Keep the same selected room when updating rooms
+                        if (selectedRoom) {
+                            const updatedSelectedRoom: Room | undefined = data.find((room: Room) => room.id === selectedRoom.id);
+                            if (updatedSelectedRoom) {
+                                setSelectedRoom(updatedSelectedRoom);
+                            }
+                        }
+                        return data;
+                    });
+                }
+            } catch (error) {
+                console.error('Error updating rooms:', error);
+            }
+        };
+
+        const intervalId = setInterval(updateRooms, 30000);
+        return () => clearInterval(intervalId);
+    }, [selectedRoom]);
 
     const handleCreateRoom = async (e: React.FormEvent) => {
         e.preventDefault();
