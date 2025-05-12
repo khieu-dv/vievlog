@@ -1,4 +1,4 @@
-import { Facebook, Github, Instagram, Linkedin, Twitter } from "lucide-react";
+import { Facebook, Github, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
 import Link from "next/link";
 
 import { cn } from "~/lib/utils";
@@ -20,47 +20,28 @@ export function Footer({ className }: { className?: string }) {
               competitive prices.
             </p>
             <div className="flex space-x-4">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="h-8 w-8 rounded-full"
-              >
-                <Facebook className="h-4 w-4" />
-                <span className="sr-only">Facebook</span>
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="h-8 w-8 rounded-full"
-              >
-                <Twitter className="h-4 w-4" />
-                <span className="sr-only">Twitter</span>
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="h-8 w-8 rounded-full"
-              >
-                <Instagram className="h-4 w-4" />
-                <span className="sr-only">Instagram</span>
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="h-8 w-8 rounded-full"
-              >
-                <Github className="h-4 w-4" />
-                <span className="sr-only">GitHub</span>
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="h-8 w-8 rounded-full"
-              >
-                <Linkedin className="h-4 w-4" />
-                <span className="sr-only">LinkedIn</span>
-              </Button>
+              <a href="https://www.facebook.com/khieu.dv96" target="_blank" rel="noopener noreferrer">
+                <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full">
+                  <Facebook className="h-4 w-4" />
+                  <span className="sr-only">Facebook</span>
+                </Button>
+              </a>
+              <a href="https://www.youtube.com/@vie-vlogs" target="_blank" rel="noopener noreferrer">
+                <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full">
+                  <Youtube className="h-4 w-4" />
+                  <span className="sr-only">YouTube</span>
+                </Button>
+              </a>
+
+              <a href="https://github.com/khieu-dv" target="_blank" rel="noopener noreferrer">
+                <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full">
+                  <Github className="h-4 w-4" />
+                  <span className="sr-only">GitHub</span>
+                </Button>
+              </a>
+
             </div>
+
           </div>
           <div>
             <h3 className="mb-4 text-sm font-semibold">Shop</h3>
