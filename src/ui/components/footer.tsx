@@ -44,136 +44,73 @@ export function Footer({ className }: { className?: string }) {
 
           </div>
           <div>
-            <h3 className="mb-4 text-sm font-semibold">Shop</h3>
+            <h3 className="mb-4 text-sm font-semibold">Post</h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
-                  href="/products"
+                  href="/posts"
                   className="text-muted-foreground hover:text-foreground"
                 >
-                  All Topiks
+                  All Posts
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/products?category=audio"
+                  href="/posts"
                   className="text-muted-foreground hover:text-foreground"
                 >
-                  Audio
+                  Khóa Học Golang
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/products?category=wearables"
+                  href="/posts"
                   className="text-muted-foreground hover:text-foreground"
                 >
-                  Wearables
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/products?category=smartphones"
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  Smartphones
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/products?category=laptops"
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  Laptops
+                  Dự Án Gin
                 </Link>
               </li>
             </ul>
           </div>
           <div>
-            <h3 className="mb-4 text-sm font-semibold">Company</h3>
+            <h3 className="mb-4 text-sm font-semibold">Video</h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
-                  href="/about"
+                  href="/videos"
                   className="text-muted-foreground hover:text-foreground"
                 >
-                  About Us
+                  All Videos
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/careers"
+                  href="/videos"
                   className="text-muted-foreground hover:text-foreground"
                 >
-                  Careers
+                  Tiktok Video
                 </Link>
               </li>
-              <li>
-                <Link
-                  href="/blog"
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/press"
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  Press
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  Contact
-                </Link>
-              </li>
+
             </ul>
           </div>
           <div>
-            <h3 className="mb-4 text-sm font-semibold">Support</h3>
+            <h3 className="mb-4 text-sm font-semibold">Chat</h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
-                  href="/help"
+                  href="/chat"
                   className="text-muted-foreground hover:text-foreground"
                 >
-                  Help Center
+                  Chat with us
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/shipping"
+                  href="/chat"
                   className="text-muted-foreground hover:text-foreground"
                 >
-                  Shipping & Returns
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/warranty"
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  Warranty
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/privacy"
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/terms"
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  Terms of Service
+                  Chat with your friends
                 </Link>
               </li>
             </ul>
@@ -185,16 +122,16 @@ export function Footer({ className }: { className?: string }) {
               &copy; {new Date().getFullYear()} VieVlog. All rights reserved.
             </p>
             <div className="flex items-center gap-4 text-sm text-muted-foreground">
-              <Link href="/privacy" className="hover:text-foreground">
+              <Link href="/" className="hover:text-foreground">
                 Privacy
               </Link>
-              <Link href="/terms" className="hover:text-foreground">
+              <Link href="/" className="hover:text-foreground">
                 Terms
               </Link>
-              <Link href="/cookies" className="hover:text-foreground">
+              <Link href="/" className="hover:text-foreground">
                 Cookies
               </Link>
-              <Link href="/sitemap" className="hover:text-foreground">
+              <Link href="/" className="hover:text-foreground">
                 Sitemap
               </Link>
             </div>
