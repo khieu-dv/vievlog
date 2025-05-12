@@ -1,7 +1,7 @@
 // components/VideoFeed.tsx
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import VideoPlayer from "./VideoPlayer";
 import VideoInfo from "./VideoInfo";
 import { Button } from "../../ui/primitives/button";
@@ -30,123 +30,138 @@ const VideoFeed: React.FC<VideoFeedProps> = ({ videos }) => {
     const videoRefs = useRef<(HTMLDivElement | null)[]>([]);
     const [isScrolling, setIsScrolling] = useState(false);
     const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-    const [globalMuted, setGlobalMuted] = useState(true); // Start muted for browser autoplay policy
+    const [globalMuted, setGlobalMuted] = useState(true);
     const [hasPlayedBefore, setHasPlayedBefore] = useState(false);
     const previousIndexRef = useRef(0);
 
-    // Function to navigate to the previous video
-    const goToPreviousVideo = () => {
-        if (currentIndex > 0) {
-            setCurrentIndex(currentIndex - 1);
-        }
-    };
+    // Improved navigation functions with boundary checks
+    const goToPreviousVideo = useCallback(() => {
+        setCurrentIndex(prev => Math.max(0, prev - 1));
+    }, []);
 
-    // Function to navigate to the next video
-    const goToNextVideo = () => {
-        if (currentIndex < videos.length - 1) {
-            setCurrentIndex(currentIndex + 1);
-        }
-    };
+    const goToNextVideo = useCallback(() => {
+        setCurrentIndex(prev => Math.min(videos.length - 1, prev + 1));
+    }, [videos.length]);
 
-    // Set up refs for all videos
+    // Initialize video refs
     useEffect(() => {
         videoRefs.current = Array(videos.length).fill(null);
     }, [videos.length]);
 
-    // Handle scroll to current video
-    useEffect(() => {
-        if (videoRefs.current[currentIndex]) {
+    // Improved scroll handling with debounce
+    const smoothScrollToVideo = useCallback((index: number) => {
+        if (videoRefs.current[index]) {
             setIsScrolling(true);
-            videoRefs.current[currentIndex]?.scrollIntoView({
-                behavior: "smooth",
-                block: "center",
-            });
 
-            // Reset scrolling flag after animation completes
+            // Cancel any existing timeout
             if (scrollTimeoutRef.current) {
                 clearTimeout(scrollTimeoutRef.current);
             }
 
+            // Scroll to the video
+            videoRefs.current[index]?.scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+            });
+
+            // Set a timeout to reset scrolling state
             scrollTimeoutRef.current = setTimeout(() => {
                 setIsScrolling(false);
-            }, 500); // Typical scroll animation duration
-
-            // If we've already played a video before, try to unmute the next one
-            // But only if the user has manually unmuted at some point
-            if (hasPlayedBefore && currentIndex !== previousIndexRef.current && !globalMuted) {
-                // Keep unmuted state when changing videos if user has unmuted before
-                setGlobalMuted(false);
-            }
-
-            // Update previous index
-            previousIndexRef.current = currentIndex;
-
-            // Mark that we've played at least one video
-            if (!hasPlayedBefore) {
-                setHasPlayedBefore(true);
-            }
+            }, 500);
         }
-    }, [currentIndex, hasPlayedBefore, globalMuted]);
+    }, []);
 
-    // Set up intersection observers
+    // Scroll to current video when index changes
     useEffect(() => {
-        // Disconnect any existing observers
+        smoothScrollToVideo(currentIndex);
+
+        // Update mute state logic
+        if (hasPlayedBefore && currentIndex !== previousIndexRef.current && !globalMuted) {
+            setGlobalMuted(false);
+        }
+
+        // Update previous index and play state
+        previousIndexRef.current = currentIndex;
+        if (!hasPlayedBefore) {
+            setHasPlayedBefore(true);
+        }
+    }, [currentIndex, hasPlayedBefore, globalMuted, smoothScrollToVideo]);
+
+    // Improved intersection observer setup
+    useEffect(() => {
+        // Disconnect existing observers
         observersRef.current.forEach((observer) => observer.disconnect());
         observersRef.current = [];
 
-        // Create new observers for each video
-        videoRefs.current.forEach((ref, index) => {
-            if (!ref) return;
-
+        // Create new observers
+        const createObserver = (ref: HTMLDivElement, index: number) => {
             const observer = new IntersectionObserver(
                 (entries) => {
                     entries.forEach((entry) => {
-                        // Only update currentIndex if not currently in a programmatic scroll
-                        if (entry.isIntersecting && entry.intersectionRatio > 0.7 && !isScrolling) {
+                        // More robust intersection checking
+                        if (
+                            entry.isIntersecting &&
+                            entry.intersectionRatio > 0.7 &&
+                            !isScrolling
+                        ) {
                             setCurrentIndex(index);
                         }
                     });
                 },
                 {
-                    threshold: 0.7, // Video must be 70% visible to be considered "current"
+                    threshold: 0.7,
                     root: null,
                 }
             );
 
             observer.observe(ref);
-            observersRef.current.push(observer);
+            return observer;
+        };
+
+        // Set up observers for visible videos
+        videoRefs.current.forEach((ref, index) => {
+            if (ref) {
+                const observer = createObserver(ref, index);
+                observersRef.current.push(observer);
+            }
         });
 
-        // Clean up observers on unmount
+        // Cleanup
         return () => {
             observersRef.current.forEach((observer) => observer.disconnect());
         };
     }, [videos, isScrolling]);
 
-    // Handle keyboard navigation
+    // Keyboard navigation
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
-            if (e.key === "ArrowUp") {
-                goToPreviousVideo();
-            } else if (e.key === "ArrowDown") {
-                goToNextVideo();
-            } else if (e.key === "m" || e.key === "M") {
-                // Toggle mute with 'm' key
-                setGlobalMuted(prev => !prev);
-            } else if (e.key === " ") {
-                // Space bar can toggle audio
-                e.preventDefault(); // Prevent page scroll
-                if (globalMuted) {
-                    setGlobalMuted(false);
-                }
+            switch (e.key) {
+                case "ArrowUp":
+                    e.preventDefault();
+                    goToPreviousVideo();
+                    break;
+                case "ArrowDown":
+                    e.preventDefault();
+                    goToNextVideo();
+                    break;
+                case "m":
+                case "M":
+                    setGlobalMuted(prev => !prev);
+                    break;
+                case " ":
+                    e.preventDefault();
+                    if (globalMuted) {
+                        setGlobalMuted(false);
+                    }
+                    break;
             }
         };
 
         window.addEventListener("keydown", handleKeyDown);
         return () => window.removeEventListener("keydown", handleKeyDown);
-    }, [currentIndex, globalMuted]);
+    }, [goToPreviousVideo, goToNextVideo, globalMuted]);
 
-    // Handle swipe navigation on touch devices
+    // Touch swipe navigation
     useEffect(() => {
         let touchStartY = 0;
         let touchStartTime = 0;
@@ -162,20 +177,11 @@ const VideoFeed: React.FC<VideoFeedProps> = ({ videos }) => {
             const diff = touchStartY - touchEndY;
             const timeDiff = touchEndTime - touchStartTime;
 
-            // Check if it's a fast swipe (less than 300ms)
             const isFastSwipe = timeDiff < 300;
-
-            // Detect swipe (min 50px movement or fast swipe with min 30px)
             const minDiff = isFastSwipe ? 30 : 50;
 
             if (Math.abs(diff) > minDiff) {
-                if (diff > 0) {
-                    // Swipe up - go to next video
-                    goToNextVideo();
-                } else {
-                    // Swipe down - go to previous video
-                    goToPreviousVideo();
-                }
+                diff > 0 ? goToNextVideo() : goToPreviousVideo();
             }
         };
 
@@ -189,9 +195,9 @@ const VideoFeed: React.FC<VideoFeedProps> = ({ videos }) => {
                 container.removeEventListener("touchend", handleTouchEnd);
             };
         }
-    }, [currentIndex]);
+    }, [goToPreviousVideo, goToNextVideo]);
 
-    // Clean up timeout on unmount
+    // Cleanup timeout
     useEffect(() => {
         return () => {
             if (scrollTimeoutRef.current) {
@@ -200,11 +206,12 @@ const VideoFeed: React.FC<VideoFeedProps> = ({ videos }) => {
         };
     }, []);
 
-    // Handle muted state changes from child components
-    const handleMutedChange = (muted: boolean) => {
+    // Mute state handler
+    const handleMutedChange = useCallback((muted: boolean) => {
         setGlobalMuted(muted);
-    };
+    }, []);
 
+    // No videos handling
     if (videos.length === 0) {
         return <div className="text-white text-center p-4">No videos found</div>;
     }
@@ -212,7 +219,7 @@ const VideoFeed: React.FC<VideoFeedProps> = ({ videos }) => {
     return (
         <div
             ref={containerRef}
-            className="relative h-full overflow-y-auto snap-y snap-mandatory video-container"
+            className="relative h-screen overflow-y-auto snap-y snap-mandatory video-container"
         >
             {videos.map((video, index) => (
                 <div
@@ -220,7 +227,7 @@ const VideoFeed: React.FC<VideoFeedProps> = ({ videos }) => {
                     ref={(el) => {
                         videoRefs.current[index] = el;
                     }}
-                    className="h-full w-full snap-start snap-always relative"
+                    className="h-screen w-full snap-start snap-always relative"
                 >
                     <VideoPlayer
                         video={video}
@@ -232,27 +239,6 @@ const VideoFeed: React.FC<VideoFeedProps> = ({ videos }) => {
                     <VideoInfo video={video} />
                 </div>
             ))}
-
-            {/* <div className="fixed right-4 bottom-20 flex flex-col gap-4 z-40">
-                <Button
-                    variant="outline"
-                    size="icon"
-                    className="rounded-full bg-black/50 border-white/20 text-white"
-                    onClick={goToPreviousVideo}
-                    disabled={currentIndex === 0}
-                >
-                    <ChevronUp className="h-6 w-6" />
-                </Button>
-                <Button
-                    variant="outline"
-                    size="icon"
-                    className="rounded-full bg-black/50 border-white/20 text-white"
-                    onClick={goToNextVideo}
-                    disabled={currentIndex === videos.length - 1}
-                >
-                    <ChevronDown className="h-6 w-6" />
-                </Button>
-            </div> */}
         </div>
     );
 };
