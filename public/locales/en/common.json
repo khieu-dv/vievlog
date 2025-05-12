@@ -20,7 +20,7 @@
   "content": {
     "title": "VieVlog – Learn IT for Free",
     "home": "Home",
-    "topiks": "Topiks",
+    "topiks": "IT",
     "courses": "Courses",
     "grammar": "Grammar",
     "game": "Game",
@@ -45,7 +45,7 @@
     "topikI_tests": "12 practice tests",
     "topikII": "VIEVLOG II",
     "topikII_tests": "15 practice tests",
-    "viewAllTopiks": "View All VIEVLOG Tests",
+    "viewAllIT": "View All VIEVLOG Tests",
     "featuredCourses": "Featured Courses",
     "beginnerIT": "Beginner's IT",
     "intermediateIT": "Intermediate IT",

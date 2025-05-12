@@ -107,7 +107,7 @@ export default function HomePage() {
   };
 
   // tao bien product
-  const featuredTopiks = [
+  const featuredIT = [
     {
       id: "9v0i6zzig509tk9",
       name: "제35회 한국어능력시험 VIEVLOG Ⅰ 듣기",
@@ -393,9 +393,9 @@ export default function HomePage() {
                       Sign Up Now
                     </Button>
                   </Link>
-                  <Link href="/products">
+                  <Link href="/posts">
                     <Button variant="outline" size="lg" className="h-12 px-8">
-                      Browse Topiks
+                      Browse IT
                     </Button>
                   </Link>
                 </div>

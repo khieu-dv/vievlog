@@ -20,7 +20,7 @@
   "content": {
     "title": "VieVlog - Tgħallem IT b'xejn",
     "home": "Id-dar",
-    "topiks": "Topiks",
+    "topiks": "IT",
     "courses": "Korsijiet",
     "grammar": "Grammatika",
     "game": "Logħba",
@@ -45,7 +45,7 @@
     "topikI_tests": "12 Testijiet tal-Prattika",
     "topikII": "Suġġett II",
     "topikII_tests": "15 Testijiet tal-Prattika",
-    "viewAllTopiks": "Ara t-testijiet tas-suġġetti kollha",
+    "viewAllIT": "Ara t-testijiet tas-suġġetti kollha",
     "featuredCourses": "Korsijiet dehru",
     "beginnerIT": "ITtal-Bidu",
     "intermediateIT": "ITintermedju",

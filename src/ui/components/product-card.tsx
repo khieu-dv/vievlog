@@ -98,7 +98,7 @@ export function TopicCard({
         onMouseLeave={() => setIsHovered(false)}
         {...props}
       >
-        <Link href={`/products/${topic.id}`} className="flex w-full p-4">
+        <Link href={`/posts/${topic.id}`} className="flex w-full p-4">
           <div className="flex flex-col flex-grow">
             <div className="flex justify-between items-start">
               <div className="flex flex-wrap gap-2">
@@ -197,7 +197,7 @@ export function TopicCard({
   // Default card view (also modified to not use image)
   return (
     <div className={cn("group", className)} {...props}>
-      <Link href={`/products/${topic.id}`}>
+      <Link href={`/posts/${topic.id}`}>
         <Card
           className={cn(
             "relative h-full overflow-hidden rounded-lg transition-all duration-200 ease-in-out hover:shadow-md",

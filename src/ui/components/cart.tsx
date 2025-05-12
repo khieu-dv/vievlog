@@ -136,8 +136,8 @@ export function Cart({ className }: CartProps) {
                     Looks like you haven't added anything to your cart yet.
                   </p>
                   <DrawerClose asChild>
-                    <Link href="/products">
-                      <Button>Browse Topiks</Button>
+                    <Link href="/posts">
+                      <Button>Browse IT</Button>
                     </Link>
                   </DrawerClose>
                 </motion.div>
@@ -165,7 +165,7 @@ export function Cart({ className }: CartProps) {
                         <div>
                           <div className="flex items-start justify-between">
                             <Link
-                              href={`/products/${item.id}`}
+                              href={`/posts/${item.id}`}
                               className="line-clamp-2 text-sm font-medium group-hover:text-primary"
                               onClick={() => setIsOpen(false)}
                             >
