@@ -70,7 +70,7 @@ export const ContactButton = () => {
                     href={messengerLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-blue-500 p-3 rounded-full text-white hover:bg-blue-600 hover:scale-110 transition-all duration-300 flex items-center justify-center shadow-lg group"
+                    className="relative bg-red-600 p-3 rounded-full text-white hover:bg-red-700 hover:scale-110 transition-all duration-300 flex items-center justify-center shadow-lg group"
                     aria-label={t("Follow us on Youtube")}
                 >
                     <Youtube size={24} />
