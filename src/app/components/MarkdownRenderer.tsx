@@ -45,11 +45,19 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) =
                     ),
                     td: ({ node, ...props }) => <td className="px-4 py-2 text-sm text-gray-700 border-b border-gray-300" {...props} />,
                     code: ({ node, inline, className, children, ...props }: { node?: any; inline?: boolean; className?: string; children?: React.ReactNode }) => {
+                        // Handle language detection, with special handling for Golang
                         const match = /language-(\w+)/.exec(className || '');
+                        let language = match ? match[1] : '';
+
+                        // Map common variations of golang to 'go' which is what Prism expects
+                        if (language === 'golang' || language === 'go') {
+                            language = 'go';
+                        }
+
                         return !inline && match ? (
                             <SyntaxHighlighter
                                 style={atomDark}
-                                language={match[1]}
+                                language={language}
                                 PreTag="div"
                                 className="rounded-md my-4"
                                 {...props}
