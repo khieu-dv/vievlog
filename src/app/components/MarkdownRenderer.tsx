@@ -12,7 +12,7 @@ interface MarkdownRendererProps {
 
 export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) => {
     return (
-        <div className="markdown-body">
+        <div className="markdown-body light">
             <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
                 components={{
@@ -26,9 +26,9 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) =
                     a: ({ node, ...props }) => (
                         <a className="text-blue-600 hover:text-blue-800 underline" {...props} />
                     ),
-                    ul: ({ node, ...props }) => <ul className="list-disc pl-6 mb-4" {...props} />,
-                    ol: ({ node, ...props }) => <ol className="list-decimal pl-6 mb-4" {...props} />,
-                    li: ({ node, ...props }) => <li className="mb-1" {...props} />,
+                    ul: ({ node, ...props }) => <ul className="list-disc pl-6 mb-4 text-gray-800" {...props} />,
+                    ol: ({ node, ...props }) => <ol className="list-decimal pl-6 mb-4 text-gray-800" {...props} />,
+                    li: ({ node, ...props }) => <li className="mb-1 text-gray-800" {...props} />,
                     blockquote: ({ node, ...props }) => (
                         <blockquote className="border-l-4 border-gray-300 pl-4 py-1 mb-4 text-gray-700 italic" {...props} />
                     ),
@@ -43,13 +43,12 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) =
                     th: ({ node, ...props }) => (
                         <th className="px-4 py-2 text-left text-sm font-medium text-gray-900 border-b border-gray-300" {...props} />
                     ),
-                    td: ({ node, ...props }) => <td className="px-4 py-2 text-sm text-gray-700 border-b border-gray-300" {...props} />,
+                    td: ({ node, ...props }) => (
+                        <td className="px-4 py-2 text-sm text-gray-700 border-b border-gray-300" {...props} />
+                    ),
                     code: ({ node, inline, className, children, ...props }: { node?: any; inline?: boolean; className?: string; children?: React.ReactNode }) => {
-                        // Handle language detection, with special handling for Golang
                         const match = /language-(\w+)/.exec(className || '');
                         let language = match ? match[1] : '';
-
-                        // Map common variations of golang to 'go' which is what Prism expects
                         if (language === 'golang' || language === 'go') {
                             language = 'go';
                         }
