@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from "react";
-import { MessageCircle, Facebook, Phone, HelpCircle, X } from "lucide-react";
+import { MessageCircle, Facebook, Phone, HelpCircle, X, Youtube } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 export const ContactButton = () => {
@@ -11,7 +11,7 @@ export const ContactButton = () => {
 
     // Số điện thoại và link Messenger của bạn https://www.facebook.com/khieu.dv96
     const phoneNumber = "+84123456789";
-    const messengerLink = "https://www.facebook.com/khieu.dv96";
+    const messengerLink = "https://www.youtube.com/@vie-vlogs";
     // const messengerLink = "https://m.me/khieu.dv96";
 
     // Xử lý hover
@@ -71,11 +71,11 @@ export const ContactButton = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="bg-blue-500 p-3 rounded-full text-white hover:bg-blue-600 hover:scale-110 transition-all duration-300 flex items-center justify-center shadow-lg group"
-                    aria-label={t("Contact via Facebook")}
+                    aria-label={t("Follow us on Youtube")}
                 >
-                    <Facebook size={24} />
+                    <Youtube size={24} />
                     <span className="absolute right-full mr-3 bg-gray-800 text-white text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        {t("Contact via Facebook")}
+                        {t("Follow us on Youtube")}
                     </span>
                 </a>
 
