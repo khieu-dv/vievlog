@@ -12,6 +12,7 @@ import { Heart, MessageCircle, Share2, Bookmark, MoreHorizontal, ChevronLeft, Se
 import Image from "next/image";
 import Link from "next/link";
 import { formatDistanceToNow } from "date-fns";
+import { MarkdownRenderer } from "../../components/MarkdownRenderer";
 
 export default function PostDetailPage() {
   const { t } = useTranslation();
@@ -277,9 +278,9 @@ export default function PostDetailPage() {
               </div>
             )}
 
-            {/* Post Full Content */}
-            <div className="whitespace-pre-wrap px-4 pb-4 text-gray-800">
-              {post.content}
+            {/* Post Full Content - Using Markdown Renderer */}
+            <div className="px-4 pb-4">
+              <MarkdownRenderer content={post.content} />
             </div>
 
             {/* Post Tags */}
@@ -404,22 +405,6 @@ export default function PostDetailPage() {
               </div>
             </div>
           </div>
-
-          {/* Related Posts - Optional */}
-          {/* <div className="mt-8 rounded-lg bg-white p-4 shadow">
-            <h2 className="mb-4 text-lg font-semibold">Related Posts</h2>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              {[1, 2].map((i) => (
-                <div key={i} className="overflow-hidden rounded border">
-                  <div className="h-32 bg-gray-200"></div>
-                  <div className="p-3">
-                    <h3 className="font-medium">Related Post Title {i}</h3>
-                    <p className="mt-1 text-xs text-gray-500">4 days ago</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div> */}
         </div>
       </main>
       <Footer />
