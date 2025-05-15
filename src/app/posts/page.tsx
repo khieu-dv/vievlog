@@ -21,8 +21,6 @@ export default function PostsPage() {
   const pb = new PocketBase(process.env.NEXT_PUBLIC_POCKETBASE_URL || 'https://pocketbase.vietopik.com');
 
   const [posts, setPosts] = useState<Post[]>([]);
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
@@ -30,7 +28,6 @@ export default function PostsPage() {
   const [submittingComment, setSubmittingComment] = useState<{ [key: string]: boolean }>({});
   const postsPerPage = 20;
   const [commentPages, setCommentPages] = useState<{ [key: string]: number }>({});
-  const [showCategoryFilter, setShowCategoryFilter] = useState(false);
   const [sidebarVisible, setSidebarVisible] = useState(true);
 
   // Sample data for the sidebars
@@ -84,24 +81,7 @@ export default function PostsPage() {
     { title: "Web Performance Summit", date: "July 8, 2025", type: "Summit" }
   ];
 
-  // Fetch all categories
-  const fetchCategories = async () => {
-    try {
-      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/collections/categories_tbl/records`);
 
-      const mappedCategories = response.data.items.map((item: any) => ({
-        id: item.id,
-        name: item.name,
-        slug: item.slug,
-        description: item.description || "",
-        color: item.color || "#3B82F6" // Default blue color
-      }));
-
-      setCategories(mappedCategories);
-    } catch (error) {
-      console.error("Failed to fetch categories:", error);
-    }
-  };
 
   const fetchPosts = async (pageNumber: number, categoryId: string = "") => {
     if (isLoading) return;
@@ -292,13 +272,6 @@ export default function PostsPage() {
     }
   };
 
-  // Handle category selection
-  const handleCategorySelect = (categoryId: string) => {
-    setSelectedCategory(categoryId);
-    setPage(1);
-    fetchPosts(1, categoryId);
-    setShowCategoryFilter(false);
-  };
 
   // Toggle sidebar visibility for mobile
   const toggleSidebar = () => {
@@ -306,7 +279,6 @@ export default function PostsPage() {
   };
 
   useEffect(() => {
-    fetchCategories();
     fetchPosts(1);
 
     // Detect screen size for mobile responsiveness
@@ -328,7 +300,7 @@ export default function PostsPage() {
   const handleLoadMore = () => {
     const nextPage = page + 1;
     setPage(nextPage);
-    fetchPosts(nextPage, selectedCategory);
+    fetchPosts(nextPage);
   };
 
   // Format date to relative time (e.g., "2 hours ago")
@@ -432,68 +404,11 @@ export default function PostsPage() {
             <div className="mb-6">
               <div className="flex items-center justify-between">
                 <h1 className="text-3xl font-bold text-gray-900">IT Language Learning</h1>
-                <div className="relative">
-                  <button
-                    onClick={() => setShowCategoryFilter(!showCategoryFilter)}
-                    className="flex items-center rounded-md bg-white px-3 py-2 text-sm font-medium text-gray-700 shadow hover:bg-gray-50"
-                  >
-                    <Filter size={16} className="mr-2" />
-                    {selectedCategory
-                      ? categories.find(cat => cat.id === selectedCategory)?.name || "Filter"
-                      : "All Categories"}
-                  </button>
-                  {showCategoryFilter && (
-                    <div className="absolute right-0 mt-2 w-48 rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 z-10">
-                      <div
-                        className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
-                        onClick={() => handleCategorySelect("")}
-                      >
-                        All Categories
-                      </div>
-                      {categories.map((category) => (
-                        <div
-                          key={category.id}
-                          className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
-                          onClick={() => handleCategorySelect(category.id)}
-                        >
-                          {category.name}
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
+
               </div>
               <p className="mt-2 text-gray-600">
                 Explore our latest articles, tips and techniques for mastering IT
               </p>
-
-              {/* Category pills/tags */}
-              {categories.length > 0 && (
-                <div className="mt-4 flex flex-wrap gap-2">
-                  <button
-                    onClick={() => handleCategorySelect("")}
-                    className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${selectedCategory === ""
-                      ? "bg-blue-500 text-white"
-                      : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                      }`}
-                  >
-                    All
-                  </button>
-                  {categories.map((category) => (
-                    <button
-                      key={category.id}
-                      onClick={() => handleCategorySelect(category.id)}
-                      style={{
-                        backgroundColor: selectedCategory === category.id ? category.color : '#f3f4f6',
-                        color: selectedCategory === category.id ? getContrastColor(category.color || '#000000') : '#4b5563'
-                      }}
-                      className="rounded-full px-3 py-1 text-xs font-medium transition-colors hover:opacity-90"
-                    >
-                      {category.name}
-                    </button>
-                  ))}
-                </div>
-              )}
             </div>
 
             {/* Posts Feed */}
@@ -515,14 +430,6 @@ export default function PostsPage() {
             ) : posts.length === 0 ? (
               <div className="rounded-lg bg-white p-8 text-center shadow">
                 <p className="text-lg text-gray-600">No posts found in this category.</p>
-                {selectedCategory && (
-                  <button
-                    onClick={() => handleCategorySelect("")}
-                    className="mt-4 rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
-                  >
-                    View all posts
-                  </button>
-                )}
               </div>
             ) : (
               posts.map((post) => (
@@ -737,7 +644,6 @@ export default function PostsPage() {
             </div>
           )}
         </div>
-
         <Footer />
       </div>
     </div>
