@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useSession } from "~/lib/auth-client_v2";
+import { useSession } from "~/lib/auth-client";
 import { Header } from "~/ui/components/header";
 
 // Define an extended user type with basic information

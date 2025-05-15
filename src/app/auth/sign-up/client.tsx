@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { signUp } from "~/lib/auth-client_v2";
+import { signUp } from "~/lib/auth-client";
 
 export function SignUpPageClient() {
   const router = useRouter();

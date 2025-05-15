@@ -5,7 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import PocketBase from 'pocketbase';
-import { useSession } from "../../../lib/auth-client_v2";
+import { useSession } from "../../../lib/auth-client";
 import { Header } from "~/ui/components/header";
 import { Footer } from "~/ui/components/footer";
 import { Heart, MessageCircle, Share2, Bookmark, MoreHorizontal, ChevronLeft, Send } from "lucide-react";

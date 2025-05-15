@@ -3,7 +3,7 @@
 import { LogOut, Menu, Settings, User, X, Globe, ChevronDown } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { signOut, useSession } from "~/lib/auth-client_v2";
+import { signOut, useSession } from "~/lib/auth-client";
 
 import { useState } from "react";
 import { cn } from "~/lib/utils";

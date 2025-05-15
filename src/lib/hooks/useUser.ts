@@ -1,6 +1,6 @@
 // ~/hooks/useUser.ts
 import { useState, useEffect } from "react";
-import { useSession } from "../auth-client_v2";
+import { useSession } from "../auth-client";
 
 interface User {
   id: string;

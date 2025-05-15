@@ -3,7 +3,7 @@
 import { LogOut, Settings, User } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { signOut, useSession } from "~/lib/auth-client_v2";
+import { signOut, useSession } from "~/lib/auth-client";
 
 import { ThemeToggle } from "~/ui/components/theme-toggle";
 import { Button } from "~/ui/primitives/button";

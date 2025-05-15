@@ -1,4 +1,3 @@
-// app/posts/page.tsx
 "use client";
 
 import { useEffect, useState, useRef } from "react";
@@ -7,10 +6,10 @@ import { Footer } from "~/ui/components/footer";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import PocketBase from 'pocketbase';
-import { Heart, MessageCircle, Share2, Bookmark, MoreHorizontal, Send, Filter } from "lucide-react";
+import { Heart, MessageCircle, Share2, Bookmark, MoreHorizontal, Send, Filter, Code, Book, Star, Monitor, Cpu, Server, Database, GitBranch, Coffee, FileCode, Clock } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useSession } from "../../lib/auth-client_v2";
+import { useSession } from "../../lib/auth-client";
 
 // Define TypeScript interfaces
 interface Comment {
@@ -50,6 +49,26 @@ interface Post {
   category?: Category;
 }
 
+interface PopularTopic {
+  icon: React.ReactNode;
+  title: string;
+  count: number;
+  color: string;
+}
+
+interface Resource {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  url: string;
+}
+
+interface TrendingTech {
+  name: string;
+  growthPercentage: number;
+  description: string;
+}
+
 export default function PostsPage() {
   const { t } = useTranslation();
   const loadMoreRef = useRef<HTMLDivElement>(null);
@@ -67,6 +86,58 @@ export default function PostsPage() {
   const postsPerPage = 20;
   const [commentPages, setCommentPages] = useState<{ [key: string]: number }>({});
   const [showCategoryFilter, setShowCategoryFilter] = useState(false);
+  const [sidebarVisible, setSidebarVisible] = useState(true);
+
+  // Sample data for the sidebars
+  const popularTopics: PopularTopic[] = [
+    { icon: <Code size={16} />, title: "JavaScript", count: 157, color: "#F7DF1E" },
+    { icon: <Server size={16} />, title: "Node.js", count: 124, color: "#68A063" },
+    { icon: <Monitor size={16} />, title: "React", count: 109, color: "#61DAFB" },
+    { icon: <Database size={16} />, title: "SQL", count: 87, color: "#00758F" },
+    { icon: <Cpu size={16} />, title: "Python", count: 76, color: "#3776AB" },
+    { icon: <GitBranch size={16} />, title: "Git", count: 62, color: "#F05032" },
+  ];
+
+  const learningResources: Resource[] = [
+    {
+      icon: <Book size={18} />,
+      title: "Free Online Courses",
+      description: "Start learning today with our collection of free courses",
+      url: "/resources/courses"
+    },
+    {
+      icon: <FileCode size={18} />,
+      title: "Code Challenges",
+      description: "Practice your skills with interactive exercises",
+      url: "/resources/challenges"
+    },
+    {
+      icon: <Coffee size={18} />,
+      title: "Developer Meetups",
+      description: "Connect with local developers in your area",
+      url: "/events/meetups"
+    },
+    {
+      icon: <Coffee size={18} />,
+      title: "Quick Tips",
+      description: "Short, actionable development tips for busy coders",
+      url: "/resources/tips"
+    }
+  ];
+
+  const trendingTechnologies: TrendingTech[] = [
+    { name: "TypeScript", growthPercentage: 28, description: "Strongly typed JavaScript" },
+    { name: "Next.js", growthPercentage: 35, description: "React framework for production" },
+    { name: "Tailwind CSS", growthPercentage: 42, description: "Utility-first CSS framework" },
+    { name: "Docker", growthPercentage: 21, description: "Container platform" },
+    { name: "Kubernetes", growthPercentage: 18, description: "Container orchestration" }
+  ];
+
+  const upcomingEvents = [
+    { title: "TypeScript Workshop", date: "May 25, 2025", type: "Workshop" },
+    { title: "React Conference 2025", date: "June 12-15, 2025", type: "Conference" },
+    { title: "Web Performance Summit", date: "July 8, 2025", type: "Summit" }
+  ];
 
   // Fetch all categories
   const fetchCategories = async () => {
@@ -284,9 +355,29 @@ export default function PostsPage() {
     setShowCategoryFilter(false);
   };
 
+  // Toggle sidebar visibility for mobile
+  const toggleSidebar = () => {
+    setSidebarVisible(!sidebarVisible);
+  };
+
   useEffect(() => {
     fetchCategories();
     fetchPosts(1);
+
+    // Detect screen size for mobile responsiveness
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setSidebarVisible(true);
+      } else {
+        setSidebarVisible(false);
+      }
+    };
+
+    // Initial check
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const handleLoadMore = () => {
@@ -330,299 +421,379 @@ export default function PostsPage() {
   return (
     <div className="min-h-screen bg-gray-100">
       <Header />
-      <main className="pt-16 pb-10">
-        <div className="container mx-auto max-w-2xl px-4">
-          {/* Page Header with Category Filter */}
-          <div className="mb-6">
-            <div className="flex items-center justify-between">
-              <h1 className="text-3xl font-bold text-gray-900">IT Language Learning</h1>
-              <div className="relative">
-                <button
-                  onClick={() => setShowCategoryFilter(!showCategoryFilter)}
-                  className="flex items-center rounded-md bg-white px-3 py-2 text-sm font-medium text-gray-700 shadow hover:bg-gray-50"
-                >
-                  <Filter size={16} className="mr-2" />
-                  {selectedCategory
-                    ? categories.find(cat => cat.id === selectedCategory)?.name || "Filter"
-                    : "All Categories"}
-                </button>
-                {showCategoryFilter && (
-                  <div className="absolute right-0 mt-2 w-48 rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 z-10">
-                    <div
-                      className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
-                      onClick={() => handleCategorySelect("")}
-                    >
-                      All Categories
-                    </div>
-                    {categories.map((category) => (
-                      <div
-                        key={category.id}
-                        className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
-                        onClick={() => handleCategorySelect(category.id)}
-                      >
-                        {category.name}
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
-            <p className="mt-2 text-gray-600">
-              Explore our latest articles, tips and techniques for mastering IT
-            </p>
 
-            {/* Category pills/tags */}
-            {categories.length > 0 && (
-              <div className="mt-4 flex flex-wrap gap-2">
+      {/* Mobile sidebar toggle button (visible only on small screens) */}
+      <div className="fixed bottom-4 right-4 z-50 lg:hidden">
+        <button
+          onClick={toggleSidebar}
+          className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-600 text-white shadow-lg hover:bg-blue-700"
+        >
+          <Code size={24} />
+        </button>
+      </div>
+
+      {/* Main content with sidebars */}
+      <div className="container mx-auto px-4 pt-16 pb-10">
+        <div className="flex flex-col lg:flex-row">
+          {/* Left Sidebar - Only visible on lg screens and above by default */}
+          <aside className={`lg:w-1/4 xl:w-1/5 pr-0 lg:pr-4 ${sidebarVisible ? 'fixed inset-0 z-40 bg-white p-4 overflow-y-auto lg:static lg:inset-auto lg:p-0 lg:bg-transparent' : 'hidden lg:block'}`}>
+            {/* Close button for mobile sidebar */}
+            {sidebarVisible && (
+              <div className="flex justify-end lg:hidden">
                 <button
-                  onClick={() => handleCategorySelect("")}
-                  className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${selectedCategory === ""
-                    ? "bg-blue-500 text-white"
-                    : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                    }`}
+                  onClick={toggleSidebar}
+                  className="p-2 text-gray-500 hover:text-gray-700"
                 >
-                  All
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
                 </button>
-                {categories.map((category) => (
-                  <button
-                    key={category.id}
-                    onClick={() => handleCategorySelect(category.id)}
-                    style={{
-                      backgroundColor: selectedCategory === category.id ? category.color : '#f3f4f6',
-                      color: selectedCategory === category.id ? getContrastColor(category.color || '#000000') : '#4b5563'
-                    }}
-                    className="rounded-full px-3 py-1 text-xs font-medium transition-colors hover:opacity-90"
-                  >
-                    {category.name}
-                  </button>
-                ))}
               </div>
             )}
-          </div>
 
-          {/* Posts Feed */}
-          {posts.length === 0 && isLoading ? (
-            Array(3).fill(0).map((_, i) => (
-              <div key={i} className="mb-4 rounded-lg bg-white p-4 shadow">
-                <div className="flex items-center">
-                  <div className="h-10 w-10 animate-pulse rounded-full bg-gray-200"></div>
-                  <div className="ml-3">
-                    <div className="h-4 w-40 animate-pulse rounded bg-gray-200"></div>
-                    <div className="mt-1 h-3 w-24 animate-pulse rounded bg-gray-200"></div>
-                  </div>
+            {/* Popular Programming Topics */}
+            <div className="mb-6 rounded-lg bg-white p-4 shadow">
+              <h3 className="mb-3 border-b border-gray-200 pb-2 text-lg font-semibold">Popular Topics</h3>
+              <ul className="space-y-2">
+                {popularTopics.map((topic, index) => (
+                  <li key={index}>
+                    <a
+                      // href={`/topics/${topic.title.toLowerCase()}`}
+                      className="flex items-center justify-between rounded-md p-2 hover:bg-gray-50"
+                    >
+                      <div className="flex items-center">
+                        <div
+                          className="mr-3 flex h-8 w-8 items-center justify-center rounded-md"
+                          style={{ backgroundColor: `${topic.color}20`, color: topic.color }}
+                        >
+                          {topic.icon}
+                        </div>
+                        <span className="font-medium">{topic.title}</span>
+                      </div>
+                      <span className="rounded-full bg-gray-100 px-2 py-1 text-xs">{topic.count}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <button className="mt-3 w-full rounded-md bg-gray-100 py-2 text-sm font-medium text-gray-700 hover:bg-gray-200">
+                View All Topics
+              </button>
+            </div>
+
+            {/* Trending Technologies */}
+            <div className="mb-6 rounded-lg bg-white p-4 shadow">
+              <h3 className="mb-3 border-b border-gray-200 pb-2 text-lg font-semibold">Trending Technologies</h3>
+              <ul className="space-y-3">
+                {trendingTechnologies.map((tech, index) => (
+                  <li key={index} className="rounded-md p-2 hover:bg-gray-50">
+                    <div className="flex items-center justify-between">
+                      <span className="font-medium">{tech.name}</span>
+                      <span className="text-green-500">+{tech.growthPercentage}%</span>
+                    </div>
+                    <p className="mt-1 text-sm text-gray-500">{tech.description}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </aside>
+
+          {/* Main content */}
+          <main className="w-full lg:w-1/2 px-0 lg:px-4">
+            {/* Page Header with Category Filter */}
+            <div className="mb-6">
+              <div className="flex items-center justify-between">
+                <h1 className="text-3xl font-bold text-gray-900">IT Language Learning</h1>
+                <div className="relative">
+                  <button
+                    onClick={() => setShowCategoryFilter(!showCategoryFilter)}
+                    className="flex items-center rounded-md bg-white px-3 py-2 text-sm font-medium text-gray-700 shadow hover:bg-gray-50"
+                  >
+                    <Filter size={16} className="mr-2" />
+                    {selectedCategory
+                      ? categories.find(cat => cat.id === selectedCategory)?.name || "Filter"
+                      : "All Categories"}
+                  </button>
+                  {showCategoryFilter && (
+                    <div className="absolute right-0 mt-2 w-48 rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 z-10">
+                      <div
+                        className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+                        onClick={() => handleCategorySelect("")}
+                      >
+                        All Categories
+                      </div>
+                      {categories.map((category) => (
+                        <div
+                          key={category.id}
+                          className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+                          onClick={() => handleCategorySelect(category.id)}
+                        >
+                          {category.name}
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
-                <div className="mt-4 h-4 w-full animate-pulse rounded bg-gray-200"></div>
-                <div className="mt-2 h-4 w-3/4 animate-pulse rounded bg-gray-200"></div>
-                <div className="mt-4 h-64 w-full animate-pulse rounded bg-gray-200"></div>
               </div>
-            ))
-          ) : posts.length === 0 ? (
-            <div className="rounded-lg bg-white p-8 text-center shadow">
-              <p className="text-lg text-gray-600">No posts found in this category.</p>
-              {selectedCategory && (
-                <button
-                  onClick={() => handleCategorySelect("")}
-                  className="mt-4 rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
-                >
-                  View all posts
-                </button>
+              <p className="mt-2 text-gray-600">
+                Explore our latest articles, tips and techniques for mastering IT
+              </p>
+
+              {/* Category pills/tags */}
+              {categories.length > 0 && (
+                <div className="mt-4 flex flex-wrap gap-2">
+                  <button
+                    onClick={() => handleCategorySelect("")}
+                    className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${selectedCategory === ""
+                      ? "bg-blue-500 text-white"
+                      : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                      }`}
+                  >
+                    All
+                  </button>
+                  {categories.map((category) => (
+                    <button
+                      key={category.id}
+                      onClick={() => handleCategorySelect(category.id)}
+                      style={{
+                        backgroundColor: selectedCategory === category.id ? category.color : '#f3f4f6',
+                        color: selectedCategory === category.id ? getContrastColor(category.color || '#000000') : '#4b5563'
+                      }}
+                      className="rounded-full px-3 py-1 text-xs font-medium transition-colors hover:opacity-90"
+                    >
+                      {category.name}
+                    </button>
+                  ))}
+                </div>
               )}
             </div>
-          ) : (
-            posts.map((post) => (
-              <div key={post.id} className="mb-4 overflow-hidden rounded-lg bg-white shadow">
-                {/* Post Header */}
-                <div className="flex items-center justify-between p-4">
+
+            {/* Posts Feed */}
+            {posts.length === 0 && isLoading ? (
+              Array(3).fill(0).map((_, i) => (
+                <div key={i} className="mb-4 rounded-lg bg-white p-4 shadow">
                   <div className="flex items-center">
-                    <div className="h-10 w-10 overflow-hidden rounded-full">
-                      {post.author.avatar && post.author.avatar !== "/default-avatar.png" ? (
-                        <Image
-                          src={post.author.avatar}
-                          alt={post.author.name}
-                          width={40}
-                          height={40}
-                          className="h-10 w-10 rounded-full object-cover"
-                        />
-                      ) : (
-                        <div className="h-10 w-10 flex items-center justify-center rounded-full bg-blue-500 text-white font-semibold">
-                          {post.author.name.charAt(0).toUpperCase()}
-                        </div>
-                      )}
-                    </div>
+                    <div className="h-10 w-10 animate-pulse rounded-full bg-gray-200"></div>
                     <div className="ml-3">
-                      <p className="font-medium text-gray-900">{post.author.name}</p>
-                      <p className="text-xs text-gray-500">{formatRelativeTime(post.publishedAt)}</p>
+                      <div className="h-4 w-40 animate-pulse rounded bg-gray-200"></div>
+                      <div className="mt-1 h-3 w-24 animate-pulse rounded bg-gray-200"></div>
                     </div>
                   </div>
-                  <button className="rounded-full p-2 text-gray-400 hover:bg-gray-100">
-                    <MoreHorizontal size={20} />
+                  <div className="mt-4 h-4 w-full animate-pulse rounded bg-gray-200"></div>
+                  <div className="mt-2 h-4 w-3/4 animate-pulse rounded bg-gray-200"></div>
+                  <div className="mt-4 h-64 w-full animate-pulse rounded bg-gray-200"></div>
+                </div>
+              ))
+            ) : posts.length === 0 ? (
+              <div className="rounded-lg bg-white p-8 text-center shadow">
+                <p className="text-lg text-gray-600">No posts found in this category.</p>
+                {selectedCategory && (
+                  <button
+                    onClick={() => handleCategorySelect("")}
+                    className="mt-4 rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+                  >
+                    View all posts
                   </button>
-                </div>
-
-                {/* Post Content */}
-                <div className="px-4 pb-2">
-                  <Link href={`/posts/${post.id}`}>
-                    <h3 className="mb-2 text-xl font-semibold text-gray-900 hover:text-blue-600">{post.title}</h3>
-                  </Link>
-                  <p className="mb-4 text-gray-700">{post.excerpt}</p>
-                </div>
-
-                {/* Post Category (if available) */}
-                {post.category && (
-                  <div className="px-4 mb-2">
-                    <Link href={`/categories/${post.category.slug}`}>
-                      <span
-                        className="inline-block rounded-full px-3 py-1 text-xs font-medium"
-                        style={{
-                          backgroundColor: post.category.color,
-                          color: getContrastColor(post.category.color || "#000000")
-                        }}
-                      >
-                        {post.category.name}
-                      </span>
-                    </Link>
-                  </div>
                 )}
-
-                {/* Post Image */}
-                {post.coverImage && (
-                  <div className="relative aspect-video w-full">
-                    <Image
-                      src={post.coverImage}
-                      alt={post.title}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                )}
-
-                {/* Post Tags */}
-                {post.tags && post.tags.length > 0 && (
-                  <div className="flex flex-wrap gap-2 px-4 pt-3">
-                    {post.tags.map((tag, index) => (
-                      <span key={index} className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-600">
-                        #{tag}
-                      </span>
-                    ))}
-                  </div>
-                )}
-
-                {/* Post Stats */}
-                <div className="mt-1 flex items-center justify-between border-b border-gray-100 px-4 py-2">
-                  <div className="flex items-center text-sm text-gray-500">
-                    <div className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-100 text-blue-500">
-                      <Heart size={12} fill="currentColor" />
-                    </div>
-                    <span className="ml-1">{post.likes}</span>
-                  </div>
-                  <div className="text-sm text-gray-500">
-                    {post.commentCount} comments
-                  </div>
-                </div>
-
-                {/* Post Actions */}
-                <div className="flex border-b border-gray-100 text-gray-500">
-                  <button className="flex flex-1 items-center justify-center py-3 hover:bg-gray-50">
-                    <Heart size={20} className="mr-2" />
-                    <span>Like</span>
-                  </button>
-                  <button className="flex flex-1 items-center justify-center py-3 hover:bg-gray-50">
-                    <MessageCircle size={20} className="mr-2" />
-                    <span>Comment</span>
-                  </button>
-                  <button className="flex flex-1 items-center justify-center py-3 hover:bg-gray-50">
-                    <Share2 size={20} className="mr-2" />
-                    <span>Share</span>
-                  </button>
-                </div>
-
-                {/* Comments Section */}
-                {post.comments && post.comments.length > 0 && (
-                  <div className="border-b border-gray-100 px-4 py-2">
-                    {post.comments.map((comment) => (
-                      <div key={comment.id} className="mb-3 flex">
-                        <div className="h-8 w-8 flex-shrink-0 overflow-hidden rounded-full">
-                          {comment.userAvatar && comment.userAvatar !== "/default-avatar.png" ? (
-                            <Image
-                              src={comment.userAvatar}
-                              alt={comment.userName}
-                              width={32}
-                              height={32}
-                              className="h-8 w-8 rounded-full object-cover"
-                            />
-                          ) : (
-                            <div className="h-8 w-8 flex items-center justify-center rounded-full bg-blue-500 text-white font-semibold">
-                              {(comment.userName || "User").charAt(0).toUpperCase()}
-                            </div>
-                          )}
-                        </div>
-                        <div className="ml-2">
-                          <div className="rounded-2xl bg-gray-100 px-3 py-2">
-                            <p className="text-sm font-medium text-gray-900">{comment.userName}</p>
-                            <p className="text-sm text-gray-700">{comment.content}</p>
+              </div>
+            ) : (
+              posts.map((post) => (
+                <div key={post.id} className="mb-4 overflow-hidden rounded-lg bg-white shadow">
+                  {/* Post Header */}
+                  <div className="flex items-center justify-between p-4">
+                    <div className="flex items-center">
+                      <div className="h-10 w-10 overflow-hidden rounded-full">
+                        {post.author.avatar && post.author.avatar !== "/default-avatar.png" ? (
+                          <Image
+                            src={post.author.avatar}
+                            alt={post.author.name}
+                            width={40}
+                            height={40}
+                            className="h-10 w-10 rounded-full object-cover"
+                          />
+                        ) : (
+                          <div className="h-10 w-10 flex items-center justify-center rounded-full bg-blue-500 text-white font-semibold">
+                            {post.author.name.charAt(0).toUpperCase()}
                           </div>
-                          <div className="mt-1 flex items-center space-x-3 pl-2 text-xs text-gray-500">
-                            <span>{formatRelativeTime(comment.created)}</span>
-                            <button className="font-medium">Like</button>
-                            <button className="font-medium">Reply</button>
-                          </div>
-                        </div>
+                        )}
                       </div>
-                    ))}
-
-                    {post.commentCount > (post.comments?.length || 0) && (
-                      <button
-                        onClick={() => fetchCommentsForPost(post.id)}
-                        className="mt-1 text-sm font-medium text-gray-500 hover:text-gray-700"
-                      >
-                        View more comments
-                      </button>
-                    )}
-                  </div>
-                )}
-
-                {/* Comment Box */}
-                <div className="flex items-center p-4">
-                  <div className="h-8 w-8 flex-shrink-0 overflow-hidden rounded-full bg-gray-200">
-                    {session?.user?.image && (
-                      <Image
-                        src={session.user.image}
-                        alt={session.user.name || "User"}
-                        width={32}
-                        height={32}
-                        className="h-full w-full object-cover"
-                      />
-                    )}
-                  </div>
-                  <div className="ml-2 flex flex-grow items-center rounded-full bg-gray-100 pr-2">
-                    <input
-                      type="text"
-                      placeholder="Write a comment..."
-                      className="flex-grow bg-transparent px-4 py-2 text-sm outline-none"
-                      value={commentInputs[post.id] || ''}
-                      onChange={(e) => handleCommentInputChange(post.id, e.target.value)}
-                      onKeyPress={(e) => {
-                        if (e.key === 'Enter') {
-                          handleSubmitComment(post.id);
-                        }
-                      }}
-                    />
-                    <button
-                      onClick={() => handleSubmitComment(post.id)}
-                      disabled={submittingComment[post.id] || !commentInputs[post.id]?.trim()}
-                      className="flex h-8 w-8 items-center justify-center rounded-full text-blue-500 hover:bg-blue-50 disabled:opacity-50"
-                    >
-                      {submittingComment[post.id] ? (
-                        <div className="h-4 w-4 animate-spin rounded-full border-2 border-blue-500 border-t-transparent"></div>
-                      ) : (
-                        <Send size={16} />
-                      )}
+                      <div className="ml-3">
+                        <p className="font-medium text-gray-900">{post.author.name}</p>
+                        <p className="text-xs text-gray-500">{formatRelativeTime(post.publishedAt)}</p>
+                      </div>
+                    </div>
+                    <button className="rounded-full p-2 text-gray-400 hover:bg-gray-100">
+                      <MoreHorizontal size={20} />
                     </button>
                   </div>
+
+                  {/* Post Content */}
+                  <div className="px-4 pb-2">
+                    <Link href={`/posts/${post.id}`}>
+                      <h3 className="mb-2 text-xl font-semibold text-gray-900 hover:text-blue-600">{post.title}</h3>
+                    </Link>
+                    <p className="mb-4 text-gray-700">{post.excerpt}</p>
+                  </div>
+
+                  {/* Post Category (if available) */}
+                  {post.category && (
+                    <div className="px-4 mb-2">
+                      <Link href={`/categories/${post.category.slug}`}>
+                        <span
+                          className="inline-block rounded-full px-3 py-1 text-xs font-medium"
+                          style={{
+                            backgroundColor: post.category.color,
+                            color: getContrastColor(post.category.color || "#000000")
+                          }}
+                        >
+                          {post.category.name}
+                        </span>
+                      </Link>
+                    </div>
+                  )}
+
+                  {/* Post Image */}
+                  {post.coverImage && (
+                    <div className="relative aspect-video w-full">
+                      <Image
+                        src={post.coverImage}
+                        alt={post.title}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  )}
+
+                  {/* Post Tags */}
+                  {post.tags && post.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-2 px-4 pt-3">
+                      {post.tags.map((tag, index) => (
+                        <span key={index} className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-600">
+                          #{tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Post Stats */}
+                  <div className="mt-1 flex items-center justify-between border-b border-gray-100 px-4 py-2">
+                    <div className="flex items-center text-sm text-gray-500">
+                      <div className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-100 text-blue-500">
+                        <Heart size={12} fill="currentColor" />
+                      </div>
+                      <span className="ml-1">{post.likes}</span>
+                    </div>
+                    <div className="text-sm text-gray-500">
+                      {post.commentCount} comments
+                    </div>
+                  </div>
+
+                  {/* Post Actions */}
+                  <div className="flex border-b border-gray-100 text-gray-500">
+                    <button className="flex flex-1 items-center justify-center py-3 hover:bg-gray-50">
+                      <Heart size={20} className="mr-2" />
+                      <span>Like</span>
+                    </button>
+                    <button className="flex flex-1 items-center justify-center py-3 hover:bg-gray-50">
+                      <MessageCircle size={20} className="mr-2" />
+                      <span>Comment</span>
+                    </button>
+                    <button className="flex flex-1 items-center justify-center py-3 hover:bg-gray-50">
+                      <Share2 size={20} className="mr-2" />
+                      <span>Share</span>
+                    </button>
+                  </div>
+
+                  {/* Comments Section */}
+                  {post.comments && post.comments.length > 0 && (
+                    <div className="border-b border-gray-100 px-4 py-2">
+                      {post.comments.map((comment) => (
+                        <div key={comment.id} className="mb-3 flex">
+                          <div className="h-8 w-8 flex-shrink-0 overflow-hidden rounded-full">
+                            {comment.userAvatar && comment.userAvatar !== "/default-avatar.png" ? (
+                              <Image
+                                src={comment.userAvatar}
+                                alt={comment.userName}
+                                width={32}
+                                height={32}
+                                className="h-8 w-8 rounded-full object-cover"
+                              />
+                            ) : (
+                              <div className="h-8 w-8 flex items-center justify-center rounded-full bg-blue-500 text-white font-semibold">
+                                {(comment.userName || "User").charAt(0).toUpperCase()}
+                              </div>
+                            )}
+                          </div>
+                          <div className="ml-2">
+                            <div className="rounded-2xl bg-gray-100 px-3 py-2">
+                              <p className="text-sm font-medium text-gray-900">{comment.userName}</p>
+                              <p className="text-sm text-gray-700">{comment.content}</p>
+                            </div>
+                            <div className="mt-1 flex items-center space-x-3 pl-2 text-xs text-gray-500">
+                              <span>{formatRelativeTime(comment.created)}</span>
+                              <button className="font-medium">Like</button>
+                              <button className="font-medium">Reply</button>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+
+                      {post.commentCount > (post.comments?.length || 0) && (
+                        <button
+                          onClick={() => fetchCommentsForPost(post.id)}
+                          className="mt-1 text-sm font-medium text-gray-500 hover:text-gray-700"
+                        >
+                          View more comments
+                        </button>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Comment Box */}
+                  <div className="flex items-center p-4">
+                    <div className="h-8 w-8 flex-shrink-0 overflow-hidden rounded-full bg-gray-200">
+                      {session?.user?.image && (
+                        <Image
+                          src={session.user.image}
+                          alt={session.user.name || "User"}
+                          width={32}
+                          height={32}
+                          className="h-full w-full object-cover"
+                        />
+                      )}
+                    </div>
+                    <div className="ml-2 flex flex-grow items-center rounded-full bg-gray-100 pr-2">
+                      <input
+                        type="text"
+                        placeholder="Write a comment..."
+                        className="flex-grow bg-transparent px-4 py-2 text-sm outline-none"
+                        value={commentInputs[post.id] || ''}
+                        onChange={(e) => handleCommentInputChange(post.id, e.target.value)}
+                        onKeyPress={(e) => {
+                          if (e.key === 'Enter') {
+                            handleSubmitComment(post.id);
+                          }
+                        }}
+                      />
+                      <button
+                        onClick={() => handleSubmitComment(post.id)}
+                        disabled={submittingComment[post.id] || !commentInputs[post.id]?.trim()}
+                        className="flex h-8 w-8 items-center justify-center rounded-full text-blue-500 hover:bg-blue-50 disabled:opacity-50"
+                      >
+                        {submittingComment[post.id] ? (
+                          <div className="h-4 w-4 animate-spin rounded-full border-2 border-blue-500 border-t-transparent"></div>
+                        ) : (
+                          <Send size={16} />
+                        )}
+                      </button>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ))
-          )}
+              ))
+            )}
+
+          </main>
+
+          {/* Right Sidebar */}
 
           {/* Load More Button */}
           {hasMore && posts.length > 0 && (
@@ -637,8 +808,9 @@ export default function PostsPage() {
             </div>
           )}
         </div>
-      </main>
-      <Footer />
+
+        <Footer />
+      </div>
     </div>
   );
 }
