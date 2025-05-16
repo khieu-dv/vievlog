@@ -249,7 +249,7 @@ export default function PostsPage() {
       const commentData = {
         postId: postId,
         userId: session.user.id,
-        userName: session.user.name || "User",
+        userName: session.user.username || "User",
         userAvatar: session.user.image || "/default-avatar.png",
         content: content,
         lessonId: "" // Leave empty if not applicable
