@@ -6,11 +6,12 @@ import { Footer } from "~/ui/components/footer";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import PocketBase from 'pocketbase';
-import { Code, Book, Server, Monitor, Cpu, Database, GitBranch, Calendar, Bell, Users, Award, Star } from "lucide-react";
-import Image from "next/image";
+import { Code } from "lucide-react";
 import { useSession } from "../../lib/auth-client";
 import PostComponent from "../components/PostComponent";
-import { Comment, Category, Post, PopularTopic, Resource, TrendingTech } from '../../lib/types';
+import { Comment, Post } from '../../lib/types';
+import { LeftSidebar } from "../components/LeftSidebar";
+import { RightSidebar } from "../components/RightSidebar";
 
 export default function PostsPage() {
   const { t } = useTranslation();
@@ -28,28 +29,22 @@ export default function PostsPage() {
   const [commentPages, setCommentPages] = useState<{ [key: string]: number }>({});
   const [sidebarVisible, setSidebarVisible] = useState(true);
 
-  // Sample data for the sidebars
-  const popularTopics: PopularTopic[] = [
+  // Sample data for the left sidebar
+  const popularTopics = [
     { icon: <Code size={16} />, title: "JavaScript", count: 157, color: "#F7DF1E" },
-    { icon: <Server size={16} />, title: "Node.js", count: 124, color: "#68A063" },
-    { icon: <Monitor size={16} />, title: "React", count: 109, color: "#61DAFB" },
-    { icon: <Database size={16} />, title: "SQL", count: 87, color: "#00758F" },
-    { icon: <Cpu size={16} />, title: "Python", count: 76, color: "#3776AB" },
-    { icon: <GitBranch size={16} />, title: "Git", count: 62, color: "#F05032" },
+    { icon: <Code size={16} />, title: "Node.js", count: 124, color: "#68A063" },
+    { icon: <Code size={16} />, title: "React", count: 109, color: "#61DAFB" },
+    { icon: <Code size={16} />, title: "SQL", count: 87, color: "#00758F" },
+    { icon: <Code size={16} />, title: "Python", count: 76, color: "#3776AB" },
+    { icon: <Code size={16} />, title: "Git", count: 62, color: "#F05032" },
   ];
 
-  const trendingTechnologies: TrendingTech[] = [
+  const trendingTechnologies = [
     { name: "TypeScript", growthPercentage: 28, description: "Strongly typed JavaScript" },
     { name: "Next.js", growthPercentage: 35, description: "React framework for production" },
     { name: "Tailwind CSS", growthPercentage: 42, description: "Utility-first CSS framework" },
     { name: "Docker", growthPercentage: 21, description: "Container platform" },
     { name: "Kubernetes", growthPercentage: 18, description: "Container orchestration" }
-  ];
-
-  const upcomingEvents = [
-    { title: "TypeScript Workshop", date: "May 25, 2025", type: "Workshop" },
-    { title: "React Conference 2025", date: "June 12-15, 2025", type: "Conference" },
-    { title: "Web Performance Summit", date: "July 8, 2025", type: "Summit" }
   ];
 
   // Data for right sidebar
@@ -97,6 +92,12 @@ export default function PostsPage() {
       date: "May 5, 2025",
       excerpt: "We've improved the code editor and added new features."
     }
+  ];
+
+  const upcomingEvents = [
+    { title: "TypeScript Workshop", date: "May 25, 2025", type: "Workshop" },
+    { title: "React Conference 2025", date: "June 12-15, 2025", type: "Conference" },
+    { title: "Web Performance Summit", date: "July 8, 2025", type: "Summit" }
   ];
 
   const fetchPosts = async (pageNumber: number, categoryId: string = "") => {
@@ -293,7 +294,6 @@ export default function PostsPage() {
     setSidebarVisible(!sidebarVisible);
   };
 
-
   useEffect(() => {
     fetchPosts(1);
 
@@ -351,67 +351,13 @@ export default function PostsPage() {
       {/* Main content with sidebars */}
       <div className="container mx-auto px-4 pt-16 pb-10">
         <div className="flex flex-col lg:flex-row">
-          {/* Left Sidebar - Only visible on lg screens and above by default */}
-          <aside className={`lg:w-1/4 xl:w-1/5 pr-0 lg:pr-4 ${sidebarVisible ? 'fixed inset-0 z-40 bg-white p-4 overflow-y-auto lg:static lg:inset-auto lg:p-0 lg:bg-transparent' : 'hidden lg:block'}`}>
-            {/* Close button for mobile sidebar */}
-            {sidebarVisible && (
-              <div className="flex justify-end lg:hidden">
-                <button
-                  onClick={toggleSidebar}
-                  className="p-2 text-gray-500 hover:text-gray-700"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              </div>
-            )}
-
-            {/* Popular Programming Topics */}
-            <div className="mb-6 rounded-lg bg-white p-4 shadow">
-              <h3 className="mb-3 border-b border-gray-200 pb-2 text-lg font-semibold">Popular Topics</h3>
-              <ul className="space-y-2">
-                {popularTopics.map((topic, index) => (
-                  <li key={index}>
-                    <a
-                      // href={`/topics/${topic.title.toLowerCase()}`}
-                      className="flex items-center justify-between rounded-md p-2 hover:bg-gray-50"
-                    >
-                      <div className="flex items-center">
-                        <div
-                          className="mr-3 flex h-8 w-8 items-center justify-center rounded-md"
-                          style={{ backgroundColor: `${topic.color}20`, color: topic.color }}
-                        >
-                          {topic.icon}
-                        </div>
-                        <span className="font-medium">{topic.title}</span>
-                      </div>
-                      <span className="rounded-full bg-gray-100 px-2 py-1 text-xs">{topic.count}</span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-              <button className="mt-3 w-full rounded-md bg-gray-100 py-2 text-sm font-medium text-gray-700 hover:bg-gray-200">
-                View All Topics
-              </button>
-            </div>
-
-            {/* Trending Technologies */}
-            <div className="mb-6 rounded-lg bg-white p-4 shadow">
-              <h3 className="mb-3 border-b border-gray-200 pb-2 text-lg font-semibold">Trending Technologies</h3>
-              <ul className="space-y-3">
-                {trendingTechnologies.map((tech, index) => (
-                  <li key={index} className="rounded-md p-2 hover:bg-gray-50">
-                    <div className="flex items-center justify-between">
-                      <span className="font-medium">{tech.name}</span>
-                      <span className="text-green-500">+{tech.growthPercentage}%</span>
-                    </div>
-                    <p className="mt-1 text-sm text-gray-500">{tech.description}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </aside>
+          {/* Left Sidebar Component */}
+          <LeftSidebar
+            sidebarVisible={sidebarVisible}
+            toggleSidebar={toggleSidebar}
+            popularTopics={popularTopics}
+            trendingTechnologies={trendingTechnologies}
+          />
 
           {/* Main content */}
           <main className="w-full lg:w-1/2 px-0 lg:px-4">
@@ -475,131 +421,13 @@ export default function PostsPage() {
             )}
           </main>
 
-          {/* Right Sidebar - Only visible on lg screens and above by default */}
-          <aside className={"lg:w-1/4 xl:w-1/5 pl-0 lg:pl-4"}>
-
-            {/* Top Contributors Section */}
-            <div className="mb-6 rounded-lg bg-white p-4 shadow">
-              <h3 className="mb-3 border-b border-gray-200 pb-2 text-lg font-semibold">Top Contributors</h3>
-              <ul className="space-y-3">
-                {topContributors.map((contributor, index) => (
-                  <li key={index} className="flex items-center justify-between rounded-md p-2 hover:bg-gray-50">
-                    <div className="flex items-center">
-                      <div className="relative h-10 w-10 overflow-hidden rounded-full">
-                        {contributor.avatar ? (
-                          <Image
-                            src={contributor.avatar}
-                            alt={contributor.name}
-                            fill
-                            className="object-cover"
-                          />
-                        ) : (
-                          <div className="flex h-full w-full items-center justify-center bg-blue-100 text-blue-500">
-                            {contributor.name.charAt(0)}
-                          </div>
-                        )}
-                      </div>
-                      <div className="ml-3">
-                        <p className="font-medium">{contributor.name}</p>
-                        <div className="flex items-center">
-                          <span className="mr-2 text-sm text-gray-500">{contributor.points} pts</span>
-                          <span className="rounded-full bg-indigo-100 px-2 py-0.5 text-xs text-indigo-700">
-                            {contributor.badge}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                    <Award size={16} className="text-yellow-500" />
-                  </li>
-                ))}
-              </ul>
-              <button className="mt-3 w-full rounded-md bg-gray-100 py-2 text-sm font-medium text-gray-700 hover:bg-gray-200">
-                View Leaderboard
-              </button>
-            </div>
-
-            {/* Popular Courses Section */}
-            <div className="mb-6 rounded-lg bg-white p-4 shadow">
-              <h3 className="mb-3 border-b border-gray-200 pb-2 text-lg font-semibold">Popular Courses</h3>
-              <ul className="space-y-4">
-                {popularCourses.map((course, index) => (
-                  <li key={index} className="rounded-md hover:bg-gray-50">
-                    <div className="flex">
-                      <div className="relative h-16 w-24 overflow-hidden rounded-md">
-                        {course.image ? (
-                          <Image
-                            src={course.image}
-                            alt={course.title}
-                            fill
-                            className="object-cover"
-                          />
-                        ) : (
-                          <div className="flex h-full w-full items-center justify-center bg-gray-200">
-                            <Book size={20} />
-                          </div>
-                        )}
-                      </div>
-                      <div className="ml-3">
-                        <p className="font-medium line-clamp-2">{course.title}</p>
-                        <div className="mt-1 flex items-center">
-                          <Star size={14} className="text-yellow-500" />
-                          <span className="ml-1 text-sm">{course.rating}</span>
-                          <span className="ml-2 text-xs text-gray-500">({course.students} students)</span>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-              <button className="mt-3 w-full rounded-md bg-gray-100 py-2 text-sm font-medium text-gray-700 hover:bg-gray-200">
-                Browse All Courses
-              </button>
-            </div>
-
-            {/* Recent Announcements Section */}
-            <div className="mb-6 rounded-lg bg-white p-4 shadow">
-              <div className="mb-3 flex items-center justify-between border-b border-gray-200 pb-2">
-                <h3 className="text-lg font-semibold">Announcements</h3>
-                <Bell size={16} className="text-gray-500" />
-              </div>
-              <ul className="space-y-3">
-                {recentAnnouncements.map((announcement, index) => (
-                  <li key={index} className="border-b border-gray-100 pb-3 last:border-b-0">
-                    <p className="font-medium">{announcement.title}</p>
-                    <p className="mt-1 text-sm text-gray-600">{announcement.excerpt}</p>
-                    <p className="mt-1 text-xs text-gray-500">{announcement.date}</p>
-                  </li>
-                ))}
-              </ul>
-              <button className="mt-3 w-full rounded-md bg-gray-100 py-2 text-sm font-medium text-gray-700 hover:bg-gray-200">
-                View All
-              </button>
-            </div>
-
-            {/* Upcoming Events Section */}
-            <div className="rounded-lg bg-white p-4 shadow">
-              <div className="mb-3 flex items-center justify-between border-b border-gray-200 pb-2">
-                <h3 className="text-lg font-semibold">Upcoming Events</h3>
-                <Calendar size={16} className="text-gray-500" />
-              </div>
-              <ul className="space-y-3">
-                {upcomingEvents.map((event, index) => (
-                  <li key={index} className="rounded-md p-2 hover:bg-gray-50">
-                    <p className="font-medium">{event.title}</p>
-                    <div className="mt-1 flex items-center justify-between">
-                      <span className="text-sm text-gray-600">{event.date}</span>
-                      <span className="rounded-full bg-blue-100 px-2 py-0.5 text-xs text-blue-700">
-                        {event.type}
-                      </span>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-              <button className="mt-3 w-full rounded-md bg-gray-100 py-2 text-sm font-medium text-gray-700 hover:bg-gray-200">
-                View Calendar
-              </button>
-            </div>
-          </aside>
+          {/* Right Sidebar Component */}
+          <RightSidebar
+            topContributors={topContributors}
+            popularCourses={popularCourses}
+            recentAnnouncements={recentAnnouncements}
+            upcomingEvents={upcomingEvents}
+          />
         </div>
       </div>
       <Footer />
