@@ -7,7 +7,6 @@ import { signOut, useSession } from "~/lib/auth-client";
 
 import { useState } from "react";
 import { cn } from "~/lib/utils";
-import { Cart } from "~/ui/components/cart";
 import { Button } from "~/ui/primitives/button";
 import {
   DropdownMenu,
@@ -19,8 +18,6 @@ import {
 import { ThemeToggle } from "./theme-toggle";
 import { useTranslation } from "react-i18next";
 import { languages } from "./locales";
-import FloatingChat from '../../app/components/FloatingChat';
-
 
 
 type HeaderProps = {
