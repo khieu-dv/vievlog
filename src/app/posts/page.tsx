@@ -1,3 +1,4 @@
+// Updated PostsPage.jsx with components
 "use client";
 
 import { useEffect, useState, useRef } from "react";
@@ -6,13 +7,12 @@ import { Footer } from "~/ui/components/footer";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import PocketBase from 'pocketbase';
-import { Heart, MessageCircle, Share2, Bookmark, MoreHorizontal, Send, Filter, Code, Book, Star, Monitor, Cpu, Server, Database, GitBranch, Coffee, FileCode, Clock } from "lucide-react";
+import { Code, Book, Server, Monitor, Cpu, Database, GitBranch, Coffee, FileCode } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSession } from "../../lib/auth-client";
+import PostComponent from "../components/PostComponent";
 import { Comment, Category, Post, PopularTopic, Resource, TrendingTech } from '../../lib/types';
-
-import { getContrastColor } from '../../lib/utils';
 
 export default function PostsPage() {
   const { t } = useTranslation();
@@ -80,8 +80,6 @@ export default function PostsPage() {
     { title: "React Conference 2025", date: "June 12-15, 2025", type: "Conference" },
     { title: "Web Performance Summit", date: "July 8, 2025", type: "Summit" }
   ];
-
-
 
   const fetchPosts = async (pageNumber: number, categoryId: string = "") => {
     if (isLoading) return;
@@ -272,7 +270,6 @@ export default function PostsPage() {
     }
   };
 
-
   // Toggle sidebar visibility for mobile
   const toggleSidebar = () => {
     setSidebarVisible(!sidebarVisible);
@@ -304,10 +301,10 @@ export default function PostsPage() {
   };
 
   // Format date to relative time (e.g., "2 hours ago")
-  const formatRelativeTime = (dateString: string): string => {
-    const date = new Date(dateString);
+  const formatRelativeTime = (date: string | number | Date): string => {
+    const dateObj = new Date(date);
     const now = new Date();
-    const diffInSeconds = Math.floor((now.getTime() - date.getTime()) / 1000);
+    const diffInSeconds = Math.floor((now.getTime() - dateObj.getTime()) / 1000);
 
     if (diffInSeconds < 60) return `${diffInSeconds} seconds ago`;
     if (diffInSeconds < 3600) return `${Math.floor(diffInSeconds / 60)} minutes ago`;
@@ -315,9 +312,8 @@ export default function PostsPage() {
     if (diffInSeconds < 604800) return `${Math.floor(diffInSeconds / 86400)} days ago`;
     if (diffInSeconds < 2592000) return `${Math.floor(diffInSeconds / 604800)} weeks ago`;
 
-    return date.toLocaleDateString();
+    return dateObj.toLocaleDateString();
   };
-
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -404,7 +400,6 @@ export default function PostsPage() {
             <div className="mb-6">
               <div className="flex items-center justify-between">
                 <h1 className="text-3xl font-bold text-gray-900">IT Language Learning</h1>
-
               </div>
               <p className="mt-2 text-gray-600">
                 Explore our latest articles, tips and techniques for mastering IT
@@ -433,216 +428,33 @@ export default function PostsPage() {
               </div>
             ) : (
               posts.map((post) => (
-                <div key={post.id} className="mb-4 overflow-hidden rounded-lg bg-white shadow">
-                  {/* Post Header */}
-                  <div className="flex items-center justify-between p-4">
-                    <div className="flex items-center">
-                      <div className="h-10 w-10 overflow-hidden rounded-full">
-                        {post.author.avatar && post.author.avatar !== "/default-avatar.png" ? (
-                          <Image
-                            src={post.author.avatar}
-                            alt={post.author.name}
-                            width={40}
-                            height={40}
-                            className="h-10 w-10 rounded-full object-cover"
-                          />
-                        ) : (
-                          <div className="h-10 w-10 flex items-center justify-center rounded-full bg-blue-500 text-white font-semibold">
-                            {post.author.name.charAt(0).toUpperCase()}
-                          </div>
-                        )}
-                      </div>
-                      <div className="ml-3">
-                        <p className="font-medium text-gray-900">{post.author.name}</p>
-                        <p className="text-xs text-gray-500">{formatRelativeTime(post.publishedAt)}</p>
-                      </div>
-                    </div>
-                    <button className="rounded-full p-2 text-gray-400 hover:bg-gray-100">
-                      <MoreHorizontal size={20} />
-                    </button>
-                  </div>
-
-                  {/* Post Content */}
-                  <div className="px-4 pb-2">
-                    <Link href={`/posts/${post.id}`}>
-                      <h3 className="mb-2 text-xl font-semibold text-gray-900 hover:text-blue-600">{post.title}</h3>
-                    </Link>
-                    <p className="mb-4 text-gray-700">{post.excerpt}</p>
-                  </div>
-
-                  {/* Post Category (if available) */}
-                  {post.category && (
-                    <div className="px-4 mb-2">
-                      <Link href={`/categories/${post.category.slug}`}>
-                        <span
-                          className="inline-block rounded-full px-3 py-1 text-xs font-medium"
-                          style={{
-                            backgroundColor: post.category.color,
-                            color: getContrastColor(post.category.color || "#000000")
-                          }}
-                        >
-                          {post.category.name}
-                        </span>
-                      </Link>
-                    </div>
-                  )}
-
-                  {/* Post Image */}
-                  {post.coverImage && (
-                    <div className="relative aspect-video w-full">
-                      <Image
-                        src={post.coverImage}
-                        alt={post.title}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                  )}
-
-                  {/* Post Tags */}
-                  {post.tags && post.tags.length > 0 && (
-                    <div className="flex flex-wrap gap-2 px-4 pt-3">
-                      {post.tags.map((tag, index) => (
-                        <span key={index} className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-600">
-                          #{tag}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-
-                  {/* Post Stats */}
-                  <div className="mt-1 flex items-center justify-between border-b border-gray-100 px-4 py-2">
-                    <div className="flex items-center text-sm text-gray-500">
-                      <div className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-100 text-blue-500">
-                        <Heart size={12} fill="currentColor" />
-                      </div>
-                      <span className="ml-1">{post.likes}</span>
-                    </div>
-                    <div className="text-sm text-gray-500">
-                      {post.commentCount} comments
-                    </div>
-                  </div>
-
-                  {/* Post Actions */}
-                  <div className="flex border-b border-gray-100 text-gray-500">
-                    <button className="flex flex-1 items-center justify-center py-3 hover:bg-gray-50">
-                      <Heart size={20} className="mr-2" />
-                      <span>Like</span>
-                    </button>
-                    <button className="flex flex-1 items-center justify-center py-3 hover:bg-gray-50">
-                      <MessageCircle size={20} className="mr-2" />
-                      <span>Comment</span>
-                    </button>
-                    <button className="flex flex-1 items-center justify-center py-3 hover:bg-gray-50">
-                      <Share2 size={20} className="mr-2" />
-                      <span>Share</span>
-                    </button>
-                  </div>
-
-                  {/* Comments Section */}
-                  {post.comments && post.comments.length > 0 && (
-                    <div className="border-b border-gray-100 px-4 py-2">
-                      {post.comments.map((comment) => (
-                        <div key={comment.id} className="mb-3 flex">
-                          <div className="h-8 w-8 flex-shrink-0 overflow-hidden rounded-full">
-                            {comment.userAvatar && comment.userAvatar !== "/default-avatar.png" ? (
-                              <Image
-                                src={comment.userAvatar}
-                                alt={comment.userName}
-                                width={32}
-                                height={32}
-                                className="h-8 w-8 rounded-full object-cover"
-                              />
-                            ) : (
-                              <div className="h-8 w-8 flex items-center justify-center rounded-full bg-blue-500 text-white font-semibold">
-                                {(comment.userName || "User").charAt(0).toUpperCase()}
-                              </div>
-                            )}
-                          </div>
-                          <div className="ml-2">
-                            <div className="rounded-2xl bg-gray-100 px-3 py-2">
-                              <p className="text-sm font-medium text-gray-900">{comment.userName}</p>
-                              <p className="text-sm text-gray-700">{comment.content}</p>
-                            </div>
-                            <div className="mt-1 flex items-center space-x-3 pl-2 text-xs text-gray-500">
-                              <span>{formatRelativeTime(comment.created)}</span>
-                              <button className="font-medium">Like</button>
-                              <button className="font-medium">Reply</button>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-
-                      {post.commentCount > (post.comments?.length || 0) && (
-                        <button
-                          onClick={() => fetchCommentsForPost(post.id)}
-                          className="mt-1 text-sm font-medium text-gray-500 hover:text-gray-700"
-                        >
-                          View more comments
-                        </button>
-                      )}
-                    </div>
-                  )}
-
-                  {/* Comment Box */}
-                  <div className="flex items-center p-4">
-                    <div className="h-8 w-8 flex-shrink-0 overflow-hidden rounded-full bg-gray-200">
-                      {session?.user?.image && (
-                        <Image
-                          src={session.user.image}
-                          alt={session.user.name || "User"}
-                          width={32}
-                          height={32}
-                          className="h-full w-full object-cover"
-                        />
-                      )}
-                    </div>
-                    <div className="ml-2 flex flex-grow items-center rounded-full bg-gray-100 pr-2">
-                      <input
-                        type="text"
-                        placeholder="Write a comment..."
-                        className="flex-grow bg-transparent px-4 py-2 text-sm outline-none"
-                        value={commentInputs[post.id] || ''}
-                        onChange={(e) => handleCommentInputChange(post.id, e.target.value)}
-                        onKeyPress={(e) => {
-                          if (e.key === 'Enter') {
-                            handleSubmitComment(post.id);
-                          }
-                        }}
-                      />
-                      <button
-                        onClick={() => handleSubmitComment(post.id)}
-                        disabled={submittingComment[post.id] || !commentInputs[post.id]?.trim()}
-                        className="flex h-8 w-8 items-center justify-center rounded-full text-blue-500 hover:bg-blue-50 disabled:opacity-50"
-                      >
-                        {submittingComment[post.id] ? (
-                          <div className="h-4 w-4 animate-spin rounded-full border-2 border-blue-500 border-t-transparent"></div>
-                        ) : (
-                          <Send size={16} />
-                        )}
-                      </button>
-                    </div>
-                  </div>
-                </div>
+                <PostComponent
+                  key={post.id}
+                  post={post}
+                  session={session}
+                  formatRelativeTime={formatRelativeTime}
+                  commentInputs={commentInputs}
+                  handleCommentInputChange={handleCommentInputChange}
+                  handleSubmitComment={handleSubmitComment}
+                  submittingComment={submittingComment[post.id] ?? false}
+                  fetchCommentsForPost={fetchCommentsForPost}
+                />
               ))
             )}
 
+            {/* Load More Button */}
+            {hasMore && posts.length > 0 && (
+              <div className="mt-4 text-center" ref={loadMoreRef}>
+                <button
+                  onClick={handleLoadMore}
+                  disabled={isLoading}
+                  className="rounded-md bg-white px-6 py-2.5 text-sm font-medium text-blue-600 shadow hover:bg-gray-50 disabled:opacity-70"
+                >
+                  {isLoading ? 'Loading...' : 'See More Posts'}
+                </button>
+              </div>
+            )}
           </main>
-
-          {/* Right Sidebar */}
-
-          {/* Load More Button */}
-          {hasMore && posts.length > 0 && (
-            <div className="mt-4 text-center" ref={loadMoreRef}>
-              <button
-                onClick={handleLoadMore}
-                disabled={isLoading}
-                className="rounded-md bg-white px-6 py-2.5 text-sm font-medium text-blue-600 shadow hover:bg-gray-50 disabled:opacity-70"
-              >
-                {isLoading ? 'Loading...' : 'See More Posts'}
-              </button>
-            </div>
-          )}
         </div>
         <Footer />
       </div>
