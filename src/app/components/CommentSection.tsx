@@ -76,7 +76,8 @@ const CommentSection: React.FC<CommentSectionProps> = ({
             {/* Comment Input Box */}
             <div className="flex items-center p-4">
                 <div className="h-8 w-8 flex-shrink-0 overflow-hidden rounded-full bg-gray-200">
-                    {session?.user?.image && (
+
+                    {session?.user?.image ? (
                         <Image
                             src={session.user.image}
                             alt={session.user.username || "User"}
@@ -84,7 +85,14 @@ const CommentSection: React.FC<CommentSectionProps> = ({
                             height={32}
                             className="h-full w-full object-cover"
                         />
+                    ) : (
+                        <div className="h-8 w-8 flex items-center justify-center rounded-full bg-blue-500 text-white font-semibold">
+                            {(session.user.username || "User").charAt(0).toUpperCase()}
+                        </div>
                     )}
+
+
+
                 </div>
                 <div className="ml-2 flex flex-grow items-center rounded-full bg-gray-100 pr-2">
                     <input
