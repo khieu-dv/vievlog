@@ -6,7 +6,6 @@ import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { Footer } from "~/ui/components/footer";
 import { Header } from "~/ui/components/header";
-import { TopicCard } from "~/ui/components/product-card";
 import { TestimonialCarousel } from "~/ui/components/testimonial-carousel";
 import { Button } from "~/ui/primitives/button";
 import {
