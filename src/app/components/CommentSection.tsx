@@ -87,9 +87,10 @@ const CommentSection: React.FC<CommentSectionProps> = ({
                         />
                     ) : (
                         <div className="h-8 w-8 flex items-center justify-center rounded-full bg-blue-500 text-white font-semibold">
-                            {(session.user.username || "User").charAt(0).toUpperCase()}
+                            {(session?.user?.username || "U").charAt(0).toUpperCase()}
                         </div>
                     )}
+
 
 
 
