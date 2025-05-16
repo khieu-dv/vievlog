@@ -141,7 +141,7 @@ export default function PostDetailPage() {
       const commentData = {
         postId: Array.isArray(params.id) ? params.id[0] : params.id || "",
         userId: session.user.id,
-        userName: session.user.name || "User",
+        userName: session.user.username || "User",
         userAvatar: session.user.image || "/default-avatar.png",
         content: commentInput,
         lessonId: "" // Leave empty if not applicable
@@ -370,7 +370,7 @@ export default function PostDetailPage() {
                 {session?.user?.image ? (
                   <Image
                     src={session.user.image}
-                    alt={session.user.name || "User"}
+                    alt={session.user.username || "User"}
                     width={32}
                     height={32}
                     className="h-full w-full object-cover"

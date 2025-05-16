@@ -129,7 +129,7 @@ export function Header({ showAuth = true }: HeaderProps) {
                         {session.user?.image ? (
                           <img
                             src={session.user.image}
-                            alt={session.user.name || "User"}
+                            alt={session.user.username || "User"}
                             className="h-9 w-9 rounded-full object-cover"
                           />
                         ) : (
@@ -143,7 +143,7 @@ export function Header({ showAuth = true }: HeaderProps) {
                           {session.user?.image ? (
                             <img
                               src={session.user.image}
-                              alt={session.user.name || "User"}
+                              alt={session.user.username || "User"}
                               className="h-7 w-7 rounded-full object-cover"
                             />
                           ) : (
@@ -255,7 +255,7 @@ export function Header({ showAuth = true }: HeaderProps) {
                 {session.user?.image ? (
                   <img
                     src={session.user.image}
-                    alt={session.user.name || "User"}
+                    alt={session.user.username || "User"}
                     className="h-8 w-8 rounded-full object-cover"
                   />
                 ) : (

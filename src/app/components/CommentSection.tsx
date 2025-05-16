@@ -79,7 +79,7 @@ const CommentSection: React.FC<CommentSectionProps> = ({
                     {session?.user?.image && (
                         <Image
                             src={session.user.image}
-                            alt={session.user.name || "User"}
+                            alt={session.user.username || "User"}
                             width={32}
                             height={32}
                             className="h-full w-full object-cover"
