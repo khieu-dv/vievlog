@@ -127,7 +127,6 @@ vievlog/
 │   ├── components/                 # Reusable components
 │   │   ├── contact-button.tsx      # Contact button component
 │   │   ├── DevToolsDetector.tsx    # DevTools detection component
-│   │   ├── Emitter.tsx             # Emitter component for animations
 │   │   └── ...                     # Other components
 │   ├── posts/                      # Blog post pages
 │   │   ├── [id]/                   # Dynamic post detail pages
@@ -136,8 +135,6 @@ vievlog/
 │   └── videos/                     # Video-related pages
 ├── lib/                            # Utility libraries and services
 │   ├── auth-client.ts              # Authentication client
-│   ├── auth-client_v2.ts           # Updated authentication client
-│   ├── flowService.ts              # Flow-related services
 │   ├── utils.ts                    # General utility functions
 │   └── hooks/                      # Custom React hooks
 ├── ui/                             # UI primitives and components
