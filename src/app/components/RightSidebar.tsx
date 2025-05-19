@@ -2,39 +2,9 @@
 
 import Image from "next/image";
 import { Award, Book, Star, Bell, Calendar } from "lucide-react";
+import { RightSidebarProps } from '../../lib/types';
 
-interface TopContributor {
-    name: string;
-    avatar: string;
-    points: number;
-    badge: string;
-}
 
-interface PopularCourse {
-    title: string;
-    rating: number;
-    students: number;
-    image: string;
-}
-
-interface Announcement {
-    title: string;
-    date: string;
-    excerpt: string;
-}
-
-interface Event {
-    title: string;
-    date: string;
-    type: string;
-}
-
-interface RightSidebarProps {
-    topContributors: TopContributor[];
-    popularCourses: PopularCourse[];
-    recentAnnouncements: Announcement[];
-    upcomingEvents: Event[];
-}
 
 export const RightSidebar: React.FC<RightSidebarProps> = ({
     topContributors,

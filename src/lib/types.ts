@@ -89,3 +89,49 @@ export interface UpcomingEvent {
   date: string;
   type: string;
 }
+
+export interface Video {
+  id: string;
+  title: string;
+  description: string;
+  author: string;
+  video_url: string;
+  thumbnail_url: string;
+  tags: string;
+  views: number;
+  likes: number;
+}
+
+
+export interface TopContributor {
+    name: string;
+    avatar: string;
+    points: number;
+    badge: string;
+}
+
+export interface PopularCourse {
+    title: string;
+    rating: number;
+    students: number;
+    image: string;
+}
+
+export interface Announcement {
+    title: string;
+    date: string;
+    excerpt: string;
+}
+
+export interface Event {
+    title: string;
+    date: string;
+    type: string;
+}
+
+export interface RightSidebarProps {
+    topContributors: TopContributor[];
+    popularCourses: PopularCourse[];
+    recentAnnouncements: Announcement[];
+    upcomingEvents: Event[];
+}

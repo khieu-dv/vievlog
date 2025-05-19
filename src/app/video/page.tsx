@@ -6,18 +6,8 @@ import VideoFeed from "../components/VideoFeed";
 import PocketBase from "pocketbase";
 import { Loader2 } from "lucide-react";
 import { Header } from "~/ui/components/header";
+import { Video } from '../../lib/types';
 
-interface Video {
-  id: string;
-  title: string;
-  description: string;
-  author: string;
-  video_url: string;
-  thumbnail_url: string;
-  tags: string;
-  views: number;
-  likes: number;
-}
 
 export default function Home() {
   const [videos, setVideos] = useState<Video[]>([]);
