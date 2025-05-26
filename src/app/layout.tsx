@@ -5,7 +5,6 @@ import "./globals.css";
 import { ThemeProvider } from "~/ui/components/theme-provider";
 import Providers from "./components/providers/Providers";
 import I18nProvider from "./components/providers/i18nProvider"; // Import file mới
-import DevToolsDetector from './components/DevToolsDetector';
 
 
 const geistSans = Geist({
@@ -19,9 +18,53 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "VieVlog",
-  description: "VieVlog",
+  title: "VieVlog - Advanced Programming Channel",
+  description:
+    "Welcome to the advanced programming channel! Here, I share practical knowledge and detailed tutorials on modern languages and frameworks such as Go, Rust, ReactJS, and Next.js. Suitable for both beginners and developers looking to enhance their skills.",
+  keywords: [
+    "programming",
+    "VieVlog",
+    "Go",
+    "Rust",
+    "ReactJS",
+    "Next.js",
+    "learn programming",
+    "coding tutorials",
+    "frontend",
+    "backend",
+    "fullstack development",
+  ],
+  authors: [{ name: "VieVlog" }],
+  creator: "VieVlog",
+  generator: "Next.js",
+  metadataBase: new URL("https://vievlog.com"), // Replace with your actual domainhttps://www.vievlog.com/
+  openGraph: {
+    title: "VieVlog - Advanced Programming Channel",
+    description:
+      "Practical insights & detailed tutorials on Go, Rust, ReactJS, and Next.js. Perfect for beginners and experienced developers alike.",
+    url: "https://vievlog.com",
+    siteName: "VieVlog",
+    images: [
+      {
+        url: "https://vievlog.com/og-image.jpg", // Replace with your Open Graph image URL
+        width: 1200,
+        height: 630,
+        alt: "VieVlog - Advanced Programming Channel",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  // twitter: {
+  //   card: "summary_large_image",
+  //   title: "VieVlog - Advanced Programming Channel",
+  //   description:
+  //     "Sharing practical programming knowledge and tutorials on Go, Rust, ReactJS, and Next.js.",
+  //   creator: "@yourTwitterHandle",
+  //   images: ["https://vievlog.com/og-image.jpg"],
+  // },
 };
+
 
 export default function RootLayout({
   children,
