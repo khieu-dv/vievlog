@@ -1,6 +1,4 @@
 
-// Component ChatMessages
-// components/ChatMessages.tsx
 import { useEffect, useRef } from 'react';
 import { Message } from '../../lib/types';
 

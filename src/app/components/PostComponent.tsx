@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Heart, MessageCircle, Share2, MoreHorizontal } from "lucide-react";
 import { getContrastColor } from '../../lib/utils';
 import CommentSection from "./CommentSection";
-import { Comment, Category, Post, PopularTopic, Resource, TrendingTech } from '../../lib/types';
+import { Post } from '../../lib/types';
 
 type PostComponentProps = {
     post: Post;

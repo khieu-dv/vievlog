@@ -1,4 +1,3 @@
-// CommentSection.jsx
 import React from "react";
 import Image from "next/image";
 import { Send } from "lucide-react";

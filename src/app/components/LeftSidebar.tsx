@@ -1,6 +1,5 @@
 "use client";
 
-import { Code } from "lucide-react";
 import { PopularTopic, TrendingTech } from '../../lib/types';
 
 interface LeftSidebarProps {
@@ -71,8 +70,8 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
                             <button
                                 onClick={() => handleCategoryClick(topic.id || "")}
                                 className={`flex w-full items-center justify-between rounded-md p-2 text-left transition-colors duration-200 ${selectedCategoryId === topic.id
-                                        ? 'bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-500 dark:border-blue-400'
-                                        : 'hover:bg-gray-50 dark:hover:bg-gray-700'
+                                    ? 'bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-500 dark:border-blue-400'
+                                    : 'hover:bg-gray-50 dark:hover:bg-gray-700'
                                     }`}
                             >
                                 <div className="flex items-center">
@@ -83,15 +82,15 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
                                         {topic.icon}
                                     </div>
                                     <span className={`font-medium ${selectedCategoryId === topic.id
-                                            ? 'text-blue-700 dark:text-blue-300'
-                                            : 'dark:text-gray-200'
+                                        ? 'text-blue-700 dark:text-blue-300'
+                                        : 'dark:text-gray-200'
                                         }`}>
                                         {topic.title}
                                     </span>
                                 </div>
                                 <span className={`rounded-full px-2 py-1 text-xs ${selectedCategoryId === topic.id
-                                        ? 'bg-blue-100 text-blue-700 dark:bg-blue-800 dark:text-blue-200'
-                                        : 'bg-gray-100 dark:bg-gray-700 dark:text-gray-300'
+                                    ? 'bg-blue-100 text-blue-700 dark:bg-blue-800 dark:text-blue-200'
+                                    : 'bg-gray-100 dark:bg-gray-700 dark:text-gray-300'
                                     }`}>
                                     {topic.count}
                                 </span>
@@ -102,8 +101,8 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
                 <button
                     onClick={handleViewAllTopics}
                     className={`mt-3 w-full rounded-md py-2 text-sm font-medium transition-colors duration-200 ${!selectedCategoryId
-                            ? 'bg-blue-100 text-blue-700 dark:bg-blue-800 dark:text-blue-200'
-                            : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                        ? 'bg-blue-100 text-blue-700 dark:bg-blue-800 dark:text-blue-200'
+                        : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                         }`}
                 >
                     {!selectedCategoryId ? 'All Topics (Current)' : 'View All Topics'}
