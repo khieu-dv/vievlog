@@ -30,9 +30,9 @@ export interface Message {
 export interface Comment {
   id: string;
   postId: string;
-  userId: string;
+  userId?: string;
   userName: string;
-  userAvatar: string;
+  userAvatar?: string;
   content: string;
   created: string;
 }
@@ -41,8 +41,10 @@ export interface Category {
   id: string;
   name: string;
   slug: string;
+  color: string;
   description?: string;
-  color?: string;
+  postCount?: number;
+
 }
 
 export interface Post {
@@ -62,7 +64,15 @@ export interface Post {
   comments?: Comment[];
   categoryId?: string;
   category?: Category;
+  created: string;
+  expand?: {
+      author?: {
+        avatar: string;
+        name: string;
+      };
+  };
 }
+
 
 export interface PopularTopic {
     icon: React.ReactNode;
@@ -71,6 +81,7 @@ export interface PopularTopic {
     color: string;
     id?: string; // Thêm field id
 }
+
 
 export interface Resource {
   icon: React.ReactNode;

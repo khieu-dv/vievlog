@@ -13,6 +13,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { formatDistanceToNow } from "date-fns";
 import { MarkdownRenderer } from "../../components/MarkdownRenderer";
+import { Comment, Post } from '../../../lib/types';
 
 export default function PostDetailPage() {
   const { t } = useTranslation();
@@ -21,32 +22,6 @@ export default function PostDetailPage() {
   const { data: session } = useSession();
   const commentInputRef = useRef<HTMLInputElement>(null);
   const pb = new PocketBase(process.env.NEXT_PUBLIC_POCKETBASE_URL || 'https://pocketbase.vietopik.com');
-
-  interface Post {
-    id: string;
-    coverImage: string;
-    title: string;
-    excerpt: string;
-    content: string;
-    created: string;
-    likes: number;
-    tags?: string[];
-    expand?: {
-      author?: {
-        avatar: string;
-        name: string;
-      };
-    };
-  }
-
-  interface Comment {
-    id: string;
-    userName: string;
-    content: string;
-    created: string;
-    userAvatar?: string;
-    userId?: string;
-  }
 
   const [post, setPost] = useState<Post | null>(null);
   const [comments, setComments] = useState<Comment[]>([]);
@@ -152,6 +127,7 @@ export default function PostDetailPage() {
       // Add the new comment to the list
       setComments(prev => [...prev, {
         id: record.id,
+        postId: commentData.postId,
         userName: commentData.userName,
         content: commentData.content,
         created: new Date().toISOString(),

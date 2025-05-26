@@ -9,19 +9,10 @@ import PocketBase from 'pocketbase';
 import { Code } from "lucide-react";
 import { useSession } from "../../lib/auth-client";
 import PostComponent from "../components/PostComponent";
-import { Comment, Post } from '../../lib/types';
+import { Comment, Post, Category } from '../../lib/types';
 import { LeftSidebar } from "../components/LeftSidebar";
 import { RightSidebar } from "../components/RightSidebar";
 
-// Define Category interface
-interface Category {
-  id: string;
-  name: string;
-  slug: string;
-  color: string;
-  description?: string;
-  postCount?: number;
-}
 
 export default function PostsPage() {
   const { t } = useTranslation();
