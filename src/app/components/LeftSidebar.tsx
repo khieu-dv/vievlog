@@ -24,11 +24,19 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
         if (onCategorySelect) {
             onCategorySelect(categoryId);
         }
+        // Auto close sidebar on mobile after selection
+        if (window.innerWidth < 1024) {
+            toggleSidebar();
+        }
     };
 
     const handleViewAllTopics = () => {
         if (onCategorySelect) {
             onCategorySelect("");
+        }
+        // Auto close sidebar on mobile after selection
+        if (window.innerWidth < 1024) {
+            toggleSidebar();
         }
     };
 
