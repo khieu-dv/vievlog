@@ -1,23 +1,10 @@
-// components/VideoFeed.tsx
 "use client";
 
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import VideoPlayer from "./VideoPlayer";
 import VideoInfo from "./VideoInfo";
-import { Button } from "../../ui/primitives/button";
-import { ChevronUp, ChevronDown } from "lucide-react";
+import { Video } from '../../lib/types';
 
-interface Video {
-    id: string;
-    title: string;
-    description: string;
-    author: string;
-    video_url: string;
-    thumbnail_url: string;
-    tags: string;
-    views: number;
-    likes: number;
-}
 
 interface VideoFeedProps {
     videos: Video[];

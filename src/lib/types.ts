@@ -37,6 +37,20 @@ export interface Comment {
   created: string;
 }
 
+export interface Video {
+id: string;
+    title: string;
+    description: string;
+    author: string;
+    video_url: string;
+    thumbnail_url: string;
+    tags: string;
+    views: number;
+    likes: number;
+}
+
+
+
 export interface Category {
   id: string;
   name: string;
