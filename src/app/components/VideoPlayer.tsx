@@ -3,18 +3,8 @@
 
 import React, { useRef, useEffect, useState } from "react";
 import { Loader2, Play, Pause, Volume2, VolumeX } from "lucide-react";
+import { Video } from '../../lib/types';
 
-interface Video {
-    id: string;
-    title: string;
-    description: string;
-    author: string;
-    video_url: string;
-    thumbnail_url: string;
-    tags: string;
-    views: number;
-    likes: number;
-}
 
 interface VideoPlayerProps {
     video: Video;

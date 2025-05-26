@@ -1,19 +1,5 @@
-// components/VideoInfo.tsx
 import React from "react";
-import { Heart, MessageCircle, Share2 } from "lucide-react";
-import { Button } from "../../ui/primitives/button";
-
-interface Video {
-    id: string;
-    title: string;
-    description: string;
-    author: string;
-    video_url: string;
-    thumbnail_url: string;
-    tags: string;
-    views: number;
-    likes: number;
-}
+import { Video } from '../../lib/types';
 
 interface VideoInfoProps {
     video: Video;

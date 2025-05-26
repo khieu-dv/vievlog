@@ -38,16 +38,25 @@ export interface Comment {
 }
 
 export interface Video {
-id: string;
-    title: string;
-    description: string;
-    author: string;
-    video_url: string;
-    thumbnail_url: string;
-    tags: string;
-    views: number;
-    likes: number;
+  id: string;
+  title: string;
+  description: string;
+  author: string;
+  video_url: string;
+  thumbnail_url: string;
+  tags: string;
+  views: number;
+  likes: number;
 }
+
+export type BasicUser = {
+  id: string;
+  email: string;
+  username: string;
+  image?: string | null;
+  created: Date;
+  updated: Date;
+};
 
 
 

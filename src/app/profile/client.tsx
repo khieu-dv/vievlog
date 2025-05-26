@@ -4,16 +4,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useSession } from "~/lib/auth-client";
 import { Header } from "~/ui/components/header";
+import { BasicUser } from '../../lib/types';
 
-// Define an extended user type with basic information
-type BasicUser = {
-  id: string;
-  email: string;
-  username: string;
-  image?: string | null;
-  created: Date;
-  updated: Date;
-};
 
 // Define an extended session type
 type BasicSession = {
