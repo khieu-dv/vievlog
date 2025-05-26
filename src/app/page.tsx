@@ -110,7 +110,7 @@ export default function HomePage() {
     {
       id: "9v0i6zzig509tk9",
       name: "제35회 한국어능력시험 VIEVLOG Ⅰ 듣기",
-      description: t("content.learnIT"),
+      description: t("home.learnIT"),
       price: 199.99,
       originalPrice: 249.99,
       image:
@@ -123,7 +123,7 @@ export default function HomePage() {
     {
       id: "tph8rw2hzg51igq",
       name: "제35회 한국어능력시험 VIEVLOG I 읽기",
-      description: t("content.learnFromExperts"),
+      description: t("home.learnFromExperts"),
 
       price: 299.99,
       originalPrice: 349.99,
@@ -137,7 +137,7 @@ export default function HomePage() {
     {
       id: "6bve930m9y8vacl",
       name: "제35회 한국어능력시험 VIEVLOG Ⅱ 듣기",
-      description: t("content.learnAtYourOwnPace"),
+      description: t("home.learnAtYourOwnPace"),
       price: 999.99,
       originalPrice: 1099.99,
       image:
@@ -150,7 +150,7 @@ export default function HomePage() {
     {
       id: "giy1vhnk3w7d55c",
       name: "제35회 한국어능력시험 VIEVLOG IⅠ 읽기",
-      description: t("content.coverAllAspects"),
+      description: t("home.coverAllAspects"),
       price: 149.99,
       originalPrice: 179.99,
       image:
@@ -182,10 +182,10 @@ export default function HomePage() {
   const testimonials = [
     {
       id: "1",
-      content: t("content.testimonial1.quote"),
+      content: t("home.testimonial1.quote"),
       author: {
-        name: t("content.testimonial1.name"),
-        role: t("content.testimonial1.role"),
+        name: t("home.testimonial1.name"),
+        role: t("home.testimonial1.role"),
         avatar:
           "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
       },
@@ -193,10 +193,10 @@ export default function HomePage() {
     },
     {
       id: "2",
-      content: t("content.testimonial2.quote"),
+      content: t("home.testimonial2.quote"),
       author: {
-        name: t("content.testimonial2.name"),
-        role: t("content.testimonial2.role"),
+        name: t("home.testimonial2.name"),
+        role: t("home.testimonial2.role"),
         avatar:
           "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
       },
@@ -204,10 +204,10 @@ export default function HomePage() {
     },
     {
       id: "3",
-      content: t("content.testimonial3.quote"),
+      content: t("home.testimonial3.quote"),
       author: {
-        name: t("content.testimonial3.name"),
-        role: t("content.testimonial3.role"),
+        name: t("home.testimonial3.name"),
+        role: t("home.testimonial3.role"),
         avatar:
           "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
       },
@@ -261,13 +261,13 @@ export default function HomePage() {
               <div className="flex flex-col justify-center space-y-6">
                 <div className="space-y-4">
                   <h1 className="text-4xl font-bold tracking-tighter text-foreground sm:text-5xl md:text-6xl lg:leading-[1.1]">
-                    {t("content.oneStopPlatform")}{" "}
+                    {t("home.oneStopPlatform")}{" "}
                     <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
 
                     </span>
                   </h1>
                   <p className="max-w-[700px] text-lg text-muted-foreground md:text-xl">
-                    {t("content.learnIT")}
+                    {t("home.learnIT")}
                   </p>
                 </div>
                 <div className="flex flex-col gap-3 sm:flex-row">
@@ -381,10 +381,10 @@ export default function HomePage() {
               <div className="absolute inset-0 bg-grid-white/[0.05] bg-[length:16px_16px]" />
               <div className="relative z-10 mx-auto max-w-2xl text-center">
                 <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-                  {t("content.vieTopik")}
+                  {t("home.vieTopik")}
                 </h2>
                 <p className="mt-4 text-lg text-muted-foreground md:text-xl">
-                  {t("content.yourOneStopShop")}
+                  {t("home.yourOneStopShop")}
                 </p>
                 <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
                   <Link href="/auth/sign-up">

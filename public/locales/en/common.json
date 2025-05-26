@@ -1,22 +1,11 @@
 {
   "header": {
-    "utils": {
-      "login": "Log In to VieVlog",
-      "logout": "Log Out of VieVlog",
-      "inquiry": "Contact VieVlog Support",
-      "manager": "My Account",
-      "topikSchedule": "VieVlog Schedule – Upcoming IT Learning Events"
-    }
+    "home": "Home",
+    "posts": "Posts",
+    "chats": "Chats",
+    "videos": "Videos"
   },
-  "body": {
-    "utils": {
-      "loading": "Loading your IT lessons...",
-      "notFound": "No lessons available in this category.",
-      "inquiry": "Need help? Contact VieVlog Support",
-      "manager": "Manage Your Account"
-    }
-  },
-  "content": {
+  "home": {
     "title": "VieVlog – Free Online IT Learning | Courses, Resources & Certification",
     "home": "Home",
     "posts": "Posts",
@@ -92,5 +81,30 @@
       "lesson": "Explore our free lessons and choose the perfect course to match your skill level.",
       "grammar": "Discover detailed tech tutorials and diagrams."
     }
+  },
+
+  "posts": {
+    
+  },
+
+  "videos": {
+    
+  },
+
+  "chats": {
+    
+  },
+
+  "footer": {
+    "aboutUs": "About Us",
+    "careers": "Careers",
+    "blog": "Tech Blog – News & Tips",
+    "contact": "Contact Us",
+    "helpCenter": "Help Center",
+    "faq": "FAQ – Frequently Asked Questions",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "followUs": "Follow Us on Social Media"
   }
+
 }
