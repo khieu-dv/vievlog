@@ -65,10 +65,11 @@ export interface Post {
 }
 
 export interface PopularTopic {
-  icon: React.ReactNode;
-  title: string;
-  count: number;
-  color: string;
+    icon: React.ReactNode;
+    title: string;
+    count: number;
+    color: string;
+    id?: string; // Thêm field id
 }
 
 export interface Resource {

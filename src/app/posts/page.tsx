@@ -13,6 +13,16 @@ import { Comment, Post } from '../../lib/types';
 import { LeftSidebar } from "../components/LeftSidebar";
 import { RightSidebar } from "../components/RightSidebar";
 
+// Define Category interface
+interface Category {
+  id: string;
+  name: string;
+  slug: string;
+  color: string;
+  description?: string;
+  postCount?: number;
+}
+
 export default function PostsPage() {
   const { t } = useTranslation();
   const loadMoreRef = useRef<HTMLDivElement>(null);
@@ -20,6 +30,8 @@ export default function PostsPage() {
   const pb = new PocketBase(process.env.NEXT_PUBLIC_POCKETBASE_URL || 'https://pocketbase.vietopik.com');
 
   const [posts, setPosts] = useState<Post[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [selectedCategoryId, setSelectedCategoryId] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
@@ -28,16 +40,6 @@ export default function PostsPage() {
   const postsPerPage = 20;
   const [commentPages, setCommentPages] = useState<{ [key: string]: number }>({});
   const [sidebarVisible, setSidebarVisible] = useState(true);
-
-  // Sample data for the left sidebar
-  const popularTopics = [
-    { icon: <Code size={16} />, title: "JavaScript", count: 157, color: "#F7DF1E" },
-    { icon: <Code size={16} />, title: "Node.js", count: 124, color: "#68A063" },
-    { icon: <Code size={16} />, title: "React", count: 109, color: "#61DAFB" },
-    { icon: <Code size={16} />, title: "SQL", count: 87, color: "#00758F" },
-    { icon: <Code size={16} />, title: "Python", count: 76, color: "#3776AB" },
-    { icon: <Code size={16} />, title: "Git", count: 62, color: "#F05032" },
-  ];
 
   const trendingTechnologies = [
     { name: "TypeScript", growthPercentage: 28, description: "Strongly typed JavaScript" },
@@ -100,6 +102,64 @@ export default function PostsPage() {
     { title: "Web Performance Summit", date: "July 8, 2025", type: "Summit" }
   ];
 
+  // Fetch categories from database
+  const fetchCategories = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/collections/categories_tbl/records`,
+        {
+          params: {
+            page: 1,
+            perPage: 50,
+            sort: 'name'
+          }
+        }
+      );
+
+      const categoriesData = response.data.items.map((item: any) => ({
+        id: item.id,
+        name: item.name,
+        slug: item.slug,
+        color: item.color || "#3B82F6",
+        description: item.description || "",
+        postCount: 0 // Will be updated when we get post counts
+      }));
+
+      // Get post counts for each category
+      const categoriesWithCounts = await Promise.all(
+        categoriesData.map(async (category: Category) => {
+          try {
+            const countResponse = await axios.get(
+              `${process.env.NEXT_PUBLIC_API_URL}/collections/posts_tbl/records`,
+              {
+                params: {
+                  page: 1,
+                  perPage: 1,
+                  filter: `categoryId="${category.id}"`
+                }
+              }
+            );
+            return {
+              ...category,
+              postCount: countResponse.data.totalItems || 0
+            };
+          } catch (error) {
+            return {
+              ...category,
+              postCount: 0
+            };
+          }
+        })
+      );
+
+      setCategories(categoriesWithCounts);
+    } catch (error) {
+      console.error("Failed to fetch categories:", error);
+      // Fallback to empty array if fetch fails
+      setCategories([]);
+    }
+  };
+
   const fetchPosts = async (pageNumber: number, categoryId: string = "") => {
     if (isLoading) return;
 
@@ -109,8 +169,8 @@ export default function PostsPage() {
       let params: any = {
         page: pageNumber,
         perPage: postsPerPage,
-        sort: '-publishedAt',
-        //expand: 'category'
+        sort: '-created',
+        expand: 'categoryId'
       };
 
       // Add category filter if selected
@@ -120,7 +180,7 @@ export default function PostsPage() {
 
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_API_URL}/collections/posts_tbl/records`,
-        // { params }
+        { params }
       );
 
       const result = response.data;
@@ -166,6 +226,24 @@ export default function PostsPage() {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  // Handle category selection
+  const handleCategorySelect = (categoryId: string) => {
+    setSelectedCategoryId(categoryId);
+    setPage(1);
+    setPosts([]);
+    setHasMore(true);
+    fetchPosts(1, categoryId);
+  };
+
+  // Clear category filter
+  const handleClearCategory = () => {
+    setSelectedCategoryId("");
+    setPage(1);
+    setPosts([]);
+    setHasMore(true);
+    fetchPosts(1);
   };
 
   // Fetch comments for post with pagination support
@@ -295,6 +373,7 @@ export default function PostsPage() {
   };
 
   useEffect(() => {
+    fetchCategories();
     fetchPosts(1);
 
     // Detect screen size for mobile responsiveness
@@ -316,7 +395,7 @@ export default function PostsPage() {
   const handleLoadMore = () => {
     const nextPage = page + 1;
     setPage(nextPage);
-    fetchPosts(nextPage);
+    fetchPosts(nextPage, selectedCategoryId);
   };
 
   // Format date to relative time (e.g., "2 hours ago")
@@ -333,6 +412,18 @@ export default function PostsPage() {
 
     return dateObj.toLocaleDateString();
   };
+
+  // Convert categories to popularTopics format that LeftSidebar expects
+  const popularTopics = categories.map(category => ({
+    icon: <Code size={16} />,
+    title: category.name,
+    count: category.postCount || 0,
+    color: category.color,
+    id: category.id
+  }));
+
+  // Get selected category name for display
+  const selectedCategory = categories.find(cat => cat.id === selectedCategoryId);
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -357,6 +448,8 @@ export default function PostsPage() {
             toggleSidebar={toggleSidebar}
             popularTopics={popularTopics}
             trendingTechnologies={trendingTechnologies}
+            onCategorySelect={handleCategorySelect}
+            selectedCategoryId={selectedCategoryId}
           />
 
           {/* Main content */}
@@ -364,10 +457,23 @@ export default function PostsPage() {
             {/* Page Header with Category Filter */}
             <div className="mb-6">
               <div className="flex items-center justify-between">
-                <h1 className="text-3xl font-bold text-gray-900">IT Language Learning</h1>
+                <h1 className="text-3xl font-bold text-gray-900">
+                  {selectedCategory ? selectedCategory.name : "IT Language Learning"}
+                </h1>
+                {selectedCategoryId && (
+                  <button
+                    onClick={handleClearCategory}
+                    className="text-sm text-blue-600 hover:text-blue-800 underline"
+                  >
+                    Clear Filter
+                  </button>
+                )}
               </div>
               <p className="mt-2 text-gray-600">
-                Explore our latest articles, tips and techniques for mastering IT
+                {selectedCategory
+                  ? `Posts in ${selectedCategory.name} category`
+                  : "Explore our latest articles, tips and techniques for mastering IT"
+                }
               </p>
             </div>
 
@@ -389,7 +495,12 @@ export default function PostsPage() {
               ))
             ) : posts.length === 0 ? (
               <div className="rounded-lg bg-white p-8 text-center shadow">
-                <p className="text-lg text-gray-600">No posts found in this category.</p>
+                <p className="text-lg text-gray-600">
+                  {selectedCategory
+                    ? `No posts found in ${selectedCategory.name} category.`
+                    : "No posts found."
+                  }
+                </p>
               </div>
             ) : (
               posts.map((post) => (

@@ -8,14 +8,30 @@ interface LeftSidebarProps {
     toggleSidebar: () => void;
     popularTopics: PopularTopic[];
     trendingTechnologies: TrendingTech[];
+    onCategorySelect?: (categoryId: string) => void;
+    selectedCategoryId?: string;
 }
 
 export const LeftSidebar: React.FC<LeftSidebarProps> = ({
     sidebarVisible,
     toggleSidebar,
     popularTopics,
-    trendingTechnologies
+    trendingTechnologies,
+    onCategorySelect,
+    selectedCategoryId
 }) => {
+    const handleCategoryClick = (categoryId: string) => {
+        if (onCategorySelect) {
+            onCategorySelect(categoryId);
+        }
+    };
+
+    const handleViewAllTopics = () => {
+        if (onCategorySelect) {
+            onCategorySelect("");
+        }
+    };
+
     return (
         <aside
             className={`lg:w-1/4 xl:w-1/5 pr-0 lg:pr-4
@@ -43,9 +59,13 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
                 <h3 className="mb-3 border-b border-gray-200 dark:border-gray-700 pb-2 text-lg font-semibold dark:text-white">Popular Topics</h3>
                 <ul className="space-y-2">
                     {popularTopics.map((topic, index) => (
-                        <li key={index}>
-                            <a
-                                className="flex items-center justify-between rounded-md p-2 hover:bg-gray-50 dark:hover:bg-gray-700"
+                        <li key={topic.id || index}>
+                            <button
+                                onClick={() => handleCategoryClick(topic.id || "")}
+                                className={`flex w-full items-center justify-between rounded-md p-2 text-left transition-colors duration-200 ${selectedCategoryId === topic.id
+                                        ? 'bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-500 dark:border-blue-400'
+                                        : 'hover:bg-gray-50 dark:hover:bg-gray-700'
+                                    }`}
                             >
                                 <div className="flex items-center">
                                     <div
@@ -54,15 +74,31 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
                                     >
                                         {topic.icon}
                                     </div>
-                                    <span className="font-medium dark:text-gray-200">{topic.title}</span>
+                                    <span className={`font-medium ${selectedCategoryId === topic.id
+                                            ? 'text-blue-700 dark:text-blue-300'
+                                            : 'dark:text-gray-200'
+                                        }`}>
+                                        {topic.title}
+                                    </span>
                                 </div>
-                                <span className="rounded-full bg-gray-100 dark:bg-gray-700 px-2 py-1 text-xs dark:text-gray-300">{topic.count}</span>
-                            </a>
+                                <span className={`rounded-full px-2 py-1 text-xs ${selectedCategoryId === topic.id
+                                        ? 'bg-blue-100 text-blue-700 dark:bg-blue-800 dark:text-blue-200'
+                                        : 'bg-gray-100 dark:bg-gray-700 dark:text-gray-300'
+                                    }`}>
+                                    {topic.count}
+                                </span>
+                            </button>
                         </li>
                     ))}
                 </ul>
-                <button className="mt-3 w-full rounded-md bg-gray-100 dark:bg-gray-700 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600">
-                    View All Topics
+                <button
+                    onClick={handleViewAllTopics}
+                    className={`mt-3 w-full rounded-md py-2 text-sm font-medium transition-colors duration-200 ${!selectedCategoryId
+                            ? 'bg-blue-100 text-blue-700 dark:bg-blue-800 dark:text-blue-200'
+                            : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                        }`}
+                >
+                    {!selectedCategoryId ? 'All Topics (Current)' : 'View All Topics'}
                 </button>
             </div>
 
@@ -71,10 +107,13 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
                 <h3 className="mb-3 border-b border-gray-200 dark:border-gray-700 pb-2 text-lg font-semibold dark:text-white">Trending Technologies</h3>
                 <ul className="space-y-3">
                     {trendingTechnologies.map((tech, index) => (
-                        <li key={index} className="rounded-md p-2 hover:bg-gray-50 dark:hover:bg-gray-700">
+                        <li key={index} className="rounded-md p-2 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200">
                             <div className="flex items-center justify-between">
                                 <span className="font-medium dark:text-gray-200">{tech.name}</span>
-                                <span className="text-green-500">{tech.growthPercentage > 0 ? '+' : ''}{tech.growthPercentage}%</span>
+                                <span className={`text-sm font-medium ${tech.growthPercentage > 0 ? 'text-green-500' : 'text-red-500'
+                                    }`}>
+                                    {tech.growthPercentage > 0 ? '+' : ''}{tech.growthPercentage}%
+                                </span>
                             </div>
                             <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">{tech.description}</p>
                         </li>
