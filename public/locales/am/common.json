@@ -2,83 +2,86 @@
   "header": {
     "utils": {
       "login": "ወደ Vievolog ይግቡ",
-      "logout": "ከ Vievolog ውስጥ ወጥተው",
+      "logout": "ከቪዬቭሎግ ዘግተው ይውጡ",
       "inquiry": "የቪይቭሎግ ድጋፍን ያነጋግሩ",
-      "manager": "የመለያ አስተዳዳሪ",
-      "topikSchedule": "Vievolog የጊዜ ሰሌዳ - ዝግጅቶች ትምህርት"
+      "manager": "የእኔ መለያ",
+      "topikSchedule": "Vievolog የጊዜ ሰሌዳ - መጪውን የመማር ክስተቶች"
     }
   },
   "body": {
     "utils": {
-      "loading": "ትምህርቶችን በመጫን ላይ ...",
+      "loading": "ትምህርቱን በመጫን ላይ ...",
       "notFound": "በዚህ ምድብ ውስጥ ምንም ትምህርቶች የሉም.",
-      "inquiry": "የቪይቭሎግ ድጋፍን ያነጋግሩ",
-      "manager": "የመለያ አስተዳዳሪ"
+      "inquiry": "እርዳታ ይፈልጋሉ? የቪይቭሎግ ድጋፍን ያነጋግሩ",
+      "manager": "መለያዎን ያቀናብሩ"
     }
   },
   "content": {
-    "title": "Vievolog - በነፃ በመስመር ላይ ይማሩ | እሱ ኮርሶች እና ፈተናዎች",
-    "home": "ቤት - Vievolog",
+    "title": "Vievolog - ነፃ የመስመር ላይ በመስመር ላይ | ትምህርቶች, ሀብቶች እና የምስክር ወረቀት",
+    "home": "ቤት",
+    "posts": "ልጥፎች",
+    "chats": "ውይይቶች",
+    "videos": "ቪዲዮዎች",
     "topiks": "ርዕሶችን መማር",
     "courses": "ነፃ ኮርሶች",
-    "grammar": "ትምህርቶች ትምህርቶች",
-    "game": "የጨዋታ ጨዋታዎች",
+    "grammar": "ቴክ ሰዋስኛ ትምህርቶች",
+    "game": "የትምህርት ጨዋታዎች",
     "features": "የመሣሪያ ስርዓት ባህሪዎች",
-    "logIn": "ወደ Vievolog ይግቡ",
+    "logIn": "ወደ ሂሳብዎ ይግቡ",
     "signUp": "ለነፃነት ኮርሶች ይመዝገቡ",
-    "toggleTheme": "ብርሃን / ጥቁር ጭብጥ ይቀያይሩ",
-    "newCollection": "አዲስ የኮርስ ስብስብ ይገኛል",
-    "oneStopPlatform": "Vievolog - የመጨረሻው ነፃ ነፃ የመማሪያ መድረክ",
-    "startLearningNow": "ትምህርትን መማር ይጀምሩ እና ለ Topik ፈተና ያዘጋጁ",
-    "whyChooseVieVlog": "ለመማር Vievololo ለምን ይመርጣሉ?",
-    "freeAccess": "100% ነፃ የመማር መዳረሻ",
-    "learnIT": "ከፍተኛ ጥራት ያላቸው ምርቶችን, ትምህርቶችን, ትምህርቶችን እና ሀብቶችን ያለምንም ወጪ.",
-    "expertInstructors": "አስተማሪዎች ባለሙያዎች",
-    "learnFromExperts": "ከአገሬው ተናጋሪዎች እና ልምድ ያላቸው ባለሙያዎች ይማሩ.",
-    "anytimeAnywhere": "በማንኛውም ጊዜ, በየትኛውም ቦታ ይማሩ",
-    "learnAtYourOwnPace": "ያልተገደበ ትምህርቶችን በተመለከተ በራስዎ ፍጥነት ያኑሩት.",
-    "comprehensiveCurriculum": "አጠቃላይ የሥርዓተ ትምህርት",
-    "coverAllAspects": "ሰዋስያን, የቃላት እና የውይይት ልምምድን ጨምሮ መሠረታዊ ነገሮችን ለላቁ አርእስቶች ይሸፍኑታል.",
-    "viewAllIT": "ሁሉንም Vievolog ፈተናዎችን እና ትምህርቶችን ይመልከቱ",
-    "featuredCourses": "ተረከዙ ኮርሶች",
-    "beginnerIT": "የጀማሪ አካሄድ ነው",
+    "toggleTheme": "ብርሃን / ጨለማ ሁነታን ቀይር",
+    "newCollection": "የእኛን አዲሱን ኮርስ ስብስብ መመርመር",
+    "oneStopPlatform": "Vievolog - የእርስዎ ሁሉ-አንድ-ትምህርት መድረክ",
+    "startLearningNow": "መማር ይጀምሩ እና ዛሬ ለፈተናዎች ይዘጋጁ",
+    "whyChooseVieVlog": "በ Vievolog ጋር ለምን ይማራሉ?",
+    "freeAccess": "ሙሉ በሙሉ ነፃ መዳረሻ",
+    "learnIT": "ሙሉ ጥራት ባለው ማጠናከሪያ ትምህርቶች, ትምህርቶች እና ሀብቶች ሙሉ በሙሉ ነፃ በሆነ አስተማሪዎች ይደሰቱ.",
+    "expertInstructors": "ከኢንዱስትሪ ባለሙያዎች ይወቁ",
+    "learnFromExperts": "በተሸፈኑ የባለሙያ ባለሙያዎች እና አስተማሪዎች ይመረምሩ.",
+    "anytimeAnywhere": "ተለዋዋጭ ትምህርት በማንኛውም ጊዜ, በየትኛውም ቦታ",
+    "learnAtYourOwnPace": "ባልተገደበ የትምህርት ተደራሽነት ያለው በራስዎ ፍጥነት ይማሩ.",
+    "comprehensiveCurriculum": "የተሟላ ቁልል ሥርዓተ ትምህርት",
+    "coverAllAspects": "ኮድ, ስርዓቶች, ዲስኮች, አውታረ መረቦች እና ሌሎችም ጨምሮ የላቁ ፅንሰ-ሀሳቦችን ይሸፍናል.",
+    "viewAllIT": "ሁሉንም Vievolog ኮርሶች እና ልምዶች ሙከራዎችን ያስሱ",
+    "featuredCourses": "ለፕሮግራሞች",
+    "beginnerIT": "ጀማሪ - ደረጃው",
     "intermediateIT": "መካከለኛ",
-    "advancedIT": "ኮርስ ተከፍሏል",
-    "getStartedForFree": "ዛሬ በነፃ ትምህርቶች ይጀምሩ",
-    "whatOurLearnersSay": "ተማሪዎቻችን ስለ Vievolog ምን ይላሉ?",
+    "advancedIT": "የላቀ ችሎታ",
+    "getStartedForFree": "ዛሬ በነፃ መማር መማር ይጀምሩ",
+    "whatOurLearnersSay": "የተማሪዎች ስለ Vievolog ምን ይላሉ?",
     "testimonial1": {
-      "quote": "Vievolog እኔ ለፈተና ፈተናው በተሳካ ሁኔታ እንድዘጋጅ ረድቶኛል.",
+      "quote": "Vievlog የእኔን የማረጋገጫ ማረጋገጫ ፈተናዬን በድፍረት ማለፍ ረድቶኛል.",
       "name": "Nguyen minh ah ah",
       "role": "ዓለም አቀፍ ተማሪ"
     },
     "testimonial2": {
-      "quote": "ከቪዬቪሎግ ጋር መማር ቀላል እና የበለጠ አስደሳች ሆኖ አያውቅም!",
+      "quote": "እሱን መማር ውጤታማ እና አስደሳች ነው!",
       "name": "Tran hoi nam",
-      "role": "የቢሮ ሰራተኛ"
+      "role": "የቢሮ ባለሙያ"
     },
     "testimonial3": {
-      "quote": "ለቪቪሎግ አመሰግናለሁ, የእኔ ችሎታ ችሎታ በከፍተኛ ሁኔታ አሻሽያለሁ.",
+      "quote": "ለቪቪሎግ አመሰግናለሁ, የፕሮግራም ችሎታዬን አሻሽያለሁ.",
       "name": "Lhamh hugo",
       "role": "የዩኒቨርሲቲ ተማሪ"
     },
-    "vieTopik": "Vievolog - ምርጥ 1 የመማሪያ መድረክ",
-    "yourOneStopShop": "ችሎታዎን እና የ APAK ፈተናዎችን ለማስተናገድ የመሣሪያ ስርዓትዎ. ዋና የትምህርት ሀብቶችን በነፃ ይድረሱ እና ለቋንቋዎ የሚደርሱ እና ዛሬ ግቦችዎን ያግኙ!",
-    "connectWithUs": "በማህበራዊ ሚዲያዎች ላይ ከ Vievolog ጋር ይገናኙ",
+    "vieTopik": "Vievolog - የላይኛው 1 ትምህርት መማሪያ",
+    "yourOneStopShop": "ችሎታዎችን ለማስተማር እና የምስክር ወረቀት ፈተናዎችን ለመዘጋጀት የእርስዎ ሰጪ መድረክ መድረክዎ. ያለምንም ወጪ የፕሪሚየም ይዘት መዳረሻ ያግኙ!",
+    "connectWithUs": "በማህበራዊ ሚዲያ ላይ Vievolog ይከተሉ",
     "socialMedia": {
-      "facebook": "Vievlocob ፌስቡክ",
-      "twitter": "Vievolog Twitter",
-      "instagram": "Vievolog Instagram",
-      "linkedin": "Vievolog Lindedin"
+      "facebook": "በፌስቡክ ላይ ተከተሉን",
+      "twitter": "በትዊተር ላይ ይከተሉን",
+      "instagram": "በ Instagram ላይ ይከተሉን",
+      "linkedin": "በ Linkedin ላይ ከእኛ ጋር ይገናኙ"
     },
     "company": {
-      "aboutUs": "ስለ ቪቪሎግ",
-      "careers": "ድክመቶች በቪዬቪሎግ",
-      "blog": "Vievlol ብሎግ - ምክሮች እና ዜናዎች",
-      "contact": "Vievolog ን ያነጋግሩ"
+      "aboutUs": "ስለ እኛ",
+      "careers": "ሙያዎች",
+      "blog": "የቴክኖሎጂ ጦማር - ዜና እና ምክሮች",
+      "contact": "እኛን ያግኙን"
     },
     "support": {
-      "helpCenter": "Vievolog እገዛ ማዕከል",
-      "faq": "ተዘውትረው የሚጠየቁ ጥያቄዎች",
+      "helpCenter": "የእገዛ ማዕከል",
+      "faq": "ተዘውትረው የሚጠየቁ ጥያቄዎች - ተዘውትረው የሚጠየቁ ጥያቄዎች",
       "privacyPolicy": "የግላዊነት ፖሊሲ",
       "termsOfService": "የአገልግሎት ውሎች"
     },
@@ -86,8 +89,8 @@
       "copyright": "© 2025 Vievolog. ሁሉም መብቶች የተጠበቁ ናቸው."
     },
     "metadata": {
-      "lesson": "የእኛን የቅርብ ጊዜ ትምህርቶችን ያስሱ እና ለችሎታ ደረጃዎ ትክክለኛውን አካሄድ ይፈልጉ.",
-      "grammar": "ዝርዝር ጉዳዩን አውራጃዎች እና ትምህርታችንን ያስሱ."
+      "lesson": "ነፃ ትምህርቶቻችንን ያስሱ እና ከችሎታዎ ደረጃ ጋር እንዲዛመድ ትክክለኛውን አካሄድ ይምረጡ.",
+      "grammar": "ዝርዝር የቴክኖሎጂ ትምህርቶችን እና ስዕላዊ መግለጫዎችን ያግኙ."
     }
   }
 }

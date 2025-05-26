@@ -1,84 +1,87 @@
 {
   "header": {
     "utils": {
-      "login": "Teken in op Vievlog",
-      "logout": "Uitmelding van Vievlog",
+      "login": "Meld aan by Vievlog",
+      "logout": "Teken uit Vievlog",
       "inquiry": "Kontak VieVLog -ondersteuning",
-      "manager": "Rekeningbestuurder",
-      "topikSchedule": "VIEVLOG -skedule - dit leer gebeure"
+      "manager": "My rekening",
+      "topikSchedule": "VIEVLOG -skedule - komende IT -leergeleenthede"
     }
   },
   "body": {
     "utils": {
-      "loading": "Laai dit lesse ...",
-      "notFound": "Geen lesse in hierdie kategorie gevind nie.",
-      "inquiry": "Kontak VieVLog -ondersteuning",
-      "manager": "Rekeningbestuurder"
+      "loading": "Laai u IT -lesse ...",
+      "notFound": "Geen lesse beskikbaar in hierdie kategorie nie.",
+      "inquiry": "Hulp nodig? Kontak VieVLog -ondersteuning",
+      "manager": "Bestuur u rekening"
     }
   },
   "content": {
-    "title": "VIEVLOG - Leer dit gratis aanlyn | IT -kursusse en eksamens",
-    "home": "Tuis - Vievlog",
+    "title": "VieVLog - gratis aanlyn IT -leer | Kursusse, bronne en sertifisering",
+    "home": "Tuiste",
+    "posts": "Posts",
+    "chats": "Geselsies",
+    "videos": "Video's",
     "topiks": "Dit leer onderwerpe",
     "courses": "Gratis IT -kursusse",
-    "grammar": "Dit Grammaklas",
-    "game": "Leer speletjies",
+    "grammar": "Tegniese grammatikale lesse",
+    "game": "Opvoedkundige speletjies",
     "features": "Platformfunksies",
-    "logIn": "Meld aan by Vievlog",
+    "logIn": "Meld aan by u rekening",
     "signUp": "Teken in vir gratis IT -kursusse",
-    "toggleTheme": "Skakel lig/donker tema",
-    "newCollection": "Nuwe IT -kursusversameling beskikbaar",
-    "oneStopPlatform": "VIEVLOG - U uiteindelike gratis IT -leerplatform",
-    "startLearningNow": "Begin om dit te leer en berei voor vir Topik -eksamen",
-    "whyChooseVieVlog": "Waarom kies Vievlog vir leer?",
-    "freeAccess": "100% gratis IT -leertoegang",
-    "learnIT": "Toegang tot hoë gehalte IT-lesse, tutoriale en hulpbronne van kundige instrukteurs sonder koste.",
-    "expertInstructors": "Deskundige IT -instrukteurs",
-    "learnFromExperts": "Leer dit by moedertaalsprekers en ervare professionele persone.",
-    "anytimeAnywhere": "Leer dit enige tyd en oral",
-    "learnAtYourOwnPace": "Bestudeer dit in u eie tempo met onbeperkte toegang tot alle lesse.",
-    "comprehensiveCurriculum": "Omvattende IT -kurrikulum",
-    "coverAllAspects": "Kursusse wat die basiese beginsels van gevorderde onderwerpe dek, insluitend grammatika, woordeskat en gesprekspraktyk.",
-    "viewAllIT": "Kyk na alle Vievlog IT -toetse en kursusse",
-    "featuredCourses": "Gevoerde IT -kursusse",
-    "beginnerIT": "Beginner se IT -kursus",
+    "toggleTheme": "Skakel lig/donker modus",
+    "newCollection": "Verken ons nuwe IT -kursusversameling",
+    "oneStopPlatform": "VIEVLOG-U alles-in-een IT-leerplatform",
+    "startLearningNow": "Begin dit leer en berei vandag voor vir eksamens",
+    "whyChooseVieVlog": "Waarom leer dit met Vievlog?",
+    "freeAccess": "Heeltemal gratis toegang",
+    "learnIT": "Geniet IT-tutoriale, lesse en hulpbronne van ervare instrukteurs van topgehalte-heeltemal gratis.",
+    "expertInstructors": "Leer van kundiges in die bedryf",
+    "learnFromExperts": "Word geleer deur gesoute IT -professionele persone en opvoeders.",
+    "anytimeAnywhere": "Buigsame leer enige tyd en oral",
+    "learnAtYourOwnPace": "Leer in u eie tempo met onbeperkte lestoegang.",
+    "comprehensiveCurriculum": "Volstapel IT-kurrikulum",
+    "coverAllAspects": "Dek die grondslag vir gevorderde IT -konsepte, insluitend kodering, stelsels, netwerke en meer.",
+    "viewAllIT": "Kyk na alle VieVLog -kursusse en oefentoetse",
+    "featuredCourses": "IT -IT -programme",
+    "beginnerIT": "Beginner-vlak IT-kursus",
     "intermediateIT": "Tussentydse IT -kursus",
-    "advancedIT": "Gevorderde IT -kursus",
-    "getStartedForFree": "Begin vandag met gratis IT -lesse",
-    "whatOurLearnersSay": "Wat ons leerders oor Vievlog sê",
+    "advancedIT": "Gevorderde IT -bemeestering",
+    "getStartedForFree": "Begin vandag gratis leer",
+    "whatOurLearnersSay": "Wat leerders oor Vievlog sê",
     "testimonial1": {
-      "quote": "Vievlog het my gehelp om suksesvol voor te berei op my IT -eksamen.",
+      "quote": "Vievlog het my gehelp om my IT -sertifiseringseksamen met selfvertroue te slaag.",
       "name": "Nguyen minh anh",
       "role": "Internasionale student"
     },
     "testimonial2": {
-      "quote": "Om dit met Vievlog te leer was nog nooit so maklik en lekkerder nie!",
+      "quote": "Om dit deur Vievlog te leer is effektief en aangenaam!",
       "name": "Tran Hai Nam",
-      "role": "Kantoorwerker"
+      "role": "Kantoor professionele persoon"
     },
     "testimonial3": {
-      "quote": "Danksy Vievlog het ek my IT -vaardighede aansienlik verbeter.",
+      "quote": "Danksy Vievlog het ek my programmeringsvaardighede aansienlik verbeter.",
       "name": "Le Thanh Huong",
       "role": "Universiteitstudent"
     },
-    "vieTopik": "VieVLog - Top 1 IT -leerplatform",
-    "yourOneStopShop": "U eenstopplatform vir die bemeestering van IT-vaardighede en Topik-eksamens. Toegang tot premium leerbronne gratis en bereik vandag u taal en IT -doelwitte!",
-    "connectWithUs": "Maak kontak met Vievlog op sosiale media",
+    "vieTopik": "VIEVLOG - Die top 1 IT -leernaaf",
+    "yourOneStopShop": "U eenstopplatform om IT-vaardighede te bemeester en voor te berei op sertifiseringseksamens. Kry toegang tot premium -inhoud gratis!",
+    "connectWithUs": "Volg Vievlog op sosiale media",
     "socialMedia": {
-      "facebook": "Vievlog Facebook",
-      "twitter": "Vievlog Twitter",
-      "instagram": "VIEVLOG Instagram",
-      "linkedin": "Vievlog LinkedIn"
+      "facebook": "Volg ons op Facebook",
+      "twitter": "Volg ons op Twitter",
+      "instagram": "Volg ons op Instagram",
+      "linkedin": "Verbind met ons op LinkedIn"
     },
     "company": {
-      "aboutUs": "Oor Vievlog",
-      "careers": "Loopbane by Vievlog",
-      "blog": "VIEVLOG BLOG - IT TIPS & NUUS",
-      "contact": "Kontak Vievlog"
+      "aboutUs": "Oor ons",
+      "careers": "Loopbane",
+      "blog": "Tech Blog - News & Tips",
+      "contact": "Kontak ons"
     },
     "support": {
-      "helpCenter": "Vievlog Help Centre",
-      "faq": "Gereeld gevra vrae",
+      "helpCenter": "Help Sentrum",
+      "faq": "Vrae - gereeld vrae gevra",
       "privacyPolicy": "Privaatheidsbeleid",
       "termsOfService": "Diensvoorwaardes"
     },
@@ -86,8 +89,8 @@
       "copyright": "© 2025 VIEVLOG. Alle regte voorbehou."
     },
     "metadata": {
-      "lesson": "Kyk na ons nuutste gratis IT -lesse en vind die perfekte kursus vir u vaardigheidsvlak.",
-      "grammar": "Verken ons gedetailleerde IT -diagramme en tutoriale."
+      "lesson": "Verken ons gratis lesse en kies die perfekte kursus om by u vaardigheidsvlak te pas.",
+      "grammar": "Ontdek gedetailleerde tegniese tutoriale en diagramme."
     }
   }
 }

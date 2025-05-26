@@ -2,83 +2,86 @@
   "header": {
     "utils": {
       "login": "התחבר ל- Vievlog",
-      "logout": "התנתקות מ- Vievlog",
+      "logout": "התנתק מ- Vievlog",
       "inquiry": "צור קשר עם vievlog תמיכה",
-      "manager": "מנהל חשבון",
-      "topikSchedule": "לוח הזמנים של Vievlog - אירועי לימוד IT"
+      "manager": "החשבון שלי",
+      "topikSchedule": "לוח הזמנים של Vievlog - אירועי למידת IT הקרובים"
     }
   },
   "body": {
     "utils": {
-      "loading": "טוען שיעורים ...",
-      "notFound": "אין לקחים בקטגוריה זו.",
-      "inquiry": "צור קשר עם vievlog תמיכה",
-      "manager": "מנהל חשבון"
+      "loading": "טוען את שיעורי ה- IT שלך ...",
+      "notFound": "אין שיעורים זמינים בקטגוריה זו.",
+      "inquiry": "זקוק לעזרה? צור קשר עם vievlog תמיכה",
+      "manager": "נהל את חשבונך"
     }
   },
   "content": {
-    "title": "Vievlog - למד זאת באופן מקוון בחינם | זה קורסים ובחינות",
-    "home": "בית - Vievlog",
+    "title": "Vievlog - חינם למידת IT מקוונת | קורסים, משאבים והסמכה",
+    "home": "בַּיִת",
+    "posts": "פוסטים",
+    "chats": "צ'אט",
+    "videos": "סרטונים",
     "topiks": "נושאים לומדים",
     "courses": "שחרר קורסים",
-    "grammar": "זה שיעורי דקדוק",
-    "game": "משחקי למידה",
+    "grammar": "שיעורי דקדוק טק",
+    "game": "משחקי חינוך",
     "features": "תכונות פלטפורמה",
-    "logIn": "התחבר ל- Vievlog",
+    "logIn": "היכנס לחשבונך",
     "signUp": "הירשם לקורסי IT בחינם",
-    "toggleTheme": "החלף נושא אור/אפל",
-    "newCollection": "אוסף קורס IT חדש זמין",
-    "oneStopPlatform": "Vievlog - פלטפורמת הלמידה האולטימטיבית שלך בחינם",
-    "startLearningNow": "התחל ללמוד אותו ולהתכונן לבחינת טופיק",
-    "whyChooseVieVlog": "מדוע לבחור ב- Vievlog ללימוד IT?",
-    "freeAccess": "גישה ללימוד IT בחינם 100%",
-    "learnIT": "גישה לשיעורי IT באיכות גבוהה, הדרכות ומשאבים של מדריכי מומחים ללא עלות.",
-    "expertInstructors": "מדריכי IT מומחים",
-    "learnFromExperts": "למדו את זה מדוברי שפת אם ואנשי מקצוע מנוסים.",
-    "anytimeAnywhere": "למד את זה בכל עת ובכל מקום",
-    "learnAtYourOwnPace": "למד אותו בקצב שלך עם גישה בלתי מוגבלת לכל השיעורים.",
-    "comprehensiveCurriculum": "תכנית לימודים מקיפה",
-    "coverAllAspects": "קורסים המכסים את יסודות ה- IT לנושאים מתקדמים, כולל דקדוק, אוצר מילים ותרגול שיחה.",
-    "viewAllIT": "צפה בכל המבחנים והקורסים של Vievlog IT",
-    "featuredCourses": "הציג את הקורסים",
-    "beginnerIT": "מסלול זה של מתחילים",
+    "toggleTheme": "החלף מצב אור/כהה",
+    "newCollection": "חקור את אוסף הקורס החדש שלנו",
+    "oneStopPlatform": "Vievlog-פלטפורמת הלמידה של ה- All-in-One שלך",
+    "startLearningNow": "התחל ללמוד אותו ולהתכונן לבחינות היום",
+    "whyChooseVieVlog": "למה ללמוד את זה עם Vievlog?",
+    "freeAccess": "גישה חופשית לחלוטין",
+    "learnIT": "תיהנו מהדרכות IT באיכות העליונה, שיעורים ומשאבים של מדריכים מנוסים-בחינם.",
+    "expertInstructors": "למד ממומחים בתעשייה",
+    "learnFromExperts": "נלמדו על ידי אנשי IT מנוסים ומחנכים.",
+    "anytimeAnywhere": "למידה גמישה בכל עת ובכל מקום",
+    "learnAtYourOwnPace": "למד בקצב שלך עם גישה לשיעורים ללא הגבלה.",
+    "comprehensiveCurriculum": "ערעור מלא את תכנית הלימודים",
+    "coverAllAspects": "מכסה יסוד למושגי IT מתקדמים הכוללים קידוד, מערכות, רשת ועוד.",
+    "viewAllIT": "עיין בכל קורסי Vievlog ובמבחני תרגול",
+    "featuredCourses": "הוצגו תוכניות IT",
+    "beginnerIT": "מסלול זה ברמת המתחילים",
     "intermediateIT": "מסלול זה ביניים",
-    "advancedIT": "מסלול זה מתקדם",
-    "getStartedForFree": "התחל עם שיעורי IT בחינם היום",
-    "whatOurLearnersSay": "מה הלומדים שלנו אומרים על vievlog",
+    "advancedIT": "התקדמה בשליטה",
+    "getStartedForFree": "התחל ללמוד בחינם היום",
+    "whatOurLearnersSay": "מה הלומדים אומרים על vievlog",
     "testimonial1": {
-      "quote": "Vievlog עזר לי להתכונן בהצלחה לבחינת ה- IT שלי.",
+      "quote": "Vievlog עזר לי בביטחון לעבור את בחינת הסמכת ה- IT שלי.",
       "name": "Nguyen Minh Anh",
       "role": "סטודנט בינלאומי"
     },
     "testimonial2": {
-      "quote": "ללמוד את זה עם Vievlog מעולם לא היה קל יותר וכיף יותר!",
+      "quote": "לימודו דרך vievlog הוא יעיל ומהנה כאחד!",
       "name": "טראן חי נאם",
-      "role": "עובד משרד"
+      "role": "מקצוע במשרד"
     },
     "testimonial3": {
-      "quote": "בזכות Vievlog, שיפרתי את כישורי ה- IT שלי באופן משמעותי.",
+      "quote": "בזכות Vievlog, שיפרתי משמעותית את כישורי התכנות שלי.",
       "name": "Le Thanh Huong",
       "role": "סטודנט באוניברסיטה"
     },
-    "vieTopik": "Vievlog - פלטפורמת למידת IT המובילה 1",
-    "yourOneStopShop": "הפלטפורמה האחת-עצמאית שלך לשליטה בכישורי IT ובחינות טופיק. גישה למשאבי למידה פרימיום בחינם ולהגיע לשפה שלך ולמטרות ה- IT עוד היום!",
-    "connectWithUs": "התחבר עם Vievlog במדיה החברתית",
+    "vieTopik": "Vievlog - רכזת הלמידה העליונה הראשונה",
+    "yourOneStopShop": "הפלטפורמה האחת-עצירתית שלך לשלוט בכישורי IT ולהתכונן לבחינות הסמכה. קבל גישה לתוכן פרימיום ללא עלות!",
+    "connectWithUs": "עקוב אחר Vievlog במדיה החברתית",
     "socialMedia": {
-      "facebook": "Vievlog פייסבוק",
-      "twitter": "טוויטר Vievlog",
-      "instagram": "Vievlog אינסטגרם",
-      "linkedin": "Vievlog LinkedIn"
+      "facebook": "עקוב אחרינו בפייסבוק",
+      "twitter": "עקוב אחרינו בטוויטר",
+      "instagram": "עקוב אחרינו באינסטגרם",
+      "linkedin": "התחבר אלינו בלינקדאין"
     },
     "company": {
-      "aboutUs": "על vievlog",
-      "careers": "קריירה ב- Vievlog",
-      "blog": "בלוג Vievlog - טיפים וחדשות זה",
-      "contact": "צור קשר עם Vievlog"
+      "aboutUs": "עלינו",
+      "careers": "קריירה",
+      "blog": "בלוג טק - חדשות וטיפים",
+      "contact": "צרו קשר"
     },
     "support": {
-      "helpCenter": "מרכז העזרה של Vievlog",
-      "faq": "שאלות נפוצות",
+      "helpCenter": "מרכז עזרה",
+      "faq": "שאלות נפוצות - שאלות נפוצות",
       "privacyPolicy": "מדיניות פרטיות",
       "termsOfService": "תנאי שירות"
     },
@@ -86,8 +89,8 @@
       "copyright": "© 2025 Vievlog. כֹּל הַזְכוּיוֹת שְׁמוּרוֹת."
     },
     "metadata": {
-      "lesson": "עיין בשיעורי ה- IT האחרונים שלנו ומצא את המסלול המושלם לרמת המיומנות שלך.",
-      "grammar": "חקור את דיאגרמות ה- IT המפורטות שלנו."
+      "lesson": "חקור את השיעורים החינמיים שלנו ובחר את המסלול המושלם שיתאים לרמת המיומנות שלך.",
+      "grammar": "גלה הדרכות ודיאגרמות טכנולוגיות מפורטות."
     }
   }
 }

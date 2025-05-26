@@ -2,83 +2,86 @@
   "header": {
     "utils": {
       "login": "Skráðu þig inn á Vievlog",
-      "logout": "Útskráning frá Vievlog",
+      "logout": "Skráðu þig út úr Vievlog",
       "inquiry": "Hafðu samband við stuðning Vievlog",
-      "manager": "Reikningsstjóri",
-      "topikSchedule": "VIEVLOG áætlun - Það námsatburðir"
+      "manager": "Reikningurinn minn",
+      "topikSchedule": "VIEVLOG áætlun - Næsta viðburði í upplýsingatækni"
     }
   },
   "body": {
     "utils": {
-      "loading": "Hleður því kennslustundum ...",
-      "notFound": "Engar kennslustundir sem finnast í þessum flokki.",
-      "inquiry": "Hafðu samband við stuðning Vievlog",
-      "manager": "Reikningsstjóri"
+      "loading": "Hleðsla upplýsingatækninnar ...",
+      "notFound": "Engar kennslustundir í boði í þessum flokki.",
+      "inquiry": "Þarftu hjálp? Hafðu samband við stuðning Vievlog",
+      "manager": "Stjórna reikningnum þínum"
     }
   },
   "content": {
-    "title": "Vievlog - Lærðu það á netinu ókeypis | Það námskeið og próf",
-    "home": "Heim - Vievlog",
+    "title": "Vievlog - Ókeypis á netinu það nám | Námskeið, auðlindir og vottun",
+    "home": "Heim",
+    "posts": "Færslur",
+    "chats": "Spjall",
+    "videos": "Myndbönd",
     "topiks": "Það að læra efni",
     "courses": "Ókeypis námskeið",
-    "grammar": "Það málfræði kennslustundir",
-    "game": "Að læra leiki",
+    "grammar": "Tæknifræðikennsla",
+    "game": "Fræðsluleikir",
     "features": "Vettvangsaðgerðir",
-    "logIn": "Skráðu þig inn á Vievlog",
+    "logIn": "Skráðu þig inn á reikninginn þinn",
     "signUp": "Skráðu þig fyrir ókeypis námskeið",
-    "toggleTheme": "Skiptu um ljós/dimmt þema",
-    "newCollection": "Nýtt námskeiðssöfnun í boði",
-    "oneStopPlatform": "Vievlog - Ultimate Free IT námspallurinn þinn",
-    "startLearningNow": "Byrjaðu að læra það og undirbúa þig fyrir Topik próf",
-    "whyChooseVieVlog": "Af hverju að velja Vievlog fyrir það að læra?",
-    "freeAccess": "100% ókeypis það að læra aðgang",
-    "learnIT": "Fáðu aðgang að hágæða upplýsingatækni, námskeiðum og úrræðum frá leiðbeinendum sérfræðinga án kostnaðar.",
-    "expertInstructors": "Sérfræðingar upplýsingakennarar",
-    "learnFromExperts": "Lærðu það frá móðurmálum og reyndum fagfólki.",
-    "anytimeAnywhere": "Lærðu það hvenær sem er, hvar sem er",
-    "learnAtYourOwnPace": "Athugaðu það á eigin hraða með ótakmarkaðan aðgang að öllum kennslustundum.",
-    "comprehensiveCurriculum": "Alhliða námskrá upplýsingatækni",
-    "coverAllAspects": "Námskeið sem fjalla um það grunnatriði fyrir háþróað efni, þar á meðal málfræði, orðaforða og samtal.",
-    "viewAllIT": "Skoðaðu alla Vievlog IT prófanir og námskeið",
-    "featuredCourses": "Valin námskeið",
-    "beginnerIT": "Það námskeið byrjenda",
+    "toggleTheme": "Skiptu um ljós/dökkan hátt",
+    "newCollection": "Skoðaðu nýja námskeiðssafnið okkar",
+    "oneStopPlatform": "Vievlog-All-í-einn upplýsingatæknipallurinn þinn",
+    "startLearningNow": "Byrjaðu að læra það og undirbúa þig fyrir próf í dag",
+    "whyChooseVieVlog": "Af hverju að læra það með Vievlog?",
+    "freeAccess": "Alveg ókeypis aðgangur",
+    "learnIT": "Njóttu hágæða upplýsingatækni, kennslustundir og úrræði frá reyndum leiðbeinendum-fullkomlega ókeypis.",
+    "expertInstructors": "Lærðu af sérfræðingum í iðnaði",
+    "learnFromExperts": "Fáðu kennt af vanurum upplýsingatæknifræðingum og kennurum.",
+    "anytimeAnywhere": "Sveigjanlegt nám hvenær sem er, hvar sem er",
+    "learnAtYourOwnPace": "Lærðu á eigin hraða með ótakmarkaðan aðgang að kennslustundum.",
+    "comprehensiveCurriculum": "Námskrá með fullan staf",
+    "coverAllAspects": "Nær til grundvallar til háþróaðra upplýsingatæknihugtaka, þ.mt kóðunar, kerfa, nets og fleira.",
+    "viewAllIT": "Skoðaðu öll vievlog námskeið og æfingarpróf",
+    "featuredCourses": "Valin upplýsingatækniforrit",
+    "beginnerIT": "Byrjunarstig IT námskeið",
     "intermediateIT": "Milli þess námskeið",
-    "advancedIT": "Advanced It Course",
-    "getStartedForFree": "Byrjaðu með ókeypis kennslustundir í dag",
-    "whatOurLearnersSay": "Það sem nemendur okkar segja um Vievlog",
+    "advancedIT": "Advanced It Mastery",
+    "getStartedForFree": "Byrjaðu að læra ókeypis í dag",
+    "whatOurLearnersSay": "Hvað nemendur segja um Vievlog",
     "testimonial1": {
-      "quote": "Vievlog hjálpaði mér með góðum árangri að undirbúa mig fyrir IT prófið mitt.",
+      "quote": "Vievlog hjálpaði mér með öryggi að standast upplýsingatækniprófið mitt.",
       "name": "Nguyen minh anh",
       "role": "Alþjóðlegur námsmaður"
     },
     "testimonial2": {
-      "quote": "Að læra það með Vievlog hefur aldrei verið auðveldara og skemmtilegra!",
+      "quote": "Að læra það í gegnum Vievlog er bæði áhrifaríkt og skemmtilegt!",
       "name": "Tran Hai Nam",
-      "role": "Skrifstofustarfsmaður"
+      "role": "Skrifstofu fagmaður"
     },
     "testimonial3": {
-      "quote": "Þökk sé Vievlog bætti ég upplýsingatæknihæfileika mína verulega.",
+      "quote": "Þökk sé Vievlog hef ég bætt forritunarhæfileika mína verulega.",
       "name": "Le Thanh Huong",
       "role": "Háskólanemi"
     },
-    "vieTopik": "Vievlog - Top 1 IT Námspallur",
-    "yourOneStopShop": "Einn stöðvunarvettvangurinn þinn til að ná tökum á upplýsingatækni og Topik prófum. Aðgang að iðgjaldalánum ókeypis og ná tungumálinu þínu og það markmið í dag!",
-    "connectWithUs": "Tengdu við Vievlog á samfélagsmiðlum",
+    "vieTopik": "Vievlog - Topp 1 upplýsingatæknin",
+    "yourOneStopShop": "Einn stöðvunarvettvangur þinn til að ná tökum á upplýsingatækni og búa þig undir vottunarpróf. Fáðu aðgang að úrvals efni án kostnaðar!",
+    "connectWithUs": "Fylgdu Vievlog á samfélagsmiðlum",
     "socialMedia": {
-      "facebook": "Vievlog Facebook",
-      "twitter": "Vievlog Twitter",
-      "instagram": "Vievlog Instagram",
-      "linkedin": "Vievlog LinkedIn"
+      "facebook": "Fylgdu okkur á Facebook",
+      "twitter": "Fylgdu okkur á Twitter",
+      "instagram": "Fylgdu okkur á Instagram",
+      "linkedin": "Tengdu okkur á LinkedIn"
     },
     "company": {
-      "aboutUs": "Um Vievlog",
-      "careers": "Starfsferill hjá Vievlog",
-      "blog": "Vievlog blogg - Það ráð og fréttir",
-      "contact": "Hafðu samband við Vievlog"
+      "aboutUs": "Um okkur",
+      "careers": "Starfsferill",
+      "blog": "Tækniblogg - Fréttir og ráð",
+      "contact": "Hafðu samband"
     },
     "support": {
-      "helpCenter": "Hjálparmiðstöð Vievlog",
-      "faq": "Algengar spurningar",
+      "helpCenter": "Hjálparmiðstöð",
+      "faq": "Algengar spurningar - Algengar spurningar",
       "privacyPolicy": "Persónuverndarstefna",
       "termsOfService": "Þjónustuskilmálar"
     },
@@ -86,8 +89,8 @@
       "copyright": "© 2025 Vievlog. Öll réttindi áskilin."
     },
     "metadata": {
-      "lesson": "Skoðaðu nýjustu ókeypis upplýsingatæknin okkar og finndu hið fullkomna námskeið fyrir færnistig þitt.",
-      "grammar": "Kannaðu nákvæmar upplýsingatæknimyndir okkar og námskeið."
+      "lesson": "Kannaðu ókeypis kennslustundir okkar og veldu hið fullkomna námskeið til að passa við færni þína.",
+      "grammar": "Uppgötvaðu ítarlegar tækni og skýringarmyndir."
     }
   }
 }

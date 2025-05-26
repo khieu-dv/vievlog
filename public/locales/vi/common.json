@@ -2,83 +2,86 @@
   "header": {
     "utils": {
       "login": "Đăng nhập vào Vievlog",
-      "logout": "Đăng xuất từ ​​Vievlog",
+      "logout": "Đăng xuất khỏi Vievlog",
       "inquiry": "Liên hệ với hỗ trợ Vievlog",
-      "manager": "Quản lý tài khoản",
-      "topikSchedule": "Lịch trình Vievlog - Sự kiện học tập CNTT"
+      "manager": "Tài khoản của tôi",
+      "topikSchedule": "Lịch trình Vievlog - Sự kiện học tập sắp tới"
     }
   },
   "body": {
     "utils": {
-      "loading": "Tải IT bài học ...",
-      "notFound": "Không có bài học tìm thấy trong thể loại này.",
-      "inquiry": "Liên hệ với hỗ trợ Vievlog",
-      "manager": "Quản lý tài khoản"
+      "loading": "Đang tải các bài học của bạn ...",
+      "notFound": "Không có bài học có sẵn trong danh mục này.",
+      "inquiry": "Cần giúp đỡ? Liên hệ với hỗ trợ Vievlog",
+      "manager": "Quản lý tài khoản của bạn"
     }
   },
   "content": {
-    "title": "Vievlog - Tìm hiểu IT trực tuyến miễn phí | IT các khóa học và kỳ thi",
-    "home": "Trang chủ - Vievlog",
-    "topiks": "IT học các chủ đề",
+    "title": "Vievlog - Học trực tuyến miễn phí Học tập | Các khóa học, tài nguyên & chứng nhận",
+    "home": "Trang chủ",
+    "posts": "Bài viết",
+    "chats": "Trò chuyện",
+    "videos": "Video",
+    "topiks": "Nó học các chủ đề",
     "courses": "Miễn phí các khóa học CNTT",
-    "grammar": "IT bài học ngữ pháp",
-    "game": "Trò chơi học tập",
+    "grammar": "Bài học ngữ pháp công nghệ",
+    "game": "Trò chơi giáo dục",
     "features": "Các tính năng nền tảng",
-    "logIn": "Đăng nhập vào Vievlog",
+    "logIn": "Đăng nhập vào tài khoản của bạn",
     "signUp": "Đăng ký các khóa học CNTT miễn phí",
-    "toggleTheme": "Chuyển đổi chủ đề ánh sáng/tối",
-    "newCollection": "Bộ sưu tập khóa học CNTT mới có sẵn",
-    "oneStopPlatform": "Vievlog - Nền tảng học tập CNTT miễn phí cuối cùng của bạn",
-    "startLearningNow": "Bắt đầu học IT và chuẩn bị cho kỳ thi Topik",
-    "whyChooseVieVlog": "Tại sao chọn Vievlog cho việc học CNTT?",
-    "freeAccess": "Truy cập CNTT miễn phí 100%",
-    "learnIT": "Truy cập các bài học, hướng dẫn và tài nguyên CNTT chất lượng cao từ các giảng viên chuyên gia miễn phí.",
-    "expertInstructors": "Chuyên gia IT hướng dẫn",
-    "learnFromExperts": "Học IT từ người bản ngữ và các chuyên gia có kinh nghiệm.",
-    "anytimeAnywhere": "Tìm hiểu IT mọi lúc, mọi nơi",
-    "learnAtYourOwnPace": "Nghiên cứu IT theo tốc độ của riêng bạn với quyền truy cập không giới hạn vào tất cả các bài học.",
-    "comprehensiveCurriculum": "Chương trình giảng dạy CNTT toàn diện",
-    "coverAllAspects": "Các khóa học bao gồm các điều cơ bản về các chủ đề nâng cao, bao gồm ngữ pháp, từ vựng và thực hành hội thoại.",
-    "viewAllIT": "Xem tất cả các bài kiểm tra và khóa học của Vievlog CNTT",
-    "featuredCourses": "Các khóa học CNTT nổi bật",
-    "beginnerIT": "Khóa học của người mới bắt đầu",
+    "toggleTheme": "Chuyển đổi chế độ ánh sáng/tối",
+    "newCollection": "Khám phá bộ sưu tập khóa học CNTT mới của chúng tôi",
+    "oneStopPlatform": "Vievlog-Nền tảng học tập CNTT tất cả trong một của bạn",
+    "startLearningNow": "Bắt đầu học nó và chuẩn bị cho các kỳ thi ngay hôm nay",
+    "whyChooseVieVlog": "Tại sao học nó với Vievlog?",
+    "freeAccess": "Truy cập hoàn toàn miễn phí",
+    "learnIT": "Tận hưởng các hướng dẫn, bài học và tài nguyên chất lượng hàng đầu từ các giảng viên có kinh nghiệm, hoàn toàn miễn phí.",
+    "expertInstructors": "Học hỏi từ các chuyên gia trong ngành",
+    "learnFromExperts": "Được dạy bởi các chuyên gia CNTT và nhà giáo dục dày dạn.",
+    "anytimeAnywhere": "Học tập linh hoạt mọi lúc, mọi nơi",
+    "learnAtYourOwnPace": "Học theo tốc độ của riêng bạn với truy cập bài học không giới hạn.",
+    "comprehensiveCurriculum": "Chương trình giảng dạy đầy đủ",
+    "coverAllAspects": "Bao gồm các khái niệm CNTT để nâng cao bao gồm mã hóa, hệ thống, mạng, v.v.",
+    "viewAllIT": "Duyệt tất cả các khóa học Vievlog và Bài kiểm tra thực hành",
+    "featuredCourses": "Các chương trình CNTT nổi bật",
+    "beginnerIT": "Khóa học cấp độ mới bắt đầu",
     "intermediateIT": "Khóa học trung gian",
-    "advancedIT": "Khóa học nâng cao",
-    "getStartedForFree": "Bắt đầu với bài học miễn phí hôm nay",
-    "whatOurLearnersSay": "Những người học của chúng tôi ITi gì về Vievlog",
+    "advancedIT": "Nâng cao nó làm chủ",
+    "getStartedForFree": "Bắt đầu học miễn phí ngay hôm nay",
+    "whatOurLearnersSay": "Những người học nói gì về vievlog",
     "testimonial1": {
-      "quote": "Vievlog đã giúp tôi chuẩn bị thành công cho kỳ thi CNTT của tôi.",
+      "quote": "Vievlog đã giúp tôi tự tin vượt qua kỳ thi chứng nhận CNTT của mình.",
       "name": "Nguyen Minh Anh",
       "role": "Sinh viên quốc tế"
     },
     "testimonial2": {
-      "quote": "Học IT với Vievlog chưa bao giờ dễ dàng hơn và vui hơn!",
+      "quote": "Học nó thông qua Vievlog vừa hiệu quả và thú vị!",
       "name": "Tran Hai Nam",
-      "role": "Nhân viên văn phòng"
+      "role": "Văn phòng Chuyên nghiệp"
     },
     "testimonial3": {
-      "quote": "Nhờ Vievlog, tôi đã cải thiện đáng kể các kỹ năng CNTT của mình.",
+      "quote": "Nhờ Vievlog, tôi đã cải thiện đáng kể kỹ năng lập trình của mình.",
       "name": "Le Thanh Huong",
       "role": "Sinh viên đại học"
     },
-    "vieTopik": "Vievlog - Nền tảng học tập Top 1 IT",
-    "yourOneStopShop": "Nền tảng một cửa của bạn để thành thạo các kỹ năng CNTT và các kỳ thi Topik. Truy cập tài nguyên học tập cao cấp miễn phí và tiếp cận ngôn ngữ của bạn và mục tiêu CNTT ngay hôm nay!",
-    "connectWithUs": "Kết nối với Vievlog trên phương tiện truyền thông xã hội",
+    "vieTopik": "VIEVLOG - HUB TOP 1 IT LEAKID",
+    "yourOneStopShop": "Nền tảng một cửa của bạn để làm chủ các kỹ năng CNTT và chuẩn bị cho các kỳ thi chứng nhận. Nhận quyền truy cập vào nội dung cao cấp miễn phí!",
+    "connectWithUs": "Theo dõi Vievlog trên phương tiện truyền thông xã hội",
     "socialMedia": {
-      "facebook": "Vievlog Facebook",
-      "twitter": "Vievlog Twitter",
-      "instagram": "Vievlog Instagram",
-      "linkedin": "Vievlog LinkedIn"
+      "facebook": "Theo dõi chúng tôi trên Facebook",
+      "twitter": "Theo dõi chúng tôi trên Twitter",
+      "instagram": "Theo dõi chúng tôi trên Instagram",
+      "linkedin": "Kết nối với chúng tôi trên LinkedIn"
     },
     "company": {
-      "aboutUs": "Về Vievlog",
-      "careers": "Nghề nghiệp tại Vievlog",
-      "blog": "Vievlog Blog - IT Mẹo & Tin tức",
-      "contact": "Liên hệ với Vievlog"
+      "aboutUs": "Về chúng tôi",
+      "careers": "Sự nghiệp",
+      "blog": "Blog Tech - Tin tức & Mẹo",
+      "contact": "Liên hệ với chúng tôi"
     },
     "support": {
-      "helpCenter": "Trung tâm trợ giúp Vievlog",
-      "faq": "Câu hỏi thường gặp",
+      "helpCenter": "Trung tâm trợ giúp",
+      "faq": "Câu hỏi thường gặp - Câu hỏi thường gặp",
       "privacyPolicy": "Chính sách bảo mật",
       "termsOfService": "Điều khoản dịch vụ"
     },
@@ -86,8 +89,8 @@
       "copyright": "© 2025 Vievlog. Tất cả quyền được bảo lưu."
     },
     "metadata": {
-      "lesson": "Duyệt các bài học CNTT miễn phí mới nhất của chúng tôi và tìm khóa học hoàn hảo cho trình độ kỹ năng của bạn.",
-      "grammar": "Khám phá các sơ đồ và hướng dẫn CNTT chi tiết của chúng tôi."
+      "lesson": "Khám phá các bài học miễn phí của chúng tôi và chọn khóa học hoàn hảo để phù hợp với trình độ kỹ năng của bạn.",
+      "grammar": "Khám phá các hướng dẫn và sơ đồ công nghệ chi tiết."
     }
   }
 }

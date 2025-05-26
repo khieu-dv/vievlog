@@ -2,83 +2,86 @@
   "header": {
     "utils": {
       "login": "Mewngofnodi i Vievlog",
-      "logout": "Allgofnodi o vievlog",
+      "logout": "Logio allan o vievlog",
       "inquiry": "Cysylltwch â chefnogaeth vievlog",
-      "manager": "Rheolwr Cyfrifon",
-      "topikSchedule": "Amserlen Vievlog - Digwyddiadau Dysgu TG"
+      "manager": "Fy nghyfrif",
+      "topikSchedule": "Amserlen Vievlog - Digwyddiadau Dysgu TG sydd ar ddod"
     }
   },
   "body": {
     "utils": {
-      "loading": "Llwytho gwersi ...",
-      "notFound": "Dim gwersi a geir yn y categori hwn.",
-      "inquiry": "Cysylltwch â chefnogaeth vievlog",
-      "manager": "Rheolwr Cyfrifon"
+      "loading": "Llwytho'ch Gwersi TG ...",
+      "notFound": "Dim gwersi ar gael yn y categori hwn.",
+      "inquiry": "Angen help? Cysylltwch â chefnogaeth vievlog",
+      "manager": "Rheoli Eich Cyfrif"
     }
   },
   "content": {
-    "title": "Vievlog - Dysgwch ef ar -lein am ddim | Mae'n cyrsio ac arholiadau",
-    "home": "Hafan - Vievlog",
+    "title": "Vievlog - Dysgu TG Ar -lein Am Ddim | Cyrsiau, Adnoddau ac Ardystiad",
+    "home": "Nghartrefi",
+    "posts": "Swyddi",
+    "chats": "Sgyrsiau",
+    "videos": "Fideos",
     "topiks": "Mae'n dysgu pynciau",
     "courses": "Cyrsiau TG Am Ddim",
-    "grammar": "Mae'n wersi gramadeg",
-    "game": "Gemau Dysgu",
+    "grammar": "Gwersi gramadeg technoleg",
+    "game": "Gemau addysgol",
     "features": "Nodweddion platfform",
-    "logIn": "Mewngofnodi i Vievlog",
+    "logIn": "Mewngofnodi i'ch Cyfrif",
     "signUp": "Cofrestrwch ar gyfer cyrsiau TG AM DDIM",
-    "toggleTheme": "Toglo thema golau/tywyll",
-    "newCollection": "Casgliad Cwrs TG Newydd ar gael",
-    "oneStopPlatform": "Vievlog - eich platfform dysgu TG rhad ac am ddim yn y pen draw",
-    "startLearningNow": "Dechreuwch ei ddysgu a pharatoi ar gyfer arholiad TOPIK",
-    "whyChooseVieVlog": "Pam Dewis Vievlog ar gyfer Dysgu TG?",
-    "freeAccess": "100% am ddim Mynediad Dysgu",
-    "learnIT": "Cyrchu gwersi TG o ansawdd uchel, sesiynau tiwtorial ac adnoddau gan hyfforddwyr arbenigol heb unrhyw gost.",
-    "expertInstructors": "Hyfforddwyr TG arbenigol",
-    "learnFromExperts": "Dysgwch ef gan siaradwyr brodorol a gweithwyr proffesiynol profiadol.",
-    "anytimeAnywhere": "Ei ddysgu unrhyw bryd, unrhyw le",
-    "learnAtYourOwnPace": "Astudiwch ef ar eich cyflymder eich hun gyda mynediad diderfyn i bob gwers.",
-    "comprehensiveCurriculum": "Cwricwlwm TG Cynhwysfawr",
-    "coverAllAspects": "Cyrsiau sy'n ymdrin â Hanfodion TG i bynciau uwch, gan gynnwys gramadeg, geirfa ac ymarfer sgwrsio.",
-    "viewAllIT": "Gweld yr holl vievlog y mae'n eu profi a chwrs",
-    "featuredCourses": "Yn cynnwys cyrsiau TG",
-    "beginnerIT": "Cwrs TG dechreuwyr",
+    "toggleTheme": "Newid Modd Golau/Tywyll",
+    "newCollection": "Archwiliwch ein Casgliad Cwrs TG newydd",
+    "oneStopPlatform": "Vievlog-eich platfform dysgu TG popeth-mewn-un",
+    "startLearningNow": "Dechreuwch ei ddysgu a pharatoi ar gyfer arholiadau heddiw",
+    "whyChooseVieVlog": "Pam ei ddysgu gyda Vievlog?",
+    "freeAccess": "Mynediad hollol rhad ac am ddim",
+    "learnIT": "Mwynhewch sesiynau tiwtorial, gwersi ac adnoddau TG o'r safon uchaf gan hyfforddwyr profiadol-am ddim yn llwyr.",
+    "expertInstructors": "Dysgu gan arbenigwyr diwydiant",
+    "learnFromExperts": "Cael eich dysgu gan weithwyr proffesiynol ac addysgwyr TG profiadol.",
+    "anytimeAnywhere": "Dysgu hyblyg unrhyw bryd, unrhyw le",
+    "learnAtYourOwnPace": "Dysgwch ar eich cyflymder eich hun gyda mynediad gwersi diderfyn.",
+    "comprehensiveCurriculum": "Cwricwlwm pentwr llawn",
+    "coverAllAspects": "Yn cynnwys cysyniadau TG sylfaenol i uwch gan gynnwys codio, systemau, rhwydweithio a mwy.",
+    "viewAllIT": "Porwch bob cwrs Vievlog a phrofion ymarfer",
+    "featuredCourses": "Rhaglenni TG dan sylw",
+    "beginnerIT": "Cwrs It ar lefel dechreuwr",
     "intermediateIT": "Cwrs TG Canolradd",
-    "advancedIT": "Cwrs TG Uwch",
-    "getStartedForFree": "Dechreuwch gyda gwersi TG am ddim heddiw",
-    "whatOurLearnersSay": "Yr hyn y mae ein dysgwyr yn ei ddweud am vievlog",
+    "advancedIT": "Meistrolaeth TG Uwch",
+    "getStartedForFree": "Dechreuwch ddysgu am ddim heddiw",
+    "whatOurLearnersSay": "Yr hyn y mae dysgwyr yn ei ddweud am vievlog",
     "testimonial1": {
-      "quote": "Fe wnaeth Vievlog fy helpu i baratoi'n llwyddiannus ar gyfer fy arholiad TG.",
+      "quote": "Fe wnaeth Vievlog fy helpu i basio fy arholiad ardystio TG yn hyderus.",
       "name": "Nguyen Minh anh",
       "role": "Myfyriwr Rhyngwladol"
     },
     "testimonial2": {
-      "quote": "Ni fu ei ddysgu gyda Vievlog erioed yn haws ac yn fwy o hwyl!",
+      "quote": "Mae ei ddysgu trwy Vievlog yn effeithiol ac yn bleserus!",
       "name": "Tran hai nam",
-      "role": "Swyddfa"
+      "role": "Proffesiynol Swyddfa"
     },
     "testimonial3": {
-      "quote": "Diolch i Vievlog, mi wnes i wella fy sgiliau TG yn sylweddol.",
+      "quote": "Diolch i Vievlog, rwyf wedi gwella fy sgiliau rhaglennu yn sylweddol.",
       "name": "Le Thanh Huong",
       "role": "Myfyriwr Prifysgol"
     },
-    "vieTopik": "Vievlog - 1 platfform dysgu TG",
-    "yourOneStopShop": "Eich platfform un stop ar gyfer meistroli sgiliau TG ac arholiadau TOPIK. Cyrchwch adnoddau dysgu premiwm am ddim a chyrraedd eich iaith ac mae'n nodau heddiw!",
-    "connectWithUs": "Cysylltu â Vievlog ar gyfryngau cymdeithasol",
+    "vieTopik": "Vievlog - yr 1 hwb dysgu 1 uchaf",
+    "yourOneStopShop": "Eich platfform un stop i feistroli sgiliau TG a pharatoi ar gyfer arholiadau ardystio. Sicrhewch fynediad at gynnwys premiwm heb unrhyw gost!",
+    "connectWithUs": "Dilynwch Vievlog ar gyfryngau cymdeithasol",
     "socialMedia": {
-      "facebook": "Vievlog Facebook",
-      "twitter": "Twitter vievlog",
-      "instagram": "Vievlog Instagram",
-      "linkedin": "Vievlog linkedin"
+      "facebook": "Dilynwch Ni ar Facebook",
+      "twitter": "Dilynwch ni ar Twitter",
+      "instagram": "Dilynwch ni ar Instagram",
+      "linkedin": "Cysylltu â ni ar LinkedIn"
     },
     "company": {
-      "aboutUs": "Am vievlog",
-      "careers": "Gyrfaoedd yn Vievlog",
-      "blog": "Blog vievlog - mae'n awgrymiadau a newyddion",
-      "contact": "Cysylltwch â Vievlog"
+      "aboutUs": "Amdanom Ni",
+      "careers": "Gyrfaoedd",
+      "blog": "Blog Tech - Newyddion ac Awgrymiadau",
+      "contact": "Cysylltwch â ni"
     },
     "support": {
-      "helpCenter": "Canolfan Gymorth Vievlog",
-      "faq": "Cwestiynau Cyffredin",
+      "helpCenter": "Canolfan Gymorth",
+      "faq": "Cwestiynau Cyffredin - Cwestiynau Cyffredin",
       "privacyPolicy": "Polisi Preifatrwydd",
       "termsOfService": "Telerau Gwasanaeth"
     },
@@ -86,8 +89,8 @@
       "copyright": "© 2025 Vievlog. Cedwir pob hawl."
     },
     "metadata": {
-      "lesson": "Porwch ein gwersi TG am ddim diweddaraf a dewch o hyd i'r cwrs perffaith ar gyfer eich lefel sgiliau.",
-      "grammar": "Archwiliwch ein diagramau a thiwtorialau TG manwl."
+      "lesson": "Archwiliwch ein gwersi am ddim a dewiswch y cwrs perffaith i gyd -fynd â'ch lefel sgiliau.",
+      "grammar": "Darganfyddwch diwtorialau a diagramau technoleg manwl."
     }
   }
 }

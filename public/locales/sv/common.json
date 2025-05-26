@@ -4,81 +4,84 @@
       "login": "Logga in på Vievlog",
       "logout": "Logga ut från Vievlog",
       "inquiry": "Kontakta Vievlog Support",
-      "manager": "Kontochef",
-      "topikSchedule": "Vievlog schema - IT Learning Events"
+      "manager": "Mitt konto",
+      "topikSchedule": "VIEVLOG -schema - Kommande IT -inlärningsevenemang"
     }
   },
   "body": {
     "utils": {
-      "loading": "Laddar de lektioner ...",
-      "notFound": "Inga lektioner som finns i denna kategori.",
-      "inquiry": "Kontakta Vievlog Support",
-      "manager": "Kontochef"
+      "loading": "Laddar dina IT -lektioner ...",
+      "notFound": "Inga lektioner tillgängliga i denna kategori.",
+      "inquiry": "Behöver du hjälp? Kontakta Vievlog Support",
+      "manager": "Hantera ditt konto"
     }
   },
   "content": {
-    "title": "Vievlog - Lär dig det online gratis | Det kurser och tentor",
-    "home": "Hem - Vievlog",
+    "title": "Vievlog - Gratis online IT -lärande | Kurser, resurser och certifiering",
+    "home": "Hem",
+    "posts": "Inlägg",
+    "chats": "Chatt",
+    "videos": "Videor",
     "topiks": "Det lär sig ämnen",
     "courses": "Gratis IT -kurser",
-    "grammar": "Det grammatiklektioner",
-    "game": "Inlärningsspel",
+    "grammar": "Tekniska grammatiklektioner",
+    "game": "Utbildningsspel",
     "features": "Plattformsfunktioner",
-    "logIn": "Logga in på Vievlog",
+    "logIn": "Logga in på ditt konto",
     "signUp": "Registrera dig gratis IT -kurser",
-    "toggleTheme": "Växla ljus/mörkt tema",
-    "newCollection": "Ny IT -kurssamling tillgänglig",
-    "oneStopPlatform": "Vievlog - Din ultimata gratis IT -inlärningsplattform",
-    "startLearningNow": "Börja lära dig det och förbered dig för Topik -examen",
-    "whyChooseVieVlog": "Varför välja Vievlog för det lärande?",
-    "freeAccess": "100% gratis IT -inlärningstillträde",
-    "learnIT": "Åtkomst till högkvalitativa IT-lektioner, tutorials och resurser från expertinstruktörer utan kostnad.",
-    "expertInstructors": "Expert IT -instruktörer",
-    "learnFromExperts": "Lär dig det från modersmål och erfarna yrkesverksamma.",
-    "anytimeAnywhere": "Lär dig det när som helst, var som helst",
-    "learnAtYourOwnPace": "Studera det i din egen takt med obegränsad tillgång till alla lektioner.",
-    "comprehensiveCurriculum": "Omfattande IT -läroplan",
-    "coverAllAspects": "Kurser som täcker IT -grunderna till avancerade ämnen, inklusive grammatik, ordförråd och konversationspraxis.",
-    "viewAllIT": "Visa alla VievLog It -test och kurser",
-    "featuredCourses": "BESKRIVA IT -KURSER",
-    "beginnerIT": "Nybörjarens IT -kurs",
+    "toggleTheme": "Switch Light/Dark Mode",
+    "newCollection": "Utforska vår nya IT -kurssamling",
+    "oneStopPlatform": "Vievlog-Din allt-i-ett-inlärningsplattform",
+    "startLearningNow": "Börja lära dig det och förbered dig för tentor idag",
+    "whyChooseVieVlog": "Varför lära sig det med Vievlog?",
+    "freeAccess": "Helt gratis tillgång",
+    "learnIT": "Njut av högkvalitativa IT-tutorials, lektioner och resurser från erfarna instruktörer-helt gratis.",
+    "expertInstructors": "Lär dig av branschexperter",
+    "learnFromExperts": "Bli undervisad av erfaren IT -proffs och lärare.",
+    "anytimeAnywhere": "Flexibelt lärande när som helst, var som helst",
+    "learnAtYourOwnPace": "Lär dig i din egen takt med obegränsad lektionsåtkomst.",
+    "comprehensiveCurriculum": "Fullstack IT-läroplan",
+    "coverAllAspects": "Täcker grundläggande för avancerade IT -koncept inklusive kodning, system, nätverk och mer.",
+    "viewAllIT": "Bläddra bland alla Vievlog -kurser och träningstester",
+    "featuredCourses": "Presenterade IT -program",
+    "beginnerIT": "Nybörjare nivå it-kurs",
     "intermediateIT": "Mellanliggande IT -kurs",
-    "advancedIT": "Avancerad IT -kurs",
-    "getStartedForFree": "Kom igång med gratis IT -lektioner idag",
-    "whatOurLearnersSay": "Vad våra elever säger om Vievlog",
+    "advancedIT": "Avancerad det behärskar",
+    "getStartedForFree": "Börja lära gratis idag",
+    "whatOurLearnersSay": "Vad eleverna säger om Vievlog",
     "testimonial1": {
-      "quote": "Vievlog hjälpte mig framgångsrikt att förbereda mig för min IT -examen.",
+      "quote": "Vievlog hjälpte mig säkert att klara min IT -certifieringsexamen.",
       "name": "Nguyen minh anh",
       "role": "Student"
     },
     "testimonial2": {
-      "quote": "Att lära sig det med Vievlog har aldrig varit enklare och roligare!",
+      "quote": "Att lära sig det genom Vievlog är både effektivt och roligt!",
       "name": "Tran Hai Nam",
-      "role": "Byråns arbetare"
+      "role": "Kontorspersonal"
     },
     "testimonial3": {
-      "quote": "Tack vare Vievlog förbättrade jag mina IT -färdigheter betydligt.",
+      "quote": "Tack vare Vievlog har jag förbättrat mina programmeringsfärdigheter avsevärt.",
       "name": "Le Thanh Huong",
       "role": "Universitetsstudent"
     },
-    "vieTopik": "Vievlog - Top 1 IT Learning Platform",
-    "yourOneStopShop": "Din enstaka plattform för att behärska IT-färdigheter och Topik-tentor. Åtkomst till premiuminlärningsresurser gratis och nå ditt språk och IT -mål idag!",
-    "connectWithUs": "Anslut med Vievlog på sociala medier",
+    "vieTopik": "Vievlog - Topp 1 It Learning Hub",
+    "yourOneStopShop": "Din one-stop-plattform för att behärska IT-färdigheter och förbereda sig för certifieringsprov. Få tillgång till premiuminnehåll utan kostnad!",
+    "connectWithUs": "Följ Vievlog på sociala medier",
     "socialMedia": {
-      "facebook": "Vievlog facebook",
-      "twitter": "Vievlog Twitter",
-      "instagram": "Vievlog Instagram",
-      "linkedin": "Vievlog LinkedIn"
+      "facebook": "Följ oss på Facebook",
+      "twitter": "Följ oss på Twitter",
+      "instagram": "Följ oss på Instagram",
+      "linkedin": "Anslut med oss ​​på LinkedIn"
     },
     "company": {
-      "aboutUs": "Om Vievlog",
-      "careers": "Karriärer på Vievlog",
-      "blog": "Vievlog Blogg - It Tips & News",
-      "contact": "Kontakta Vievlog"
+      "aboutUs": "Om oss",
+      "careers": "Karriär",
+      "blog": "Teknisk blogg - Nyheter och tips",
+      "contact": "Kontakta oss"
     },
     "support": {
-      "helpCenter": "Vievlog Help Center",
-      "faq": "Vanliga frågor",
+      "helpCenter": "Hjälpcentral",
+      "faq": "Vanliga frågor - Vanliga frågor",
       "privacyPolicy": "Integritetspolicy",
       "termsOfService": "Villkorsvillkor"
     },
@@ -86,8 +89,8 @@
       "copyright": "© 2025 Vievlog. Alla rättigheter reserverade."
     },
     "metadata": {
-      "lesson": "Bläddra i våra senaste gratis IT -lektioner och hitta den perfekta kursen för din färdighetsnivå.",
-      "grammar": "Utforska våra detaljerade IT -diagram och tutorials."
+      "lesson": "Utforska våra gratis lektioner och välj den perfekta kursen som matchar din färdighetsnivå.",
+      "grammar": "Upptäck detaljerade tekniska tutorials och diagram."
     }
   }
 }

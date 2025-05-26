@@ -2,83 +2,86 @@
   "header": {
     "utils": {
       "login": "Ngena ngemvume ku-vivievlog",
-      "logout": "Ukuphuma kusuka ku-vivievlog",
+      "logout": "Ngena ngemvume ku-vivievlog",
       "inquiry": "Thintana neVievlog ukweseka",
-      "manager": "Umphathi we-akhawunti",
-      "topikSchedule": "Isheduli ye-Vievlog - ifunda imicimbi"
+      "manager": "I-akhawunti yami",
+      "topikSchedule": "Isheduli ye-Vievlog - Iyakusekela imicimbi yokufunda"
     }
   },
   "body": {
     "utils": {
-      "loading": "Ilayisha izifundo ...",
+      "loading": "Ilayisha izifundo zakho ze-IT ...",
       "notFound": "Azikho izifundo ezitholakala kulesi sigaba.",
-      "inquiry": "Thintana neVievlog ukweseka",
-      "manager": "Umphathi we-akhawunti"
+      "inquiry": "Udinga usizo? Thintana neVievlog ukweseka",
+      "manager": "Phatha i-akhawunti yakho"
     }
   },
   "content": {
-    "title": "Vievlog - Funda ku-inthanethi mahhala | Izifundo kanye nezivivinyo",
-    "home": "Ikhaya - Vievlog",
+    "title": "Vievlog - Free Online It Funda | Izifundo, Izinsizakusebenza Nesitifiketi",
+    "home": "Ikhaya",
+    "posts": "Okuvumbuleni",
+    "chats": "Izingxoxo",
+    "videos": "Vigenanapho",
     "topiks": "Ifunda izihloko",
     "courses": "Mahhala",
-    "grammar": "Izifundo zohlelo lolimi",
-    "game": "Imidlalo yokufunda",
+    "grammar": "Izifundo ze-Tech Grammar",
+    "game": "Imidlalo yokufundisa",
     "features": "Izici Zesifo",
-    "logIn": "Ngena ngemvume ku-vivievlog",
+    "logIn": "Ngena ngemvume ku-akhawunti yakho",
     "signUp": "Bhalisela izifundo zamahhala ze-IT",
-    "toggleTheme": "Guqula ukukhanya / okumnyama theme",
-    "newCollection": "Ukuqoqwa okusha kwe-IT Kutholakala",
-    "oneStopPlatform": "I-Vievlog - iplatifomu yakho yokufunda yamahhala ye-IT",
-    "startLearningNow": "Qala ukuyifunda futhi ulungiselele ukuhlolwa kwe-TOPIK",
-    "whyChooseVieVlog": "Kungani ukhethe i-vivievlog ngoba ufunda?",
-    "freeAccess": "I-100% Mahhala Ukufinyelela kokufunda",
-    "learnIT": "Finyelela izifundo ezisezingeni eliphakeme, tutorials, kanye nezinsizakusebenza ezivela kubafundisi bochwepheshe ngaphandle kwezindleko.",
-    "expertInstructors": "Isazi Kubafundisi",
-    "learnFromExperts": "Yifunde kusuka ezikhulumeni zomdabu kanye nangochwepheshe abanolwazi.",
-    "anytimeAnywhere": "Yifunde nganoma yisiphi isikhathi, noma kuphi",
-    "learnAtYourOwnPace": "Sitadishe ngejubane lakho ngokufinyelela okungenamkhawulo kuzo zonke izifundo.",
+    "toggleTheme": "Shintsha imodi yokukhanya / emnyama",
+    "newCollection": "Hlola iqoqo lethu elisha lokuqoqwa kwe-IT",
+    "oneStopPlatform": "I-Vievlog - ipulatifomu yakho yokufunda ye-All-in It",
+    "startLearningNow": "Qala ukuyifunda futhi ulungiselele izivivinyo namuhla",
+    "whyChooseVieVlog": "Kungani ufunde nge-vivievlog?",
+    "freeAccess": "Ukufinyelela kwamahhala ngokuphelele",
+    "learnIT": "Jabulela ukufundisa okuphezulu kwe-IT IT, izifundo, kanye nezinsizakusebenza ezivela kubafundisi abanolwazi - mahhala ngokuphelele.",
+    "expertInstructors": "Funda ochwepheshe bezimboni",
+    "learnFromExperts": "Fundiswa ngochwepheshe be-IT abayihlosile kanye nothisha.",
+    "anytimeAnywhere": "Ukufunda okuguquguqukayo nganoma yisiphi isikhathi, noma kuphi",
+    "learnAtYourOwnPace": "Funda ngejubane lakho ngokufinyelela kwezifundo okungenamkhawulo.",
     "comprehensiveCurriculum": "Ikharikhulamu ephelele",
-    "coverAllAspects": "Izifundo ezimboza izisekelo ezinezihloko ezithuthukile, kufaka phakathi uhlelo lolimi, ulwazimagama, kanye nomkhuba wengxoxo.",
-    "viewAllIT": "Bheka zonke izivivinyo ze-vivievlog it kanye nezifundo",
-    "featuredCourses": "Kufakwe izifundo",
-    "beginnerIT": "Inkambo yokuqala ye-IT",
+    "coverAllAspects": "Ihlanganisa isisekelo sokuyithuthukisa imiqondo ewuthuthukile kufaka phakathi amakhodi, amasistimu, amanethiwekhi, nokuningi.",
+    "viewAllIT": "Dlulisa amehlo kuzo zonke izifundo ze-vivievlog kanye nezivivinyo zokuzijwayeza",
+    "featuredCourses": "Kufakwe Izinhlelo",
+    "beginnerIT": "Isifundo se-IT",
     "intermediateIT": "Inkambo ye-Interiate It",
-    "advancedIT": "Inkambo ye-IT ethuthukisiwe",
-    "getStartedForFree": "Qalisa ngezifundo zamahhala zanamuhla",
-    "whatOurLearnersSay": "Lokho Abafundi Bethu Abakusho NgeVievlog",
+    "advancedIT": "Advanced It Mastery",
+    "getStartedForFree": "Qala ukufunda mahhala namuhla",
+    "whatOurLearnersSay": "Okushiwo ngabafundi nge-vivievlog",
     "testimonial1": {
-      "quote": "IVievlog yangisiza ukuba ngilungiselele ngempumelelo ukuhlolwa kwami ​​kwe-IT.",
+      "quote": "IVievlog yangisiza ngokuqiniseka nge-Certification Exam Yami.",
       "name": "Nguyen Minh anh",
       "role": "Umfundi wamazwe omhlaba"
     },
     "testimonial2": {
-      "quote": "Ukuyifunda nge-vivievlog akukaze kube lula futhi kube mnandi ngokwengeziwe!",
+      "quote": "Iyifunde nge-vivievlog iyasebenza futhi iyajabulisa!",
       "name": "Tran Hai Nam",
-      "role": "Umsebenzi wehhovisi"
+      "role": "Uchwepheshe wehhovisi"
     },
     "testimonial3": {
-      "quote": "Ngenxa ye-vivievlog, ngithuthukise amakhono ami we-IT ngokubabazekayo.",
+      "quote": "Ngenxa ye-vivievlog, ngithuthukise kahle amakhono ami okuhlela.",
       "name": "ULe Thanh Huong",
       "role": "Umfundi waseyunivesithi"
     },
-    "vieTopik": "I-Vievlog - Iplatifomu yokufunda ephezulu 1 IT",
-    "yourOneStopShop": "Ipulatifomu yakho eyodwa yokumisa izivivinyo ze-IT kanye nezivivinyo ze-Topik. Finyelela izinsiza zokufunda ze-premium mahhala futhi ufinyelele olimini lwakho kanye nezinhloso zanamuhla!",
-    "connectWithUs": "Xhuma nge-vivievlog kwimidiya yezenhlalo",
+    "vieTopik": "Vievlog - the top 1 it ukufunda hub",
+    "yourOneStopShop": "Ipulatifomu yakho yokumisa eyodwa yamakhono we-Master IT futhi ilungiselela izivivinyo zesitifiketi. Finyelela kokuqukethwe kwe-premium mahhala!",
+    "connectWithUs": "Landela i-vivievlog kwimidiya yezenhlalo",
     "socialMedia": {
-      "facebook": "Vievlog facebook",
-      "twitter": "I-Vievlog Twitter",
-      "instagram": "I-Vievlog Instagram",
-      "linkedin": "Vievlog LinkedIn"
+      "facebook": "Silandele ku-Facebook",
+      "twitter": "Silandele ku-Twitter",
+      "instagram": "Silandele ku-Instagram",
+      "linkedin": "Xhuma nathi ku-LinkedIn"
     },
     "company": {
-      "aboutUs": "Mayelana Vievlog",
-      "careers": "Imisebenzi ku-vivievlog",
-      "blog": "I-Vievlog Blog - Amathiphu we-IT & Izindaba",
-      "contact": "Thintana navievlog"
+      "aboutUs": "Mayelana NATHI",
+      "careers": "Imisebenzi",
+      "blog": "I-Tech Blog - Izindaba namathiphu",
+      "contact": "Xhumana nathi"
     },
     "support": {
-      "helpCenter": "Isikhungo sosizo lwe-Vievlog",
-      "faq": "imibuzo ejwayelekile ukubuzwa",
+      "helpCenter": "Isikhungo Sosizo",
+      "faq": "I-FAQ - Imibuzo Ebuzwa Njalo",
       "privacyPolicy": "Inqubomgomo yobumfihlo",
       "termsOfService": "Imibandela Yensiza"
     },
@@ -86,8 +89,8 @@
       "copyright": "© 2025 vievlog. Wonke Amalungelo Agodliwe."
     },
     "metadata": {
-      "lesson": "Dlulisa amehlo ezifundweni zethu zakamuva zamahhala ze-IT futhi uthole inkambo ephelele yeleveli yakho yekhono.",
-      "grammar": "Hlola imidwebo yethu enemininingwane ye-IT kanye nama-tutorials."
+      "lesson": "Hlola izifundo zethu zamahhala bese ukhetha inkambo ephelele ukufanisa izinga lakho lekhono.",
+      "grammar": "Thola ama-tech tutorials kanye nemidwebo ye-tech eningiliziwe."
     }
   }
 }

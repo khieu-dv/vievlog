@@ -1,84 +1,87 @@
 {
   "header": {
     "utils": {
-      "login": "Shiga ciki zuwa VIVELG",
-      "logout": "Logout daga vivelog",
+      "login": "Shiga cikin Vivelog",
+      "logout": "Fita daga vivelog",
       "inquiry": "TATTAUNAWA VIVELG TAFIYA",
-      "manager": "Manajan Account",
-      "topikSchedule": "Jigilar ciki - Yana Koyo abubuwan da suka faru"
+      "manager": "Asusun na",
+      "topikSchedule": "Jigilar ciki - mai zuwa yana da abubuwan koyo"
     }
   },
   "body": {
     "utils": {
-      "loading": "Loading shi darussan ...",
-      "notFound": "Babu darussan da aka samo a wannan rukunin.",
-      "inquiry": "TATTAUNAWA VIVELG TAFIYA",
-      "manager": "Manajan Account"
+      "loading": "Loading a gare ku darussan ...",
+      "notFound": "Babu darussan da ake samu a wannan rukunin.",
+      "inquiry": "Ana buƙatar taimako? TATTAUNAWA VIVELG TAFIYA",
+      "manager": "Gudanar da asusunka"
     }
   },
   "content": {
-    "title": "Vivelg - Koyi It online don kyauta | Yana kwantar da hankali da jarrabawa",
-    "home": "Gida - Vivelog",
+    "title": "Vivelog - kyauta akan layi yana koyo | Darussan, albarkatu & takardar shaida",
+    "home": "Gida",
+    "posts": "Posts",
+    "chats": "Hira",
+    "videos": "Bidiyo",
     "topiks": "Yana koyon batutuwa",
     "courses": "Kyauta shi darasi",
-    "grammar": "ITungiyar tahawu",
-    "game": "Wasanni",
+    "grammar": "Tech Grammar Darussan",
+    "game": "Wasanni na ilimi",
     "features": "Kayan aiki",
-    "logIn": "Shiga cikin Vivelog",
+    "logIn": "Shiga cikin asusunka",
     "signUp": "Yi rajista don kyauta",
-    "toggleTheme": "Ya kunna hasken hoto / duhu",
-    "newCollection": "Sabon TAFIYA",
-    "oneStopPlatform": "Vivelog - na ƙarshe kyauta kyauta yana koyon dandamali",
-    "startLearningNow": "Fara koyo shi & shirya don taken taken",
-    "whyChooseVieVlog": "Me yasa za a zabi vievelog domin yana koyo?",
-    "freeAccess": "100% kyauta tana samun damar koyo",
-    "learnIT": "Samun damar yin inganci a cikin darussan, koyawa, da albarkatu daga malamai masu koyar da kwararru ba tare da tsada ba.",
-    "expertInstructors": "Gwani shi malamai",
-    "learnFromExperts": "Koyi daga masu magana da asalin 'yan ƙasa da kwararru.",
-    "anytimeAnywhere": "Koya shi kowane lokaci, ko'ina",
-    "learnAtYourOwnPace": "Yi nazarin shi a cikin naku damar samun damar Unlimited zuwa duk darussan.",
-    "comprehensiveCurriculum": "M ismirrum",
-    "coverAllAspects": "Darussan da yake rufe shi kayan tarihi zuwa batutuwa masu tasowa, ciki har da nahawu, ƙamus, da aikace-aikace da tattaunawa.",
-    "viewAllIT": "Duba duk vactivelg yana gwaji da darussan",
-    "featuredCourses": "Featured shi Darasi",
-    "beginnerIT": "Farko shine hanya",
+    "toggleTheme": "Canja hasken / duhu",
+    "newCollection": "Bincika sabon Tarin Mu",
+    "oneStopPlatform": "Verevelg - duk-in-daya yana koyon dandamali",
+    "startLearningNow": "Fara koyo shi kuma shirya don jarrabawa a yau",
+    "whyChooseVieVlog": "Me yasa kuma koya shi da vivelog?",
+    "freeAccess": "Gaba daya samun dama",
+    "learnIT": "Yi farin ciki da karfi shi ne koyawa, darussan, da albarkatu daga masu koyar da malamai - gaba daya kyauta.",
+    "expertInstructors": "Koya daga masana masana'antu",
+    "learnFromExperts": "Tafiya ta da katun da kwararru da masu ilimi.",
+    "anytimeAnywhere": "Canza koyo kowane lokaci, ko'ina",
+    "learnAtYourOwnPace": "Koya a cikin hanzari tare da samun cikakkiyar darasi mara iyaka.",
+    "comprehensiveCurriculum": "Cikakken tari shi tsarin karatun",
+    "coverAllAspects": "Ya ƙunshi masu ganowa don ci gaba da manufarsa ciki har da lambar sadarwa, tsarin, da ƙari.",
+    "viewAllIT": "Bincika duk ka'idodin vivelog da gwajin gwaji",
+    "featuredCourses": "An bayyana shi Shirye-shiryenta",
+    "beginnerIT": "Mataki mai farawa",
     "intermediateIT": "Matsakaici A Matsayi hanya",
-    "advancedIT": "Ci gaba ba shakka",
-    "getStartedForFree": "Fara tare da 'yantar da magunguna a yau",
-    "whatOurLearnersSay": "Abin da Xalibanmu suka ce game da Vivelog",
+    "advancedIT": "Ci gaba da shi",
+    "getStartedForFree": "Fara koyo don kyauta yau",
+    "whatOurLearnersSay": "Abin da xaliban ke faɗi game da vivelog",
     "testimonial1": {
-      "quote": "Vivelog ya taimaki ni cikin nasara shirya don jarrabawar ta.",
+      "quote": "Vivelo ya taimaka min da karfin gwiwa ta amince da jarrabawar takardar shaida.",
       "name": "Nguyen Minh Anh Anh Anh Anh",
       "role": "Dalibin kasa da kasa"
     },
     "testimonial2": {
-      "quote": "Koyo shi tare da vivelog bai taɓa zama da sauƙi ba kuma mafi daɗi!",
+      "quote": "Koyo shi ta hanyar vivelog yana da inganci da jin daɗi!",
       "name": "Tran Hai Nam",
-      "role": "Ma'aikacin ofis"
+      "role": "Ƙwararren ofis"
     },
     "testimonial3": {
-      "quote": "Godiya ga Vivelg, Na inganta dabaru na da muhimmanci.",
+      "quote": "Godiya ga Vivelog, Na inganta mahimmancin dabarun shirye-shiryena.",
       "name": "Le Thaid",
       "role": "Dalibin jami'a"
     },
-    "vieTopik": "Vivelog - saman 1 shi koyon dandamali",
-    "yourOneStopShop": "Platurean tsaftace-baya don kwantar da shi kwarewa da jarrabawar Topik. Samun albarkatun Kimiyya na Kasuwanci don Kyauta kuma Ka isa Harshenku da Kalauna a yau!",
-    "connectWithUs": "Haɗa tare da vivelog a kan kafofin watsa labarun",
+    "vieTopik": "Vivelog - saman 1 yana koyon cibiyar",
+    "yourOneStopShop": "Platportayaƙwalwar da ke tsaye ta dayawa don kwarewar fasaha da kuma shirya wa jarrabawar takardar shaida. Samu damar zuwa mafi yawan abun ciki ba tare da tsada ba!",
+    "connectWithUs": "Bi vivelog a kan kafofin watsa labarun",
     "socialMedia": {
-      "facebook": "Vivelog facebook",
-      "twitter": "Vivelog twitter",
-      "instagram": "Vervellog Instagram",
-      "linkedin": "Vivelog Linkedin"
+      "facebook": "Biyo mu akan Facebook",
+      "twitter": "Biyo mu akan Twitter",
+      "instagram": "Biyo mu akan Instagram",
+      "linkedin": "Haɗa tare da mu akan LinkedIn"
     },
     "company": {
-      "aboutUs": "Game da vivelog",
-      "careers": "Kulawa a Vivelog",
-      "blog": "VILEVELG Blog - shi da labarai",
-      "contact": "Tuntuɓi Vorivelg"
+      "aboutUs": "Game da mu",
+      "careers": "Kula",
+      "blog": "Blog Blog - News & tukwici",
+      "contact": "Tuntube mu"
     },
     "support": {
-      "helpCenter": "Cibiyar Taimako ta VIVEVE",
-      "faq": "Tambayoyi akai-akai",
+      "helpCenter": "Cibiyar Taimako",
+      "faq": "Tambaya - Tambayoyi",
       "privacyPolicy": "takardar kebantawa",
       "termsOfService": "Sharuɗɗan sabis"
     },
@@ -86,8 +89,8 @@
       "copyright": "© 2025 vievelog. Dukkan hakkoki."
     },
     "metadata": {
-      "lesson": "Bincika da sabon free ɗinmu darussa kuma ku sami cikakkiyar hanya don matakin ƙwarewar ku.",
-      "grammar": "Bincika cikakken zanen yana da zane da koyawa."
+      "lesson": "Binciko darussan mu kuma zaɓi cikakkiyar hanya don dacewa da matakin ƙwarewar ku.",
+      "grammar": "Gano cikakken koyaswa da zane-zane."
     }
   }
 }

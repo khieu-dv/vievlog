@@ -4,81 +4,84 @@
       "login": "Zaloguj się do Vievlog",
       "logout": "Wyloguj się z Vievlog",
       "inquiry": "Skontaktuj się z obsługą Vievlog",
-      "manager": "Menedżer konta",
-      "topikSchedule": "Harmonogram vievlog - wydarzenia uczenia się IT"
+      "manager": "Moje konto",
+      "topikSchedule": "Harmonogram vievlog - nadchodzące wydarzenia uczenia się IT"
     }
   },
   "body": {
     "utils": {
-      "loading": "Ładowanie lekcji ...",
-      "notFound": "Brak lekcji w tej kategorii.",
-      "inquiry": "Skontaktuj się z obsługą Vievlog",
-      "manager": "Menedżer konta"
+      "loading": "Ładowanie lekcji IT ...",
+      "notFound": "Bez lekcji w tej kategorii.",
+      "inquiry": "Potrzebujesz pomocy? Skontaktuj się z obsługą Vievlog",
+      "manager": "Zarządzaj swoim kontem"
     }
   },
   "content": {
-    "title": "Vievlog - naucz się go online za darmo | To kursy i egzaminy",
-    "home": "Strona główna - Vievlog",
+    "title": "Vievlog - bezpłatne online uczenie się | Kursy, zasoby i certyfikat",
+    "home": "Dom",
+    "posts": "Posty",
+    "chats": "Rozmowy",
+    "videos": "Filmy",
     "topiks": "Uczy się tematów",
     "courses": "Darmowe kursy",
-    "grammar": "IT Gramatyczne lekcje",
-    "game": "Gry uczące się",
+    "grammar": "Lekcje gramatyki technicznej",
+    "game": "Gry edukacyjne",
     "features": "Funkcje platformy",
-    "logIn": "Zaloguj się do Vievlog",
+    "logIn": "Zaloguj się na swoje konto",
     "signUp": "Zarejestruj się za darmo IT",
-    "toggleTheme": "Przełącz światło/ciemny motyw",
-    "newCollection": "Nowa kolekcja kursów IT dostępna",
-    "oneStopPlatform": "VIEVLOG - Twoja najlepsza platforma do nauki IT",
-    "startLearningNow": "Zacznij się uczyć i przygotuj się do egzaminu topik",
-    "whyChooseVieVlog": "Dlaczego warto wybrać Vievlog do nauki?",
-    "freeAccess": "100% darmowy dostęp do nauki",
-    "learnIT": "Uzyskaj dostęp do wysokiej jakości lekcji IT, samouczków i zasobów od instruktorów ekspertów bez żadnych kosztów.",
-    "expertInstructors": "Eksperci instruktorzy IT",
-    "learnFromExperts": "Dowiedz się tego od rodzimych mówców i doświadczonych specjalistów.",
-    "anytimeAnywhere": "Naucz się tego w dowolnym miejscu, w dowolnym miejscu",
-    "learnAtYourOwnPace": "Przestudiuj to we własnym tempie z nieograniczonym dostępem do wszystkich lekcji.",
-    "comprehensiveCurriculum": "Kompleksowy program nauczania IT",
-    "coverAllAspects": "Kursy obejmujące podstawy do zaawansowanych tematów, w tym gramatyka, słownictwo i praktykę konwersacyjną.",
-    "viewAllIT": "Zobacz wszystkie testy i kursy Vievlog",
-    "featuredCourses": "Prezentowane kursy",
-    "beginnerIT": "Kurs IT dla początkujących",
+    "toggleTheme": "Przełącz tryb światła/ciemności",
+    "newCollection": "Poznaj naszą nową kolekcję kursów IT",
+    "oneStopPlatform": "Vievlog-Twoja wszechstronna platforma edukacyjna IT",
+    "startLearningNow": "Zacznij się uczyć i przygotuj się na egzaminy już dziś",
+    "whyChooseVieVlog": "Po co się tego uczyć z Vievlog?",
+    "freeAccess": "Całkowicie bezpłatny dostęp",
+    "learnIT": "Ciesz się samouczkami, lekcjami i zasobami IT najwyższej jakości od doświadczonych instruktorów-całkowicie za darmo.",
+    "expertInstructors": "Ucz się od ekspertów branżowych",
+    "learnFromExperts": "Nauczaj się przez doświadczonych specjalistów IT i nauczycieli.",
+    "anytimeAnywhere": "Elastyczne uczenie się w dowolnym miejscu i czasie",
+    "learnAtYourOwnPace": "Naucz się we własnym tempie z nieograniczoną lekcją dostępu.",
+    "comprehensiveCurriculum": "Całkowity program nauczania",
+    "coverAllAspects": "Obejmuje fundamentalne dla zaawansowanych koncepcji IT, w tym kodowanie, systemy, sieci i inne.",
+    "viewAllIT": "Przeglądaj wszystkie kursy vievlog i praktyki",
+    "featuredCourses": "Prezentowane programy IT",
+    "beginnerIT": "Kurs IT na poziomie początkujący",
     "intermediateIT": "Pośredni kurs IT",
-    "advancedIT": "Zaawansowany kurs IT",
-    "getStartedForFree": "Zacznij od bezpłatnych lekcji IT już dziś",
-    "whatOurLearnersSay": "Co mówią nasi uczniowie o Vievlog",
+    "advancedIT": "Zaawansowane to mistrzostwo",
+    "getStartedForFree": "Zacznij uczyć się za darmo już dziś",
+    "whatOurLearnersSay": "Co mówią uczniowie o Vievlog",
     "testimonial1": {
-      "quote": "Vievlog pomógł mi skutecznie przygotować się do egzaminu IT.",
+      "quote": "Vievlog pomógł mi z pewnością zdać egzamin certyfikacyjny IT.",
       "name": "Nguyen Minh Anh",
       "role": "Międzynarodowy Student"
     },
     "testimonial2": {
-      "quote": "Uczenie się z Vievlog nigdy nie było łatwiejsze i bardziej zabawne!",
+      "quote": "Uczenie się za pośrednictwem Vievlog jest zarówno skuteczne, jak i przyjemne!",
       "name": "Tran Hai Nam",
-      "role": "Pracownik biurowy"
+      "role": "Profesjonalista biurowy"
     },
     "testimonial3": {
-      "quote": "Dzięki Vievlog znacznie poprawiłem swoje umiejętności IT.",
+      "quote": "Dzięki Vievlog znacznie poprawiłem swoje umiejętności programowania.",
       "name": "Le Thanh Huong",
       "role": "Student uniwersytetu"
     },
-    "vieTopik": "Vievlog - najlepsza platforma edukacyjna IT",
-    "yourOneStopShop": "Twoja kompleksowa platforma do opanowania umiejętności IT i egzaminów Topik. Uzyskaj dostęp do zasobów edukacyjnych premium za darmo i osiągaj swój język i cele IT już dziś!",
-    "connectWithUs": "Połącz się z Vievlog w mediach społecznościowych",
+    "vieTopik": "Vievlog - najlepszy hub uczenia się",
+    "yourOneStopShop": "Twoja kompleksowa platforma do opanowania umiejętności IT i przygotowania do egzaminów certyfikacyjnych. Uzyskaj dostęp do treści premium bez żadnych kosztów!",
+    "connectWithUs": "Śledź Vievlog w mediach społecznościowych",
     "socialMedia": {
-      "facebook": "VieVlog Facebook",
-      "twitter": "Vievlog Twitter",
-      "instagram": "Vievlog Instagram",
-      "linkedin": "Vievlog LinkedIn"
+      "facebook": "Śledź nas na Facebooku",
+      "twitter": "Śledź nas na Twitterze",
+      "instagram": "Śledź nas na Instagramie",
+      "linkedin": "Połącz się z nami na LinkedIn"
     },
     "company": {
-      "aboutUs": "O Vievlog",
-      "careers": "Kariera w Vievlog",
-      "blog": "Vievlog Blog - IT Tips & News",
-      "contact": "Skontaktuj się z Vievlogem"
+      "aboutUs": "O nas",
+      "careers": "Kariera",
+      "blog": "Blog technologiczny - wiadomości i wskazówki",
+      "contact": "Skontaktuj się z nami"
     },
     "support": {
-      "helpCenter": "Centrum pomocy vievlog",
-      "faq": "Często zadawane pytania",
+      "helpCenter": "Centrum pomocy",
+      "faq": "FAQ - często zadawane pytania",
       "privacyPolicy": "Polityka prywatności",
       "termsOfService": "Warunki usług"
     },
@@ -86,8 +89,8 @@
       "copyright": "© 2025 Vievlog. Wszelkie prawa zastrzeżone."
     },
     "metadata": {
-      "lesson": "Przeglądaj nasze najnowsze bezpłatne lekcje IT i znajdź idealny kurs dla swojego poziomu umiejętności.",
-      "grammar": "Przeglądaj nasze szczegółowe diagramy IT i samouczki."
+      "lesson": "Przeglądaj nasze bezpłatne lekcje i wybierz idealny kurs, aby pasował do poziomu umiejętności.",
+      "grammar": "Odkryj szczegółowe samouczki i diagramy technologiczne."
     }
   }
 }

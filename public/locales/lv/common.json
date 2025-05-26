@@ -2,83 +2,86 @@
   "header": {
     "utils": {
       "login": "Piesakieties vievlog",
-      "logout": "Atteikšanās no vievlog",
+      "logout": "Izrakstīties no vievlog",
       "inquiry": "Sazinieties ar vievlog atbalstu",
-      "manager": "Kontu pārvaldnieks",
-      "topikSchedule": "Vievlog grafiks - IT mācīšanās notikumi"
+      "manager": "Mans konts",
+      "topikSchedule": "VIEVLOG grafiks - gaidāmie IT mācīšanās notikumi"
     }
   },
   "body": {
     "utils": {
-      "loading": "Ielādējot tās nodarbības ...",
-      "notFound": "Šajā kategorijā nav atrastas mācības.",
-      "inquiry": "Sazinieties ar vievlog atbalstu",
-      "manager": "Kontu pārvaldnieks"
+      "loading": "Ielādējot savas IT nodarbības ...",
+      "notFound": "Šajā kategorijā nav pieejamas mācības.",
+      "inquiry": "Nepieciešama palīdzība? Sazinieties ar vievlog atbalstu",
+      "manager": "Pārvaldiet savu kontu"
     }
   },
   "content": {
-    "title": "Vievlog - iemācieties to tiešsaistē bez maksas Tas kursi un eksāmeni",
-    "home": "Sākums - vievlog",
+    "title": "Vievlog - bezmaksas tiešsaistes IT mācīšanās | Kursi, resursi un sertifikācija",
+    "home": "Mājas",
+    "posts": "Amats",
+    "chats": "Tērzēšana",
+    "videos": "Video",
     "topiks": "Tas mācās tēmas",
     "courses": "Bezmaksas IT kursi",
-    "grammar": "Tā gramatikas nodarbības",
-    "game": "Mācību spēles",
+    "grammar": "Tech gramatikas nodarbības",
+    "game": "Izglītojošas spēles",
     "features": "Platformas funkcijas",
-    "logIn": "Piesakieties vievlog",
+    "logIn": "Piesakieties savā kontā",
     "signUp": "Reģistrējieties bez maksas IT kursiem",
-    "toggleTheme": "Pārslēgt gaismas/tumšo tēmu",
-    "newCollection": "Pieejama jauna IT kursa kolekcija",
-    "oneStopPlatform": "Vievlog - jūsu galvenā bezmaksas IT mācību platforma",
-    "startLearningNow": "Sāciet to mācīties un sagatavoties topik eksāmenam",
-    "whyChooseVieVlog": "Kāpēc izvēlēties vievlog, lai to mācītos?",
-    "freeAccess": "100% bezmaksas IT mācīšanās piekļuve",
-    "learnIT": "Piekļūstiet augstas kvalitātes IT stundām, apmācībām un ekspertu instruktoru resursiem bez maksas.",
-    "expertInstructors": "Ekspertu IT instruktori",
-    "learnFromExperts": "Uzziniet to no vietējiem runātājiem un pieredzējušiem speciālistiem.",
-    "anytimeAnywhere": "Uzziniet to jebkurā laikā, jebkur",
-    "learnAtYourOwnPace": "Izpētiet to savā tempā ar neierobežotu piekļuvi visām nodarbībām.",
-    "comprehensiveCurriculum": "Visaptveroša IT mācību programma",
-    "coverAllAspects": "Kursi, kas aptver to pamatus progresīvām tēmām, ieskaitot gramatiku, vārdu krājumu un sarunu praksi.",
-    "viewAllIT": "Skatiet visus vievlog, ko tas pārbauda un kursus",
-    "featuredCourses": "Piedāvā IT kursi",
-    "beginnerIT": "Iesācēja IT kurss",
+    "toggleTheme": "Pārslēgt gaismas/tumšo režīmu",
+    "newCollection": "Izpētiet mūsu jauno IT kursa kolekciju",
+    "oneStopPlatform": "Vievlog-visaptveroša IT mācīšanās platforma",
+    "startLearningNow": "Sāciet to mācīties un sagatavoties šodien eksāmeniem",
+    "whyChooseVieVlog": "Kāpēc to iemācīties ar vievlog?",
+    "freeAccess": "Pilnīgi brīva pieeja",
+    "learnIT": "Izbaudiet augstākās kvalitātes IT apmācības, mācības un resursus no pieredzējušiem instruktoriem-pilnīgi bez maksas.",
+    "expertInstructors": "Mācieties no nozares ekspertiem",
+    "learnFromExperts": "Māciet pieredzējušos IT speciālistus un pedagogus.",
+    "anytimeAnywhere": "Elastīga mācīšanās jebkurā laikā, jebkur",
+    "learnAtYourOwnPace": "Mācieties savā tempā ar neierobežotu piekļuvi nodarbībai.",
+    "comprehensiveCurriculum": "Pilna kaudze to mācību programma",
+    "coverAllAspects": "Aptveriet pamata IT koncepcijas, ieskaitot kodēšanu, sistēmas, tīklošanu un daudz ko citu.",
+    "viewAllIT": "Pārlūkojiet visus vievlog kursus un prakses testus",
+    "featuredCourses": "Piedāvātas IT programmas",
+    "beginnerIT": "Iesācēja līmeņa IT kurss",
     "intermediateIT": "Starpposma IT kurss",
-    "advancedIT": "Pagodināts IT kurss",
-    "getStartedForFree": "Sāciet ar bezmaksas IT nodarbībām šodien",
-    "whatOurLearnersSay": "Ko mūsu izglītojamie saka par vievlog",
+    "advancedIT": "Progresēja to meistarība",
+    "getStartedForFree": "Sāciet mācīties bez maksas šodien",
+    "whatOurLearnersSay": "Ko izglītojamie saka par vievlog",
     "testimonial1": {
-      "quote": "Vievlog man palīdzēja veiksmīgi sagatavoties manam IT eksāmenam.",
+      "quote": "Vievlog man palīdzēja pārliecinoši nokārtot savu IT sertifikācijas eksāmenu.",
       "name": "Nguyen Minh anh",
       "role": "Starptautiskais students"
     },
     "testimonial2": {
-      "quote": "Mācīties to ar Vievlog nekad nav bijis tik vienkāršs un jautrāks!",
+      "quote": "Mācīšanās to caur Vevlog ir gan efektīva, gan patīkama!",
       "name": "Tran Hai Nam",
-      "role": "Biroja darbinieks"
+      "role": "Amatpersona"
     },
     "testimonial3": {
-      "quote": "Pateicoties Vievlog, es ievērojami uzlaboju savas IT prasmes.",
+      "quote": "Pateicoties Vievlog, es esmu ievērojami uzlabojis savas programmēšanas prasmes.",
       "name": "Le Thanh Huong",
       "role": "Universitātes students"
     },
-    "vieTopik": "Vievlog - top 1 IT mācību platforma",
-    "yourOneStopShop": "Jūsu vienas pieturas platforma IT prasmju un topika eksāmenu apgūšanai. Piekļūstiet premium klases mācību resursiem bez maksas un sasniedziet savu valodu un IT mērķus šodien!",
-    "connectWithUs": "Sazinieties ar Vievlog sociālajos medijos",
+    "vieTopik": "Vievlog - top 1 IT mācīšanās centrs",
+    "yourOneStopShop": "Jūsu vienas pieturas platforma, lai apgūtu IT prasmes un sagatavotos sertifikācijas eksāmeniem. Bez maksas iegūstiet piekļuvi premium saturam!",
+    "connectWithUs": "Sekojiet Vievlog sociālajos medijos",
     "socialMedia": {
-      "facebook": "Vievlog facebook",
-      "twitter": "Vievlog twitter",
-      "instagram": "Vievlog Instagram",
-      "linkedin": "Vievlog LinkedIn"
+      "facebook": "Sekojiet mums Facebook",
+      "twitter": "Sekojiet mums Twitter",
+      "instagram": "Sekojiet mums Instagram",
+      "linkedin": "Sazinieties ar mums LinkedIn"
     },
     "company": {
-      "aboutUs": "Par vievlog",
-      "careers": "Karjera Vevlog",
-      "blog": "VIEVLOG emuārs - IT padomi un ziņas",
-      "contact": "Sazinieties ar vievlog"
+      "aboutUs": "Par mums",
+      "careers": "Karjera",
+      "blog": "Tehnikas emuārs - ziņas un padomi",
+      "contact": "Sazinieties ar mums"
     },
     "support": {
-      "helpCenter": "Vievlog palīdzības centrs",
-      "faq": "Bieži uzdotie jautājumi",
+      "helpCenter": "Palīdzības centrs",
+      "faq": "FAQ - bieži uzdotie jautājumi",
       "privacyPolicy": "Konfidencialitātes politika",
       "termsOfService": "Pakalpojuma noteikumi"
     },
@@ -86,8 +89,8 @@
       "copyright": "© 2025 Vievlog. Visas tiesības aizsargātas."
     },
     "metadata": {
-      "lesson": "Pārlūkojiet mūsu jaunākās bezmaksas IT nodarbības un atrodiet perfektu kursu jūsu prasmju līmenim.",
-      "grammar": "Izpētiet mūsu detalizētās IT diagrammas un apmācības."
+      "lesson": "Izpētiet mūsu bezmaksas nodarbības un izvēlieties perfektu kursu, kas atbilst jūsu prasmju līmenim.",
+      "grammar": "Atklājiet detalizētas tehnoloģiju apmācības un diagrammas."
     }
   }
 }

@@ -1,84 +1,87 @@
 {
   "header": {
     "utils": {
-      "login": "Login to VieVlog",
-      "logout": "Logout from VieVlog",
+      "login": "Log In to VieVlog",
+      "logout": "Log Out of VieVlog",
       "inquiry": "Contact VieVlog Support",
-      "manager": "Account Manager",
-      "topikSchedule": "VieVlog Schedule - IT Learning Events"
+      "manager": "My Account",
+      "topikSchedule": "VieVlog Schedule – Upcoming IT Learning Events"
     }
   },
   "body": {
     "utils": {
-      "loading": "Loading IT lessons...",
-      "notFound": "No lessons found in this category.",
-      "inquiry": "Contact VieVlog Support",
-      "manager": "Account Manager"
+      "loading": "Loading your IT lessons...",
+      "notFound": "No lessons available in this category.",
+      "inquiry": "Need help? Contact VieVlog Support",
+      "manager": "Manage Your Account"
     }
   },
   "content": {
-    "title": "VieVlog – Learn IT Online for Free | IT Courses and Exams",
-    "home": "Home - VieVlog",
+    "title": "VieVlog – Free Online IT Learning | Courses, Resources & Certification",
+    "home": "Home",
+    "posts": "Posts",
+    "chats": "Chats",
+    "videos": "Videos",
     "topiks": "IT Learning Topics",
     "courses": "Free IT Courses",
-    "grammar": "IT Grammar Lessons",
-    "game": "Learning Games",
+    "grammar": "Tech Grammar Lessons",
+    "game": "Educational Games",
     "features": "Platform Features",
-    "logIn": "Log in to VieVlog",
-    "signUp": "Sign up for Free IT Courses",
-    "toggleTheme": "Toggle Light/Dark Theme",
-    "newCollection": "New IT Course Collection Available",
-    "oneStopPlatform": "VieVlog - Your Ultimate Free IT Learning Platform",
-    "startLearningNow": "Start Learning IT & Prepare for Topik Exam",
-    "whyChooseVieVlog": "Why Choose VieVlog for IT Learning?",
-    "freeAccess": "100% Free IT Learning Access",
-    "learnIT": "Access high-quality IT lessons, tutorials, and resources from expert instructors at no cost.",
-    "expertInstructors": "Expert IT Instructors",
-    "learnFromExperts": "Learn IT from native speakers and experienced professionals.",
-    "anytimeAnywhere": "Learn IT Anytime, Anywhere",
-    "learnAtYourOwnPace": "Study IT at your own pace with unlimited access to all lessons.",
-    "comprehensiveCurriculum": "Comprehensive IT Curriculum",
-    "coverAllAspects": "Courses covering IT basics to advanced topics, including grammar, vocabulary, and conversation practice.",
-    "viewAllIT": "View All VieVlog IT Tests and Courses",
-    "featuredCourses": "Featured IT Courses",
-    "beginnerIT": "Beginner's IT Course",
+    "logIn": "Log In to Your Account",
+    "signUp": "Sign Up for Free IT Courses",
+    "toggleTheme": "Switch Light/Dark Mode",
+    "newCollection": "Explore Our New IT Course Collection",
+    "oneStopPlatform": "VieVlog – Your All-in-One IT Learning Platform",
+    "startLearningNow": "Start Learning IT and Prepare for Exams Today",
+    "whyChooseVieVlog": "Why Learn IT with VieVlog?",
+    "freeAccess": "Completely Free Access",
+    "learnIT": "Enjoy top-quality IT tutorials, lessons, and resources from experienced instructors—completely free.",
+    "expertInstructors": "Learn from Industry Experts",
+    "learnFromExperts": "Get taught by seasoned IT professionals and educators.",
+    "anytimeAnywhere": "Flexible Learning Anytime, Anywhere",
+    "learnAtYourOwnPace": "Learn at your own pace with unlimited lesson access.",
+    "comprehensiveCurriculum": "Full-Stack IT Curriculum",
+    "coverAllAspects": "Covers foundational to advanced IT concepts including coding, systems, networking, and more.",
+    "viewAllIT": "Browse All VieVlog Courses and Practice Tests",
+    "featuredCourses": "Featured IT Programs",
+    "beginnerIT": "Beginner-Level IT Course",
     "intermediateIT": "Intermediate IT Course",
-    "advancedIT": "Advanced IT Course",
-    "getStartedForFree": "Get Started with Free IT Lessons Today",
-    "whatOurLearnersSay": "What Our Learners Say About VieVlog",
+    "advancedIT": "Advanced IT Mastery",
+    "getStartedForFree": "Start Learning for Free Today",
+    "whatOurLearnersSay": "What Learners Say About VieVlog",
     "testimonial1": {
-      "quote": "VieVlog helped me successfully prepare for my IT exam.",
+      "quote": "VieVlog helped me confidently pass my IT certification exam.",
       "name": "Nguyen Minh Anh",
       "role": "International Student"
     },
     "testimonial2": {
-      "quote": "Learning IT with VieVlog has never been easier and more fun!",
+      "quote": "Learning IT through VieVlog is both effective and enjoyable!",
       "name": "Tran Hai Nam",
-      "role": "Office Worker"
+      "role": "Office Professional"
     },
     "testimonial3": {
-      "quote": "Thanks to VieVlog, I improved my IT skills significantly.",
+      "quote": "Thanks to VieVlog, I’ve significantly improved my programming skills.",
       "name": "Le Thanh Huong",
       "role": "University Student"
     },
-    "vieTopik": "VieVlog - Top 1 IT Learning Platform",
-    "yourOneStopShop": "Your one-stop platform for mastering IT skills and Topik exams. Access premium learning resources for free and reach your language and IT goals today!",
-    "connectWithUs": "Connect with VieVlog on Social Media",
+    "vieTopik": "VieVlog – The Top 1 IT Learning Hub",
+    "yourOneStopShop": "Your one-stop platform to master IT skills and prepare for certification exams. Get access to premium content at no cost!",
+    "connectWithUs": "Follow VieVlog on Social Media",
     "socialMedia": {
-      "facebook": "VieVlog Facebook",
-      "twitter": "VieVlog Twitter",
-      "instagram": "VieVlog Instagram",
-      "linkedin": "VieVlog LinkedIn"
+      "facebook": "Follow us on Facebook",
+      "twitter": "Follow us on Twitter",
+      "instagram": "Follow us on Instagram",
+      "linkedin": "Connect with us on LinkedIn"
     },
     "company": {
-      "aboutUs": "About VieVlog",
-      "careers": "Careers at VieVlog",
-      "blog": "VieVlog Blog - IT Tips & News",
-      "contact": "Contact VieVlog"
+      "aboutUs": "About Us",
+      "careers": "Careers",
+      "blog": "Tech Blog – News & Tips",
+      "contact": "Contact Us"
     },
     "support": {
-      "helpCenter": "VieVlog Help Center",
-      "faq": "Frequently Asked Questions",
+      "helpCenter": "Help Center",
+      "faq": "FAQ – Frequently Asked Questions",
       "privacyPolicy": "Privacy Policy",
       "termsOfService": "Terms of Service"
     },
@@ -86,8 +89,8 @@
       "copyright": "© 2025 VieVlog. All rights reserved."
     },
     "metadata": {
-      "lesson": "Browse our latest free IT lessons and find the perfect course for your skill level.",
-      "grammar": "Explore our detailed IT diagrams and tutorials."
+      "lesson": "Explore our free lessons and choose the perfect course to match your skill level.",
+      "grammar": "Discover detailed tech tutorials and diagrams."
     }
   }
 }

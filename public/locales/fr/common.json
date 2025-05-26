@@ -2,83 +2,86 @@
   "header": {
     "utils": {
       "login": "Connectez-vous à Vievlog",
-      "logout": "Déconnexion de Vievlog",
+      "logout": "Déconnectez-vous de Vievlog",
       "inquiry": "Contacter le support Vievlog",
-      "manager": "Gestionnaire de compte",
-      "topikSchedule": "Horaire Vievlog - Événements d'apprentissage informatiques"
+      "manager": "Mon compte",
+      "topikSchedule": "Horaire Vievlog - événements d'apprentissage informatique à venir"
     }
   },
   "body": {
     "utils": {
-      "loading": "Chargement des leçons ...",
-      "notFound": "Pas de leçons trouvées dans cette catégorie.",
-      "inquiry": "Contacter le support Vievlog",
-      "manager": "Gestionnaire de compte"
+      "loading": "Chargement de vos leçons informatiques ...",
+      "notFound": "Pas de leçons disponibles dans cette catégorie.",
+      "inquiry": "Besoin d'aide? Contacter le support Vievlog",
+      "manager": "Gérez votre compte"
     }
   },
   "content": {
-    "title": "Vievlog - Apprenez-le en ligne gratuitement | Il fait des cours et des examens",
-    "home": "Accueil - Vievlog",
+    "title": "Vievlog - GRATUITEMENT en ligne Apprentissage | Cours, ressources et certification",
+    "home": "Maison",
+    "posts": "Publications",
+    "chats": "Chats",
+    "videos": "Vidéos",
     "topiks": "Les sujets d'apprentissage informatiques",
     "courses": "Cours gratuits",
-    "grammar": "Les leçons de grammaire",
-    "game": "Jeux d'apprentissage",
+    "grammar": "Leçons de grammaire technologique",
+    "game": "Jeux éducatifs",
     "features": "Caractéristiques de la plate-forme",
-    "logIn": "Connectez-vous à Vievlog",
+    "logIn": "Connectez-vous à votre compte",
     "signUp": "Inscrivez-vous gratuitement",
-    "toggleTheme": "Basquer la lumière / le thème sombre",
-    "newCollection": "Nouvelle collection de cours informatiques disponibles",
-    "oneStopPlatform": "Vievlog - Votre plateforme d'apprentissage IT Ultimate",
-    "startLearningNow": "Commencez à l'apprendre et préparez-vous à l'examen Topik",
-    "whyChooseVieVlog": "Pourquoi choisir Vievlog pour l'apprentissage?",
-    "freeAccess": "Accès à l'apprentissage informatique 100% gratuit",
-    "learnIT": "Accédez aux leçons informatiques de haute qualité, aux tutoriels et aux ressources des instructeurs experts sans frais.",
-    "expertInstructors": "Expert IT instructeurs",
-    "learnFromExperts": "Apprenez-le des locuteurs natifs et des professionnels expérimentés.",
-    "anytimeAnywhere": "Apprenez-le à tout moment, n'importe où",
-    "learnAtYourOwnPace": "Étudiez-le à votre rythme avec un accès illimité à toutes les leçons.",
-    "comprehensiveCurriculum": "Programme informatique complet",
-    "coverAllAspects": "Des cours couvrant les bases de ses sujets avancés, y compris la grammaire, le vocabulaire et la pratique de la conversation.",
-    "viewAllIT": "Voir tous les tests et cours Vievlog",
-    "featuredCourses": "En vedette des cours",
-    "beginnerIT": "Cours du débutant",
+    "toggleTheme": "Commutation de mode clair / sombre",
+    "newCollection": "Explorez notre nouvelle collection de cours informatiques",
+    "oneStopPlatform": "Vievlog - votre plateforme d'apprentissage informatique tout-en-un",
+    "startLearningNow": "Commencez à l'apprendre et préparez-vous aux examens aujourd'hui",
+    "whyChooseVieVlog": "Pourquoi l'apprendre avec Vievlog?",
+    "freeAccess": "Accès complètement gratuit",
+    "learnIT": "Profitez des tutoriels informatiques de qualité supérieure, des leçons et des ressources d'instructeurs expérimentés - parfaitement gratuits.",
+    "expertInstructors": "Apprenez des experts de l'industrie",
+    "learnFromExperts": "Être enseigné par les professionnels et les éducateurs de l'informatique chevronnés.",
+    "anytimeAnywhere": "Apprentissage flexible à tout moment, n'importe où",
+    "learnAtYourOwnPace": "Apprenez à votre rythme avec un accès illimité à des leçons.",
+    "comprehensiveCurriculum": "Curriculum informatique complet",
+    "coverAllAspects": "Couvre les concepts informatiques avancés, y compris le codage, les systèmes, le réseautage, etc.",
+    "viewAllIT": "Parcourez tous les cours Vievlog et les tests de pratique",
+    "featuredCourses": "Programmes informatiques en vedette",
+    "beginnerIT": "Cours IT de débutant",
     "intermediateIT": "Cours informatique intermédiaire",
-    "advancedIT": "Cours IT avancé",
-    "getStartedForFree": "Commencez avec des leçons informatiques gratuites aujourd'hui",
-    "whatOurLearnersSay": "Ce que nos apprenants disent à propos de Vievlog",
+    "advancedIT": "Maîtrise avancée",
+    "getStartedForFree": "Commencez à apprendre gratuitement aujourd'hui",
+    "whatOurLearnersSay": "Ce que les apprenants disent à propos de Vievlog",
     "testimonial1": {
-      "quote": "Vievlog m'a aidé à préparer avec succès mon examen informatique.",
+      "quote": "Vievlog m'a aidé en toute confiance passer mon examen de certification informatique.",
       "name": "Nguyen Minh Anh",
       "role": "Étudiant international"
     },
     "testimonial2": {
-      "quote": "L'apprendre avec Vievlog n'a jamais été aussi facile et plus amusant!",
+      "quote": "L'apprendre via Vievlog est à la fois efficace et agréable!",
       "name": "Tran hai nam",
-      "role": "Travailleur de bureau"
+      "role": "Professionnel du bureau"
     },
     "testimonial3": {
-      "quote": "Grâce à Vievlog, j'ai considérablement amélioré mes compétences informatiques.",
+      "quote": "Grâce à Vievlog, j'ai considérablement amélioré mes compétences en programmation.",
       "name": "Le Thanh Huong",
       "role": "Étudiant à l'université"
     },
-    "vieTopik": "Vievlog - Top 1 Plateforme d'apprentissage informatique",
-    "yourOneStopShop": "Votre plate-forme à guichet unique pour maîtriser les compétences informatiques et les examens Topik. Accédez aux ressources d'apprentissage premium gratuitement et atteignez votre langue et informatique des objectifs aujourd'hui!",
-    "connectWithUs": "Connectez-vous avec Vievlog sur les réseaux sociaux",
+    "vieTopik": "Vievlog - le Top 1 It Learning Hub",
+    "yourOneStopShop": "Votre plate-forme à guichet unique pour maîtriser les compétences informatiques et préparer les examens de certification. Accédez à un contenu premium sans frais!",
+    "connectWithUs": "Suivez Vievlog sur les réseaux sociaux",
     "socialMedia": {
-      "facebook": "Vievlog Facebook",
-      "twitter": "Vievlog Twitter",
-      "instagram": "Vievlog Instagram",
-      "linkedin": "Vievlog LinkedIn"
+      "facebook": "Suivez-nous sur Facebook",
+      "twitter": "Suivez-nous sur Twitter",
+      "instagram": "Suivez-nous sur Instagram",
+      "linkedin": "Connectez-vous avec nous sur LinkedIn"
     },
     "company": {
-      "aboutUs": "À propos de Vievlog",
-      "careers": "Carrières à Vievlog",
-      "blog": "Blog Vievlog - il conseils et nouvelles",
-      "contact": "Contacter Vievlog"
+      "aboutUs": "À propos de nous",
+      "careers": "Carrières",
+      "blog": "Blog technologique - nouvelles et conseils",
+      "contact": "Contactez-nous"
     },
     "support": {
-      "helpCenter": "Centre d'aide Vievlog",
-      "faq": "Questions fréquemment posées",
+      "helpCenter": "Centre d'aide",
+      "faq": "FAQ - Questions fréquemment posées",
       "privacyPolicy": "politique de confidentialité",
       "termsOfService": "Conditions de service"
     },
@@ -86,8 +89,8 @@
       "copyright": "© 2025 Vievlog. Tous droits réservés."
     },
     "metadata": {
-      "lesson": "Parcourez nos dernières leçons informatiques gratuites et trouvez le cours parfait pour votre niveau de compétence.",
-      "grammar": "Explorez nos diagrammes informatiques et tutoriels détaillés."
+      "lesson": "Explorez nos leçons gratuites et choisissez le cours parfait pour correspondre à votre niveau de compétence.",
+      "grammar": "Découvrez des tutoriels technologiques détaillés et des diagrammes."
     }
   }
 }

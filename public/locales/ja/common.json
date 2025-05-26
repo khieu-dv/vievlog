@@ -2,83 +2,86 @@
   "header": {
     "utils": {
       "login": "Vievlogにログインします",
-      "logout": "Vievlogからのログアウト",
+      "logout": "Vievlogからログアウトします",
       "inquiry": "Vievlogサポートにお問い合わせください",
-      "manager": "アカウントマネージャー",
-      "topikSchedule": "Vievlogスケジュール - イベントを学習します"
+      "manager": "私のアカウント",
+      "topikSchedule": "Vievlogスケジュール - 今後のIT学習イベント"
     }
   },
   "body": {
     "utils": {
-      "loading": "レッスンを読み込む...",
-      "notFound": "このカテゴリにはレッスンは見つかりませんでした。",
-      "inquiry": "Vievlogサポートにお問い合わせください",
-      "manager": "アカウントマネージャー"
+      "loading": "ITレッスンを読み込む...",
+      "notFound": "このカテゴリでは利用できません。",
+      "inquiry": "助けが必要ですか？ Vievlogサポートにお問い合わせください",
+      "manager": "アカウントを管理します"
     }
   },
   "content": {
-    "title": "vievlog  - 無料でオンラインで学ぶ|コースと試験",
-    "home": "ホーム-Vievlog",
+    "title": "vievlog  - 無料オンラインIT学習|コース、リソース、認定",
+    "home": "家",
+    "posts": "投稿",
+    "chats": "チャット",
+    "videos": "ビデオ",
     "topiks": "それはトピックを学びます",
     "courses": "無料ITコース",
-    "grammar": "それは文法のレッスンです",
-    "game": "学習ゲーム",
+    "grammar": "技術文法のレッスン",
+    "game": "教育ゲーム",
     "features": "プラットフォーム機能",
-    "logIn": "Vievlogにログインします",
+    "logIn": "アカウントにログインします",
     "signUp": "無料のITコースにサインアップしてください",
-    "toggleTheme": "明るいテーマ/暗いテーマを切り替えます",
-    "newCollection": "新しいITコースコレクションが利用可能です",
-    "oneStopPlatform": "Vievlog-あなたの究極の無料のIT学習プラットフォーム",
-    "startLearningNow": "学習を開始し、Topik試験の準備をします",
-    "whyChooseVieVlog": "なぜそれを学ぶためにvievlogを選ぶのですか？",
-    "freeAccess": "100％無料IT学習アクセス",
-    "learnIT": "高品質のITレッスン、チュートリアル、およびエキスパートインストラクターからのリソースに無料でアクセスします。",
-    "expertInstructors": "専門家ITインストラクター",
-    "learnFromExperts": "ネイティブスピーカーや経験豊富な専門家からそれを学びます。",
-    "anytimeAnywhere": "いつでもいつでも学びましょう",
-    "learnAtYourOwnPace": "すべてのレッスンへの無制限のアクセスで、自分のペースでそれを勉強してください。",
-    "comprehensiveCurriculum": "包括的なITカリキュラム",
-    "coverAllAspects": "文法、語彙、会話の実践など、高度なトピックへの基本をカバーするコース。",
-    "viewAllIT": "テストとコースのすべてのvievlogを表示します",
-    "featuredCourses": "ITコースを紹介しました",
-    "beginnerIT": "初心者のITコース",
+    "toggleTheme": "ライト/ダークモードを切り替えます",
+    "newCollection": "新しいITコースコレクションをご覧ください",
+    "oneStopPlatform": "Vievlog  - オールインワンIT学習プラットフォーム",
+    "startLearningNow": "それを学び始めて、今日試験の準備をしてください",
+    "whyChooseVieVlog": "なぜvievlogでそれを学ぶのですか？",
+    "freeAccess": "完全に無料アクセス",
+    "learnIT": "経験豊富なインストラクターからの最高品質のITチュートリアル、レッスン、リソースをお楽しみください。",
+    "expertInstructors": "業界の専門家から学ぶ",
+    "learnFromExperts": "ベテランのITプロフェッショナルと教育者によって教えられます。",
+    "anytimeAnywhere": "いつでも柔軟な学習",
+    "learnAtYourOwnPace": "無制限のレッスンアクセスで自分のペースで学びます。",
+    "comprehensiveCurriculum": "フルスタックITカリキュラム",
+    "coverAllAspects": "コーディング、システム、ネットワーキングなどを含む高度なIT概念の基礎をカバーします。",
+    "viewAllIT": "すべてのvievlogコースと練習テストを閲覧します",
+    "featuredCourses": "フィーチャーITプログラム",
+    "beginnerIT": "初心者レベルのITコース",
     "intermediateIT": "中間ITコース",
-    "advancedIT": "高度なITコース",
-    "getStartedForFree": "今日は無料のレッスンを始めましょう",
-    "whatOurLearnersSay": "私たちの学習者がVievlogについて言うこと",
+    "advancedIT": "高度なITマスタリー",
+    "getStartedForFree": "今日は無料で学習を開始してください",
+    "whatOurLearnersSay": "ヴィエフログについて学習者が言うこと",
     "testimonial1": {
-      "quote": "Vievlogは、IT試験の準備に成功するのに役立ちました。",
+      "quote": "Vievlogは、自信を持ってIT認定試験に合格するのを助けました。",
       "name": "Nguyen Minh Anh",
       "role": "留学生"
     },
     "testimonial2": {
-      "quote": "Vievlogでそれを学ぶことは、かつてないほど楽しくて楽しいものでした！",
+      "quote": "Vievlogを通してそれを学ぶことは効果的で楽しいです！",
       "name": "Tran Hai Nam",
-      "role": "オフィスワーカー"
+      "role": "オフィスの専門家"
     },
     "testimonial3": {
-      "quote": "Vievlogのおかげで、ITスキルを大幅に向上させました。",
+      "quote": "Vievlogのおかげで、プログラミングスキルを大幅に向上させました。",
       "name": "ル・タン・フオン",
       "role": "大学生"
     },
-    "vieTopik": "Vievlog -Top 1 IT Learning Platform",
-    "yourOneStopShop": "ITスキルとTopik試験をマスターするためのワンストッププラットフォーム。プレミアム学習リソースに無料でアクセスし、今日の言語とITの目標に到達してください！",
-    "connectWithUs": "ソーシャルメディアでVievlogとつながります",
+    "vieTopik": "Vievlog  - トップ1 IT学習ハブ",
+    "yourOneStopShop": "ITスキルを習得し、認定試験の準備をするためのワンストッププラットフォーム。無料でプレミアムコンテンツにアクセスできます！",
+    "connectWithUs": "ソーシャルメディアでVievlogをフォローしてください",
     "socialMedia": {
-      "facebook": "Vievlog Facebook",
-      "twitter": "Vievlog Twitter",
-      "instagram": "Vievlog Instagram",
-      "linkedin": "Vievlog LinkedIn"
+      "facebook": "Facebookでフォローしてください",
+      "twitter": "Twitterでフォローしてください",
+      "instagram": "Instagramでフォローしてください",
+      "linkedin": "LinkedInで私たちとつながります"
     },
     "company": {
-      "aboutUs": "vievlogについて",
-      "careers": "Vievlogでのキャリア",
-      "blog": "Vievlogブログ - それはヒントとニュースです",
-      "contact": "vievlogにお問い合わせください"
+      "aboutUs": "私たちについて",
+      "careers": "キャリア",
+      "blog": "技術ブログ - ニュース＆ヒント",
+      "contact": "お問い合わせ"
     },
     "support": {
-      "helpCenter": "vievlogヘルプセンター",
-      "faq": "よくある質問",
+      "helpCenter": "ヘルプセンター",
+      "faq": "FAQ  - よくある質問",
       "privacyPolicy": "プライバシーポリシー",
       "termsOfService": "利用規約"
     },
@@ -86,8 +89,8 @@
       "copyright": "©2025 Vievlog。無断転載を禁じます。"
     },
     "metadata": {
-      "lesson": "最新の無料のITレッスンを閲覧し、スキルレベルに最適なコースを見つけてください。",
-      "grammar": "詳細なIT図とチュートリアルを調べてください。"
+      "lesson": "無料のレッスンを探索し、スキルレベルに合わせて完璧なコースを選択してください。",
+      "grammar": "詳細な技術チュートリアルと図を発見してください。"
     }
   }
 }

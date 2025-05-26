@@ -1,84 +1,87 @@
 {
   "header": {
     "utils": {
-      "login": "Prijava v Vievlog",
-      "logout": "Odjava iz Vievloga",
+      "login": "Prijavite se v Vievlog",
+      "logout": "Odjava se iz Vievloga",
       "inquiry": "Obrnite se na podporo Vievlog",
-      "manager": "Upravitelj računa",
-      "topikSchedule": "Urnik vievlog - IT učni dogodki"
+      "manager": "Moj račun",
+      "topikSchedule": "Urnik vievlog - prihajajoči IT učni dogodki"
     }
   },
   "body": {
     "utils": {
-      "loading": "Nalaganje lekcij ...",
-      "notFound": "V tej kategoriji ni bilo najdenih lekcij.",
-      "inquiry": "Obrnite se na podporo Vievlog",
-      "manager": "Upravitelj računa"
+      "loading": "Nalaganje svojih lekcij ...",
+      "notFound": "V tej kategoriji ni na voljo lekcij.",
+      "inquiry": "Potrebujete pomoč? Obrnite se na podporo Vievlog",
+      "manager": "Upravljajte svoj račun"
     }
   },
   "content": {
-    "title": "Vievlog - Naučite se ga prek spleta brezplačno | IT tečaji in izpite",
-    "home": "Domov - Vievlog",
+    "title": "Vievlog - Brezplačno spletno učenje IT | Tečaji, viri in certificiranje",
+    "home": "Doma",
+    "posts": "Objave",
+    "chats": "Klepeti",
+    "videos": "Videoposnetki",
     "topiks": "Učenje tem",
     "courses": "OBVEZNO IT tečaje",
-    "grammar": "To slovnična lekcija",
-    "game": "Učne igre",
+    "grammar": "Tehnične slovnične lekcije",
+    "game": "Izobraževalne igre",
     "features": "Funkcije platforme",
-    "logIn": "Prijavite se v Vievlog",
+    "logIn": "Prijavite se v svoj račun",
     "signUp": "Prijavite se za brezplačne tečaje IT",
-    "toggleTheme": "Preklopite svetlobo/temno temo",
-    "newCollection": "Na voljo nova kolekcija tečajev",
-    "oneStopPlatform": "Vievlog - Vaša platforma za učenje Ultimate Free IT",
-    "startLearningNow": "Začnite ga učiti in se pripravite na izpit Topik",
-    "whyChooseVieVlog": "Zakaj izbrati Vievlog za učenje?",
-    "freeAccess": "100% brezplačen dostop do učenja",
-    "learnIT": "Dostop do visokokakovostnih IT lekcij, vaj in virov od strokovnih inštruktorjev brezplačno.",
-    "expertInstructors": "Strokovni IT inštruktorji",
-    "learnFromExperts": "Naučite se ga od domačih govorcev in izkušenih strokovnjakov.",
-    "anytimeAnywhere": "Naučite se ga kadarkoli in kjer koli",
-    "learnAtYourOwnPace": "Preučite ga s svojim tempom z neomejenim dostopom do vseh lekcij.",
-    "comprehensiveCurriculum": "Obsežen IT učni načrt",
-    "coverAllAspects": "Tečaji, ki zajemajo osnove za napredne teme, vključno s slovnico, besediščem in prakso pogovorov.",
-    "viewAllIT": "Oglejte si vse teste in tečaje Vievlog",
-    "featuredCourses": "Predstavljeni IT tečaji",
-    "beginnerIT": "Začetnika je tečaj",
+    "toggleTheme": "Preklopite svetlobo/temen način",
+    "newCollection": "Raziščite našo novo zbirko IT tečajev",
+    "oneStopPlatform": "Vievlog-vaša učna platforma za vse v enem",
+    "startLearningNow": "Začnite se ga učiti in se danes pripravite na izpite",
+    "whyChooseVieVlog": "Zakaj se ga naučiti z Vievlogom?",
+    "freeAccess": "Popolnoma brezplačen dostop",
+    "learnIT": "Uživajte v vrhunskih vajah, lekcijah in virih izkušenih inštruktorjev-popolnoma brezplačno.",
+    "expertInstructors": "Učite se od strokovnjakov v industriji",
+    "learnFromExperts": "Uči se izkušeni IT strokovnjaki in vzgojitelji.",
+    "anytimeAnywhere": "Prilagodljivo učenje kadarkoli in kjer koli",
+    "learnAtYourOwnPace": "Učite se s svojim tempom z neomejenim dostopom do lekcije.",
+    "comprehensiveCurriculum": "IT učni načrt v celoti",
+    "coverAllAspects": "Zajema temeljne in napredne koncepte IT, vključno s kodiranjem, sistemi, mreženjem in še več.",
+    "viewAllIT": "Brskajte po vseh tečajih Vievlog in testov",
+    "featuredCourses": "Predstavljeni IT programi",
+    "beginnerIT": "Tečaj IT na ravni začetka",
     "intermediateIT": "Vmesni tečaj IT",
-    "advancedIT": "Napredno IT tečaj",
-    "getStartedForFree": "Začnite z brezplačnimi lekcijami danes",
-    "whatOurLearnersSay": "Kaj pravijo naši učenci o Vievlogu",
+    "advancedIT": "Napredno obvladovanje IT",
+    "getStartedForFree": "Začnite učiti brezplačno danes",
+    "whatOurLearnersSay": "Kaj pravijo učenci o Vievlogu",
     "testimonial1": {
-      "quote": "Vievlog mi je pomagal, da se je uspešno pripravil na izpit za IT.",
+      "quote": "Vievlog mi je pomagal samozavestno opraviti izpit za certificiranje IT.",
       "name": "Nguyen minh anh",
       "role": "Mednarodni študent"
     },
     "testimonial2": {
-      "quote": "Učenje z Vievlogom še nikoli ni bilo lažje in bolj zabavno!",
+      "quote": "Učenje prek Vievlog je učinkovito in prijetno!",
       "name": "Tran Hai Nam",
-      "role": "Pisarniški delavec"
+      "role": "Pisarniški strokovnjak"
     },
     "testimonial3": {
-      "quote": "Zahvaljujoč Vievlogu sem znatno izboljšal svoje IT spretnosti.",
+      "quote": "Zahvaljujoč Vievlogu sem znatno izboljšal svoje programske sposobnosti.",
       "name": "Le Thanh Huong",
       "role": "Univerzitetni študent"
     },
-    "vieTopik": "Vievlog - top 1 IT učna platforma",
-    "yourOneStopShop": "Vaša platforma na enem mestu za obvladovanje IT spretnosti in topik izpite. Brezplačno dostopajte do premijskih učnih virov in danes dosežite svoj jezik in IT cilje!",
-    "connectWithUs": "Povežite se z Vievlogom na družbenih medijih",
+    "vieTopik": "Vievlog - Top 1 IT učno vozlišče",
+    "yourOneStopShop": "Vaša platforma na enem mestu za obvladovanje IT spretnosti in pripravo na certifikacijske izpite. Pridobite dostop do vrhunske vsebine brezplačno!",
+    "connectWithUs": "Spremljajte Vievlog na družbenih medijih",
     "socialMedia": {
-      "facebook": "Vievlog Facebook",
-      "twitter": "Vievlog Twitter",
-      "instagram": "Vievlog Instagram",
-      "linkedin": "Vievlog LinkedIn"
+      "facebook": "Spremljajte nas na Facebooku",
+      "twitter": "Sledite nam na Twitterju",
+      "instagram": "Spremljajte nas na Instagramu",
+      "linkedin": "Povežite se z nami na LinkedInu"
     },
     "company": {
-      "aboutUs": "O vievlogu",
-      "careers": "Kariera v Vievlogu",
-      "blog": "Blog Vievlog - nasveti in novice",
-      "contact": "Obrnite se na Vievlog"
+      "aboutUs": "O nas",
+      "careers": "Kariera",
+      "blog": "Tehnični blog - novice in nasveti",
+      "contact": "Kontaktirajte nas"
     },
     "support": {
-      "helpCenter": "Vievlog za pomoč",
-      "faq": "Pogosto zastavljena vprašanja",
+      "helpCenter": "Center za pomoč",
+      "faq": "Pogosta vprašanja - pogosto zastavljena vprašanja",
       "privacyPolicy": "Politika zasebnosti",
       "termsOfService": "Pogoji storitve"
     },
@@ -86,8 +89,8 @@
       "copyright": "© 2025 Vievlog. Vse pravice pridržane."
     },
     "metadata": {
-      "lesson": "Poiščite naše najnovejše lekcije Free IT in poiščite popoln tečaj za svojo stopnjo spretnosti.",
-      "grammar": "Raziščite naše podrobne IT diagrame in vaje."
+      "lesson": "Raziščite naše brezplačne lekcije in izberite popoln tečaj, ki se bo ujemal z vašo stopnjo spretnosti.",
+      "grammar": "Odkrijte podrobne tehnične vaje in diagrame."
     }
   }
 }

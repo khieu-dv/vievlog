@@ -2,83 +2,86 @@
   "header": {
     "utils": {
       "login": "Ingia Vievlog",
-      "logout": "Kuingia kutoka kwa Vievlog",
+      "logout": "Ingia nje ya Vievlog",
       "inquiry": "Wasiliana na msaada wa Vievlog",
-      "manager": "Meneja wa Akaunti",
-      "topikSchedule": "Ratiba ya Vievlog - Matukio ya kujifunza ya IT"
+      "manager": "Akaunti yangu",
+      "topikSchedule": "Ratiba ya Vievlog - Matukio ya kujifunza ya IT yanayokuja"
     }
   },
   "body": {
     "utils": {
-      "loading": "Kupakia masomo ...",
+      "loading": "Inapakia masomo yako ya IT ...",
       "notFound": "Hakuna masomo yanayopatikana katika jamii hii.",
-      "inquiry": "Wasiliana na msaada wa Vievlog",
-      "manager": "Meneja wa Akaunti"
+      "inquiry": "Unahitaji msaada? Wasiliana na msaada wa Vievlog",
+      "manager": "Dhibiti akaunti yako"
     }
   },
   "content": {
-    "title": "Vievlog - Jifunze mkondoni bure | Ni kozi na mitihani",
-    "home": "Nyumbani - Vievlog",
+    "title": "Vievlog - Bure Online IT Kujifunza | Kozi, rasilimali na udhibitisho",
+    "home": "Nyumbani",
+    "posts": "Machapisho",
+    "chats": "Mazungumzo",
+    "videos": "Video",
     "topiks": "Ni kujifunza mada",
     "courses": "Bure kozi",
-    "grammar": "Ni masomo ya sarufi",
-    "game": "Michezo ya kujifunza",
+    "grammar": "Masomo ya sarufi ya Tech",
+    "game": "Michezo ya kielimu",
     "features": "Vipengele vya Jukwaa",
-    "logIn": "Ingia Vievlog",
+    "logIn": "Ingia kwenye akaunti yako",
     "signUp": "Jisajili kwa kozi za bure za IT",
-    "toggleTheme": "Kubadilisha mandhari nyepesi/giza",
-    "newCollection": "Mkusanyiko mpya wa kozi ya IT unapatikana",
-    "oneStopPlatform": "Vievlog - Jukwaa lako la mwisho la kujifunza la bure la IT",
-    "startLearningNow": "Anza kuijifunza na jitayarishe kwa mtihani wa topik",
-    "whyChooseVieVlog": "Kwa nini uchague Vievlog kwa kujifunza?",
-    "freeAccess": "100% ya bure ya kujifunza ufikiaji",
-    "learnIT": "Pata masomo ya hali ya juu ya IT, mafunzo, na rasilimali kutoka kwa waalimu wa wataalam bila malipo.",
-    "expertInstructors": "Mtaalam wa Waalimu",
-    "learnFromExperts": "Jifunze kutoka kwa wasemaji wa asili na wataalamu wenye uzoefu.",
-    "anytimeAnywhere": "Jifunze wakati wowote, mahali popote",
-    "learnAtYourOwnPace": "Jifunze kwa kasi yako mwenyewe na ufikiaji usio na kikomo wa masomo yote.",
+    "toggleTheme": "Badili hali nyepesi/giza",
+    "newCollection": "Chunguza mkusanyiko wetu mpya wa kozi ya IT",
+    "oneStopPlatform": "Vievlog-Jukwaa lako la kujifunza la IT-moja",
+    "startLearningNow": "Anza kuijifunza na kujiandaa kwa mitihani leo",
+    "whyChooseVieVlog": "Kwa nini ujifunze na Vievlog?",
+    "freeAccess": "Ufikiaji wa bure kabisa",
+    "learnIT": "Furahiya mafunzo ya hali ya juu ya IT, masomo, na rasilimali kutoka kwa waalimu wenye uzoefu-bure kabisa.",
+    "expertInstructors": "Jifunze kutoka kwa wataalam wa tasnia",
+    "learnFromExperts": "Pata kufundishwa na wataalamu wa IT na waalimu.",
+    "anytimeAnywhere": "Kujifunza rahisi wakati wowote, mahali popote",
+    "learnAtYourOwnPace": "Jifunze kwa kasi yako mwenyewe na ufikiaji wa masomo usio na kikomo.",
     "comprehensiveCurriculum": "Mtaala kamili wa IT",
-    "coverAllAspects": "Kozi zinazofunika misingi ya mada ya hali ya juu, pamoja na sarufi, msamiati, na mazoezi ya mazungumzo.",
-    "viewAllIT": "Angalia vipimo vyote vya Vievlog IT na kozi",
-    "featuredCourses": "Ilionyesha kozi",
-    "beginnerIT": "Kozi ya kwanza",
+    "coverAllAspects": "Inashughulikia msingi wa dhana za juu za IT pamoja na kuweka coding, mifumo, mitandao, na zaidi.",
+    "viewAllIT": "Vinjari kozi zote za Vievlog na vipimo vya mazoezi",
+    "featuredCourses": "Ilionyesha mipango ya IT",
+    "beginnerIT": "Kozi ya kiwango cha kwanza",
     "intermediateIT": "Kati ya kozi ya kati",
-    "advancedIT": "Kozi ya juu ya juu",
-    "getStartedForFree": "Anza na masomo ya bure ya IT leo",
-    "whatOurLearnersSay": "Kile wanafunzi wetu wanasema juu ya Vievlog",
+    "advancedIT": "Advanced It Mastery",
+    "getStartedForFree": "Anza kujifunza bure leo",
+    "whatOurLearnersSay": "Wanafunzi wanasema nini juu ya Vievlog",
     "testimonial1": {
-      "quote": "Vievlog ilinisaidia kujiandaa kwa mafanikio kwa mtihani wangu wa IT.",
+      "quote": "Vievlog ilinisaidia kupitisha kwa ujasiri mtihani wangu wa udhibitisho wa IT.",
       "name": "Nguyen Minh Anh",
       "role": "Mwanafunzi wa Kimataifa"
     },
     "testimonial2": {
-      "quote": "Kujifunza na Vievlog haijawahi kuwa rahisi na ya kufurahisha zaidi!",
+      "quote": "Kujifunza kupitia Vievlog ni bora na ya kufurahisha!",
       "name": "Tran Hai Nam",
-      "role": "Mfanyakazi wa ofisi"
+      "role": "Mtaalam wa Ofisi"
     },
     "testimonial3": {
-      "quote": "Shukrani kwa Vievlog, niliboresha ujuzi wangu wa IT kwa kiasi kikubwa.",
+      "quote": "Shukrani kwa Vievlog, nimeboresha sana ujuzi wangu wa programu.",
       "name": "Le Thanh Huong",
       "role": "Mwanafunzi wa Chuo Kikuu"
     },
-    "vieTopik": "Vievlog - Jukwaa la juu la 1 la Kujifunza",
-    "yourOneStopShop": "Jukwaa lako moja la kusimamia ustadi wa IT na mitihani ya Topik. Fikia Rasilimali za Kujifunza za Premium bure na ufikie lugha yako na malengo ya IT leo!",
-    "connectWithUs": "Ungana na Vievlog kwenye media ya kijamii",
+    "vieTopik": "Vievlog - Kitovu cha juu cha 1 cha Kujifunza",
+    "yourOneStopShop": "Jukwaa lako la kusimamisha ujuzi wa IT na jitayarishe kwa mitihani ya udhibitisho. Pata ufikiaji wa maudhui ya malipo bila malipo!",
+    "connectWithUs": "Fuata Vievlog kwenye media ya kijamii",
     "socialMedia": {
-      "facebook": "Vievlog Facebook",
-      "twitter": "Vievlog Twitter",
-      "instagram": "Vievlog Instagram",
-      "linkedin": "Vievlog LinkedIn"
+      "facebook": "Tufuate kwenye Facebook",
+      "twitter": "Tufuate kwenye Twitter",
+      "instagram": "Tufuate kwenye Instagram",
+      "linkedin": "Ungana na sisi kwenye LinkedIn"
     },
     "company": {
-      "aboutUs": "Kuhusu Vievlog",
-      "careers": "Kazi huko Vievlog",
-      "blog": "Blogi ya Vievlog - Vidokezo na Habari",
-      "contact": "Wasiliana na Vievlog"
+      "aboutUs": "Kuhusu sisi",
+      "careers": "Kazi",
+      "blog": "Blogi ya Tech - Habari na Vidokezo",
+      "contact": "Wasiliana nasi"
     },
     "support": {
-      "helpCenter": "Kituo cha Msaada cha Vievlog",
-      "faq": "Maswali yanayoulizwa mara kwa mara",
+      "helpCenter": "Kituo cha Msaada",
+      "faq": "Maswali - maswali yanayoulizwa mara kwa mara",
       "privacyPolicy": "Sera ya faragha",
       "termsOfService": "Masharti ya Huduma"
     },
@@ -86,8 +89,8 @@
       "copyright": "© 2025 Vievlog. Haki zote zimehifadhiwa."
     },
     "metadata": {
-      "lesson": "Vinjari masomo yetu ya hivi karibuni ya bure ya IT na upate kozi bora kwa kiwango chako cha ustadi.",
-      "grammar": "Chunguza michoro na mafunzo yetu ya kina ya IT."
+      "lesson": "Chunguza masomo yetu ya bure na uchague kozi nzuri ili kufanana na kiwango chako cha ustadi.",
+      "grammar": "Gundua mafunzo ya kina ya teknolojia na michoro."
     }
   }
 }

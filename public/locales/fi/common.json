@@ -2,83 +2,86 @@
   "header": {
     "utils": {
       "login": "Kirjaudu sisään Vievlogiin",
-      "logout": "Vievlog -kirjaus",
+      "logout": "Kirjaudu ulos Vievlogista",
       "inquiry": "Ota yhteyttä Vievlog -tukeen",
-      "manager": "Tilinhoitaja",
-      "topikSchedule": "Vievlog Aikataulu - IT -oppimistapahtumat"
+      "manager": "Minun tilini",
+      "topikSchedule": "VievLog Aikataulu - Tulevat IT -oppimistapahtumat"
     }
   },
   "body": {
     "utils": {
-      "loading": "Lataus IT -oppitunnit ...",
-      "notFound": "Tästä luokasta ei löydy oppitunteja.",
-      "inquiry": "Ota yhteyttä Vievlog -tukeen",
-      "manager": "Tilinhoitaja"
+      "loading": "IT -oppituntien lataaminen ...",
+      "notFound": "Tässä luokassa ei ole käytettävissä oppitunteja.",
+      "inquiry": "Tarvitsetko apua? Ota yhteyttä Vievlog -tukeen",
+      "manager": "Hallitse tiliäsi"
     }
   },
   "content": {
-    "title": "Vievlog - Opi se verkossa ilmaiseksi | Se kurssit ja kokeet",
-    "home": "Etusivu - Vievlog",
+    "title": "VievLog - ilmainen online IT -oppiminen | Kurssit, resurssit ja sertifiointi",
+    "home": "Kotiin",
+    "posts": "Viestit",
+    "chats": "Keskustelu",
+    "videos": "Video",
     "topiks": "Se oppii aiheita",
     "courses": "Ilmaisia ​​IT -kursseja",
-    "grammar": "IT -kieliopin oppitunnit",
-    "game": "Oppimispelit",
+    "grammar": "Tekniset kieliopin oppitunnit",
+    "game": "Koulutuspelit",
     "features": "Alustaominaisuudet",
-    "logIn": "Kirjaudu sisään Vievlogiin",
+    "logIn": "Kirjaudu sisään tiliisi",
     "signUp": "Rekisteröidy ilmaiseksi IT -kursseille",
-    "toggleTheme": "Vaihda kevyt/tumma teema",
-    "newCollection": "Uusi IT -kurssin kokoelma saatavilla",
-    "oneStopPlatform": "Vievlog - lopullinen ilmainen IT -oppimisalusta",
-    "startLearningNow": "Aloita sen oppiminen ja valmistaudu Topik -tenttiin",
-    "whyChooseVieVlog": "Miksi valita Vievlog IT -oppimiseen?",
-    "freeAccess": "100% ilmainen IT -oppimiskäyttö",
-    "learnIT": "Pääsy korkealaatuisiin IT-oppitunteihin, oppaita ja resursseja asiantuntija-ohjaajilta ilmaiseksi.",
-    "expertInstructors": "Asiantuntija -ohjaajat",
-    "learnFromExperts": "Opi se äidinkielenään ja kokeneilta ammattilaisilta.",
-    "anytimeAnywhere": "Opi se milloin tahansa, missä tahansa",
-    "learnAtYourOwnPace": "Tutki sitä omassa tahdissasi rajoittamattomalla pääsyllä kaikkiin oppitunteihin.",
-    "comprehensiveCurriculum": "Kattava IT -opetussuunnitelma",
-    "coverAllAspects": "Kurssit, jotka kattavat sen perusteet edistyneisiin aiheisiin, mukaan lukien kielioppi, sanasto ja keskustelukäytäntö.",
-    "viewAllIT": "Katso kaikki Vievlog IT -testaa ja kursseja",
-    "featuredCourses": "Esillä oli kursseja",
-    "beginnerIT": "Aloittelijan IT -kurssi",
+    "toggleTheme": "Vaihda valo/tumma tila",
+    "newCollection": "Tutustu uuteen IT -kurssikokoelmaan",
+    "oneStopPlatform": "VievLog-All-in-one It -oppimisalusta",
+    "startLearningNow": "Aloita sen oppiminen ja valmistaudu tentteihin tänään",
+    "whyChooseVieVlog": "Miksi oppia se Vievlogilla?",
+    "freeAccess": "Täysin ilmainen pääsy",
+    "learnIT": "Nauti korkealaatuisten tietotekniikan opetusohjelmista, oppitunteista ja resursseista kokeneilta ohjaajilta-täysin ilmaiseksi.",
+    "expertInstructors": "Opi alan asiantuntijoilta",
+    "learnFromExperts": "Opettaa kokenut IT -ammattilaiset ja kouluttajat.",
+    "anytimeAnywhere": "Joustava oppiminen milloin tahansa, missä tahansa",
+    "learnAtYourOwnPace": "Opi omassa tahdissasi rajoittamattomalla oppitunnilla.",
+    "comprehensiveCurriculum": "Täysin pino IT-opetussuunnitelma",
+    "coverAllAspects": "Kattaa edistyneille IT -konsepteille perustuvan laajuuden, mukaan lukien koodaus, järjestelmät, verkottuminen ja muut.",
+    "viewAllIT": "Selaa kaikkia Vievlog -kursseja ja harjoittelutestejä",
+    "featuredCourses": "Esitetyt IT -ohjelmat",
+    "beginnerIT": "Aloittelijatason IT-kurssi",
     "intermediateIT": "Keskitason IT -kurssi",
-    "advancedIT": "Advanced IT -kurssi",
-    "getStartedForFree": "Aloita ilmaiseksi IT -oppitunnit tänään",
+    "advancedIT": "Advanced IT Mastery",
+    "getStartedForFree": "Aloita oppiminen ilmaiseksi tänään",
     "whatOurLearnersSay": "Mitä oppijat sanovat Vievlogista",
     "testimonial1": {
-      "quote": "Vievlog auttoi minua menestyksekkäästi valmistautumaan IT -tenttiin.",
+      "quote": "Vievlog auttoi minua luottavaisesti läpäisemään IT -sertifiointikokeen.",
       "name": "Nguyen minh anh",
       "role": "Kansainvälinen opiskelija"
     },
     "testimonial2": {
-      "quote": "Sen oppiminen Vievlogilla ei ole koskaan ollut helpompaa ja hauskempaa!",
+      "quote": "Sen oppiminen Vievlog on sekä tehokasta että nautinnollista!",
       "name": "Tran hai nam",
-      "role": "Toimistotyöntekijä"
+      "role": "Toimiston ammattilainen"
     },
     "testimonial3": {
-      "quote": "VievLogin ansiosta paransin IT -taitojani merkittävästi.",
+      "quote": "VievLogin ansiosta olen parantanut merkittävästi ohjelmointitaitojani.",
       "name": "Le Thanh Huong",
       "role": "Yliopisto -opiskelija"
     },
-    "vieTopik": "Vievlog - Top 1 IT -oppimisalusta",
-    "yourOneStopShop": "Yhden luukun alustasi IT-taitojen ja TOPIK-tenttien hallitsemiseksi. Pääsy premium -oppimisresursseihin ilmaiseksi ja saavuta kielesi ja IT -tavoitteet tänään!",
-    "connectWithUs": "Yhdistä Vievlogiin sosiaalisessa mediassa",
+    "vieTopik": "Vievlog - Top 1 IT -oppimiskeskuksen",
+    "yourOneStopShop": "Yhden luukun alustasi hallitsee IT-taitoja ja valmistautua sertifiointikokeisiin. Hanki pääsy premium -sisältöön ilmaiseksi!",
+    "connectWithUs": "Seuraa Vievlogia sosiaalisessa mediassa",
     "socialMedia": {
-      "facebook": "Vievlog Facebook",
-      "twitter": "Vievlog Twitter",
-      "instagram": "Vievlog Instagram",
-      "linkedin": "Vievlog LinkedIn"
+      "facebook": "Seuraa meitä Facebookissa",
+      "twitter": "Seuraa meitä Twitterissä",
+      "instagram": "Seuraa meitä Instagramissa",
+      "linkedin": "Yhdistä kanssamme LinkedInissä"
     },
     "company": {
-      "aboutUs": "Tietoja Vievlogista",
-      "careers": "Ura Vievlogissa",
-      "blog": "Vievlog -blogi - IT -vinkit ja uutiset",
-      "contact": "Ota yhteyttä Vievlogiin"
+      "aboutUs": "Meistä",
+      "careers": "Ura",
+      "blog": "Tech -blogi - Uutiset ja vinkit",
+      "contact": "Ota yhteyttä"
     },
     "support": {
-      "helpCenter": "VievLog Help Center",
-      "faq": "Usein kysyttyjä kysymyksiä",
+      "helpCenter": "Avustuskeskus",
+      "faq": "UKK - usein kysyttyjä kysymyksiä",
       "privacyPolicy": "Tietosuojakäytäntö",
       "termsOfService": "Palvelusehdot"
     },
@@ -86,8 +89,8 @@
       "copyright": "© 2025 Vievlog. Kaikki oikeudet pidätetään."
     },
     "metadata": {
-      "lesson": "Selaa viimeisimmät ilmaiset IT -oppitunnit ja löydä täydellinen kurssi taitotasollesi.",
-      "grammar": "Tutustu yksityiskohtaisesti IT -kaavioihin ja opetusohjelmiin."
+      "lesson": "Tutustu ilmaisiin oppitunteihimme ja valitse täydellinen kurssi taitotasosi vastaamiseksi.",
+      "grammar": "Löydä yksityiskohtaiset teknologiaoppaat ja kaaviot."
     }
   }
 }

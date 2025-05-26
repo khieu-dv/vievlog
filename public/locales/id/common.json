@@ -2,83 +2,86 @@
   "header": {
     "utils": {
       "login": "Masuk ke Vievlog",
-      "logout": "Logout dari Vievlog",
+      "logout": "Keluar dari vievlog",
       "inquiry": "Hubungi Dukungan Vievlog",
-      "manager": "Manajer Akun",
-      "topikSchedule": "Jadwal Vievlog - Acara Belajar IT"
+      "manager": "Akun saya",
+      "topikSchedule": "Jadwal Vievlog - Acara Pembelajaran TI yang akan datang"
     }
   },
   "body": {
     "utils": {
-      "loading": "Memuatnya pelajaran ...",
-      "notFound": "Tidak ada pelajaran yang ditemukan dalam kategori ini.",
-      "inquiry": "Hubungi Dukungan Vievlog",
-      "manager": "Manajer Akun"
+      "loading": "Memuat pelajaran TI Anda ...",
+      "notFound": "Tidak ada pelajaran yang tersedia dalam kategori ini.",
+      "inquiry": "Butuh bantuan? Hubungi Dukungan Vievlog",
+      "manager": "Kelola akun Anda"
     }
   },
   "content": {
-    "title": "Vievlog - Pelajari secara online secara gratis | Kursus dan ujian",
-    "home": "Beranda - Vievlog",
+    "title": "Vievlog - Pembelajaran IT online gratis | Kursus, Sumber Daya & Sertifikasi",
+    "home": "Rumah",
+    "posts": "Posting",
+    "chats": "Obrolan",
+    "videos": "Video",
     "topiks": "Itu belajar topik",
     "courses": "Kursus IT gratis",
-    "grammar": "Itu pelajaran tata bahasa",
-    "game": "Gim belajar",
+    "grammar": "Pelajaran tata bahasa teknologi",
+    "game": "Game Pendidikan",
     "features": "Fitur Platform",
-    "logIn": "Masuk ke Vievlog",
+    "logIn": "Masuk ke akun Anda",
     "signUp": "Daftar untuk kursus TI gratis",
-    "toggleTheme": "Sakelar tema terang/gelap",
-    "newCollection": "Koleksi kursus TI baru tersedia",
-    "oneStopPlatform": "Vievlog - Platform Pembelajaran TI Anda",
-    "startLearningNow": "Mulailah mempelajarinya & bersiaplah untuk ujian Topik",
-    "whyChooseVieVlog": "Mengapa Memilih Vievlog Untuk Pembelajarannya?",
-    "freeAccess": "100% GRATIS Akses Belajar IT",
-    "learnIT": "Akses pelajaran, tutorial, dan sumber daya TI berkualitas tinggi dari instruktur ahli tanpa biaya.",
-    "expertInstructors": "Instruktur IT ahli",
-    "learnFromExperts": "Pelajari dari penutur asli dan profesional berpengalaman.",
-    "anytimeAnywhere": "Pelajari kapan saja, di mana saja",
-    "learnAtYourOwnPace": "Pelajari dengan kecepatan Anda sendiri dengan akses tak terbatas ke semua pelajaran.",
-    "comprehensiveCurriculum": "Kurikulum TI yang komprehensif",
-    "coverAllAspects": "Kursus yang meliput dasar -dasarnya dengan topik -topik canggih, termasuk tata bahasa, kosa kata, dan latihan percakapan.",
-    "viewAllIT": "Lihat semua tes dan kursus Vievlog",
-    "featuredCourses": "Menampilkan kursus itu",
-    "beginnerIT": "Kursus IT Pemula",
+    "toggleTheme": "Beralih Mode Light/Dark",
+    "newCollection": "Jelajahi Koleksi Kursus TI baru kami",
+    "oneStopPlatform": "Vievlog-platform pembelajaran TI all-in-one Anda",
+    "startLearningNow": "Mulailah mempelajarinya dan bersiaplah untuk ujian hari ini",
+    "whyChooseVieVlog": "Mengapa mempelajarinya dengan vievlog?",
+    "freeAccess": "Akses sepenuhnya gratis",
+    "learnIT": "Nikmati tutorial, pelajaran, dan sumber daya berkualitas tinggi dari instruktur berpengalaman-sepenuhnya gratis.",
+    "expertInstructors": "Belajar dari Pakar Industri",
+    "learnFromExperts": "Diajarkan oleh para profesional dan pendidik TI yang berpengalaman.",
+    "anytimeAnywhere": "Pembelajaran fleksibel kapan saja, di mana saja",
+    "learnAtYourOwnPace": "Pelajari dengan kecepatan Anda sendiri dengan akses pelajaran tanpa batas.",
+    "comprehensiveCurriculum": "Kurikulum IT Full-Stack",
+    "coverAllAspects": "Meliputi konsep -konsep Foundational to Advanced IT termasuk pengkodean, sistem, jaringan, dan banyak lagi.",
+    "viewAllIT": "Jelajahi semua kursus vievlog dan tes latihan",
+    "featuredCourses": "Menampilkan program TI",
+    "beginnerIT": "Kursus IT tingkat pemula",
     "intermediateIT": "Kursus IT menengah",
-    "advancedIT": "Kursus IT canggih",
-    "getStartedForFree": "Mulailah dengan pelajaran IT gratis hari ini",
-    "whatOurLearnersSay": "Apa yang dikatakan pelajar kita tentang vievlog",
+    "advancedIT": "Canggih penguasaannya",
+    "getStartedForFree": "Mulailah belajar secara gratis hari ini",
+    "whatOurLearnersSay": "Apa yang dikatakan pelajar tentang vievlog",
     "testimonial1": {
-      "quote": "Vievlog membantu saya dengan sukses mempersiapkan ujian TI saya.",
+      "quote": "Vievlog membantu saya dengan percaya diri lulus ujian sertifikasi TI saya.",
       "name": "Nguyen Minh Anh",
       "role": "Siswa Internasional"
     },
     "testimonial2": {
-      "quote": "Mempelajarinya dengan vievlog tidak pernah semudah ini dan lebih menyenangkan!",
+      "quote": "Mempelajarinya melalui vievlog efektif dan menyenangkan!",
       "name": "Tran hai nam",
-      "role": "Pekerja kantor"
+      "role": "Profesional kantor"
     },
     "testimonial3": {
-      "quote": "Terima kasih kepada Vievlog, saya meningkatkan keterampilan TI saya secara signifikan.",
+      "quote": "Terima kasih kepada Vievlog, saya telah secara signifikan meningkatkan keterampilan pemrograman saya.",
       "name": "Le Thanh Huong",
       "role": "Mahasiswa"
     },
-    "vieTopik": "Vievlog - Platform Pembelajaran IT 1 Top",
-    "yourOneStopShop": "Platform satu atap Anda untuk menguasai keterampilan TI dan ujian Topik. Akses sumber belajar premium secara gratis dan jangkau bahasa Anda dan tujuan TI hari ini!",
-    "connectWithUs": "Terhubung dengan vievlog di media sosial",
+    "vieTopik": "Vievlog - Top 1 IT Learning Hub",
+    "yourOneStopShop": "Platform satu atap Anda untuk menguasai keterampilan TI dan mempersiapkan ujian sertifikasi. Dapatkan akses ke konten premium tanpa biaya!",
+    "connectWithUs": "Ikuti vievlog di media sosial",
     "socialMedia": {
-      "facebook": "Vievlog Facebook",
-      "twitter": "Vievlog Twitter",
-      "instagram": "Vievlog Instagram",
-      "linkedin": "Vievlog LinkedIn"
+      "facebook": "Ikuti kami di Facebook",
+      "twitter": "Ikuti kami di Twitter",
+      "instagram": "Ikuti kami di Instagram",
+      "linkedin": "Terhubung dengan kami di LinkedIn"
     },
     "company": {
-      "aboutUs": "Tentang vievlog",
-      "careers": "Karier di Vievlog",
-      "blog": "Vievlog Blog - IT Tips & News",
-      "contact": "Hubungi Vievlog"
+      "aboutUs": "Tentang kami",
+      "careers": "Karier",
+      "blog": "Blog Teknologi - Berita & Tips",
+      "contact": "Hubungi kami"
     },
     "support": {
-      "helpCenter": "Pusat Bantuan Vievlog",
-      "faq": "Pertanyaan yang sering diajukan",
+      "helpCenter": "Pusat Bantuan",
+      "faq": "FAQ - Pertanyaan yang Sering Diajukan",
       "privacyPolicy": "Kebijakan Privasi",
       "termsOfService": "Ketentuan Layanan"
     },
@@ -86,8 +89,8 @@
       "copyright": "© 2025 Vievlog. Semua hak dilindungi undang -undang."
     },
     "metadata": {
-      "lesson": "Jelajahi pelajaran TI gratis terbaru kami dan temukan kursus yang sempurna untuk tingkat keterampilan Anda.",
-      "grammar": "Jelajahi diagram dan tutorial kami yang terperinci."
+      "lesson": "Jelajahi pelajaran gratis kami dan pilih kursus yang sempurna untuk mencocokkan tingkat keterampilan Anda.",
+      "grammar": "Temukan tutorial dan diagram teknologi terperinci."
     }
   }
 }

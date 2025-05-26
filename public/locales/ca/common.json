@@ -2,83 +2,86 @@
   "header": {
     "utils": {
       "login": "Inicieu la sessió a Vievlog",
-      "logout": "Inici de sessió de Vievlog",
+      "logout": "Inicieu la sessió de Vievlog",
       "inquiry": "Poseu -vos en contacte amb l'assistència de Vievlog",
-      "manager": "Gestor de comptes",
-      "topikSchedule": "Horari de Vievlog: esdeveniments d'aprenentatge informàtic"
+      "manager": "El meu compte",
+      "topikSchedule": "Programació de Vievlog: esdeveniments d'aprenentatge informàtics propers"
     }
   },
   "body": {
     "utils": {
-      "loading": "Carregant -la lliçons ...",
-      "notFound": "No es troben lliçons en aquesta categoria.",
-      "inquiry": "Poseu -vos en contacte amb l'assistència de Vievlog",
-      "manager": "Gestor de comptes"
+      "loading": "Carregant les lliçons informàtiques ...",
+      "notFound": "No hi ha lliçons disponibles en aquesta categoria.",
+      "inquiry": "Necessiteu ajuda? Poseu -vos en contacte amb l'assistència de Vievlog",
+      "manager": "Gestioneu el vostre compte"
     }
   },
   "content": {
-    "title": "Vievlog: aprèn -ho en línia de forma gratuïta | Cursos i exàmens",
-    "home": "Inici - Vievlog",
+    "title": "Vievlog - Aprenentatge informàtic gratuït en línia | Cursos, recursos i certificació",
+    "home": "Casa",
+    "posts": "Pals",
+    "chats": "Xats",
+    "videos": "Vídeos",
     "topiks": "Temes d’aprenentatge d’aprenentatge",
     "courses": "Cursos informàtics gratuïts",
-    "grammar": "Lliçons de gramàtica",
-    "game": "Aprenentatge de jocs",
+    "grammar": "Lliçons de gramàtica tecnològica",
+    "game": "Jocs educatius",
     "features": "Característiques de la plataforma",
-    "logIn": "Inicieu la sessió a Vievlog",
+    "logIn": "Inicieu la sessió al vostre compte",
     "signUp": "Inscriviu -vos gratuïtament cursos informàtics",
-    "toggleTheme": "Commuta la llum/el tema fosc",
-    "newCollection": "New IT Curs Curs disponible",
-    "oneStopPlatform": "Vievlog: la vostra plataforma d’aprenentatge informàtic gratuït",
-    "startLearningNow": "Comenceu a aprendre -ho i prepareu -vos per a l'examen Topik",
-    "whyChooseVieVlog": "Per què triar Vievlog per aprendre?",
-    "freeAccess": "Accés d’aprenentatge informàtic 100% gratuït",
-    "learnIT": "Accediu a les lliçons, tutorials i recursos d’alta qualitat d’instructors experts sense cap cost.",
-    "expertInstructors": "Instructors informàtics experts",
-    "learnFromExperts": "Apreneu -ho de parlants nadius i professionals amb experiència.",
-    "anytimeAnywhere": "Apreneu -ho en qualsevol moment i en qualsevol lloc",
-    "learnAtYourOwnPace": "Estudieu -lo al vostre ritme amb un accés il·limitat a totes les lliçons.",
-    "comprehensiveCurriculum": "Currículum integral informàtic",
-    "coverAllAspects": "Cursos que cobreixen els fonaments bàsics per a temes avançats, inclosos la gramàtica, el vocabulari i la pràctica de conversa.",
-    "viewAllIT": "Consulteu totes les proves i cursos de Vievlog IT",
-    "featuredCourses": "Cursos informàtics destacats",
-    "beginnerIT": "Curs de principiants IT",
+    "toggleTheme": "Canvia la llum/el mode fosc",
+    "newCollection": "Exploreu la nostra nova col·lecció de cursos informàtics",
+    "oneStopPlatform": "Vievlog: la vostra plataforma d’aprenentatge informàtic tot",
+    "startLearningNow": "Comenceu a aprendre -ho i prepareu -vos per als exàmens avui",
+    "whyChooseVieVlog": "Per què aprendre -ho amb Vievlog?",
+    "freeAccess": "Accés completament gratuït",
+    "learnIT": "Gaudeix de tutorials, lliçons i recursos informàtics de primera qualitat, d’instructors experimentats, de forma gratuïta.",
+    "expertInstructors": "Apreneu dels experts de la indústria",
+    "learnFromExperts": "Observeu els professionals i educadors informàtics experimentats.",
+    "anytimeAnywhere": "Aprenentatge flexible en qualsevol moment, a qualsevol lloc",
+    "learnAtYourOwnPace": "Obteniu informació al vostre ritme amb l’accés il·limitat a les lliçons.",
+    "comprehensiveCurriculum": "Currículum de pila completa",
+    "coverAllAspects": "Cobreix els conceptes informàtics fonamentals, com ara codificació, sistemes, xarxes i molt més.",
+    "viewAllIT": "Navegueu tots els cursos de Vievlog i proves de pràctica",
+    "featuredCourses": "Programes informàtics destacats",
+    "beginnerIT": "Curs de TI a nivell principiant",
     "intermediateIT": "Intermedi IT Curs",
-    "advancedIT": "Curs IT avançat",
-    "getStartedForFree": "Comenceu amb lliçons informàtiques gratuïtes avui",
-    "whatOurLearnersSay": "El que diuen els nostres aprenents sobre Vievlog",
+    "advancedIT": "Va avançar el domini",
+    "getStartedForFree": "Comenceu a aprendre de forma gratuïta avui",
+    "whatOurLearnersSay": "El que diuen els estudiants sobre Vievlog",
     "testimonial1": {
-      "quote": "Vievlog em va ajudar a preparar -me amb èxit per al meu examen informàtic.",
+      "quote": "Vievlog em va ajudar a passar amb seguretat el meu examen de certificació informàtica.",
       "name": "Nguyen Minh Anh",
       "role": "Estudiant internacional"
     },
     "testimonial2": {
-      "quote": "Aprendre -ho amb Vievlog no ha estat mai més fàcil i divertit!",
+      "quote": "Aprendre -ho a través de Vievlog és eficaç i agradable.",
       "name": "Tran Hai Nam",
-      "role": "Treballadora de l'oficina"
+      "role": "Professional d’oficina"
     },
     "testimonial3": {
-      "quote": "Gràcies a Vievlog, he millorat significativament les meves habilitats informàtiques.",
+      "quote": "Gràcies a Vievlog, he millorat significativament les meves habilitats de programació.",
       "name": "Le Thanh Huong",
       "role": "Estudiant universitari"
     },
-    "vieTopik": "Vievlog - Top 1 Plataforma d'aprenentatge informàtic",
-    "yourOneStopShop": "La vostra plataforma única per dominar les habilitats informàtiques i els exàmens de Topik. Accediu als recursos d’aprenentatge premium de forma gratuïta i assoliu el vostre idioma i els objectius informàtics avui!",
-    "connectWithUs": "Connecteu -vos amb Vievlog a les xarxes socials",
+    "vieTopik": "Vievlog: el primer centre d’aprenentatge de TI",
+    "yourOneStopShop": "La vostra plataforma única per dominar les habilitats informàtiques i preparar-se per als exàmens de certificació. Obteniu accés a contingut premium sense cap cost.",
+    "connectWithUs": "Segueix Vievlog a les xarxes socials",
     "socialMedia": {
-      "facebook": "Facebook de Vievlog",
-      "twitter": "Vievlog Twitter",
-      "instagram": "Vievlog Instagram",
-      "linkedin": "Vievlog LinkedIn"
+      "facebook": "Segueix -nos a Facebook",
+      "twitter": "Segueix -nos a Twitter",
+      "instagram": "Segueix -nos a Instagram",
+      "linkedin": "Connecteu -vos amb nosaltres a LinkedIn"
     },
     "company": {
-      "aboutUs": "Sobre Vievlog",
-      "careers": "Carreres a Vievlog",
-      "blog": "Vievlog Blog: consells sobre informàtica i notícies",
-      "contact": "Poseu -vos en contacte amb Vievlog"
+      "aboutUs": "Sobre nosaltres",
+      "careers": "Carreres de carreres",
+      "blog": "Blog de tecnologia: notícies i consells",
+      "contact": "Poseu -vos en contacte amb nosaltres"
     },
     "support": {
-      "helpCenter": "Vievlog Help Center",
-      "faq": "Preguntes més freqüents",
+      "helpCenter": "Ajuda Centre",
+      "faq": "Preguntes freqüents: preguntes més freqüents",
       "privacyPolicy": "Política de privadesa",
       "termsOfService": "Condicions del servei"
     },
@@ -86,8 +89,8 @@
       "copyright": "© 2025 Vievlog. Tots els drets reservats."
     },
     "metadata": {
-      "lesson": "Navegueu les nostres darreres lliçons informàtiques gratuïtes i trobeu el curs perfecte per al vostre nivell d’habilitat.",
-      "grammar": "Exploreu els nostres diagrames i tutorials detallats."
+      "lesson": "Exploreu les nostres lliçons gratuïtes i trieu el curs perfecte per adaptar -se al vostre nivell d’habilitat.",
+      "grammar": "Descobriu tutorials i diagrames de tecnologia detallats."
     }
   }
 }

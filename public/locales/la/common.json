@@ -1,84 +1,87 @@
 {
   "header": {
     "utils": {
-      "login": "Login to Vievlog",
-      "logout": "Ex Vievlog",
+      "login": "Log ad Vievlog",
+      "logout": "Log ex Vievlog",
       "inquiry": "Contact Vievlog Support",
-      "manager": "Ratio Manager",
-      "topikSchedule": "Vievlog Schedule - Eam doctrina certe"
+      "manager": "My Account",
+      "topikSchedule": "Vievlog Schedule - Events Doctrina Events"
     }
   },
   "body": {
     "utils": {
-      "loading": "Lectiones ... loading",
-      "notFound": "Non Lectiones in hoc genus.",
-      "inquiry": "Contact Vievlog Support",
-      "manager": "Ratio Manager"
+      "loading": "Lectiones Tua Lectiones ...",
+      "notFound": "Non Lectiones available in hoc genus.",
+      "inquiry": "Opus auxilium? Contact Vievlog Support",
+      "manager": "Curo vestra"
     }
   },
   "content": {
-    "title": "Vievlog - Disce it online for free | Et cursus et volutpat",
-    "home": "Domus - Vievlog",
+    "title": "Vievlog - Free Online Est Doctrina | Certification & Resources",
+    "home": "In domo",
+    "posts": "Stipes",
+    "chats": "Chats",
+    "videos": "Videos",
     "topiks": "Doctrina Topics",
     "courses": "Liberabo eam cursus",
-    "grammar": "Grammatica Lectiones",
-    "game": "Doctrina ludos",
+    "grammar": "Tech Grammatica Lessons",
+    "game": "Educational ludos",
     "features": "Platform features",
-    "logIn": "Log ad Vievlog",
+    "logIn": "Log in rationem vestram",
     "signUp": "Sign up for free is cursus",
-    "toggleTheme": "Toggle / Natus",
-    "newCollection": "Novum enim Cursum Collection available",
-    "oneStopPlatform": "Vievlog - Your ultima libera eam doctrina platform",
-    "startLearningNow": "Satus Doctrina & parare Topik nito",
-    "whyChooseVieVlog": "Quid eligere Vievlog enim doctrina?",
-    "freeAccess": "C% liberum eam doctrina obvius",
-    "learnIT": "Access summus qualitas Lectiones, tutorials, et opibus ex peritus eruditores non sumptus.",
-    "expertInstructors": "Periti eam eruditores",
-    "learnFromExperts": "Discere de indigena loquentium et peritus doctorum.",
-    "anytimeAnywhere": "Disce quod aliquando, usquam",
-    "learnAtYourOwnPace": "Studere eam in vestri own pace cum infinitus aditus ad omnes Lectiones.",
-    "comprehensiveCurriculum": "Comprehensive curriculum",
-    "coverAllAspects": "Topics covering eam basics ad provecta thema, comprehendo grammatica, vocabulary, et conversationem usu.",
-    "viewAllIT": "Omnes Vievlog quod probat et cursus",
-    "featuredCourses": "Featured eam cursus",
-    "beginnerIT": "Inceptor est utique",
+    "toggleTheme": "Switch Lux / Dark Modus",
+    "newCollection": "Explorarent novi utique collectio",
+    "oneStopPlatform": "Vievlog - tuum omnes-in-unum illud discendi platform",
+    "startLearningNow": "Satus doctrina et parare volutpat hodie",
+    "whyChooseVieVlog": "Quid discere cum Vievlog?",
+    "freeAccess": "Omnino liberum aditus",
+    "learnIT": "Utor Top-Quality Tutorials, Lectiones et Resources ex experientia eruditores omnino liberum.",
+    "expertInstructors": "Discere ex industria experts",
+    "learnFromExperts": "Get docuit a seasoned ut doctorum et educators.",
+    "anytimeAnywhere": "Flexibilia doctrina aliquando, usquam",
+    "learnAtYourOwnPace": "Disce in vestri own pace cum infinita lectionem accessum.",
+    "comprehensiveCurriculum": "Full-Stack est curriculum",
+    "coverAllAspects": "Covers fundamenta ad provectus conceptus inter coding, systems, networking, et magis.",
+    "viewAllIT": "Honorius Vievlog cursus et Practice probat",
+    "featuredCourses": "Featured eam programs",
+    "beginnerIT": "Inceptor gradu cursus",
     "intermediateIT": "Medium utique",
-    "advancedIT": "Provectus utique",
-    "getStartedForFree": "Get coepi cum libero lessons hodie",
-    "whatOurLearnersSay": "Quid nostrum discentium dicunt de Vievlog",
+    "advancedIT": "Advanced est dominatus",
+    "getStartedForFree": "Satus doctrina gratis hodie",
+    "whatOurLearnersSay": "Quod discentes dicunt de Vievlog",
     "testimonial1": {
-      "quote": "Vievlog adiuvisti me feliciter parare mihi nito.",
+      "quote": "Vievlog adiuvisti me confidenter transiet mihi certification nito.",
       "name": "Nguyen minh anh",
       "role": "Internationalis discipulus"
     },
     "testimonial2": {
-      "quote": "Doctrina cum Vievlog est numquam facillimus et magis fun!",
+      "quote": "Doctrina per Vievlog est efficax et enjoyable!",
       "name": "Tran hai nam",
-      "role": "Officium opificem"
+      "role": "Officium professional"
     },
     "testimonial3": {
-      "quote": "Gratias ad Vievlog, ego melior meos artes significantly.",
+      "quote": "Gratias ad Vievlog, Ego significantly melior me programming artes.",
       "name": "Le Thanh Huong",
       "role": "University Student"
     },
-    "vieTopik": "Vievlog - Top I Est Doctrina Platform",
-    "yourOneStopShop": "Tua unus-subsisto platform pro dominus est artes et Topik volutpat. Access Premium Doctrina Resources ad Free et pervenire linguam tuam et proposita hodie!",
-    "connectWithUs": "Coniungere cum Vievlog in Social Media",
+    "vieTopik": "Vievlog - In Top I Est Doctrina Hub",
+    "yourOneStopShop": "Tua unus-subsisto platform ad dominum artes et parare certification probationes. Ut aditus ad premium contentus ad non sumptus!",
+    "connectWithUs": "Sequere Vievlog in Social Media",
     "socialMedia": {
-      "facebook": "Vievlog Facebook",
-      "twitter": "Vievlog Twitter",
-      "instagram": "Vievlog Instagram",
-      "linkedin": "Vievlog LinkedIn"
+      "facebook": "Sequere nobis Facebook",
+      "twitter": "Post nos on Twitter",
+      "instagram": "Sequere nos in Instagram",
+      "linkedin": "Iungo nobiscum in LinkedIn"
     },
     "company": {
-      "aboutUs": "De Vievlog",
-      "careers": "Suspendisse in Vievlog",
-      "blog": "Blog Vievlog - quod Tips & News",
-      "contact": "Contact Vievlog"
+      "aboutUs": "De nobis",
+      "careers": "Gestas",
+      "blog": "Tech Blog - News & Tips",
+      "contact": "Contact Us"
     },
     "support": {
-      "helpCenter": "Vievlog Auxilium Center",
-      "faq": "Frequenter Interrogata Quaestiones",
+      "helpCenter": "Auxilium Center",
+      "faq": "FAQ - Frequenter Interrogata Quaestiones",
       "privacyPolicy": "Privacy Policy",
       "termsOfService": "Termini servitium"
     },
@@ -86,8 +89,8 @@
       "copyright": "© MMXXV Vievlog. Omnes ligula."
     },
     "metadata": {
-      "lesson": "Browse nostra tardus liberam Lectiones et invenire perfectum utique pro arte gradu.",
-      "grammar": "Explorarent nostrum detailed eam diagrams et tutorials."
+      "lesson": "Explorarent libera lectiones eligere perfectam cursus par vestra arte elit.",
+      "grammar": "Discover: Detailed Tech Tutorials et Diagrams."
     }
   }
 }

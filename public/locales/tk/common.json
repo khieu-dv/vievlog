@@ -1,84 +1,87 @@
 {
   "header": {
     "utils": {
-      "login": "\"Viewlog\" -e giriň",
-      "logout": "WEDALOL-dan çykmak",
+      "login": "WEDALLOL-a giriň",
+      "logout": "\"VEMLOLL\" -den çykyň",
       "inquiry": "\"Viewlog\" goldawy bilen habarlaşyň",
-      "manager": "Hasap dolandyryjysy",
-      "topikSchedule": "\"Vevewwlog tertibi\" - hadysalaryny öwrenmek"
+      "manager": "Hasabym",
+      "topikSchedule": "\"Vevewlog\" meýilnamasy - Okamak hadysalary"
     }
   },
   "body": {
     "utils": {
-      "loading": "Sapaklary ýüklemek ...",
-      "notFound": "Bu kategoriýada sapak tapylmady.",
-      "inquiry": "\"Viewlog\" goldawy bilen habarlaşyň",
-      "manager": "Hasap dolandyryjysy"
+      "loading": "Bu sapaklaryňyzy ýüklemek ...",
+      "notFound": "Bu kategoriýada sapak ýok.",
+      "inquiry": "Kömek gerekmi? \"Viewlog\" goldawy bilen habarlaşyň",
+      "manager": "Hasabyňyzy dolandyryň"
     }
   },
   "content": {
-    "title": "WEMLLOL - MUGT Ownuk OWük daşaýan-çalyş | Kurslar we ekzamenler",
-    "home": "Öý - WEMLULL",
+    "title": "Wiewwog - Mugt onlaýn öwrenmek | Kurslar, çeşmeler we sertifikat",
+    "home": "Öý",
+    "posts": "Azgylar",
+    "chats": "Çatlar",
+    "videos": "Wideolar",
     "topiks": "Mowzuklary öwrenmek",
     "courses": "Mugt kurslar",
-    "grammar": "\"Grammatika boýunça sapaklary",
-    "game": "Oýnam oýunlary",
+    "grammar": "Tehniki grammatika sapaklary",
+    "game": "Bilim oýny",
     "features": "Platforma aýratynlyklary",
-    "logIn": "WEDALLOL-a giriň",
+    "logIn": "Hasabyňyza giriň",
     "signUp": "Mugt kurslara ýazylyň",
-    "toggleTheme": "Lightagtylyk / GARŞY MOME-ni üýtgetmek",
-    "newCollection": "Täze okuw ýygyndysy bar",
-    "oneStopPlatform": "WEMULLL - Iň soňky mugt mugt okuw platformasy",
-    "startLearningNow": "Öwrenip başlaň we topik ekzamenine taýynlaň",
-    "whyChooseVieVlog": "Näme üçin öwrenmegi öwreniň?",
-    "freeAccess": "100% mugt okuwy öwrenmek",
-    "learnIT": "Quokary hiliň bahasy, sapaklar, sapaklar we baýlyklar we çeşmeler ýok.",
-    "expertInstructors": "Mugallymlar",
-    "learnFromExperts": "Ony ýerli gürleýişler we tejribeli hünärmenlerden öwren.",
-    "anytimeAnywhere": "Islän wagtyňyzy islendik wagt öwreniň",
-    "learnAtYourOwnPace": "Ähli sapaklara çäksiz giriş bilen öz islegiňizde öwreniň.",
-    "comprehensiveCurriculum": "Okuw meýilnamasyny hem görkezýär",
-    "coverAllAspects": "Esaseörelgelerini, gresommar, onlaýn söz alyş we gepleşik amallaryny öz üstüne alýan kurslar.",
-    "viewAllIT": "Ähli willoglogyň hemmesini synlaň we kurslary görüň",
-    "featuredCourses": "Döredilen kurslar",
-    "beginnerIT": "Başlangyjy",
+    "toggleTheme": "Ýagtylyk / garaňky re modeim",
+    "newCollection": "Täze kurs kolleksiýamyzy öwreniň",
+    "oneStopPlatform": "WEMULLL - THE-den ýekeje platformany öwrenmek",
+    "startLearningNow": "Öwrenip başlaň we şu gün ekzamenleri taýýarlaň",
+    "whyChooseVieVlog": "Näme üçin viýew bilen öwrenýärsiň?",
+    "freeAccess": "Doly mugt giriş",
+    "learnIT": "Tejribeli mugallymlardan, sapaklary we çeşmelerden ýokary hilli, sapaklardan we çeşmelerden lezzet alyň.",
+    "expertInstructors": "Senagat hünärmenlerinden öwreniň",
+    "learnFromExperts": "Tagamly hünärmenler we mugallymçylyk edenler tarapyndan öwrediň.",
+    "anytimeAnywhere": "Islendik ýerde çeýe okuw",
+    "learnAtYourOwnPace": "Çäklendirilmedik sapak bilen öz islegiňiz boýunça öwreniň.",
+    "comprehensiveCurriculum": "Doly meýilnamasy",
+    "coverAllAspects": "Öňdükmek, ulgamlar, ulgamlar, ulgam we has köp.",
+    "viewAllIT": "WEDLOLLOLSY KÜMGINLERI WE TERJIME EDIP BOLUN",
+    "featuredCourses": "IT programmasy",
+    "beginnerIT": "Başlangyç dereje",
     "intermediateIT": "Suraly",
-    "advancedIT": "Ösen kursy",
-    "getStartedForFree": "Bu gün mugt sapak bilen başlaň",
-    "whatOurLearnersSay": "Okuwçylarymyz Wiýewolog hakda aýdýanlar",
+    "advancedIT": "Ösen \"ussatlyk\"",
+    "getStartedForFree": "Şu gün mugt öwrenmäge başlaň",
+    "whatOurLearnersSay": "Haýsy okuwçylaryň \"WEDAL\" hakda aýdylýanlar",
     "testimonial1": {
-      "quote": "WEWLLS, bu meniň bu ekzamenim üçin üstünlikli taýýarlamaga kömek etdi.",
+      "quote": "WEWLUL, men bu şahadatnama synagyny göz öňüne getirmäge kömek etdi.",
       "name": "Nguyen Minh anh",
       "role": "Halkara talyp"
     },
     "testimonial2": {
-      "quote": "WEMULL-si bilen öwrenmek hiç haçan aňsat we has gyzykly boldy!",
+      "quote": "Wumolog arkaly öwrenmek täsirli we hezil bolsun!",
       "name": "Tran Hai nam",
-      "role": "Offis işgäri"
+      "role": "Ofis hünärmenleri"
     },
     "testimonial3": {
-      "quote": "Wiwul gelşik çuň sag boluň, meniň IT endiklerini gowulaşdyrdym.",
+      "quote": "Wiýew halkynyň garşysyna, programmirleme endiklerimi ep-esli gowulaşdyrdym.",
       "name": "LEG HUNOON",
       "role": "Uniwersitetiň okuwçysy"
     },
-    "vieTopik": "WEMULLOL - Platforma platformasy",
-    "yourOneStopShop": "IT endiklerini we topik ekzamenleri özleşdirmek üçin bir partlan platformaňyz. Mugt okuwy öwrenmek we diliňize giriň we sagyňyza giriň we häzirki wagtda maksatlaryňyz!",
-    "connectWithUs": "Sosial mediýada WEDALOL bilen birikdiriň",
+    "vieTopik": "WEMULLOL - Topokarky 1, HUB-ni öwrenmek",
+    "yourOneStopShop": "IT ussatlyklaryny özleşdirmek we şahadatnamalaryň synagyna taýýarlyk görmek üçin siziň hemişelik platformaňyz. Bahasy bolmadyk premium mazmunyna giriň!",
+    "connectWithUs": "Sosial mediýada WEDALOL-y yzarlaň",
     "socialMedia": {
-      "facebook": "\"Vevewl\" facebook \"",
-      "twitter": "WEDALOL Twitter",
-      "instagram": "Vevewlog Instagram",
-      "linkedin": "Whumanlog lindin"
+      "facebook": "\"Facebook\" -da bize eýeriň",
+      "twitter": "Twitterde bize eýeriň",
+      "instagram": "Instagram-da bize eýeriň",
+      "linkedin": "Linkedine bilen bize birikdiriň"
     },
     "company": {
-      "aboutUs": "Suratly",
-      "careers": "WEDALOL-da karýera",
-      "blog": "VEDILULG blogy - HABARLARYNY",
-      "contact": "\"Viewlog\" bilen habarlaşyň"
+      "aboutUs": "Biz hakda",
+      "careers": "Hünäri",
+      "blog": "Tehniki blogy - Habarlar we maslahatlar",
+      "contact": "Biz bilen habarlaşyň"
     },
     "support": {
-      "helpCenter": "\"WhEDLLL\" kömek merkezi",
-      "faq": "Ýygy-ýygydan berilýän soraglar",
+      "helpCenter": "Kömek merkezi",
+      "faq": "Fak - ýygy-ýygydan berilýän soraglar",
       "privacyPolicy": "Gizlinlik syýasaty",
       "termsOfService": "Hyzmat şertleri"
     },
@@ -86,8 +89,8 @@
       "copyright": "© 2025 WEDALLG. Rightshli hukuklar goralandyr."
     },
     "metadata": {
-      "lesson": "Iň soňky mugt sapaklarymyza göz aýlaň we ussatlyk derejäňiz üçin ajaýyp kurs tapyň.",
-      "grammar": "Jikme-jik diagrammalary we goljuklary göz öňünde tutup bilersiňiz."
+      "lesson": "Mugt sapaklarymyzy öwreniň we ussatlyk derejäňizi deňeşdirmek üçin ajaýyp kursy saýlaň.",
+      "grammar": "Jikme-jik tupan derejelerini we diagrammalary tapyň."
     }
   }
 }

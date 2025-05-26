@@ -1,84 +1,87 @@
 {
   "header": {
     "utils": {
-      "login": "Nbanye na vievlog",
-      "logout": "Logout si Vievlog",
+      "login": "Banye na Vievlog",
+      "logout": "Pụọ na vievlog",
       "inquiry": "Nkwado Vievlogrog",
-      "manager": "Onye njikwa akaụntụ",
-      "topikSchedule": "Usoro Vievlog - Ọ Na-eme Ihe"
+      "manager": "Akaụntụ M",
+      "topikSchedule": "Usoro Vievlogg - na-abịa ma ọ bụrụ na ọ na-amụ ihe"
     }
   },
   "body": {
     "utils": {
       "loading": "Na-eburu ya ihe mmụta ...",
-      "notFound": "Enweghị nkuzi achọtara na ụdị a.",
-      "inquiry": "Nkwado Vievlogrog",
-      "manager": "Onye njikwa akaụntụ"
+      "notFound": "Enweghị nkuzi dị na ụdị a.",
+      "inquiry": "Chọrọ Enyemaka? Nkwado Vievlogrog",
+      "manager": "Jikwaa akaụntụ gị"
     }
   },
   "content": {
-    "title": "Vievlog - Mụta ya Online maka Free | Ọ na-amụ na ule",
-    "home": "Home - Vievlogrog",
+    "title": "Vievlog - Free na ntanetị ọ na-amụ | Nkuzi, akụrụngwa na asambodo",
+    "home": "Ulo",
+    "posts": "Posts",
+    "chats": "Chaji",
+    "videos": "Viomaidi",
     "topiks": "Ọ na-amụta n'isiokwu",
     "courses": "Free ọ na-eme ya",
-    "grammar": "Ọ na-amụrụ ụtọ",
-    "game": "Egwuregwu Amụta",
+    "grammar": "Ugboro GIRIDI NKE",
+    "game": "Egwuregwu agụmakwụkwọ",
     "features": "Atụmatụ ntụpọ",
-    "logIn": "Banye na Vievlog",
+    "logIn": "Banye na akaụntụ gị",
     "signUp": "Debanye aha ya na ọmụmụ ya",
-    "toggleTheme": "Gbagọrọ ọkụ / ọchịchịrị isiokwu",
-    "newCollection": "Nchịkọta ọ na-atọ ụtọ",
-    "oneStopPlatform": "Vievlog - Gị kacha mma ọ na-akwụghị ụgwọ",
-    "startLearningNow": "Bido na-amụta & kwadebe maka ule Topik",
-    "whyChooseVieVlog": "Kedu ihe kpatara ịhọrọ Vievlogy N'ihi na ọ na-amụ?",
-    "freeAccess": "100% n'efu ọ na-amụta",
-    "learnIT": "Nweta ihe mmụta dị elu, nkuzi, na akụrụngwa site na ndị nkuzi na-enweghị ụgwọ.",
-    "expertInstructors": "Ọkachamara ya",
-    "learnFromExperts": "Mụta ya n'aka ndị ọkà mmụta obodo na ndị ọkachamara nwere ahụmahụ.",
-    "anytimeAnywhere": "Mụta ya n'oge ọ bụla, ebe ọ bụla",
-    "learnAtYourOwnPace": "Mụọ ya na aka gị na nsị na-akparaghị ókè na nkuzi niile.",
-    "comprehensiveCurriculum": "Ọ bụ ya n'ezie",
-    "coverAllAspects": "Agụmakwụkwọ na-ekpuchi ya isiokwu dị elu, gụnyere ụtọ asụsụ, okwu, okwu, na omume mkparịta ụka.",
-    "viewAllIT": "Lelee Vievag ọ bụla na usoro ọmụmụ",
-    "featuredCourses": "Gosiputara ya",
+    "toggleTheme": "Gbanwee ìhè / ọchịchịrị",
+    "newCollection": "Nyochaa Nchịkọta Ọhụrụ anyị",
+    "oneStopPlatform": "Vievlog - Gị niile na-amụ ihe",
+    "startLearningNow": "Bido na-amụta ya ma kwadebe maka ule taa",
+    "whyChooseVieVlog": "Gini mere eji amuta ya na vievlog?",
+    "freeAccess": "Nweta n'efu",
+    "learnIT": "Nwee nkuzi ọ bụla, nkuzi, na akụrụngwa nke ndị nkuzi nwere ahụmahụ - n'efu.",
+    "expertInstructors": "Mụta Ihe Ndị E Si Nweta Ndị Ọmụma",
+    "learnFromExperts": "A kuziiri ya ndi okacha amara na ndi nkuzi.",
+    "anytimeAnywhere": "Reconible mmụta mmụta ọ bụla, ebe ọ bụla",
+    "learnAtYourOwnPace": "Mụta n 'ị na-akpaghị aka.",
+    "comprehensiveCurriculum": "Zuru oke na-atọgbọ ya",
+    "coverAllAspects": "Ekpuchi ntọala maka ya dị elu, ọ bụ echiche gụnyere ịkọwapụta, sistemụ, ngbanwe, na ndị ọzọ.",
+    "viewAllIT": "Chọgharịa usoro Vievlogrog niile na nnwale",
+    "featuredCourses": "Gosiputara ya mmemme",
     "beginnerIT": "Onye mbido",
     "intermediateIT": "Etiti ya",
-    "advancedIT": "Ọ dị elu",
-    "getStartedForFree": "Bido na-eme ihe mmụta taa",
-    "whatOurLearnersSay": "Ihe ndị na-amụ banyere anyị na-ekwu banyere Vevlogy",
+    "advancedIT": "Ọ dị elu nke ọma",
+    "getStartedForFree": "Bido na-amụta n'efu taa",
+    "whatOurLearnersSay": "Ihe ndị na-amụ ihe na-ekwu banyere Vevlog",
     "testimonial1": {
-      "quote": "Vievlog nyeere m aka nke ọma maka nyocha m.",
+      "quote": "Vievlog nyeere m aka iji obi ike gafere ule asambodo m.",
       "name": "Nguyen Minh Ah",
       "role": "Ụmụ akwụkwọ mba ụwa"
     },
     "testimonial2": {
-      "quote": "Mụta ya na vievlog adịla mfe ma nwekwuo ọ funụ!",
+      "quote": "Mụta ya site na Vievlog na-atọ ụtọ ma na-atọ ụtọ!",
       "name": "Tran Haa Nam",
-      "role": "Onye ọrụ ọrụ"
+      "role": "Ọfịfi"
     },
     "testimonial3": {
-      "quote": "Ekelere m Velavog, m mere ka ọ bụrụ ihe m na-eme.",
+      "quote": "Daalụ Velamlog, m na-eme ka mmemme m na-eme mmemme.",
       "name": "Le thy huoon",
       "role": "Nwa akwụkwọ mahadum"
     },
-    "vieTopik": "Vievlog - Top 1 ọ na-amụ okwu",
-    "yourOneStopShop": "Igwe okwu gị na-akwụsị maka ya manyere ya nkà na ule Topik. Nweta ihe omumu ihe omumu di iche iche n'efu ma rute asusu gi na ebumnuche taa!",
-    "connectWithUs": "Jikọọ na Vievlog na Social Media",
+    "vieTopik": "Vievlog - Top 1 ọ na-amụta",
+    "yourOneStopShop": "Igwe okwu gị na-akwụsị iji ma kwado ya ma kwadebe maka nyocha asambodo. Nweta ọdịnaya adịchaghị akwụ ụgwọ!",
+    "connectWithUs": "Soro Vivevlog na Social Media",
     "socialMedia": {
-      "facebook": "Vevlog Facebook",
-      "twitter": "Vievlogg Twitter",
-      "instagram": "Vievlog Instagram",
-      "linkedin": "Vievlogingedin"
+      "facebook": "Soro anyị na Facebook",
+      "twitter": "Soro anyị na Twitter",
+      "instagram": "Soro anyị na Instagram",
+      "linkedin": "Jikọọ na anyị na LinkedIn"
     },
     "company": {
-      "aboutUs": "Banyere Vievlogrog",
-      "careers": "Nlekọta na Vevlog",
-      "blog": "Vievloglog - Ọ Ntụziaka & News",
-      "contact": "Kpọtụrụ Vevlog"
+      "aboutUs": "Gbasara anyị",
+      "careers": "Nlekọta",
+      "blog": "Tech Blog - News & Ndụmọdụ",
+      "contact": "Kpọtụrụ anyị"
     },
     "support": {
-      "helpCenter": "Vievlog enyemaka etiti",
-      "faq": "Ajuju ajuju",
+      "helpCenter": "Enyemaka Center",
+      "faq": "Ajụjụ - Ajuju ajuju",
       "privacyPolicy": "amụma nzuzo",
       "termsOfService": "Usoro Ọrụ"
     },
@@ -86,8 +89,8 @@
       "copyright": "© 2025 Vievlogg. Ikike niile echekwabara."
     },
     "metadata": {
-      "lesson": "Chọgharịa na nkuzi kachasị ọhụrụ ma chọta usoro zuru oke maka ọkwa nka gị.",
-      "grammar": "Nyochaa nkọwapụta anyị na nkuzi."
+      "lesson": "Nyochaa nkuzi anyị n'efu ma họrọ ụzọ zuru oke dakọtara na ọkwa gị.",
+      "grammar": "Chọpụta nkuzi zuru ezu na eserese."
     }
   }
 }

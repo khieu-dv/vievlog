@@ -2,83 +2,86 @@
   "header": {
     "utils": {
       "login": "Inicie sesión en Vievlog",
-      "logout": "Sesión de sesión de Vievlog",
+      "logout": "Pasar a saída de Vievlog",
       "inquiry": "Contacte co soporte de vievlog",
-      "manager": "Xestor de contas",
-      "topikSchedule": "Programación de Vievlog - IT Eventos de aprendizaxe"
+      "manager": "A miña conta",
+      "topikSchedule": "VIEVLOG HORARIO - Próximo eventos de aprendizaxe de TI"
     }
   },
   "body": {
     "utils": {
-      "loading": "Cargando leccións ...",
-      "notFound": "Non se atopan leccións nesta categoría.",
-      "inquiry": "Contacte co soporte de vievlog",
-      "manager": "Xestor de contas"
+      "loading": "Cargando as leccións de TI ...",
+      "notFound": "Non hai leccións dispoñibles nesta categoría.",
+      "inquiry": "¿Necesitas axuda? Contacte co soporte de vievlog",
+      "manager": "Xestiona a túa conta"
     }
   },
   "content": {
-    "title": "Vievlog - Aprende en liña de balde | Cursos e exames",
-    "home": "Inicio - Vievlog",
+    "title": "Vievlog - Free Online It Learning | Cursos, recursos e certificación",
+    "home": "Casa",
+    "posts": "Mensaxes",
+    "chats": "Chats",
+    "videos": "Vídeos",
     "topiks": "Temas de aprendizaxe",
     "courses": "Cursos libres",
-    "grammar": "Clases de gramática",
-    "game": "Xogos de aprendizaxe",
+    "grammar": "Clases de gramática tecnolóxica",
+    "game": "Xogos educativos",
     "features": "Características da plataforma",
-    "logIn": "Inicie sesión en Vievlog",
+    "logIn": "Inicie sesión na súa conta",
     "signUp": "Inscríbete para cursos gratuítos",
-    "toggleTheme": "MOITO TEMA DE LUZ/DARK",
-    "newCollection": "Nova colección de cursos de TI dispoñible",
-    "oneStopPlatform": "Vievlog: a túa plataforma de aprendizaxe de TI gratuíta definitiva",
-    "startLearningNow": "Comeza a aprendelo e prepárate para o exame Topik",
-    "whyChooseVieVlog": "Por que escoller VIEVLOG para aprender?",
-    "freeAccess": "Acceso de aprendizaxe de TI 100% gratuíto",
-    "learnIT": "Acceda a leccións de TI de alta calidade, titorías e recursos de instrutores expertos sen custo.",
-    "expertInstructors": "Instructores de TI expertos",
-    "learnFromExperts": "Aprende de falantes nativos e profesionais experimentados.",
-    "anytimeAnywhere": "Aprende en calquera momento, en calquera lugar",
-    "learnAtYourOwnPace": "Estuda ao teu ritmo con acceso ilimitado a todas as leccións.",
-    "comprehensiveCurriculum": "Currículo integral de TI",
-    "coverAllAspects": "Os cursos que cubren os conceptos básicos a temas avanzados, incluíndo gramática, vocabulario e práctica de conversas.",
-    "viewAllIT": "Ver todos os cursos de VIEVLOG IT",
-    "featuredCourses": "Destacou cursos",
-    "beginnerIT": "Curso de IT de principiantes",
+    "toggleTheme": "Cambiar o modo de luz/escuro",
+    "newCollection": "Explora a nosa nova colección informática",
+    "oneStopPlatform": "Vievlog: a túa plataforma de aprendizaxe de todo en un",
+    "startLearningNow": "Comeza a aprendelo e prepárate para os exames hoxe",
+    "whyChooseVieVlog": "Por que aprendelo con Vievlog?",
+    "freeAccess": "Acceso completamente gratuíto",
+    "learnIT": "Goza de tutoriais de alta calidade, leccións e recursos de instrutores expertos, completamente gratuítos.",
+    "expertInstructors": "Aprende dos expertos da industria",
+    "learnFromExperts": "Ensina profesionais e educadores de TI experimentados.",
+    "anytimeAnywhere": "Aprendizaxe flexible en calquera momento, en calquera lugar",
+    "learnAtYourOwnPace": "Aprende ao teu ritmo con acceso á lección ilimitado.",
+    "comprehensiveCurriculum": "Currículo de pilas completas",
+    "coverAllAspects": "Abarca fundacional para conceptos de TI avanzados, incluíndo codificación, sistemas, redes e moito máis.",
+    "viewAllIT": "Navega en todos os cursos e probas de prácticas",
+    "featuredCourses": "Presentou programas de TI",
+    "beginnerIT": "Curso de nivel principiante",
     "intermediateIT": "Curso de TI intermedio",
-    "advancedIT": "Avanzado curso de TI",
-    "getStartedForFree": "Comezar con leccións de TI gratuítas hoxe",
-    "whatOurLearnersSay": "O que din os nosos estudantes sobre Vievlog",
+    "advancedIT": "Avanzou o dominio",
+    "getStartedForFree": "Comeza a aprender de balde hoxe",
+    "whatOurLearnersSay": "O que din os estudantes sobre Vievlog",
     "testimonial1": {
-      "quote": "Vievlog axudoume a prepararme con éxito para o meu exame informático.",
+      "quote": "Vievlog axudoume a pasar con confianza o meu exame de certificación informática.",
       "name": "Nguyen Minh anh",
       "role": "Estudante internacional"
     },
     "testimonial2": {
-      "quote": "Aprendelo con Vievlog nunca foi máis sinxelo e divertido!",
+      "quote": "Aprendelo a través de Vievlog é eficaz e agradable.",
       "name": "Tran Hai Nam",
-      "role": "Traballador de oficina"
+      "role": "Profesional de oficina"
     },
     "testimonial3": {
-      "quote": "Grazas a Vievlog, mellorei significativamente as miñas habilidades informáticas.",
+      "quote": "Grazas a Vievlog, mellorei significativamente as miñas habilidades de programación.",
       "name": "Le Thanh Huong",
       "role": "Estudante universitario"
     },
-    "vieTopik": "Vievlog - Top 1 Plataforma de aprendizaxe",
-    "yourOneStopShop": "A túa plataforma única para dominar as habilidades e exames topik. Acceda de xeito gratuíto os recursos de aprendizaxe premium e alcanzan o teu idioma e os obxectivos informáticos hoxe.",
-    "connectWithUs": "Conéctate con Vievlog nas redes sociais",
+    "vieTopik": "Vievlog - O Top 1 It Learning Hub",
+    "yourOneStopShop": "A súa plataforma única para dominar as habilidades informáticas e prepararse para os exames de certificación. Acceda a contido premium sen custo.",
+    "connectWithUs": "Siga Vievlog nas redes sociais",
     "socialMedia": {
-      "facebook": "Vievlog facebook",
-      "twitter": "Vievlog Twitter",
-      "instagram": "Vievlog Instagram",
-      "linkedin": "Vievlog LinkedIn"
+      "facebook": "Síguenos en Facebook",
+      "twitter": "Síguenos en Twitter",
+      "instagram": "Síguenos en Instagram",
+      "linkedin": "Conéctate connosco en LinkedIn"
     },
     "company": {
-      "aboutUs": "Sobre Vievlog",
-      "careers": "Carreiras en Vievlog",
-      "blog": "Blog Vievlog: consellos e noticias",
-      "contact": "Contacte con Vievlog"
+      "aboutUs": "Sobre nós",
+      "careers": "Carreiras",
+      "blog": "Blog Tech - Noticias e consellos",
+      "contact": "Póñase en contacto connosco"
     },
     "support": {
-      "helpCenter": "VIEVLOG CENTRO DE AXUDA",
-      "faq": "Preguntas frecuentes",
+      "helpCenter": "Centro de axuda",
+      "faq": "FAQ - Preguntas frecuentes",
       "privacyPolicy": "Política de privacidade",
       "termsOfService": "Termos de servizo"
     },
@@ -86,8 +89,8 @@
       "copyright": "© 2025 Vievlog. Todos os dereitos reservados."
     },
     "metadata": {
-      "lesson": "Navega as nosas últimas leccións de TI gratuítas e atopa o curso perfecto para o teu nivel de habilidade.",
-      "grammar": "Explora os nosos diagramas e tutoriais detallados de TI."
+      "lesson": "Explora as nosas leccións gratuítas e elixe o curso perfecto para coincidir co teu nivel de habilidade.",
+      "grammar": "Descubre tutoriais e diagramas detallados de tecnoloxía."
     }
   }
 }

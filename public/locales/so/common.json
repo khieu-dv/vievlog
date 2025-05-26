@@ -1,84 +1,87 @@
 {
   "header": {
     "utils": {
-      "login": "Soo gal Vievlog",
+      "login": "Gal Goobta Vevlog",
       "logout": "Ka bax Vavlog",
       "inquiry": "La xiriir Taageerada Vevlog",
-      "manager": "Maareeyaha Xisaabaadka",
-      "topikSchedule": "Jadwalka Vevlog - waa dhacdooyinka barashada"
+      "manager": "Xisaabtayda",
+      "topikSchedule": "Jadwalka Vevlog - soo socda dhacdooyinka barashada"
     }
   },
   "body": {
     "utils": {
-      "loading": "Loading casharro ...",
-      "notFound": "Casharro lama helin qaybtaan.",
-      "inquiry": "La xiriir Taageerada Vevlog",
-      "manager": "Maareeyaha Xisaabaadka"
+      "loading": "Loading casharradaada IT-ga ...",
+      "notFound": "Casharro lama heli karo qaybtaan.",
+      "inquiry": "Ma u baahan tahay caawimaad? La xiriir Taageerada Vevlog",
+      "manager": "Maaree koontadaada"
     }
   },
   "content": {
-    "title": "Vevlog - waxay ku baro khadka tooska ah ee bilaashka ah | Waa koorsooyin iyo imtixaanno",
-    "home": "Guriga - Vevlog",
+    "title": "Vevlog - bilaash ah khadka tooska ah ee internetka ee internetka | Koorsooyin, Kheyraadka & Shahaadada",
+    "home": "Guri",
+    "posts": "Dhagis",
+    "chats": "Ilxidsho",
+    "videos": "Rikaanolo",
     "topiks": "Waxay baranaysaa mowduucyada",
     "courses": "Free koorsooyinka",
-    "grammar": "Naxwaha naxwaha",
-    "game": "Ciyaaraha barashada",
+    "grammar": "Casharada Tech naxwaha",
+    "game": "Ciyaaraha Waxbarashada",
     "features": "Astaamaha dhismaha",
-    "logIn": "Gal Goobta Vevlog",
+    "logIn": "Gal koontadaada",
     "signUp": "Iska qor koorsooyinka",
-    "toggleTheme": "Toggle nalka / mugdiga madow",
-    "newCollection": "Aruurinta koorsada ee cusub ee la heli karo",
-    "oneStopPlatform": "Vievlog - Ultimain-kaaga oo bilaash ah",
-    "startLearningNow": "Bilow barashada oo u diyaarso imtixaanka Topik",
-    "whyChooseVieVlog": "Maxaad u doorataa Vievlog ee waxbarashada?",
-    "freeAccess": "100% Bilaashka ah Helitaanka Barashada",
-    "learnIT": "Helitaan tayo sare leh oo casharro ah, casharro, iyo ilo ka socda macallimiinta khubarada oo aan qiimo lahayn.",
-    "expertInstructors": "Khibrad u leh IT-yada",
-    "learnFromExperts": "Ka baro dadka ku hadla dadka ku hadla iyo xirfadlayaal khibrad leh.",
-    "anytimeAnywhere": "Waqti kasta ha baro, meel kasta",
-    "learnAtYourOwnPace": "Ku barto xawaarahaaga adiga oo leh marin aan xadidneyn oo dhammaan casharada oo dhan.",
-    "comprehensiveCurriculum": "Dhameystiran manhajka waa manhajka",
-    "coverAllAspects": "Koorsooyinka ku daboolaysa aasaaska mowduucyada horumarsan, oo ay ku jiraan naxwaha, ereyada, iyo ku celcelinta wadahadalka.",
-    "viewAllIT": "Eeg dhammaan Vevlog IT-ga IT-ga iyo koorsooyinka",
-    "featuredCourses": "Waxaa soo saaray koorsooyin",
-    "beginnerIT": "Bilowga Koorsada",
+    "toggleTheme": "Sawir FARSAMO / MARKA MARKA",
+    "newCollection": "Sahaminta ururinta koorsada ee cusub",
+    "oneStopPlatform": "Vasevlog - oo dhan-gebi ahaanba waa goob-waxbarid",
+    "startLearningNow": "Bilow barashada oo u diyaar garow imtixaannada maanta",
+    "whyChooseVieVlog": "Waa maxay sababta ay u bartay Vevlog?",
+    "freeAccess": "Gebi ahaanba helitaan bilaash ah",
+    "learnIT": "Ku raaxayso tayada sare ee tayada, casharrada, iyo ilaha laga helo macallimiin khibrad leh-gebi ahaanba bilaash ah.",
+    "expertInstructors": "Ka baro khubarada warshadaha",
+    "learnFromExperts": "Waxaa lagu bartaa xirfadlayaal iyo barayaal.",
+    "anytimeAnywhere": "Barashada dabacsan ee dabacsan wakhti kasta, meel kasta",
+    "learnAtYourOwnPace": "Wax ka baro xawaarahaaga siinta casharka aan xadidneyn.",
+    "comprehensiveCurriculum": "Manhajka buuxa ee manhajka",
+    "coverAllAspects": "Waxay ka kooban tahay aasaaska si ay u horumariyaan fikradaha ay ka mid yihiin doomaha, nidaamyada, isku xirnaanta, iyo inbadan.",
+    "viewAllIT": "Baadh dhammaan koorsooyinka Vevlog iyo imtixaannada ku celcelinta",
+    "featuredCourses": "Waxaa lagu soo bandhigay barnaamijyo",
+    "beginnerIT": "Koorso bilowga ah",
     "intermediateIT": "Koorsada Dhexe",
-    "advancedIT": "Koorsada horteeda",
-    "getStartedForFree": "Ku bilow inaad casharro bilaash ah oo bilaash ah",
-    "whatOurLearnersSay": "Waxa ay bartayaashu ka sheegaan Vevlog",
+    "advancedIT": "Horumarsan ayey u sarreysay",
+    "getStartedForFree": "Bilow barashada maanta bilaash ah",
+    "whatOurLearnersSay": "Waa maxay bartayaashu ku saabsan yihiin Vevlog",
     "testimonial1": {
-      "quote": "Vievlog wuxuu iga caawiyay si guul leh u diyaargaroobida imtixaankayga IT-ga.",
+      "quote": "Vievlog wuxuu iga caawiyay kalsoonida si aan uga gudbo imtixaankayga caddeynta.",
       "name": "Nguyen MinH anh",
       "role": "Arday Caalamiga ah"
     },
     "testimonial2": {
-      "quote": "Barashada Vevlog waligeed ma fududaan oo xiiso badan!",
+      "quote": "Barashada Vevlog waa mid wax ku ool ah oo raaxo leh!",
       "name": "Tran Hai nam",
-      "role": "Shaqaale xafiis"
+      "role": "Xirfadlaha xafiiska"
     },
     "testimonial3": {
-      "quote": "Thanks to Viaevlog, waxaan si weyn u wanaajiyey xirfadahayga IT-ga.",
+      "quote": "Thanks to Viaevlog, waxaan si weyn u wanaajiyey xirfadahayga barnaamijkeyga.",
       "name": "Le egh hong",
       "role": "Arday Jaamacadda"
     },
-    "vieTopik": "Vievlog - Top 1 waa goob waxbarid",
-    "yourOneStopShop": "Maskaxdaada hal-joog ah ee lagu garto xirfadaha IT-ga iyo topik imtixaannada. Helitaanka Kheyraadka Daraasadda Lacagta ee Lacagta bilaashka ah oo la gaaro luuqadaada iyo yoolalka maanta!",
-    "connectWithUs": "Ku xir Vievlog ee warbaahinta bulshada",
+    "vieTopik": "Vevlog - The Top 1 IT-ga ee barashada",
+    "yourOneStopShop": "Maskaxdaada hal-joogsi ah si aad u maamusho xirfadaha oo u diyaargarowga imtixaannada shahaadada. Hel marin u hel waxyaabaha lacagta joogtada ah ee aan kharash lahayn!",
+    "connectWithUs": "Raac Vievlog warbaahinta bulshada",
     "socialMedia": {
-      "facebook": "Vevlog facebook",
-      "twitter": "Vevlog Twitter",
-      "instagram": "Vasevlog Instagram",
-      "linkedin": "Vevlog LinkedIn"
+      "facebook": "Nala soco facebook",
+      "twitter": "Nala soco twitter",
+      "instagram": "Nala soco barta Instagram",
+      "linkedin": "Nala xiriir annaga oo ku saabsan LinkedIn"
     },
     "company": {
-      "aboutUs": "Ku saabsan Vevlog",
-      "careers": "Xirfadaha ee Vavlog",
-      "blog": "Vevlog Blog - Waxay Talooyin Talooyin & Warar",
-      "contact": "La xiriir Vevlog"
+      "aboutUs": "Naga ku saabsan",
+      "careers": "Xirfadaha",
+      "blog": "Tech Blog Blog - News & Tilmaamaha",
+      "contact": "Nala soo xiriir"
     },
     "support": {
-      "helpCenter": "Vevlog Center Center",
-      "faq": "Su'aalaha badanaa la isweydiiyo",
+      "helpCenter": "Xarunta caawinta",
+      "faq": "Su'aalaha Faq - Su'aalaha Inta badan la Isweydiiyo",
       "privacyPolicy": "Qaanuunka Arrimaha Khaaska ah",
       "termsOfService": "Shuruudaha Adeegga"
     },
@@ -86,8 +89,8 @@
       "copyright": "© 2025 Vevlog. Dhamaan xuquuqaha ayaa ilaaliya."
     },
     "metadata": {
-      "lesson": "Ka raadi wixii ugu dambeeyay ee casharada oo bilaash ah oo hel koorsada saxda ah ee heerkaaga xirfadeed.",
-      "grammar": "Baadhitaan jaantusyadayada oo faahfaahsan iyo casharrada."
+      "lesson": "Baadh casharadayaga bilaashka ah oo dooro koorsada saxda ah si aad ugu dhigto heerka xirfaddaada.",
+      "grammar": "Soo hel tilmaamo farsamo oo faahfaahsan iyo jaantusyo."
     }
   }
 }

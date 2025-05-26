@@ -1,84 +1,87 @@
 {
   "header": {
     "utils": {
-      "login": "Jelentkezzen be a Vievlog -ba",
-      "logout": "Jelentkezés a vievlog -ból",
+      "login": "Jelentkezzen be a vievlogba",
+      "logout": "Jelentkezzen ki a vievlogból",
       "inquiry": "Vegye fel a kapcsolatot a VIEVLOG támogatásával",
-      "manager": "Ügyvezető",
-      "topikSchedule": "Vievlog ütemterv - IT tanulási események"
+      "manager": "Számlám",
+      "topikSchedule": "VIEVLOG ütemterve - A közelgő IT tanulási események"
     }
   },
   "body": {
     "utils": {
-      "loading": "Töltse be a leckéket ...",
-      "notFound": "Nincs ebbe a kategóriába tartozó tanulság.",
-      "inquiry": "Vegye fel a kapcsolatot a VIEVLOG támogatásával",
-      "manager": "Ügyvezető"
+      "loading": "Az informatikai órák betöltése ...",
+      "notFound": "Ebben a kategóriában nem érhető el tanulságok.",
+      "inquiry": "Segítségre van szüksége? Vegye fel a kapcsolatot a VIEVLOG támogatásával",
+      "manager": "Kezelje fiókját"
     }
   },
   "content": {
-    "title": "Vievlog - Tanulja meg online ingyen | Tanfolyamok és vizsgák",
-    "home": "Otthon - Vievlog",
+    "title": "Vievlog - Ingyenes online informatikai tanulás | Tanfolyamok, erőforrások és tanúsítás",
+    "home": "Otthon",
+    "posts": "Poszt",
+    "chats": "Csevegés",
+    "videos": "Videó",
     "topiks": "IT tanulási témák",
     "courses": "Ingyenes IT tanfolyamok",
-    "grammar": "Ez nyelvtani leckék",
-    "game": "Tanulási játékok",
+    "grammar": "Technikai nyelvtani órák",
+    "game": "Oktatási játékok",
     "features": "Platformfunkciók",
-    "logIn": "Jelentkezzen be a vievlogba",
+    "logIn": "Jelentkezzen be fiókjába",
     "signUp": "Iratkozzon fel ingyen IT tanfolyamokra",
-    "toggleTheme": "Váltás világos/sötét téma",
-    "newCollection": "Új informatikai kurzus gyűjtemény elérhető",
-    "oneStopPlatform": "Vievlog - a végső ingyenes IT tanulási platformod",
-    "startLearningNow": "Kezdje el tanulni és készüljön fel a Topik vizsgara",
-    "whyChooseVieVlog": "Miért válassza a Vievlog lehetőséget az informatikai tanuláshoz?",
-    "freeAccess": "100% -ban ingyenes IT tanulási hozzáférés",
-    "learnIT": "Hozzáférjen a kiváló minőségű informatikai órákhoz, oktatóanyagokhoz és forrásokhoz a szakértői oktatóktól.",
-    "expertInstructors": "Szakértő IT -oktatók",
-    "learnFromExperts": "Tanulja meg az anyanyelvűektől és a tapasztalt szakemberektől.",
-    "anytimeAnywhere": "Tudja meg bármikor, bárhol",
-    "learnAtYourOwnPace": "Tanulmányozza saját tempójában, korlátlan hozzáféréssel az összes órához.",
-    "comprehensiveCurriculum": "Átfogó informatikai tanterv",
-    "coverAllAspects": "Az IT alapjait a fejlett témákra, beleértve a nyelvtant, a szókincset és a beszélgetési gyakorlatot, az alapokat.",
-    "viewAllIT": "Tekintse meg az összes Vievlog IT tesztet és tanfolyamot",
-    "featuredCourses": "Kiemelt tanfolyamok",
-    "beginnerIT": "Kezdő tanfolyam",
+    "toggleTheme": "Kapcsolja a világos/sötét módot",
+    "newCollection": "Fedezze fel az új informatikai kurzusgyűjteményünket",
+    "oneStopPlatform": "VIEVLOG-ALLAL-egy IT-tanulási platformod",
+    "startLearningNow": "Kezdje el tanulni, és készüljön fel a vizsgákra ma",
+    "whyChooseVieVlog": "Miért tanulja meg a Vievlog segítségével?",
+    "freeAccess": "Teljesen ingyenes hozzáférés",
+    "learnIT": "Élvezze a kiváló minőségű oktatóanyagokat, tanulságokat és a tapasztalt oktatók forrásait-teljesen ingyenes.",
+    "expertInstructors": "Tanuljon az iparági szakértőktől",
+    "learnFromExperts": "Tanítsd meg a tapasztalt informatikai szakemberek és oktatók.",
+    "anytimeAnywhere": "Rugalmas tanulás bármikor, bárhol",
+    "learnAtYourOwnPace": "Tanuljon meg saját tempóját korlátlan lecke hozzáféréssel.",
+    "comprehensiveCurriculum": "Teljes verem IT tanterv",
+    "coverAllAspects": "Fedezi az alapvető és fejlett informatikai koncepciókat, beleértve a kódolást, a rendszereket, a hálózatépítést és egyebeket.",
+    "viewAllIT": "Böngésszen az összes VIEVLOG kurzusra és a gyakorlati tesztekre",
+    "featuredCourses": "Kiemelt informatikai programok",
+    "beginnerIT": "Kezdeti szintű informatikai tanfolyam",
     "intermediateIT": "Köztes IT -tanfolyam",
-    "advancedIT": "Fejlett informatikai tanfolyam",
-    "getStartedForFree": "Kezdje el ma az ingyenes IT órákkal",
+    "advancedIT": "Advanced It Mastery",
+    "getStartedForFree": "Kezdje el ma ingyen tanulni",
     "whatOurLearnersSay": "Amit a tanulók mondanak a vievlogról",
     "testimonial1": {
-      "quote": "Vievlog segített nekem sikeresen felkészülni az informatikai vizsgára.",
+      "quote": "A Vievlog magabiztosan segített nekem átadni az informatikai tanúsítási vizsgaomat.",
       "name": "Nguyen Minh anh",
       "role": "Nemzetközi hallgató"
     },
     "testimonial2": {
-      "quote": "A Vievlog segítségével való megtanulása még soha nem volt könnyebb és szórakoztatóbb!",
+      "quote": "A Vievlogon keresztül történő megtanulás hatékony és élvezetes!",
       "name": "Tran hai nam",
-      "role": "Irodai munkás"
+      "role": "Irodai szakember"
     },
     "testimonial3": {
-      "quote": "A Vievlognak köszönhetően jelentősen javítottam az informatikai képességeimet.",
+      "quote": "A Vievlognak köszönhetően jelentősen javítottam a programozási képességeimet.",
       "name": "Le Thanh Huong",
       "role": "Egyetemi hallgató"
     },
-    "vieTopik": "Vievlog - top 1 IT tanulási platform",
-    "yourOneStopShop": "Az egyablakos platform az informatikai készségek elsajátításához és a Topik vizsgákhoz. Hozzáférjen a prémium tanulási erőforrásokhoz ingyen, és érje el a nyelvét és az informatikai célokat ma!",
-    "connectWithUs": "Lépjen kapcsolatba a Vievlog -val a közösségi médiában",
+    "vieTopik": "Vievlog - az első 1 IT tanulási csomópont",
+    "yourOneStopShop": "Az egyablakos platform az informatikai készségek elsajátításához és a tanúsítási vizsgákra való felkészüléshez. Hozzáférést kap a prémium tartalomhoz költség nélkül!",
+    "connectWithUs": "Kövesse a Vievlog -ot a közösségi médiában",
     "socialMedia": {
-      "facebook": "Vievlog facebook",
-      "twitter": "Vievlog Twitter",
-      "instagram": "Vievlog Instagram",
-      "linkedin": "Vievlog LinkedIn"
+      "facebook": "Kövessen minket a Facebookon",
+      "twitter": "Kövessen minket a Twitteren",
+      "instagram": "Kövessen minket az Instagram -on",
+      "linkedin": "Lépjen kapcsolatba velünk a LinkedIn -en"
     },
     "company": {
-      "aboutUs": "A vievlogról",
-      "careers": "Karrier a vievlog -ban",
-      "blog": "Vievlog Blog - Tippek és hírek",
-      "contact": "Vegye fel a kapcsolatot a Vievlog -nal"
+      "aboutUs": "Rólunk",
+      "careers": "Karrier",
+      "blog": "Tech Blog - Hírek és tippek",
+      "contact": "Vegye fel velünk a kapcsolatot"
     },
     "support": {
-      "helpCenter": "Vievlog súgó központ",
-      "faq": "Gyakran feltett kérdéseket",
+      "helpCenter": "Súgó központ",
+      "faq": "GYIK - gyakran feltett kérdések",
       "privacyPolicy": "Adatvédelmi irányelv",
       "termsOfService": "Szolgáltatási feltételek"
     },
@@ -86,8 +89,8 @@
       "copyright": "© 2025 Vievlog. Minden jog fenntartva."
     },
     "metadata": {
-      "lesson": "Keresse meg a legújabb ingyenes IT óráinkat, és keresse meg a tökéletes tanfolyamot a készségszinthez.",
-      "grammar": "Fedezze fel a részletes IT -diagramjainkat és az oktatóanyagokat."
+      "lesson": "Fedezze fel ingyenes óráinkat, és válassza ki a tökéletes tanfolyamot, hogy megfeleljen a képzettségi szintnek.",
+      "grammar": "Fedezze fel a részletes technológiai oktatóanyagokat és diagramokat."
     }
   }
 }

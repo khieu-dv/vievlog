@@ -1,84 +1,87 @@
 {
   "header": {
     "utils": {
-      "login": "Přihlaste se do vievlog",
-      "logout": "Odhlášení z Vievlog",
+      "login": "Přihlaste se do Vievlog",
+      "logout": "Odhlaste se z vievlog",
       "inquiry": "Kontaktujte podporu Vievlog",
-      "manager": "Správce účtů",
-      "topikSchedule": "Plán vievlogů - Učení se učí"
+      "manager": "Můj účet",
+      "topikSchedule": "Plán vievlogů - nadcházející události IT učení"
     }
   },
   "body": {
     "utils": {
-      "loading": "Načítání lekcí ...",
-      "notFound": "Žádné lekce v této kategorii.",
-      "inquiry": "Kontaktujte podporu Vievlog",
-      "manager": "Správce účtů"
+      "loading": "Načítání vašich lekcí IT ...",
+      "notFound": "V této kategorii nejsou k dispozici žádné lekce.",
+      "inquiry": "Potřebujete pomoc? Kontaktujte podporu Vievlog",
+      "manager": "Spravujte svůj účet"
     }
   },
   "content": {
-    "title": "Vievlog - Naučte se to online zdarma | IT kurzy a zkoušky",
-    "home": "Domů - Vievlog",
+    "title": "Vievlog - zdarma online učení | Kurzy, zdroje a certifikace",
+    "home": "Domov",
+    "posts": "Příspěvky",
+    "chats": "Chats",
+    "videos": "Videa",
     "topiks": "To učící se témata",
     "courses": "Zdarma to kurzy",
-    "grammar": "Lekce gramatiky",
-    "game": "Učení her",
+    "grammar": "Lekce technické gramatiky",
+    "game": "Vzdělávací hry",
     "features": "Funkce platformy",
-    "logIn": "Přihlaste se do vievlog",
+    "logIn": "Přihlaste se ke svému účtu",
     "signUp": "Zaregistrujte se zdarma IT kurzy",
-    "toggleTheme": "Přepínač světla/tmavé téma",
-    "newCollection": "Nová kolekce kurzu IT je k dispozici",
-    "oneStopPlatform": "Vievlog - vaše konečná platforma pro výuku IT zdarma",
-    "startLearningNow": "Začněte se to učit a připravit se na zkoušku Topik",
-    "whyChooseVieVlog": "Proč si vybrat Vievlog pro to učení?",
-    "freeAccess": "100% zdarma IT učení přístup",
-    "learnIT": "Přístup k vysoce kvalitním lekcím IT, výuky a zdrojů od odborných instruktorů bez nákladů.",
-    "expertInstructors": "Instruktoři odborníků",
-    "learnFromExperts": "Naučte se to od rodilých mluvčích a zkušených odborníků.",
-    "anytimeAnywhere": "Naučte se to kdykoli a kdekoli",
-    "learnAtYourOwnPace": "Studujte to svým vlastním tempem s neomezeným přístupem ke všem lekcím.",
-    "comprehensiveCurriculum": "Komplexní IT kurikulum",
-    "coverAllAspects": "Kurzy pokrývající IT základy pro pokročilá témata, včetně gramatiky, slovní zásoby a konverzace.",
-    "viewAllIT": "Zobrazit všechny testy a kurzy vievlog",
-    "featuredCourses": "Představoval to kurzy",
-    "beginnerIT": "IT kurz pro začátečníky",
+    "toggleTheme": "Režim přepínače/tma",
+    "newCollection": "Prozkoumejte naši novou sbírku kurzu IT",
+    "oneStopPlatform": "Vievlog-vaše all-in-one it učení platforma",
+    "startLearningNow": "Začněte se to učit a připravit se na zkoušky ještě dnes",
+    "whyChooseVieVlog": "Proč se to učit s Vievlogem?",
+    "freeAccess": "Zcela volný přístup",
+    "learnIT": "Užijte si nejvyšší kvalitní výuky IT, lekce a zdroje od zkušených instruktorů-bezplatně zdarma.",
+    "expertInstructors": "Učte se od odborníků v oboru",
+    "learnFromExperts": "Učejte se zkušenými IT profesionály a pedagogy.",
+    "anytimeAnywhere": "Flexibilní učení kdykoli, kdekoli",
+    "learnAtYourOwnPace": "Naučte se vlastním tempem s neomezeným přístupem lekce.",
+    "comprehensiveCurriculum": "Plně sestavte IT kurikulum",
+    "coverAllAspects": "Zahrnuje základní koncepty IT, včetně kódování, systémů, sítě a dalších.",
+    "viewAllIT": "Procházejte všechny kurzy vievlog a praxe",
+    "featuredCourses": "Představoval IT programy",
+    "beginnerIT": "Kurz na úrovni začátečníků",
     "intermediateIT": "Mezilehlý kurz",
-    "advancedIT": "Pokročilý kurz",
-    "getStartedForFree": "Začněte s lekcemi zdarma",
-    "whatOurLearnersSay": "Co říkají naši žáci o Vievlog",
+    "advancedIT": "Pokročilé to mistrovství",
+    "getStartedForFree": "Začněte se dnes učit zdarma",
+    "whatOurLearnersSay": "Co studenti říkají o Vievlog",
     "testimonial1": {
-      "quote": "Vievlog mi pomohl úspěšně připravit se na moji IT zkoušku.",
+      "quote": "Vievlog mi pomohl s jistotou složit svou certifikační zkoušku IT.",
       "name": "Nguyen minh anh",
       "role": "Mezinárodní student"
     },
     "testimonial2": {
-      "quote": "Naučit se s Vievlogem nebylo nikdy jednodušší a zábavnější!",
+      "quote": "Naučit se to prostřednictvím Vievlog je efektivní a příjemné!",
       "name": "Tran Hai Nam",
-      "role": "Kancelářský pracovník"
+      "role": "Kancelářský profesionál"
     },
     "testimonial3": {
-      "quote": "Díky Vievlogu jsem výrazně zlepšil své IT dovednosti.",
+      "quote": "Díky Vievlogu jsem výrazně zlepšil své programovací dovednosti.",
       "name": "Le Thanh Huong",
       "role": "Univerzitní student"
     },
-    "vieTopik": "Vievlog - Top 1 IT Learning Platform",
-    "yourOneStopShop": "Vaše jednorázová platforma pro zvládnutí IT dovedností a topiků. Přístup k prémiovým vzdělávacím zdrojům zdarma a osvobozením vašeho jazyka a cílů IT dnes!",
-    "connectWithUs": "Spojte se s Vievlogem na sociálních médiích",
+    "vieTopik": "Vievlog - Top 1 It Learning Hub",
+    "yourOneStopShop": "Vaše jednorázová platforma pro zvládnutí IT dovedností a přípravy na certifikační zkoušky. Získejte přístup k prémiovému obsahu bez nákladů!",
+    "connectWithUs": "Sledujte Vievlog na sociálních médiích",
     "socialMedia": {
-      "facebook": "Vievlog Facebook",
-      "twitter": "Vievlog Twitter",
-      "instagram": "Vievlog Instagram",
-      "linkedin": "Vievlog LinkedIn"
+      "facebook": "Sledujte nás na Facebooku",
+      "twitter": "Sledujte nás na Twitteru",
+      "instagram": "Sledujte nás na Instagramu",
+      "linkedin": "Spojte se s námi na LinkedIn"
     },
     "company": {
-      "aboutUs": "O Vievlog",
-      "careers": "Kariéra na Vievlog",
-      "blog": "Blog Vievlog - IT tipy a novinky",
-      "contact": "Kontaktujte Vievlog"
+      "aboutUs": "O nás",
+      "careers": "Kariéra",
+      "blog": "Tech Blog - novinky a tipy",
+      "contact": "Kontaktujte nás"
     },
     "support": {
-      "helpCenter": "Centrum nápovědy Vievlog",
-      "faq": "Často kladené otázky",
+      "helpCenter": "Centrum nápovědy",
+      "faq": "FAQ - Často kladené otázky",
       "privacyPolicy": "Zásady ochrany osobních údajů",
       "termsOfService": "Podmínky služby"
     },
@@ -86,8 +89,8 @@
       "copyright": "© 2025 Vievlog. Všechna práva vyhrazena."
     },
     "metadata": {
-      "lesson": "Procházejte naše nejnovější lekce zdarma IT a najděte perfektní kurz pro vaši úroveň dovedností.",
-      "grammar": "Prozkoumejte naše podrobné diagramy a návody IT."
+      "lesson": "Prozkoumejte naše bezplatné lekce a vyberte perfektní kurz, který odpovídá úrovni vaší dovednosti.",
+      "grammar": "Objevte podrobné technické návody a diagramy."
     }
   }
 }

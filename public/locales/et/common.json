@@ -1,84 +1,87 @@
 {
   "header": {
     "utils": {
-      "login": "Logige sisse vievlogi",
-      "logout": "Väljalogi Vievlogist",
+      "login": "Logige sisse Vievlogi",
+      "logout": "Logi Vievlogist välja",
       "inquiry": "Võtke ühendust Vievlogi tugi",
-      "manager": "Kontohaldur",
-      "topikSchedule": "Vievlogi ajakava - see õpivad sündmusi"
+      "manager": "Minu konto",
+      "topikSchedule": "Vievlogi ajakava - eelseisvad IT -õppimisüritused"
     }
   },
   "body": {
     "utils": {
-      "loading": "IT -õppetundide laadimine ...",
+      "loading": "Oma IT -õppetundide laadimine ...",
       "notFound": "Selles kategoorias pole õppetunde.",
-      "inquiry": "Võtke ühendust Vievlogi tugi",
-      "manager": "Kontohaldur"
+      "inquiry": "Kas vajate abi? Võtke ühendust Vievlogi tugi",
+      "manager": "Halda oma kontot"
     }
   },
   "content": {
-    "title": "Vievlog - õppige seda tasuta veebis | IT kursused ja eksamid",
-    "home": "Kodu - Vievlog",
+    "title": "Vievlog - tasuta veebis õppimine | Kursused, ressursid ja sertifitseerimine",
+    "home": "Kodu",
+    "posts": "Postitused",
+    "chats": "Vestlus",
+    "videos": "Videod",
     "topiks": "See õppivad teemad",
     "courses": "Tasuta IT -kursused",
-    "grammar": "See grammatikatunnid",
-    "game": "Õppimismängud",
+    "grammar": "Tehniliste grammatikatunnid",
+    "game": "Haridusmängud",
     "features": "Platvormi funktsioonid",
-    "logIn": "Logige sisse Vievlogi",
+    "logIn": "Logige oma kontole sisse",
     "signUp": "Registreeruge tasuta IT -kursuste jaoks",
-    "toggleTheme": "Lülitage hele/tume teema",
-    "newCollection": "Saadaval uus IT -kursuste kollektsioon",
-    "oneStopPlatform": "Vievlog - teie ülim tasuta IT -õppeplatvorm",
-    "startLearningNow": "Alustage selle õppimist ja valmistuge topi eksamiks",
-    "whyChooseVieVlog": "Miks valida selle õppimiseks Vievlog?",
-    "freeAccess": "100% tasuta It õppimine juurdepääs",
-    "learnIT": "Juurdepääs kvaliteetsetele IT-õppetundidele, õpetustele ja ressurssidele ekspertide juhendajatelt tasuta.",
-    "expertInstructors": "Asjatundlikud IT -juhendajad",
-    "learnFromExperts": "Õppige seda emakeelena kõnelejatelt ja kogenud spetsialistidelt.",
-    "anytimeAnywhere": "Õppige seda igal ajal ja igal pool",
-    "learnAtYourOwnPace": "Uurige seda oma tempos piiramatu juurdepääsuga kõigile tundidele.",
-    "comprehensiveCurriculum": "Põhjalik IT -õppekava",
-    "coverAllAspects": "Kursused, mis hõlmavad seda edasijõudnutele teemadele, sealhulgas grammatika, sõnavara ja vestluspraktika.",
-    "viewAllIT": "Vaadake kõiki vievlog IT -teste ja kursusi",
-    "featuredCourses": "Esitletud IT -kursused",
-    "beginnerIT": "Algaja IT -kursus",
+    "toggleTheme": "Lülitage kerge/tume režiim",
+    "newCollection": "Avastage meie uut IT -kursuste kollektsiooni",
+    "oneStopPlatform": "Vievlog-teie kõik-ühes IT-õppimisplatvorm",
+    "startLearningNow": "Alustage seda õppima ja valmistuge eksamiteks juba täna",
+    "whyChooseVieVlog": "Miks õppida seda koos Vievlogiga?",
+    "freeAccess": "Täiesti tasuta juurdepääs",
+    "learnIT": "Nautige kogenud juhendajate tippkvaliteediga IT-õpetusi, õppetunde ja ressursse-tasuta.",
+    "expertInstructors": "Õppige tööstuse ekspertidelt",
+    "learnFromExperts": "Saage kogenud IT -spetsialistid ja koolitajad.",
+    "anytimeAnywhere": "Paindlik õppimine igal ajal ja igal pool",
+    "learnAtYourOwnPace": "Õppige oma tempos piiramatu tunniga juurdepääsuga.",
+    "comprehensiveCurriculum": "Täispuld IT-õppekava",
+    "coverAllAspects": "Kaaned täiustatud IT -kontseptsioonidele, sealhulgas kodeerimine, süsteemid, võrgustike loomine ja palju muud.",
+    "viewAllIT": "Sirvige kõiki Vievlogi kursusi ja harjutamise teste",
+    "featuredCourses": "Esiletõstetud IT -programmid",
+    "beginnerIT": "Algaja tasemel IT-kursus",
     "intermediateIT": "Vahepealne IT -kursus",
-    "advancedIT": "Edasi arenenud kursus",
-    "getStartedForFree": "Alustage täna tasuta IT -tundidega",
-    "whatOurLearnersSay": "Mida meie õppijad Vievlogi kohta ütlevad",
+    "advancedIT": "Arenenud see meisterlikkus",
+    "getStartedForFree": "Alustage täna tasuta õppimist",
+    "whatOurLearnersSay": "Mida õppijad Vievlogi kohta ütlevad",
     "testimonial1": {
-      "quote": "Vievlog aitas mul edukalt valmistuda oma IT -eksamiks.",
+      "quote": "Vievlog aitas mul enesekindlalt sooritada oma IT -sertifitseerimise eksami.",
       "name": "Nguyen Minh anh",
       "role": "Rahvusvaheline tudeng"
     },
     "testimonial2": {
-      "quote": "Sellega Vievlogi õppimine pole kunagi olnud lihtsam ja lõbusam!",
+      "quote": "Selle kaudu Vievlogi kaudu õppimine on nii tõhus kui ka nauditav!",
       "name": "Tran Hai Nam",
       "role": "Kontoritöötaja"
     },
     "testimonial3": {
-      "quote": "Tänu Vievlogile parandasin oma IT -oskusi märkimisväärselt.",
+      "quote": "Tänu Vievlogile olen oma programmeerimisoskusi märkimisväärselt parandanud.",
       "name": "Le Thanh Huong",
       "role": "Ülikooli tudeng"
     },
-    "vieTopik": "Vievlog - 1 parima IT -õppeplatvorm",
-    "yourOneStopShop": "Teie One-Stop platvorm IT-oskuste ja Topiku eksamite valdamiseks. Juurdepääs tasuta õppimisressurssidele ja jõuge oma keele ja IT -eesmärkide saavutamiseks täna!",
-    "connectWithUs": "Võtke sotsiaalmeedias ühendust Vievlogiga",
+    "vieTopik": "Vievlog - parim IT õppija keskus",
+    "yourOneStopShop": "Teie One-Stop platvorm IT-oskuste omandamiseks ja sertifitseerimise eksamiteks valmistumiseks. Saate tasuta juurdepääsu esmaklassilisele sisule tasuta!",
+    "connectWithUs": "Jälgige sotsiaalmeedias Vievlogi",
     "socialMedia": {
-      "facebook": "Vievlog Facebook",
-      "twitter": "Vievlog twitter",
-      "instagram": "Vievlog Instagram",
-      "linkedin": "Vievlog LinkedIn"
+      "facebook": "Jälgi meid Facebookis",
+      "twitter": "Jälgi meid Twitteris",
+      "instagram": "Jälgi meid Instagramis",
+      "linkedin": "Võtke meiega ühendust LinkedInis"
     },
     "company": {
-      "aboutUs": "Vievlogi kohta",
-      "careers": "Karjäär Vievlogis",
-      "blog": "Vievlogi ajaveeb - see näpunäited ja uudised",
-      "contact": "Võtke ühendust Vievlogiga"
+      "aboutUs": "Meist",
+      "careers": "Karjäär",
+      "blog": "Tehnikablogi - uudised ja näpunäited",
+      "contact": "Võtke meiega ühendust"
     },
     "support": {
-      "helpCenter": "Vievlogi abikeskus",
-      "faq": "Korduma kippuvad küsimused",
+      "helpCenter": "Abikeskus",
+      "faq": "KKK - korduma kippuvad küsimused",
       "privacyPolicy": "Privaatsuspoliitika",
       "termsOfService": "Teenuse tingimused"
     },
@@ -86,8 +89,8 @@
       "copyright": "© 2025 VIEVLOG. Kõik õigused kaitstud."
     },
     "metadata": {
-      "lesson": "Sirvige meie uusimaid tasuta IT -õppetunde ja leidke oma oskuste tasemele ideaalne kursus.",
-      "grammar": "Uurige meie üksikasjalikke IT -diagramme ja õpetusi."
+      "lesson": "Uurige meie tasuta õppetunde ja valige ideaalne kursus, mis vastaks teie oskuste tasemele.",
+      "grammar": "Avastage üksikasjalikud tehnikaõpetused ja diagrammid."
     }
   }
 }

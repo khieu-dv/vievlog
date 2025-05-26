@@ -2,83 +2,86 @@
   "header": {
     "utils": {
       "login": "Conectați -vă la VievLog",
-      "logout": "Deconectare de la VievLog",
+      "logout": "Deconectați -vă de Vievlog",
       "inquiry": "Contactați asistența VievLog",
-      "manager": "Manager Conturi",
-      "topikSchedule": "Programul VievLog - Evenimente de învățare IT"
+      "manager": "Contul meu",
+      "topikSchedule": "Programul VievLog - viitoarele evenimente IT de învățare"
     }
   },
   "body": {
     "utils": {
-      "loading": "Încărcarea lecțiilor ...",
-      "notFound": "Nu se găsesc lecții în această categorie.",
-      "inquiry": "Contactați asistența VievLog",
-      "manager": "Manager Conturi"
+      "loading": "Încărcarea lecțiilor IT ...",
+      "notFound": "Nu există lecții disponibile în această categorie.",
+      "inquiry": "Aveți nevoie de ajutor? Contactați asistența VievLog",
+      "manager": "Gestionează -ți contul"
     }
   },
   "content": {
-    "title": "VievLog - Aflați -l online gratuit | Cursuri și examene",
-    "home": "Acasă - Vievlog",
+    "title": "VievLog - Învățare online gratuită | Cursuri, resurse și certificare",
+    "home": "Acasă",
+    "posts": "Postări",
+    "chats": "Chats",
+    "videos": "Videoclipuri",
     "topiks": "IT învățând subiecte",
     "courses": "Cursuri gratuite",
-    "grammar": "Este lecții de gramatică",
-    "game": "Jocuri de învățare",
+    "grammar": "Lecții de gramatică tehnologică",
+    "game": "Jocuri educaționale",
     "features": "Caracteristici ale platformei",
-    "logIn": "Conectați -vă la VievLog",
+    "logIn": "Conectați -vă la contul dvs.",
     "signUp": "Înscrieți -vă pentru cursuri IT gratuite",
-    "toggleTheme": "Comutați tema luminii/întunecate",
-    "newCollection": "Colecția de curs IT nouă disponibilă",
-    "oneStopPlatform": "VievLog - Platforma dvs. de învățare IT gratuită gratuită",
-    "startLearningNow": "Începeți să învățați și pregătiți -vă pentru examenul Topik",
-    "whyChooseVieVlog": "De ce să alegeți VievLog pentru învățarea?",
-    "freeAccess": "Acces 100% gratuit de învățare IT",
-    "learnIT": "Accesați lecții IT de înaltă calitate, tutoriale și resurse de la instructori experți fără costuri.",
-    "expertInstructors": "Instructori IT experți",
-    "learnFromExperts": "Învață -l de la vorbitori nativi și profesioniști cu experiență.",
-    "anytimeAnywhere": "Aflați -l oricând, oriunde",
-    "learnAtYourOwnPace": "Studiați -l în ritmul propriu cu acces nelimitat la toate lecțiile.",
-    "comprehensiveCurriculum": "Curriculum IT cuprinzător",
-    "coverAllAspects": "Cursuri care acoperă elementele de bază ale subiectelor avansate, inclusiv gramatică, vocabular și practică de conversație.",
-    "viewAllIT": "Vizualizați toate testele și cursurile pe care le va fi vorba",
-    "featuredCourses": "A prezentat cursuri",
-    "beginnerIT": "Cursul IT pentru începători",
+    "toggleTheme": "Comutați modul de lumină/întuneric",
+    "newCollection": "Explorați noua noastră colecție de cursuri IT",
+    "oneStopPlatform": "VievLog-platforma dvs. de învățare IT all-in-one",
+    "startLearningNow": "Începeți să îl învățați și să vă pregătiți pentru examene astăzi",
+    "whyChooseVieVlog": "De ce să o înveți cu Vievlog?",
+    "freeAccess": "Acces complet gratuit",
+    "learnIT": "Bucurați-vă de tutoriale IT de cea mai bună calitate, lecții și resurse de la instructori cu experiență-complet gratuit.",
+    "expertInstructors": "Aflați de la experți din industrie",
+    "learnFromExperts": "Fii predat de profesioniști și educatori IT experimentați.",
+    "anytimeAnywhere": "Învățare flexibilă oricând, oriunde",
+    "learnAtYourOwnPace": "Aflați în ritmul propriu cu acces nelimitat la lecții.",
+    "comprehensiveCurriculum": "Curriculum-ul cu stivă completă",
+    "coverAllAspects": "Acoperă fundamentale pentru concepte IT avansate, inclusiv codificare, sisteme, rețele și multe altele.",
+    "viewAllIT": "Parcurgeți toate cursurile VievLog și practicați testele",
+    "featuredCourses": "Programe IT au prezentat",
+    "beginnerIT": "Cursul IT la nivel începător",
     "intermediateIT": "Curs intermediar IT",
-    "advancedIT": "Curs avansat",
-    "getStartedForFree": "Începeți cu lecții gratuite astăzi",
-    "whatOurLearnersSay": "Ce spun elevii noștri despre Vievlog",
+    "advancedIT": "Avansat It Mastery",
+    "getStartedForFree": "Începeți să învățați gratuit astăzi",
+    "whatOurLearnersSay": "Ce spun elevii despre Vievlog",
     "testimonial1": {
-      "quote": "Vievlog m -a ajutat să mă pregătesc cu succes pentru examenul IT.",
+      "quote": "VievLog m -a ajutat să -mi trec cu încredere examenul de certificare IT.",
       "name": "Nguyen Minh Anh",
       "role": "Student internațional"
     },
     "testimonial2": {
-      "quote": "Învățarea cu Vievlog nu a fost niciodată mai ușoară și mai distractivă!",
+      "quote": "Învățarea ei prin VievLog este atât eficientă, cât și plăcută!",
       "name": "Tran Hai Nam",
-      "role": "Lucrător de birou"
+      "role": "Profesionist în birou"
     },
     "testimonial3": {
-      "quote": "Datorită lui Vievlog, mi -am îmbunătățit în mod semnificativ abilitățile IT.",
+      "quote": "Datorită lui Vievlog, mi -am îmbunătățit semnificativ abilitățile de programare.",
       "name": "Le Thanh Huong",
       "role": "Student universitar"
     },
-    "vieTopik": "VievLog - Top 1 Platforma de învățare IT",
-    "yourOneStopShop": "Platforma dvs. unică pentru stăpânirea abilităților IT și examene Topik. Accesați gratuit resursele de învățare premium și atingeți -vă limba și obiectivele IT astăzi!",
-    "connectWithUs": "Conectați -vă cu VievLog pe social media",
+    "vieTopik": "VievLog - Top 1 IT Learning Hub",
+    "yourOneStopShop": "Platforma dvs. unică pentru a stăpâni abilitățile IT și pentru a vă pregăti pentru examene de certificare. Obțineți acces la conținutul premium fără costuri!",
+    "connectWithUs": "Urmați VievLog pe social media",
     "socialMedia": {
-      "facebook": "Facebook VievLog",
-      "twitter": "VievLog Twitter",
-      "instagram": "VievLog Instagram",
-      "linkedin": "VievLog LinkedIn"
+      "facebook": "Urmați -ne pe Facebook",
+      "twitter": "Urmați -ne pe Twitter",
+      "instagram": "Urmați -ne pe Instagram",
+      "linkedin": "Conectați -vă cu noi pe LinkedIn"
     },
     "company": {
-      "aboutUs": "Despre Vievlog",
-      "careers": "Cariere la Vievlog",
-      "blog": "Blog VievLog - Sfaturi și știri",
-      "contact": "Contactați VievLog"
+      "aboutUs": "Despre noi",
+      "careers": "Cariere",
+      "blog": "Blog tehnic - știri și sfaturi",
+      "contact": "Contactaţi-ne"
     },
     "support": {
-      "helpCenter": "Centrul de ajutor VievLog",
-      "faq": "Întrebări frecvente",
+      "helpCenter": "Centrul de ajutor",
+      "faq": "Întrebări frecvente - Întrebări frecvente",
       "privacyPolicy": "Politica de confidențialitate",
       "termsOfService": "Termeni de serviciu"
     },
@@ -86,8 +89,8 @@
       "copyright": "© 2025 Vievlog. Toate drepturile rezervate."
     },
     "metadata": {
-      "lesson": "Parcurgeți cele mai recente lecții gratuite IT și găsiți cursul perfect pentru nivelul dvs. de abilități.",
-      "grammar": "Explorați diagramele noastre detaliate și tutoriale."
+      "lesson": "Explorați lecțiile noastre gratuite și alegeți cursul perfect pentru a se potrivi cu nivelul dvs. de abilități.",
+      "grammar": "Descoperiți tutoriale și diagrame detaliate tehnologice."
     }
   }
 }
