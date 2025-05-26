@@ -1,99 +1,93 @@
 {
   "header": {
     "utils": {
-      "login": "Logáil isteach",
-      "logout": "Logáil amach",
-      "inquiry": "Déan teagmháil linn",
-      "manager": "Bainisteoir",
-      "topikExams": "Topaic Scrúduithe",
-      "topikSchedule": "Topaic Sceideal"
+      "login": "Logáil isteach chuig Vievlog",
+      "logout": "Logáil amach ó Vievlog",
+      "inquiry": "Déan teagmháil le tacaíocht Vievlog",
+      "manager": "Bainisteoir cuntais",
+      "topikSchedule": "Sceideal Vievlog - Imeachtaí Foghlama TF"
     }
   },
   "body": {
     "utils": {
       "loading": "Ceachtanna a luchtú ...",
-      "notFound": "Níl aon sonraí le fáil sa chatagóir seo.",
-      "inquiry": "Déan teagmháil linn",
-      "manager": "Bainisteoir"
+      "notFound": "Níl ceachtanna le fáil sa chatagóir seo.",
+      "inquiry": "Déan teagmháil le tacaíocht Vievlog",
+      "manager": "Bainisteoir cuntais"
     }
   },
   "content": {
-    "title": "VieVlog - Foghlaim Cóiré saor in aisce",
-    "home": "Áit",
-    "topiks": "Ábhair",
-    "courses": "Cúrsaí",
-    "grammar": "Gramadaí",
-    "game": "Cluiche",
-    "features": "Bheith",
-    "logIn": "Logáil isteach",
-    "signUp": "Sínigh",
-    "toggleTheme": "Téama toggle",
-    "newCollection": "Bailiúchán nua ar fáil",
-    "oneStopPlatform": "Do ardán foghlama Cóiré deiridh",
-    "startLearningNow": "Ábhar scrúdaithe",
-    "whyChooseVieVlog": "Cén fáth a roghnaíonn VieVlog?",
-    "freeAccess": "Rochtain saor in aisce",
-    "learnIT": "Foghlaim Cóiré le ceachtanna ardcháilíochta ó shaineolaithe gan aon chostas.",
-    "expertInstructors": "Teagascóirí saineolacha",
-    "learnFromExperts": "Foghlaim ó chainteoirí dúchais agus ó mhúinteoirí a bhfuil taithí acu.",
-    "anytimeAnywhere": "Am ar bith, áit ar bith",
-    "learnAtYourOwnPace": "Déan staidéar ar do luas féin le rochtain neamhtheoranta ar cheachtanna.",
-    "comprehensiveCurriculum": "Curaclam cuimsitheach",
-    "coverAllAspects": "Ó thosaitheoirí go leibhéil ardleibhéil, ag clúdach gramadaí, stór focal, agus comhrá.",
-    "topikExam": "Máistir an scrúdú topaice",
-    "topikI": "Topaic I.",
-    "topikI_tests": "12 Tástálacha Cleachtais",
-    "topikII": "Topaic II",
-    "topikII_tests": "15 Tástálacha Cleachtais",
-    "viewAllIT": "Féach na tástálacha topaicí go léir",
-    "featuredCourses": "Cúrsaí Réadmhaoin",
-    "beginnerIT": "Cóiré tosaitheoirí",
-    "intermediateIT": "Cóiré idirmheánach",
-    "advancedIT": "Cóiré chun cinn",
-    "getStartedForFree": "Tús a chur le saor in aisce",
-    "whatOurLearnersSay": "Cad a deir ár bhfoghlaimeoirí",
+    "title": "Vievlog - Foghlaim é ar líne saor in aisce | Cúrsaí agus scrúduithe é",
+    "home": "Baile - Vievlog",
+    "topiks": "TF ag foghlaim topaicí",
+    "courses": "Cúrsaí TF saor in aisce",
+    "grammar": "Ceachtanna gramadaí é",
+    "game": "Cluichí foghlama",
+    "features": "Gnéithe Ardán",
+    "logIn": "Logáil isteach i Vievlog",
+    "signUp": "Cláraigh le haghaidh cúrsaí TF saor in aisce",
+    "toggleTheme": "Toggle solas/téama dorcha",
+    "newCollection": "Bailiúchán nua cúrsa TF ar fáil ar fáil",
+    "oneStopPlatform": "Vievlog - Do Ardán Foghlama TF Saor Ultimate IT",
+    "startLearningNow": "Tosaigh ag foghlaim é agus ullmhaigh le haghaidh scrúdú topik",
+    "whyChooseVieVlog": "Cén fáth a roghnaíonn Vievlog é a fhoghlaim?",
+    "freeAccess": "100% SAOR IN AISCE ROCHTAIN FOGHLAITHE",
+    "learnIT": "Rochtain ar cheachtanna ardcháilíochta TF, ranganna teagaisc, agus acmhainní ó theagascóirí saineolacha gan aon chostas.",
+    "expertInstructors": "Teagascóirí Saineolaithe TF",
+    "learnFromExperts": "Foghlaim é ó chainteoirí dúchais agus ó ghairmithe a bhfuil taithí acu.",
+    "anytimeAnywhere": "É a fhoghlaim am ar bith, áit ar bith",
+    "learnAtYourOwnPace": "Déan staidéar air ar do luas féin le rochtain neamhtheoranta ar gach ceacht.",
+    "comprehensiveCurriculum": "Curaclam cuimsitheach TF",
+    "coverAllAspects": "Cúrsaí a chlúdaíonn bunghnéithe TF le topaicí ardleibhéil, lena n -áirítear cleachtas gramadaí, foclóra agus comhrá.",
+    "viewAllIT": "Féach ar gach Vievlog Tástálacha agus Cúrsaí",
+    "featuredCourses": "Cúrsaí é le rá",
+    "beginnerIT": "Cúrsa IT Tosaitheoirí",
+    "intermediateIT": "Cúrsa TF idirmheánach",
+    "advancedIT": "Cúrsa Advanced IT",
+    "getStartedForFree": "Tús a chur le ceachtanna IT saor in aisce inniu",
+    "whatOurLearnersSay": "Cad a deir ár bhfoghlaimeoirí faoi Vievlog",
     "testimonial1": {
-      "quote": "\"Chabhraigh VieVlog liom ullmhú do mo scrúdú Topik go héifeachtach. Tá na ceachtanna dea-struchtúrtha agus éasca le leanúint!\"",
+      "quote": "Chabhraigh Vievlog liom ullmhú go rathúil do mo scrúdú TF.",
       "name": "Nguyen Minh Anh",
       "role": "Mac léinn idirnáisiúnta"
     },
     "testimonial2": {
-      "quote": "\"Ní raibh sé níos éasca riamh an Chóiré a fhoghlaim! Déanann na ceachtanna struchtúrtha gach rud simplí agus spraíúil.\"",
+      "quote": "Ní raibh sé níos éasca agus níos taitneamhaí riamh é a fhoghlaim le Vievlog!",
       "name": "Tran hai nam",
       "role": "Oibrí oifige"
     },
     "testimonial3": {
-      "quote": "\"A bhuíochas le VieVlog, tá feabhas suntasach tagtha ar mo chuid scileanna éisteachta agus labhartha laistigh de thrí mhí amháin!\"",
+      "quote": "A bhuíochas le Vievlog, chuir mé feabhas suntasach ar mo chuid scileanna TF.",
       "name": "Le Thanh Huong",
       "role": "Mac léinn ollscoile"
     },
-    "vieTopik": "Víteogadh",
-    "yourOneStopShop": "Do ardán ilfhreastail chun Cóiré a mháistir. Rochtain ar acmhainní préimhe saor in aisce agus do spriocanna teanga a bhaint amach inniu!",
-    "connectWithUs": "Ceangail linn",
+    "vieTopik": "Vievlog - Ardán Foghlama TF Barr 1 TF",
+    "yourOneStopShop": "Do ardán ilfhreastail chun scileanna TF agus scrúduithe Topik a mháistir. Rochtain ar acmhainní foghlama préimhe saor in aisce agus teacht ar do theanga agus spriocanna TF inniu!",
+    "connectWithUs": "Ceangail le Vievlog ar na meáin shóisialta",
     "socialMedia": {
-      "facebook": "Facebook",
-      "twitter": "Teanntán",
-      "instagram": "Dearagram",
-      "linkedin": "LinkedIn"
+      "facebook": "Vievlog facebook",
+      "twitter": "Vievlog Twitter",
+      "instagram": "Vievlog Instagram",
+      "linkedin": "Vievlog LinkedIn"
     },
     "company": {
-      "aboutUs": "Maidir Linn",
-      "careers": "Gairm bheatha",
-      "blog": "Blagáil",
-      "contact": "Lionsa"
+      "aboutUs": "Maidir le Vievlog",
+      "careers": "Gairmeacha ag Vievlog",
+      "blog": "Blag Vievlog - TIPS & NUACHT IT",
+      "contact": "Déan teagmháil le Vievlog"
     },
     "support": {
-      "helpCenter": "Ionad cabhrach",
-      "faq": "Ceisteanna CCanna",
+      "helpCenter": "Ionad Cabhrach Vievlog",
+      "faq": "Ceisteanna coitianta",
       "privacyPolicy": "Polasaí Príobháideachta",
       "termsOfService": "Téarmaí Seirbhíse"
     },
     "footer": {
-      "copyright": "© 2025 VieVlog. Gach ceart ar cosaint."
+      "copyright": "© 2025 Vievlog. Gach ceart ar cosaint."
     },
     "metadata": {
-      "lesson": "Brabhsáil ár gceachtanna is déanaí agus faigh rud éigin a bhfuil grá agat dó.",
-      "grammar": "Léaráidí gramadaí atá ar fáil"
+      "lesson": "Brabhsáil ár gceachtanna IT saor in aisce is déanaí agus faigh an cúrsa foirfe do do leibhéal scileanna.",
+      "grammar": "Déan iniúchadh ar ár léaráidí mionsonraithe TF agus ranganna teagaisc."
     }
   }
 }

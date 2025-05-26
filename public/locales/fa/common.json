@@ -1,99 +1,93 @@
 {
   "header": {
     "utils": {
-      "login": "ورود",
-      "logout": "ورود به سیستم",
-      "inquiry": "با ما تماس بگیرید",
-      "manager": "مدیر",
-      "topikExams": "موضوع امتحانات",
-      "topikSchedule": "موضوع برنامه"
+      "login": "ورود به Vievlog",
+      "logout": "ورود به سیستم از Vievlog",
+      "inquiry": "با پشتیبانی Vievlog تماس بگیرید",
+      "manager": "مدیر حساب",
+      "topikSchedule": "برنامه Vievlog - IT IT Events"
     }
   },
   "body": {
     "utils": {
-      "loading": "درس در حال بارگیری ...",
-      "notFound": "هیچ داده ای در این گروه یافت نمی شود.",
-      "inquiry": "با ما تماس بگیرید",
-      "manager": "مدیر"
+      "loading": "در حال بارگیری آن درس ...",
+      "notFound": "هیچ درسی در این گروه یافت نمی شود.",
+      "inquiry": "با پشتیبانی Vievlog تماس بگیرید",
+      "manager": "مدیر حساب"
     }
   },
   "content": {
-    "title": "ویتوپیک - کره ای را به صورت رایگان یاد بگیرید",
-    "home": "خانه",
-    "topiks": "موضوعات موضوعاتی",
-    "courses": "دوره",
-    "grammar": "گرامر",
-    "game": "بازی",
-    "features": "ویژگی",
-    "logIn": "وارد کردن",
-    "signUp": "ثبت نام کردن",
-    "toggleTheme": "تم کردن موضوع",
-    "newCollection": "مجموعه جدید موجود است",
-    "oneStopPlatform": "پلت فرم یادگیری نهایی کره ای شما",
-    "startLearningNow": "موضوع امتحان",
-    "whyChooseVieVlog": "چرا ویتوپیک را انتخاب کنید؟",
-    "freeAccess": "دسترسی رایگان",
-    "learnIT": "کره ای را با درس با کیفیت بالا از متخصصان بدون هیچ هزینه ای بیاموزید.",
-    "expertInstructors": "مربیان متخصص",
-    "learnFromExperts": "از زبان مادری و معلمان باتجربه بیاموزید.",
-    "anytimeAnywhere": "در هر زمان ، در هر کجا",
-    "learnAtYourOwnPace": "با دسترسی نامحدود به دروس با سرعت خود مطالعه کنید.",
-    "comprehensiveCurriculum": "برنامه درسی جامع",
-    "coverAllAspects": "از مبتدی تا سطح پیشرفته ، پوشش گرامر ، واژگان و مکالمه.",
-    "topikExam": "تسلط بر آزمون موضوع",
-    "topikI": "موضوع من",
-    "topikI_tests": "12 تست تمرین",
-    "topikII": "موضوع دوم",
-    "topikII_tests": "15 تست تمرین",
-    "viewAllIT": "مشاهده همه آزمون های مباحث",
+    "title": "Vievlog - آن را بصورت آنلاین یاد بگیرید | دوره ها و امتحانات",
+    "home": "صفحه اصلی - vievlog",
+    "topiks": "مباحث یادگیری",
+    "courses": "دوره های رایگان آن",
+    "grammar": "این دروس گرامر است",
+    "game": "بازی های یادگیری",
+    "features": "ویژگی های سکو",
+    "logIn": "وارد Vievlog شوید",
+    "signUp": "به صورت رایگان دوره های IT ثبت نام کنید",
+    "toggleTheme": "تم Light/Dark را تغییر دهید",
+    "newCollection": "مجموعه دوره جدید فناوری اطلاعات موجود است",
+    "oneStopPlatform": "Vievlog - پلت فرم یادگیری IT Ultimate Ultimate شما",
+    "startLearningNow": "یادگیری آن را شروع کنید و برای امتحان TOPIK آماده شوید",
+    "whyChooseVieVlog": "چرا Vievlog را برای یادگیری آن انتخاب کنید؟",
+    "freeAccess": "100 ٪ دسترسی به یادگیری IT رایگان",
+    "learnIT": "دسترسی به درس های فناوری اطلاعات با کیفیت بالا ، آموزش ها و منابع مربیان خبره و بدون هزینه.",
+    "expertInstructors": "مربیان متخصص فناوری اطلاعات",
+    "learnFromExperts": "آن را از زبان مادری و متخصصان باتجربه بیاموزید.",
+    "anytimeAnywhere": "هر زمان و هر کجا آن را بیاموزید",
+    "learnAtYourOwnPace": "آن را با سرعت خود با دسترسی نامحدود به همه درس ها مطالعه کنید.",
+    "comprehensiveCurriculum": "برنامه درسی جامع فناوری اطلاعات",
+    "coverAllAspects": "دوره های مربوط به اصول IT به موضوعات پیشرفته ، از جمله دستور زبان ، واژگان و تمرین مکالمه.",
+    "viewAllIT": "مشاهده تمام تست ها و دوره های Vievlog",
     "featuredCourses": "دوره های برجسته",
-    "beginnerIT": "کره ای",
-    "intermediateIT": "وابسته به کره",
-    "advancedIT": "کره ای",
-    "getStartedForFree": "به صورت رایگان شروع کنید",
-    "whatOurLearnersSay": "آنچه زبان آموزان ما می گویند",
+    "beginnerIT": "دوره IT مبتدی",
+    "intermediateIT": "دوره IT متوسط",
+    "advancedIT": "دوره پیشرفته IT",
+    "getStartedForFree": "امروز با درس های رایگان آن شروع کنید",
+    "whatOurLearnersSay": "آنچه زبان آموزان ما در مورد Vievlog می گویند",
     "testimonial1": {
-      "quote": "\"ویتوپیک به من کمک کرد تا به طور موثری برای آزمایش Topik خود آماده شوم. درسها به خوبی ساختار یافته و به راحتی دنبال می شوند!\"",
+      "quote": "Vievlog به من کمک کرد تا با موفقیت برای امتحان IT خود آماده شوم.",
       "name": "نگوین مین آنه",
       "role": "دانشجوی بین المللی"
     },
     "testimonial2": {
-      "quote": "\"یادگیری کره ای هرگز ساده تر نبوده است! دروس ساختاری همه چیز را ساده و سرگرم کننده می کند.\"",
+      "quote": "یادگیری آن با Vievlog هرگز ساده تر و سرگرم کننده نبوده است!",
       "name": "tran hai nam",
       "role": "کارگر دفتر"
     },
     "testimonial3": {
-      "quote": "\"با تشکر از ویتوپیک ، مهارت های گوش دادن و صحبت من فقط در طی سه ماه به میزان قابل توجهی بهبود یافته است!\"",
+      "quote": "با تشکر از Vievlog ، من مهارت های IT خود را به میزان قابل توجهی بهبود بخشیدم.",
       "name": "le thanh huong",
       "role": "دانشجوی دانشگاه"
     },
-    "vieTopik": "ویتوپیک",
-    "yourOneStopShop": "سکوی یک مرحله ای شما برای تسلط بر کره. به منابع حق بیمه به صورت رایگان دسترسی پیدا کنید و امروز به اهداف زبانی خود برسید!",
-    "connectWithUs": "با ما ارتباط برقرار کنید",
+    "vieTopik": "Vievlog - 1 پلت فرم یادگیری IT برتر IT",
+    "yourOneStopShop": "بستر یک مرحله ای شما برای تسلط بر مهارت های فناوری اطلاعات و امتحانات TOPIK. به منابع یادگیری حق بیمه به صورت رایگان دسترسی پیدا کنید و امروز به زبان و فناوری اطلاعات خود برسید!",
+    "connectWithUs": "با Vievlog در رسانه های اجتماعی ارتباط برقرار کنید",
     "socialMedia": {
-      "facebook": "فیس بوک",
-      "twitter": "توییتر",
-      "instagram": "اینستاگرام",
-      "linkedin": "وابسته به لینکین"
+      "facebook": "Vievlog Facebook",
+      "twitter": "توییتر Vievlog",
+      "instagram": "Vievlog اینستاگرام",
+      "linkedin": "Vievlog LinkedIn"
     },
     "company": {
-      "aboutUs": "درباره ما",
-      "careers": "مشاغل",
-      "blog": "وبلاگ",
-      "contact": "تماس"
+      "aboutUs": "درباره Vievlog",
+      "careers": "مشاغل در Vievlog",
+      "blog": "وبلاگ Vievlog - نکات و اخبار IT",
+      "contact": "با Vievlog تماس بگیرید"
     },
     "support": {
-      "helpCenter": "مرکز کمک",
-      "faq": "پرسش",
+      "helpCenter": "مرکز راهنما Vievlog",
+      "faq": "سوالات متداول",
       "privacyPolicy": "سیاست حفظ حریم",
       "termsOfService": "شرایط خدمات"
     },
     "footer": {
-      "copyright": "© 2025 ویتوپیک. کلیه حقوق محفوظ است."
+      "copyright": "© 2025 Vievlog. کلیه حقوق محفوظ است."
     },
     "metadata": {
-      "lesson": "آخرین درس های ما را مرور کنید و چیزی را که دوست دارید پیدا کنید.",
-      "grammar": "نمودارهای دستور زبان موجود"
+      "lesson": "آخرین درس های IT رایگان ما را مرور کنید و یک دوره مناسب برای سطح مهارت خود را پیدا کنید.",
+      "grammar": "نمودارها و آموزشهای دقیق IT ما را کاوش کنید."
     }
   }
 }

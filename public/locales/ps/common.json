@@ -1,99 +1,93 @@
 {
   "header": {
     "utils": {
-      "login": "ننوتل",
-      "logout": "وتل",
-      "inquiry": "موږ سره اړیکه ونیسئ",
-      "manager": "مدیر",
-      "topikExams": "موضوع ازموینه کوي",
-      "topikSchedule": "د مهالویش موضوع"
+      "login": "Vievlog ته ننوتل",
+      "logout": "د Vievlog څخه لاګ ان",
+      "inquiry": "د Vievlog ملاتړ سره اړیکه ونیسئ",
+      "manager": "ګڼون مدیر",
+      "topikSchedule": "د Viallog مهالویش - دا پیښې زده کړې"
     }
   },
   "body": {
     "utils": {
-      "loading": "د درسونو ډکول ...",
-      "notFound": "پدې کټګورۍ کې هیڅ معلومات ندي موندل شوي.",
-      "inquiry": "موږ سره اړیکه ونیسئ",
-      "manager": "مدیر"
+      "loading": "د دې درسونه یې ...",
+      "notFound": "پدې کټګورۍ کې هیڅ درسونه ونه موندل.",
+      "inquiry": "د Vievlog ملاتړ سره اړیکه ونیسئ",
+      "manager": "ګڼون مدیر"
     }
   },
   "content": {
-    "title": "viipopic - د وړیا لپاره کوریا زده کونکی",
-    "home": "کور",
-    "topiks": "سرلیکونه",
-    "courses": "کورسونه",
-    "grammar": "ګرامر",
-    "game": "لوبه",
-    "features": "ب Features ې",
-    "logIn": "ننوتل",
-    "signUp": "ګډون کول",
-    "toggleTheme": "د توغندیو تھیم",
-    "newCollection": "نوې مجموعه شتون لري",
-    "oneStopPlatform": "ستاسو د اتزینا د زده کړې پلیټ فارم",
-    "startLearningNow": "موضوع",
-    "whyChooseVieVlog": "ولې viilopic غوره کړئ؟",
-    "freeAccess": "وړیا لاسرسی",
-    "learnIT": "د کارپوهانو څخه د لوړ کیفیت درسونو سره کوریا زده کړئ.",
-    "expertInstructors": "د ماهر ښوونکي",
-    "learnFromExperts": "له اصلي سپینوونکو او تجربه لرونکو ښوونکو څخه زده کړئ.",
-    "anytimeAnywhere": "هر وخت، هرچیرې",
-    "learnAtYourOwnPace": "درسونو ته د غیر محدود لاسرسي سره په خپل سرعت مطالعه وکړئ.",
-    "comprehensiveCurriculum": "هراړخیز نصاب",
-    "coverAllAspects": "له پیل څخه پرمختللي کچې ته، ګرامر، قاموس، او خبرو اترو پوښل.",
-    "topikExam": "د موضوع ازموینه ماسټرۍ",
-    "topikI": "موضوع i",
-    "topikI_tests": "د 12 تمرینونو ازمونې",
-    "topikII": "ii موضوع",
-    "topikII_tests": "د ورزشونو ازموینې",
-    "viewAllIT": "د ټولو موضوعاتو ازموینې وګورئ",
-    "featuredCourses": "ب uredi ه شوي کورسونه",
-    "beginnerIT": "د پیل کونکي کوریا",
-    "intermediateIT": "منځمهاله کوریا",
-    "advancedIT": "پرمختللی کوریا",
-    "getStartedForFree": "د وړیا لپاره پیل وکړئ",
-    "whatOurLearnersSay": "زموږ زده کونکي وايي چې زموږ زده کونکي وايي",
+    "title": "vievlog - د آنلاین لپاره آنلاین زده کړئ | دا کورسونه او ازموینې",
+    "home": "کور - ویښته",
+    "topiks": "د دې موضوعاتو زده کړې",
+    "courses": "وړیا د دې کورسونه",
+    "grammar": "دا ګرامر درسونه",
+    "game": "د زده کړې لوبې",
+    "features": "د پلیټ فارم ب .ه",
+    "logIn": "Vievlog ته ننوتل",
+    "signUp": "د IT IT کورسونو لپاره لاسلیک وکړئ",
+    "toggleTheme": "د ر light ا / تیاره تیم بدلول",
+    "newCollection": "د دې کورس ټولګه شتون لري",
+    "oneStopPlatform": "Vievlog - ستاسو حتمي وړیا دا د پلیټ فارم زده کوي",
+    "startLearningNow": "د ټاپي ازموینې لپاره چمتو کول او زده کړه کول پیل کړئ",
+    "whyChooseVieVlog": "ولې د زده کړې لپاره vivolog غوره کړئ؟",
+    "freeAccess": "100٪ وړیا د لاسرسي وړ",
+    "learnIT": "د لوړ کیفیت لوړ کیفیت دا درسونه، درسونه، او د مهارتونو ښوونکي سرچینې په هیڅ قیمت نه ورکول.",
+    "expertInstructors": "ماهر معلومات",
+    "learnFromExperts": "دا د اصلي خبرې کونکو او تجربه کونکو مسلکي کسانو څخه زده کړئ.",
+    "anytimeAnywhere": "هرچیرې، هرچیرې زده کړئ",
+    "learnAtYourOwnPace": "ټولو درسونو ته د نامحدود لاسرسي سره په خپل کړکیچ کې دننه مطالعه کړئ.",
+    "comprehensiveCurriculum": "د دې پراخه نصاب",
+    "coverAllAspects": "د پرمختللي موضوعاتو ته د دې اساساتو پوښښ، په شمول د ګرامر، قاموس، او د خبرو اترو عمل.",
+    "viewAllIT": "دا د ټیلونو او کورسونو ټول ویښتان وګورئ",
+    "featuredCourses": "د دوی کورسونه ب feat ه کړې",
+    "beginnerIT": "د دې کورس کورس",
+    "intermediateIT": "منځمهاله ده",
+    "advancedIT": "پرمختللی کورس",
+    "getStartedForFree": "نن د وړیا زده کړې درسونو سره پیل وکړئ",
+    "whatOurLearnersSay": "زموږ زده کونکي څه په اړه وايي",
     "testimonial1": {
-      "quote": "\"Viilopic زما سره په مؤثره توګه زموږ د ټاپ ټیک ازموینې لپاره چمتووالی کې مرسته وکړه. درسونه ښه جوړ شوي او په تعقیب ښه دي!\"",
+      "quote": "Vievll ما مرسته وکړه چې په بریالیتوب سره د هغې آزموینې لپاره چمتو کړئ.",
       "name": "نګینین منه Ah",
       "role": "نړیوال زده کونکی"
     },
     "testimonial2": {
-      "quote": "\"د کوریا زده کړه هیڅکله اسانه نه وه! جوړښتي درسونه هرڅه ساده او ساتیري کوي.\"",
+      "quote": "د Vievl سره زده کړه هیڅکله اسانه او ډیر ساتیري نه ده!",
       "name": "ټران های نوم",
       "role": "د دفتر کارګر"
     },
     "testimonial3": {
-      "quote": "\"د viipopic څخه مننه، زما د اوریدلو او هویت مهارتونه د دریو میاشتو په جریان کې د پام وړ وده کړې!\"",
+      "quote": "د Vievlog څخه مننه، ما خپل زده کړې د پام وړ مهارتونه.",
       "name": "لی هونینګ",
       "role": "د پوهنتون محصل"
     },
-    "vieTopik": "Vieilopick",
-    "yourOneStopShop": "ستاسو د مدیر د ماسټرۍ لپاره ستاسو یو بند پلیټفارم. د وړیا لپاره پریمیم سرچینې وړیا او نن ورځ خپل د ژبې اهداف ترلاسه کړئ!",
-    "connectWithUs": "له موږ سره اړیکه ونیسئ",
+    "vieTopik": "Vievlog - غوره 1 دا د پلیټ فارم زده کوي",
+    "yourOneStopShop": "د دې مهارتونو او ټاپیکو ازموینو د زده کړې لپاره ستاسو د یو بند پلیټ فارم. د لاسرسي لپاره د پام وړ پریمیم زده کړې سرچینې وړیا او نن ورځ ستاسو ژبې او د دې اهدافو ته رسیدو لپاره!",
+    "connectWithUs": "په ټولنیزو رسنیو کې د Vievlog سره وصل شئ",
     "socialMedia": {
-      "facebook": "فیسبوک",
-      "twitter": "ټویټر",
-      "instagram": "انسټاګرام",
-      "linkedin": "لینکولین"
+      "facebook": "Vievolog فېسبوک",
+      "twitter": "Vievlll ټویټر",
+      "instagram": "Viovelogtaams",
+      "linkedin": "viovllld تړنې"
     },
     "company": {
-      "aboutUs": "زموږ په اړه",
-      "careers": "کیریر",
-      "blog": "بلاګ",
-      "contact": "تماس"
+      "aboutUs": "د viovlog په اړه",
+      "careers": "کیریر په Vievlog کې",
+      "blog": "vievell بلاګ - دا لارښوونې او خبرونه",
+      "contact": "تماس Vievlog"
     },
     "support": {
-      "helpCenter": "د مرستې مرکز",
-      "faq": "پوښتنې",
+      "helpCenter": "د Vievlld مرستې مرکز",
+      "faq": "پوښتل شوې پوښتنې",
       "privacyPolicy": "د محرمیت تګلاره",
       "termsOfService": "د خدمت شرطونه"
     },
     "footer": {
-      "copyright": "© 2025 Viilopick. ټول حقونه خوندي دي."
+      "copyright": "© 2025 vievelllog. ټول حقونه خوندي دي."
     },
     "metadata": {
-      "lesson": "زموږ وروستي درسونه وپلورئ او یو څه ومومئ چې تاسو یې مینه لرئ.",
-      "grammar": "د ګرامر ډیاګرامونه شتون لري"
+      "lesson": "زموږ وروستی وړیا ډیئس درسونه وپلټئ او د خپل مهارت کچې لپاره مناسب کورس ومومئ.",
+      "grammar": "زموږ د آی اس آی این ایسترونو او ښوونې سپارل سپړنه."
     }
   }
 }

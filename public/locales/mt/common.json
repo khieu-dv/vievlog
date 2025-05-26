@@ -1,99 +1,93 @@
 {
   "header": {
     "utils": {
-      "login": "Login",
-      "logout": "Logout",
-      "inquiry": "Ikkuntattjana",
-      "manager": "Maniġer",
-      "topikExams": "Suġġett tal-eżamijiet",
-      "topikSchedule": "Skeda t-tema"
+      "login": "Idħol għal Vievlog",
+      "logout": "Logout minn Vievlog",
+      "inquiry": "Ikkuntattja l-appoġġ Vievlog",
+      "manager": "Maniġer tal-Kont",
+      "topikSchedule": "Skeda Vievlog - Avvenimenti ta 'Tagħlim tal-IT"
     }
   },
   "body": {
     "utils": {
-      "loading": "Tagħbija Lezzjonijiet ...",
-      "notFound": "Ma tinstab l-ebda dejta f'din il-kategorija.",
-      "inquiry": "Ikkuntattjana",
-      "manager": "Maniġer"
+      "loading": "Tagħbijaha lezzjonijiet ...",
+      "notFound": "Ma nstabux lezzjonijiet f'din il-kategorija.",
+      "inquiry": "Ikkuntattja l-appoġġ Vievlog",
+      "manager": "Maniġer tal-Kont"
     }
   },
   "content": {
-    "title": "VieVlog - Tgħallem IT b'xejn",
-    "home": "Id-dar",
-    "topiks": "IT",
-    "courses": "Korsijiet",
-    "grammar": "Grammatika",
-    "game": "Logħba",
-    "features": "Karatteristiċi",
-    "logIn": "Idħol",
-    "signUp": "Irreġistra",
-    "toggleTheme": "Toggle Tema",
-    "newCollection": "Kollezzjoni ġdida disponibbli",
-    "oneStopPlatform": "Il-pjattaforma aħħarija tat-tagħlim IT tiegħek",
-    "startLearningNow": "Suġġett tal-eżami",
-    "whyChooseVieVlog": "Għaliex tagħżel VieVlog?",
-    "freeAccess": "Aċċess b'xejn",
-    "learnIT": "Tgħallem il-ITb'lezzjonijiet ta 'kwalità għolja minn esperti assolutament bla ħlas.",
-    "expertInstructors": "Għalliema esperti",
-    "learnFromExperts": "Tgħallem minn kelliema nattivi u għalliema b'esperjenza.",
-    "anytimeAnywhere": "F'kull ħin, kullimkien",
-    "learnAtYourOwnPace": "Studja bil-pass tiegħek b'aċċess illimitat għal-lezzjonijiet.",
-    "comprehensiveCurriculum": "Kurrikulu komprensiv",
-    "coverAllAspects": "Minn Bidu għal Livelli Avvanzati, li jkopru l-grammatika, il-vokabularju, u l-konversazzjoni.",
-    "topikExam": "Kaptan l-eżami tas-suġġett",
-    "topikI": "Suġġett i",
-    "topikI_tests": "12 Testijiet tal-Prattika",
-    "topikII": "Suġġett II",
-    "topikII_tests": "15 Testijiet tal-Prattika",
-    "viewAllIT": "Ara t-testijiet tas-suġġetti kollha",
-    "featuredCourses": "Korsijiet dehru",
-    "beginnerIT": "ITtal-Bidu",
-    "intermediateIT": "ITintermedju",
-    "advancedIT": "ITavvanzat",
-    "getStartedForFree": "Ibda b'xejn",
-    "whatOurLearnersSay": "Dak li jgħidu l-istudenti tagħna",
+    "title": "Vievlog - Tgħallem online b'xejn | Korsijiet u eżamijiet tal-IT",
+    "home": "Home - Vievlog",
+    "topiks": "Suġġetti tat-tagħlim tal-IT",
+    "courses": "Korsijiet tal-IT b'xejn",
+    "grammar": "Huwa lezzjonijiet tal-grammatika",
+    "game": "Logħob tat-Tagħlim",
+    "features": "Karatteristiċi tal-pjattaforma",
+    "logIn": "Idħol f'Vievlog",
+    "signUp": "Irreġistra korsijiet tal-IT b'xejn",
+    "toggleTheme": "Toggle Tema ħafifa / skura",
+    "newCollection": "Ġbir ġdid tal-kors tal-IT disponibbli",
+    "oneStopPlatform": "Vievlog - il-pjattaforma ta 'tagħlim tal-IT b'xejn tiegħek",
+    "startLearningNow": "Ibda titgħallem u ipprepara għall-eżami topik",
+    "whyChooseVieVlog": "Għaliex Agħżel Vievlog għat-Tagħlim tal-IT?",
+    "freeAccess": "100% Aċċess b'xejn għat-tagħlim tal-IT",
+    "learnIT": "Aċċess għall-lezzjonijiet tal-IT ta 'kwalità għolja, tutorials, u riżorsi minn għalliema esperti mingħajr ħlas.",
+    "expertInstructors": "Għalliema esperti tal-IT",
+    "learnFromExperts": "Tgħallem minn kelliema nattivi u professjonisti b'esperjenza.",
+    "anytimeAnywhere": "Tgħallemha f'kull ħin",
+    "learnAtYourOwnPace": "Studjah bil-pass tiegħek b'aċċess illimitat għal-lezzjonijiet kollha.",
+    "comprehensiveCurriculum": "Kurrikulu komprensiv tal-IT",
+    "coverAllAspects": "Korsijiet li jkopru l-affarijiet bażiċi għal suġġetti avvanzati, inklużi l-grammatika, il-vokabularju, u l-prattika tal-konversazzjoni.",
+    "viewAllIT": "Ara t-testijiet u l-korsijiet kollha tal-Vievlog IT",
+    "featuredCourses": "Korsijiet tal-IT dehru",
+    "beginnerIT": "Kors tal-IT tal-Bidu",
+    "intermediateIT": "Kors tal-IT intermedju",
+    "advancedIT": "Kors tal-IT avvanzat",
+    "getStartedForFree": "Ibda bil-lezzjonijiet tal-IT b'xejn illum",
+    "whatOurLearnersSay": "Dak li jgħidu l-istudenti tagħna dwar Vievlog",
     "testimonial1": {
-      "quote": "\"VieVlog għenni nipprepara għall-eżami Topik tiegħi b'mod effettiv. Il-lezzjonijiet huma strutturati sew u faċli biex isegwu!\"",
+      "quote": "Vievlog għenni nipprepara b'suċċess għall-eżami tal-IT tiegħi.",
       "name": "Nguyen Minh Anh",
       "role": "Student internazzjonali"
     },
     "testimonial2": {
-      "quote": "\"It-tagħlim tal-ITqatt ma kien aktar faċli! Il-lezzjonijiet strutturati jagħmlu dak kollu sempliċi u divertenti.\"",
+      "quote": "It-tagħlim tagħha ma 'Vievlog qatt ma kien aktar faċli u aktar divertenti!",
       "name": "Tran Hai Nam",
       "role": "Ħaddiem tal-Uffiċċju"
     },
     "testimonial3": {
-      "quote": "\"Grazzi lil VieVlog, il-ħiliet tiegħi ta 'smigħ u ta' taħdit tjiebu b'mod sinifikanti fi żmien tliet xhur biss!\"",
+      "quote": "Grazzi għal Vievlog, tejjeb il-ħiliet tal-IT tiegħi b'mod sinifikanti.",
       "name": "Le Thanh Huong",
       "role": "Student tal-Università"
     },
-    "vieTopik": "VieVlog",
-    "yourOneStopShop": "Il-pjattaforma one-stop tiegħek għall-ħakma tal-ITi. Aċċess ir-riżorsi premium b'xejn u tilħaq il-miri tal-lingwa tiegħek illum!",
-    "connectWithUs": "Qabbad magħna",
+    "vieTopik": "Vievlog - Pjattaforma ta 'Tagħlim tal-IT Top 1",
+    "yourOneStopShop": "Il-pjattaforma one-stop tiegħek biex nikkontrollaw il-ħiliet tal-IT u l-eżamijiet Topik. Aċċess ir-riżorsi tat-tagħlim premium b'xejn u tilħaq il-lingwa u l-għanijiet tal-IT tiegħek illum!",
+    "connectWithUs": "Qabbad ma 'Vievlog fuq il-midja soċjali",
     "socialMedia": {
-      "facebook": "Facebook",
-      "twitter": "Twitter",
-      "instagram": "Instagram",
-      "linkedin": "LinkedIn"
+      "facebook": "Facebook Vievlog",
+      "twitter": "Vievlog Twitter",
+      "instagram": "Instagram Vievlog",
+      "linkedin": "Vievlog LinkedIn"
     },
     "company": {
-      "aboutUs": "Dwarna",
-      "careers": "Karrieri",
-      "blog": "Blog",
-      "contact": "Kuntatt"
+      "aboutUs": "Dwar Vievlog",
+      "careers": "Karrieri f'Vievlog",
+      "blog": "Vievlog Blog - IT Tips & News",
+      "contact": "Ikkuntattja lil Vievlog"
     },
     "support": {
-      "helpCenter": "Ċentru ta 'Għajnuna",
-      "faq": "FAQ",
+      "helpCenter": "Ċentru ta 'Għajnuna Vievlog",
+      "faq": "Mistoqsijiet frekwenti",
       "privacyPolicy": "Politika tal-Privatezza",
       "termsOfService": "Termini tas-Servizz"
     },
     "footer": {
-      "copyright": "© 2025 VieVlog. Id-drittijiet kollha riżervati."
+      "copyright": "© 2025 Vievlog. Id-drittijiet kollha riżervati."
     },
     "metadata": {
-      "lesson": "Ibbrawżja l-aħħar lezzjonijiet tagħna u ssib xi ħaġa li tħobb.",
-      "grammar": "Dijagrammi tal-grammatika disponibbli"
+      "lesson": "Ibbrawżja l-aħħar lezzjonijiet tal-IT b'xejn tagħna u sib il-kors perfett għal-livell tal-ħiliet tiegħek.",
+      "grammar": "Esplora d-dijagrammi u t-tutorials dettaljati tal-IT tagħna."
     }
   }
 }

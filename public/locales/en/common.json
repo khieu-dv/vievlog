@@ -1,90 +1,84 @@
 {
   "header": {
     "utils": {
-      "login": "Login",
-      "logout": "Logout",
-      "inquiry": "Contact Us",
-      "manager": "Manager",
-      "topikExams": "VIEVLOG Exams",
-      "topikSchedule": "VIEVLOG Schedule"
+      "login": "Login to VieVlog",
+      "logout": "Logout from VieVlog",
+      "inquiry": "Contact VieVlog Support",
+      "manager": "Account Manager",
+      "topikSchedule": "VieVlog Schedule - IT Learning Events"
     }
   },
   "body": {
     "utils": {
-      "loading": "Loading lessons...",
-      "notFound": "No data found in this category.",
-      "inquiry": "Contact Us",
-      "manager": "Manager"
+      "loading": "Loading IT lessons...",
+      "notFound": "No lessons found in this category.",
+      "inquiry": "Contact VieVlog Support",
+      "manager": "Account Manager"
     }
   },
   "content": {
-    "title": "VieVlog – Learn IT for Free",
-    "home": "Home",
-    "topiks": "IT",
-    "courses": "Courses",
-    "grammar": "Grammar",
-    "game": "Game",
-    "features": "Features",
-    "logIn": "Log in",
-    "signUp": "Sign up",
-    "toggleTheme": "Toggle theme",
-    "newCollection": "New Collection Available",
-    "oneStopPlatform": "Your Ultimate IT Learning Platform",
-    "startLearningNow": "Topik Exam",
-    "whyChooseVieVlog": "Why Choose VieVlog?",
-    "freeAccess": "Free Access",
-    "learnIT": "Learn IT with high-quality lessons from experts at absolutely no cost.",
-    "expertInstructors": "Expert Instructors",
-    "learnFromExperts": "Learn from native speakers and experienced teachers.",
-    "anytimeAnywhere": "Anytime, Anywhere",
-    "learnAtYourOwnPace": "Study at your own pace with unlimited access to lessons.",
-    "comprehensiveCurriculum": "Comprehensive Curriculum",
-    "coverAllAspects": "From beginner to advanced levels, covering grammar, vocabulary, and conversation.",
-    "topikExam": "Master the VIEVLOG Exam",
-    "topikI": "VIEVLOG I",
-    "topikI_tests": "12 practice tests",
-    "topikII": "VIEVLOG II",
-    "topikII_tests": "15 practice tests",
-    "viewAllIT": "View All VIEVLOG Tests",
-    "featuredCourses": "Featured Courses",
-    "beginnerIT": "Beginner's IT",
-    "intermediateIT": "Intermediate IT",
-    "advancedIT": "Advanced IT",
-    "getStartedForFree": "Get Started for Free",
-    "whatOurLearnersSay": "What Our Learners Say",
+    "title": "VieVlog – Learn IT Online for Free | IT Courses and Exams",
+    "home": "Home - VieVlog",
+    "topiks": "IT Learning Topics",
+    "courses": "Free IT Courses",
+    "grammar": "IT Grammar Lessons",
+    "game": "Learning Games",
+    "features": "Platform Features",
+    "logIn": "Log in to VieVlog",
+    "signUp": "Sign up for Free IT Courses",
+    "toggleTheme": "Toggle Light/Dark Theme",
+    "newCollection": "New IT Course Collection Available",
+    "oneStopPlatform": "VieVlog - Your Ultimate Free IT Learning Platform",
+    "startLearningNow": "Start Learning IT & Prepare for Topik Exam",
+    "whyChooseVieVlog": "Why Choose VieVlog for IT Learning?",
+    "freeAccess": "100% Free IT Learning Access",
+    "learnIT": "Access high-quality IT lessons, tutorials, and resources from expert instructors at no cost.",
+    "expertInstructors": "Expert IT Instructors",
+    "learnFromExperts": "Learn IT from native speakers and experienced professionals.",
+    "anytimeAnywhere": "Learn IT Anytime, Anywhere",
+    "learnAtYourOwnPace": "Study IT at your own pace with unlimited access to all lessons.",
+    "comprehensiveCurriculum": "Comprehensive IT Curriculum",
+    "coverAllAspects": "Courses covering IT basics to advanced topics, including grammar, vocabulary, and conversation practice.",
+    "viewAllIT": "View All VieVlog IT Tests and Courses",
+    "featuredCourses": "Featured IT Courses",
+    "beginnerIT": "Beginner's IT Course",
+    "intermediateIT": "Intermediate IT Course",
+    "advancedIT": "Advanced IT Course",
+    "getStartedForFree": "Get Started with Free IT Lessons Today",
+    "whatOurLearnersSay": "What Our Learners Say About VieVlog",
     "testimonial1": {
-      "quote": "VieVlog helped me prepare for my VIEVLOG.",
+      "quote": "VieVlog helped me successfully prepare for my IT exam.",
       "name": "Nguyen Minh Anh",
       "role": "International Student"
     },
     "testimonial2": {
-      "quote": "Learning IT has never been easier!",
+      "quote": "Learning IT with VieVlog has never been easier and more fun!",
       "name": "Tran Hai Nam",
       "role": "Office Worker"
     },
     "testimonial3": {
-      "quote": "Thanks to VieVlog",
+      "quote": "Thanks to VieVlog, I improved my IT skills significantly.",
       "name": "Le Thanh Huong",
       "role": "University Student"
     },
-    "vieTopik": "VieVlog",
-    "yourOneStopShop": "Your one-stop platform for mastering IT. Access premium resources for free and achieve your language goals today!",
-    "connectWithUs": "Connect With Us",
+    "vieTopik": "VieVlog - Top 1 IT Learning Platform",
+    "yourOneStopShop": "Your one-stop platform for mastering IT skills and Topik exams. Access premium learning resources for free and reach your language and IT goals today!",
+    "connectWithUs": "Connect with VieVlog on Social Media",
     "socialMedia": {
-      "facebook": "Facebook",
-      "twitter": "Twitter",
-      "instagram": "Instagram",
-      "linkedin": "LinkedIn"
+      "facebook": "VieVlog Facebook",
+      "twitter": "VieVlog Twitter",
+      "instagram": "VieVlog Instagram",
+      "linkedin": "VieVlog LinkedIn"
     },
     "company": {
-      "aboutUs": "About Us",
-      "careers": "Careers",
-      "blog": "Blog",
-      "contact": "Contact"
+      "aboutUs": "About VieVlog",
+      "careers": "Careers at VieVlog",
+      "blog": "VieVlog Blog - IT Tips & News",
+      "contact": "Contact VieVlog"
     },
     "support": {
-      "helpCenter": "Help Center",
-      "faq": "FAQ",
+      "helpCenter": "VieVlog Help Center",
+      "faq": "Frequently Asked Questions",
       "privacyPolicy": "Privacy Policy",
       "termsOfService": "Terms of Service"
     },
@@ -92,8 +86,8 @@
       "copyright": "© 2025 VieVlog. All rights reserved."
     },
     "metadata": {
-      "lesson": "Browse our latest lessons and find something you'll love.",
-      "grammar": "Available Grammar Diagrams"
+      "lesson": "Browse our latest free IT lessons and find the perfect course for your skill level.",
+      "grammar": "Explore our detailed IT diagrams and tutorials."
     }
   }
 }

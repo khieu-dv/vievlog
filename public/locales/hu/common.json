@@ -1,99 +1,93 @@
 {
   "header": {
     "utils": {
-      "login": "Bejelentkezés",
-      "logout": "Kilátás",
-      "inquiry": "Vegye fel velünk a kapcsolatot",
-      "manager": "Menedzser",
-      "topikExams": "Vizsgák témája",
-      "topikSchedule": "Téma ütemezése"
+      "login": "Jelentkezzen be a Vievlog -ba",
+      "logout": "Jelentkezés a vievlog -ból",
+      "inquiry": "Vegye fel a kapcsolatot a VIEVLOG támogatásával",
+      "manager": "Ügyvezető",
+      "topikSchedule": "Vievlog ütemterv - IT tanulási események"
     }
   },
   "body": {
     "utils": {
-      "loading": "Letöltési órák ...",
-      "notFound": "Ebben a kategóriában nincs adatok.",
-      "inquiry": "Vegye fel velünk a kapcsolatot",
-      "manager": "Menedzser"
+      "loading": "Töltse be a leckéket ...",
+      "notFound": "Nincs ebbe a kategóriába tartozó tanulság.",
+      "inquiry": "Vegye fel a kapcsolatot a VIEVLOG támogatásával",
+      "manager": "Ügyvezető"
     }
   },
   "content": {
-    "title": "VieVlog - tanulj meg koreai -t ingyen",
-    "home": "Otthon",
-    "topiks": "Témák",
-    "courses": "Tanfolyamok",
-    "grammar": "Nyelvtan",
-    "game": "Játék",
-    "features": "Jellemzők",
-    "logIn": "Bejelentkezik",
-    "signUp": "Feliratkozás",
-    "toggleTheme": "Váltás téma",
-    "newCollection": "Új gyűjtemény elérhető",
-    "oneStopPlatform": "A végső koreai tanulási platformod",
-    "startLearningNow": "Vizsga téma",
-    "whyChooseVieVlog": "Miért válassza a VieVlogot?",
-    "freeAccess": "Ingyenes hozzáférés",
-    "learnIT": "Tanuljon meg koreai-t, kiváló minőségű tanulságokkal a szakértőktől, egyáltalán költség nélkül.",
-    "expertInstructors": "Szakértői oktatók",
-    "learnFromExperts": "Tanuljon meg anyanyelvűektől és tapasztalt tanároktól.",
-    "anytimeAnywhere": "Bármikor, bárhol",
-    "learnAtYourOwnPace": "Tanuljon saját tempójában, korlátlan hozzáféréssel az órákhoz.",
-    "comprehensiveCurriculum": "Átfogó tanterv",
-    "coverAllAspects": "A kezdőtől a fejlett szintekig, a nyelvtan, a szókincs és a beszélgetés lefedésével.",
-    "topikExam": "Mestere a témát",
-    "topikI": "I. téma",
-    "topikI_tests": "12 gyakorlati teszt",
-    "topikII": "II.",
-    "topikII_tests": "15 Gyakorlati tesztek",
-    "viewAllIT": "Tekintse meg az összes téma tesztet",
+    "title": "Vievlog - Tanulja meg online ingyen | Tanfolyamok és vizsgák",
+    "home": "Otthon - Vievlog",
+    "topiks": "IT tanulási témák",
+    "courses": "Ingyenes IT tanfolyamok",
+    "grammar": "Ez nyelvtani leckék",
+    "game": "Tanulási játékok",
+    "features": "Platformfunkciók",
+    "logIn": "Jelentkezzen be a vievlogba",
+    "signUp": "Iratkozzon fel ingyen IT tanfolyamokra",
+    "toggleTheme": "Váltás világos/sötét téma",
+    "newCollection": "Új informatikai kurzus gyűjtemény elérhető",
+    "oneStopPlatform": "Vievlog - a végső ingyenes IT tanulási platformod",
+    "startLearningNow": "Kezdje el tanulni és készüljön fel a Topik vizsgara",
+    "whyChooseVieVlog": "Miért válassza a Vievlog lehetőséget az informatikai tanuláshoz?",
+    "freeAccess": "100% -ban ingyenes IT tanulási hozzáférés",
+    "learnIT": "Hozzáférjen a kiváló minőségű informatikai órákhoz, oktatóanyagokhoz és forrásokhoz a szakértői oktatóktól.",
+    "expertInstructors": "Szakértő IT -oktatók",
+    "learnFromExperts": "Tanulja meg az anyanyelvűektől és a tapasztalt szakemberektől.",
+    "anytimeAnywhere": "Tudja meg bármikor, bárhol",
+    "learnAtYourOwnPace": "Tanulmányozza saját tempójában, korlátlan hozzáféréssel az összes órához.",
+    "comprehensiveCurriculum": "Átfogó informatikai tanterv",
+    "coverAllAspects": "Az IT alapjait a fejlett témákra, beleértve a nyelvtant, a szókincset és a beszélgetési gyakorlatot, az alapokat.",
+    "viewAllIT": "Tekintse meg az összes Vievlog IT tesztet és tanfolyamot",
     "featuredCourses": "Kiemelt tanfolyamok",
-    "beginnerIT": "Kezdő koreai",
-    "intermediateIT": "Közbenső koreai",
-    "advancedIT": "Haladó koreai",
-    "getStartedForFree": "Kezdje el ingyen",
-    "whatOurLearnersSay": "Amit a tanulóink ​​mondanak",
+    "beginnerIT": "Kezdő tanfolyam",
+    "intermediateIT": "Köztes IT -tanfolyam",
+    "advancedIT": "Fejlett informatikai tanfolyam",
+    "getStartedForFree": "Kezdje el ma az ingyenes IT órákkal",
+    "whatOurLearnersSay": "Amit a tanulók mondanak a vievlogról",
     "testimonial1": {
-      "quote": "\"A VieVlog segített nekem hatékonyan felkészülni a Topik vizsgára. Az órák jól felépítettek és könnyen követhetők!\"",
+      "quote": "Vievlog segített nekem sikeresen felkészülni az informatikai vizsgára.",
       "name": "Nguyen Minh anh",
       "role": "Nemzetközi hallgató"
     },
     "testimonial2": {
-      "quote": "\"A koreai tanulás még soha nem volt ilyen egyszerű! A strukturált tanulságok mindent egyszerűvé és szórakoztatóvá tesznek.\"",
+      "quote": "A Vievlog segítségével való megtanulása még soha nem volt könnyebb és szórakoztatóbb!",
       "name": "Tran hai nam",
       "role": "Irodai munkás"
     },
     "testimonial3": {
-      "quote": "\"A VieVlognak köszönhetően a hallgatási és beszédkészségem mindössze három hónapon belül jelentősen javult!\"",
+      "quote": "A Vievlognak köszönhetően jelentősen javítottam az informatikai képességeimet.",
       "name": "Le Thanh Huong",
       "role": "Egyetemi hallgató"
     },
-    "vieTopik": "VieVlog",
-    "yourOneStopShop": "Az egyablakos platformod a koreai elsajátításhoz. Hozzáférjen a prémium erőforrásokhoz ingyen, és érje el ma nyelvi céljait!",
-    "connectWithUs": "Lépjen kapcsolatba velünk",
+    "vieTopik": "Vievlog - top 1 IT tanulási platform",
+    "yourOneStopShop": "Az egyablakos platform az informatikai készségek elsajátításához és a Topik vizsgákhoz. Hozzáférjen a prémium tanulási erőforrásokhoz ingyen, és érje el a nyelvét és az informatikai célokat ma!",
+    "connectWithUs": "Lépjen kapcsolatba a Vievlog -val a közösségi médiában",
     "socialMedia": {
-      "facebook": "Facebook",
-      "twitter": "Twitter",
-      "instagram": "Instagram",
-      "linkedin": "LinkedIn"
+      "facebook": "Vievlog facebook",
+      "twitter": "Vievlog Twitter",
+      "instagram": "Vievlog Instagram",
+      "linkedin": "Vievlog LinkedIn"
     },
     "company": {
-      "aboutUs": "Rólunk",
-      "careers": "Karrier",
-      "blog": "Blog",
-      "contact": "Érintkezés"
+      "aboutUs": "A vievlogról",
+      "careers": "Karrier a vievlog -ban",
+      "blog": "Vievlog Blog - Tippek és hírek",
+      "contact": "Vegye fel a kapcsolatot a Vievlog -nal"
     },
     "support": {
-      "helpCenter": "Súgó központ",
-      "faq": "GYIK",
+      "helpCenter": "Vievlog súgó központ",
+      "faq": "Gyakran feltett kérdéseket",
       "privacyPolicy": "Adatvédelmi irányelv",
       "termsOfService": "Szolgáltatási feltételek"
     },
     "footer": {
-      "copyright": "© 2025 VieVlog. Minden jog fenntartva."
+      "copyright": "© 2025 Vievlog. Minden jog fenntartva."
     },
     "metadata": {
-      "lesson": "Böngésszen a legújabb leckéinkkel, és találjon valamit, amit szeret.",
-      "grammar": "Elérhető nyelvtani diagramok"
+      "lesson": "Keresse meg a legújabb ingyenes IT óráinkat, és keresse meg a tökéletes tanfolyamot a készségszinthez.",
+      "grammar": "Fedezze fel a részletes IT -diagramjainkat és az oktatóanyagokat."
     }
   }
 }

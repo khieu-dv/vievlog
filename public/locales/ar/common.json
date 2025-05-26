@@ -1,99 +1,93 @@
 {
   "header": {
     "utils": {
-      "login": "تسجيل الدخول",
-      "logout": "تسجيل الخروج",
-      "inquiry": "اتصل بنا",
-      "manager": "مدير",
-      "topikExams": "موضوع الامتحانات",
-      "topikSchedule": "موضوع الجدول"
+      "login": "تسجيل الدخول إلى Vievlog",
+      "logout": "تسجيل الخروج من Vievlog",
+      "inquiry": "اتصل بدعم Vievlog",
+      "manager": "مدير الحساب",
+      "topikSchedule": "جدول Vievlog - أحداث التعلم"
     }
   },
   "body": {
     "utils": {
-      "loading": "تحميل الدروس ...",
-      "notFound": "لا توجد بيانات موجودة في هذه الفئة.",
-      "inquiry": "اتصل بنا",
-      "manager": "مدير"
+      "loading": "تحميل دروسها ...",
+      "notFound": "لا توجد دروس موجودة في هذه الفئة.",
+      "inquiry": "اتصل بدعم Vievlog",
+      "manager": "مدير الحساب"
     }
   },
   "content": {
-    "title": "VieVlog - تعلم الكورية مجانًا",
-    "home": "بيت",
-    "topiks": "موضوعات",
-    "courses": "دورات",
-    "grammar": "قواعد",
-    "game": "لعبة",
-    "features": "سمات",
-    "logIn": "تسجيل الدخول",
-    "signUp": "اشتراك",
-    "toggleTheme": "تبديل موضوع",
-    "newCollection": "مجموعة جديدة متاحة",
-    "oneStopPlatform": "منصة التعلم الكورية النهائية الخاصة بك",
-    "startLearningNow": "موضوع الامتحان",
-    "whyChooseVieVlog": "لماذا تختار VieVlog؟",
-    "freeAccess": "وصول مجاني",
-    "learnIT": "تعلم الكوري مع دروس عالية الجودة من الخبراء دون أي تكلفة على الإطلاق.",
-    "expertInstructors": "المدربون الخبراء",
-    "learnFromExperts": "تعلم من المتحدثين الأصليين والمعلمين ذوي الخبرة.",
-    "anytimeAnywhere": "في أي وقت ، في أي مكان",
-    "learnAtYourOwnPace": "دراسة في وتيرتك مع وصول غير محدود إلى الدروس.",
-    "comprehensiveCurriculum": "منهج شامل",
-    "coverAllAspects": "من المبتدئين إلى المستويات المتقدمة ، تغطي القواعد النحوية والمفردات والمحادثة.",
-    "topikExam": "إتقان امتحان الموضوع",
-    "topikI": "الموضوع أنا",
-    "topikI_tests": "12 اختبارات الممارسة",
-    "topikII": "الموضوع الثاني",
-    "topikII_tests": "15 اختبارات الممارسة",
-    "viewAllIT": "عرض جميع اختبارات الموضوعات",
-    "featuredCourses": "دورات مميزة",
-    "beginnerIT": "كوري المبتدئ",
-    "intermediateIT": "الكورية الوسيطة",
-    "advancedIT": "كوري المتقدم",
-    "getStartedForFree": "ابدأ مجانًا",
-    "whatOurLearnersSay": "ماذا يقول متعلمونا",
+    "title": "VIEVLOG - تعلمها عبر الإنترنت مجانًا | الدورات والامتحانات",
+    "home": "الصفحة الرئيسية - فييفلوغ",
+    "topiks": "تعلم موضوعات",
+    "courses": "دورات مجانية لها",
+    "grammar": "إنه دروس القواعد",
+    "game": "ألعاب التعلم",
+    "features": "ميزات المنصة",
+    "logIn": "تسجيل الدخول إلى Vievlog",
+    "signUp": "اشترك في دورات تكنولوجيا المعلومات المجانية",
+    "toggleTheme": "تبديل الضوء/السمة المظلمة",
+    "newCollection": "مجموعة الدورة التدريبية الجديدة متوفرة",
+    "oneStopPlatform": "Vievlog - منصة التعلم المجانية الخاصة بك في نهاية المطاف",
+    "startLearningNow": "ابدأ في تعلمه والاستعداد لامتحان توبيك",
+    "whyChooseVieVlog": "لماذا تختار Vievlog لتعلمه؟",
+    "freeAccess": "100 ٪ مجانا للوصول إلى التعلم",
+    "learnIT": "الوصول إلى دروس تكنولوجيا المعلومات عالية الجودة والدروس والموارد من المدربين الخبراء دون أي تكلفة.",
+    "expertInstructors": "خبير مدربون تكنولوجيا المعلومات",
+    "learnFromExperts": "تعلم ذلك من المتحدثين الأصليين والمهنيين ذوي الخبرة.",
+    "anytimeAnywhere": "تعلمها في أي وقت وفي أي مكان",
+    "learnAtYourOwnPace": "ادرسها في وتيرتك مع وصول غير محدود إلى جميع الدروس.",
+    "comprehensiveCurriculum": "مناهج تكنولوجيا المعلومات الشاملة",
+    "coverAllAspects": "الدورات التي تغطيها أساسيات لمواضيع متقدمة ، بما في ذلك القواعد والمفردات وممارسة المحادثة.",
+    "viewAllIT": "عرض كل اختبارات ودورات في Vievlog",
+    "featuredCourses": "ظهرت دورات",
+    "beginnerIT": "مسار المبتدئين",
+    "intermediateIT": "الدورة التدريبية الوسيطة",
+    "advancedIT": "مسار IT المتقدم",
+    "getStartedForFree": "ابدأ مع دروسها المجانية اليوم",
+    "whatOurLearnersSay": "ماذا يقول متعلمونا عن Vievlog",
     "testimonial1": {
-      "quote": "\"ساعدني VieVlog في الاستعداد لامتحان Topik بشكل فعال. الدروس هي منظمة جيدة التنظيم وسهلة المتابعة!\"",
+      "quote": "ساعدني Vievlog بنجاح في الاستعداد لامتحان تكنولوجيا المعلومات.",
       "name": "نغوين مينه آنه",
       "role": "طالب دولي"
     },
     "testimonial2": {
-      "quote": "\"إن تعلم الكورية لم يكن أسهل أبدًا! الدروس المنظمة تجعل كل شيء بسيطًا وممتعًا.\"",
+      "quote": "لم يكن تعلمه مع Vievlog أسهل وأكثر متعة!",
       "name": "تران هاي نام",
       "role": "عامل المكتب"
     },
     "testimonial3": {
-      "quote": "\"بفضل VieVlog ، تحسنت مهاراتي في الاستماع والتحدث بشكل كبير خلال ثلاثة أشهر فقط!\"",
+      "quote": "بفضل Vievlog ، قمت بتحسين مهارات تكنولوجيا المعلومات الخاصة بي بشكل كبير.",
       "name": "لو ثانه هوونغ",
       "role": "طالب الجامعة"
     },
-    "vieTopik": "فييتوبيك",
-    "yourOneStopShop": "منصة شدة واحدة لإتقان الكورية. الوصول إلى الموارد الممتازة مجانًا وتحقيق أهداف لغتك اليوم!",
-    "connectWithUs": "تواصل معنا",
+    "vieTopik": "Vievlog - منصة التعلم Top 1 IT",
+    "yourOneStopShop": "منصة شدة واحدة لإتقان مهارات تكنولوجيا المعلومات والامتحانات Topik. الوصول إلى موارد التعلم الممتازة مجانًا والوصول إلى لغتك وأهداف تكنولوجيا المعلومات اليوم!",
+    "connectWithUs": "تواصل مع Vievlog على وسائل التواصل الاجتماعي",
     "socialMedia": {
-      "facebook": "فيسبوك",
-      "twitter": "تغريد",
-      "instagram": "Instagram",
-      "linkedin": "LinkedIn"
+      "facebook": "Vievlog Facebook",
+      "twitter": "vievlog تويتر",
+      "instagram": "VIVLOG Instagram",
+      "linkedin": "VIVLOG LinkedIn"
     },
     "company": {
-      "aboutUs": "معلومات عنا",
-      "careers": "وظائف",
-      "blog": "مدونة",
-      "contact": "اتصال"
+      "aboutUs": "حول فييفلوغ",
+      "careers": "وظائف في Vievlog",
+      "blog": "مدونة Vievlog - نصائح وأخبار تكنولوجيا المعلومات",
+      "contact": "اتصل VIVLOG"
     },
     "support": {
-      "helpCenter": "مركز المساعدة",
-      "faq": "التعليمات",
+      "helpCenter": "مركز مساعدة فييفلوج",
+      "faq": "الأسئلة المتداولة",
       "privacyPolicy": "سياسة الخصوصية",
       "termsOfService": "شروط الخدمة"
     },
     "footer": {
-      "copyright": "© 2025 VieVlog. جميع الحقوق محفوظة."
+      "copyright": "© 2025 Vievlog. جميع الحقوق محفوظة."
     },
     "metadata": {
-      "lesson": "تصفح أحدث دروسنا وابحث عن شيء ستحبه.",
-      "grammar": "مخططات القواعد المتاحة"
+      "lesson": "تصفح أحدث دروسها المجانية وابحث عن المسار المثالي لمستوى مهاراتك.",
+      "grammar": "استكشاف مخططات تكنولوجيا المعلومات التفصيلية لدينا والدروس التعليمية."
     }
   }
 }

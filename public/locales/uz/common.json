@@ -1,99 +1,93 @@
 {
   "header": {
     "utils": {
-      "login": "Tizimga kirish",
-      "logout": "Chiqish",
-      "inquiry": "Biz bilan bog'lanish",
-      "manager": "Menejer",
-      "topikExams": "Imtihon mavzulari",
-      "topikSchedule": "Mavzular jadvali"
+      "login": "Vievlogga kirish",
+      "logout": "Vievlogdan chiqish",
+      "inquiry": "Vievloglarni qo'llab-quvvatlash",
+      "manager": "Buyurtmachilar bilan ishlash bo'yicha menejer",
+      "topikSchedule": "Vievlog jadvali - Bu tadbirlarni o'rganish"
     }
   },
   "body": {
     "utils": {
-      "loading": "Darslarni yuklash ...",
-      "notFound": "Ushbu toifadagi ma'lumotlar topilmadi.",
-      "inquiry": "Biz bilan bog'lanish",
-      "manager": "Menejer"
+      "loading": "Uni darslarni yuklash ...",
+      "notFound": "Ushbu toifadagi darslar topilmadi.",
+      "inquiry": "Vievloglarni qo'llab-quvvatlash",
+      "manager": "Buyurtmachilar bilan ishlash bo'yicha menejer"
     }
   },
   "content": {
-    "title": "Vetopik - BEPUL BEPUL BERADI",
-    "home": "Uy",
-    "topiks": "Mavzular",
-    "courses": "Kurslar",
-    "grammar": "Grammatika",
-    "game": "O'yin",
-    "features": "Xususiyatlari",
-    "logIn": "Tizimga kirish",
-    "signUp": "Ro'yxatdan o'tish",
-    "toggleTheme": "Mavzuni almashtirish",
-    "newCollection": "Yangi to'plam mavjud",
-    "oneStopPlatform": "Sizning yakuniy koreysni o'rganish platformasi",
-    "startLearningNow": "Imtihon mavzusi",
-    "whyChooseVieVlog": "Nega Vetopikni tanlaysizmi?",
-    "freeAccess": "Bepul kirish",
-    "learnIT": "Mutaxassislardan mutaxassislarning sifatli saboqlari bo'lgan koreys tilini o'rganing.",
-    "expertInstructors": "Ekspert instruktorlari",
-    "learnFromExperts": "Ona tilida so'zlashadigan va tajribali o'qituvchidan o'rganing.",
-    "anytimeAnywhere": "Istalgan vaqtda, istalgan joyda",
-    "learnAtYourOwnPace": "Darslarga cheksiz kirish bilan o'zingizning tezligingizda o'rganing.",
-    "comprehensiveCurriculum": "Keng qamrovli o'quv dasturi",
-    "coverAllAspects": "Boshlang'ichdan ilg'or darajalarga, grammatika, lug'at va suhbatni qamrab oladi.",
-    "topikExam": "Mavzularni imtihonni o'tkazing",
-    "topikI": "Mavzu men",
-    "topikI_tests": "12 Amaliy sinov sinovlari",
-    "topikII": "II Mavzu",
-    "topikII_tests": "15 Amaliy sinov sinovlari",
-    "viewAllIT": "Testlarni ko'rish",
-    "featuredCourses": "Tanlangan kurslar",
-    "beginnerIT": "Boshlang'ich koreyalik",
-    "intermediateIT": "Oraliq koreys",
-    "advancedIT": "Ilg'or koreyalik",
-    "getStartedForFree": "Bepul boshlash",
-    "whatOurLearnersSay": "Bizning o'quvchilarimiz nima deyishadi",
+    "title": "Vievlog - uni onlayn tarzda o'rganing IT kurslari va imtihonlar",
+    "home": "Uy - Vievlog",
+    "topiks": "U bilim mavzularini o'rganish",
+    "courses": "Bepul IT kurslari",
+    "grammar": "Bu grammatika darslari",
+    "game": "O'qish o'yinlari",
+    "features": "Platformaning xususiyatlari",
+    "logIn": "Vievlog-ga kiring",
+    "signUp": "Bepul IT kurslari uchun ro'yxatdan o'ting",
+    "toggleTheme": "Yengil / qorong'i mavzularni almashtiring",
+    "newCollection": "YANGI IT IT kurslari mavjud",
+    "oneStopPlatform": "Vieievlog - Sizning eng yaxshi bepul bu platforma",
+    "startLearningNow": "Uni o'rganishni boshlang va Topik imtihoniga tayyorgarlik ko'ring",
+    "whyChooseVieVlog": "Nega Vievlogni o'rganishni tanlaysizmi?",
+    "freeAccess": "100% bepul foydalanish",
+    "learnIT": "Hech qanday narxda ekspert instruktorlaridan yuqori sifatli darslar, darsliklar va resurslardan foydalanish.",
+    "expertInstructors": "IT o'qituvchilari ekspert",
+    "learnFromExperts": "Buni ona tilida so'zlashuvchi va tajribali mutaxassislardan bilib oling.",
+    "anytimeAnywhere": "Buni istalgan vaqtda o'rganing, istalgan joyda",
+    "learnAtYourOwnPace": "Buni barcha darslarga cheksiz kirish bilan o'rganing.",
+    "comprehensiveCurriculum": "O'quv dasturini har tomonlama tuzing",
+    "coverAllAspects": "Mavzular, shu jumladan grammatika, lug'at va suhbat amaliyotini qamrab oluvchi kurslar.",
+    "viewAllIT": "Vievlogni test va kurslarni ko'ring",
+    "featuredCourses": "IT kurslari namoyish etildi",
+    "beginnerIT": "Boshlang'ich bu kursi",
+    "intermediateIT": "Bu kurs",
+    "advancedIT": "Ilg'or IT kursi",
+    "getStartedForFree": "Bugungi kunda bepul darslar bilan boshlang",
+    "whatOurLearnersSay": "O'quvchilarimiz Vievlog haqida nima deyishadi",
     "testimonial1": {
-      "quote": "\"Vetopik menga\" Topik \"imtihonimni samarali tayyorlashga yordam berdi. Darslar yaxshi tuzilgan va osongina kuzatib borish oson!\"",
+      "quote": "Vievlog menga IT imtihonimga muvaffaqiyatli tayyorgarlik ko'rdi.",
       "name": "Nguyen minh anh",
       "role": "Xalqaro talaba"
     },
     "testimonial2": {
-      "quote": "\"Koreyaning o'rganish hech qachon oson bo'lmaganida! Tarkibiy darslar hamma narsani sodda va qiziqarli qiladi.\"",
+      "quote": "Vievlog bilan tanishish hech qachon oson va qiziqarli emas!",
       "name": "Name Tran Hai",
       "role": "Ofis ishchisi"
     },
     "testimonial3": {
-      "quote": "\"Vetopik tufayli, mening tinglash va so'zlash qobiliyatim uch oy ichida sezilarli darajada yaxshilandi!\"",
+      "quote": "Vievlog tufayli men bu mahoratimni sezilarli darajada yaxshiladim.",
       "name": "Leanh huong",
       "role": "Universitet talabasi"
     },
-    "vieTopik": "VieVlog",
-    "yourOneStopShop": "Koreysni o'zlashtirish uchun bitta-bekat platformangiz. FOYDALANISH MUHOFAZA QILISh UChUN MUHOFAZA QILISh UChUN MUHOFAZA QILISh VA FAQATNING MA'LUMOTLARI!",
-    "connectWithUs": "Biz bilan bog'laning",
+    "vieTopik": "Vieievlog - eng yaxshi 1 bu platforma",
+    "yourOneStopShop": "ITOGIYALARNI TA'LIM va O'TKINChI ITIKALARINI MA'LUMOTLARINING BIRINCHI BOShQA PROLFFORT. FreeUtium O'quv resurslari bepul va tilingizga etib boring va bugungi kunda u maqsadlar!",
+    "connectWithUs": "Vievlog bilan ijtimoiy tarmoqlarda ulanish",
     "socialMedia": {
-      "facebook": "Facebook",
-      "twitter": "Tvitter",
-      "instagram": "Instagram",
-      "linkedin": "Linkedin"
+      "facebook": "Vievlog Facebook",
+      "twitter": "Vievlog twitter",
+      "instagram": "Vievlog instagram",
+      "linkedin": "Vievlog Linkedin"
     },
     "company": {
-      "aboutUs": "Biz haqimizda",
-      "careers": "Karyeralar",
-      "blog": "Blog",
-      "contact": "Aloqa qilmoq"
+      "aboutUs": "Vievlog haqida",
+      "careers": "Vievlogdagi kareralar",
+      "blog": "Vievlog blog - Bu maslahatlar va yangiliklar",
+      "contact": "Vievlog bilan bog'laning"
     },
     "support": {
-      "helpCenter": "Yordam markazi",
-      "faq": "TSS",
+      "helpCenter": "Vievlog yordam markazi",
+      "faq": "Tez-tez beriladigan savollar",
       "privacyPolicy": "Maxfiylik siyosati",
       "termsOfService": "Xizmat shartlari"
     },
     "footer": {
-      "copyright": "© 2025 Vetopik. Barcha huquqlar himoyalangan."
+      "copyright": "© 2025 Vievlog. Barcha huquqlar himoyalangan."
     },
     "metadata": {
-      "lesson": "Bizning so'nggi darslarimizni ko'rib chiqing va sevgan narsani toping.",
-      "grammar": "Mavjud grammatik diagrammalar"
+      "lesson": "Bizning so'nggi bepul bu darslarimizni ko'rib chiqing va mahorat darajangiz uchun mukammal kursni toping.",
+      "grammar": "Batafsil IT diagrammalari va darsliklarimizni o'rganing."
     }
   }
 }

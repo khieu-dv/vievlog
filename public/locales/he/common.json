@@ -1,99 +1,93 @@
 {
   "header": {
     "utils": {
-      "login": "כְּנִיסָה לַמַעֲרֶכֶת",
-      "logout": "יציאה",
-      "inquiry": "צרו קשר",
-      "manager": "מְנַהֵל",
-      "topikExams": "נושא הבחינות",
-      "topikSchedule": "נושא לוח הזמנים"
+      "login": "התחבר ל- Vievlog",
+      "logout": "התנתקות מ- Vievlog",
+      "inquiry": "צור קשר עם vievlog תמיכה",
+      "manager": "מנהל חשבון",
+      "topikSchedule": "לוח הזמנים של Vievlog - אירועי לימוד IT"
     }
   },
   "body": {
     "utils": {
-      "loading": "טוען שיעורי ...",
-      "notFound": "לא נמצאו נתונים בקטגוריה זו.",
-      "inquiry": "צרו קשר",
-      "manager": "מְנַהֵל"
+      "loading": "טוען שיעורים ...",
+      "notFound": "אין לקחים בקטגוריה זו.",
+      "inquiry": "צור קשר עם vievlog תמיכה",
+      "manager": "מנהל חשבון"
     }
   },
   "content": {
-    "title": "VieVlog - למד קוריאני בחינם",
-    "home": "בַּיִת",
-    "topiks": "נושאים",
-    "courses": "קורסים",
-    "grammar": "דִקדוּק",
-    "game": "מִשְׂחָק",
-    "features": "תכונות",
-    "logIn": "התחבר",
-    "signUp": "הירשם",
-    "toggleTheme": "נושא הנושא",
-    "newCollection": "אוסף חדש זמין",
-    "oneStopPlatform": "פלטפורמת הלמידה הקוריאנית האולטימטיבית שלך",
-    "startLearningNow": "נושא הבחינה",
-    "whyChooseVieVlog": "למה לבחור בוויטופיק?",
-    "freeAccess": "גישה חינם",
-    "learnIT": "למדו קוריאנית עם שיעורים איכותיים של מומחים ללא עלות לחלוטין.",
-    "expertInstructors": "מדריכים מומחים",
-    "learnFromExperts": "למדו מדוברי שפת אם ומורים מנוסים.",
-    "anytimeAnywhere": "בכל זמן ובכל מקום",
-    "learnAtYourOwnPace": "למד בקצב שלך עם גישה בלתי מוגבלת לשיעורים.",
+    "title": "Vievlog - למד זאת באופן מקוון בחינם | זה קורסים ובחינות",
+    "home": "בית - Vievlog",
+    "topiks": "נושאים לומדים",
+    "courses": "שחרר קורסים",
+    "grammar": "זה שיעורי דקדוק",
+    "game": "משחקי למידה",
+    "features": "תכונות פלטפורמה",
+    "logIn": "התחבר ל- Vievlog",
+    "signUp": "הירשם לקורסי IT בחינם",
+    "toggleTheme": "החלף נושא אור/אפל",
+    "newCollection": "אוסף קורס IT חדש זמין",
+    "oneStopPlatform": "Vievlog - פלטפורמת הלמידה האולטימטיבית שלך בחינם",
+    "startLearningNow": "התחל ללמוד אותו ולהתכונן לבחינת טופיק",
+    "whyChooseVieVlog": "מדוע לבחור ב- Vievlog ללימוד IT?",
+    "freeAccess": "גישה ללימוד IT בחינם 100%",
+    "learnIT": "גישה לשיעורי IT באיכות גבוהה, הדרכות ומשאבים של מדריכי מומחים ללא עלות.",
+    "expertInstructors": "מדריכי IT מומחים",
+    "learnFromExperts": "למדו את זה מדוברי שפת אם ואנשי מקצוע מנוסים.",
+    "anytimeAnywhere": "למד את זה בכל עת ובכל מקום",
+    "learnAtYourOwnPace": "למד אותו בקצב שלך עם גישה בלתי מוגבלת לכל השיעורים.",
     "comprehensiveCurriculum": "תכנית לימודים מקיפה",
-    "coverAllAspects": "מהמתחיל לרמות מתקדמות, המכסה דקדוק, אוצר מילים ושיחה.",
-    "topikExam": "שלט בבחינת הנושא",
-    "topikI": "נושא i",
-    "topikI_tests": "12 מבחני תרגול",
-    "topikII": "נושא ב '",
-    "topikII_tests": "15 מבחני תרגול",
-    "viewAllIT": "צפה בכל מבחני הנושאים",
-    "featuredCourses": "קורסים מוצגים",
-    "beginnerIT": "הקוריאני של המתחילים",
-    "intermediateIT": "קוריאני ביניים",
-    "advancedIT": "קוריאנית מתקדמת",
-    "getStartedForFree": "התחל בחינם",
-    "whatOurLearnersSay": "מה הלומדים שלנו אומרים",
+    "coverAllAspects": "קורסים המכסים את יסודות ה- IT לנושאים מתקדמים, כולל דקדוק, אוצר מילים ותרגול שיחה.",
+    "viewAllIT": "צפה בכל המבחנים והקורסים של Vievlog IT",
+    "featuredCourses": "הציג את הקורסים",
+    "beginnerIT": "מסלול זה של מתחילים",
+    "intermediateIT": "מסלול זה ביניים",
+    "advancedIT": "מסלול זה מתקדם",
+    "getStartedForFree": "התחל עם שיעורי IT בחינם היום",
+    "whatOurLearnersSay": "מה הלומדים שלנו אומרים על vievlog",
     "testimonial1": {
-      "quote": "\"VieVlog עזר לי להתכונן לבחינת Topik ביעילות. השיעורים הם מובנים היטב וקלים לעקוב אחריהם!\"",
+      "quote": "Vievlog עזר לי להתכונן בהצלחה לבחינת ה- IT שלי.",
       "name": "Nguyen Minh Anh",
       "role": "סטודנט בינלאומי"
     },
     "testimonial2": {
-      "quote": "\"לימוד קוריאני מעולם לא היה קל יותר! השיעורים המובנים הופכים את הכל לפשוט ומהנה.\"",
+      "quote": "ללמוד את זה עם Vievlog מעולם לא היה קל יותר וכיף יותר!",
       "name": "טראן חי נאם",
       "role": "עובד משרד"
     },
     "testimonial3": {
-      "quote": "\"בזכות ויטופיק, כישורי ההאזנה והדיבור שלי השתפרו משמעותית תוך שלושה חודשים בלבד!\"",
+      "quote": "בזכות Vievlog, שיפרתי את כישורי ה- IT שלי באופן משמעותי.",
       "name": "Le Thanh Huong",
       "role": "סטודנט באוניברסיטה"
     },
-    "vieTopik": "VieVlog",
-    "yourOneStopShop": "הפלטפורמה האחת-עצירתית שלך לשליטה בקוריאנית. גישה למשאבי פרימיום בחינם ולהשיג את יעדי השפה שלך עוד היום!",
-    "connectWithUs": "התחבר אלינו",
+    "vieTopik": "Vievlog - פלטפורמת למידת IT המובילה 1",
+    "yourOneStopShop": "הפלטפורמה האחת-עצמאית שלך לשליטה בכישורי IT ובחינות טופיק. גישה למשאבי למידה פרימיום בחינם ולהגיע לשפה שלך ולמטרות ה- IT עוד היום!",
+    "connectWithUs": "התחבר עם Vievlog במדיה החברתית",
     "socialMedia": {
-      "facebook": "פייסבוק",
-      "twitter": "לְצַפְצֵף",
-      "instagram": "אינסטגרם",
-      "linkedin": "לינקדאין"
+      "facebook": "Vievlog פייסבוק",
+      "twitter": "טוויטר Vievlog",
+      "instagram": "Vievlog אינסטגרם",
+      "linkedin": "Vievlog LinkedIn"
     },
     "company": {
-      "aboutUs": "עלינו",
-      "careers": "קריירה",
-      "blog": "בלוג",
-      "contact": "מַגָע"
+      "aboutUs": "על vievlog",
+      "careers": "קריירה ב- Vievlog",
+      "blog": "בלוג Vievlog - טיפים וחדשות זה",
+      "contact": "צור קשר עם Vievlog"
     },
     "support": {
-      "helpCenter": "מרכז עזרה",
+      "helpCenter": "מרכז העזרה של Vievlog",
       "faq": "שאלות נפוצות",
       "privacyPolicy": "מדיניות פרטיות",
       "termsOfService": "תנאי שירות"
     },
     "footer": {
-      "copyright": "© 2025 VieVlog. כֹּל הַזְכוּיוֹת שְׁמוּרוֹת."
+      "copyright": "© 2025 Vievlog. כֹּל הַזְכוּיוֹת שְׁמוּרוֹת."
     },
     "metadata": {
-      "lesson": "עיין בשיעורים האחרונים שלנו ומצא משהו שתאהב.",
-      "grammar": "דיאגרמות דקדוק זמינות"
+      "lesson": "עיין בשיעורי ה- IT האחרונים שלנו ומצא את המסלול המושלם לרמת המיומנות שלך.",
+      "grammar": "חקור את דיאגרמות ה- IT המפורטות שלנו."
     }
   }
 }

@@ -1,99 +1,93 @@
 {
   "header": {
     "utils": {
-      "login": "로그인",
-      "logout": "로그 아웃",
-      "inquiry": "저희에게 연락하십시오",
-      "manager": "관리자",
-      "topikExams": "시험 주제",
-      "topikSchedule": "주제 일정"
+      "login": "Vievlog에 로그인하십시오",
+      "logout": "vievlog에서 로그 아웃",
+      "inquiry": "Vievlog 지원에 문의하십시오",
+      "manager": "계정 관리자",
+      "topikSchedule": "vievlog 일정 - IT 학습 이벤트"
     }
   },
   "body": {
     "utils": {
-      "loading": "로드 레슨 ...",
-      "notFound": "이 범주에서 찾은 데이터가 없습니다.",
-      "inquiry": "저희에게 연락하십시오",
-      "manager": "관리자"
+      "loading": "교훈을로드 ...",
+      "notFound": "이 카테고리에서 발견 된 교훈은 없습니다.",
+      "inquiry": "Vievlog 지원에 문의하십시오",
+      "manager": "계정 관리자"
     }
   },
   "content": {
-    "title": "VieVlog - 한국어를 무료로 배우십시오",
-    "home": "집",
-    "topiks": "주제",
-    "courses": "행동",
-    "grammar": "문법",
-    "game": "게임",
-    "features": "특징",
-    "logIn": "로그인하십시오",
-    "signUp": "가입하십시오",
-    "toggleTheme": "테마 토글",
-    "newCollection": "새로운 컬렉션 사용 가능",
-    "oneStopPlatform": "최고의 한국 학습 플랫폼",
-    "startLearningNow": "시험 주제",
-    "whyChooseVieVlog": "왜 VieVlog을 선택합니까?",
-    "freeAccess": "무료 액세스",
-    "learnIT": "전문가의 고품질 수업으로 한국어를 배우십시오.",
-    "expertInstructors": "전문가 강사",
-    "learnFromExperts": "원어민과 숙련 된 교사로부터 배우십시오.",
-    "anytimeAnywhere": "언제 어디서나",
-    "learnAtYourOwnPace": "수업에 대한 무제한 액세스로 자신의 속도로 공부하십시오.",
-    "comprehensiveCurriculum": "포괄적 인 커리큘럼",
-    "coverAllAspects": "초보자부터 고급 레벨, 문법, 어휘 및 대화를 다루는 것.",
-    "topikExam": "주제 시험을 마스터하십시오",
-    "topikI": "주제 i",
-    "topikI_tests": "12 연습 테스트",
-    "topikII": "주제 II",
-    "topikII_tests": "15 연습 테스트",
-    "viewAllIT": "모든 주제 테스트를보십시오",
-    "featuredCourses": "주요 과정",
-    "beginnerIT": "초보자의 한국",
-    "intermediateIT": "중간 한국",
-    "advancedIT": "고급 한국",
-    "getStartedForFree": "무료로 시작하십시오",
-    "whatOurLearnersSay": "우리 학습자들이 말하는 것",
+    "title": "vievlog - 무료로 온라인으로 배우십시오 | 과정과 시험",
+    "home": "홈 -Vievlog",
+    "topiks": "그것은 주제를 배우고 있습니다",
+    "courses": "무료 IT 코스",
+    "grammar": "문법 수업",
+    "game": "학습 게임",
+    "features": "플랫폼 기능",
+    "logIn": "vievlog에 로그인하십시오",
+    "signUp": "무료 IT 코스에 가입하십시오",
+    "toggleTheme": "전환 명/다크 테마",
+    "newCollection": "새로운 IT 코스 컬렉션 이용 가능",
+    "oneStopPlatform": "Vievlog- 최고의 무료 IT 학습 플랫폼",
+    "startLearningNow": "학습을 시작하고 Topik 시험을 준비하십시오",
+    "whyChooseVieVlog": "학습을 위해 Vievlog를 선택하는 이유는 무엇입니까?",
+    "freeAccess": "100% 무료 IT 학습 액세스",
+    "learnIT": "전문가 강사의 고품질 IT 수업, 튜토리얼 및 리소스에 무료로 액세스하십시오.",
+    "expertInstructors": "전문가 IT 강사",
+    "learnFromExperts": "원어민과 숙련 된 전문가로부터 배우십시오.",
+    "anytimeAnywhere": "언제 어디서나 배우십시오",
+    "learnAtYourOwnPace": "모든 수업에 대한 무제한 액세스로 자신의 속도로 연구하십시오.",
+    "comprehensiveCurriculum": "포괄적 인 IT 커리큘럼",
+    "coverAllAspects": "문법, 어휘 및 대화 연습을 포함한 고급 주제에 대한 기본 사항을 다루는 과정.",
+    "viewAllIT": "모든 vievlog IT 테스트 및 코스를보십시오",
+    "featuredCourses": "IT 코스를 선보였습니다",
+    "beginnerIT": "초보자의 IT 코스",
+    "intermediateIT": "중간 IT 코스",
+    "advancedIT": "고급 IT 코스",
+    "getStartedForFree": "오늘 무료 수업을 시작하십시오",
+    "whatOurLearnersSay": "우리 학습자들이 Vievlog에 대해 말하는 것",
     "testimonial1": {
-      "quote": "\"VieVlog은 Topik 시험을 효과적으로 준비하는 데 도움이되었습니다. 수업은 잘 구조화되고 따라 가기 쉽습니다!\"",
+      "quote": "Vievlog는 IT 시험을 성공적으로 준비하는 데 도움이되었습니다.",
       "name": "Nguyen Minh Anh",
       "role": "국제 학생"
     },
     "testimonial2": {
-      "quote": "\"한국어를 배우는 것은 결코 쉬운 일이 아닙니다! 구조화 된 교훈은 모든 것을 단순하고 재미있게 만듭니다.\"",
+      "quote": "Vievlog로 그것을 배우는 것은 결코 쉬워지고 더 재미있었습니다!",
       "name": "트란 하이 남",
       "role": "사무실 직원"
     },
     "testimonial3": {
-      "quote": "\"VieVlog 덕분에 듣기와 말하기 기술은 단 3 개월 안에 크게 향상되었습니다!\"",
+      "quote": "Vievlog 덕분에 IT 기술을 크게 향상 시켰습니다.",
       "name": "Le Thanh Huong",
       "role": "대학생"
     },
-    "vieTopik": "VieVlog",
-    "yourOneStopShop": "한국을 마스터하기위한 원 스톱 플랫폼. 프리미엄 리소스에 무료로 액세스하고 오늘 언어 목표를 달성하십시오!",
-    "connectWithUs": "우리와 연결하십시오",
+    "vieTopik": "VIEVLOG -TOP 1 IT 학습 플랫폼",
+    "yourOneStopShop": "IT 기술 및 Topik 시험을 마스터하기위한 원 스톱 플랫폼. 프리미엄 학습 리소스에 무료로 액세스하고 오늘 언어와 IT 목표에 도달하십시오!",
+    "connectWithUs": "소셜 미디어에서 Vievlog와 연결하십시오",
     "socialMedia": {
-      "facebook": "페이스 북",
-      "twitter": "지저귀다",
-      "instagram": "인스 타 그램",
-      "linkedin": "LinkedIn"
+      "facebook": "Vievlog Facebook",
+      "twitter": "vievlog 트위터",
+      "instagram": "vievlog Instagram",
+      "linkedin": "vievlog linkedin"
     },
     "company": {
-      "aboutUs": "우리에 대해",
-      "careers": "경력",
-      "blog": "블로그",
-      "contact": "연락하다"
+      "aboutUs": "vievlog에 대해",
+      "careers": "Vievlog의 경력",
+      "blog": "Vievlog 블로그 - 팁 및 뉴스",
+      "contact": "Vievlog에 문의하십시오"
     },
     "support": {
-      "helpCenter": "도움말 센터",
-      "faq": "FAQ",
+      "helpCenter": "Vievlog 도움말 센터",
+      "faq": "자주 묻는 질문",
       "privacyPolicy": "개인 정보 보호 정책",
       "termsOfService": "서비스 약관"
     },
     "footer": {
-      "copyright": "© 2025 VieVlog. 모든 권리 보유."
+      "copyright": "© 2025 Vievlog. 모든 권리 보유."
     },
     "metadata": {
-      "lesson": "우리의 최신 교훈을 탐색하고 사랑하는 것을 찾으십시오.",
-      "grammar": "사용 가능한 문법 다이어그램"
+      "lesson": "최신 무료 IT 레슨을 찾아보고 기술 수준을위한 완벽한 코스를 찾으십시오.",
+      "grammar": "자세한 IT 다이어그램과 튜토리얼을 탐색하십시오."
     }
   }
 }

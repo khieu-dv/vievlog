@@ -1,99 +1,93 @@
 {
   "header": {
     "utils": {
-      "login": "登入",
-      "logout": "註銷",
-      "inquiry": "聯繫我們",
-      "manager": "主管",
-      "topikExams": "考試主題",
-      "topikSchedule": "時間表主題"
+      "login": "登錄到Vievlog",
+      "logout": "從Vievlog註銷",
+      "inquiry": "聯繫Vievlog支持",
+      "manager": "客戶經理",
+      "topikSchedule": "Vievlog時間表 -  IT學習活動"
     }
   },
   "body": {
     "utils": {
-      "loading": "加載課...",
-      "notFound": "在此類別中找不到數據。",
-      "inquiry": "聯繫我們",
-      "manager": "主管"
+      "loading": "加載它的課...",
+      "notFound": "在此類別中找到的教訓都不是。",
+      "inquiry": "聯繫Vievlog支持",
+      "manager": "客戶經理"
     }
   },
   "content": {
-    "title": "VieVlog  - 免費學習韓語",
-    "home": "家",
-    "topiks": "主題",
-    "courses": "課程",
-    "grammar": "文法",
-    "game": "遊戲",
-    "features": "特徵",
-    "logIn": "登入",
-    "signUp": "報名",
-    "toggleTheme": "切換主題",
-    "newCollection": "可用的新系列",
-    "oneStopPlatform": "您的最終韓國學習平台",
-    "startLearningNow": "考試主題",
-    "whyChooseVieVlog": "為什麼選擇VieVlog？",
-    "freeAccess": "免費訪問",
-    "learnIT": "從專家那裡學習高質量的課程的韓國人，絕對沒有成本。",
-    "expertInstructors": "專家講師",
-    "learnFromExperts": "向母語人士和經驗豐富的老師學習。",
-    "anytimeAnywhere": "隨時隨地",
-    "learnAtYourOwnPace": "以自己的步調學習，無限訪問課程。",
-    "comprehensiveCurriculum": "全面的課程",
-    "coverAllAspects": "從初學者到高級級別，涵蓋語法，詞彙和對話。",
-    "topikExam": "掌握主題考試",
-    "topikI": "主題i",
-    "topikI_tests": "12個練習測試",
-    "topikII": "主題II",
-    "topikII_tests": "15個練習測試",
-    "viewAllIT": "查看所有主題測試",
-    "featuredCourses": "特色課程",
-    "beginnerIT": "初學者的韓語",
-    "intermediateIT": "中級韓國",
-    "advancedIT": "韓國高級",
-    "getStartedForFree": "免費入門",
-    "whatOurLearnersSay": "我們的學習者怎麼說",
+    "title": "Vievlog  - 免費在線學習|它的課程和考試",
+    "home": "家 -  vievlog",
+    "topiks": "它學習主題",
+    "courses": "免費課程",
+    "grammar": "它語法課",
+    "game": "學習遊戲",
+    "features": "平台功能",
+    "logIn": "登錄到Vievlog",
+    "signUp": "免費註冊IT課程",
+    "toggleTheme": "切換光/深色主題",
+    "newCollection": "新的IT課程收集可用",
+    "oneStopPlatform": "Vievlog-您的最終免費IT學習平台",
+    "startLearningNow": "開始學習並準備Topik考試",
+    "whyChooseVieVlog": "為什麼選擇Vievlog學習？",
+    "freeAccess": "100％免費的IT學習訪問",
+    "learnIT": "免費從專家教練免費獲得高質量的IT課程，教程和資源。",
+    "expertInstructors": "專家IT教練",
+    "learnFromExperts": "向母語人士和經驗豐富的專業人士學習。",
+    "anytimeAnywhere": "隨時隨地學習",
+    "learnAtYourOwnPace": "以您自己的速度學習，無限訪問所有課程。",
+    "comprehensiveCurriculum": "全面的IT課程",
+    "coverAllAspects": "涵蓋高級主題的課程，包括語法，詞彙和對話練習。",
+    "viewAllIT": "查看所有Vievlog IT測試和課程",
+    "featuredCourses": "特色是IT課程",
+    "beginnerIT": "初學者的IT課程",
+    "intermediateIT": "中間課程",
+    "advancedIT": "先進的課程",
+    "getStartedForFree": "今天就開始免費的IT課程",
+    "whatOurLearnersSay": "我們的學習者對Vievlog的看法",
     "testimonial1": {
-      "quote": "“ VieVlog幫助我為Topik考試做準備。課程結構良好，易於遵循！”",
+      "quote": "Vievlog幫助我成功準備了IT考試。",
       "name": "Nguyen Minh Anh",
       "role": "國際學生"
     },
     "testimonial2": {
-      "quote": "“學習韓語從未如此簡單！結構化的課程使一切變得簡單而有趣。”",
+      "quote": "使用Vievlog學習它從未變得更加輕鬆，更有趣！",
       "name": "Tran Hai Nam",
       "role": "辦公室工作人員"
     },
     "testimonial3": {
-      "quote": "“感謝VieVlog，我的聽力和說話技巧在短短三個月內就大大提高了！”",
+      "quote": "多虧了Vievlog，我大大提高了IT技能。",
       "name": "Le Thanh Huong",
       "role": "大學生"
     },
-    "vieTopik": "VieVlog",
-    "yourOneStopShop": "您掌握韓語的一站式平台。免費訪問高級資源，並立即實現您的語言目標！",
-    "connectWithUs": "與我們聯繫",
+    "vieTopik": "Vievlog-頂級1 IT學習平台",
+    "yourOneStopShop": "您掌握IT技能和TOPIK考試的一站式平台。免費訪問高級學習資源，並立即達到您的語言和IT目標！",
+    "connectWithUs": "在社交媒體上與Vievlog聯繫",
     "socialMedia": {
-      "facebook": "Facebook",
-      "twitter": "嘰嘰喳喳",
-      "instagram": "Instagram",
-      "linkedin": "LinkedIn"
+      "facebook": "Vievlog Facebook",
+      "twitter": "Vievlog Twitter",
+      "instagram": "Vievlog Instagram",
+      "linkedin": "Vievlog LinkedIn"
     },
     "company": {
-      "aboutUs": "關於我們",
-      "careers": "職業",
-      "blog": "部落格",
-      "contact": "接觸"
+      "aboutUs": "關於Vievlog",
+      "careers": "Vievlog的職業",
+      "blog": "Vievlog博客 - 提示和新聞",
+      "contact": "聯繫Vievlog"
     },
     "support": {
-      "helpCenter": "幫助中心",
-      "faq": "FAQ",
+      "helpCenter": "Vievlog幫助中心",
+      "faq": "常見問題",
       "privacyPolicy": "隱私政策",
       "termsOfService": "服務條款"
     },
     "footer": {
-      "copyright": "©2025 VieVlog。版權所有。"
+      "copyright": "©2025 Vievlog。版權所有。"
     },
     "metadata": {
-      "lesson": "瀏覽我們的最新課程，找到您喜歡的東西。",
-      "grammar": "可用的語法圖"
+      "lesson": "瀏覽我們最新的免費IT課程，並找到適合您技能水平的理想課程。",
+      "grammar": "探索我們的詳細IT圖和教程。"
     }
   }
 }

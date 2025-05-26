@@ -1,99 +1,93 @@
 {
   "header": {
     "utils": {
-      "login": "Pieteikšanās",
-      "logout": "Atteikšanās",
-      "inquiry": "Sazinieties ar mums",
-      "manager": "Vadītājs",
-      "topikExams": "Eksāmenu tēma",
-      "topikSchedule": "Ieplānošanas tēma"
+      "login": "Piesakieties vievlog",
+      "logout": "Atteikšanās no vievlog",
+      "inquiry": "Sazinieties ar vievlog atbalstu",
+      "manager": "Kontu pārvaldnieks",
+      "topikSchedule": "Vievlog grafiks - IT mācīšanās notikumi"
     }
   },
   "body": {
     "utils": {
-      "loading": "Iekraušanas nodarbības ...",
-      "notFound": "Šajā kategorijā nav atrasti dati.",
-      "inquiry": "Sazinieties ar mums",
-      "manager": "Vadītājs"
+      "loading": "Ielādējot tās nodarbības ...",
+      "notFound": "Šajā kategorijā nav atrastas mācības.",
+      "inquiry": "Sazinieties ar vievlog atbalstu",
+      "manager": "Kontu pārvaldnieks"
     }
   },
   "content": {
-    "title": "Vjetopik - mācīties korejiešu valodu bez maksas",
-    "home": "Mājas",
-    "topiks": "Tēmas",
-    "courses": "Kursi",
-    "grammar": "Gramatika",
-    "game": "Spēle",
-    "features": "Funkcijas",
-    "logIn": "Iespraust",
-    "signUp": "Pierakstīties",
-    "toggleTheme": "Pārslēgt tēmu",
-    "newCollection": "Pieejama jauna kolekcija",
-    "oneStopPlatform": "Jūsu galvenā korejiešu mācību platforma",
-    "startLearningNow": "Eksāmena tēma",
-    "whyChooseVieVlog": "Kāpēc izvēlēties VieVlog?",
-    "freeAccess": "Brīva pieeja",
-    "learnIT": "Apgūstiet korejiešu valodu ar augstas kvalitātes nodarbībām no ekspertu bez maksas.",
-    "expertInstructors": "Ekspertu instruktori",
-    "learnFromExperts": "Mācieties no vietējiem runātājiem un pieredzējušiem skolotājiem.",
-    "anytimeAnywhere": "Jebkurā laikā, jebkur",
-    "learnAtYourOwnPace": "Mācieties savā tempā ar neierobežotu piekļuvi nodarbībām.",
-    "comprehensiveCurriculum": "Visaptveroša mācību programma",
-    "coverAllAspects": "No iesācēja līdz uzlabotam līmenim, aptverot gramatiku, vārdu krājumu un sarunu.",
-    "topikExam": "Apgūt tēmas eksāmenu",
-    "topikI": "I tēma",
-    "topikI_tests": "12 prakses testi",
-    "topikII": "II tēma",
-    "topikII_tests": "15 prakses testi",
-    "viewAllIT": "Skatiet visus tēmu testus",
-    "featuredCourses": "Piedāvātie kursi",
-    "beginnerIT": "Iesācēja korejiete",
-    "intermediateIT": "Starpposma korejiešu valoda",
-    "advancedIT": "Padziļināta korejiešu valoda",
-    "getStartedForFree": "Sāciet bez maksas",
-    "whatOurLearnersSay": "Ko saka mūsu izglītojamie",
+    "title": "Vievlog - iemācieties to tiešsaistē bez maksas Tas kursi un eksāmeni",
+    "home": "Sākums - vievlog",
+    "topiks": "Tas mācās tēmas",
+    "courses": "Bezmaksas IT kursi",
+    "grammar": "Tā gramatikas nodarbības",
+    "game": "Mācību spēles",
+    "features": "Platformas funkcijas",
+    "logIn": "Piesakieties vievlog",
+    "signUp": "Reģistrējieties bez maksas IT kursiem",
+    "toggleTheme": "Pārslēgt gaismas/tumšo tēmu",
+    "newCollection": "Pieejama jauna IT kursa kolekcija",
+    "oneStopPlatform": "Vievlog - jūsu galvenā bezmaksas IT mācību platforma",
+    "startLearningNow": "Sāciet to mācīties un sagatavoties topik eksāmenam",
+    "whyChooseVieVlog": "Kāpēc izvēlēties vievlog, lai to mācītos?",
+    "freeAccess": "100% bezmaksas IT mācīšanās piekļuve",
+    "learnIT": "Piekļūstiet augstas kvalitātes IT stundām, apmācībām un ekspertu instruktoru resursiem bez maksas.",
+    "expertInstructors": "Ekspertu IT instruktori",
+    "learnFromExperts": "Uzziniet to no vietējiem runātājiem un pieredzējušiem speciālistiem.",
+    "anytimeAnywhere": "Uzziniet to jebkurā laikā, jebkur",
+    "learnAtYourOwnPace": "Izpētiet to savā tempā ar neierobežotu piekļuvi visām nodarbībām.",
+    "comprehensiveCurriculum": "Visaptveroša IT mācību programma",
+    "coverAllAspects": "Kursi, kas aptver to pamatus progresīvām tēmām, ieskaitot gramatiku, vārdu krājumu un sarunu praksi.",
+    "viewAllIT": "Skatiet visus vievlog, ko tas pārbauda un kursus",
+    "featuredCourses": "Piedāvā IT kursi",
+    "beginnerIT": "Iesācēja IT kurss",
+    "intermediateIT": "Starpposma IT kurss",
+    "advancedIT": "Pagodināts IT kurss",
+    "getStartedForFree": "Sāciet ar bezmaksas IT nodarbībām šodien",
+    "whatOurLearnersSay": "Ko mūsu izglītojamie saka par vievlog",
     "testimonial1": {
-      "quote": "\"VieVlog man palīdzēja efektīvi sagatavoties savam Topik eksāmenam. Nodarbības ir labi strukturētas un viegli izpildāmas!\"",
+      "quote": "Vievlog man palīdzēja veiksmīgi sagatavoties manam IT eksāmenam.",
       "name": "Nguyen Minh anh",
       "role": "Starptautiskais students"
     },
     "testimonial2": {
-      "quote": "\"Korejas mācīšanās nekad nav bijusi tik vienkārša! Strukturētās nodarbības padara visu vienkāršu un jautru.\"",
+      "quote": "Mācīties to ar Vievlog nekad nav bijis tik vienkāršs un jautrāks!",
       "name": "Tran Hai Nam",
       "role": "Biroja darbinieks"
     },
     "testimonial3": {
-      "quote": "\"Pateicoties Vjetopikam, manas klausīšanās un runāšanas prasmes ir ievērojami uzlabojušās tikai trīs mēnešu laikā!\"",
+      "quote": "Pateicoties Vievlog, es ievērojami uzlaboju savas IT prasmes.",
       "name": "Le Thanh Huong",
       "role": "Universitātes students"
     },
-    "vieTopik": "Vjetopika",
-    "yourOneStopShop": "Jūsu vienas pieturas platforma korejiešu apgūšanai. Piekļūstiet premium resursiem bez maksas un sasniedziet savus valodas mērķus jau šodien!",
-    "connectWithUs": "Sazinieties ar mums",
+    "vieTopik": "Vievlog - top 1 IT mācību platforma",
+    "yourOneStopShop": "Jūsu vienas pieturas platforma IT prasmju un topika eksāmenu apgūšanai. Piekļūstiet premium klases mācību resursiem bez maksas un sasniedziet savu valodu un IT mērķus šodien!",
+    "connectWithUs": "Sazinieties ar Vievlog sociālajos medijos",
     "socialMedia": {
-      "facebook": "Facebook",
-      "twitter": "Čivināt",
-      "instagram": "Instagram",
-      "linkedin": "LinkedIn"
+      "facebook": "Vievlog facebook",
+      "twitter": "Vievlog twitter",
+      "instagram": "Vievlog Instagram",
+      "linkedin": "Vievlog LinkedIn"
     },
     "company": {
-      "aboutUs": "Par mums",
-      "careers": "Karjera",
-      "blog": "Blogot",
-      "contact": "Saskare"
+      "aboutUs": "Par vievlog",
+      "careers": "Karjera Vevlog",
+      "blog": "VIEVLOG emuārs - IT padomi un ziņas",
+      "contact": "Sazinieties ar vievlog"
     },
     "support": {
-      "helpCenter": "Palīdzības centrs",
-      "faq": "FAQ",
+      "helpCenter": "Vievlog palīdzības centrs",
+      "faq": "Bieži uzdotie jautājumi",
       "privacyPolicy": "Konfidencialitātes politika",
       "termsOfService": "Pakalpojuma noteikumi"
     },
     "footer": {
-      "copyright": "© 2025 VieVlog. Visas tiesības aizsargātas."
+      "copyright": "© 2025 Vievlog. Visas tiesības aizsargātas."
     },
     "metadata": {
-      "lesson": "Pārlūkojiet mūsu jaunākās nodarbības un atrodiet kaut ko, kas jums patiks.",
-      "grammar": "Pieejamās gramatikas diagrammas"
+      "lesson": "Pārlūkojiet mūsu jaunākās bezmaksas IT nodarbības un atrodiet perfektu kursu jūsu prasmju līmenim.",
+      "grammar": "Izpētiet mūsu detalizētās IT diagrammas un apmācības."
     }
   }
 }

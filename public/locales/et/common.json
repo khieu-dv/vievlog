@@ -1,99 +1,93 @@
 {
   "header": {
     "utils": {
-      "login": "Sisselogimine",
-      "logout": "Väljalogimine",
-      "inquiry": "Võtke meiega ühendust",
-      "manager": "Juhataja",
-      "topikExams": "Eksamite teema",
-      "topikSchedule": "Ajakava teema"
+      "login": "Logige sisse vievlogi",
+      "logout": "Väljalogi Vievlogist",
+      "inquiry": "Võtke ühendust Vievlogi tugi",
+      "manager": "Kontohaldur",
+      "topikSchedule": "Vievlogi ajakava - see õpivad sündmusi"
     }
   },
   "body": {
     "utils": {
-      "loading": "Tundide laadimine ...",
-      "notFound": "Selles kategoorias pole andmeid.",
-      "inquiry": "Võtke meiega ühendust",
-      "manager": "Juhataja"
+      "loading": "IT -õppetundide laadimine ...",
+      "notFound": "Selles kategoorias pole õppetunde.",
+      "inquiry": "Võtke ühendust Vievlogi tugi",
+      "manager": "Kontohaldur"
     }
   },
   "content": {
-    "title": "VieVlog - õppige korea keelt tasuta",
-    "home": "Kodu",
-    "topiks": "Teemad",
-    "courses": "Kursused",
-    "grammar": "Grammatika",
-    "game": "Mängumäng",
-    "features": "Omadused",
-    "logIn": "Sisse logima",
-    "signUp": "Registreeruma",
-    "toggleTheme": "Lülitage teema",
-    "newCollection": "Saadaval uus kollektsioon",
-    "oneStopPlatform": "Teie ülim Korea õppeplatvorm",
-    "startLearningNow": "Eksamiteema",
-    "whyChooseVieVlog": "Miks valida VieVlog?",
-    "freeAccess": "Tasuta juurdepääs",
-    "learnIT": "Õppige korea keelt ekspertide kvaliteetsete õppetundidega absoluutselt tasuta.",
-    "expertInstructors": "Ekspertide juhendajad",
-    "learnFromExperts": "Õppige emakeelena kõnelejatelt ja kogenud õpetajatelt.",
-    "anytimeAnywhere": "Igal ajal ja igal pool",
-    "learnAtYourOwnPace": "Uurige oma tempos piiramatu juurdepääsuga tundidele.",
-    "comprehensiveCurriculum": "Põhjalik õppekava",
-    "coverAllAspects": "Alates algajast kuni arenenud tasemeni, hõlmates grammatikat, sõnavara ja vestlust.",
-    "topikExam": "Tee teemaeksam",
-    "topikI": "I teema",
-    "topikI_tests": "12 harjutustesti",
-    "topikII": "II teema",
-    "topikII_tests": "15 praktikatesti",
-    "viewAllIT": "Vaadake kõiki teemasid",
-    "featuredCourses": "Esitletud kursused",
-    "beginnerIT": "Algaja korealane",
-    "intermediateIT": "Vahepealne Korea",
-    "advancedIT": "Arenenud korea",
-    "getStartedForFree": "Alustage tasuta",
-    "whatOurLearnersSay": "Mida meie õppijad ütlevad",
+    "title": "Vievlog - õppige seda tasuta veebis | IT kursused ja eksamid",
+    "home": "Kodu - Vievlog",
+    "topiks": "See õppivad teemad",
+    "courses": "Tasuta IT -kursused",
+    "grammar": "See grammatikatunnid",
+    "game": "Õppimismängud",
+    "features": "Platvormi funktsioonid",
+    "logIn": "Logige sisse Vievlogi",
+    "signUp": "Registreeruge tasuta IT -kursuste jaoks",
+    "toggleTheme": "Lülitage hele/tume teema",
+    "newCollection": "Saadaval uus IT -kursuste kollektsioon",
+    "oneStopPlatform": "Vievlog - teie ülim tasuta IT -õppeplatvorm",
+    "startLearningNow": "Alustage selle õppimist ja valmistuge topi eksamiks",
+    "whyChooseVieVlog": "Miks valida selle õppimiseks Vievlog?",
+    "freeAccess": "100% tasuta It õppimine juurdepääs",
+    "learnIT": "Juurdepääs kvaliteetsetele IT-õppetundidele, õpetustele ja ressurssidele ekspertide juhendajatelt tasuta.",
+    "expertInstructors": "Asjatundlikud IT -juhendajad",
+    "learnFromExperts": "Õppige seda emakeelena kõnelejatelt ja kogenud spetsialistidelt.",
+    "anytimeAnywhere": "Õppige seda igal ajal ja igal pool",
+    "learnAtYourOwnPace": "Uurige seda oma tempos piiramatu juurdepääsuga kõigile tundidele.",
+    "comprehensiveCurriculum": "Põhjalik IT -õppekava",
+    "coverAllAspects": "Kursused, mis hõlmavad seda edasijõudnutele teemadele, sealhulgas grammatika, sõnavara ja vestluspraktika.",
+    "viewAllIT": "Vaadake kõiki vievlog IT -teste ja kursusi",
+    "featuredCourses": "Esitletud IT -kursused",
+    "beginnerIT": "Algaja IT -kursus",
+    "intermediateIT": "Vahepealne IT -kursus",
+    "advancedIT": "Edasi arenenud kursus",
+    "getStartedForFree": "Alustage täna tasuta IT -tundidega",
+    "whatOurLearnersSay": "Mida meie õppijad Vievlogi kohta ütlevad",
     "testimonial1": {
-      "quote": "\"VieVlog aitas mul tõhusalt oma Topiku eksamiks valmistuda. Tunnid on hästi struktureeritud ja seda on lihtne jälgida!\"",
+      "quote": "Vievlog aitas mul edukalt valmistuda oma IT -eksamiks.",
       "name": "Nguyen Minh anh",
       "role": "Rahvusvaheline tudeng"
     },
     "testimonial2": {
-      "quote": "\"Korea õppimine pole kunagi olnud lihtsam! Struktureeritud õppetunnid muudavad kõik lihtsaks ja lõbusaks.\"",
+      "quote": "Sellega Vievlogi õppimine pole kunagi olnud lihtsam ja lõbusam!",
       "name": "Tran Hai Nam",
       "role": "Kontoritöötaja"
     },
     "testimonial3": {
-      "quote": "\"Tänu VieVlogule on minu kuulamis- ja rääkimisoskus vaid kolme kuu jooksul märkimisväärselt paranenud!\"",
+      "quote": "Tänu Vievlogile parandasin oma IT -oskusi märkimisväärselt.",
       "name": "Le Thanh Huong",
       "role": "Ülikooli tudeng"
     },
-    "vieTopik": "VieVlog",
-    "yourOneStopShop": "Teie One-Stop platvorm Korea valdamiseks. Premium -ressurssidele juurde pääsege tasuta ja saavutage oma keeleeesmärgid juba täna!",
-    "connectWithUs": "Võtke meiega ühendust",
+    "vieTopik": "Vievlog - 1 parima IT -õppeplatvorm",
+    "yourOneStopShop": "Teie One-Stop platvorm IT-oskuste ja Topiku eksamite valdamiseks. Juurdepääs tasuta õppimisressurssidele ja jõuge oma keele ja IT -eesmärkide saavutamiseks täna!",
+    "connectWithUs": "Võtke sotsiaalmeedias ühendust Vievlogiga",
     "socialMedia": {
-      "facebook": "Facebook",
-      "twitter": "Twitter",
-      "instagram": "Instagram",
-      "linkedin": "Linkedin"
+      "facebook": "Vievlog Facebook",
+      "twitter": "Vievlog twitter",
+      "instagram": "Vievlog Instagram",
+      "linkedin": "Vievlog LinkedIn"
     },
     "company": {
-      "aboutUs": "Meist",
-      "careers": "Karjäär",
-      "blog": "Ajaveeb",
-      "contact": "Kontakt"
+      "aboutUs": "Vievlogi kohta",
+      "careers": "Karjäär Vievlogis",
+      "blog": "Vievlogi ajaveeb - see näpunäited ja uudised",
+      "contact": "Võtke ühendust Vievlogiga"
     },
     "support": {
-      "helpCenter": "Abikeskus",
-      "faq": "KKK",
+      "helpCenter": "Vievlogi abikeskus",
+      "faq": "Korduma kippuvad küsimused",
       "privacyPolicy": "Privaatsuspoliitika",
       "termsOfService": "Teenuse tingimused"
     },
     "footer": {
-      "copyright": "© 2025 VieVlog. Kõik õigused kaitstud."
+      "copyright": "© 2025 VIEVLOG. Kõik õigused kaitstud."
     },
     "metadata": {
-      "lesson": "Sirvige meie viimaseid õppetunde ja leidke midagi, mis teile meeldib.",
-      "grammar": "Saadaolevad grammatikaskeemid"
+      "lesson": "Sirvige meie uusimaid tasuta IT -õppetunde ja leidke oma oskuste tasemele ideaalne kursus.",
+      "grammar": "Uurige meie üksikasjalikke IT -diagramme ja õpetusi."
     }
   }
 }

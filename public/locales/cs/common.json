@@ -1,99 +1,93 @@
 {
   "header": {
     "utils": {
-      "login": "Přihlášení",
-      "logout": "Odhlášení",
-      "inquiry": "Kontaktujte nás",
-      "manager": "Manažer",
-      "topikExams": "Téma zkoušek",
-      "topikSchedule": "Naplánovat téma"
+      "login": "Přihlaste se do vievlog",
+      "logout": "Odhlášení z Vievlog",
+      "inquiry": "Kontaktujte podporu Vievlog",
+      "manager": "Správce účtů",
+      "topikSchedule": "Plán vievlogů - Učení se učí"
     }
   },
   "body": {
     "utils": {
       "loading": "Načítání lekcí ...",
-      "notFound": "V této kategorii nebyly nalezeny žádná data.",
-      "inquiry": "Kontaktujte nás",
-      "manager": "Manažer"
+      "notFound": "Žádné lekce v této kategorii.",
+      "inquiry": "Kontaktujte podporu Vievlog",
+      "manager": "Správce účtů"
     }
   },
   "content": {
-    "title": "Vieopik - Naučte se korejštinu zdarma",
-    "home": "Domov",
-    "topiks": "Témata",
-    "courses": "Kurzy",
-    "grammar": "Gramatika",
-    "game": "Hra",
-    "features": "Funkce",
-    "logIn": "Přihlaste se",
-    "signUp": "Zaregistrujte se",
-    "toggleTheme": "Přepínat téma",
-    "newCollection": "K dispozici nová kolekce",
-    "oneStopPlatform": "Vaše konečná korejská vzdělávací platforma",
-    "startLearningNow": "Téma zkoušky",
-    "whyChooseVieVlog": "Proč si vybrat Vieopik?",
-    "freeAccess": "Volný přístup",
-    "learnIT": "Naučte se korejštinu s vysoce kvalitními lekcemi od odborníků za absolutně bez nákladů.",
-    "expertInstructors": "Odborní instruktoři",
-    "learnFromExperts": "Učte se od rodilých mluvčích a zkušených učitelů.",
-    "anytimeAnywhere": "Kdykoli, kdekoli",
-    "learnAtYourOwnPace": "Studujte vlastním tempem s neomezeným přístupem k lekcím.",
-    "comprehensiveCurriculum": "Komplexní kurikulum",
-    "coverAllAspects": "Od začátečníků po pokročilé úrovně, pokrytí gramatiky, slovní zásoby a konverzace.",
-    "topikExam": "Zvládněte tematickou zkoušku",
-    "topikI": "Téma i",
-    "topikI_tests": "12 praktických testů",
-    "topikII": "Téma II",
-    "topikII_tests": "15 praktických testů",
-    "viewAllIT": "Zobrazit testy všech témat",
-    "featuredCourses": "Představené kurzy",
-    "beginnerIT": "Začátečník korejský",
-    "intermediateIT": "Střední korejština",
-    "advancedIT": "Advanced IT",
-    "getStartedForFree": "Začněte zdarma",
-    "whatOurLearnersSay": "Co říkají naši studenti",
+    "title": "Vievlog - Naučte se to online zdarma | IT kurzy a zkoušky",
+    "home": "Domů - Vievlog",
+    "topiks": "To učící se témata",
+    "courses": "Zdarma to kurzy",
+    "grammar": "Lekce gramatiky",
+    "game": "Učení her",
+    "features": "Funkce platformy",
+    "logIn": "Přihlaste se do vievlog",
+    "signUp": "Zaregistrujte se zdarma IT kurzy",
+    "toggleTheme": "Přepínač světla/tmavé téma",
+    "newCollection": "Nová kolekce kurzu IT je k dispozici",
+    "oneStopPlatform": "Vievlog - vaše konečná platforma pro výuku IT zdarma",
+    "startLearningNow": "Začněte se to učit a připravit se na zkoušku Topik",
+    "whyChooseVieVlog": "Proč si vybrat Vievlog pro to učení?",
+    "freeAccess": "100% zdarma IT učení přístup",
+    "learnIT": "Přístup k vysoce kvalitním lekcím IT, výuky a zdrojů od odborných instruktorů bez nákladů.",
+    "expertInstructors": "Instruktoři odborníků",
+    "learnFromExperts": "Naučte se to od rodilých mluvčích a zkušených odborníků.",
+    "anytimeAnywhere": "Naučte se to kdykoli a kdekoli",
+    "learnAtYourOwnPace": "Studujte to svým vlastním tempem s neomezeným přístupem ke všem lekcím.",
+    "comprehensiveCurriculum": "Komplexní IT kurikulum",
+    "coverAllAspects": "Kurzy pokrývající IT základy pro pokročilá témata, včetně gramatiky, slovní zásoby a konverzace.",
+    "viewAllIT": "Zobrazit všechny testy a kurzy vievlog",
+    "featuredCourses": "Představoval to kurzy",
+    "beginnerIT": "IT kurz pro začátečníky",
+    "intermediateIT": "Mezilehlý kurz",
+    "advancedIT": "Pokročilý kurz",
+    "getStartedForFree": "Začněte s lekcemi zdarma",
+    "whatOurLearnersSay": "Co říkají naši žáci o Vievlog",
     "testimonial1": {
-      "quote": "\"Vieopik mi pomohl připravit se na svou zkoušku Topika efektivně. Lekce jsou dobře strukturované a snadno sledovatelné!\"",
+      "quote": "Vievlog mi pomohl úspěšně připravit se na moji IT zkoušku.",
       "name": "Nguyen minh anh",
       "role": "Mezinárodní student"
     },
     "testimonial2": {
-      "quote": "\"Učení Korejce nikdy nebylo snazší! Strukturované lekce dělají všechno jednoduché a zábavné.\"",
+      "quote": "Naučit se s Vievlogem nebylo nikdy jednodušší a zábavnější!",
       "name": "Tran Hai Nam",
       "role": "Kancelářský pracovník"
     },
     "testimonial3": {
-      "quote": "\"Díky Vieopiku se moje dovednosti na poslechu a mluvení výrazně zlepšily během pouhých tří měsíců!\"",
+      "quote": "Díky Vievlogu jsem výrazně zlepšil své IT dovednosti.",
       "name": "Le Thanh Huong",
       "role": "Univerzitní student"
     },
-    "vieTopik": "Vieopik",
-    "yourOneStopShop": "Vaše jednorázová platforma pro zvládnutí korejštiny. ZDARMA přístup k prémiovým zdrojům a dosažení cílů jazyka dnes!",
-    "connectWithUs": "Spojit se s námi",
+    "vieTopik": "Vievlog - Top 1 IT Learning Platform",
+    "yourOneStopShop": "Vaše jednorázová platforma pro zvládnutí IT dovedností a topiků. Přístup k prémiovým vzdělávacím zdrojům zdarma a osvobozením vašeho jazyka a cílů IT dnes!",
+    "connectWithUs": "Spojte se s Vievlogem na sociálních médiích",
     "socialMedia": {
-      "facebook": "Facebook",
-      "twitter": "Cvrlikání",
-      "instagram": "Instagram",
-      "linkedin": "LinkedIn"
+      "facebook": "Vievlog Facebook",
+      "twitter": "Vievlog Twitter",
+      "instagram": "Vievlog Instagram",
+      "linkedin": "Vievlog LinkedIn"
     },
     "company": {
-      "aboutUs": "O nás",
-      "careers": "Kariéra",
-      "blog": "Blog",
-      "contact": "Kontakt"
+      "aboutUs": "O Vievlog",
+      "careers": "Kariéra na Vievlog",
+      "blog": "Blog Vievlog - IT tipy a novinky",
+      "contact": "Kontaktujte Vievlog"
     },
     "support": {
-      "helpCenter": "Centrum nápovědy",
-      "faq": "FAQ",
+      "helpCenter": "Centrum nápovědy Vievlog",
+      "faq": "Často kladené otázky",
       "privacyPolicy": "Zásady ochrany osobních údajů",
       "termsOfService": "Podmínky služby"
     },
     "footer": {
-      "copyright": "© 2025 Vieopik. Všechna práva vyhrazena."
+      "copyright": "© 2025 Vievlog. Všechna práva vyhrazena."
     },
     "metadata": {
-      "lesson": "Procházejte naše nejnovější lekce a najděte něco, co se vám bude líbit.",
-      "grammar": "Dostupné gramatické diagramy"
+      "lesson": "Procházejte naše nejnovější lekce zdarma IT a najděte perfektní kurz pro vaši úroveň dovedností.",
+      "grammar": "Prozkoumejte naše podrobné diagramy a návody IT."
     }
   }
 }

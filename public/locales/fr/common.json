@@ -1,99 +1,93 @@
 {
   "header": {
     "utils": {
-      "login": "Se connecter",
-      "logout": "Déconnexion",
-      "inquiry": "Contactez-nous",
-      "manager": "Directeur",
-      "topikExams": "Sujet des examens",
-      "topikSchedule": "Sujet de planification"
+      "login": "Connectez-vous à Vievlog",
+      "logout": "Déconnexion de Vievlog",
+      "inquiry": "Contacter le support Vievlog",
+      "manager": "Gestionnaire de compte",
+      "topikSchedule": "Horaire Vievlog - Événements d'apprentissage informatiques"
     }
   },
   "body": {
     "utils": {
-      "loading": "Chargement des cours ...",
-      "notFound": "Aucune donnée trouvée dans cette catégorie.",
-      "inquiry": "Contactez-nous",
-      "manager": "Directeur"
+      "loading": "Chargement des leçons ...",
+      "notFound": "Pas de leçons trouvées dans cette catégorie.",
+      "inquiry": "Contacter le support Vievlog",
+      "manager": "Gestionnaire de compte"
     }
   },
   "content": {
-    "title": "VieVlog - Apprenez le coréen gratuitement",
-    "home": "Maison",
-    "topiks": "Sujets",
-    "courses": "Cours",
-    "grammar": "Grammaire",
-    "game": "Jeu",
-    "features": "Caractéristiques",
-    "logIn": "Se connecter",
-    "signUp": "S'inscrire",
-    "toggleTheme": "Thème de basculement",
-    "newCollection": "Nouvelle collection disponible",
-    "oneStopPlatform": "Votre plateforme d'apprentissage coréen ultime",
-    "startLearningNow": "Sujet d'examen",
-    "whyChooseVieVlog": "Pourquoi choisir VieVlog?",
-    "freeAccess": "Accès gratuit",
-    "learnIT": "Apprenez coréen avec des leçons de haute qualité d'experts sans frais.",
-    "expertInstructors": "Instructeurs experts",
-    "learnFromExperts": "Apprenez des locuteurs natifs et des enseignants expérimentés.",
-    "anytimeAnywhere": "À tout moment, n'importe où",
-    "learnAtYourOwnPace": "Étudiez à votre rythme avec un accès illimité aux leçons.",
-    "comprehensiveCurriculum": "Programme d'études complet",
-    "coverAllAspects": "Des niveaux débutants aux niveaux avancés, couvrant la grammaire, le vocabulaire et la conversation.",
-    "topikExam": "Maître l'examen du sujet",
-    "topikI": "Sujet I",
-    "topikI_tests": "12 Tests de pratique",
-    "topikII": "Sujet II",
-    "topikII_tests": "15 Tests de pratique",
-    "viewAllIT": "Afficher tous les tests de sujets",
-    "featuredCourses": "Cours en vedette",
-    "beginnerIT": "Coréen débutant",
-    "intermediateIT": "Coréen intermédiaire",
-    "advancedIT": "Coréen avancé",
-    "getStartedForFree": "Commencez gratuitement",
-    "whatOurLearnersSay": "Ce que nos apprenants disent",
+    "title": "Vievlog - Apprenez-le en ligne gratuitement | Il fait des cours et des examens",
+    "home": "Accueil - Vievlog",
+    "topiks": "Les sujets d'apprentissage informatiques",
+    "courses": "Cours gratuits",
+    "grammar": "Les leçons de grammaire",
+    "game": "Jeux d'apprentissage",
+    "features": "Caractéristiques de la plate-forme",
+    "logIn": "Connectez-vous à Vievlog",
+    "signUp": "Inscrivez-vous gratuitement",
+    "toggleTheme": "Basquer la lumière / le thème sombre",
+    "newCollection": "Nouvelle collection de cours informatiques disponibles",
+    "oneStopPlatform": "Vievlog - Votre plateforme d'apprentissage IT Ultimate",
+    "startLearningNow": "Commencez à l'apprendre et préparez-vous à l'examen Topik",
+    "whyChooseVieVlog": "Pourquoi choisir Vievlog pour l'apprentissage?",
+    "freeAccess": "Accès à l'apprentissage informatique 100% gratuit",
+    "learnIT": "Accédez aux leçons informatiques de haute qualité, aux tutoriels et aux ressources des instructeurs experts sans frais.",
+    "expertInstructors": "Expert IT instructeurs",
+    "learnFromExperts": "Apprenez-le des locuteurs natifs et des professionnels expérimentés.",
+    "anytimeAnywhere": "Apprenez-le à tout moment, n'importe où",
+    "learnAtYourOwnPace": "Étudiez-le à votre rythme avec un accès illimité à toutes les leçons.",
+    "comprehensiveCurriculum": "Programme informatique complet",
+    "coverAllAspects": "Des cours couvrant les bases de ses sujets avancés, y compris la grammaire, le vocabulaire et la pratique de la conversation.",
+    "viewAllIT": "Voir tous les tests et cours Vievlog",
+    "featuredCourses": "En vedette des cours",
+    "beginnerIT": "Cours du débutant",
+    "intermediateIT": "Cours informatique intermédiaire",
+    "advancedIT": "Cours IT avancé",
+    "getStartedForFree": "Commencez avec des leçons informatiques gratuites aujourd'hui",
+    "whatOurLearnersSay": "Ce que nos apprenants disent à propos de Vievlog",
     "testimonial1": {
-      "quote": "\"VieVlog m'a aidé à me préparer efficacement à mon examen Topik. Les leçons sont bien structurées et faciles à suivre!\"",
+      "quote": "Vievlog m'a aidé à préparer avec succès mon examen informatique.",
       "name": "Nguyen Minh Anh",
       "role": "Étudiant international"
     },
     "testimonial2": {
-      "quote": "\"Apprendre le coréen n'a jamais été aussi simple! Les leçons structurées rendent tout simple et amusant.\"",
+      "quote": "L'apprendre avec Vievlog n'a jamais été aussi facile et plus amusant!",
       "name": "Tran hai nam",
       "role": "Travailleur de bureau"
     },
     "testimonial3": {
-      "quote": "\"Grâce à VieVlog, mes compétences d'écoute et de parole se sont considérablement améliorées en seulement trois mois!\"",
+      "quote": "Grâce à Vievlog, j'ai considérablement amélioré mes compétences informatiques.",
       "name": "Le Thanh Huong",
       "role": "Étudiant à l'université"
     },
-    "vieTopik": "VieVlog",
-    "yourOneStopShop": "Votre plate-forme à guichet unique pour maîtriser le coréen. Accédez aux ressources premium gratuitement et atteignez vos objectifs linguistiques dès aujourd'hui!",
-    "connectWithUs": "Connectez-vous avec nous",
+    "vieTopik": "Vievlog - Top 1 Plateforme d'apprentissage informatique",
+    "yourOneStopShop": "Votre plate-forme à guichet unique pour maîtriser les compétences informatiques et les examens Topik. Accédez aux ressources d'apprentissage premium gratuitement et atteignez votre langue et informatique des objectifs aujourd'hui!",
+    "connectWithUs": "Connectez-vous avec Vievlog sur les réseaux sociaux",
     "socialMedia": {
-      "facebook": "Facebook",
-      "twitter": "Gazouillement",
-      "instagram": "Instagram",
-      "linkedin": "Liendin"
+      "facebook": "Vievlog Facebook",
+      "twitter": "Vievlog Twitter",
+      "instagram": "Vievlog Instagram",
+      "linkedin": "Vievlog LinkedIn"
     },
     "company": {
-      "aboutUs": "À propos de nous",
-      "careers": "Carrières",
-      "blog": "Bloguer",
-      "contact": "Contact"
+      "aboutUs": "À propos de Vievlog",
+      "careers": "Carrières à Vievlog",
+      "blog": "Blog Vievlog - il conseils et nouvelles",
+      "contact": "Contacter Vievlog"
     },
     "support": {
-      "helpCenter": "Centre d'aide",
-      "faq": "FAQ",
+      "helpCenter": "Centre d'aide Vievlog",
+      "faq": "Questions fréquemment posées",
       "privacyPolicy": "politique de confidentialité",
       "termsOfService": "Conditions de service"
     },
     "footer": {
-      "copyright": "© 2025 VieVlog. Tous droits réservés."
+      "copyright": "© 2025 Vievlog. Tous droits réservés."
     },
     "metadata": {
-      "lesson": "Parcourez nos dernières leçons et trouvez quelque chose que vous aimerez.",
-      "grammar": "Diagrammes de grammaire disponibles"
+      "lesson": "Parcourez nos dernières leçons informatiques gratuites et trouvez le cours parfait pour votre niveau de compétence.",
+      "grammar": "Explorez nos diagrammes informatiques et tutoriels détaillés."
     }
   }
 }

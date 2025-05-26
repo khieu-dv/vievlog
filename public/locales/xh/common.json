@@ -1,99 +1,93 @@
 {
   "header": {
     "utils": {
-      "login": "Ngema",
-      "logout": "Phuma",
-      "inquiry": "Qhagamshelana nathi",
-      "manager": "Umphathi",
-      "topikExams": "IIMPENDULO Isihloko",
-      "topikSchedule": "Ishedyuli isihloko"
+      "login": "Ngena kwiVievlog",
+      "logout": "Ukuphuma kwi-vievlog",
+      "inquiry": "Nxibelelana nenkxaso yeVieVlog",
+      "manager": "Umlawuli we-akhawunti",
+      "topikSchedule": "Ishedyuli yeVievlod-Ifunda iminyhadala yokufunda"
     }
   },
   "body": {
     "utils": {
       "loading": "Ukulayisha izifundo ...",
-      "notFound": "Akukho datha ifunyenwe kolu luhlu.",
-      "inquiry": "Qhagamshelana nathi",
-      "manager": "Umphathi"
+      "notFound": "Akukho zifundo zifunyenwe kolu luhlu.",
+      "inquiry": "Nxibelelana nenkxaso yeVieVlog",
+      "manager": "Umlawuli we-akhawunti"
     }
   },
   "content": {
-    "title": "I-vietopik-funda iKorea imahla",
-    "home": "Ikhaya",
-    "topiks": "Izihloko",
-    "courses": "Iikhosi",
-    "grammar": "Igrama",
-    "game": "Umdlalo",
-    "features": "Iimbonakalo",
-    "logIn": "Ngema",
-    "signUp": "Bhalisa",
-    "toggleTheme": "Guqula umxholo",
-    "newCollection": "Ingqokelela entsha",
-    "oneStopPlatform": "Iqonga lakho lokufunda laseKorea laseKorea",
-    "startLearningNow": "Umxholo wokuVumela",
-    "whyChooseVieVlog": "Kutheni ukhetha iVieVlog?",
-    "freeAccess": "Ukufikelela simahla",
-    "learnIT": "Funda iKorea inezifundo eziphakathi eziphezulu kwiingcali ngeyona ndleko.",
-    "expertInstructors": "Abahlohli beengcali",
-    "learnFromExperts": "Funda kwizithethi zemveli kunye nootitshala abanamava.",
-    "anytimeAnywhere": "Naliphi na ixesha, naphi na",
-    "learnAtYourOwnPace": "Funda ngesantya sakho ngokungena kumda kwizifundo.",
-    "comprehensiveCurriculum": "Ikharityhulamu ebanzi",
-    "coverAllAspects": "Ukusuka ekuqalekeni kwamanqanaba aphezulu, egubungela igrama, isigama, kunye nengxoxo.",
-    "topikExam": "Master isihloko sovavanyo",
-    "topikI": "Isihloko",
-    "topikI_tests": "Iimvavanyo ezili-12 zokuziqhelanisa",
-    "topikII": "Isihloko II",
-    "topikII_tests": "Iimvavanyo ezili-15 zokwenza",
-    "viewAllIT": "Jonga zonke iimvavanyo zemixholo",
-    "featuredCourses": "Izifundo ezibonisiweyo",
-    "beginnerIT": "I-Korea yeKorea",
-    "intermediateIT": "I-Korea eKorea",
-    "advancedIT": "Advanced Korea",
-    "getStartedForFree": "Qalisa ukuba simahla",
-    "whatOurLearnersSay": "Oko Kuthethwa ngabafundi bethu",
+    "title": "Vievlog-Yifunde kwi-Intanethi Iikhosi ze-IT kunye neemviwo",
+    "home": "Ikhaya - Vievlog",
+    "topiks": "Ifunda izihloko",
+    "courses": "Iikhosi zasimahla",
+    "grammar": "Izifundo zegrama",
+    "game": "Imidlalo yokufunda",
+    "features": "Iimpawu zeqonga",
+    "logIn": "Ngena kwiVievlog",
+    "signUp": "Bhalisela iikhosi zasimahla",
+    "toggleTheme": "Guqula umxholo wokukhanya / omnyama",
+    "newCollection": "Ingqokelela entsha ye-IT",
+    "oneStopPlatform": "I-Vievlog-Iqonga lakho lokugqibela lasimahla",
+    "startLearningNow": "Qala ngokufunda kwaye ulungiselele uviwo lwe-pustik",
+    "whyChooseVieVlog": "Kutheni ukhetha i-vievlog yokufunda?",
+    "freeAccess": "I-100% yasimahla yokufunda ukufikelela",
+    "learnIT": "Ukufikelela kwimilinganiselo ephezulu kunezifundo, ii tutorials, kunye nezixhobo ezivela kubahlohli beengcali ngaphandle kwendleko.",
+    "expertInstructors": "Ingcali yabafundi",
+    "learnFromExperts": "Funda kwizithethi zemveli kunye neengcali ezinamava.",
+    "anytimeAnywhere": "Yifunde nangaliphi na ixesha, naphi na",
+    "learnAtYourOwnPace": "Yifunde ngokwakho isantya sokufikelela esingenamkhawulo kuzo zonke izifundo.",
+    "comprehensiveCurriculum": "Ikharityhulamu ebanzi yekharityhulamu ye-IT",
+    "coverAllAspects": "Iikhosi ezibandakanya isiseko kwiziseko eziphezulu, kubandakanya igrama, isigama, kunye nokuncokola.",
+    "viewAllIT": "Jonga zonke iimvavanyo ze-vievlod i-IT kunye nezifundo",
+    "featuredCourses": "I-IT",
+    "beginnerIT": "Ikhosi yokuqalisa",
+    "intermediateIT": "Ikhosi yekhosi",
+    "advancedIT": "Ikhosi yekhosi",
+    "getStartedForFree": "Qalisa ngezifundo zasimahla",
+    "whatOurLearnersSay": "Oko kufunelwa ngabafundi bethu ngeVievlog",
     "testimonial1": {
-      "quote": "\"VieVlog yandinceda ukuba ndilungiselele uviwo lwam oluphezulu. Izifundo zilungelelaniswe kakuhle kwaye kulula ukuzilandela!\"",
+      "quote": "UVievlog wandinceda ngempumelelo kwiimviwo zam.",
       "name": "Nguyen Minh Anh",
       "role": "Umfundi wamazwe onke"
     },
     "testimonial2": {
-      "quote": "\"Ukufunda iKorea ayikaze kube lula! Izifundo ezakhiweyo zenza yonke into ilula kwaye imnandi.\"",
+      "quote": "Ukufunda i-vievlog kungazange kube lula kwaye kunokonwaba ngakumbi!",
       "name": "Tran hai nam",
       "role": "Umsebenzi wase-ofisini"
     },
     "testimonial3": {
-      "quote": "\"Enkosi kwi-vietopik, izakhono zam zokumamela kunye nokuthetha ziphucule kakhulu kwiinyanga nje ezintathu!\"",
+      "quote": "Enkosi kwi-vievlog, ndiphucule ubuchule bam kakhulu.",
       "name": "Leh huong",
       "role": "Umfundi waseyunivesithi"
     },
-    "vieTopik": "VieVlog",
-    "yourOneStopShop": "Iqonga lakho lokumisa elinye lokufundisa iKorea. Fikelela ubutyebi be-premiyamu kwaye ufezekise iinjongo zolwimi lwakho namhlanje!",
-    "connectWithUs": "Qhagamshela nathi",
+    "vieTopik": "I-Vievlog-i-1 ephezulu yokufunda iqonga",
+    "yourOneStopShop": "Iqonga lakho lokumisa elinye lokuphucula izakhono kunye neemviwo ze-pustik. Fikelela izixhobo zokufunda ezikhululekileyo kwaye ufikelelelwimi lwakho kunye neenjongo namhlanje!",
+    "connectWithUs": "Qhagamshela kunye neVievlog kwimidiya yoluntu",
     "socialMedia": {
-      "facebook": "Facebook",
-      "twitter": "I-twitter",
-      "instagram": "I-Instagram",
-      "linkedin": "I-LinkedIn"
+      "facebook": "I-vievod facebook",
+      "twitter": "I-vievod twitter",
+      "instagram": "I-Vievod ye-Instagram",
+      "linkedin": "I-VieVlog Linyon"
     },
     "company": {
-      "aboutUs": "Ngathi",
-      "careers": "Imisebenzi",
-      "blog": "Ibhlog",
-      "contact": "Uqhagamshelo"
+      "aboutUs": "Malunga neVievlog",
+      "careers": "Imisebenzi kwiVievlog",
+      "blog": "I-VieVlog Blog-I-IT icebiso kunye neendaba",
+      "contact": "Nxibelelana neVievlog"
     },
     "support": {
-      "helpCenter": "IZiko loNcedo",
-      "faq": "FAQ",
+      "helpCenter": "IZiko loNcedo lweVievlog",
+      "faq": "Imibuzo ebuzwa qho",
       "privacyPolicy": "Umthetho wabucala",
       "termsOfService": "Imimmisele yenkonzo"
     },
     "footer": {
-      "copyright": "© 2025 VieVlog. Onke Amalungelo Agciniwe."
+      "copyright": "© 2025 Vievlog. Onke Amalungelo Agciniwe."
     },
     "metadata": {
-      "lesson": "Jonga izifundo zethu zakutshanje kwaye ufumane into oza kuyithanda.",
-      "grammar": "Igrama ekhoyo yegrama"
+      "lesson": "Bhrawuza izifundo zethu zakudala zasimahla kwaye ufumane ikhosi egqibeleleyo yenqanaba lezakhono zakho.",
+      "grammar": "Jonga imizobo yethu eneenkcukacha kunye nee-tutorials."
     }
   }
 }

@@ -1,99 +1,93 @@
 {
   "header": {
     "utils": {
-      "login": "ログイン",
-      "logout": "ログアウト",
-      "inquiry": "お問い合わせ",
-      "manager": "マネージャー",
-      "topikExams": "試験のトピック",
-      "topikSchedule": "トピックをスケジュールします"
+      "login": "Vievlogにログインします",
+      "logout": "Vievlogからのログアウト",
+      "inquiry": "Vievlogサポートにお問い合わせください",
+      "manager": "アカウントマネージャー",
+      "topikSchedule": "Vievlogスケジュール - イベントを学習します"
     }
   },
   "body": {
     "utils": {
-      "loading": "レッスンの読み込み...",
-      "notFound": "このカテゴリにはデータが見つかりません。",
-      "inquiry": "お問い合わせ",
-      "manager": "マネージャー"
+      "loading": "レッスンを読み込む...",
+      "notFound": "このカテゴリにはレッスンは見つかりませんでした。",
+      "inquiry": "Vievlogサポートにお問い合わせください",
+      "manager": "アカウントマネージャー"
     }
   },
   "content": {
-    "title": "VieVlog  - 韓国語を無料で学ぶ",
-    "home": "家",
-    "topiks": "トピック",
-    "courses": "コース",
-    "grammar": "文法",
-    "game": "ゲーム",
-    "features": "特徴",
-    "logIn": "ログイン",
-    "signUp": "サインアップ",
-    "toggleTheme": "テーマを切り替えます",
-    "newCollection": "新しいコレクションが利用可能です",
-    "oneStopPlatform": "あなたの究極の韓国学習プラットフォーム",
-    "startLearningNow": "試験のトピック",
-    "whyChooseVieVlog": "なぜvietopikを選ぶのですか？",
-    "freeAccess": "無料アクセス",
-    "learnIT": "専門家からの質の高いレッスンで韓国語をまったく無料で学びましょう。",
-    "expertInstructors": "専門家のインストラクター",
-    "learnFromExperts": "ネイティブスピーカーや経験豊富な教師から学びます。",
-    "anytimeAnywhere": "いつでも、どこでも",
-    "learnAtYourOwnPace": "レッスンへの無制限のアクセスで自分のペースで勉強してください。",
-    "comprehensiveCurriculum": "包括的なカリキュラム",
-    "coverAllAspects": "初心者から高度なレベルまで、文法、語彙、会話をカバーします。",
-    "topikExam": "トピック試験をマスターします",
-    "topikI": "トピックi",
-    "topikI_tests": "12の練習テスト",
-    "topikII": "トピックII",
-    "topikII_tests": "15の練習テスト",
-    "viewAllIT": "すべてのトピックテストを表示します",
-    "featuredCourses": "注目のコース",
-    "beginnerIT": "初心者の韓国語",
-    "intermediateIT": "中級の韓国語",
-    "advancedIT": "高度な韓国語",
-    "getStartedForFree": "無料で始めましょう",
-    "whatOurLearnersSay": "私たちの学習者が言うこと",
+    "title": "vievlog  - 無料でオンラインで学ぶ|コースと試験",
+    "home": "ホーム-Vievlog",
+    "topiks": "それはトピックを学びます",
+    "courses": "無料ITコース",
+    "grammar": "それは文法のレッスンです",
+    "game": "学習ゲーム",
+    "features": "プラットフォーム機能",
+    "logIn": "Vievlogにログインします",
+    "signUp": "無料のITコースにサインアップしてください",
+    "toggleTheme": "明るいテーマ/暗いテーマを切り替えます",
+    "newCollection": "新しいITコースコレクションが利用可能です",
+    "oneStopPlatform": "Vievlog-あなたの究極の無料のIT学習プラットフォーム",
+    "startLearningNow": "学習を開始し、Topik試験の準備をします",
+    "whyChooseVieVlog": "なぜそれを学ぶためにvievlogを選ぶのですか？",
+    "freeAccess": "100％無料IT学習アクセス",
+    "learnIT": "高品質のITレッスン、チュートリアル、およびエキスパートインストラクターからのリソースに無料でアクセスします。",
+    "expertInstructors": "専門家ITインストラクター",
+    "learnFromExperts": "ネイティブスピーカーや経験豊富な専門家からそれを学びます。",
+    "anytimeAnywhere": "いつでもいつでも学びましょう",
+    "learnAtYourOwnPace": "すべてのレッスンへの無制限のアクセスで、自分のペースでそれを勉強してください。",
+    "comprehensiveCurriculum": "包括的なITカリキュラム",
+    "coverAllAspects": "文法、語彙、会話の実践など、高度なトピックへの基本をカバーするコース。",
+    "viewAllIT": "テストとコースのすべてのvievlogを表示します",
+    "featuredCourses": "ITコースを紹介しました",
+    "beginnerIT": "初心者のITコース",
+    "intermediateIT": "中間ITコース",
+    "advancedIT": "高度なITコース",
+    "getStartedForFree": "今日は無料のレッスンを始めましょう",
+    "whatOurLearnersSay": "私たちの学習者がVievlogについて言うこと",
     "testimonial1": {
-      "quote": "「VieVlogは、Topik試験に効果的に準備するのに役立ちました。レッスンは十分に構造化されており、簡単にフォローできます！」",
+      "quote": "Vievlogは、IT試験の準備に成功するのに役立ちました。",
       "name": "Nguyen Minh Anh",
       "role": "留学生"
     },
     "testimonial2": {
-      "quote": "「韓国語を学ぶことはかつてないほど容易になりました！構造化されたレッスンは、すべてをシンプルで楽しいものにします。」",
+      "quote": "Vievlogでそれを学ぶことは、かつてないほど楽しくて楽しいものでした！",
       "name": "Tran Hai Nam",
       "role": "オフィスワーカー"
     },
     "testimonial3": {
-      "quote": "「VieVlogのおかげで、私のリスニングとスピーキングのスキルはわずか3か月以内に大幅に向上しました！」",
+      "quote": "Vievlogのおかげで、ITスキルを大幅に向上させました。",
       "name": "ル・タン・フオン",
       "role": "大学生"
     },
-    "vieTopik": "VieVlog",
-    "yourOneStopShop": "韓国語をマスターするためのワンストッププラットフォーム。プレミアムリソースに無料でアクセスし、今日の言語目標を達成してください！",
-    "connectWithUs": "私たちとつながります",
+    "vieTopik": "Vievlog -Top 1 IT Learning Platform",
+    "yourOneStopShop": "ITスキルとTopik試験をマスターするためのワンストッププラットフォーム。プレミアム学習リソースに無料でアクセスし、今日の言語とITの目標に到達してください！",
+    "connectWithUs": "ソーシャルメディアでVievlogとつながります",
     "socialMedia": {
-      "facebook": "Facebook",
-      "twitter": "ツイッター",
-      "instagram": "Instagram",
-      "linkedin": "LinkedIn"
+      "facebook": "Vievlog Facebook",
+      "twitter": "Vievlog Twitter",
+      "instagram": "Vievlog Instagram",
+      "linkedin": "Vievlog LinkedIn"
     },
     "company": {
-      "aboutUs": "私たちについて",
-      "careers": "キャリア",
-      "blog": "ブログ",
-      "contact": "接触"
+      "aboutUs": "vievlogについて",
+      "careers": "Vievlogでのキャリア",
+      "blog": "Vievlogブログ - それはヒントとニュースです",
+      "contact": "vievlogにお問い合わせください"
     },
     "support": {
-      "helpCenter": "ヘルプセンター",
+      "helpCenter": "vievlogヘルプセンター",
       "faq": "よくある質問",
       "privacyPolicy": "プライバシーポリシー",
       "termsOfService": "利用規約"
     },
     "footer": {
-      "copyright": "©2025 VieVlog。無断転載を禁じます。"
+      "copyright": "©2025 Vievlog。無断転載を禁じます。"
     },
     "metadata": {
-      "lesson": "私たちの最新のレッスンを閲覧して、あなたが好きなものを見つけてください。",
-      "grammar": "利用可能な文法図"
+      "lesson": "最新の無料のITレッスンを閲覧し、スキルレベルに最適なコースを見つけてください。",
+      "grammar": "詳細なIT図とチュートリアルを調べてください。"
     }
   }
 }

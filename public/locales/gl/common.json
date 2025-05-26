@@ -1,99 +1,93 @@
 {
   "header": {
     "utils": {
-      "login": "Inicio de sesión",
-      "logout": "Sesión de sesión",
-      "inquiry": "Póñase en contacto connosco",
-      "manager": "Xestor",
-      "topikExams": "Tema de exames",
-      "topikSchedule": "Tema de programación"
+      "login": "Inicie sesión en Vievlog",
+      "logout": "Sesión de sesión de Vievlog",
+      "inquiry": "Contacte co soporte de vievlog",
+      "manager": "Xestor de contas",
+      "topikSchedule": "Programación de Vievlog - IT Eventos de aprendizaxe"
     }
   },
   "body": {
     "utils": {
-      "loading": "Leccións de carga ...",
-      "notFound": "Non se atopan datos nesta categoría.",
-      "inquiry": "Póñase en contacto connosco",
-      "manager": "Xestor"
+      "loading": "Cargando leccións ...",
+      "notFound": "Non se atopan leccións nesta categoría.",
+      "inquiry": "Contacte co soporte de vievlog",
+      "manager": "Xestor de contas"
     }
   },
   "content": {
-    "title": "VieVlog - Aprende coreano de balde",
-    "home": "Casa",
-    "topiks": "Temas",
-    "courses": "Cursos",
-    "grammar": "Gramática",
-    "game": "Xogo",
-    "features": "Características",
-    "logIn": "Iniciar sesión",
-    "signUp": "Rexístrate",
-    "toggleTheme": "Tema de alternar",
-    "newCollection": "Nova colección dispoñible",
-    "oneStopPlatform": "A túa plataforma de aprendizaxe coreana definitiva",
-    "startLearningNow": "Tema do exame",
-    "whyChooseVieVlog": "Por que escoller VieVlog?",
-    "freeAccess": "Acceso gratuíto",
-    "learnIT": "Aprende coreano con leccións de alta calidade de expertos sen custo absolutamente.",
-    "expertInstructors": "Instructores expertos",
-    "learnFromExperts": "Aprende con falantes nativos e profesores experimentados.",
-    "anytimeAnywhere": "En calquera momento, en calquera lugar",
-    "learnAtYourOwnPace": "Estuda ao teu ritmo con acceso ilimitado ás leccións.",
-    "comprehensiveCurriculum": "Currículo completo",
-    "coverAllAspects": "De principiantes a niveis avanzados, cubrindo gramática, vocabulario e conversa.",
-    "topikExam": "Domina o exame do tema",
-    "topikI": "Tema I.",
-    "topikI_tests": "12 probas de práctica",
-    "topikII": "Tema II",
-    "topikII_tests": "15 probas de práctica",
-    "viewAllIT": "Ver todos os temas Probas",
-    "featuredCourses": "Cursos destacados",
-    "beginnerIT": "Corea de principiantes",
-    "intermediateIT": "Coreano intermedio",
-    "advancedIT": "Coreano avanzado",
-    "getStartedForFree": "Comezar de balde",
-    "whatOurLearnersSay": "O que din os nosos estudantes",
+    "title": "Vievlog - Aprende en liña de balde | Cursos e exames",
+    "home": "Inicio - Vievlog",
+    "topiks": "Temas de aprendizaxe",
+    "courses": "Cursos libres",
+    "grammar": "Clases de gramática",
+    "game": "Xogos de aprendizaxe",
+    "features": "Características da plataforma",
+    "logIn": "Inicie sesión en Vievlog",
+    "signUp": "Inscríbete para cursos gratuítos",
+    "toggleTheme": "MOITO TEMA DE LUZ/DARK",
+    "newCollection": "Nova colección de cursos de TI dispoñible",
+    "oneStopPlatform": "Vievlog: a túa plataforma de aprendizaxe de TI gratuíta definitiva",
+    "startLearningNow": "Comeza a aprendelo e prepárate para o exame Topik",
+    "whyChooseVieVlog": "Por que escoller VIEVLOG para aprender?",
+    "freeAccess": "Acceso de aprendizaxe de TI 100% gratuíto",
+    "learnIT": "Acceda a leccións de TI de alta calidade, titorías e recursos de instrutores expertos sen custo.",
+    "expertInstructors": "Instructores de TI expertos",
+    "learnFromExperts": "Aprende de falantes nativos e profesionais experimentados.",
+    "anytimeAnywhere": "Aprende en calquera momento, en calquera lugar",
+    "learnAtYourOwnPace": "Estuda ao teu ritmo con acceso ilimitado a todas as leccións.",
+    "comprehensiveCurriculum": "Currículo integral de TI",
+    "coverAllAspects": "Os cursos que cubren os conceptos básicos a temas avanzados, incluíndo gramática, vocabulario e práctica de conversas.",
+    "viewAllIT": "Ver todos os cursos de VIEVLOG IT",
+    "featuredCourses": "Destacou cursos",
+    "beginnerIT": "Curso de IT de principiantes",
+    "intermediateIT": "Curso de TI intermedio",
+    "advancedIT": "Avanzado curso de TI",
+    "getStartedForFree": "Comezar con leccións de TI gratuítas hoxe",
+    "whatOurLearnersSay": "O que din os nosos estudantes sobre Vievlog",
     "testimonial1": {
-      "quote": "\"VieVlog axudoume a prepararme para o meu exame Topik de xeito eficaz. As leccións están ben estruturadas e fáciles de seguir!\"",
+      "quote": "Vievlog axudoume a prepararme con éxito para o meu exame informático.",
       "name": "Nguyen Minh anh",
       "role": "Estudante internacional"
     },
     "testimonial2": {
-      "quote": "\"Aprender o coreano nunca foi máis fácil! As leccións estruturadas fan que todo sexa sinxelo e divertido\".",
+      "quote": "Aprendelo con Vievlog nunca foi máis sinxelo e divertido!",
       "name": "Tran Hai Nam",
       "role": "Traballador de oficina"
     },
     "testimonial3": {
-      "quote": "\"Grazas a VieVlog, as miñas habilidades de escoitar e falar melloraron significativamente en só tres meses!\"",
+      "quote": "Grazas a Vievlog, mellorei significativamente as miñas habilidades informáticas.",
       "name": "Le Thanh Huong",
       "role": "Estudante universitario"
     },
-    "vieTopik": "VieVlog",
-    "yourOneStopShop": "A túa plataforma única para dominar coreano. Acceda aos recursos premium de balde e alcanza os teus obxectivos de idiomas hoxe.",
-    "connectWithUs": "Conectar connosco",
+    "vieTopik": "Vievlog - Top 1 Plataforma de aprendizaxe",
+    "yourOneStopShop": "A túa plataforma única para dominar as habilidades e exames topik. Acceda de xeito gratuíto os recursos de aprendizaxe premium e alcanzan o teu idioma e os obxectivos informáticos hoxe.",
+    "connectWithUs": "Conéctate con Vievlog nas redes sociais",
     "socialMedia": {
-      "facebook": "Facebook",
-      "twitter": "Twitter",
-      "instagram": "Instagram",
-      "linkedin": "LinkedIn"
+      "facebook": "Vievlog facebook",
+      "twitter": "Vievlog Twitter",
+      "instagram": "Vievlog Instagram",
+      "linkedin": "Vievlog LinkedIn"
     },
     "company": {
-      "aboutUs": "Sobre nós",
-      "careers": "Carreiras",
-      "blog": "Blog",
-      "contact": "Contacto"
+      "aboutUs": "Sobre Vievlog",
+      "careers": "Carreiras en Vievlog",
+      "blog": "Blog Vievlog: consellos e noticias",
+      "contact": "Contacte con Vievlog"
     },
     "support": {
-      "helpCenter": "Centro de axuda",
-      "faq": "FAQ",
+      "helpCenter": "VIEVLOG CENTRO DE AXUDA",
+      "faq": "Preguntas frecuentes",
       "privacyPolicy": "Política de privacidade",
       "termsOfService": "Termos de servizo"
     },
     "footer": {
-      "copyright": "© 2025 VieVlog. Todos os dereitos reservados."
+      "copyright": "© 2025 Vievlog. Todos os dereitos reservados."
     },
     "metadata": {
-      "lesson": "Navega nas nosas últimas leccións e atopa algo que che encantará.",
-      "grammar": "Diagramas gramaticais dispoñibles"
+      "lesson": "Navega as nosas últimas leccións de TI gratuítas e atopa o curso perfecto para o teu nivel de habilidade.",
+      "grammar": "Explora os nosos diagramas e tutoriais detallados de TI."
     }
   }
 }

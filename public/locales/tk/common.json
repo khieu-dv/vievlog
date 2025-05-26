@@ -1,99 +1,93 @@
 {
   "header": {
     "utils": {
-      "login": "Giriş",
-      "logout": "Okuwy",
-      "inquiry": "Biz bilen habarlaşyň",
-      "manager": "Dolandyryjy",
-      "topikExams": "Synag mowzugy",
-      "topikSchedule": "TERJIMEGI"
+      "login": "\"Viewlog\" -e giriň",
+      "logout": "WEDALOL-dan çykmak",
+      "inquiry": "\"Viewlog\" goldawy bilen habarlaşyň",
+      "manager": "Hasap dolandyryjysy",
+      "topikSchedule": "\"Vevewwlog tertibi\" - hadysalaryny öwrenmek"
     }
   },
   "body": {
     "utils": {
       "loading": "Sapaklary ýüklemek ...",
-      "notFound": "Bu kategoriýada maglumat tapylmady.",
-      "inquiry": "Biz bilen habarlaşyň",
-      "manager": "Dolandyryjy"
+      "notFound": "Bu kategoriýada sapak tapylmady.",
+      "inquiry": "\"Viewlog\" goldawy bilen habarlaşyň",
+      "manager": "Hasap dolandyryjysy"
     }
   },
   "content": {
-    "title": "Vieopik - koreý dilini mugt öwreniň",
-    "home": "Öý",
-    "topiks": "Mowzuklar",
-    "courses": "Kurslar",
-    "grammar": "Grammatika",
-    "game": "Oýun",
-    "features": "Aýratynlyklary",
-    "logIn": "Giriň",
-    "signUp": "Hasaba giriň",
-    "toggleTheme": "Temany üýtgetmek",
-    "newCollection": "Täze kolleksiýa bar",
-    "oneStopPlatform": "Iň soňky Koreýanyň okuw platformasy",
-    "startLearningNow": "Synag mowzugy",
-    "whyChooseVieVlog": "Näme üçin VieSPik-i saýlamaly?",
-    "freeAccess": "Mugt giriş",
-    "learnIT": "Koreýany, düýbünden gymmatly hünärmenleriň ýokary hilli sapaklary bilen öwreniň.",
-    "expertInstructors": "Hünärmen mugallymlar",
-    "learnFromExperts": "Ýerli gürleýjilerden we tejribeli mugallymlardan öwreniň.",
-    "anytimeAnywhere": "Islendik wagt, islendik ýerde",
-    "learnAtYourOwnPace": "Sapaklara çäksiz giriş bilen öz islegiňiz boýunça okuw.",
-    "comprehensiveCurriculum": "Giňişleýin okuw meýilnamasy",
-    "coverAllAspects": "Başlandan başlap, grammatikany, sözlügi belligi we gepleşikleri öz içine alýar.",
-    "topikExam": "Mowzuk ekzameni",
-    "topikI": "Mowzuk i",
-    "topikI_tests": "12 tejribe synaglary",
-    "topikII": "MostIC II",
-    "topikII_tests": "15 tejribe synaglary",
-    "viewAllIT": "Thehli mowzuk synaglary görüň",
-    "featuredCourses": "Aýratyn kurslar",
-    "beginnerIT": "Başlaýan koreý",
-    "intermediateIT": "Aralyk Koreýa",
-    "advancedIT": "Ösen koreý",
-    "getStartedForFree": "Mugt başlaň",
-    "whatOurLearnersSay": "Okuwçylarymyzyň aýdýanlary",
+    "title": "WEMLLOL - MUGT Ownuk OWük daşaýan-çalyş | Kurslar we ekzamenler",
+    "home": "Öý - WEMLULL",
+    "topiks": "Mowzuklary öwrenmek",
+    "courses": "Mugt kurslar",
+    "grammar": "\"Grammatika boýunça sapaklary",
+    "game": "Oýnam oýunlary",
+    "features": "Platforma aýratynlyklary",
+    "logIn": "WEDALLOL-a giriň",
+    "signUp": "Mugt kurslara ýazylyň",
+    "toggleTheme": "Lightagtylyk / GARŞY MOME-ni üýtgetmek",
+    "newCollection": "Täze okuw ýygyndysy bar",
+    "oneStopPlatform": "WEMULLL - Iň soňky mugt mugt okuw platformasy",
+    "startLearningNow": "Öwrenip başlaň we topik ekzamenine taýynlaň",
+    "whyChooseVieVlog": "Näme üçin öwrenmegi öwreniň?",
+    "freeAccess": "100% mugt okuwy öwrenmek",
+    "learnIT": "Quokary hiliň bahasy, sapaklar, sapaklar we baýlyklar we çeşmeler ýok.",
+    "expertInstructors": "Mugallymlar",
+    "learnFromExperts": "Ony ýerli gürleýişler we tejribeli hünärmenlerden öwren.",
+    "anytimeAnywhere": "Islän wagtyňyzy islendik wagt öwreniň",
+    "learnAtYourOwnPace": "Ähli sapaklara çäksiz giriş bilen öz islegiňizde öwreniň.",
+    "comprehensiveCurriculum": "Okuw meýilnamasyny hem görkezýär",
+    "coverAllAspects": "Esaseörelgelerini, gresommar, onlaýn söz alyş we gepleşik amallaryny öz üstüne alýan kurslar.",
+    "viewAllIT": "Ähli willoglogyň hemmesini synlaň we kurslary görüň",
+    "featuredCourses": "Döredilen kurslar",
+    "beginnerIT": "Başlangyjy",
+    "intermediateIT": "Suraly",
+    "advancedIT": "Ösen kursy",
+    "getStartedForFree": "Bu gün mugt sapak bilen başlaň",
+    "whatOurLearnersSay": "Okuwçylarymyz Wiýewolog hakda aýdýanlar",
     "testimonial1": {
-      "quote": "\"Entitekok maňa topik ekzamenime ep-esli taýýarlamaga kömek etdi. Sapaklar gowy gurluşly we yzarlamak aňsat.\"",
+      "quote": "WEWLLS, bu meniň bu ekzamenim üçin üstünlikli taýýarlamaga kömek etdi.",
       "name": "Nguyen Minh anh",
       "role": "Halkara talyp"
     },
     "testimonial2": {
-      "quote": "\"Koreýany öwrenmek hiç haçan aňsat bolmandy! Guradylan sapaklar hemme zady ýönekeý we gyzykly edýär.\"",
+      "quote": "WEMULL-si bilen öwrenmek hiç haçan aňsat we has gyzykly boldy!",
       "name": "Tran Hai nam",
       "role": "Offis işgäri"
     },
     "testimonial3": {
-      "quote": "\"Entozitikanyň netijesi bolsa, soňky üç aýyň içinde diňlemek we gürlemek endiklerim ep-esli gowulaşdy!\"",
+      "quote": "Wiwul gelşik çuň sag boluň, meniň IT endiklerini gowulaşdyrdym.",
       "name": "LEG HUNOON",
       "role": "Uniwersitetiň okuwçysy"
     },
-    "vieTopik": "Vieopik",
-    "yourOneStopShop": "Koreýa koreý ekiş üçin bir gezeklik platformaňyz. Mugt üçin mugt baha bermek we häzirki wagtda dil maksatlaryňyza ýetmek!",
-    "connectWithUs": "Biz bilen baglanyşyň",
+    "vieTopik": "WEMULLOL - Platforma platformasy",
+    "yourOneStopShop": "IT endiklerini we topik ekzamenleri özleşdirmek üçin bir partlan platformaňyz. Mugt okuwy öwrenmek we diliňize giriň we sagyňyza giriň we häzirki wagtda maksatlaryňyz!",
+    "connectWithUs": "Sosial mediýada WEDALOL bilen birikdiriň",
     "socialMedia": {
-      "facebook": "Facebook",
-      "twitter": "Watter",
-      "instagram": "Instagram",
-      "linkedin": "LinkedIn"
+      "facebook": "\"Vevewl\" facebook \"",
+      "twitter": "WEDALOL Twitter",
+      "instagram": "Vevewlog Instagram",
+      "linkedin": "Whumanlog lindin"
     },
     "company": {
-      "aboutUs": "Biz hakda",
-      "careers": "Hünäri",
-      "blog": "Blog",
-      "contact": "Aragatnaşyk"
+      "aboutUs": "Suratly",
+      "careers": "WEDALOL-da karýera",
+      "blog": "VEDILULG blogy - HABARLARYNY",
+      "contact": "\"Viewlog\" bilen habarlaşyň"
     },
     "support": {
-      "helpCenter": "Kömek merkezi",
-      "faq": "Faktura",
+      "helpCenter": "\"WhEDLLL\" kömek merkezi",
+      "faq": "Ýygy-ýygydan berilýän soraglar",
       "privacyPolicy": "Gizlinlik syýasaty",
       "termsOfService": "Hyzmat şertleri"
     },
     "footer": {
-      "copyright": "© 2025-nji featotik. Rightshli hukuklar goralandyr."
+      "copyright": "© 2025 WEDALLG. Rightshli hukuklar goralandyr."
     },
     "metadata": {
-      "lesson": "Iň soňky sapaklarymyzy gözlediň we söýýän zadyňyzy tapyň.",
-      "grammar": "Elýeterli grammatika diagrammalary"
+      "lesson": "Iň soňky mugt sapaklarymyza göz aýlaň we ussatlyk derejäňiz üçin ajaýyp kurs tapyň.",
+      "grammar": "Jikme-jik diagrammalary we goljuklary göz öňünde tutup bilersiňiz."
     }
   }
 }

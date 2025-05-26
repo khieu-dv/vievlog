@@ -1,99 +1,93 @@
 {
   "header": {
     "utils": {
-      "login": "Innskráning",
-      "logout": "Útskráning",
-      "inquiry": "Hafðu samband",
-      "manager": "Framkvæmdastjóri",
-      "topikExams": "Próf efni",
-      "topikSchedule": "Tímasetningarefni"
+      "login": "Skráðu þig inn á Vievlog",
+      "logout": "Útskráning frá Vievlog",
+      "inquiry": "Hafðu samband við stuðning Vievlog",
+      "manager": "Reikningsstjóri",
+      "topikSchedule": "VIEVLOG áætlun - Það námsatburðir"
     }
   },
   "body": {
     "utils": {
-      "loading": "Hleðslukennsla ...",
-      "notFound": "Engin gögn sem finnast í þessum flokki.",
-      "inquiry": "Hafðu samband",
-      "manager": "Framkvæmdastjóri"
+      "loading": "Hleður því kennslustundum ...",
+      "notFound": "Engar kennslustundir sem finnast í þessum flokki.",
+      "inquiry": "Hafðu samband við stuðning Vievlog",
+      "manager": "Reikningsstjóri"
     }
   },
   "content": {
-    "title": "VieVlog - Lærðu kóresku ókeypis",
-    "home": "Heim",
-    "topiks": "Efni",
-    "courses": "Námskeið",
-    "grammar": "Málfræði",
-    "game": "Leikur",
-    "features": "Eiginleikar",
-    "logIn": "Skráðu þig inn",
-    "signUp": "Skráðu þig",
-    "toggleTheme": "Skipta þema",
-    "newCollection": "Nýtt safn í boði",
-    "oneStopPlatform": "Fullkominn kóreska námspallur þinn",
-    "startLearningNow": "Prófefni",
-    "whyChooseVieVlog": "Af hverju að velja VieVlog?",
-    "freeAccess": "Ókeypis aðgangur",
-    "learnIT": "Lærðu kóreska með hágæða kennslustundir frá sérfræðingum á nákvæmlega engan kostnað.",
-    "expertInstructors": "Sérfræðingar leiðbeinendur",
-    "learnFromExperts": "Lærðu af móðurmálum og reyndum kennurum.",
-    "anytimeAnywhere": "Hvenær sem er, hvar sem er",
-    "learnAtYourOwnPace": "Nám á eigin hraða með ótakmarkaðan aðgang að kennslustundum.",
-    "comprehensiveCurriculum": "Alhliða námskrá",
-    "coverAllAspects": "Frá byrjendum til framhaldsstigs, sem nær yfir málfræði, orðaforða og samtal.",
-    "topikExam": "Master The Topic Próf",
-    "topikI": "Efni i",
-    "topikI_tests": "12 æfingarpróf",
-    "topikII": "Topic II",
-    "topikII_tests": "15 æfingarpróf",
-    "viewAllIT": "Skoðaðu öll efni próf",
-    "featuredCourses": "Löguð námskeið",
-    "beginnerIT": "Byrjendur kóreska",
-    "intermediateIT": "Milli kóresku",
-    "advancedIT": "Háþróaður kóreskur",
-    "getStartedForFree": "Byrjaðu ókeypis",
-    "whatOurLearnersSay": "Það sem nemendur okkar segja",
+    "title": "Vievlog - Lærðu það á netinu ókeypis | Það námskeið og próf",
+    "home": "Heim - Vievlog",
+    "topiks": "Það að læra efni",
+    "courses": "Ókeypis námskeið",
+    "grammar": "Það málfræði kennslustundir",
+    "game": "Að læra leiki",
+    "features": "Vettvangsaðgerðir",
+    "logIn": "Skráðu þig inn á Vievlog",
+    "signUp": "Skráðu þig fyrir ókeypis námskeið",
+    "toggleTheme": "Skiptu um ljós/dimmt þema",
+    "newCollection": "Nýtt námskeiðssöfnun í boði",
+    "oneStopPlatform": "Vievlog - Ultimate Free IT námspallurinn þinn",
+    "startLearningNow": "Byrjaðu að læra það og undirbúa þig fyrir Topik próf",
+    "whyChooseVieVlog": "Af hverju að velja Vievlog fyrir það að læra?",
+    "freeAccess": "100% ókeypis það að læra aðgang",
+    "learnIT": "Fáðu aðgang að hágæða upplýsingatækni, námskeiðum og úrræðum frá leiðbeinendum sérfræðinga án kostnaðar.",
+    "expertInstructors": "Sérfræðingar upplýsingakennarar",
+    "learnFromExperts": "Lærðu það frá móðurmálum og reyndum fagfólki.",
+    "anytimeAnywhere": "Lærðu það hvenær sem er, hvar sem er",
+    "learnAtYourOwnPace": "Athugaðu það á eigin hraða með ótakmarkaðan aðgang að öllum kennslustundum.",
+    "comprehensiveCurriculum": "Alhliða námskrá upplýsingatækni",
+    "coverAllAspects": "Námskeið sem fjalla um það grunnatriði fyrir háþróað efni, þar á meðal málfræði, orðaforða og samtal.",
+    "viewAllIT": "Skoðaðu alla Vievlog IT prófanir og námskeið",
+    "featuredCourses": "Valin námskeið",
+    "beginnerIT": "Það námskeið byrjenda",
+    "intermediateIT": "Milli þess námskeið",
+    "advancedIT": "Advanced It Course",
+    "getStartedForFree": "Byrjaðu með ókeypis kennslustundir í dag",
+    "whatOurLearnersSay": "Það sem nemendur okkar segja um Vievlog",
     "testimonial1": {
-      "quote": "\"VieVlog hjálpaði mér að búa mig undir Topik prófið mitt á áhrifaríkan hátt. Lærdómurinn er vel skipulagður og auðvelt að fylgja!\"",
+      "quote": "Vievlog hjálpaði mér með góðum árangri að undirbúa mig fyrir IT prófið mitt.",
       "name": "Nguyen minh anh",
       "role": "Alþjóðlegur námsmaður"
     },
     "testimonial2": {
-      "quote": "„Að læra kóreska hefur aldrei verið auðveldara! Skipulögð kennslustundir gera allt einfalt og skemmtilegt.“",
+      "quote": "Að læra það með Vievlog hefur aldrei verið auðveldara og skemmtilegra!",
       "name": "Tran Hai Nam",
       "role": "Skrifstofustarfsmaður"
     },
     "testimonial3": {
-      "quote": "„Þökk sé VieVlog hefur hlustunar- og talhæfni mín batnað verulega á aðeins þremur mánuðum!“",
+      "quote": "Þökk sé Vievlog bætti ég upplýsingatæknihæfileika mína verulega.",
       "name": "Le Thanh Huong",
       "role": "Háskólanemi"
     },
-    "vieTopik": "VieVlog",
-    "yourOneStopShop": "Einn stöðvunarvettvangur þinn til að ná tökum á kóresku. Fáðu aðgang að úrvals auðlindum ókeypis og ná tungumálamarkmiðum þínum í dag!",
-    "connectWithUs": "Tengjast okkur",
+    "vieTopik": "Vievlog - Top 1 IT Námspallur",
+    "yourOneStopShop": "Einn stöðvunarvettvangurinn þinn til að ná tökum á upplýsingatækni og Topik prófum. Aðgang að iðgjaldalánum ókeypis og ná tungumálinu þínu og það markmið í dag!",
+    "connectWithUs": "Tengdu við Vievlog á samfélagsmiðlum",
     "socialMedia": {
-      "facebook": "Facebook",
-      "twitter": "Twitter",
-      "instagram": "Instagram",
-      "linkedin": "LinkedIn"
+      "facebook": "Vievlog Facebook",
+      "twitter": "Vievlog Twitter",
+      "instagram": "Vievlog Instagram",
+      "linkedin": "Vievlog LinkedIn"
     },
     "company": {
-      "aboutUs": "Um okkur",
-      "careers": "Starfsferill",
-      "blog": "Blogg",
-      "contact": "Hafðu samband"
+      "aboutUs": "Um Vievlog",
+      "careers": "Starfsferill hjá Vievlog",
+      "blog": "Vievlog blogg - Það ráð og fréttir",
+      "contact": "Hafðu samband við Vievlog"
     },
     "support": {
-      "helpCenter": "Hjálparmiðstöð",
+      "helpCenter": "Hjálparmiðstöð Vievlog",
       "faq": "Algengar spurningar",
       "privacyPolicy": "Persónuverndarstefna",
       "termsOfService": "Þjónustuskilmálar"
     },
     "footer": {
-      "copyright": "© 2025 VieVlog. Öll réttindi áskilin."
+      "copyright": "© 2025 Vievlog. Öll réttindi áskilin."
     },
     "metadata": {
-      "lesson": "Skoðaðu nýjustu kennslustundirnar okkar og finndu eitthvað sem þú munt elska.",
-      "grammar": "Laus málfræði skýringarmynd"
+      "lesson": "Skoðaðu nýjustu ókeypis upplýsingatæknin okkar og finndu hið fullkomna námskeið fyrir færnistig þitt.",
+      "grammar": "Kannaðu nákvæmar upplýsingatæknimyndir okkar og námskeið."
     }
   }
 }

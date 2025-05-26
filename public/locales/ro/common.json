@@ -1,99 +1,93 @@
 {
   "header": {
     "utils": {
-      "login": "Log in",
-      "logout": "Deconectare",
-      "inquiry": "Contactaţi-ne",
-      "manager": "Manager",
-      "topikExams": "Subiectul examenelor",
-      "topikSchedule": "Program Subiect"
+      "login": "Conectați -vă la VievLog",
+      "logout": "Deconectare de la VievLog",
+      "inquiry": "Contactați asistența VievLog",
+      "manager": "Manager Conturi",
+      "topikSchedule": "Programul VievLog - Evenimente de învățare IT"
     }
   },
   "body": {
     "utils": {
-      "loading": "Lecții de încărcare ...",
-      "notFound": "Nu se găsesc date în această categorie.",
-      "inquiry": "Contactaţi-ne",
-      "manager": "Manager"
+      "loading": "Încărcarea lecțiilor ...",
+      "notFound": "Nu se găsesc lecții în această categorie.",
+      "inquiry": "Contactați asistența VievLog",
+      "manager": "Manager Conturi"
     }
   },
   "content": {
-    "title": "VieVlog - Învață coreeanul gratuit",
-    "home": "Acasă",
-    "topiks": "Subiecte",
-    "courses": "Cursuri",
-    "grammar": "Gramatică",
-    "game": "Joc",
-    "features": "Caracteristici",
-    "logIn": "Log in",
-    "signUp": "Înscrieți -vă",
-    "toggleTheme": "Tema de comutare",
-    "newCollection": "Noua colecție disponibilă",
-    "oneStopPlatform": "Platforma dvs. de învățare coreeană finală",
-    "startLearningNow": "Subiectul examenului",
-    "whyChooseVieVlog": "De ce să alegeți VieVlog?",
-    "freeAccess": "Acces gratuit",
-    "learnIT": "Învață coreeanul cu lecții de înaltă calitate de la experți fără costuri.",
-    "expertInstructors": "Instructori experți",
-    "learnFromExperts": "Aflați de la vorbitori nativi și profesori cu experiență.",
-    "anytimeAnywhere": "Oricând și oriunde",
-    "learnAtYourOwnPace": "Studiați în ritmul propriu cu acces nelimitat la lecții.",
-    "comprehensiveCurriculum": "Curriculum cuprinzător",
-    "coverAllAspects": "De la începători la niveluri avansate, care acoperă gramatica, vocabularul și conversația.",
-    "topikExam": "Stăpânește examenul de subiect",
-    "topikI": "Subiectul i",
-    "topikI_tests": "12 teste de practică",
-    "topikII": "VIEVLOG II",
-    "topikII_tests": "15 teste de practică",
-    "viewAllIT": "Vizualizați toate testele subiectelor",
-    "featuredCourses": "Cursuri prezentate",
-    "beginnerIT": "Coreeanul începătorilor",
-    "intermediateIT": "Coreea intermediară",
-    "advancedIT": "Coreea avansată",
-    "getStartedForFree": "Începeți gratuit",
-    "whatOurLearnersSay": "Ce spun elevii noștri",
+    "title": "VievLog - Aflați -l online gratuit | Cursuri și examene",
+    "home": "Acasă - Vievlog",
+    "topiks": "IT învățând subiecte",
+    "courses": "Cursuri gratuite",
+    "grammar": "Este lecții de gramatică",
+    "game": "Jocuri de învățare",
+    "features": "Caracteristici ale platformei",
+    "logIn": "Conectați -vă la VievLog",
+    "signUp": "Înscrieți -vă pentru cursuri IT gratuite",
+    "toggleTheme": "Comutați tema luminii/întunecate",
+    "newCollection": "Colecția de curs IT nouă disponibilă",
+    "oneStopPlatform": "VievLog - Platforma dvs. de învățare IT gratuită gratuită",
+    "startLearningNow": "Începeți să învățați și pregătiți -vă pentru examenul Topik",
+    "whyChooseVieVlog": "De ce să alegeți VievLog pentru învățarea?",
+    "freeAccess": "Acces 100% gratuit de învățare IT",
+    "learnIT": "Accesați lecții IT de înaltă calitate, tutoriale și resurse de la instructori experți fără costuri.",
+    "expertInstructors": "Instructori IT experți",
+    "learnFromExperts": "Învață -l de la vorbitori nativi și profesioniști cu experiență.",
+    "anytimeAnywhere": "Aflați -l oricând, oriunde",
+    "learnAtYourOwnPace": "Studiați -l în ritmul propriu cu acces nelimitat la toate lecțiile.",
+    "comprehensiveCurriculum": "Curriculum IT cuprinzător",
+    "coverAllAspects": "Cursuri care acoperă elementele de bază ale subiectelor avansate, inclusiv gramatică, vocabular și practică de conversație.",
+    "viewAllIT": "Vizualizați toate testele și cursurile pe care le va fi vorba",
+    "featuredCourses": "A prezentat cursuri",
+    "beginnerIT": "Cursul IT pentru începători",
+    "intermediateIT": "Curs intermediar IT",
+    "advancedIT": "Curs avansat",
+    "getStartedForFree": "Începeți cu lecții gratuite astăzi",
+    "whatOurLearnersSay": "Ce spun elevii noștri despre Vievlog",
     "testimonial1": {
-      "quote": "\"VieVlog m-a ajutat să mă pregătesc pentru examenul meu Topik. Lecțiile sunt bine structurate și ușor de urmărit!\"",
+      "quote": "Vievlog m -a ajutat să mă pregătesc cu succes pentru examenul IT.",
       "name": "Nguyen Minh Anh",
       "role": "Student internațional"
     },
     "testimonial2": {
-      "quote": "\"Învățarea coreeană nu a fost niciodată mai ușoară! Lecțiile structurate fac totul simplu și distractiv.\"",
+      "quote": "Învățarea cu Vievlog nu a fost niciodată mai ușoară și mai distractivă!",
       "name": "Tran Hai Nam",
       "role": "Lucrător de birou"
     },
     "testimonial3": {
-      "quote": "\"Mulțumesc VieVlog, abilitățile mele de ascultare și vorbire s -au îmbunătățit semnificativ în doar trei luni!\"",
+      "quote": "Datorită lui Vievlog, mi -am îmbunătățit în mod semnificativ abilitățile IT.",
       "name": "Le Thanh Huong",
       "role": "Student universitar"
     },
-    "vieTopik": "VieVlog",
-    "yourOneStopShop": "Platforma dvs. unică pentru stăpânirea coreeană. Accesați resursele premium gratuite și atingeți -vă obiectivele de limbă astăzi!",
-    "connectWithUs": "Conectați -vă cu noi",
+    "vieTopik": "VievLog - Top 1 Platforma de învățare IT",
+    "yourOneStopShop": "Platforma dvs. unică pentru stăpânirea abilităților IT și examene Topik. Accesați gratuit resursele de învățare premium și atingeți -vă limba și obiectivele IT astăzi!",
+    "connectWithUs": "Conectați -vă cu VievLog pe social media",
     "socialMedia": {
-      "facebook": "Facebook",
-      "twitter": "Stare de nervozitate",
-      "instagram": "Instagram",
-      "linkedin": "LinkedIn"
+      "facebook": "Facebook VievLog",
+      "twitter": "VievLog Twitter",
+      "instagram": "VievLog Instagram",
+      "linkedin": "VievLog LinkedIn"
     },
     "company": {
-      "aboutUs": "Despre noi",
-      "careers": "Cariere",
-      "blog": "Blog",
-      "contact": "Contact"
+      "aboutUs": "Despre Vievlog",
+      "careers": "Cariere la Vievlog",
+      "blog": "Blog VievLog - Sfaturi și știri",
+      "contact": "Contactați VievLog"
     },
     "support": {
-      "helpCenter": "Centrul de ajutor",
-      "faq": "FAQ",
+      "helpCenter": "Centrul de ajutor VievLog",
+      "faq": "Întrebări frecvente",
       "privacyPolicy": "Politica de confidențialitate",
       "termsOfService": "Termeni de serviciu"
     },
     "footer": {
-      "copyright": "© 2025 VieVlog. Toate drepturile rezervate."
+      "copyright": "© 2025 Vievlog. Toate drepturile rezervate."
     },
     "metadata": {
-      "lesson": "Căutați cele mai recente lecții și găsiți ceva ce vă va plăcea.",
-      "grammar": "Diagrame gramaticale disponibile"
+      "lesson": "Parcurgeți cele mai recente lecții gratuite IT și găsiți cursul perfect pentru nivelul dvs. de abilități.",
+      "grammar": "Explorați diagramele noastre detaliate și tutoriale."
     }
   }
 }

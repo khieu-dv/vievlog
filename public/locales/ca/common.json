@@ -1,99 +1,93 @@
 {
   "header": {
     "utils": {
-      "login": "Sessió d’inici de sessió",
-      "logout": "Registre",
-      "inquiry": "Poseu -vos en contacte amb nosaltres",
-      "manager": "Gerent",
-      "topikExams": "Exàmens Tema",
-      "topikSchedule": "Programació del tema"
+      "login": "Inicieu la sessió a Vievlog",
+      "logout": "Inici de sessió de Vievlog",
+      "inquiry": "Poseu -vos en contacte amb l'assistència de Vievlog",
+      "manager": "Gestor de comptes",
+      "topikSchedule": "Horari de Vievlog: esdeveniments d'aprenentatge informàtic"
     }
   },
   "body": {
     "utils": {
-      "loading": "Carregant lliçons ...",
-      "notFound": "No es troben dades en aquesta categoria.",
-      "inquiry": "Poseu -vos en contacte amb nosaltres",
-      "manager": "Gerent"
+      "loading": "Carregant -la lliçons ...",
+      "notFound": "No es troben lliçons en aquesta categoria.",
+      "inquiry": "Poseu -vos en contacte amb l'assistència de Vievlog",
+      "manager": "Gestor de comptes"
     }
   },
   "content": {
-    "title": "VieVlog: aprendre coreà de franc",
-    "home": "Casa",
-    "topiks": "Temes",
-    "courses": "Cursos",
-    "grammar": "Gramàtica",
-    "game": "Joc",
-    "features": "Funcions",
-    "logIn": "Iniciar sessió",
-    "signUp": "Registrar -se",
-    "toggleTheme": "Tema de commutació",
-    "newCollection": "Nova col·lecció disponible",
-    "oneStopPlatform": "La vostra definitiva plataforma d’aprenentatge coreà",
-    "startLearningNow": "Tema de l'examen",
-    "whyChooseVieVlog": "Per què triar el viietopic?",
-    "freeAccess": "Accés gratuït",
-    "learnIT": "Apreneu coreà amb lliçons d’alta qualitat d’experts sense cap cost.",
-    "expertInstructors": "Instructors experts",
-    "learnFromExperts": "Apreneu dels parlants nadius i dels professors amb experiència.",
-    "anytimeAnywhere": "En qualsevol moment, a qualsevol lloc",
-    "learnAtYourOwnPace": "Estudieu al vostre ritme amb un accés il·limitat a les lliçons.",
-    "comprehensiveCurriculum": "Currículum integral",
-    "coverAllAspects": "De principiants a nivells avançats, que abasta la gramàtica, el vocabulari i la conversa.",
-    "topikExam": "Domina l'examen de temes",
-    "topikI": "Tema I",
-    "topikI_tests": "12 proves de pràctica",
-    "topikII": "Tema II",
-    "topikII_tests": "15 Proves de pràctica",
-    "viewAllIT": "Consulteu totes les proves de temes",
-    "featuredCourses": "Cursos destacats",
-    "beginnerIT": "Corea dels principiants",
-    "intermediateIT": "Coreà intermedi",
-    "advancedIT": "Coreà avançat",
-    "getStartedForFree": "Comenceu de franc",
-    "whatOurLearnersSay": "El que diuen els nostres aprenents",
+    "title": "Vievlog: aprèn -ho en línia de forma gratuïta | Cursos i exàmens",
+    "home": "Inici - Vievlog",
+    "topiks": "Temes d’aprenentatge d’aprenentatge",
+    "courses": "Cursos informàtics gratuïts",
+    "grammar": "Lliçons de gramàtica",
+    "game": "Aprenentatge de jocs",
+    "features": "Característiques de la plataforma",
+    "logIn": "Inicieu la sessió a Vievlog",
+    "signUp": "Inscriviu -vos gratuïtament cursos informàtics",
+    "toggleTheme": "Commuta la llum/el tema fosc",
+    "newCollection": "New IT Curs Curs disponible",
+    "oneStopPlatform": "Vievlog: la vostra plataforma d’aprenentatge informàtic gratuït",
+    "startLearningNow": "Comenceu a aprendre -ho i prepareu -vos per a l'examen Topik",
+    "whyChooseVieVlog": "Per què triar Vievlog per aprendre?",
+    "freeAccess": "Accés d’aprenentatge informàtic 100% gratuït",
+    "learnIT": "Accediu a les lliçons, tutorials i recursos d’alta qualitat d’instructors experts sense cap cost.",
+    "expertInstructors": "Instructors informàtics experts",
+    "learnFromExperts": "Apreneu -ho de parlants nadius i professionals amb experiència.",
+    "anytimeAnywhere": "Apreneu -ho en qualsevol moment i en qualsevol lloc",
+    "learnAtYourOwnPace": "Estudieu -lo al vostre ritme amb un accés il·limitat a totes les lliçons.",
+    "comprehensiveCurriculum": "Currículum integral informàtic",
+    "coverAllAspects": "Cursos que cobreixen els fonaments bàsics per a temes avançats, inclosos la gramàtica, el vocabulari i la pràctica de conversa.",
+    "viewAllIT": "Consulteu totes les proves i cursos de Vievlog IT",
+    "featuredCourses": "Cursos informàtics destacats",
+    "beginnerIT": "Curs de principiants IT",
+    "intermediateIT": "Intermedi IT Curs",
+    "advancedIT": "Curs IT avançat",
+    "getStartedForFree": "Comenceu amb lliçons informàtiques gratuïtes avui",
+    "whatOurLearnersSay": "El que diuen els nostres aprenents sobre Vievlog",
     "testimonial1": {
-      "quote": "\"El vietopik m'ha ajudat a preparar-me per al meu examen de Topik de manera eficaç. Les lliçons estan ben estructurades i fàcils de seguir!\"",
+      "quote": "Vievlog em va ajudar a preparar -me amb èxit per al meu examen informàtic.",
       "name": "Nguyen Minh Anh",
       "role": "Estudiant internacional"
     },
     "testimonial2": {
-      "quote": "\"Aprendre coreà no ha estat mai més fàcil! Les lliçons estructurades fan que tot sigui senzill i divertit\".",
+      "quote": "Aprendre -ho amb Vievlog no ha estat mai més fàcil i divertit!",
       "name": "Tran Hai Nam",
       "role": "Treballadora de l'oficina"
     },
     "testimonial3": {
-      "quote": "\"Gràcies al viietopic, les meves habilitats d'escolta i parla han millorat significativament en només tres mesos!\"",
+      "quote": "Gràcies a Vievlog, he millorat significativament les meves habilitats informàtiques.",
       "name": "Le Thanh Huong",
       "role": "Estudiant universitari"
     },
-    "vieTopik": "Vietopic",
-    "yourOneStopShop": "La vostra plataforma única per dominar coreà. Accediu als recursos premium de forma gratuïta i assoliu els vostres objectius d’idioma avui mateix.",
-    "connectWithUs": "Connecta amb nosaltres",
+    "vieTopik": "Vievlog - Top 1 Plataforma d'aprenentatge informàtic",
+    "yourOneStopShop": "La vostra plataforma única per dominar les habilitats informàtiques i els exàmens de Topik. Accediu als recursos d’aprenentatge premium de forma gratuïta i assoliu el vostre idioma i els objectius informàtics avui!",
+    "connectWithUs": "Connecteu -vos amb Vievlog a les xarxes socials",
     "socialMedia": {
-      "facebook": "Facebook",
-      "twitter": "Twitter",
-      "instagram": "Instagram",
-      "linkedin": "LinkedIn"
+      "facebook": "Facebook de Vievlog",
+      "twitter": "Vievlog Twitter",
+      "instagram": "Vievlog Instagram",
+      "linkedin": "Vievlog LinkedIn"
     },
     "company": {
-      "aboutUs": "Sobre nosaltres",
-      "careers": "Carreres de carreres",
-      "blog": "Bloc",
-      "contact": "Contacte"
+      "aboutUs": "Sobre Vievlog",
+      "careers": "Carreres a Vievlog",
+      "blog": "Vievlog Blog: consells sobre informàtica i notícies",
+      "contact": "Poseu -vos en contacte amb Vievlog"
     },
     "support": {
-      "helpCenter": "Ajuda Centre",
-      "faq": "Cap",
+      "helpCenter": "Vievlog Help Center",
+      "faq": "Preguntes més freqüents",
       "privacyPolicy": "Política de privadesa",
       "termsOfService": "Condicions del servei"
     },
     "footer": {
-      "copyright": "© 2025 Vietopic. Tots els drets reservats."
+      "copyright": "© 2025 Vievlog. Tots els drets reservats."
     },
     "metadata": {
-      "lesson": "Busqueu les nostres darreres lliçons i trobeu alguna cosa que us encantarà.",
-      "grammar": "Diagrames de gramàtica disponibles"
+      "lesson": "Navegueu les nostres darreres lliçons informàtiques gratuïtes i trobeu el curs perfecte per al vostre nivell d’habilitat.",
+      "grammar": "Exploreu els nostres diagrames i tutorials detallats."
     }
   }
 }

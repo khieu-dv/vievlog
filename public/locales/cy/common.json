@@ -1,99 +1,93 @@
 {
   "header": {
     "utils": {
-      "login": "Mewngofnodi",
-      "logout": "Logiadau",
-      "inquiry": "Cysylltwch â ni",
-      "manager": "Rheolwr",
-      "topikExams": "Pwnc Arholiadau",
-      "topikSchedule": "Pwnc Amserlen"
+      "login": "Mewngofnodi i Vievlog",
+      "logout": "Allgofnodi o vievlog",
+      "inquiry": "Cysylltwch â chefnogaeth vievlog",
+      "manager": "Rheolwr Cyfrifon",
+      "topikSchedule": "Amserlen Vievlog - Digwyddiadau Dysgu TG"
     }
   },
   "body": {
     "utils": {
-      "loading": "Gwersi Llwytho ...",
-      "notFound": "Ni ddarganfuwyd data yn y categori hwn.",
-      "inquiry": "Cysylltwch â ni",
-      "manager": "Rheolwr"
+      "loading": "Llwytho gwersi ...",
+      "notFound": "Dim gwersi a geir yn y categori hwn.",
+      "inquiry": "Cysylltwch â chefnogaeth vievlog",
+      "manager": "Rheolwr Cyfrifon"
     }
   },
   "content": {
-    "title": "VieVlog - Dysgu Corea am ddim",
-    "home": "Nghartrefi",
-    "topiks": "Phynciau",
-    "courses": "Nghyrsiau",
-    "grammar": "Gramadeg",
-    "game": "Gêm",
-    "features": "Nodweddion",
-    "logIn": "Mewngofnodi",
-    "signUp": "Arwyddo",
-    "toggleTheme": "Thema togl",
-    "newCollection": "Casgliad newydd ar gael",
-    "oneStopPlatform": "Eich platfform dysgu Corea yn y pen draw",
-    "startLearningNow": "Pwnc Arholiad",
-    "whyChooseVieVlog": "Pam Dewis VieVlog?",
-    "freeAccess": "Mynediad am ddim",
-    "learnIT": "Dysgu Corea gyda gwersi o ansawdd uchel gan arbenigwyr am ddim cost o gwbl.",
-    "expertInstructors": "Hyfforddwyr arbenigol",
-    "learnFromExperts": "Dysgu gan siaradwyr brodorol ac athrawon profiadol.",
-    "anytimeAnywhere": "Unrhyw bryd, unrhyw le",
-    "learnAtYourOwnPace": "Astudiwch ar eich cyflymder eich hun gyda mynediad diderfyn i wersi.",
-    "comprehensiveCurriculum": "Cwricwlwm Cynhwysfawr",
-    "coverAllAspects": "O ddechreuwyr i lefelau uwch, gan gwmpasu gramadeg, geirfa a sgwrs.",
-    "topikExam": "Meistrolwch yr arholiad pwnc",
-    "topikI": "Pwnc I.",
-    "topikI_tests": "12 Prawf Ymarfer",
-    "topikII": "Pwnc II",
-    "topikII_tests": "15 Prawf Ymarfer",
-    "viewAllIT": "Gweld yr holl brofion pwnc",
-    "featuredCourses": "Cyrsiau dan sylw",
-    "beginnerIT": "Corea dechreuwyr",
-    "intermediateIT": "Corea Canolradd",
-    "advancedIT": "Corea Uwch",
-    "getStartedForFree": "Dechreuwch am ddim",
-    "whatOurLearnersSay": "Yr hyn y mae ein dysgwyr yn ei ddweud",
+    "title": "Vievlog - Dysgwch ef ar -lein am ddim | Mae'n cyrsio ac arholiadau",
+    "home": "Hafan - Vievlog",
+    "topiks": "Mae'n dysgu pynciau",
+    "courses": "Cyrsiau TG Am Ddim",
+    "grammar": "Mae'n wersi gramadeg",
+    "game": "Gemau Dysgu",
+    "features": "Nodweddion platfform",
+    "logIn": "Mewngofnodi i Vievlog",
+    "signUp": "Cofrestrwch ar gyfer cyrsiau TG AM DDIM",
+    "toggleTheme": "Toglo thema golau/tywyll",
+    "newCollection": "Casgliad Cwrs TG Newydd ar gael",
+    "oneStopPlatform": "Vievlog - eich platfform dysgu TG rhad ac am ddim yn y pen draw",
+    "startLearningNow": "Dechreuwch ei ddysgu a pharatoi ar gyfer arholiad TOPIK",
+    "whyChooseVieVlog": "Pam Dewis Vievlog ar gyfer Dysgu TG?",
+    "freeAccess": "100% am ddim Mynediad Dysgu",
+    "learnIT": "Cyrchu gwersi TG o ansawdd uchel, sesiynau tiwtorial ac adnoddau gan hyfforddwyr arbenigol heb unrhyw gost.",
+    "expertInstructors": "Hyfforddwyr TG arbenigol",
+    "learnFromExperts": "Dysgwch ef gan siaradwyr brodorol a gweithwyr proffesiynol profiadol.",
+    "anytimeAnywhere": "Ei ddysgu unrhyw bryd, unrhyw le",
+    "learnAtYourOwnPace": "Astudiwch ef ar eich cyflymder eich hun gyda mynediad diderfyn i bob gwers.",
+    "comprehensiveCurriculum": "Cwricwlwm TG Cynhwysfawr",
+    "coverAllAspects": "Cyrsiau sy'n ymdrin â Hanfodion TG i bynciau uwch, gan gynnwys gramadeg, geirfa ac ymarfer sgwrsio.",
+    "viewAllIT": "Gweld yr holl vievlog y mae'n eu profi a chwrs",
+    "featuredCourses": "Yn cynnwys cyrsiau TG",
+    "beginnerIT": "Cwrs TG dechreuwyr",
+    "intermediateIT": "Cwrs TG Canolradd",
+    "advancedIT": "Cwrs TG Uwch",
+    "getStartedForFree": "Dechreuwch gyda gwersi TG am ddim heddiw",
+    "whatOurLearnersSay": "Yr hyn y mae ein dysgwyr yn ei ddweud am vievlog",
     "testimonial1": {
-      "quote": "\"Fe wnaeth VieVlog fy helpu i baratoi ar gyfer fy arholiad VIEVLOG yn effeithiol. Mae'r gwersi wedi'u strwythuro'n dda ac yn hawdd eu dilyn!\"",
+      "quote": "Fe wnaeth Vievlog fy helpu i baratoi'n llwyddiannus ar gyfer fy arholiad TG.",
       "name": "Nguyen Minh anh",
       "role": "Myfyriwr Rhyngwladol"
     },
     "testimonial2": {
-      "quote": "\"Ni fu dysgu Corea erioed yn haws! Mae'r gwersi strwythuredig yn gwneud popeth yn syml ac yn hwyl.\"",
+      "quote": "Ni fu ei ddysgu gyda Vievlog erioed yn haws ac yn fwy o hwyl!",
       "name": "Tran hai nam",
       "role": "Swyddfa"
     },
     "testimonial3": {
-      "quote": "\"Diolch i VieVlog, mae fy sgiliau gwrando a siarad wedi gwella'n sylweddol o fewn tri mis yn unig!\"",
+      "quote": "Diolch i Vievlog, mi wnes i wella fy sgiliau TG yn sylweddol.",
       "name": "Le Thanh Huong",
       "role": "Myfyriwr Prifysgol"
     },
-    "vieTopik": "VieVlog",
-    "yourOneStopShop": "Eich platfform un stop ar gyfer meistroli Corea. Cyrchwch adnoddau premiwm am ddim a chyflawnwch eich nodau iaith heddiw!",
-    "connectWithUs": "Cysylltu â Ni",
+    "vieTopik": "Vievlog - 1 platfform dysgu TG",
+    "yourOneStopShop": "Eich platfform un stop ar gyfer meistroli sgiliau TG ac arholiadau TOPIK. Cyrchwch adnoddau dysgu premiwm am ddim a chyrraedd eich iaith ac mae'n nodau heddiw!",
+    "connectWithUs": "Cysylltu â Vievlog ar gyfryngau cymdeithasol",
     "socialMedia": {
-      "facebook": "Facebook",
-      "twitter": "Twitter",
-      "instagram": "Instagram",
-      "linkedin": "LinkedIn"
+      "facebook": "Vievlog Facebook",
+      "twitter": "Twitter vievlog",
+      "instagram": "Vievlog Instagram",
+      "linkedin": "Vievlog linkedin"
     },
     "company": {
-      "aboutUs": "Amdanom Ni",
-      "careers": "Gyrfaoedd",
-      "blog": "Blogiwyd",
-      "contact": "Nghyswllt"
+      "aboutUs": "Am vievlog",
+      "careers": "Gyrfaoedd yn Vievlog",
+      "blog": "Blog vievlog - mae'n awgrymiadau a newyddion",
+      "contact": "Cysylltwch â Vievlog"
     },
     "support": {
-      "helpCenter": "Canolfan Gymorth",
+      "helpCenter": "Canolfan Gymorth Vievlog",
       "faq": "Cwestiynau Cyffredin",
       "privacyPolicy": "Polisi Preifatrwydd",
       "termsOfService": "Telerau Gwasanaeth"
     },
     "footer": {
-      "copyright": "© 2025 VieVlog. Cedwir pob hawl."
+      "copyright": "© 2025 Vievlog. Cedwir pob hawl."
     },
     "metadata": {
-      "lesson": "Porwch ein gwersi diweddaraf a dewch o hyd i rywbeth y byddwch chi'n ei garu.",
-      "grammar": "Diagramau gramadeg sydd ar gael"
+      "lesson": "Porwch ein gwersi TG am ddim diweddaraf a dewch o hyd i'r cwrs perffaith ar gyfer eich lefel sgiliau.",
+      "grammar": "Archwiliwch ein diagramau a thiwtorialau TG manwl."
     }
   }
 }

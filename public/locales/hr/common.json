@@ -1,99 +1,93 @@
 {
   "header": {
     "utils": {
-      "login": "Prijava",
-      "logout": "Odjava",
-      "inquiry": "Kontaktirajte nas",
-      "manager": "Menadžer",
-      "topikExams": "Tema ispita",
-      "topikSchedule": "Raspored tema"
+      "login": "Prijavite se na Vievlog",
+      "logout": "Odjava iz Vievloga",
+      "inquiry": "Obratite se podršci za Vievlog",
+      "manager": "Upravitelj računa",
+      "topikSchedule": "Vievlog raspored - IT učenje događaja"
     }
   },
   "body": {
     "utils": {
-      "loading": "Lekcije za utovar ...",
-      "notFound": "U ovoj kategoriji nisu pronađeni podaci.",
-      "inquiry": "Kontaktirajte nas",
-      "manager": "Menadžer"
+      "loading": "Učitavanje lekcija ...",
+      "notFound": "Nisu pronađene lekcije u ovoj kategoriji.",
+      "inquiry": "Obratite se podršci za Vievlog",
+      "manager": "Upravitelj računa"
     }
   },
   "content": {
-    "title": "VieVlog - Naučite korejski besplatno",
-    "home": "Dom",
-    "topiks": "Teme",
-    "courses": "Tečajevi",
-    "grammar": "Gramatika",
-    "game": "Igra",
-    "features": "Značajke",
-    "logIn": "Prijaviti se",
-    "signUp": "Prijaviti se",
-    "toggleTheme": "Tema prebacivanja",
-    "newCollection": "Dostupna nova kolekcija",
-    "oneStopPlatform": "Vaša krajnja korejska platforma za učenje",
-    "startLearningNow": "Tema ispita",
-    "whyChooseVieVlog": "Zašto odabrati VieVlog?",
-    "freeAccess": "Besplatan pristup",
-    "learnIT": "Naučite korejski s visokokvalitetnim lekcijama stručnjaka bez ikakvih troškova.",
-    "expertInstructors": "Stručni instruktori",
-    "learnFromExperts": "Učite od zavičajnih govornika i iskusnih učitelja.",
-    "anytimeAnywhere": "Bilo kada, bilo gdje",
-    "learnAtYourOwnPace": "Studirajte vlastitim tempom neograničenim pristupom lekcijama.",
-    "comprehensiveCurriculum": "Sveobuhvatni kurikulum",
-    "coverAllAspects": "Od početnika do naprednih razina, pokrivajući gramatiku, vokabular i razgovor.",
-    "topikExam": "Savladati ispit za temu",
-    "topikI": "Tema I",
-    "topikI_tests": "12 testova prakse",
-    "topikII": "Tema II",
-    "topikII_tests": "15 testova za vježbanje",
-    "viewAllIT": "Pogledajte sve testove teme",
+    "title": "Vievlog - naučite na mreži besplatno | To tečajevi i ispite",
+    "home": "Početna - Vievlog",
+    "topiks": "To teme učenja",
+    "courses": "Besplatni tečajevi",
+    "grammar": "To gramatičke lekcije",
+    "game": "Igre za učenje",
+    "features": "Značajke platforme",
+    "logIn": "Prijavite se u Vievlog",
+    "signUp": "Prijavite se besplatno IT tečajeve",
+    "toggleTheme": "Prebacite svjetlost/tamna tema",
+    "newCollection": "Dostupna nova kolekcija tečaja",
+    "oneStopPlatform": "Vievlog - vaša vrhunska platforma za besplatno IT učenje",
+    "startLearningNow": "Počnite učiti i pripremite se za topik ispit",
+    "whyChooseVieVlog": "Zašto odabrati Vievlog za IT učenje?",
+    "freeAccess": "100% besplatan pristup učenju",
+    "learnIT": "Pristupite visokokvalitetnim lekcijama, vodičima i resursima stručnih instruktora bez ikakvih troškova.",
+    "expertInstructors": "Stručnjak IT instruktori",
+    "learnFromExperts": "Naučite to od zavičajnih govornika i iskusnih profesionalaca.",
+    "anytimeAnywhere": "Naučite ga bilo kada, bilo gdje",
+    "learnAtYourOwnPace": "Proučite ga vlastitim tempom neograničenim pristupom svim lekcijama.",
+    "comprehensiveCurriculum": "Sveobuhvatni IT kurikulum",
+    "coverAllAspects": "Tečajevi koji pokrivaju IT osnove do naprednih tema, uključujući gramatiku, vokabular i praksu razgovora.",
+    "viewAllIT": "Pogledajte sve testove i tečajeve",
     "featuredCourses": "Izdvojeni tečajevi",
-    "beginnerIT": "Početnički korejski",
-    "intermediateIT": "Srednji korejski",
-    "advancedIT": "Napredni Korejski",
-    "getStartedForFree": "Započnite besplatno",
-    "whatOurLearnersSay": "Što kažu naši polaznici",
+    "beginnerIT": "Početnički tečaj",
+    "intermediateIT": "Srednji tečaj IT",
+    "advancedIT": "Napredni IT tečaj",
+    "getStartedForFree": "Započnite s besplatnim lekcijama IT danas",
+    "whatOurLearnersSay": "Što naši učenici kažu o Vievlogu",
     "testimonial1": {
-      "quote": "\"VieVlog mi je pomogao da se učinkovito pripremim za ispit Topik. Lekcije su dobro strukturirane i lako ih je pratiti!\"",
+      "quote": "Vievlog mi je pomogao da se uspješno pripremim za svoj IT ispit.",
       "name": "Nguyen minh anh",
       "role": "Međunarodni student"
     },
     "testimonial2": {
-      "quote": "\"Učenje korejskog nikada nije bilo lakše! Strukturirane lekcije čine sve jednostavnim i zabavnim.\"",
+      "quote": "Učenje s Vievlogom nikada nije bilo lakše i zabavnije!",
       "name": "Tran Hai Nam",
       "role": "Uredski radnik"
     },
     "testimonial3": {
-      "quote": "\"Zahvaljujući VieVlogu, moje vještine slušanja i govora značajno su se poboljšale u roku od samo tri mjeseca!\"",
+      "quote": "Zahvaljujući Vievlogu, značajno sam poboljšao svoje IT vještine.",
       "name": "Le Thanh Huong",
       "role": "Sveučilišni student"
     },
-    "vieTopik": "VieVlog",
-    "yourOneStopShop": "Vaša platforma za savladavanje korejskih. Pristupite premium resursima besplatno i ostvarite svoje jezične ciljeve danas!",
-    "connectWithUs": "Povežite se s nama",
+    "vieTopik": "Vievlog - TOP 1 IT platforma za učenje",
+    "yourOneStopShop": "Vaša platforma na jednom mjestu za savladavanje IT vještina i TOPIK ispita. Pristupite vrhunskim resursima za učenje besplatno i dosegnite svoj jezik i IT ciljeve već danas!",
+    "connectWithUs": "Povežite se s Vievlog na društvenim mrežama",
     "socialMedia": {
-      "facebook": "Facebook",
-      "twitter": "Cvrkut",
-      "instagram": "Instagram",
-      "linkedin": "LinkedIn"
+      "facebook": "VieVlog Facebook",
+      "twitter": "Vievlog Twitter",
+      "instagram": "Vievlog Instagram",
+      "linkedin": "Vievlog LinkedIn"
     },
     "company": {
-      "aboutUs": "O nama",
-      "careers": "Karijera",
-      "blog": "Blog",
-      "contact": "Kontakt"
+      "aboutUs": "O Vievlogu",
+      "careers": "Karijere u VievLogu",
+      "blog": "Vievlog blog - to savjeti i vijesti",
+      "contact": "Kontaktirajte Vievlog"
     },
     "support": {
-      "helpCenter": "Centar za pomoć",
-      "faq": "FAQ",
+      "helpCenter": "Centar za pomoć u Vievlog",
+      "faq": "Često postavljana pitanja",
       "privacyPolicy": "Pravila o privatnosti",
       "termsOfService": "Uvjeti pružanja usluge"
     },
     "footer": {
-      "copyright": "© 2025 VieVlog. Sva prava pridržana."
+      "copyright": "© 2025 Vievlog. Sva prava pridržana."
     },
     "metadata": {
-      "lesson": "Pregledajte naše najnovije lekcije i pronađite nešto što će vam se svidjeti.",
-      "grammar": "Dostupni gramatički dijagrami"
+      "lesson": "Pregledajte naše najnovije lekcije o besplatnim IT -u i pronađite savršen tečaj za svoju razinu vještina.",
+      "grammar": "Istražite naše detaljne IT dijagrame i tutorijale."
     }
   }
 }

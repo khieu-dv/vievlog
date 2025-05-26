@@ -1,99 +1,93 @@
 {
   "header": {
     "utils": {
-      "login": "Giriş",
-      "logout": "Çıxmaq",
-      "inquiry": "Bizimlə əlaqə saxlayın",
-      "manager": "Müdir",
-      "topikExams": "İmtahanlar mövzusu",
-      "topikSchedule": "Mövzu cədvəli"
+      "login": "Vievlog-a daxil olun",
+      "logout": "Vievlog-dan çıxın",
+      "inquiry": "Vievlog dəstəyi ilə əlaqə saxlayın",
+      "manager": "Hesab meneceri",
+      "topikSchedule": "Vievlog Cədvəli - Tədbirləri öyrənir"
     }
   },
   "body": {
     "utils": {
-      "loading": "Yükləmə dərsləri ...",
-      "notFound": "Bu kateqoriyada heç bir məlumat tapılmadı.",
-      "inquiry": "Bizimlə əlaqə saxlayın",
-      "manager": "Müdir"
+      "loading": "İT dərsləri yüklənir ...",
+      "notFound": "Bu kateqoriyada heç bir dərs tapılmadı.",
+      "inquiry": "Vievlog dəstəyi ilə əlaqə saxlayın",
+      "manager": "Hesab meneceri"
     }
   },
   "content": {
-    "title": "VieVlog - Koreyanı pulsuz öyrənin",
-    "home": "Evdə",
-    "topiks": "Mövzular",
-    "courses": "Kurs",
-    "grammar": "Qrammatika",
-    "game": "Oyun",
-    "features": "Xüsusiyyət",
-    "logIn": "Daxil olmaq",
-    "signUp": "Qeydiyyatdan keçmək",
-    "toggleTheme": "Tövsiyəni dəyişdirmək",
-    "newCollection": "Yeni kolleksiya mövcuddur",
-    "oneStopPlatform": "Ultimate Koreyanın öyrənmə platformasını",
-    "startLearningNow": "İmtahan mövzusu",
-    "whyChooseVieVlog": "Niyə VieVlog seçirsiniz?",
-    "freeAccess": "Pulsuz giriş",
-    "learnIT": "Mütəxəssislərin yüksək keyfiyyətli dərsləri olan Koreyanın yüksək keyfiyyətli dərslərini öyrənin.",
-    "expertInstructors": "Ekspert müəllimi",
-    "learnFromExperts": "Doğma danışan və təcrübəli müəllimlərdən məlumat əldə edin.",
-    "anytimeAnywhere": "Hər an, hər yerdə",
-    "learnAtYourOwnPace": "Dərslərə məhdudiyyətsiz giriş ilə öz sürətinizlə oxuyun.",
-    "comprehensiveCurriculum": "Hərtərəfli tədris planı",
-    "coverAllAspects": "Başlanğıcdan Qrammatikanı, lüğəti və söhbətini əhatə edən qabaqcıl səviyyələrə qədər.",
-    "topikExam": "Mövzu imtahanının ustası",
-    "topikI": "Mövzu i",
-    "topikI_tests": "12 təcrübə testləri",
-    "topikII": "Mövzu II",
-    "topikII_tests": "15 təcrübə testləri",
-    "viewAllIT": "Bütün mövzular testlərinə baxın",
-    "featuredCourses": "Xüsusi kurslar",
-    "beginnerIT": "Başlanğıc Koreyalı",
-    "intermediateIT": "Aralıq koreyalı",
-    "advancedIT": "Qabaqcıl Koreya",
-    "getStartedForFree": "Pulsuz işə başlayın",
-    "whatOurLearnersSay": "Öyrənənlərimiz nə deyirlər",
+    "title": "Vievlog - Onlayn olaraq onlayn məlumat əldə edin | İT kursları və imtahanları",
+    "home": "Baş səhifə - Vievlog",
+    "topiks": "Mövzuları öyrənir",
+    "courses": "Pulsuz İT kursları",
+    "grammar": "Bu qrammatika dərsləri",
+    "game": "Öyrənmə Oyunlar",
+    "features": "Platforma xüsusiyyətləri",
+    "logIn": "Vievlog-a daxil olun",
+    "signUp": "Pulsuz İT kurslarına üzv olun",
+    "toggleTheme": "İşıq / Qaranlıq mövzunu dəyişdirin",
+    "newCollection": "Yeni İT Kursu Kolleksiyası mövcuddur",
+    "oneStopPlatform": "Vievlog - Sizin son pulsuz İT öyrənmə platforması",
+    "startLearningNow": "Bunu öyrənməyə başlayın və TOPIK imtahanına hazırlaşın",
+    "whyChooseVieVlog": "Niyə öyrənmək üçün vievlogu seçirsiniz?",
+    "freeAccess": "100% pulsuz onu öyrənmək",
+    "learnIT": "Ekspert təlimçilərindən yüksək keyfiyyətli İT dərsləri, dərsləri və ekspert təlimçilərindən qaynaqlara daxil olun.",
+    "expertInstructors": "Ekspert IT təlimatçıları",
+    "learnFromExperts": "Bunu ana dilində və təcrübəli mütəxəssislərdən öyrənin.",
+    "anytimeAnywhere": "İstədiyiniz zaman, hər yerdə öyrənin",
+    "learnAtYourOwnPace": "Bütün dərslərə məhdudiyyətsiz giriş ilə öz sürətinizlə oxuyun.",
+    "comprehensiveCurriculum": "Hərtərəfli İT kurikulumu",
+    "coverAllAspects": "Qrammatika, lüğət və söhbət təcrübəsi də daxil olmaqla inkişaf etmiş mövzulara əsas olan kurslar.",
+    "viewAllIT": "Bütün Vievlog İT testləri və kurslarına baxın",
+    "featuredCourses": "Xüsusi İT kursları",
+    "beginnerIT": "Başlanğıcın bu kursu",
+    "intermediateIT": "Aralıq İT kursu",
+    "advancedIT": "İnkişaf etmiş İT kursu",
+    "getStartedForFree": "Bu gün pulsuz İT dərsləri ilə başlayın",
+    "whatOurLearnersSay": "Şagirdlərimiz Vievlog haqqında nə deyirlər",
     "testimonial1": {
-      "quote": "\"Vyetopik mənə VIEVLOG imtahanından səmərəli hazırlaşmağa kömək etdi. Dərslər yaxşı qurulmuş və izləmək asandır!\"",
+      "quote": "Vievlog mənə İT imtahanım üçün uğurla hazırlaşmağa kömək etdi.",
       "name": "Nguyen minh anh",
       "role": "Beynəlxalq tələbə"
     },
     "testimonial2": {
-      "quote": "\"Koreyanı öyrənmək heç vaxt asan olmayıb! Qurulmuş dərslər hər şeyi sadə və əyləncəlidir.\"",
+      "quote": "Vievlog ilə öyrənmək heç asan və daha əyləncəli olmayıb!",
       "name": "Tran hai nam",
       "role": "İşçi"
     },
     "testimonial3": {
-      "quote": "\"Vyetopik sayəsində dinləmə və danışma bacarıqlarım cəmi üç ay ərzində əhəmiyyətli dərəcədə yaxşılaşdı!\"",
+      "quote": "Vievlog sayəsində bu bacarıqlarımı əhəmiyyətli dərəcədə yaxşılaşdırdım.",
       "name": "Le thanh huong",
       "role": "Universitet şagirdi"
     },
-    "vieTopik": "Vyetopik",
-    "yourOneStopShop": "Koreyanın mənimsənilməsi üçün bir pəncərə platformasın. PREMIUM RESURSLARI pulsuz və bu gün dil hədəflərinizi əldə edin!",
-    "connectWithUs": "Bizimlə əlaqə qurun",
+    "vieTopik": "Vievlog - Ən yaxşı 1 İT öyrənmə platforması",
+    "yourOneStopShop": "İT bacarıqları və topik imtahanları mənimsəmək üçün bir pəncərə platformalı. PREMIUM Öyrənmə mənbələrini pulsuz əldə edin və bu gün də dilinizə çatın və bu məqsədlərə çatın!",
+    "connectWithUs": "Sosial mediada Vievlog ilə əlaqə qurun",
     "socialMedia": {
-      "facebook": "Facebook",
-      "twitter": "Twitter",
-      "instagram": "İnstaqram",
-      "linkedin": "Linkedin"
+      "facebook": "Vievlog Facebook",
+      "twitter": "Vievlog Twitter",
+      "instagram": "Vievlog Instagram",
+      "linkedin": "Vievlog linkedin"
     },
     "company": {
-      "aboutUs": "Haqqımızda",
-      "careers": "Karyera",
-      "blog": "Macal",
-      "contact": "Əlaqə"
+      "aboutUs": "Vievlog haqqında",
+      "careers": "Vievlog-da karyera",
+      "blog": "Vievlog Blog - İT tövsiyələri və xəbərləri",
+      "contact": "Vievlog ilə əlaqə saxlayın"
     },
     "support": {
-      "helpCenter": "Kömək mərkəzi",
-      "faq": "Faq",
+      "helpCenter": "Vievlog Kömək Mərkəzi",
+      "faq": "Tez-tez verilən suallar",
       "privacyPolicy": "Məxfilik Siyasəti",
       "termsOfService": "Xidmət şərtləri"
     },
     "footer": {
-      "copyright": "© 2025 VieVlog. Bütün hüquqlar qorunur."
+      "copyright": "© 2025 Vievlog. Bütün hüquqlar qorunur."
     },
     "metadata": {
-      "lesson": "Ən son dərslərimizi gözdən keçirin və sevəcəyiniz bir şey tapın.",
-      "grammar": "Mövcud qrammatika diaqramları"
+      "lesson": "Ən son pulsuz İT dərslərimizi nəzərdən keçirin və bacarıq səviyyəniz üçün mükəmməl bir kurs tapın.",
+      "grammar": "Ətraflı onun diaqramları və dərslərimizi araşdırın."
     }
   }
 }

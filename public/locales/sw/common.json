@@ -1,99 +1,93 @@
 {
   "header": {
     "utils": {
-      "login": "Ingia",
-      "logout": "Kuingia",
-      "inquiry": "Wasiliana nasi",
-      "manager": "Meneja",
-      "topikExams": "Mada ya mitihani",
-      "topikSchedule": "Ratiba ya mada"
+      "login": "Ingia Vievlog",
+      "logout": "Kuingia kutoka kwa Vievlog",
+      "inquiry": "Wasiliana na msaada wa Vievlog",
+      "manager": "Meneja wa Akaunti",
+      "topikSchedule": "Ratiba ya Vievlog - Matukio ya kujifunza ya IT"
     }
   },
   "body": {
     "utils": {
       "loading": "Kupakia masomo ...",
-      "notFound": "Hakuna data inayopatikana katika jamii hii.",
-      "inquiry": "Wasiliana nasi",
-      "manager": "Meneja"
+      "notFound": "Hakuna masomo yanayopatikana katika jamii hii.",
+      "inquiry": "Wasiliana na msaada wa Vievlog",
+      "manager": "Meneja wa Akaunti"
     }
   },
   "content": {
-    "title": "VieVlog - Jifunze Kikorea bure",
-    "home": "Nyumbani",
-    "topiks": "Mada",
-    "courses": "Kozi",
-    "grammar": "Sarufi",
-    "game": "Mchezo",
-    "features": "Vipengee",
-    "logIn": "Ingia",
-    "signUp": "Jisajili",
-    "toggleTheme": "Kubadilisha mandhari",
-    "newCollection": "Mkusanyiko mpya unapatikana",
-    "oneStopPlatform": "Jukwaa lako la mwisho la kujifunza Kikorea",
-    "startLearningNow": "Mada ya mitihani",
-    "whyChooseVieVlog": "Kwa nini Uchague VieVlog?",
-    "freeAccess": "Ufikiaji wa bure",
-    "learnIT": "Jifunze Kikorea na masomo ya hali ya juu kutoka kwa wataalam bila gharama yoyote.",
-    "expertInstructors": "Waalimu wa wataalam",
-    "learnFromExperts": "Jifunze kutoka kwa wasemaji wa asili na waalimu wenye uzoefu.",
-    "anytimeAnywhere": "Wakati wowote, mahali popote",
-    "learnAtYourOwnPace": "Jifunze kwa kasi yako mwenyewe na ufikiaji usio na kikomo wa masomo.",
-    "comprehensiveCurriculum": "Mtaala kamili",
-    "coverAllAspects": "Kutoka kwa viwango vya juu hadi viwango vya juu, kufunika sarufi, msamiati, na mazungumzo.",
-    "topikExam": "Mwalimu Mtihani wa Mada",
-    "topikI": "Mada i",
-    "topikI_tests": "Vipimo 12 vya mazoezi",
-    "topikII": "Mada ya II",
-    "topikII_tests": "Vipimo 15 vya mazoezi",
-    "viewAllIT": "Angalia vipimo vyote vya mada",
-    "featuredCourses": "Kozi zilizoangaziwa",
-    "beginnerIT": "Kikorea cha Kompyuta",
-    "intermediateIT": "Kikorea cha kati",
-    "advancedIT": "Kikorea cha hali ya juu",
-    "getStartedForFree": "Anza bure",
-    "whatOurLearnersSay": "Wanafunzi wetu wanasema nini",
+    "title": "Vievlog - Jifunze mkondoni bure | Ni kozi na mitihani",
+    "home": "Nyumbani - Vievlog",
+    "topiks": "Ni kujifunza mada",
+    "courses": "Bure kozi",
+    "grammar": "Ni masomo ya sarufi",
+    "game": "Michezo ya kujifunza",
+    "features": "Vipengele vya Jukwaa",
+    "logIn": "Ingia Vievlog",
+    "signUp": "Jisajili kwa kozi za bure za IT",
+    "toggleTheme": "Kubadilisha mandhari nyepesi/giza",
+    "newCollection": "Mkusanyiko mpya wa kozi ya IT unapatikana",
+    "oneStopPlatform": "Vievlog - Jukwaa lako la mwisho la kujifunza la bure la IT",
+    "startLearningNow": "Anza kuijifunza na jitayarishe kwa mtihani wa topik",
+    "whyChooseVieVlog": "Kwa nini uchague Vievlog kwa kujifunza?",
+    "freeAccess": "100% ya bure ya kujifunza ufikiaji",
+    "learnIT": "Pata masomo ya hali ya juu ya IT, mafunzo, na rasilimali kutoka kwa waalimu wa wataalam bila malipo.",
+    "expertInstructors": "Mtaalam wa Waalimu",
+    "learnFromExperts": "Jifunze kutoka kwa wasemaji wa asili na wataalamu wenye uzoefu.",
+    "anytimeAnywhere": "Jifunze wakati wowote, mahali popote",
+    "learnAtYourOwnPace": "Jifunze kwa kasi yako mwenyewe na ufikiaji usio na kikomo wa masomo yote.",
+    "comprehensiveCurriculum": "Mtaala kamili wa IT",
+    "coverAllAspects": "Kozi zinazofunika misingi ya mada ya hali ya juu, pamoja na sarufi, msamiati, na mazoezi ya mazungumzo.",
+    "viewAllIT": "Angalia vipimo vyote vya Vievlog IT na kozi",
+    "featuredCourses": "Ilionyesha kozi",
+    "beginnerIT": "Kozi ya kwanza",
+    "intermediateIT": "Kati ya kozi ya kati",
+    "advancedIT": "Kozi ya juu ya juu",
+    "getStartedForFree": "Anza na masomo ya bure ya IT leo",
+    "whatOurLearnersSay": "Kile wanafunzi wetu wanasema juu ya Vievlog",
     "testimonial1": {
-      "quote": "\"VieVlog alinisaidia kujiandaa kwa mtihani wangu wa Topik kwa ufanisi. Masomo yameundwa vizuri na ni rahisi kufuata!\"",
+      "quote": "Vievlog ilinisaidia kujiandaa kwa mafanikio kwa mtihani wangu wa IT.",
       "name": "Nguyen Minh Anh",
       "role": "Mwanafunzi wa Kimataifa"
     },
     "testimonial2": {
-      "quote": "\"Kujifunza Kikorea haijawahi kuwa rahisi! Masomo yaliyopangwa hufanya kila kitu kuwa rahisi na cha kufurahisha.\"",
+      "quote": "Kujifunza na Vievlog haijawahi kuwa rahisi na ya kufurahisha zaidi!",
       "name": "Tran Hai Nam",
       "role": "Mfanyakazi wa ofisi"
     },
     "testimonial3": {
-      "quote": "\"Asante kwa VieVlog, ujuzi wangu wa kusikiliza na kuongea umeimarika sana ndani ya miezi mitatu tu!\"",
+      "quote": "Shukrani kwa Vievlog, niliboresha ujuzi wangu wa IT kwa kiasi kikubwa.",
       "name": "Le Thanh Huong",
       "role": "Mwanafunzi wa Chuo Kikuu"
     },
-    "vieTopik": "VieVlog",
-    "yourOneStopShop": "Jukwaa lako moja la kusimamia Kikorea. Fikia rasilimali za malipo ya bure na kufikia malengo yako ya lugha leo!",
-    "connectWithUs": "Ungana na sisi",
+    "vieTopik": "Vievlog - Jukwaa la juu la 1 la Kujifunza",
+    "yourOneStopShop": "Jukwaa lako moja la kusimamia ustadi wa IT na mitihani ya Topik. Fikia Rasilimali za Kujifunza za Premium bure na ufikie lugha yako na malengo ya IT leo!",
+    "connectWithUs": "Ungana na Vievlog kwenye media ya kijamii",
     "socialMedia": {
-      "facebook": "Facebook",
-      "twitter": "Twitter",
-      "instagram": "Instagram",
-      "linkedin": "LinkedIn"
+      "facebook": "Vievlog Facebook",
+      "twitter": "Vievlog Twitter",
+      "instagram": "Vievlog Instagram",
+      "linkedin": "Vievlog LinkedIn"
     },
     "company": {
-      "aboutUs": "Kuhusu sisi",
-      "careers": "Kazi",
-      "blog": "Blogi",
-      "contact": "Wasiliana"
+      "aboutUs": "Kuhusu Vievlog",
+      "careers": "Kazi huko Vievlog",
+      "blog": "Blogi ya Vievlog - Vidokezo na Habari",
+      "contact": "Wasiliana na Vievlog"
     },
     "support": {
-      "helpCenter": "Kituo cha Msaada",
-      "faq": "Maswali",
+      "helpCenter": "Kituo cha Msaada cha Vievlog",
+      "faq": "Maswali yanayoulizwa mara kwa mara",
       "privacyPolicy": "Sera ya faragha",
       "termsOfService": "Masharti ya Huduma"
     },
     "footer": {
-      "copyright": "© 2025 VieVlog. Haki zote zimehifadhiwa."
+      "copyright": "© 2025 Vievlog. Haki zote zimehifadhiwa."
     },
     "metadata": {
-      "lesson": "Vinjari masomo yetu ya hivi karibuni na upate kitu ambacho utapenda.",
-      "grammar": "Mchoro unaopatikana wa sarufi"
+      "lesson": "Vinjari masomo yetu ya hivi karibuni ya bure ya IT na upate kozi bora kwa kiwango chako cha ustadi.",
+      "grammar": "Chunguza michoro na mafunzo yetu ya kina ya IT."
     }
   }
 }

@@ -1,99 +1,93 @@
 {
   "header": {
     "utils": {
-      "login": "Sartu 2.",
-      "logout": "Lodiketa",
-      "inquiry": "Jar zaitez gurekin harremanetan",
-      "manager": "Garente",
-      "topikExams": "Azterketak Gaia",
-      "topikSchedule": "Ordutegi Gaia"
+      "login": "Sartu Vievlog-era",
+      "logout": "Vievlog-etik logout",
+      "inquiry": "Harremanetarako Vievlog Support",
+      "manager": "Kontu kudeatzailea",
+      "topikSchedule": "Vievlog Egitaraua - Ikasteko gertaerak"
     }
   },
   "body": {
     "utils": {
       "loading": "Ikasgaiak kargatzen ...",
-      "notFound": "Ez da kategoria honetan aurkitu.",
-      "inquiry": "Jar zaitez gurekin harremanetan",
-      "manager": "Garente"
+      "notFound": "Kategoria honetan ez da ikasgai.",
+      "inquiry": "Harremanetarako Vievlog Support",
+      "manager": "Kontu kudeatzailea"
     }
   },
   "content": {
-    "title": "VieVlog - ikasi koreera doan",
-    "home": "Etxe",
-    "topiks": "Gaien",
-    "courses": "Ikastaroak",
-    "grammar": "Gramatika",
-    "game": "Joko",
-    "features": "Osau",
-    "logIn": "Sarrera",
-    "signUp": "Izena eman",
-    "toggleTheme": "Txandakatu gaia",
-    "newCollection": "Bilketa berria eskuragarri",
-    "oneStopPlatform": "Zure Koreako Ikasteko Plataforma",
-    "startLearningNow": "Azterketa gaia",
-    "whyChooseVieVlog": "Zergatik aukeratu VieVlog?",
-    "freeAccess": "Sarbide librea",
-    "learnIT": "Ikasi Koreera kalitate handiko ikasgaiekin adituek ez dute inolako kosturik.",
-    "expertInstructors": "Adituentzako begiraleak",
-    "learnFromExperts": "Ikasi bertako hiztunetatik eta esperientziadun irakasleei.",
-    "anytimeAnywhere": "Edonoiz, edonon",
-    "learnAtYourOwnPace": "Ikas ezazu zure erritmoan ikasgaietarako sarbide mugagabea duena.",
-    "comprehensiveCurriculum": "Curriculum integrala",
-    "coverAllAspects": "Hasiberritik maila aurreratuetara, gramatika, hiztegia eta elkarrizketa estali.",
-    "topikExam": "Gaiaren azterketa maisua",
-    "topikI": "Gaia I",
-    "topikI_tests": "12 praktika probak",
-    "topikII": "II gaia",
-    "topikII_tests": "15 praktika probak",
-    "viewAllIT": "Ikusi gai guztiak proba guztiak",
-    "featuredCourses": "Nabarmendutako ikastaroak",
-    "beginnerIT": "Hasiberria Koreera",
-    "intermediateIT": "Bitarteko koreera",
-    "advancedIT": "Koreera aurreratuak",
-    "getStartedForFree": "Hasi doan",
-    "whatOurLearnersSay": "Gure ikasleek esaten dutena",
+    "title": "Vievlog - ikasi linean doan | Ikastaroak eta azterketak",
+    "home": "Hasiera - Vievlog",
+    "topiks": "Gaiak ikasten ditu",
+    "courses": "Doako ikastaroak",
+    "grammar": "IT gramatika ikasgaiak",
+    "game": "Ikasteko jokoak",
+    "features": "Plataforma Ezaugarriak",
+    "logIn": "Hasi saioa Vievlog-en",
+    "signUp": "Eman izena DOAKO IKASTAROAK",
+    "toggleTheme": "Txandakatu argia / iluna",
+    "newCollection": "IT ikastaroaren bilduma berria eskuragarri dago",
+    "oneStopPlatform": "Vievlog - Zure azken doako ikasteko plataforma",
+    "startLearningNow": "Hasi ikasten eta prestatu Topik azterketarako",
+    "whyChooseVieVlog": "Zergatik aukeratu Vievlog ikasteko?",
+    "freeAccess": "% 100 doako ikasteko sarbidea",
+    "learnIT": "Sar zaitez kalitate handiko ikasgaiak, tutoretzak eta adituentzako baliabideak inolako kosturik gabe.",
+    "expertInstructors": "IT begirale adituak",
+    "learnFromExperts": "Ikasi bertako hiztunetatik eta esperientziadun profesionalek.",
+    "anytimeAnywhere": "Ikasi noiznahi, edonon",
+    "learnAtYourOwnPace": "Ikasi zure erritmoan ikasgai guztietarako sarbide mugagabea.",
+    "comprehensiveCurriculum": "IT CURRICULUM",
+    "coverAllAspects": "Ikastaroak gai aurreratuetarako oinarriak biltzen ditu, gramatika, hiztegia eta elkarrizketa praktika barne.",
+    "viewAllIT": "Ikusi Vievlog IT probak eta ikastaroak",
+    "featuredCourses": "Nabarmendutako Ikastaroak",
+    "beginnerIT": "Hasiberrientzako Ikastaroa",
+    "intermediateIT": "Bitarteko IT ikastaroa",
+    "advancedIT": "IT aurreratua",
+    "getStartedForFree": "Hasi gaur doako ikasgaiekin",
+    "whatOurLearnersSay": "Gure ikasleek Vievlog-i buruz esaten dutena",
     "testimonial1": {
-      "quote": "\"VieVlog nire Topik azterketa modu eraginkorrean prestatzen lagundu dit. Ikasgaiak ondo egituratuta eta jarraitzeko errazak dira!\"",
+      "quote": "Vievlog-ek nire IT azterketarako ondo prestatzen lagundu dit.",
       "name": "Nguyen minh anh",
       "role": "Nazioarteko ikaslea"
     },
     "testimonial2": {
-      "quote": "\"ITikastea ez da inoiz errazagoa izan! Egituratutako ikasgaiek dena sinplea eta dibertigarria bihurtzen dute.\"",
+      "quote": "Vievlog-ekin ikastea ez da inoiz errazagoa eta dibertigarriagoa izan!",
       "name": "Tran hai nam",
       "role": "Bulegoko langilea"
     },
     "testimonial3": {
-      "quote": "\"VieVlog-i esker, nire entzuteko eta hitz egiteko trebetasunak nabarmen hobetu dira hiru hilabetetan!\"",
+      "quote": "Vievlog-i esker, nire trebetasunak nabarmen hobetu ditut.",
       "name": "Le thanh huong",
       "role": "Unibertsitateko ikaslea"
     },
-    "vieTopik": "VieVlog",
-    "yourOneStopShop": "Korearra menderatzeko zure geldialdi bakarreko plataforma. Sar zaitez premium baliabideak doan eta gaur egun zure hizkuntza helburuak lortzeko!",
-    "connectWithUs": "Konektatu gurekin",
+    "vieTopik": "Vievlog - Top 1 Ikasteko Plataforma",
+    "yourOneStopShop": "IT trebetasunak eta Topik azterketak menderatzeko geldialdi bakarreko plataforma. Sar zaitez premium ikasteko baliabideak dohainik eta zure hizkuntzara iristeko eta gaur egun heltzen da!",
+    "connectWithUs": "Konektatu Vievlog sare sozialetan",
     "socialMedia": {
-      "facebook": "Okatuok",
-      "twitter": "Twitter",
-      "instagram": "Instagram",
-      "linkedin": "LinkedIn"
+      "facebook": "Vievlog Facebook",
+      "twitter": "Vievlog twitter",
+      "instagram": "Vievlog Instagram",
+      "linkedin": "Vievlog LinkedIn"
     },
     "company": {
-      "aboutUs": "Guri buruz",
-      "careers": "Karrera",
-      "blog": "Bld",
-      "contact": "Harremanetan jarri"
+      "aboutUs": "Vievlog-i buruz",
+      "careers": "Vievlog-eko karrerak",
+      "blog": "Vievlog Blog - IT Aholkuak eta Berriak",
+      "contact": "Vievlog-ekin kontaktuan jarri"
     },
     "support": {
-      "helpCenter": "Laguntza Zentroa",
-      "faq": "Ohigai",
+      "helpCenter": "Vievlog Laguntza Zentroa",
+      "faq": "Galdera arruntak",
       "privacyPolicy": "Pribatutasun politika",
       "termsOfService": "Zerbitzu baldintzak"
     },
     "footer": {
-      "copyright": "© 2025 VieVlog. Eskubide guztiak erreserbatuak"
+      "copyright": "© 2025 Vievlog. Eskubide guztiak erreserbatuak"
     },
     "metadata": {
-      "lesson": "Arakatu gure azken ikasgaiak eta aurkitu maite duzun zerbait.",
-      "grammar": "Eskuragarri Gramatika-diagramak"
+      "lesson": "Arakatu gure azken doako ikasgaiak eta aurkitu zure trebetasun mailarako ikastaro egokia.",
+      "grammar": "Arakatu gure diagrama eta tutorial zehatzak."
     }
   }
 }

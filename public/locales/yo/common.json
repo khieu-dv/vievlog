@@ -1,99 +1,93 @@
 {
   "header": {
     "utils": {
-      "login": "Wo ile",
-      "logout": "Aami ojo",
-      "inquiry": "Pe wa",
-      "manager": "Oluṣakoso obinrin",
-      "topikExams": "Ayẹwo koko",
-      "topikSchedule": "Eto Eto"
+      "login": "Buwolu wọle lati iwe-ẹri",
+      "logout": "Logout lati igbakugba",
+      "inquiry": "Kan si atilẹyin Iwe-ẹri",
+      "manager": "Oluṣeto owo ifipamọ",
+      "topikSchedule": "Iṣeduro Vazy Ort - O kikọ awọn iṣẹlẹ"
     }
   },
   "body": {
     "utils": {
-      "loading": "Loading Awọn ẹkọ ...",
-      "notFound": "Ko si data ti a rii ni ẹka yii.",
-      "inquiry": "Pe wa",
-      "manager": "Oluṣakoso obinrin"
+      "loading": "Njọpọ rẹ Awọn ẹkọ ...",
+      "notFound": "Ko si awọn ẹkọ ti a rii ni ẹya yii.",
+      "inquiry": "Kan si atilẹyin Iwe-ẹri",
+      "manager": "Oluṣeto owo ifipamọ"
     }
   },
   "content": {
-    "title": "Vietpopik - Kọ ẹkọ IT fun ọfẹ",
-    "home": "Ile",
-    "topiks": "Awọn akọle",
-    "courses": "Awọn iṣẹ",
-    "grammar": "Girama",
-    "game": "Ere",
-    "features": "Awọn ẹya",
-    "logIn": "Wo ile",
-    "signUp": "forukọsilẹ",
-    "toggleTheme": "Akori ToGgle",
-    "newCollection": "Gbigba Tuntun wa",
-    "oneStopPlatform": "Pẹpẹ",
-    "startLearningNow": "Aye Koko",
-    "whyChooseVieVlog": "Kini idi ti Yan Vietpopik?",
-    "freeAccess": "Wiwọle ọfẹ",
-    "learnIT": "Kọ IT pẹlu awọn ẹkọ didara-didara lati ọdọ awọn amoye ni Egba ko si idiyele.",
-    "expertInstructors": "Awọn olukọni Ẹgbọn",
-    "learnFromExperts": "Kọ ẹkọ lati ọdọ awọn agbọrọsọ abinibi ati awọn olukọ ti o ni iriri.",
-    "anytimeAnywhere": "Nigbakugba, nibikibi",
-    "learnAtYourOwnPace": "Iwadi ni iyara tirẹ pẹlu wiwọle ti ko ni opin si awọn ẹkọ.",
-    "comprehensiveCurriculum": "Iṣu-ara",
-    "coverAllAspects": "Lati Akobere si awọn ipele ti o ni ilọsiwaju, ibora cmramu, fokabulari, ati ibaraẹnisọrọ.",
-    "topikExam": "Titunyẹwo idanwo koko-ọrọ naa",
-    "topikI": "Koko-ọrọ Mo",
-    "topikI_tests": "Awọn idanwo adaṣe 12",
-    "topikII": "Koko-ọrọ ii",
-    "topikII_tests": "15 Awọn idanwo adaṣe 15",
-    "viewAllIT": "Wo gbogbo awọn idanwo akọle",
-    "featuredCourses": "Awọn ẹkọ ti a ṣe ifihan",
-    "beginnerIT": "Abere alakọbẹrẹ",
-    "intermediateIT": "Intermediate Kolan",
-    "advancedIT": "Is] gonce",
-    "getStartedForFree": "Bibẹrẹ fun ọfẹ",
-    "whatOurLearnersSay": "Ohun ti awọn ẹkọ wa sọ",
+    "title": "QueaverLog - Kọ ẹkọ lori ayelujara fun ọfẹ | O awọn iṣẹ ati awọn idanwo",
+    "home": "Ile - Vervieg",
+    "topiks": "O kọ awọn akọle",
+    "courses": "Free o awọn ile-iṣẹ",
+    "grammar": "O jẹ awọn ẹkọ cmmmar",
+    "game": "Awọn ere ikẹkọ",
+    "features": "Awọn ẹya Syeed",
+    "logIn": "Wọle si queaverlog",
+    "signUp": "Forukọsilẹ fun ọfẹ o awọn iṣẹ",
+    "toggleTheme": "Yi ina / akori dudu",
+    "newCollection": "Tuntun o tun nilo",
+    "oneStopPlatform": "Iwe-ẹri - ọfẹ rẹ Gbẹhin o nkọni ni Syeed",
+    "startLearningNow": "Bẹrẹ ẹkọ o & murasilẹ fun idanwo Topok",
+    "whyChooseVieVlog": "Kini idi ti yan iwe-ẹri fun o kọ ẹkọ?",
+    "freeAccess": "100% ọfẹ o ni irako wiwọle",
+    "learnIT": "Wọle si awọn ẹkọ-didara giga, awọn olukọni, ati awọn orisun lati awọn olukọ eleyi ni idiyele idiyele.",
+    "expertInstructors": "Iwéwo o awọn olukọni",
+    "learnFromExperts": "Kọ ẹkọ lati awọn agbọrọsọ abinibi ati awọn oṣiṣẹ ti o ni iriri.",
+    "anytimeAnywhere": "Kọ ẹkọ nigbakugba, nibikibi",
+    "learnAtYourOwnPace": "Ikẹkọ ni iyara tirẹ pẹlu wiwọle ti ko ni opin si gbogbo awọn ẹkọ.",
+    "comprehensiveCurriculum": "Okeerẹ o",
+    "coverAllAspects": "Awọn iṣẹ ibora ti o bo awọn ipilẹ si awọn akọle ti ilọsiwaju, pẹlu irawọ, ọrọ-ọrọ, ati iṣoro sisọ.",
+    "viewAllIT": "Wo gbogbo iwe-pada ki o ṣe idanwo ati awọn iṣẹ ikẹkọ",
+    "featuredCourses": "Ifihan rẹ awọn iṣẹ",
+    "beginnerIT": "Olubere rẹ o dajudaju",
+    "intermediateIT": "Intermediate rẹ",
+    "advancedIT": "Ni ilọsiwaju o dajudaju",
+    "getStartedForFree": "Bibẹrẹ pẹlu ọfẹ o awọn ẹkọ loni",
+    "whatOurLearnersSay": "Ohun ti awọn ẹkọ wa sọ nipa Verfastlog",
     "testimonial1": {
-      "quote": "\"VItopik ṣe iranlọwọ fun mi mura silẹ fun idanwo Trik mi ni deede. Awọn ẹkọ jẹ ẹya-ti eleto ati rọrun lati tẹle!\"",
+      "quote": "Vazhog ṣe iranlọwọ fun mi ni ifijišẹ lati mura fun idanwo mi.",
       "name": "Ngulen minh anh",
       "role": "Ọmọ ile-iwe agbaye"
     },
     "testimonial2": {
-      "quote": "\"Kọ ẹkọ IT ko rọrun! Awọn ẹkọ ti ikede Ṣe ohun gbogbo rọrun ati igbadun.\"",
+      "quote": "Kikọ o pẹlu queaver ko rọrun ati igbadun diẹ sii!",
       "name": "Tran hai Naa",
       "role": "Oṣiṣẹ ọfiisi"
     },
     "testimonial3": {
-      "quote": "O ṣeun si Vitopik, awọn ogbon mi ati awọn imọ-ọrọ sisọ ti dara si ni pataki ni oṣu mẹta o kan! \"",
+      "quote": "O ṣeun si versig, Mo ni awọn ọgbọn rẹ ni pataki.",
       "name": "Le ju hoong",
       "role": "Ọmọ ile-iwe giga"
     },
-    "vieTopik": "Vietpopik",
-    "yourOneStopShop": "Syeed oju-omi-idena rẹ fun Mastering IT. Wiwọle Ere Ere iroyin fun ọfẹ ki o ṣaṣeyọri awọn ibi-afẹde ede rẹ loni!",
-    "connectWithUs": "Sopọ pẹlu wa",
+    "vieTopik": "Queavlog - oke 1 o nkọ oju-iwe",
+    "yourOneStopShop": "Syeed Speed ​​Okan-Duro fun Mastering O ṣe ogbon ati Awọn idanwo Tototik. Wiwọle Ere Awọn iṣẹ Ere fun ọfẹ ki o de ọdọ ede rẹ ati awọn ibi-afẹde loni!",
+    "connectWithUs": "Sopọ pẹlu Vazlog lori media media",
     "socialMedia": {
-      "facebook": "Facebook",
-      "twitter": "Twitter",
-      "instagram": "Ile ipamọ",
-      "linkedin": "Lindedin"
+      "facebook": "Vazzlog Facebook",
+      "twitter": "Quieverlog Twitter",
+      "instagram": "Quevoog Instagram",
+      "linkedin": "Viapslog Linked"
     },
     "company": {
-      "aboutUs": "Nipa re",
-      "careers": "Awọn iṣẹ",
-      "blog": "Bulọọgi",
-      "contact": "Kan"
+      "aboutUs": "Nipa Iwe-mimọ",
+      "careers": "Awọn Itọju ni Vaeku",
+      "blog": "Bulọọgi bulọọgi Vazy - o 2 Awọn imọran & Awọn iroyin",
+      "contact": "Olubasọrọ Iwe-ẹri"
     },
     "support": {
-      "helpCenter": "Ile-iṣẹ iranlọwọ",
-      "faq": "Faak",
+      "helpCenter": "Ile-iṣẹ Iranlọwọ Iwe-iṣẹ",
+      "faq": "Awọn ibeere nigbagbogbo",
       "privacyPolicy": "Eto imulo ipamọ",
       "termsOfService": "Awọn ofin Iṣẹ"
     },
     "footer": {
-      "copyright": "© 2025 Vitopik. Gbogbo awọn ẹtọ wa ni ipamọ."
+      "copyright": "© 2025 ©. Gbogbo awọn ẹtọ wa ni ipamọ."
     },
     "metadata": {
-      "lesson": "Ṣawakiri awọn ẹkọ wa tuntun ki o wa nkan ti iwọ yoo nifẹ.",
-      "grammar": "Awọn imoregrams ti o wa"
+      "lesson": "Ṣawakiri awọn ẹkọ ọfẹ ọfẹ wa ati rii ikẹkọ pipe fun ipele ọgbọn rẹ.",
+      "grammar": "Ṣawari alaye rẹ si awọn aworan ati awọn olukọni."
     }
   }
 }

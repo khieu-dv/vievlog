@@ -1,99 +1,93 @@
 {
   "header": {
     "utils": {
-      "login": "Login",
-      "logout": "Logus",
-      "inquiry": "Contact Us",
-      "manager": "Procurator",
-      "topikExams": "Exams Topic",
-      "topikSchedule": "Schedule topic"
+      "login": "Login to Vievlog",
+      "logout": "Ex Vievlog",
+      "inquiry": "Contact Vievlog Support",
+      "manager": "Ratio Manager",
+      "topikSchedule": "Vievlog Schedule - Eam doctrina certe"
     }
   },
   "body": {
     "utils": {
-      "loading": "Loading Lectionum ...",
-      "notFound": "Non data in hoc genus.",
-      "inquiry": "Contact Us",
-      "manager": "Procurator"
+      "loading": "Lectiones ... loading",
+      "notFound": "Non Lectiones in hoc genus.",
+      "inquiry": "Contact Vievlog Support",
+      "manager": "Ratio Manager"
     }
   },
   "content": {
-    "title": "VietPik - Disce Coreanica ad Free",
-    "home": "In domo",
-    "topiks": "Topics",
-    "courses": "Courses",
-    "grammar": "Grammatica",
-    "game": "Ludus",
-    "features": "Features",
-    "logIn": "Log in",
-    "signUp": "Subscribo",
-    "toggleTheme": "Toggle Natus",
-    "newCollection": "Available",
-    "oneStopPlatform": "Ultima IT Doctrina Platform",
-    "startLearningNow": "Nito topic",
-    "whyChooseVieVlog": "Quid eligere VieVlog?",
-    "freeAccess": "Liberum aditus",
-    "learnIT": "Disce Coreanica cum summus qualis Lectiones ex peritorum omnino non sumptus.",
-    "expertInstructors": "PERPOS",
-    "learnFromExperts": "Disce a indigenitis loquentium et periti doctores.",
-    "anytimeAnywhere": "Quolibet, usquam",
-    "learnAtYourOwnPace": "Studere ad tua pace cum infinitus aditus ad lectiones.",
+    "title": "Vievlog - Disce it online for free | Et cursus et volutpat",
+    "home": "Domus - Vievlog",
+    "topiks": "Doctrina Topics",
+    "courses": "Liberabo eam cursus",
+    "grammar": "Grammatica Lectiones",
+    "game": "Doctrina ludos",
+    "features": "Platform features",
+    "logIn": "Log ad Vievlog",
+    "signUp": "Sign up for free is cursus",
+    "toggleTheme": "Toggle / Natus",
+    "newCollection": "Novum enim Cursum Collection available",
+    "oneStopPlatform": "Vievlog - Your ultima libera eam doctrina platform",
+    "startLearningNow": "Satus Doctrina & parare Topik nito",
+    "whyChooseVieVlog": "Quid eligere Vievlog enim doctrina?",
+    "freeAccess": "C% liberum eam doctrina obvius",
+    "learnIT": "Access summus qualitas Lectiones, tutorials, et opibus ex peritus eruditores non sumptus.",
+    "expertInstructors": "Periti eam eruditores",
+    "learnFromExperts": "Discere de indigena loquentium et peritus doctorum.",
+    "anytimeAnywhere": "Disce quod aliquando, usquam",
+    "learnAtYourOwnPace": "Studere eam in vestri own pace cum infinitus aditus ad omnes Lectiones.",
     "comprehensiveCurriculum": "Comprehensive curriculum",
-    "coverAllAspects": "A inceptor ad provectus campester, covering grammatica, vocabulary et colloquium.",
-    "topikExam": "Magister Topic nito",
-    "topikI": "Topic i",
-    "topikI_tests": "XII Practice probat",
-    "topikII": "Topic II",
-    "topikII_tests": "XV Practice probat",
-    "viewAllIT": "Omnes Topics probat",
-    "featuredCourses": "Featured cursus",
-    "beginnerIT": "Inceptor est Coreanica",
-    "intermediateIT": "Intermedius Coreanica",
-    "advancedIT": "Advanced Coreanica",
-    "getStartedForFree": "Ut coepi gratis",
-    "whatOurLearnersSay": "Quid nostrum discentium dicunt",
+    "coverAllAspects": "Topics covering eam basics ad provecta thema, comprehendo grammatica, vocabulary, et conversationem usu.",
+    "viewAllIT": "Omnes Vievlog quod probat et cursus",
+    "featuredCourses": "Featured eam cursus",
+    "beginnerIT": "Inceptor est utique",
+    "intermediateIT": "Medium utique",
+    "advancedIT": "Provectus utique",
+    "getStartedForFree": "Get coepi cum libero lessons hodie",
+    "whatOurLearnersSay": "Quid nostrum discentium dicunt de Vievlog",
     "testimonial1": {
-      "quote": "\"VieVlog adiuvisti me praeparet meum Topik nito efficaciter. Lectiones bene structuram facilis sequi\"",
+      "quote": "Vievlog adiuvisti me feliciter parare mihi nito.",
       "name": "Nguyen minh anh",
       "role": "Internationalis discipulus"
     },
     "testimonial2": {
-      "quote": "\"Doctrina IT est numquam facillimus! Quod exstructa lectiones faciunt omnia simplex et fun.\"",
+      "quote": "Doctrina cum Vievlog est numquam facillimus et magis fun!",
       "name": "Tran hai nam",
       "role": "Officium opificem"
     },
     "testimonial3": {
-      "quote": "\"Gratias ad VieVlog, marialis et loqui artes in melius significantly in iustus tres menses!\"",
+      "quote": "Gratias ad Vievlog, ego melior meos artes significantly.",
       "name": "Le Thanh Huong",
       "role": "University Student"
     },
-    "vieTopik": "VietPik",
-    "yourOneStopShop": "Tua unus-subsisto platform pro Mastering Coreanica. Access Premium Resources for Free et consequi tua linguae proposita hodie!",
-    "connectWithUs": "Coniungere nobiscum",
+    "vieTopik": "Vievlog - Top I Est Doctrina Platform",
+    "yourOneStopShop": "Tua unus-subsisto platform pro dominus est artes et Topik volutpat. Access Premium Doctrina Resources ad Free et pervenire linguam tuam et proposita hodie!",
+    "connectWithUs": "Coniungere cum Vievlog in Social Media",
     "socialMedia": {
-      "facebook": "Facebook",
-      "twitter": "Twitter",
-      "instagram": "Instagram",
-      "linkedin": "LinkedIn"
+      "facebook": "Vievlog Facebook",
+      "twitter": "Vievlog Twitter",
+      "instagram": "Vievlog Instagram",
+      "linkedin": "Vievlog LinkedIn"
     },
     "company": {
-      "aboutUs": "De nobis",
-      "careers": "Gestas",
-      "blog": "Blog",
-      "contact": "Contactus"
+      "aboutUs": "De Vievlog",
+      "careers": "Suspendisse in Vievlog",
+      "blog": "Blog Vievlog - quod Tips & News",
+      "contact": "Contact Vievlog"
     },
     "support": {
-      "helpCenter": "Auxilium Center",
-      "faq": "Faq",
+      "helpCenter": "Vievlog Auxilium Center",
+      "faq": "Frequenter Interrogata Quaestiones",
       "privacyPolicy": "Privacy Policy",
       "termsOfService": "Termini servitium"
     },
     "footer": {
-      "copyright": "© MMXXV VieVlog. Omnes ligula."
+      "copyright": "© MMXXV Vievlog. Omnes ligula."
     },
     "metadata": {
-      "lesson": "Browse nostra latest lessons et invenies aliquid youll 'amo.",
-      "grammar": "Available Grammatica Diagrams"
+      "lesson": "Browse nostra tardus liberam Lectiones et invenire perfectum utique pro arte gradu.",
+      "grammar": "Explorarent nostrum detailed eam diagrams et tutorials."
     }
   }
 }

@@ -1,99 +1,93 @@
 {
   "header": {
     "utils": {
-      "login": "Aanmeld",
-      "logout": "Logout",
-      "inquiry": "Kontak ons",
-      "manager": "Bestuurderes",
-      "topikExams": "Onderwerp van die eksamen",
-      "topikSchedule": "Skedule onderwerp"
+      "login": "Teken in op Vievlog",
+      "logout": "Uitmelding van Vievlog",
+      "inquiry": "Kontak VieVLog -ondersteuning",
+      "manager": "Rekeningbestuurder",
+      "topikSchedule": "VIEVLOG -skedule - dit leer gebeure"
     }
   },
   "body": {
     "utils": {
-      "loading": "Laai lesse ...",
-      "notFound": "Geen gegewens in hierdie kategorie gevind nie.",
-      "inquiry": "Kontak ons",
-      "manager": "Bestuurderes"
+      "loading": "Laai dit lesse ...",
+      "notFound": "Geen lesse in hierdie kategorie gevind nie.",
+      "inquiry": "Kontak VieVLog -ondersteuning",
+      "manager": "Rekeningbestuurder"
     }
   },
   "content": {
-    "title": "VieVlog - Leer Koreaans gratis",
-    "home": "Tuiste",
-    "topiks": "Onderwerpe",
-    "courses": "Kursusse",
-    "grammar": "Grammatika",
-    "game": "Wild",
-    "features": "Funksies",
-    "logIn": "Teken in",
-    "signUp": "Aanmeld",
-    "toggleTheme": "Skakel tema",
-    "newCollection": "Nuwe versameling beskikbaar",
-    "oneStopPlatform": "U uiteindelike Koreaanse leerplatform",
-    "startLearningNow": "Eksamenonderwerp",
-    "whyChooseVieVlog": "Waarom kies VieVlog?",
-    "freeAccess": "Gratis toegang",
-    "learnIT": "Leer Koreaans met lesse van hoë gehalte van kundiges teen absoluut geen koste nie.",
-    "expertInstructors": "Deskundige instrukteurs",
-    "learnFromExperts": "Leer by moedertaalsprekers en ervare onderwysers.",
-    "anytimeAnywhere": "Enige tyd, oral",
-    "learnAtYourOwnPace": "Bestudeer in u eie tempo met onbeperkte toegang tot lesse.",
-    "comprehensiveCurriculum": "Uitgebreide kurrikulum",
-    "coverAllAspects": "Van beginner tot gevorderde vlakke, wat grammatika, woordeskat en gesprek dek.",
-    "topikExam": "Bemeester die onderwerpeksamen",
-    "topikI": "Onderwerp i",
-    "topikI_tests": "12 Oefeningstoetse",
-    "topikII": "Onderwerp II",
-    "topikII_tests": "15 oefentoetse",
-    "viewAllIT": "Kyk na alle onderwerpe toetse",
-    "featuredCourses": "Gewilde kursusse",
-    "beginnerIT": "Beginner se Koreaanse",
-    "intermediateIT": "Tussentydse Koreaans",
-    "advancedIT": "Gevorderde Koreaans",
-    "getStartedForFree": "Begin gratis",
-    "whatOurLearnersSay": "Wat ons leerders sê",
+    "title": "VIEVLOG - Leer dit gratis aanlyn | IT -kursusse en eksamens",
+    "home": "Tuis - Vievlog",
+    "topiks": "Dit leer onderwerpe",
+    "courses": "Gratis IT -kursusse",
+    "grammar": "Dit Grammaklas",
+    "game": "Leer speletjies",
+    "features": "Platformfunksies",
+    "logIn": "Meld aan by Vievlog",
+    "signUp": "Teken in vir gratis IT -kursusse",
+    "toggleTheme": "Skakel lig/donker tema",
+    "newCollection": "Nuwe IT -kursusversameling beskikbaar",
+    "oneStopPlatform": "VIEVLOG - U uiteindelike gratis IT -leerplatform",
+    "startLearningNow": "Begin om dit te leer en berei voor vir Topik -eksamen",
+    "whyChooseVieVlog": "Waarom kies Vievlog vir leer?",
+    "freeAccess": "100% gratis IT -leertoegang",
+    "learnIT": "Toegang tot hoë gehalte IT-lesse, tutoriale en hulpbronne van kundige instrukteurs sonder koste.",
+    "expertInstructors": "Deskundige IT -instrukteurs",
+    "learnFromExperts": "Leer dit by moedertaalsprekers en ervare professionele persone.",
+    "anytimeAnywhere": "Leer dit enige tyd en oral",
+    "learnAtYourOwnPace": "Bestudeer dit in u eie tempo met onbeperkte toegang tot alle lesse.",
+    "comprehensiveCurriculum": "Omvattende IT -kurrikulum",
+    "coverAllAspects": "Kursusse wat die basiese beginsels van gevorderde onderwerpe dek, insluitend grammatika, woordeskat en gesprekspraktyk.",
+    "viewAllIT": "Kyk na alle Vievlog IT -toetse en kursusse",
+    "featuredCourses": "Gevoerde IT -kursusse",
+    "beginnerIT": "Beginner se IT -kursus",
+    "intermediateIT": "Tussentydse IT -kursus",
+    "advancedIT": "Gevorderde IT -kursus",
+    "getStartedForFree": "Begin vandag met gratis IT -lesse",
+    "whatOurLearnersSay": "Wat ons leerders oor Vievlog sê",
     "testimonial1": {
-      "quote": "'VieVlog het my gehelp om voor te berei op my topik-eksamen. Die lesse is goed gestruktureer en maklik om te volg!'",
+      "quote": "Vievlog het my gehelp om suksesvol voor te berei op my IT -eksamen.",
       "name": "Nguyen minh anh",
       "role": "Internasionale student"
     },
     "testimonial2": {
-      "quote": "\"Die leer van Koreaans was nog nooit so maklik nie! Die gestruktureerde lesse maak alles eenvoudig en lekker.\"",
+      "quote": "Om dit met Vievlog te leer was nog nooit so maklik en lekkerder nie!",
       "name": "Tran Hai Nam",
       "role": "Kantoorwerker"
     },
     "testimonial3": {
-      "quote": "'Danksy VieVlog het my luister- en praatvaardighede binne drie maande aansienlik verbeter!'",
+      "quote": "Danksy Vievlog het ek my IT -vaardighede aansienlik verbeter.",
       "name": "Le Thanh Huong",
       "role": "Universiteitstudent"
     },
-    "vieTopik": "VieVlog",
-    "yourOneStopShop": "U eenstopplatform om Koreaans te bemeester. Toegang tot premium hulpbronne gratis en bereik vandag u taaldoelwitte!",
-    "connectWithUs": "Kontak met ons",
+    "vieTopik": "VieVLog - Top 1 IT -leerplatform",
+    "yourOneStopShop": "U eenstopplatform vir die bemeestering van IT-vaardighede en Topik-eksamens. Toegang tot premium leerbronne gratis en bereik vandag u taal en IT -doelwitte!",
+    "connectWithUs": "Maak kontak met Vievlog op sosiale media",
     "socialMedia": {
-      "facebook": "Facebook",
-      "twitter": "Twitter",
-      "instagram": "Instagram",
-      "linkedin": "LinkedIn"
+      "facebook": "Vievlog Facebook",
+      "twitter": "Vievlog Twitter",
+      "instagram": "VIEVLOG Instagram",
+      "linkedin": "Vievlog LinkedIn"
     },
     "company": {
-      "aboutUs": "Oor ons",
-      "careers": "Loopbane",
-      "blog": "Blog",
-      "contact": "Kontak"
+      "aboutUs": "Oor Vievlog",
+      "careers": "Loopbane by Vievlog",
+      "blog": "VIEVLOG BLOG - IT TIPS & NUUS",
+      "contact": "Kontak Vievlog"
     },
     "support": {
-      "helpCenter": "Help Sentrum",
-      "faq": "Vrae",
+      "helpCenter": "Vievlog Help Centre",
+      "faq": "Gereeld gevra vrae",
       "privacyPolicy": "Privaatheidsbeleid",
       "termsOfService": "Diensvoorwaardes"
     },
     "footer": {
-      "copyright": "© 2025 VieVlog. Alle regte voorbehou."
+      "copyright": "© 2025 VIEVLOG. Alle regte voorbehou."
     },
     "metadata": {
-      "lesson": "Kyk na ons nuutste lesse en vind iets waarvoor u sal hou.",
-      "grammar": "Beskikbare grammatikasiagramme"
+      "lesson": "Kyk na ons nuutste gratis IT -lesse en vind die perfekte kursus vir u vaardigheidsvlak.",
+      "grammar": "Verken ons gedetailleerde IT -diagramme en tutoriale."
     }
   }
 }

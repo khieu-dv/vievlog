@@ -1,99 +1,93 @@
 {
   "header": {
     "utils": {
-      "login": "Giriş yapmak",
-      "logout": "Oturum açma",
-      "inquiry": "Bize Ulaşın",
-      "manager": "Müdür",
-      "topikExams": "Sınavlar Konu",
-      "topikSchedule": "Çizelge Konusu"
+      "login": "Vievlog'a giriş yapın",
+      "logout": "Vievlog'dan oturum açma",
+      "inquiry": "Vievlog Desteği ile iletişime geçin",
+      "manager": "Muhasebe Müdürü",
+      "topikSchedule": "Vievlog programı - BT öğrenme etkinlikleri"
     }
   },
   "body": {
     "utils": {
-      "loading": "Yükleme dersleri ...",
-      "notFound": "Bu kategoride veri bulunamadı.",
-      "inquiry": "Bize Ulaşın",
-      "manager": "Müdür"
+      "loading": "Yükleme Dersleri ...",
+      "notFound": "Bu kategoride ders bulunamadı.",
+      "inquiry": "Vievlog Desteği ile iletişime geçin",
+      "manager": "Muhasebe Müdürü"
     }
   },
   "content": {
-    "title": "VieVlog - Korece ücretsiz öğrenin",
-    "home": "Ev",
-    "topiks": "Konular",
-    "courses": "Kurslar",
-    "grammar": "Dilbilgisi",
-    "game": "Oyun",
-    "features": "Özellikler",
-    "logIn": "Giriş yapmak",
-    "signUp": "Üye olmak",
-    "toggleTheme": "Toggle teması",
-    "newCollection": "Yeni koleksiyon mevcut",
-    "oneStopPlatform": "Ultimate Kore öğrenme platformunuz",
-    "startLearningNow": "Sınav konusu",
-    "whyChooseVieVlog": "Neden VieVlog'i seçmelisiniz?",
-    "freeAccess": "Ücretsiz Erişim",
-    "learnIT": "Koreli, uzmanlardan yüksek kaliteli derslerle kesinlikle ücretsiz olarak öğrenin.",
-    "expertInstructors": "Uzman eğitmenler",
-    "learnFromExperts": "Anadili ve deneyimli öğretmenlerden öğrenin.",
-    "anytimeAnywhere": "Her zaman, her yerde",
-    "learnAtYourOwnPace": "Derslere sınırsız erişimle kendi hızınızda çalışın.",
-    "comprehensiveCurriculum": "Kapsamlı müfredat",
-    "coverAllAspects": "Yeni başlayanlardan gelişmiş seviyelere, dilbilgisi, kelime bilgisi ve konuşmayı kapsar.",
-    "topikExam": "Konu Sınavında Usta",
-    "topikI": "Konu I",
-    "topikI_tests": "12 Uygulama Testi",
-    "topikII": "Konu II",
-    "topikII_tests": "15 Uygulama Testleri",
-    "viewAllIT": "Tüm Konu Testlerini Görüntüle",
-    "featuredCourses": "Öne çıkan kurslar",
-    "beginnerIT": "Yeni başlayanlar Koreli",
-    "intermediateIT": "Ara",
-    "advancedIT": "Gelişmiş Korece",
-    "getStartedForFree": "Ücretsiz başlayın",
-    "whatOurLearnersSay": "Öğrencilerimiz ne diyor",
+    "title": "Vievlog - Ücretsiz olarak çevrimiçi öğrenin | BT kursları ve sınavlar",
+    "home": "Ana Sayfa - Vievlog",
+    "topiks": "BT öğrenme konuları",
+    "courses": "Ücretsiz BT kursları",
+    "grammar": "Bu dilbilgisi dersleri",
+    "game": "Öğrenme Oyunları",
+    "features": "Platform Özellikleri",
+    "logIn": "Vievlog'a giriş yapın",
+    "signUp": "ÜCRETSİZ BT kursları için kaydolun",
+    "toggleTheme": "Işık/Karanlık Tema",
+    "newCollection": "Yeni BT kurs koleksiyonu mevcut",
+    "oneStopPlatform": "Vievlog - Ultimate Free BT öğrenme platformunuz",
+    "startLearningNow": "Öğrenmeye başlayın ve Topik sınavına hazırlanın",
+    "whyChooseVieVlog": "Öğrenmek için neden Vievlog'u seçmelisiniz?",
+    "freeAccess": "% 100 ücretsiz BT öğrenme erişim",
+    "learnIT": "Uzman eğitmenlerden yüksek kaliteli BT derslerine, öğreticilere ve kaynaklara ücretsiz erişin.",
+    "expertInstructors": "Uzman BT eğitmenleri",
+    "learnFromExperts": "Anadili ve deneyimli profesyonellerden öğrenin.",
+    "anytimeAnywhere": "İstediğiniz zaman öğrenin",
+    "learnAtYourOwnPace": "Tüm derslere sınırsız erişimle kendi hızınızda inceleyin.",
+    "comprehensiveCurriculum": "Kapsamlı BT müfredatı",
+    "coverAllAspects": "BT'yi kapsayan kurslar, dilbilgisi, kelime dağarcığı ve konuşma uygulaması dahil olmak üzere ileri konulara dayanır.",
+    "viewAllIT": "Tüm Vievlog IT Testleri ve Kursları Görüntüle",
+    "featuredCourses": "Featured BT kursları",
+    "beginnerIT": "Başlangıç ​​BT kursu",
+    "intermediateIT": "Orta BT kursu",
+    "advancedIT": "Gelişmiş BT kursu",
+    "getStartedForFree": "Bugün Ücretsiz BT Derslerine Başlayın",
+    "whatOurLearnersSay": "Öğrencilerimiz Vievlog Hakkında Ne Diyor?",
     "testimonial1": {
-      "quote": "\"VieVlog, Topik sınavıma etkili bir şekilde hazırlanmama yardımcı oldu. Dersler iyi yapılandırılmış ve takip edilmesi kolay!\"",
+      "quote": "Vievlog BT sınavım için başarılı bir şekilde hazırlanmama yardımcı oldu.",
       "name": "Nguyen Minh Anh",
       "role": "Uluslararası öğrenci"
     },
     "testimonial2": {
-      "quote": "\"Korece öğrenmek hiç bu kadar kolay olmamıştı! Yapısal dersler her şeyi basit ve eğlenceli hale getiriyor.\"",
+      "quote": "Vievlog ile öğrenmek hiç bu kadar kolay ve daha eğlenceli olmamıştı!",
       "name": "Tran Hai Nam",
       "role": "Ofis işçisi"
     },
     "testimonial3": {
-      "quote": "\"VieVlog sayesinde dinleme ve konuşma becerilerim sadece üç ay içinde önemli ölçüde iyileşti!\"",
+      "quote": "Vievlog sayesinde BT becerilerimi önemli ölçüde geliştirdim.",
       "name": "Le Thanh Huong",
       "role": "Üniversite öğrencisi"
     },
-    "vieTopik": "VieVlog",
-    "yourOneStopShop": "Korece ustalaşmak için tek noktadan platformunuz. Premium kaynaklara ücretsiz erişin ve bugün dil hedeflerinize ulaşın!",
-    "connectWithUs": "Bizimle bağlantı kurun",
+    "vieTopik": "Vievlog - Top 1 BT öğrenme platformu",
+    "yourOneStopShop": "BT becerilerine ve Topik sınavlarına hakim olmak için tek noktadan platformunuz. Premium öğrenme kaynaklarına ücretsiz erişin ve dilinize ulaşın ve bugün hedefler!",
+    "connectWithUs": "Sosyal medyada Vievlog ile bağlantı kurun",
     "socialMedia": {
-      "facebook": "Facebook",
-      "twitter": "Twitter",
-      "instagram": "Instagram",
-      "linkedin": "LinkedIn"
+      "facebook": "Vievlog Facebook",
+      "twitter": "Vievlog Twitter",
+      "instagram": "Vievlog Instagram",
+      "linkedin": "Vievlog LinkedIn"
     },
     "company": {
-      "aboutUs": "Hakkımızda",
-      "careers": "Kariyer",
-      "blog": "Blog",
-      "contact": "Temas etmek"
+      "aboutUs": "Vievlog hakkında",
+      "careers": "Vievlog'daki kariyer",
+      "blog": "Vievlog Blogu - İpuçları ve Haberler",
+      "contact": "Vievlog ile iletişime geçin"
     },
     "support": {
-      "helpCenter": "Yardım Merkezi",
-      "faq": "SSS",
+      "helpCenter": "Vievlog Yardım Merkezi",
+      "faq": "Sık sorulan sorular",
       "privacyPolicy": "Gizlilik Politikası",
       "termsOfService": "Hizmet Şartları"
     },
     "footer": {
-      "copyright": "© 2025 VieVlog. Her hakkı saklıdır."
+      "copyright": "© 2025 Vievlog. Her hakkı saklıdır."
     },
     "metadata": {
-      "lesson": "En son derslerimize göz atın ve seveceğiniz bir şey bulun.",
-      "grammar": "Mevcut dilbilgisi diyagramları"
+      "lesson": "En son ücretsiz BT derslerimize göz atın ve beceri seviyeniz için mükemmel bir kursu bulun.",
+      "grammar": "Ayrıntılı BT diyagramlarımızı ve öğreticilerimizi keşfedin."
     }
   }
 }

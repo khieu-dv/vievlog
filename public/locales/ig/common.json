@@ -1,99 +1,93 @@
 {
   "header": {
     "utils": {
-      "login": "Banye",
-      "logout": "Logout",
-      "inquiry": "Kpọtụrụ anyị",
-      "manager": "Onyeisi oru",
-      "topikExams": "Nyocha isiokwu",
-      "topikSchedule": "Usoro oge"
+      "login": "Nbanye na vievlog",
+      "logout": "Logout si Vievlog",
+      "inquiry": "Nkwado Vievlogrog",
+      "manager": "Onye njikwa akaụntụ",
+      "topikSchedule": "Usoro Vievlog - Ọ Na-eme Ihe"
     }
   },
   "body": {
     "utils": {
-      "loading": "Na-ebubata ihe ị na-eme ...",
-      "notFound": "Enweghị data achọtara na ụdị a.",
-      "inquiry": "Kpọtụrụ anyị",
-      "manager": "Onyeisi oru"
+      "loading": "Na-eburu ya ihe mmụta ...",
+      "notFound": "Enweghị nkuzi achọtara na ụdị a.",
+      "inquiry": "Nkwado Vievlogrog",
+      "manager": "Onye njikwa akaụntụ"
     }
   },
   "content": {
-    "title": "Vietpik - Mụta IT n'efu",
-    "home": "Ulo",
-    "topiks": "Isiokwu",
-    "courses": "Nkuzi",
-    "grammar": "Utoaususu",
-    "game": "Egwuruegwu",
-    "features": "EGO",
-    "logIn": "Banye",
-    "signUp": "debanye aha",
-    "toggleTheme": "Isiokwu ntụgharị",
-    "newCollection": "Nchịkọta ọhụrụ dị",
-    "oneStopPlatform": "Mwepu akwukwo nke ndi Koree kachasi",
-    "startLearningNow": "Isiokwu nyocha",
-    "whyChooseVieVlog": "Kedu ihe kpatara Họrọ Vietpik?",
-    "freeAccess": "Nnweta n'efu",
-    "learnIT": "Mụọ IT nwere nkuzi dị elu site n'aka ndị ọkachamara na-efu efu.",
-    "expertInstructors": "Ndị nkuzi ọkachamara",
-    "learnFromExperts": "Mụta n'aka ndị ọkà mmụta obodo na ndị nkuzi nwere ahụmahụ.",
-    "anytimeAnywhere": "Oge obula, ebe obula",
-    "learnAtYourOwnPace": "Na-amụ ihe na aka gị na nsị na-akparaghị ókè maka nkuzi.",
-    "comprehensiveCurriculum": "Usoro mmụta zuru oke",
-    "coverAllAspects": "Site na mbido gaa ọkwa dị elu, na-ekpuchi ụtọ asụsụ, okwu na mkparịta ụka.",
-    "topikExam": "Nlele Master",
-    "topikI": "Isiokwu m",
-    "topikI_tests": "12 Emekere ule",
-    "topikII": "Isiokwu II",
-    "topikII_tests": "15 Mee nnwale",
-    "viewAllIT": "Lelee nnwale niile",
-    "featuredCourses": "Egosiputa nkuzi",
-    "beginnerIT": "Onye na-amalite IT",
-    "intermediateIT": "Etiti IT",
-    "advancedIT": "ITdi elu",
-    "getStartedForFree": "Bido n'efu",
-    "whatOurLearnersSay": "Ihe Ndị Na-amụrụ Anyị Na-ekwu",
+    "title": "Vievlog - Mụta ya Online maka Free | Ọ na-amụ na ule",
+    "home": "Home - Vievlogrog",
+    "topiks": "Ọ na-amụta n'isiokwu",
+    "courses": "Free ọ na-eme ya",
+    "grammar": "Ọ na-amụrụ ụtọ",
+    "game": "Egwuregwu Amụta",
+    "features": "Atụmatụ ntụpọ",
+    "logIn": "Banye na Vievlog",
+    "signUp": "Debanye aha ya na ọmụmụ ya",
+    "toggleTheme": "Gbagọrọ ọkụ / ọchịchịrị isiokwu",
+    "newCollection": "Nchịkọta ọ na-atọ ụtọ",
+    "oneStopPlatform": "Vievlog - Gị kacha mma ọ na-akwụghị ụgwọ",
+    "startLearningNow": "Bido na-amụta & kwadebe maka ule Topik",
+    "whyChooseVieVlog": "Kedu ihe kpatara ịhọrọ Vievlogy N'ihi na ọ na-amụ?",
+    "freeAccess": "100% n'efu ọ na-amụta",
+    "learnIT": "Nweta ihe mmụta dị elu, nkuzi, na akụrụngwa site na ndị nkuzi na-enweghị ụgwọ.",
+    "expertInstructors": "Ọkachamara ya",
+    "learnFromExperts": "Mụta ya n'aka ndị ọkà mmụta obodo na ndị ọkachamara nwere ahụmahụ.",
+    "anytimeAnywhere": "Mụta ya n'oge ọ bụla, ebe ọ bụla",
+    "learnAtYourOwnPace": "Mụọ ya na aka gị na nsị na-akparaghị ókè na nkuzi niile.",
+    "comprehensiveCurriculum": "Ọ bụ ya n'ezie",
+    "coverAllAspects": "Agụmakwụkwọ na-ekpuchi ya isiokwu dị elu, gụnyere ụtọ asụsụ, okwu, okwu, na omume mkparịta ụka.",
+    "viewAllIT": "Lelee Vievag ọ bụla na usoro ọmụmụ",
+    "featuredCourses": "Gosiputara ya",
+    "beginnerIT": "Onye mbido",
+    "intermediateIT": "Etiti ya",
+    "advancedIT": "Ọ dị elu",
+    "getStartedForFree": "Bido na-eme ihe mmụta taa",
+    "whatOurLearnersSay": "Ihe ndị na-amụ banyere anyị na-ekwu banyere Vevlogy",
     "testimonial1": {
-      "quote": "\"Vietpik nyeere m aka ịkwadebe maka My Topik nke ọma. Ihe ọmụmụ a na-ahazi nke ọma ma dịkwa mfe ịgbaso!\"",
+      "quote": "Vievlog nyeere m aka nke ọma maka nyocha m.",
       "name": "Nguyen Minh Ah",
       "role": "Ụmụ akwụkwọ mba ụwa"
     },
     "testimonial2": {
-      "quote": "\"Ihe ndị Korea enwetụbeghị mfe!",
+      "quote": "Mụta ya na vievlog adịla mfe ma nwekwuo ọ funụ!",
       "name": "Tran Haa Nam",
       "role": "Onye ọrụ ọrụ"
     },
     "testimonial3": {
-      "quote": "\"Daalụ Vietpik, ịge ntị m na ikwu okwu m na-ekwuala nke ukwuu n'ime naanị ọnwa atọ!\"",
+      "quote": "Ekelere m Velavog, m mere ka ọ bụrụ ihe m na-eme.",
       "name": "Le thy huoon",
       "role": "Nwa akwụkwọ mahadum"
     },
-    "vieTopik": "Vitaik",
-    "yourOneStopShop": "Nkwụghachi ụgwọ gị na-akwụsị. Ngwongwo adịbeghị adịchaghị n'efu maka nnwere onwe ma mezuo ebumnuche asụsụ gị taa!",
-    "connectWithUs": "Jikọọ anyị",
+    "vieTopik": "Vievlog - Top 1 ọ na-amụ okwu",
+    "yourOneStopShop": "Igwe okwu gị na-akwụsị maka ya manyere ya nkà na ule Topik. Nweta ihe omumu ihe omumu di iche iche n'efu ma rute asusu gi na ebumnuche taa!",
+    "connectWithUs": "Jikọọ na Vievlog na Social Media",
     "socialMedia": {
-      "facebook": "Facebook",
-      "twitter": "Tadter",
-      "instagram": "Instagram",
-      "linkedin": "ReingeDin"
+      "facebook": "Vevlog Facebook",
+      "twitter": "Vievlogg Twitter",
+      "instagram": "Vievlog Instagram",
+      "linkedin": "Vievlogingedin"
     },
     "company": {
-      "aboutUs": "Gbasara anyị",
-      "careers": "Nlekọta",
-      "blog": "Blog",
-      "contact": "Omuma mmadu"
+      "aboutUs": "Banyere Vievlogrog",
+      "careers": "Nlekọta na Vevlog",
+      "blog": "Vievloglog - Ọ Ntụziaka & News",
+      "contact": "Kpọtụrụ Vevlog"
     },
     "support": {
-      "helpCenter": "Enyemaka Center",
-      "faq": "Ajụjụ",
+      "helpCenter": "Vievlog enyemaka etiti",
+      "faq": "Ajuju ajuju",
       "privacyPolicy": "amụma nzuzo",
       "termsOfService": "Usoro Ọrụ"
     },
     "footer": {
-      "copyright": "© 2025 Vietpik. Ikike niile echekwabara."
+      "copyright": "© 2025 Vievlogg. Ikike niile echekwabara."
     },
     "metadata": {
-      "lesson": "Chọgharịa ihe mmụta kachasị ọhụrụ ma chọta ihe ị ga-ahụ n'anya.",
-      "grammar": "Anwụ"
+      "lesson": "Chọgharịa na nkuzi kachasị ọhụrụ ma chọta usoro zuru oke maka ọkwa nka gị.",
+      "grammar": "Nyochaa nkọwapụta anyị na nkuzi."
     }
   }
 }

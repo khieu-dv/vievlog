@@ -1,99 +1,93 @@
 {
   "header": {
     "utils": {
-      "login": "登录",
-      "logout": "注销",
-      "inquiry": "联系我们",
-      "manager": "经理",
-      "topikExams": "考试主题",
-      "topikSchedule": "时间表主题"
+      "login": "登录到Vievlog",
+      "logout": "从Vievlog注销",
+      "inquiry": "联系Vievlog支持",
+      "manager": "客户经理",
+      "topikSchedule": "Vievlog时间表 -  IT学习活动"
     }
   },
   "body": {
     "utils": {
-      "loading": "加载课...",
-      "notFound": "在此类别中找不到数据。",
-      "inquiry": "联系我们",
-      "manager": "经理"
+      "loading": "加载它的课...",
+      "notFound": "在此类别中找到的教训都不是。",
+      "inquiry": "联系Vievlog支持",
+      "manager": "客户经理"
     }
   },
   "content": {
-    "title": "VieVlog  - 免费学习韩语",
-    "home": "家",
-    "topiks": "主题",
-    "courses": "课程",
-    "grammar": "语法",
-    "game": "游戏",
-    "features": "特征",
-    "logIn": "登录",
-    "signUp": "报名",
-    "toggleTheme": "切换主题",
-    "newCollection": "可用的新系列",
-    "oneStopPlatform": "您的最终韩国学习平台",
-    "startLearningNow": "考试主题",
-    "whyChooseVieVlog": "为什么选择VieVlog？",
-    "freeAccess": "免费访问",
-    "learnIT": "从专家那里学习高质量的课程的韩国人，绝对没有成本。",
-    "expertInstructors": "专家讲师",
-    "learnFromExperts": "向母语人士和经验丰富的老师学习。",
-    "anytimeAnywhere": "随时随地",
-    "learnAtYourOwnPace": "以自己的步调学习，无限访问课程。",
-    "comprehensiveCurriculum": "全面的课程",
-    "coverAllAspects": "从初学者到高级级别，涵盖语法，词汇和对话。",
-    "topikExam": "掌握主题考试",
-    "topikI": "主题i",
-    "topikI_tests": "12个练习测试",
-    "topikII": "主题II",
-    "topikII_tests": "15个练习测试",
-    "viewAllIT": "查看所有主题测试",
-    "featuredCourses": "特色课程",
-    "beginnerIT": "初学者的韩语",
-    "intermediateIT": "中级韩国",
-    "advancedIT": "韩国高级",
-    "getStartedForFree": "免费入门",
-    "whatOurLearnersSay": "我们的学习者怎么说",
+    "title": "Vievlog  - 免费在线学习|它的课程和考试",
+    "home": "家 -  vievlog",
+    "topiks": "它学习主题",
+    "courses": "免费课程",
+    "grammar": "它语法课",
+    "game": "学习游戏",
+    "features": "平台功能",
+    "logIn": "登录到Vievlog",
+    "signUp": "免费注册IT课程",
+    "toggleTheme": "切换光/深色主题",
+    "newCollection": "新的IT课程收集可用",
+    "oneStopPlatform": "Vievlog-您的最终免费IT学习平台",
+    "startLearningNow": "开始学习并准备Topik考试",
+    "whyChooseVieVlog": "为什么选择Vievlog学习？",
+    "freeAccess": "100％免费的IT学习访问",
+    "learnIT": "免费从专家教练免费获得高质量的IT课程，教程和资源。",
+    "expertInstructors": "专家IT教练",
+    "learnFromExperts": "向母语人士和经验丰富的专业人士学习。",
+    "anytimeAnywhere": "随时随地学习",
+    "learnAtYourOwnPace": "以您自己的速度学习，无限访问所有课程。",
+    "comprehensiveCurriculum": "全面的IT课程",
+    "coverAllAspects": "涵盖高级主题的课程，包括语法，词汇和对话练习。",
+    "viewAllIT": "查看所有Vievlog IT测试和课程",
+    "featuredCourses": "特色是IT课程",
+    "beginnerIT": "初学者的IT课程",
+    "intermediateIT": "中间课程",
+    "advancedIT": "先进的课程",
+    "getStartedForFree": "今天就开始免费的IT课程",
+    "whatOurLearnersSay": "我们的学习者对Vievlog的看法",
     "testimonial1": {
-      "quote": "“ VieVlog帮助我为Topik考试做准备。课程结构良好，易于遵循！”",
+      "quote": "Vievlog帮助我成功准备了IT考试。",
       "name": "Nguyen Minh Anh",
       "role": "国际学生"
     },
     "testimonial2": {
-      "quote": "“学习韩语从未如此简单！结构化的课程使一切变得简单而有趣。”",
+      "quote": "使用Vievlog学习它从未变得更加轻松，更有趣！",
       "name": "Tran Hai Nam",
       "role": "办公室工作人员"
     },
     "testimonial3": {
-      "quote": "“感谢VieVlog，我的听力和说话技巧在短短三个月内就大大提高了！”",
+      "quote": "多亏了Vievlog，我大大提高了IT技能。",
       "name": "Le Thanh Huong",
       "role": "大学生"
     },
-    "vieTopik": "VieVlog",
-    "yourOneStopShop": "您掌握韩语的一站式平台。免费访问高级资源，并立即实现您的语言目标！",
-    "connectWithUs": "与我们联系",
+    "vieTopik": "Vievlog-顶级1 IT学习平台",
+    "yourOneStopShop": "您掌握IT技能和TOPIK考试的一站式平台。免费访问高级学习资源，并立即达到您的语言和IT目标！",
+    "connectWithUs": "在社交媒体上与Vievlog联系",
     "socialMedia": {
-      "facebook": "Facebook",
-      "twitter": "叽叽喳喳",
-      "instagram": "Instagram",
-      "linkedin": "LinkedIn"
+      "facebook": "Vievlog Facebook",
+      "twitter": "Vievlog Twitter",
+      "instagram": "Vievlog Instagram",
+      "linkedin": "Vievlog LinkedIn"
     },
     "company": {
-      "aboutUs": "关于我们",
-      "careers": "职业",
-      "blog": "博客",
-      "contact": "接触"
+      "aboutUs": "关于Vievlog",
+      "careers": "Vievlog的职业",
+      "blog": "Vievlog博客 - 提示和新闻",
+      "contact": "联系Vievlog"
     },
     "support": {
-      "helpCenter": "帮助中心",
-      "faq": "FAQ",
+      "helpCenter": "Vievlog帮助中心",
+      "faq": "常见问题",
       "privacyPolicy": "隐私政策",
       "termsOfService": "服务条款"
     },
     "footer": {
-      "copyright": "©2025 VieVlog。版权所有。"
+      "copyright": "©2025 Vievlog。版权所有。"
     },
     "metadata": {
-      "lesson": "浏览我们的最新课程，找到您喜欢的东西。",
-      "grammar": "可用的语法图"
+      "lesson": "浏览我们最新的免费IT课程，并找到适合您技能水平的理想课程。",
+      "grammar": "探索我们的详细IT图和教程。"
     }
   }
 }

@@ -1,99 +1,93 @@
 {
   "header": {
     "utils": {
-      "login": "Logg inn",
-      "logout": "Logging",
-      "inquiry": "Kontakt oss",
-      "manager": "Leder",
-      "topikExams": "Eksamener emne",
-      "topikSchedule": "Planlegg emne"
+      "login": "Logg inn på Vievlog",
+      "logout": "Logg fra Vievlog",
+      "inquiry": "Kontakt Vievlog Support",
+      "manager": "Kontosjef",
+      "topikSchedule": "Vievlog -plan - IT -læringsbegivenheter"
     }
   },
   "body": {
     "utils": {
-      "loading": "Laster leksjoner ...",
-      "notFound": "Ingen data funnet i denne kategorien.",
-      "inquiry": "Kontakt oss",
-      "manager": "Leder"
+      "loading": "Laster det leksjoner ...",
+      "notFound": "Ingen leksjoner funnet i denne kategorien.",
+      "inquiry": "Kontakt Vievlog Support",
+      "manager": "Kontosjef"
     }
   },
   "content": {
-    "title": "VieVlog - lær koreansk gratis",
-    "home": "Hjem",
-    "topiks": "Emner",
-    "courses": "Kurs",
-    "grammar": "Grammatikk",
-    "game": "Spill",
-    "features": "Funksjoner",
-    "logIn": "Logg inn",
-    "signUp": "Registrer deg",
-    "toggleTheme": "Veksle tema",
-    "newCollection": "Ny samling tilgjengelig",
-    "oneStopPlatform": "Din ultimate koreanske læringsplattform",
-    "startLearningNow": "Eksamensemne",
-    "whyChooseVieVlog": "Hvorfor velge VieVlog?",
-    "freeAccess": "Gratis tilgang",
-    "learnIT": "Lær koreansk med høykvalitetsundervisning fra eksperter til absolutt ingen kostnader.",
-    "expertInstructors": "Ekspertinstruktører",
-    "learnFromExperts": "Lær av morsmål og erfarne lærere.",
-    "anytimeAnywhere": "Når som helst, hvor som helst",
-    "learnAtYourOwnPace": "Studer i ditt eget tempo med ubegrenset tilgang til leksjoner.",
-    "comprehensiveCurriculum": "Omfattende læreplan",
-    "coverAllAspects": "Fra nybegynner til avanserte nivåer, som dekker grammatikk, ordforråd og samtale.",
-    "topikExam": "Mestre emneeksamen",
-    "topikI": "Emne i",
-    "topikI_tests": "12 praksisprøver",
-    "topikII": "Emne II",
-    "topikII_tests": "15 praksisprøver",
-    "viewAllIT": "Se alle emner tester",
-    "featuredCourses": "Utvalgte kurs",
-    "beginnerIT": "Nybegynnerkoreansk",
-    "intermediateIT": "Mellomkoreansk",
-    "advancedIT": "Advanced IT",
-    "getStartedForFree": "Kom i gang gratis",
-    "whatOurLearnersSay": "Hva elevene våre sier",
+    "title": "Vievlog - Lær det online gratis | IT -kurs og eksamener",
+    "home": "Hjem - Vievlog",
+    "topiks": "Det lærer emner",
+    "courses": "Gratis IT -kurs",
+    "grammar": "Det grammatikkundervisning",
+    "game": "Lære spill",
+    "features": "Plattformfunksjoner",
+    "logIn": "Logg på Vievlog",
+    "signUp": "Registrer deg gratis IT -kurs",
+    "toggleTheme": "Veksle lys/mørkt tema",
+    "newCollection": "Ny IT -kurssamling tilgjengelig",
+    "oneStopPlatform": "Vievlog - Din ultimate gratis IT -læringsplattform",
+    "startLearningNow": "Begynn å lære det og forbered deg på Topik -eksamen",
+    "whyChooseVieVlog": "Hvorfor velge Vievlog for IT -læring?",
+    "freeAccess": "100% gratis IT -læringstilgang",
+    "learnIT": "Få tilgang til IT-leksjoner, opplæringsprogrammer og ressurser fra ekspertinstruktører uten kostnad.",
+    "expertInstructors": "Ekspert IT -instruktører",
+    "learnFromExperts": "Lær det fra morsmål og erfarne fagpersoner.",
+    "anytimeAnywhere": "Lær det når som helst, hvor som helst",
+    "learnAtYourOwnPace": "Studer det i ditt eget tempo med ubegrenset tilgang til alle leksjoner.",
+    "comprehensiveCurriculum": "Omfattende IT -læreplan",
+    "coverAllAspects": "Kurs som dekker det grunnleggende til avanserte emner, inkludert grammatikk, ordforråd og samtalepraksis.",
+    "viewAllIT": "Se alle viievlog IT -tester og kurs",
+    "featuredCourses": "Inneholdt IT -kurs",
+    "beginnerIT": "Nybegynnerens IT -kurs",
+    "intermediateIT": "Mellomliggende IT -kurs",
+    "advancedIT": "Avansert IT -kurs",
+    "getStartedForFree": "Kom i gang med gratis IT -leksjoner i dag",
+    "whatOurLearnersSay": "Hva elevene våre sier om vievlog",
     "testimonial1": {
-      "quote": "\"VieVlog hjalp meg med å forberede meg på Topik-eksamenen min effektivt. Leksjonene er godt strukturerte og enkle å følge!\"",
+      "quote": "Vievlog hjalp meg med å forberede meg på IT -eksamenen min.",
       "name": "Nguyen Minh Anh",
       "role": "Internasjonal student"
     },
     "testimonial2": {
-      "quote": "\"Å lære koreansk har aldri vært enklere! De strukturerte leksjonene gjør alt enkelt og morsomt.\"",
+      "quote": "Det har aldri vært enklere og morsommere å lære det med Vievlog!",
       "name": "Tran Hai Nam",
       "role": "Kontorarbeider"
     },
     "testimonial3": {
-      "quote": "\"Takket være VieVlog har lytte- og taleferdighetene mine forbedret seg betydelig i løpet av bare tre måneder!\"",
+      "quote": "Takket være Vievlog forbedret jeg IT -ferdighetene mine betydelig.",
       "name": "Le Thanh Huong",
       "role": "Universitetsstudent"
     },
-    "vieTopik": "VieVlog",
-    "yourOneStopShop": "Din one-stop-plattform for å mestre koreansk. Få tilgang til premium ressurser gratis og oppnå språkmålene dine i dag!",
-    "connectWithUs": "Koble til oss",
+    "vieTopik": "Vievlog - Topp 1 IT -læringsplattform",
+    "yourOneStopShop": "Din one-stop-plattform for å mestre IT-ferdigheter og Topik-eksamener. Få tilgang til premium læringsressurser gratis og nå språket ditt og det mål i dag!",
+    "connectWithUs": "Koble til Vievlog på sosiale medier",
     "socialMedia": {
-      "facebook": "Facebook",
-      "twitter": "Twitter",
-      "instagram": "Instagram",
-      "linkedin": "LinkedIn"
+      "facebook": "Vievlog Facebook",
+      "twitter": "Vievlog Twitter",
+      "instagram": "Vievlog Instagram",
+      "linkedin": "Vievlog LinkedIn"
     },
     "company": {
-      "aboutUs": "Om oss",
-      "careers": "Karrierer",
-      "blog": "Blogg",
-      "contact": "Kontakt"
+      "aboutUs": "Om vievlog",
+      "careers": "Karrierer hos Vievlog",
+      "blog": "Vievlog Blog - It Tips & News",
+      "contact": "Kontakt Vievlog"
     },
     "support": {
-      "helpCenter": "Hjelp sentrum",
-      "faq": "FAQ",
+      "helpCenter": "Vievlog Help Center",
+      "faq": "Ofte stilte spørsmål",
       "privacyPolicy": "Personvernregler",
       "termsOfService": "Tjenestevilkår"
     },
     "footer": {
-      "copyright": "© 2025 VieVlog. Alle rettigheter forbeholdt."
+      "copyright": "© 2025 Vievlog. Alle rettigheter forbeholdt."
     },
     "metadata": {
-      "lesson": "Bla gjennom de siste leksjonene våre og finn noe du vil elske.",
-      "grammar": "Tilgjengelige grammatikkdiagrammer"
+      "lesson": "Bla gjennom de siste gratis IT -leksjonene og finn det perfekte kurset for ferdighetsnivået ditt.",
+      "grammar": "Utforsk våre detaljerte IT -diagrammer og opplæringsprogrammer."
     }
   }
 }
