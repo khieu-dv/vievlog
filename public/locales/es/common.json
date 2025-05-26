@@ -1,22 +1,11 @@
 {
   "header": {
-    "utils": {
-      "login": "Iniciar sesión en Vievlog",
-      "logout": "Sapa de Vievlog",
-      "inquiry": "Póngase en contacto con el apoyo de Vievlog",
-      "manager": "Mi cuenta",
-      "topikSchedule": "Horario de Vievlog: próximos eventos de aprendizaje de TI"
-    }
+    "home": "Hogar",
+    "posts": "Postes",
+    "chats": "Charlatanes",
+    "videos": "Videos"
   },
-  "body": {
-    "utils": {
-      "loading": "Cargando tus lecciones de TI ...",
-      "notFound": "No hay lecciones disponibles en esta categoría.",
-      "inquiry": "¿Necesitar ayuda? Póngase en contacto con el apoyo de Vievlog",
-      "manager": "Administre su cuenta"
-    }
-  },
-  "content": {
+  "home": {
     "title": "Vievlog - Learning gratuito de TI en línea | Cursos, recursos y certificación",
     "home": "Hogar",
     "posts": "Postes",
@@ -92,5 +81,19 @@
       "lesson": "Explore nuestras lecciones gratuitas y elija el curso perfecto para que coincida con su nivel de habilidad.",
       "grammar": "Descubra tutoriales y diagramas tecnológicos detallados."
     }
+  },
+  "posts": {},
+  "videos": {},
+  "chats": {},
+  "footer": {
+    "aboutUs": "Sobre nosotros",
+    "careers": "Carreras",
+    "blog": "Blog de tecnología - Noticias y consejos",
+    "contact": "Contáctenos",
+    "helpCenter": "Centro de ayuda",
+    "faq": "Preguntas frecuentes: preguntas frecuentes",
+    "privacyPolicy": "política de privacidad",
+    "termsOfService": "Términos de servicio",
+    "followUs": "Síguenos en las redes sociales"
   }
 }

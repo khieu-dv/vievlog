@@ -1,22 +1,11 @@
 {
   "header": {
-    "utils": {
-      "login": "Logige sisse Vievlogi",
-      "logout": "Logi Vievlogist välja",
-      "inquiry": "Võtke ühendust Vievlogi tugi",
-      "manager": "Minu konto",
-      "topikSchedule": "Vievlogi ajakava - eelseisvad IT -õppimisüritused"
-    }
+    "home": "Kodu",
+    "posts": "Postitused",
+    "chats": "Vestlus",
+    "videos": "Videod"
   },
-  "body": {
-    "utils": {
-      "loading": "Oma IT -õppetundide laadimine ...",
-      "notFound": "Selles kategoorias pole õppetunde.",
-      "inquiry": "Kas vajate abi? Võtke ühendust Vievlogi tugi",
-      "manager": "Halda oma kontot"
-    }
-  },
-  "content": {
+  "home": {
     "title": "Vievlog - tasuta veebis õppimine | Kursused, ressursid ja sertifitseerimine",
     "home": "Kodu",
     "posts": "Postitused",
@@ -92,5 +81,19 @@
       "lesson": "Uurige meie tasuta õppetunde ja valige ideaalne kursus, mis vastaks teie oskuste tasemele.",
       "grammar": "Avastage üksikasjalikud tehnikaõpetused ja diagrammid."
     }
+  },
+  "posts": {},
+  "videos": {},
+  "chats": {},
+  "footer": {
+    "aboutUs": "Meist",
+    "careers": "Karjäär",
+    "blog": "Tehnikablogi - uudised ja näpunäited",
+    "contact": "Võtke meiega ühendust",
+    "helpCenter": "Abikeskus",
+    "faq": "KKK - korduma kippuvad küsimused",
+    "privacyPolicy": "Privaatsuspoliitika",
+    "termsOfService": "Teenuse tingimused",
+    "followUs": "Jälgi meid sotsiaalmeedias"
   }
 }

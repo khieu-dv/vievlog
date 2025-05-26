@@ -1,22 +1,11 @@
 {
   "header": {
-    "utils": {
-      "login": "Vievlog'a giriş yapın",
-      "logout": "Vievlog'dan çıkış",
-      "inquiry": "Vievlog Desteği ile iletişime geçin",
-      "manager": "Hesabım",
-      "topikSchedule": "Vievlog Programı - Yaklaşan BT öğrenme etkinlikleri"
-    }
+    "home": "Ev",
+    "posts": "Yazılar",
+    "chats": "Sohbetler",
+    "videos": "Videolar"
   },
-  "body": {
-    "utils": {
-      "loading": "BT derslerinizi yükleme ...",
-      "notFound": "Bu kategoride ders yok.",
-      "inquiry": "Yardıma mı ihtiyacınız var? Vievlog Desteği ile iletişime geçin",
-      "manager": "Hesabınızı Yönetin"
-    }
-  },
-  "content": {
+  "home": {
     "title": "Vievlog - Ücretsiz çevrimiçi BT öğrenme | Kurslar, Kaynaklar ve Sertifikasyon",
     "home": "Ev",
     "posts": "Yazılar",
@@ -92,5 +81,19 @@
       "lesson": "Ücretsiz derslerimizi keşfedin ve beceri seviyenize uygun mükemmel kursu seçin.",
       "grammar": "Ayrıntılı teknoloji öğreticilerini ve diyagramları keşfedin."
     }
+  },
+  "posts": {},
+  "videos": {},
+  "chats": {},
+  "footer": {
+    "aboutUs": "Hakkımızda",
+    "careers": "Kariyer",
+    "blog": "Teknoloji Blogu - Haberler ve İpuçları",
+    "contact": "Bize Ulaşın",
+    "helpCenter": "Yardım Merkezi",
+    "faq": "SSS - Sık sorulan sorular",
+    "privacyPolicy": "Gizlilik Politikası",
+    "termsOfService": "Hizmet Şartları",
+    "followUs": "Bizi sosyal medyada takip edin"
   }
 }

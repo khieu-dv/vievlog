@@ -1,22 +1,11 @@
 {
   "header": {
-    "utils": {
-      "login": "Logáil isteach i Vievlog",
-      "logout": "Logáil amach as Vievlog",
-      "inquiry": "Déan teagmháil le tacaíocht Vievlog",
-      "manager": "Mo chuntas",
-      "topikSchedule": "Sceideal Vievlog - Imeachtaí Foghlama TF atá le teacht"
-    }
+    "home": "Áit",
+    "posts": "Poss",
+    "chats": "Cainteanna",
+    "videos": "Físeáin"
   },
-  "body": {
-    "utils": {
-      "loading": "Ag luchtú do cheachtanna TF ...",
-      "notFound": "Níl ceachtanna ar fáil sa chatagóir seo.",
-      "inquiry": "Cabhair uait? Déan teagmháil le tacaíocht Vievlog",
-      "manager": "Bainistigh do chuntas"
-    }
-  },
-  "content": {
+  "home": {
     "title": "Vievlog - Foghlaim ar líne saor in aisce | Cúrsaí, Acmhainní & Deimhniú",
     "home": "Áit",
     "posts": "Poss",
@@ -92,5 +81,19 @@
       "lesson": "Déan iniúchadh ar ár gceachtanna saor in aisce agus roghnaigh an cúrsa foirfe chun do leibhéal scileanna a mheaitseáil.",
       "grammar": "Faigh amach faoi ranganna teagaisc agus léaráidí ardteicneolaíochta mionsonraithe."
     }
+  },
+  "posts": {},
+  "videos": {},
+  "chats": {},
+  "footer": {
+    "aboutUs": "Maidir Linn",
+    "careers": "Gairm bheatha",
+    "blog": "Blag Tech - Nuacht & Leideanna",
+    "contact": "Déan teagmháil linn",
+    "helpCenter": "Ionad cabhrach",
+    "faq": "Ceisteanna Coitianta - Ceisteanna Coitianta",
+    "privacyPolicy": "Polasaí Príobháideachta",
+    "termsOfService": "Téarmaí Seirbhíse",
+    "followUs": "Lean muid ar na meáin shóisialta"
   }
 }

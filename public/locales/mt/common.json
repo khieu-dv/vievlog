@@ -1,22 +1,11 @@
 {
   "header": {
-    "utils": {
-      "login": "Idħol f'Vievlog",
-      "logout": "Idħol minn Vievlog",
-      "inquiry": "Ikkuntattja l-appoġġ Vievlog",
-      "manager": "Il-kont tiegħi",
-      "topikSchedule": "Skeda ta 'Vievlog - Avvenimenti li jmiss ta' Tagħlim tal-IT"
-    }
+    "home": "Id-dar",
+    "posts": "Posts",
+    "chats": "Chats",
+    "videos": "Vidjows"
   },
-  "body": {
-    "utils": {
-      "loading": "Tagħbija tal-lezzjonijiet tal-IT tiegħek ...",
-      "notFound": "L-ebda lezzjonijiet disponibbli f'din il-kategorija.",
-      "inquiry": "Għandek bżonn l-għajnuna? Ikkuntattja l-appoġġ Vievlog",
-      "manager": "Immaniġġja l-kont tiegħek"
-    }
-  },
-  "content": {
+  "home": {
     "title": "Vievlog - Tagħlim tal-IT online b'xejn | Korsijiet, Riżorsi u Ċertifikazzjoni",
     "home": "Id-dar",
     "posts": "Posts",
@@ -92,5 +81,19 @@
       "lesson": "Esplora l-lezzjonijiet b'xejn tagħna u agħżel il-kors perfett biex taqbel mal-livell tal-ħiliet tiegħek.",
       "grammar": "Skopri tutorials u dijagrammi dettaljati tat-teknoloġija."
     }
+  },
+  "posts": {},
+  "videos": {},
+  "chats": {},
+  "footer": {
+    "aboutUs": "Dwarna",
+    "careers": "Karrieri",
+    "blog": "Blog Tech - Aħbarijiet u Għajnuniet",
+    "contact": "Ikkuntattjana",
+    "helpCenter": "Ċentru ta 'Għajnuna",
+    "faq": "FAQ - Mistoqsijiet Frekwenti",
+    "privacyPolicy": "Politika tal-Privatezza",
+    "termsOfService": "Termini tas-Servizz",
+    "followUs": "Segwi magħna fuq il-midja soċjali"
   }
 }

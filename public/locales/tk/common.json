@@ -1,22 +1,11 @@
 {
   "header": {
-    "utils": {
-      "login": "WEDALLOL-a giriň",
-      "logout": "\"VEMLOLL\" -den çykyň",
-      "inquiry": "\"Viewlog\" goldawy bilen habarlaşyň",
-      "manager": "Hasabym",
-      "topikSchedule": "\"Vevewlog\" meýilnamasy - Okamak hadysalary"
-    }
+    "home": "Öý",
+    "posts": "Azgylar",
+    "chats": "Çatlar",
+    "videos": "Wideolar"
   },
-  "body": {
-    "utils": {
-      "loading": "Bu sapaklaryňyzy ýüklemek ...",
-      "notFound": "Bu kategoriýada sapak ýok.",
-      "inquiry": "Kömek gerekmi? \"Viewlog\" goldawy bilen habarlaşyň",
-      "manager": "Hasabyňyzy dolandyryň"
-    }
-  },
-  "content": {
+  "home": {
     "title": "Wiewwog - Mugt onlaýn öwrenmek | Kurslar, çeşmeler we sertifikat",
     "home": "Öý",
     "posts": "Azgylar",
@@ -92,5 +81,19 @@
       "lesson": "Mugt sapaklarymyzy öwreniň we ussatlyk derejäňizi deňeşdirmek üçin ajaýyp kursy saýlaň.",
       "grammar": "Jikme-jik tupan derejelerini we diagrammalary tapyň."
     }
+  },
+  "posts": {},
+  "videos": {},
+  "chats": {},
+  "footer": {
+    "aboutUs": "Biz hakda",
+    "careers": "Hünäri",
+    "blog": "Tehniki blogy - Habarlar we maslahatlar",
+    "contact": "Biz bilen habarlaşyň",
+    "helpCenter": "Kömek merkezi",
+    "faq": "Fak - ýygy-ýygydan berilýän soraglar",
+    "privacyPolicy": "Gizlinlik syýasaty",
+    "termsOfService": "Hyzmat şertleri",
+    "followUs": "Sosial mediýada bize eýeriň"
   }
 }

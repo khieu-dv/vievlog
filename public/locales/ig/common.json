@@ -1,22 +1,11 @@
 {
   "header": {
-    "utils": {
-      "login": "Banye na Vievlog",
-      "logout": "Pụọ na vievlog",
-      "inquiry": "Nkwado Vievlogrog",
-      "manager": "Akaụntụ M",
-      "topikSchedule": "Usoro Vievlogg - na-abịa ma ọ bụrụ na ọ na-amụ ihe"
-    }
+    "home": "Ulo",
+    "posts": "Posts",
+    "chats": "Chaji",
+    "videos": "Viomaidi"
   },
-  "body": {
-    "utils": {
-      "loading": "Na-eburu ya ihe mmụta ...",
-      "notFound": "Enweghị nkuzi dị na ụdị a.",
-      "inquiry": "Chọrọ Enyemaka? Nkwado Vievlogrog",
-      "manager": "Jikwaa akaụntụ gị"
-    }
-  },
-  "content": {
+  "home": {
     "title": "Vievlog - Free na ntanetị ọ na-amụ | Nkuzi, akụrụngwa na asambodo",
     "home": "Ulo",
     "posts": "Posts",
@@ -92,5 +81,19 @@
       "lesson": "Nyochaa nkuzi anyị n'efu ma họrọ ụzọ zuru oke dakọtara na ọkwa gị.",
       "grammar": "Chọpụta nkuzi zuru ezu na eserese."
     }
+  },
+  "posts": {},
+  "videos": {},
+  "chats": {},
+  "footer": {
+    "aboutUs": "Gbasara anyị",
+    "careers": "Nlekọta",
+    "blog": "Tech Blog - News & Ndụmọdụ",
+    "contact": "Kpọtụrụ anyị",
+    "helpCenter": "Enyemaka Center",
+    "faq": "Ajụjụ - Ajuju ajuju",
+    "privacyPolicy": "amụma nzuzo",
+    "termsOfService": "Usoro Ọrụ",
+    "followUs": "Soro anyị na mgbasa ozi mmekọrịta"
   }
 }

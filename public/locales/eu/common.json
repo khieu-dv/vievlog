@@ -1,22 +1,11 @@
 {
   "header": {
-    "utils": {
-      "login": "Hasi saioa Vievlog-en",
-      "logout": "Hasi saioa Vievlog-etik",
-      "inquiry": "Harremanetarako Vievlog Support",
-      "manager": "Nire kontua",
-      "topikSchedule": "Vievlog Egitaraua - IKASKUNTZA EKITALDIAK"
-    }
+    "home": "Etxe",
+    "posts": "Letak",
+    "chats": "Txatak",
+    "videos": "Bideo"
   },
-  "body": {
-    "utils": {
-      "loading": "Zure IT ikasgaiak kargatzen ...",
-      "notFound": "Kategoria honetan ez dago ikasgai.",
-      "inquiry": "Laguntza behar al duzu? Harremanetarako Vievlog Support",
-      "manager": "Kudeatu zure kontua"
-    }
-  },
-  "content": {
+  "home": {
     "title": "Vievlog - Doako lineako ikastea | Ikastaroak, baliabideak eta ziurtagiria",
     "home": "Etxe",
     "posts": "Letak",
@@ -92,5 +81,19 @@
       "lesson": "Arakatu gure doako ikasgaiak eta aukeratu ikastaro ezin hobea zure trebetasun mailarekin bat egiteko.",
       "grammar": "Ezagutu teknologia tutoretza zehatzak eta diagramak."
     }
+  },
+  "posts": {},
+  "videos": {},
+  "chats": {},
+  "footer": {
+    "aboutUs": "Guri buruz",
+    "careers": "Karrera",
+    "blog": "Tech Blog - Albisteak eta aholkuak",
+    "contact": "Jar zaitez gurekin harremanetan",
+    "helpCenter": "Laguntza Zentroa",
+    "faq": "FAQ - Galdera arruntak",
+    "privacyPolicy": "Pribatutasun politika",
+    "termsOfService": "Zerbitzu baldintzak",
+    "followUs": "Jarrai gaitzazu sare sozialetan"
   }
 }

@@ -1,22 +1,11 @@
 {
   "header": {
-    "utils": {
-      "login": "Connectez-vous à Vievlog",
-      "logout": "Déconnectez-vous de Vievlog",
-      "inquiry": "Contacter le support Vievlog",
-      "manager": "Mon compte",
-      "topikSchedule": "Horaire Vievlog - événements d'apprentissage informatique à venir"
-    }
+    "home": "Maison",
+    "posts": "Publications",
+    "chats": "Chats",
+    "videos": "Vidéos"
   },
-  "body": {
-    "utils": {
-      "loading": "Chargement de vos leçons informatiques ...",
-      "notFound": "Pas de leçons disponibles dans cette catégorie.",
-      "inquiry": "Besoin d'aide? Contacter le support Vievlog",
-      "manager": "Gérez votre compte"
-    }
-  },
-  "content": {
+  "home": {
     "title": "Vievlog - GRATUITEMENT en ligne Apprentissage | Cours, ressources et certification",
     "home": "Maison",
     "posts": "Publications",
@@ -92,5 +81,19 @@
       "lesson": "Explorez nos leçons gratuites et choisissez le cours parfait pour correspondre à votre niveau de compétence.",
       "grammar": "Découvrez des tutoriels technologiques détaillés et des diagrammes."
     }
+  },
+  "posts": {},
+  "videos": {},
+  "chats": {},
+  "footer": {
+    "aboutUs": "À propos de nous",
+    "careers": "Carrières",
+    "blog": "Blog technologique - nouvelles et conseils",
+    "contact": "Contactez-nous",
+    "helpCenter": "Centre d'aide",
+    "faq": "FAQ - Questions fréquemment posées",
+    "privacyPolicy": "politique de confidentialité",
+    "termsOfService": "Conditions de service",
+    "followUs": "Suivez-nous sur les réseaux sociaux"
   }
 }

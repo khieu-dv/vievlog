@@ -1,22 +1,11 @@
 {
   "header": {
-    "utils": {
-      "login": "Skráðu þig inn á Vievlog",
-      "logout": "Skráðu þig út úr Vievlog",
-      "inquiry": "Hafðu samband við stuðning Vievlog",
-      "manager": "Reikningurinn minn",
-      "topikSchedule": "VIEVLOG áætlun - Næsta viðburði í upplýsingatækni"
-    }
+    "home": "Heim",
+    "posts": "Færslur",
+    "chats": "Spjall",
+    "videos": "Myndbönd"
   },
-  "body": {
-    "utils": {
-      "loading": "Hleðsla upplýsingatækninnar ...",
-      "notFound": "Engar kennslustundir í boði í þessum flokki.",
-      "inquiry": "Þarftu hjálp? Hafðu samband við stuðning Vievlog",
-      "manager": "Stjórna reikningnum þínum"
-    }
-  },
-  "content": {
+  "home": {
     "title": "Vievlog - Ókeypis á netinu það nám | Námskeið, auðlindir og vottun",
     "home": "Heim",
     "posts": "Færslur",
@@ -92,5 +81,19 @@
       "lesson": "Kannaðu ókeypis kennslustundir okkar og veldu hið fullkomna námskeið til að passa við færni þína.",
       "grammar": "Uppgötvaðu ítarlegar tækni og skýringarmyndir."
     }
+  },
+  "posts": {},
+  "videos": {},
+  "chats": {},
+  "footer": {
+    "aboutUs": "Um okkur",
+    "careers": "Starfsferill",
+    "blog": "Tækniblogg - Fréttir og ráð",
+    "contact": "Hafðu samband",
+    "helpCenter": "Hjálparmiðstöð",
+    "faq": "Algengar spurningar - Algengar spurningar",
+    "privacyPolicy": "Persónuverndarstefna",
+    "termsOfService": "Þjónustuskilmálar",
+    "followUs": "Fylgdu okkur á samfélagsmiðlum"
   }
 }

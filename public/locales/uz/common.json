@@ -1,22 +1,11 @@
 {
   "header": {
-    "utils": {
-      "login": "Vievlog-ga kiring",
-      "logout": "Vievlogdan chiqing",
-      "inquiry": "Vievloglarni qo'llab-quvvatlash",
-      "manager": "Mening hisobim",
-      "topikSchedule": "Vievlog jadvali - IT o'rganish tadbirlari"
-    }
+    "home": "Uy",
+    "posts": "Xabarlar",
+    "chats": "Chats",
+    "videos": "Videolar"
   },
-  "body": {
-    "utils": {
-      "loading": "IT darslaringizni yuklash ...",
-      "notFound": "Ushbu toifadagi darslar mavjud emas.",
-      "inquiry": "Yordam kerakmi? Vievloglarni qo'llab-quvvatlash",
-      "manager": "Hisob qaydnomangizni boshqaring"
-    }
-  },
-  "content": {
+  "home": {
     "title": "Vieievlog - Bepul onlayn Onlayn O'qish | Kurslar, resurslar va sertifikatlash",
     "home": "Uy",
     "posts": "Xabarlar",
@@ -92,5 +81,19 @@
       "lesson": "Bo'sh darslarimizni o'rganing va mahorat darajangizni taqqoslash uchun mukammal kursni tanlang.",
       "grammar": "Texnika darslari va diagrammalarni kashf eting."
     }
+  },
+  "posts": {},
+  "videos": {},
+  "chats": {},
+  "footer": {
+    "aboutUs": "Biz haqimizda",
+    "careers": "Karyeralar",
+    "blog": "Tech blog - Yangiliklar va maslahatlar",
+    "contact": "Biz bilan bog'lanish",
+    "helpCenter": "Yordam markazi",
+    "faq": "FAQ - tez-tez beriladigan savollar",
+    "privacyPolicy": "Maxfiylik siyosati",
+    "termsOfService": "Xizmat shartlari",
+    "followUs": "Bizni ijtimoiy tarmoqlarda kuzatib boring"
   }
 }

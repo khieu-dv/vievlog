@@ -1,22 +1,11 @@
 {
   "header": {
-    "utils": {
-      "login": "Wọle si queaverlog",
-      "logout": "Wọle lati palẹṣẹ",
-      "inquiry": "Kan si atilẹyin Iwe-ẹri",
-      "manager": "Akọọlẹ mi",
-      "topikSchedule": "Iṣeto Vazzog - ti n bọ o kọ awọn iṣẹlẹ"
-    }
+    "home": "Ile",
+    "posts": "Awọn ifiweranṣẹ",
+    "chats": "Ipe Chats",
+    "videos": "Awọn fidio"
   },
-  "body": {
-    "utils": {
-      "loading": "Njọpọ awọn ẹkọ rẹ ...",
-      "notFound": "Ko si awọn ẹkọ ti o wa ni ẹya yii.",
-      "inquiry": "Nilo iranlọwọ? Kan si atilẹyin Iwe-ẹri",
-      "manager": "Ṣakoso akọọlẹ rẹ"
-    }
-  },
-  "content": {
+  "home": {
     "title": "Queavlog - ọfẹ ọfẹ o kọ ẹkọ | Awọn iṣẹ, Awọn orisun & Iwe-ẹri",
     "home": "Ile",
     "posts": "Awọn ifiweranṣẹ",
@@ -92,5 +81,19 @@
       "lesson": "Ṣawari awọn ẹkọ ọfẹ wa ki o yan ọna pipe lati baamu ipele ti oye rẹ.",
       "grammar": "Ṣawari awọn agbanisiṣẹ imọ-ẹrọ ati awọn aworan apẹrẹ."
     }
+  },
+  "posts": {},
+  "videos": {},
+  "chats": {},
+  "footer": {
+    "aboutUs": "Nipa re",
+    "careers": "Awọn iṣẹ",
+    "blog": "Bulọọgi bulọọgi - Awọn iroyin & Awọn imọran",
+    "contact": "Pe wa",
+    "helpCenter": "Ile-iṣẹ iranlọwọ",
+    "faq": "FAQ - Awọn ibeere Nigbagbogbo",
+    "privacyPolicy": "Eto imulo ipamọ",
+    "termsOfService": "Awọn ofin Iṣẹ",
+    "followUs": "Tẹle wa lori media media"
   }
 }

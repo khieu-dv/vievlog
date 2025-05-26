@@ -1,22 +1,11 @@
 {
   "header": {
-    "utils": {
-      "login": "Ingia Vievlog",
-      "logout": "Ingia nje ya Vievlog",
-      "inquiry": "Wasiliana na msaada wa Vievlog",
-      "manager": "Akaunti yangu",
-      "topikSchedule": "Ratiba ya Vievlog - Matukio ya kujifunza ya IT yanayokuja"
-    }
+    "home": "Nyumbani",
+    "posts": "Machapisho",
+    "chats": "Mazungumzo",
+    "videos": "Video"
   },
-  "body": {
-    "utils": {
-      "loading": "Inapakia masomo yako ya IT ...",
-      "notFound": "Hakuna masomo yanayopatikana katika jamii hii.",
-      "inquiry": "Unahitaji msaada? Wasiliana na msaada wa Vievlog",
-      "manager": "Dhibiti akaunti yako"
-    }
-  },
-  "content": {
+  "home": {
     "title": "Vievlog - Bure Online IT Kujifunza | Kozi, rasilimali na udhibitisho",
     "home": "Nyumbani",
     "posts": "Machapisho",
@@ -92,5 +81,19 @@
       "lesson": "Chunguza masomo yetu ya bure na uchague kozi nzuri ili kufanana na kiwango chako cha ustadi.",
       "grammar": "Gundua mafunzo ya kina ya teknolojia na michoro."
     }
+  },
+  "posts": {},
+  "videos": {},
+  "chats": {},
+  "footer": {
+    "aboutUs": "Kuhusu sisi",
+    "careers": "Kazi",
+    "blog": "Blogi ya Tech - Habari na Vidokezo",
+    "contact": "Wasiliana nasi",
+    "helpCenter": "Kituo cha Msaada",
+    "faq": "Maswali - maswali yanayoulizwa mara kwa mara",
+    "privacyPolicy": "Sera ya faragha",
+    "termsOfService": "Masharti ya Huduma",
+    "followUs": "Tufuate kwenye media za kijamii"
   }
 }

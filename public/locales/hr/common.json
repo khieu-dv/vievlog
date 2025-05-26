@@ -1,22 +1,11 @@
 {
   "header": {
-    "utils": {
-      "login": "Prijavite se u Vievlog",
-      "logout": "Prijavite se iz Vievloga",
-      "inquiry": "Obratite se podršci za Vievlog",
-      "manager": "Moj račun",
-      "topikSchedule": "Vievlog raspored - nadolazeći IT učenje događaja"
-    }
+    "home": "Dom",
+    "posts": "Postolje",
+    "chats": "Čavrljanja",
+    "videos": "Videozapisi"
   },
-  "body": {
-    "utils": {
-      "loading": "Učitavanje lekcija IT ...",
-      "notFound": "Nisu dostupne lekcije u ovoj kategoriji.",
-      "inquiry": "Trebate pomoć? Obratite se podršci za Vievlog",
-      "manager": "Upravljanje svojim računom"
-    }
-  },
-  "content": {
+  "home": {
     "title": "Vievlog - Besplatno online IT učenje | Tečajevi, resursi i certificiranje",
     "home": "Dom",
     "posts": "Postolje",
@@ -92,5 +81,19 @@
       "lesson": "Istražite naše besplatne lekcije i odaberite savršen tečaj koji odgovara razini vaše vještine.",
       "grammar": "Otkrijte detaljne tehnološke vodiče i dijagrame."
     }
+  },
+  "posts": {},
+  "videos": {},
+  "chats": {},
+  "footer": {
+    "aboutUs": "O nama",
+    "careers": "Karijera",
+    "blog": "Tehnološki blog - Vijesti i savjeti",
+    "contact": "Kontaktirajte nas",
+    "helpCenter": "Centar za pomoć",
+    "faq": "FAQ - često postavljana pitanja",
+    "privacyPolicy": "Pravila o privatnosti",
+    "termsOfService": "Uvjeti pružanja usluge",
+    "followUs": "Pratite nas na društvenim medijima"
   }
 }

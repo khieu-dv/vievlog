@@ -1,22 +1,11 @@
 {
   "header": {
-    "utils": {
-      "login": "Logga in på Vievlog",
-      "logout": "Logga ut från Vievlog",
-      "inquiry": "Kontakta Vievlog Support",
-      "manager": "Mitt konto",
-      "topikSchedule": "VIEVLOG -schema - Kommande IT -inlärningsevenemang"
-    }
+    "home": "Hem",
+    "posts": "Inlägg",
+    "chats": "Chatt",
+    "videos": "Videor"
   },
-  "body": {
-    "utils": {
-      "loading": "Laddar dina IT -lektioner ...",
-      "notFound": "Inga lektioner tillgängliga i denna kategori.",
-      "inquiry": "Behöver du hjälp? Kontakta Vievlog Support",
-      "manager": "Hantera ditt konto"
-    }
-  },
-  "content": {
+  "home": {
     "title": "Vievlog - Gratis online IT -lärande | Kurser, resurser och certifiering",
     "home": "Hem",
     "posts": "Inlägg",
@@ -92,5 +81,19 @@
       "lesson": "Utforska våra gratis lektioner och välj den perfekta kursen som matchar din färdighetsnivå.",
       "grammar": "Upptäck detaljerade tekniska tutorials och diagram."
     }
+  },
+  "posts": {},
+  "videos": {},
+  "chats": {},
+  "footer": {
+    "aboutUs": "Om oss",
+    "careers": "Karriär",
+    "blog": "Teknisk blogg - Nyheter och tips",
+    "contact": "Kontakta oss",
+    "helpCenter": "Hjälpcentral",
+    "faq": "Vanliga frågor - Vanliga frågor",
+    "privacyPolicy": "Integritetspolicy",
+    "termsOfService": "Villkorsvillkor",
+    "followUs": "Följ oss på sociala medier"
   }
 }

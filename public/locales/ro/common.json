@@ -1,22 +1,11 @@
 {
   "header": {
-    "utils": {
-      "login": "Conectați -vă la VievLog",
-      "logout": "Deconectați -vă de Vievlog",
-      "inquiry": "Contactați asistența VievLog",
-      "manager": "Contul meu",
-      "topikSchedule": "Programul VievLog - viitoarele evenimente IT de învățare"
-    }
+    "home": "Acasă",
+    "posts": "Postări",
+    "chats": "Chats",
+    "videos": "Videoclipuri"
   },
-  "body": {
-    "utils": {
-      "loading": "Încărcarea lecțiilor IT ...",
-      "notFound": "Nu există lecții disponibile în această categorie.",
-      "inquiry": "Aveți nevoie de ajutor? Contactați asistența VievLog",
-      "manager": "Gestionează -ți contul"
-    }
-  },
-  "content": {
+  "home": {
     "title": "VievLog - Învățare online gratuită | Cursuri, resurse și certificare",
     "home": "Acasă",
     "posts": "Postări",
@@ -92,5 +81,19 @@
       "lesson": "Explorați lecțiile noastre gratuite și alegeți cursul perfect pentru a se potrivi cu nivelul dvs. de abilități.",
       "grammar": "Descoperiți tutoriale și diagrame detaliate tehnologice."
     }
+  },
+  "posts": {},
+  "videos": {},
+  "chats": {},
+  "footer": {
+    "aboutUs": "Despre noi",
+    "careers": "Cariere",
+    "blog": "Blog tehnic - știri și sfaturi",
+    "contact": "Contactaţi-ne",
+    "helpCenter": "Centrul de ajutor",
+    "faq": "Întrebări frecvente - Întrebări frecvente",
+    "privacyPolicy": "Politica de confidențialitate",
+    "termsOfService": "Termeni de serviciu",
+    "followUs": "Urmați -ne pe social media"
   }
 }

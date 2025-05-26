@@ -1,22 +1,11 @@
 {
   "header": {
-    "utils": {
-      "login": "Kirjaudu sisään Vievlogiin",
-      "logout": "Kirjaudu ulos Vievlogista",
-      "inquiry": "Ota yhteyttä Vievlog -tukeen",
-      "manager": "Minun tilini",
-      "topikSchedule": "VievLog Aikataulu - Tulevat IT -oppimistapahtumat"
-    }
+    "home": "Kotiin",
+    "posts": "Viestit",
+    "chats": "Keskustelu",
+    "videos": "Video"
   },
-  "body": {
-    "utils": {
-      "loading": "IT -oppituntien lataaminen ...",
-      "notFound": "Tässä luokassa ei ole käytettävissä oppitunteja.",
-      "inquiry": "Tarvitsetko apua? Ota yhteyttä Vievlog -tukeen",
-      "manager": "Hallitse tiliäsi"
-    }
-  },
-  "content": {
+  "home": {
     "title": "VievLog - ilmainen online IT -oppiminen | Kurssit, resurssit ja sertifiointi",
     "home": "Kotiin",
     "posts": "Viestit",
@@ -92,5 +81,19 @@
       "lesson": "Tutustu ilmaisiin oppitunteihimme ja valitse täydellinen kurssi taitotasosi vastaamiseksi.",
       "grammar": "Löydä yksityiskohtaiset teknologiaoppaat ja kaaviot."
     }
+  },
+  "posts": {},
+  "videos": {},
+  "chats": {},
+  "footer": {
+    "aboutUs": "Meistä",
+    "careers": "Ura",
+    "blog": "Tech -blogi - Uutiset ja vinkit",
+    "contact": "Ota yhteyttä",
+    "helpCenter": "Avustuskeskus",
+    "faq": "UKK - usein kysyttyjä kysymyksiä",
+    "privacyPolicy": "Tietosuojakäytäntö",
+    "termsOfService": "Palvelusehdot",
+    "followUs": "Seuraa meitä sosiaalisessa mediassa"
   }
 }

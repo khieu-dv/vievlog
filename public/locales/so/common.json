@@ -1,22 +1,11 @@
 {
   "header": {
-    "utils": {
-      "login": "Gal Goobta Vevlog",
-      "logout": "Ka bax Vavlog",
-      "inquiry": "La xiriir Taageerada Vevlog",
-      "manager": "Xisaabtayda",
-      "topikSchedule": "Jadwalka Vevlog - soo socda dhacdooyinka barashada"
-    }
+    "home": "Guri",
+    "posts": "Dhagis",
+    "chats": "Ilxidsho",
+    "videos": "Rikaanolo"
   },
-  "body": {
-    "utils": {
-      "loading": "Loading casharradaada IT-ga ...",
-      "notFound": "Casharro lama heli karo qaybtaan.",
-      "inquiry": "Ma u baahan tahay caawimaad? La xiriir Taageerada Vevlog",
-      "manager": "Maaree koontadaada"
-    }
-  },
-  "content": {
+  "home": {
     "title": "Vevlog - bilaash ah khadka tooska ah ee internetka ee internetka | Koorsooyin, Kheyraadka & Shahaadada",
     "home": "Guri",
     "posts": "Dhagis",
@@ -92,5 +81,19 @@
       "lesson": "Baadh casharadayaga bilaashka ah oo dooro koorsada saxda ah si aad ugu dhigto heerka xirfaddaada.",
       "grammar": "Soo hel tilmaamo farsamo oo faahfaahsan iyo jaantusyo."
     }
+  },
+  "posts": {},
+  "videos": {},
+  "chats": {},
+  "footer": {
+    "aboutUs": "Naga ku saabsan",
+    "careers": "Xirfadaha",
+    "blog": "Tech Blog Blog - News & Tilmaamaha",
+    "contact": "Nala soo xiriir",
+    "helpCenter": "Xarunta caawinta",
+    "faq": "Su'aalaha Faq - Su'aalaha Inta badan la Isweydiiyo",
+    "privacyPolicy": "Qaanuunka Arrimaha Khaaska ah",
+    "termsOfService": "Shuruudaha Adeegga",
+    "followUs": "Nala soco warbaahinta bulshada"
   }
 }

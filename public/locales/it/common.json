@@ -1,22 +1,11 @@
 {
   "header": {
-    "utils": {
-      "login": "Accedi a Vievlog",
-      "logout": "Esci da Vievlog",
-      "inquiry": "Contatta il supporto Vievlog",
-      "manager": "Il mio conto",
-      "topikSchedule": "Vievlog Programma - Emergenti eventi di apprendimento"
-    }
+    "home": "Casa",
+    "posts": "Pali",
+    "chats": "Chat",
+    "videos": "Video"
   },
-  "body": {
-    "utils": {
-      "loading": "Caricando le tue lezioni IT ...",
-      "notFound": "Non sono disponibili lezioni in questa categoria.",
-      "inquiry": "Hai bisogno di aiuto? Contatta il supporto Vievlog",
-      "manager": "Gestisci il tuo account"
-    }
-  },
-  "content": {
+  "home": {
     "title": "Vievlog - Apprendimento online gratuito | Corsi, risorse e certificazione",
     "home": "Casa",
     "posts": "Pali",
@@ -92,5 +81,19 @@
       "lesson": "Esplora le nostre lezioni gratuite e scegli il corso perfetto per abbinare il tuo livello di abilità.",
       "grammar": "Scopri tutorial e diagrammi tecnologici dettagliati."
     }
+  },
+  "posts": {},
+  "videos": {},
+  "chats": {},
+  "footer": {
+    "aboutUs": "Chi siamo",
+    "careers": "Carriera",
+    "blog": "Blog Tech - Notizie e suggerimenti",
+    "contact": "Contattaci",
+    "helpCenter": "Centro di aiuto",
+    "faq": "FAQ - Domande frequenti",
+    "privacyPolicy": "politica sulla riservatezza",
+    "termsOfService": "Termini di servizio",
+    "followUs": "Seguici sui social media"
   }
 }

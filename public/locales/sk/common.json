@@ -1,22 +1,11 @@
 {
   "header": {
-    "utils": {
-      "login": "Prihláste sa do VieVLOG",
-      "logout": "Odhlásiť sa z Vievlogu",
-      "inquiry": "Kontaktujte podporu VieVLOG",
-      "manager": "Môj účet",
-      "topikSchedule": "Plán Vievlogu - nadchádzajúce udalosti v oblasti učenia sa"
-    }
+    "home": "Domov",
+    "posts": "Pracovné miesta",
+    "chats": "Chatovanie",
+    "videos": "Videá"
   },
-  "body": {
-    "utils": {
-      "loading": "Načítavate svoje lekcie IT ...",
-      "notFound": "V tejto kategórii nie sú k dispozícii žiadne lekcie.",
-      "inquiry": "Potrebujete pomoc? Kontaktujte podporu VieVLOG",
-      "manager": "Spravujte svoj účet"
-    }
-  },
-  "content": {
+  "home": {
     "title": "VievLog - zadarmo online učenie | Kurzy, zdroje a certifikácia",
     "home": "Domov",
     "posts": "Pracovné miesta",
@@ -92,5 +81,19 @@
       "lesson": "Preskúmajte naše bezplatné lekcie a vyberte perfektný kurz, ktorý zodpovedá vašej úrovni zručností.",
       "grammar": "Objavte podrobné technické návody a diagramy."
     }
+  },
+  "posts": {},
+  "videos": {},
+  "chats": {},
+  "footer": {
+    "aboutUs": "O nás",
+    "careers": "Kariéra",
+    "blog": "Tech Blog - Novinky a tipy",
+    "contact": "Kontaktujte nás",
+    "helpCenter": "Centrum pomoci",
+    "faq": "FAQ - často kladené otázky",
+    "privacyPolicy": "Zásady ochrany osobných údajov",
+    "termsOfService": "Služobné podmienky",
+    "followUs": "Sledujte nás na sociálnych médiách"
   }
 }

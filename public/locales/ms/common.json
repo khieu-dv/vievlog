@@ -1,22 +1,11 @@
 {
   "header": {
-    "utils": {
-      "login": "Log masuk ke Vievlog",
-      "logout": "Log keluar dari Vievlog",
-      "inquiry": "Hubungi sokongan VievLog",
-      "manager": "Akaun saya",
-      "topikSchedule": "Jadual Vievlog - Acara Pembelajaran IT yang akan datang"
-    }
+    "home": "Rumah",
+    "posts": "Catatan",
+    "chats": "Berbual",
+    "videos": "Video"
   },
-  "body": {
-    "utils": {
-      "loading": "Memuatkan pelajaran IT anda ...",
-      "notFound": "Tiada pelajaran yang terdapat dalam kategori ini.",
-      "inquiry": "Perlukan Bantuan? Hubungi sokongan VievLog",
-      "manager": "Urus akaun anda"
-    }
-  },
-  "content": {
+  "home": {
     "title": "Vievlog - Pembelajaran IT Online Percuma | Kursus, Sumber & Persijilan",
     "home": "Rumah",
     "posts": "Catatan",
@@ -92,5 +81,19 @@
       "lesson": "Terokai pelajaran percuma kami dan pilih kursus yang sempurna untuk memadankan tahap kemahiran anda.",
       "grammar": "Temui tutorial teknologi terperinci dan gambar rajah."
     }
+  },
+  "posts": {},
+  "videos": {},
+  "chats": {},
+  "footer": {
+    "aboutUs": "Mengenai kita",
+    "careers": "Kerjaya",
+    "blog": "Blog Tech - Berita & Petua",
+    "contact": "Hubungi kami",
+    "helpCenter": "Pusat Bantuan",
+    "faq": "Soalan Lazim - Soalan Lazim",
+    "privacyPolicy": "Dasar Privasi",
+    "termsOfService": "Syarat Perkhidmatan",
+    "followUs": "Ikuti kami di media sosial"
   }
 }

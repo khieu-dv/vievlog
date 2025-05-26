@@ -1,22 +1,11 @@
 {
   "header": {
-    "utils": {
-      "login": "登錄到Vievlog",
-      "logout": "登錄Vievlog",
-      "inquiry": "聯繫Vievlog支持",
-      "manager": "我的賬戶",
-      "topikSchedule": "Vievlog時間表 - 即將參加IT學習活動"
-    }
+    "home": "家",
+    "posts": "帖子",
+    "chats": "聊天",
+    "videos": "影片"
   },
-  "body": {
-    "utils": {
-      "loading": "加載您的IT課...",
-      "notFound": "此類別中沒有教訓。",
-      "inquiry": "需要幫助嗎？聯繫Vievlog支持",
-      "manager": "管理您的帳戶"
-    }
-  },
-  "content": {
+  "home": {
     "title": "Vievlog  - 免費在線學習|課程，資源和認證",
     "home": "家",
     "posts": "帖子",
@@ -92,5 +81,19 @@
       "lesson": "探索我們的免費課程，並選擇完美的課程以符合您的技能水平。",
       "grammar": "發現詳細的技術教程和圖表。"
     }
+  },
+  "posts": {},
+  "videos": {},
+  "chats": {},
+  "footer": {
+    "aboutUs": "關於我們",
+    "careers": "職業",
+    "blog": "技術博客 - 新聞和提示",
+    "contact": "聯繫我們",
+    "helpCenter": "幫助中心",
+    "faq": "常見問題解答 - 常見問題",
+    "privacyPolicy": "隱私政策",
+    "termsOfService": "服務條款",
+    "followUs": "在社交媒體上關注我們"
   }
 }

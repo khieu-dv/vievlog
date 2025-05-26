@@ -1,22 +1,11 @@
 {
   "header": {
-    "utils": {
-      "login": "Ngena kwiVievlog",
-      "logout": "Phuma ngaphandle kweVievlog",
-      "inquiry": "Nxibelelana nenkxaso yeVieVlog",
-      "manager": "I-akhawunti yam",
-      "topikSchedule": "Ishedyuli yeVievvod-izalise i-IT yokufunda"
-    }
+    "home": "Ikhaya",
+    "posts": "Izithuba",
+    "chats": "Iingxoxo",
+    "videos": "Iividiyo"
   },
-  "body": {
-    "utils": {
-      "loading": "Ukulayisha izifundo zakho ...",
-      "notFound": "Akukho zifundo zifumaneka kolu luhlu.",
-      "inquiry": "Dinga uncedo? Nxibelelana nenkxaso yeVieVlog",
-      "manager": "Lawula iakhawunti yakho"
-    }
-  },
-  "content": {
+  "home": {
     "title": "Vievlog-Simahla Akukho mlinganiselo I-intanethi ifunda | Iikhosi, izixhobo kunye nesiqinisekiso",
     "home": "Ikhaya",
     "posts": "Izithuba",
@@ -92,5 +81,19 @@
       "lesson": "Jonga izifundo zethu zasimahla kwaye ukhethe ikhosi egqibeleleyo yokutshatisa inqanaba lezakhono zakho.",
       "grammar": "Fumanisa ii-tutorials ezineenkcukacha kunye nemizobo."
     }
+  },
+  "posts": {},
+  "videos": {},
+  "chats": {},
+  "footer": {
+    "aboutUs": "Ngathi",
+    "careers": "Imisebenzi",
+    "blog": "I-Tech Blog - Iindaba kunye neeTiki",
+    "contact": "Qhagamshelana nathi",
+    "helpCenter": "IZiko loNcedo",
+    "faq": "I-FAQ-Imibuzo ebuzwa rhoqo",
+    "privacyPolicy": "Umthetho wabucala",
+    "termsOfService": "Imimmisele yenkonzo",
+    "followUs": "Silandele kwimidiya yoluntu"
   }
 }

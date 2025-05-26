@@ -1,22 +1,11 @@
 {
   "header": {
-    "utils": {
-      "login": "Inicieu la sessió a Vievlog",
-      "logout": "Inicieu la sessió de Vievlog",
-      "inquiry": "Poseu -vos en contacte amb l'assistència de Vievlog",
-      "manager": "El meu compte",
-      "topikSchedule": "Programació de Vievlog: esdeveniments d'aprenentatge informàtics propers"
-    }
+    "home": "Casa",
+    "posts": "Pals",
+    "chats": "Xats",
+    "videos": "Vídeos"
   },
-  "body": {
-    "utils": {
-      "loading": "Carregant les lliçons informàtiques ...",
-      "notFound": "No hi ha lliçons disponibles en aquesta categoria.",
-      "inquiry": "Necessiteu ajuda? Poseu -vos en contacte amb l'assistència de Vievlog",
-      "manager": "Gestioneu el vostre compte"
-    }
-  },
-  "content": {
+  "home": {
     "title": "Vievlog - Aprenentatge informàtic gratuït en línia | Cursos, recursos i certificació",
     "home": "Casa",
     "posts": "Pals",
@@ -92,5 +81,19 @@
       "lesson": "Exploreu les nostres lliçons gratuïtes i trieu el curs perfecte per adaptar -se al vostre nivell d’habilitat.",
       "grammar": "Descobriu tutorials i diagrames de tecnologia detallats."
     }
+  },
+  "posts": {},
+  "videos": {},
+  "chats": {},
+  "footer": {
+    "aboutUs": "Sobre nosaltres",
+    "careers": "Carreres de carreres",
+    "blog": "Blog de tecnologia: notícies i consells",
+    "contact": "Poseu -vos en contacte amb nosaltres",
+    "helpCenter": "Ajuda Centre",
+    "faq": "Preguntes freqüents: preguntes més freqüents",
+    "privacyPolicy": "Política de privadesa",
+    "termsOfService": "Condicions del servei",
+    "followUs": "Segueix -nos a les xarxes socials"
   }
 }

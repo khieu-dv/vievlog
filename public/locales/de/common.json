@@ -1,22 +1,11 @@
 {
   "header": {
-    "utils": {
-      "login": "Melden Sie sich bei Vievlog an",
-      "logout": "Melden Sie sich aus Vievlog an",
-      "inquiry": "Wenden Sie sich an Vievlog Support",
-      "manager": "Mein Konto",
-      "topikSchedule": "Vievlog -Zeitplan - bevorstehende IT -Lernereignisse"
-    }
+    "home": "Heim",
+    "posts": "Beiträge",
+    "chats": "Chats",
+    "videos": "Videos"
   },
-  "body": {
-    "utils": {
-      "loading": "Laden Sie Ihre IT -Lektionen ...",
-      "notFound": "Keine Lektionen in dieser Kategorie verfügbar.",
-      "inquiry": "Benötigen Sie Hilfe? Wenden Sie sich an Vievlog Support",
-      "manager": "Verwalten Sie Ihr Konto"
-    }
-  },
-  "content": {
+  "home": {
     "title": "Vievlog - kostenloses Online -Lernen | Kurse, Ressourcen und Zertifizierung",
     "home": "Heim",
     "posts": "Beiträge",
@@ -92,5 +81,19 @@
       "lesson": "Erkunden Sie unseren kostenlosen Unterricht und wählen Sie den perfekten Kurs, um Ihrem Qualifikationsniveau zu entsprechen.",
       "grammar": "Entdecken Sie detaillierte Tech -Tutorials und Diagramme."
     }
+  },
+  "posts": {},
+  "videos": {},
+  "chats": {},
+  "footer": {
+    "aboutUs": "Über uns",
+    "careers": "Karrieren",
+    "blog": "Tech -Blog - Nachrichten und Tipps",
+    "contact": "Kontaktieren Sie uns",
+    "helpCenter": "Hilfezentrum",
+    "faq": "FAQ - häufig gestellte Fragen",
+    "privacyPolicy": "Datenschutzrichtlinie",
+    "termsOfService": "Nutzungsbedingungen",
+    "followUs": "Folgen Sie uns in den sozialen Medien"
   }
 }

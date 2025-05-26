@@ -1,22 +1,11 @@
 {
   "header": {
-    "utils": {
-      "login": "Shiga cikin Vivelog",
-      "logout": "Fita daga vivelog",
-      "inquiry": "TATTAUNAWA VIVELG TAFIYA",
-      "manager": "Asusun na",
-      "topikSchedule": "Jigilar ciki - mai zuwa yana da abubuwan koyo"
-    }
+    "home": "Gida",
+    "posts": "Posts",
+    "chats": "Hira",
+    "videos": "Bidiyo"
   },
-  "body": {
-    "utils": {
-      "loading": "Loading a gare ku darussan ...",
-      "notFound": "Babu darussan da ake samu a wannan rukunin.",
-      "inquiry": "Ana buƙatar taimako? TATTAUNAWA VIVELG TAFIYA",
-      "manager": "Gudanar da asusunka"
-    }
-  },
-  "content": {
+  "home": {
     "title": "Vivelog - kyauta akan layi yana koyo | Darussan, albarkatu & takardar shaida",
     "home": "Gida",
     "posts": "Posts",
@@ -92,5 +81,19 @@
       "lesson": "Binciko darussan mu kuma zaɓi cikakkiyar hanya don dacewa da matakin ƙwarewar ku.",
       "grammar": "Gano cikakken koyaswa da zane-zane."
     }
+  },
+  "posts": {},
+  "videos": {},
+  "chats": {},
+  "footer": {
+    "aboutUs": "Game da mu",
+    "careers": "Kula",
+    "blog": "Blog Blog - News & tukwici",
+    "contact": "Tuntube mu",
+    "helpCenter": "Cibiyar Taimako",
+    "faq": "Tambaya - Tambayoyi",
+    "privacyPolicy": "takardar kebantawa",
+    "termsOfService": "Sharuɗɗan sabis",
+    "followUs": "Biyo mu akan kafofin watsa labarun"
   }
 }

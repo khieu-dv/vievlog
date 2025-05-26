@@ -1,22 +1,11 @@
 {
   "header": {
-    "utils": {
-      "login": "Log ad Vievlog",
-      "logout": "Log ex Vievlog",
-      "inquiry": "Contact Vievlog Support",
-      "manager": "My Account",
-      "topikSchedule": "Vievlog Schedule - Events Doctrina Events"
-    }
+    "home": "In domo",
+    "posts": "Stipes",
+    "chats": "Chats",
+    "videos": "Videos"
   },
-  "body": {
-    "utils": {
-      "loading": "Lectiones Tua Lectiones ...",
-      "notFound": "Non Lectiones available in hoc genus.",
-      "inquiry": "Opus auxilium? Contact Vievlog Support",
-      "manager": "Curo vestra"
-    }
-  },
-  "content": {
+  "home": {
     "title": "Vievlog - Free Online Est Doctrina | Certification & Resources",
     "home": "In domo",
     "posts": "Stipes",
@@ -92,5 +81,19 @@
       "lesson": "Explorarent libera lectiones eligere perfectam cursus par vestra arte elit.",
       "grammar": "Discover: Detailed Tech Tutorials et Diagrams."
     }
+  },
+  "posts": {},
+  "videos": {},
+  "chats": {},
+  "footer": {
+    "aboutUs": "De nobis",
+    "careers": "Gestas",
+    "blog": "Tech Blog - News & Tips",
+    "contact": "Contact Us",
+    "helpCenter": "Auxilium Center",
+    "faq": "FAQ - Frequenter Interrogata Quaestiones",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Termini servitium",
+    "followUs": "Sequere nos in Social Media"
   }
 }

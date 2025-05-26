@@ -1,22 +1,11 @@
 {
   "header": {
-    "utils": {
-      "login": "Vievlog-a daxil olun",
-      "logout": "Vievlogdan çıxın",
-      "inquiry": "Vievlog dəstəyi ilə əlaqə saxlayın",
-      "manager": "Hesabım",
-      "topikSchedule": "Vievlog Cədvəli - Tədbirləri yaxınlaşan hadisələr"
-    }
+    "home": "Evdə",
+    "posts": "Yazı",
+    "chats": "Söhbət",
+    "videos": "Videonlar"
   },
-  "body": {
-    "utils": {
-      "loading": "İT dərslərinizi yükləyir ...",
-      "notFound": "Bu kateqoriyada heç bir dərs yoxdur.",
-      "inquiry": "Kömək lazımdır? Vievlog dəstəyi ilə əlaqə saxlayın",
-      "manager": "Hesabınızı idarə edin"
-    }
-  },
-  "content": {
+  "home": {
     "title": "Vievlog - Pulsuz Online Təhsil | Kurslar, mənbələr və sertifikatlaşdırma",
     "home": "Evdə",
     "posts": "Yazı",
@@ -92,5 +81,19 @@
       "lesson": "Pulsuz dərslərimizi araşdırın və bacarıq səviyyənizi uyğunlaşdırmaq üçün mükəmməl bir kurs seçin.",
       "grammar": "Ətraflı texnoloji dərsləri və diaqramları kəşf edin."
     }
+  },
+  "posts": {},
+  "videos": {},
+  "chats": {},
+  "footer": {
+    "aboutUs": "Haqqımızda",
+    "careers": "Karyera",
+    "blog": "Texniki Blog - Xəbərlər və göstərişlər",
+    "contact": "Bizimlə əlaqə saxlayın",
+    "helpCenter": "Kömək mərkəzi",
+    "faq": "Suallar - Tez-tez verilən suallar",
+    "privacyPolicy": "Məxfilik Siyasəti",
+    "termsOfService": "Xidmət şərtləri",
+    "followUs": "Sosial mediada bizi izləyin"
   }
 }

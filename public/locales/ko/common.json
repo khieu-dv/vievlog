@@ -1,22 +1,11 @@
 {
   "header": {
-    "utils": {
-      "login": "vievlog에 로그인하십시오",
-      "logout": "Vievlog에서 로그 아웃하십시오",
-      "inquiry": "Vievlog 지원에 문의하십시오",
-      "manager": "내 계정",
-      "topikSchedule": "vievlog 일정 - 다가오는 IT 학습 이벤트"
-    }
+    "home": "집",
+    "posts": "게시물",
+    "chats": "채팅",
+    "videos": "비디오"
   },
-  "body": {
-    "utils": {
-      "loading": "IT 수업을로드 ...",
-      "notFound": "이 카테고리에서는 수업을 사용할 수 없습니다.",
-      "inquiry": "도움이 필요하십니까? Vievlog 지원에 문의하십시오",
-      "manager": "계정을 관리하십시오"
-    }
-  },
-  "content": {
+  "home": {
     "title": "vievlog - 무료 온라인 IT 학습 | 과정, 리소스 및 인증",
     "home": "집",
     "posts": "게시물",
@@ -92,5 +81,19 @@
       "lesson": "무료 레슨을 탐색하고 기술 수준에 맞는 완벽한 코스를 선택하십시오.",
       "grammar": "자세한 기술 자습서 및 다이어그램을 발견하십시오."
     }
+  },
+  "posts": {},
+  "videos": {},
+  "chats": {},
+  "footer": {
+    "aboutUs": "우리에 대해",
+    "careers": "경력",
+    "blog": "기술 블로그 - 뉴스 및 팁",
+    "contact": "저희에게 연락하십시오",
+    "helpCenter": "도움말 센터",
+    "faq": "FAQ - 자주 묻는 질문",
+    "privacyPolicy": "개인 정보 보호 정책",
+    "termsOfService": "서비스 약관",
+    "followUs": "소셜 미디어에서 우리를 따르십시오"
   }
 }

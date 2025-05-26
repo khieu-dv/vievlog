@@ -1,22 +1,11 @@
 {
   "header": {
-    "utils": {
-      "login": "Meld aan by Vievlog",
-      "logout": "Teken uit Vievlog",
-      "inquiry": "Kontak VieVLog -ondersteuning",
-      "manager": "My rekening",
-      "topikSchedule": "VIEVLOG -skedule - komende IT -leergeleenthede"
-    }
+    "home": "Tuiste",
+    "posts": "Posts",
+    "chats": "Geselsies",
+    "videos": "Video's"
   },
-  "body": {
-    "utils": {
-      "loading": "Laai u IT -lesse ...",
-      "notFound": "Geen lesse beskikbaar in hierdie kategorie nie.",
-      "inquiry": "Hulp nodig? Kontak VieVLog -ondersteuning",
-      "manager": "Bestuur u rekening"
-    }
-  },
-  "content": {
+  "home": {
     "title": "VieVLog - gratis aanlyn IT -leer | Kursusse, bronne en sertifisering",
     "home": "Tuiste",
     "posts": "Posts",
@@ -92,5 +81,19 @@
       "lesson": "Verken ons gratis lesse en kies die perfekte kursus om by u vaardigheidsvlak te pas.",
       "grammar": "Ontdek gedetailleerde tegniese tutoriale en diagramme."
     }
+  },
+  "posts": {},
+  "videos": {},
+  "chats": {},
+  "footer": {
+    "aboutUs": "Oor ons",
+    "careers": "Loopbane",
+    "blog": "Tech Blog - News & Tips",
+    "contact": "Kontak ons",
+    "helpCenter": "Help Sentrum",
+    "faq": "Vrae - gereeld vrae gevra",
+    "privacyPolicy": "Privaatheidsbeleid",
+    "termsOfService": "Diensvoorwaardes",
+    "followUs": "Volg ons op sosiale media"
   }
 }

@@ -1,22 +1,11 @@
 {
   "header": {
-    "utils": {
-      "login": "Piesakieties vievlog",
-      "logout": "Izrakstīties no vievlog",
-      "inquiry": "Sazinieties ar vievlog atbalstu",
-      "manager": "Mans konts",
-      "topikSchedule": "VIEVLOG grafiks - gaidāmie IT mācīšanās notikumi"
-    }
+    "home": "Mājas",
+    "posts": "Amats",
+    "chats": "Tērzēšana",
+    "videos": "Video"
   },
-  "body": {
-    "utils": {
-      "loading": "Ielādējot savas IT nodarbības ...",
-      "notFound": "Šajā kategorijā nav pieejamas mācības.",
-      "inquiry": "Nepieciešama palīdzība? Sazinieties ar vievlog atbalstu",
-      "manager": "Pārvaldiet savu kontu"
-    }
-  },
-  "content": {
+  "home": {
     "title": "Vievlog - bezmaksas tiešsaistes IT mācīšanās | Kursi, resursi un sertifikācija",
     "home": "Mājas",
     "posts": "Amats",
@@ -92,5 +81,19 @@
       "lesson": "Izpētiet mūsu bezmaksas nodarbības un izvēlieties perfektu kursu, kas atbilst jūsu prasmju līmenim.",
       "grammar": "Atklājiet detalizētas tehnoloģiju apmācības un diagrammas."
     }
+  },
+  "posts": {},
+  "videos": {},
+  "chats": {},
+  "footer": {
+    "aboutUs": "Par mums",
+    "careers": "Karjera",
+    "blog": "Tehnikas emuārs - ziņas un padomi",
+    "contact": "Sazinieties ar mums",
+    "helpCenter": "Palīdzības centrs",
+    "faq": "FAQ - bieži uzdotie jautājumi",
+    "privacyPolicy": "Konfidencialitātes politika",
+    "termsOfService": "Pakalpojuma noteikumi",
+    "followUs": "Sekojiet mums sociālajos medijos"
   }
 }

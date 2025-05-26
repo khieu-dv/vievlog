@@ -1,22 +1,11 @@
 {
   "header": {
-    "utils": {
-      "login": "Đăng nhập vào Vievlog",
-      "logout": "Đăng xuất khỏi Vievlog",
-      "inquiry": "Liên hệ với hỗ trợ Vievlog",
-      "manager": "Tài khoản của tôi",
-      "topikSchedule": "Lịch trình Vievlog - Sự kiện học tập sắp tới"
-    }
+    "home": "Trang chủ",
+    "posts": "Bài viết",
+    "chats": "Trò chuyện",
+    "videos": "Video"
   },
-  "body": {
-    "utils": {
-      "loading": "Đang tải các bài học của bạn ...",
-      "notFound": "Không có bài học có sẵn trong danh mục này.",
-      "inquiry": "Cần giúp đỡ? Liên hệ với hỗ trợ Vievlog",
-      "manager": "Quản lý tài khoản của bạn"
-    }
-  },
-  "content": {
+  "home": {
     "title": "Vievlog - Học trực tuyến miễn phí Học tập | Các khóa học, tài nguyên & chứng nhận",
     "home": "Trang chủ",
     "posts": "Bài viết",
@@ -92,5 +81,19 @@
       "lesson": "Khám phá các bài học miễn phí của chúng tôi và chọn khóa học hoàn hảo để phù hợp với trình độ kỹ năng của bạn.",
       "grammar": "Khám phá các hướng dẫn và sơ đồ công nghệ chi tiết."
     }
+  },
+  "posts": {},
+  "videos": {},
+  "chats": {},
+  "footer": {
+    "aboutUs": "Về chúng tôi",
+    "careers": "Sự nghiệp",
+    "blog": "Blog Tech - Tin tức & Mẹo",
+    "contact": "Liên hệ với chúng tôi",
+    "helpCenter": "Trung tâm trợ giúp",
+    "faq": "Câu hỏi thường gặp - Câu hỏi thường gặp",
+    "privacyPolicy": "Chính sách bảo mật",
+    "termsOfService": "Điều khoản dịch vụ",
+    "followUs": "Theo dõi chúng tôi trên phương tiện truyền thông xã hội"
   }
 }

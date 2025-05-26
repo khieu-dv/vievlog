@@ -1,22 +1,11 @@
 {
   "header": {
-    "utils": {
-      "login": "Log in op VievLog",
-      "logout": "Log uit van VievLog",
-      "inquiry": "Neem contact op met VievLog -ondersteuning",
-      "manager": "Mijn account",
-      "topikSchedule": "VievLog -schema - Aankomende IT -leerevenementen"
-    }
+    "home": "Thuis",
+    "posts": "Posten",
+    "chats": "Chats",
+    "videos": "Video's"
   },
-  "body": {
-    "utils": {
-      "loading": "Uw IT -lessen laden ...",
-      "notFound": "Geen lessen beschikbaar in deze categorie.",
-      "inquiry": "Hulp nodig? Neem contact op met VievLog -ondersteuning",
-      "manager": "Beheer uw account"
-    }
-  },
-  "content": {
+  "home": {
     "title": "VievLog - Gratis online IT Leren | Cursussen, middelen en certificering",
     "home": "Thuis",
     "posts": "Posten",
@@ -92,5 +81,19 @@
       "lesson": "Verken onze gratis lessen en kies de perfecte cursus die bij uw vaardigheidsniveau past.",
       "grammar": "Ontdek gedetailleerde technische tutorials en -diagrammen."
     }
+  },
+  "posts": {},
+  "videos": {},
+  "chats": {},
+  "footer": {
+    "aboutUs": "Over ons",
+    "careers": "Carrière",
+    "blog": "Tech Blog - Nieuws en tips",
+    "contact": "Neem contact met ons op",
+    "helpCenter": "Helpcentrum",
+    "faq": "FAQ - Veelgestelde vragen",
+    "privacyPolicy": "Privacybeleid",
+    "termsOfService": "Voorwaarden van services",
+    "followUs": "Volg ons op sociale media"
   }
 }

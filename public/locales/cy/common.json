@@ -1,22 +1,11 @@
 {
   "header": {
-    "utils": {
-      "login": "Mewngofnodi i Vievlog",
-      "logout": "Logio allan o vievlog",
-      "inquiry": "Cysylltwch â chefnogaeth vievlog",
-      "manager": "Fy nghyfrif",
-      "topikSchedule": "Amserlen Vievlog - Digwyddiadau Dysgu TG sydd ar ddod"
-    }
+    "home": "Nghartrefi",
+    "posts": "Swyddi",
+    "chats": "Sgyrsiau",
+    "videos": "Fideos"
   },
-  "body": {
-    "utils": {
-      "loading": "Llwytho'ch Gwersi TG ...",
-      "notFound": "Dim gwersi ar gael yn y categori hwn.",
-      "inquiry": "Angen help? Cysylltwch â chefnogaeth vievlog",
-      "manager": "Rheoli Eich Cyfrif"
-    }
-  },
-  "content": {
+  "home": {
     "title": "Vievlog - Dysgu TG Ar -lein Am Ddim | Cyrsiau, Adnoddau ac Ardystiad",
     "home": "Nghartrefi",
     "posts": "Swyddi",
@@ -92,5 +81,19 @@
       "lesson": "Archwiliwch ein gwersi am ddim a dewiswch y cwrs perffaith i gyd -fynd â'ch lefel sgiliau.",
       "grammar": "Darganfyddwch diwtorialau a diagramau technoleg manwl."
     }
+  },
+  "posts": {},
+  "videos": {},
+  "chats": {},
+  "footer": {
+    "aboutUs": "Amdanom Ni",
+    "careers": "Gyrfaoedd",
+    "blog": "Blog Tech - Newyddion ac Awgrymiadau",
+    "contact": "Cysylltwch â ni",
+    "helpCenter": "Canolfan Gymorth",
+    "faq": "Cwestiynau Cyffredin - Cwestiynau Cyffredin",
+    "privacyPolicy": "Polisi Preifatrwydd",
+    "termsOfService": "Telerau Gwasanaeth",
+    "followUs": "Dilynwch ni ar gyfryngau cymdeithasol"
   }
 }

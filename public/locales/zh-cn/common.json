@@ -1,22 +1,11 @@
 {
   "header": {
-    "utils": {
-      "login": "登录到Vievlog",
-      "logout": "登录Vievlog",
-      "inquiry": "联系Vievlog支持",
-      "manager": "我的账户",
-      "topikSchedule": "Vievlog时间表 - 即将参加IT学习活动"
-    }
+    "home": "家",
+    "posts": "帖子",
+    "chats": "聊天",
+    "videos": "视频"
   },
-  "body": {
-    "utils": {
-      "loading": "加载您的IT课...",
-      "notFound": "此类别中没有教训。",
-      "inquiry": "需要帮助吗？联系Vievlog支持",
-      "manager": "管理您的帐户"
-    }
-  },
-  "content": {
+  "home": {
     "title": "Vievlog  - 免费在线学习|课程，资源和认证",
     "home": "家",
     "posts": "帖子",
@@ -92,5 +81,19 @@
       "lesson": "探索我们的免费课程，并选择完美的课程以符合您的技能水平。",
       "grammar": "发现详细的技术教程和图表。"
     }
+  },
+  "posts": {},
+  "videos": {},
+  "chats": {},
+  "footer": {
+    "aboutUs": "关于我们",
+    "careers": "职业",
+    "blog": "技术博客 - 新闻和提示",
+    "contact": "联系我们",
+    "helpCenter": "帮助中心",
+    "faq": "常见问题解答 - 常见问题",
+    "privacyPolicy": "隐私政策",
+    "termsOfService": "服务条款",
+    "followUs": "在社交媒体上关注我们"
   }
 }

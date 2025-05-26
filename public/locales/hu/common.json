@@ -1,22 +1,11 @@
 {
   "header": {
-    "utils": {
-      "login": "Jelentkezzen be a vievlogba",
-      "logout": "Jelentkezzen ki a vievlogból",
-      "inquiry": "Vegye fel a kapcsolatot a VIEVLOG támogatásával",
-      "manager": "Számlám",
-      "topikSchedule": "VIEVLOG ütemterve - A közelgő IT tanulási események"
-    }
+    "home": "Otthon",
+    "posts": "Poszt",
+    "chats": "Csevegés",
+    "videos": "Videó"
   },
-  "body": {
-    "utils": {
-      "loading": "Az informatikai órák betöltése ...",
-      "notFound": "Ebben a kategóriában nem érhető el tanulságok.",
-      "inquiry": "Segítségre van szüksége? Vegye fel a kapcsolatot a VIEVLOG támogatásával",
-      "manager": "Kezelje fiókját"
-    }
-  },
-  "content": {
+  "home": {
     "title": "Vievlog - Ingyenes online informatikai tanulás | Tanfolyamok, erőforrások és tanúsítás",
     "home": "Otthon",
     "posts": "Poszt",
@@ -92,5 +81,19 @@
       "lesson": "Fedezze fel ingyenes óráinkat, és válassza ki a tökéletes tanfolyamot, hogy megfeleljen a képzettségi szintnek.",
       "grammar": "Fedezze fel a részletes technológiai oktatóanyagokat és diagramokat."
     }
+  },
+  "posts": {},
+  "videos": {},
+  "chats": {},
+  "footer": {
+    "aboutUs": "Rólunk",
+    "careers": "Karrier",
+    "blog": "Tech Blog - Hírek és tippek",
+    "contact": "Vegye fel velünk a kapcsolatot",
+    "helpCenter": "Súgó központ",
+    "faq": "GYIK - gyakran feltett kérdések",
+    "privacyPolicy": "Adatvédelmi irányelv",
+    "termsOfService": "Szolgáltatási feltételek",
+    "followUs": "Kövessen minket a közösségi médiában"
   }
 }

@@ -1,22 +1,11 @@
 {
   "header": {
-    "utils": {
-      "login": "Log ind på Vievlog",
-      "logout": "Log ud af Vievlog",
-      "inquiry": "Kontakt Vievlog Support",
-      "manager": "Min konto",
-      "topikSchedule": "Vievlog -plan - Kommende IT -læringsbegivenheder"
-    }
+    "home": "Hjem",
+    "posts": "Indlæg",
+    "chats": "Chats",
+    "videos": "Videoer"
   },
-  "body": {
-    "utils": {
-      "loading": "Indlæser dine IT -lektioner ...",
-      "notFound": "Ingen lektioner tilgængelige i denne kategori.",
-      "inquiry": "Brug for hjælp? Kontakt Vievlog Support",
-      "manager": "Administrer din konto"
-    }
-  },
-  "content": {
+  "home": {
     "title": "Vievlog - Gratis online IT -læring | Kurser, ressourcer og certificering",
     "home": "Hjem",
     "posts": "Indlæg",
@@ -92,5 +81,19 @@
       "lesson": "Udforsk vores gratis lektioner, og vælg det perfekte kursus for at matche dit færdighedsniveau.",
       "grammar": "Oplev detaljerede teknologiske tutorials og diagrammer."
     }
+  },
+  "posts": {},
+  "videos": {},
+  "chats": {},
+  "footer": {
+    "aboutUs": "Om os",
+    "careers": "Karrierer",
+    "blog": "Teknisk blog - Nyheder og tip",
+    "contact": "Kontakt os",
+    "helpCenter": "Hjælp center",
+    "faq": "FAQ - ofte stillede spørgsmål",
+    "privacyPolicy": "Privatlivspolitik",
+    "termsOfService": "Servicevilkår",
+    "followUs": "Følg os på sociale medier"
   }
 }

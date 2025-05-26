@@ -1,22 +1,11 @@
 {
   "header": {
-    "utils": {
-      "login": "Faça login no vievlog",
-      "logout": "Log Out of VievLog",
-      "inquiry": "Entre em contato com o suporte do VievLog",
-      "manager": "Minha conta",
-      "topikSchedule": "Cronograma de vievlog - os próximos eventos de aprendizado de TI"
-    }
+    "home": "Lar",
+    "posts": "Postagens",
+    "chats": "Bate -papos",
+    "videos": "Vídeos"
   },
-  "body": {
-    "utils": {
-      "loading": "Carregando suas lições de TI ...",
-      "notFound": "Não há lições disponíveis nesta categoria.",
-      "inquiry": "Precisar de ajuda? Entre em contato com o suporte do VievLog",
-      "manager": "Gerencie sua conta"
-    }
-  },
-  "content": {
+  "home": {
     "title": "VievLog - Aprendizagem online gratuita de TI | Cursos, recursos e certificação",
     "home": "Lar",
     "posts": "Postagens",
@@ -92,5 +81,19 @@
       "lesson": "Explore nossas lições gratuitas e escolha o curso perfeito para corresponder ao seu nível de habilidade.",
       "grammar": "Descubra tutoriais e diagramas de tecnologia detalhados."
     }
+  },
+  "posts": {},
+  "videos": {},
+  "chats": {},
+  "footer": {
+    "aboutUs": "Sobre nós",
+    "careers": "Carreiras",
+    "blog": "Blog de tecnologia - Notícias e dicas",
+    "contact": "Contate-nos",
+    "helpCenter": "Centro de ajuda",
+    "faq": "Perguntas frequentes - perguntas frequentes",
+    "privacyPolicy": "política de Privacidade",
+    "termsOfService": "Termos de Serviço",
+    "followUs": "Siga -nos nas mídias sociais"
   }
 }
