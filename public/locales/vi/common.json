@@ -6,69 +6,67 @@
     "videos": "Video"
   },
   "home": {
-    "oneStopPlatform": "Vievlog-Nền tảng học tập CNTT tất cả trong một của bạn",
-    "learnIT": "Tận hưởng các hướng dẫn, bài học và tài nguyên chất lượng hàng đầu từ các giảng viên có kinh nghiệm, hoàn toàn miễn phí.",
-    "viewAllPosts": "Xem tất cả các bài viết",
-    "shoppingExperience": "Kinh nghiệm mua sắm",
-    "latestBlogPosts": "Bài viết blog mới nhất",
-    "exploreArticles": "Khám phá các bài viết và mẹo mới nhất của chúng tôi để học nó",
-    "vieTopik": "VIEVLOG - HUB TOP 1 IT LEAKID",
-    "yourOneStopShop": "Nền tảng một cửa của bạn để làm chủ các kỹ năng CNTT và chuẩn bị cho các kỳ thi chứng nhận. Nhận quyền truy cập vào nội dung cao cấp miễn phí!",
-    "signUpNow": "Đăng ký ngay bây giờ",
-    "browseIT": "Duyệt nó",
-    "customerTestimonialsTitle": "Khách hàng của chúng tôi nói gì",
-    "customerTestimonialsSubtitle": "Đừng chỉ nhận lời của chúng tôi cho nó - nghe từ những khách hàng hài lòng của chúng tôi",
+    "oneStopPlatform": "Vievlog - Nền tảng học lập trình phần mềm toàn diện",
+    "learnIT": "Khám phá hướng dẫn lập trình, khóa học IT và tài nguyên chuyên sâu từ chuyên gia công nghệ hàng đầu – hoàn toàn miễn phí.",
+    "viewAllPosts": "Xem tất cả bài viết lập trình",
+    "shoppingExperience": "Trải nghiệm học tập thực tiễn",
+    "latestBlogPosts": "Bài viết kỹ thuật mới nhất",
+    "exploreArticles": "Khám phá mẹo lập trình và bài viết chuyên sâu mới nhất",
+    "vieTopik": "VIEVLOG - Nơi hội tụ kiến thức lập trình & công nghệ",
+    "yourOneStopShop": "Nền tảng toàn diện giúp bạn làm chủ kỹ năng lập trình, phát triển phần mềm và sẵn sàng cho các kỳ thi chứng chỉ IT.",
+    "signUpNow": "Tham gia ngay",
+    "browseIT": "Khám phá nội dung lập trình",
+    "customerTestimonialsTitle": "Người học nói gì về chúng tôi",
+    "customerTestimonialsSubtitle": "Lắng nghe chia sẻ thực tế từ cộng đồng học viên công nghệ",
     "testimonial1": {
-      "quote": "Vievlog đã giúp tôi tự tin vượt qua kỳ thi chứng nhận CNTT của mình.",
-      "name": "Nguyen Minh Anh",
-      "role": "Sinh viên quốc tế"
+      "quote": "Vievlog đã giúp tôi tự tin vượt qua kỳ thi chứng chỉ lập trình viên quốc tế.",
+      "name": "Nguyễn Minh Anh",
+      "role": "Sinh viên ngành Công nghệ thông tin"
     },
     "testimonial2": {
-      "quote": "Học nó thông qua Vievlog vừa hiệu quả và thú vị!",
-      "name": "Tran Hai Nam",
-      "role": "Văn phòng Chuyên nghiệp"
+      "quote": "Học lập trình trên Vievlog rất trực quan, dễ hiểu và hiệu quả.",
+      "name": "Trần Hải Nam",
+      "role": "Nhân viên phát triển phần mềm"
     },
     "testimonial3": {
-      "quote": "Nhờ Vievlog, tôi đã cải thiện đáng kể kỹ năng lập trình của mình.",
-      "name": "Le Thanh Huong",
-      "role": "Sinh viên đại học"
+      "quote": "Nhờ Vievlog, kỹ năng viết mã của tôi được cải thiện đáng kể.",
+      "name": "Lê Thanh Hương",
+      "role": "Sinh viên đại học năm 3"
     }
   },
   "posts": {
-    "title": "Tất cả các bài viết"
+    "title": "Tổng hợp bài viết lập trình & phát triển phần mềm"
   },
-  "videos": {},
-  "chats": {},
+  "videos": {
+    "allVideos": "Kho video",
+    "tiktokVideos": "Video ngắn Tiktok"
+  },
+  "chats": {
+    "chatWithUs": "Trò chuyện cùng đội ngũ hỗ trợ kỹ thuật",
+    "chatWithFriend": "Giao lưu với cộng đồng lập trình viên",
+    "placeholderMessage": "Nhập tin nhắn...",
+    "sendButton": "Gửi tin nhắn"
+  },
   "footer": {
-    "aboutUs": "Về chúng tôi",
-    "careers": "Sự nghiệp",
-    "blog": "Blog Tech - Tin tức & Mẹo",
-    "contact": "Liên hệ với chúng tôi",
+    "aboutUs": "Giới thiệu về Vievlog",
+    "careers": "Cơ hội nghề nghiệp",
+    "blog": "Blog lập trình - Tin tức & Kỹ thuật",
+    "contact": "Liên hệ",
     "helpCenter": "Trung tâm trợ giúp",
-    "faq": "Câu hỏi thường gặp - Câu hỏi thường gặp",
-    "privacyPolicy": "Chính sách bảo mật",
-    "termsOfService": "Điều khoản dịch vụ",
-    "followUs": "Theo dõi chúng tôi trên phương tiện truyền thông xã hội",
-    "footerNote": "© 2025 Vievlog. Tất cả quyền được bảo lưu.",
-    "privacy": "Sự riêng tư",
+    "faq": "Câu hỏi thường gặp",
+    "privacyPolicy": "Chính sách bảo mật thông tin",
+    "termsOfService": "Điều khoản sử dụng",
+    "followUs": "Theo dõi Vievlog trên mạng xã hội",
+    "footerNote": "© 2025 Vievlog. Bản quyền thuộc về chúng tôi.",
+    "privacy": "Bảo mật",
     "terms": "Điều khoản",
-    "cookies": "Cookie",
-    "sitemap": "SITEMAP",
-    "followUsYoutube": "Theo dõi chúng tôi trên YouTube",
-    "chats": {
-      "chatWithUs": "Trò chuyện với chúng tôi",
-      "chatWithFriend": "Trò chuyện với bạn bè của bạn",
-      "placeholderMessage": "Nhập tin nhắn ...",
-      "sendButton": "Gửi"
-    },
-    "videos": {
-      "allVideos": "Tất cả các video",
-      "tiktokVideos": "Video Tiktok"
-    },
+    "cookies": "Chính sách Cookie",
+    "sitemap": "Sơ đồ trang",
+    "followUsYoutube": "Theo dõi Vievlog trên YouTube",
     "posts": {
-      "allPosts": "Tất cả các bài viết",
-      "ginCourse": "Khóa học gin",
-      "GoCourse": "Đi tất nhiên"
+      "allPosts": "Tất cả bài viết",
+      "ginCourse": "Khóa học lập trình Gin (Golang)",
+      "GoCourse": "Lộ trình học Golang chuyên sâu"
     }
   }
 }
