@@ -6,78 +6,69 @@
     "videos": "Videos"
   },
   "home": {
-    "oneStopPlatform": "VieVlog – Your All-in-One IT Learning Platform",
-    "learnIT": "Enjoy top-quality IT tutorials, lessons, and resources from experienced instructors—completely free.",
-    "viewAllPosts": "View All Post",
-    "shoppingExperience": "Shopping experience",
-    "latestBlogPosts": "Latest Blog Posts",
-    "exploreArticles": "Explore our latest articles and tips for learning IT",
-    "vieTopik": "VieVlog – The Top 1 IT Learning Hub",
-    "yourOneStopShop": "Your one-stop platform to master IT skills and prepare for certification exams. Get access to premium content at no cost!",
-    "signUpNow": "Sign Up Now",
-    "browseIT": "Browse IT",
-    "customerTestimonialsTitle": "What Our Customers Say",
-    "customerTestimonialsSubtitle": "Don't just take our word for it - hear from our satisfied customers",
+    "oneStopPlatform": "VieVlog – Your Ultimate Software Development Learning Platform",
+    "learnIT": "Access high-quality programming tutorials, coding lessons, and developer resources—100% free and created by expert instructors.",
+    "viewAllPosts": "Browse All Programming Articles",
+    "shoppingExperience": "Learning Experience",
+    "latestBlogPosts": "Latest Developer Blog Posts",
+    "exploreArticles": "Discover trending tech guides, programming tips, and software tutorials",
+    "vieTopik": "VieVlog – Top-Rated Hub for Learning Programming & IT",
+    "yourOneStopShop": "Master coding skills, prepare for IT certifications, and grow your tech career with our all-in-one learning platform—free access to premium content!",
+    "signUpNow": "Create a Free Account",
+    "browseIT": "Explore IT Courses",
+    "customerTestimonialsTitle": "What Our Learners Say",
+    "customerTestimonialsSubtitle": "See how developers and students around the world are growing with VieVlog",
     "testimonial1": {
-      "quote": "VieVlog helped me confidently pass my IT certification exam.",
+      "quote": "VieVlog gave me the confidence to pass my IT certification with ease.",
       "name": "Nguyen Minh Anh",
-      "role": "International Student"
+      "role": "International Computer Science Student"
     },
     "testimonial2": {
-      "quote": "Learning IT through VieVlog is both effective and enjoyable!",
+      "quote": "Learning coding through VieVlog is engaging, efficient, and fun!",
       "name": "Tran Hai Nam",
-      "role": "Office Professional"
+      "role": "Full-time Office Professional"
     },
     "testimonial3": {
-      "quote": "Thanks to VieVlog, I’ve significantly improved my programming skills.",
+      "quote": "With VieVlog, my programming skills improved faster than any other platform.",
       "name": "Le Thanh Huong",
-      "role": "University Student"
+      "role": "University Student – Software Engineering"
     }
-    
   },
-
   "posts": {
-    "title": "All Posts"
-    
+    "title": "All Programming Articles and Guides"
   },
-
-  "videos": {    
-  },
-
-  "chats": {
-    
-  },
-
+  "videos": {},
+  "chats": {},
   "footer": {
-    "aboutUs": "About Us",
-    "careers": "Careers",
-    "blog": "Tech Blog – News & Tips",
-    "contact": "Contact Us",
-    "helpCenter": "Help Center",
-    "faq": "FAQ – Frequently Asked Questions",
+    "aboutUs": "About VieVlog",
+    "careers": "Join Our Team",
+    "blog": "Developer Blog – Programming Tips & IT News",
+    "contact": "Contact Support",
+    "helpCenter": "Help Center for Developers",
+    "faq": "FAQs – Coding, Courses & Platform Info",
     "privacyPolicy": "Privacy Policy",
-    "termsOfService": "Terms of Service",
-    "followUs": "Follow Us on Social Media",
+    "termsOfService": "Terms of Use",
+    "followUs": "Connect With Us on Social Media",
     "footerNote": "© 2025 VieVlog. All rights reserved.",
-    "privacy": "Privacy",
-    "terms": "Terms",
-    "cookies": "Cookies",
-    "sitemap": "Sitemap",
-    "followUsYoutube": "Follow us on Youtube",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "cookies": "Cookie Preferences",
+    "sitemap": "Website Sitemap",
+    "followUsYoutube": "Subscribe to Our YouTube Channel",
     "chats": {
-      "chatWithUs": "Chat with us",
-      "chatWithFriend": "Chat with your friends",
-      "placeholderMessage": "Type a message...",
-      "sendButton": "Send"
+      "chatWithUs": "Live Chat Support",
+      "chatWithFriend": "Connect with Fellow Developers",
+      "placeholderMessage": "Write a message...",
+      "sendButton": "Send Message"
     },
     "videos": {
-      "allVideos": "All Videos",
-      "tiktokVideos": "TikTok Videos"
+      "allVideos": "All Video",
+      "tiktokVideos": "Short TikTok Videos"
     },
     "posts": {
-      "allPosts": "All Posts",
-      "ginCourse": "Gin Course",
-      "GoCourse": "Go Course"
+      "allPosts": "Browse Articles",
+      "ginCourse": "Learn Gin Framework (Go)",
+      "GoCourse": "Go Programming Language Course"
     }
   }
 }
