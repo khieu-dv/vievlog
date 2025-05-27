@@ -280,7 +280,6 @@ export default function HomePage() {
               <div className="mt-2 h-1 w-12 rounded-full bg-primary" />
               <p className="mt-4 max-w-2xl text-center text-muted-foreground md:text-lg">
                 {t("home.customerTestimonialsSubtitle")}
-                customers
               </p>
             </div>
             <TestimonialCarousel testimonials={testimonials} />
