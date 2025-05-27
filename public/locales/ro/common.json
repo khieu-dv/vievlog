@@ -6,45 +6,25 @@
     "videos": "Videoclipuri"
   },
   "home": {
-    "title": "VievLog - Învățare online gratuită | Cursuri, resurse și certificare",
-    "home": "Acasă",
-    "posts": "Postări",
-    "chats": "Chats",
-    "videos": "Videoclipuri",
-    "topiks": "IT învățând subiecte",
-    "courses": "Cursuri gratuite",
-    "grammar": "Lecții de gramatică tehnologică",
-    "game": "Jocuri educaționale",
-    "features": "Caracteristici ale platformei",
-    "logIn": "Conectați -vă la contul dvs.",
-    "signUp": "Înscrieți -vă pentru cursuri IT gratuite",
-    "toggleTheme": "Comutați modul de lumină/întuneric",
-    "newCollection": "Explorați noua noastră colecție de cursuri IT",
     "oneStopPlatform": "VievLog-platforma dvs. de învățare IT all-in-one",
-    "startLearningNow": "Începeți să îl învățați și să vă pregătiți pentru examene astăzi",
-    "whyChooseVieVlog": "De ce să o înveți cu Vievlog?",
-    "freeAccess": "Acces complet gratuit",
     "learnIT": "Bucurați-vă de tutoriale IT de cea mai bună calitate, lecții și resurse de la instructori cu experiență-complet gratuit.",
-    "expertInstructors": "Aflați de la experți din industrie",
-    "learnFromExperts": "Fii predat de profesioniști și educatori IT experimentați.",
-    "anytimeAnywhere": "Învățare flexibilă oricând, oriunde",
-    "learnAtYourOwnPace": "Aflați în ritmul propriu cu acces nelimitat la lecții.",
-    "comprehensiveCurriculum": "Curriculum-ul cu stivă completă",
-    "coverAllAspects": "Acoperă fundamentale pentru concepte IT avansate, inclusiv codificare, sisteme, rețele și multe altele.",
-    "viewAllIT": "Parcurgeți toate cursurile VievLog și practicați testele",
-    "featuredCourses": "Programe IT au prezentat",
-    "beginnerIT": "Cursul IT la nivel începător",
-    "intermediateIT": "Curs intermediar IT",
-    "advancedIT": "Avansat It Mastery",
-    "getStartedForFree": "Începeți să învățați gratuit astăzi",
-    "whatOurLearnersSay": "Ce spun elevii despre Vievlog",
+    "viewAllPosts": "Vizualizați toate postările",
+    "shoppingExperience": "Experiență de cumpărături",
+    "latestBlogPosts": "Ultimele postări pe blog",
+    "exploreArticles": "Explorați ultimele noastre articole și sfaturi pentru învățarea acestuia",
+    "vieTopik": "VievLog - Top 1 IT Learning Hub",
+    "yourOneStopShop": "Platforma dvs. unică pentru a stăpâni abilitățile IT și pentru a vă pregăti pentru examene de certificare. Obțineți acces la conținutul premium fără costuri!",
+    "signUpNow": "Înscrieți -vă acum",
+    "browseIT": "Căutați -l",
+    "customerTestimonialsTitle": "Ce spun clienții noștri",
+    "customerTestimonialsSubtitle": "Nu luați doar cuvântul nostru pentru asta - auziți de la clienții noștri mulțumiți",
     "testimonial1": {
       "quote": "VievLog m -a ajutat să -mi trec cu încredere examenul de certificare IT.",
       "name": "Nguyen Minh Anh",
       "role": "Student internațional"
     },
     "testimonial2": {
-      "quote": "Învățarea ei prin VievLog este atât eficientă, cât și plăcută!",
+      "quote": "Învățarea acestuia prin VievLog este atât eficientă, cât și plăcută!",
       "name": "Tran Hai Nam",
       "role": "Profesionist în birou"
     },
@@ -52,37 +32,11 @@
       "quote": "Datorită lui Vievlog, mi -am îmbunătățit semnificativ abilitățile de programare.",
       "name": "Le Thanh Huong",
       "role": "Student universitar"
-    },
-    "vieTopik": "VievLog - Top 1 IT Learning Hub",
-    "yourOneStopShop": "Platforma dvs. unică pentru a stăpâni abilitățile IT și pentru a vă pregăti pentru examene de certificare. Obțineți acces la conținutul premium fără costuri!",
-    "connectWithUs": "Urmați VievLog pe social media",
-    "socialMedia": {
-      "facebook": "Urmați -ne pe Facebook",
-      "twitter": "Urmați -ne pe Twitter",
-      "instagram": "Urmați -ne pe Instagram",
-      "linkedin": "Conectați -vă cu noi pe LinkedIn"
-    },
-    "company": {
-      "aboutUs": "Despre noi",
-      "careers": "Cariere",
-      "blog": "Blog tehnic - știri și sfaturi",
-      "contact": "Contactaţi-ne"
-    },
-    "support": {
-      "helpCenter": "Centrul de ajutor",
-      "faq": "Întrebări frecvente - Întrebări frecvente",
-      "privacyPolicy": "Politica de confidențialitate",
-      "termsOfService": "Termeni de serviciu"
-    },
-    "footer": {
-      "copyright": "© 2025 Vievlog. Toate drepturile rezervate."
-    },
-    "metadata": {
-      "lesson": "Explorați lecțiile noastre gratuite și alegeți cursul perfect pentru a se potrivi cu nivelul dvs. de abilități.",
-      "grammar": "Descoperiți tutoriale și diagrame detaliate tehnologice."
     }
   },
-  "posts": {},
+  "posts": {
+    "title": "Toate postările"
+  },
   "videos": {},
   "chats": {},
   "footer": {
@@ -94,6 +48,27 @@
     "faq": "Întrebări frecvente - Întrebări frecvente",
     "privacyPolicy": "Politica de confidențialitate",
     "termsOfService": "Termeni de serviciu",
-    "followUs": "Urmați -ne pe social media"
+    "followUs": "Urmați -ne pe social media",
+    "footerNote": "© 2025 Vievlog. Toate drepturile rezervate.",
+    "privacy": "Confidențialitate",
+    "terms": "Termeni",
+    "cookies": "Cookie -uri",
+    "sitemap": "Sitemap",
+    "followUsYoutube": "Urmați -ne pe YouTube",
+    "chats": {
+      "chatWithUs": "Discutați cu noi",
+      "chatWithFriend": "Discutați cu prietenii",
+      "placeholderMessage": "Tastați un mesaj ...",
+      "sendButton": "Trimite"
+    },
+    "videos": {
+      "allVideos": "Toate videoclipurile",
+      "tiktokVideos": "Videoclipuri Tiktok"
+    },
+    "posts": {
+      "allPosts": "Toate postările",
+      "ginCourse": "Curs de gin",
+      "GoCourse": "Du -te curs"
+    }
   }
 }

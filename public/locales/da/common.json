@@ -6,38 +6,18 @@
     "videos": "Videoer"
   },
   "home": {
-    "title": "Vievlog - Gratis online IT -læring | Kurser, ressourcer og certificering",
-    "home": "Hjem",
-    "posts": "Indlæg",
-    "chats": "Chats",
-    "videos": "Videoer",
-    "topiks": "Det lærer emner",
-    "courses": "Gratis it -kurser",
-    "grammar": "Teknisk grammatikundervisning",
-    "game": "Uddannelsesspil",
-    "features": "Platformfunktioner",
-    "logIn": "Log ind på din konto",
-    "signUp": "Tilmeld dig gratis IT -kurser",
-    "toggleTheme": "Skift lys/mørk tilstand",
-    "newCollection": "Udforsk vores nye IT -kursussamling",
     "oneStopPlatform": "Vievlog-din alt-i-en-IT-læringsplatform",
-    "startLearningNow": "Begynd at lære det og forbered dig på eksamener i dag",
-    "whyChooseVieVlog": "Hvorfor lære det med Vievlog?",
-    "freeAccess": "Helt fri adgang",
     "learnIT": "Nyd it-tutorials, lektioner og ressourcer fra erfarne instruktører i høj kvalitet fra topkvalitet.",
-    "expertInstructors": "Lær af brancheeksperter",
-    "learnFromExperts": "Bliv undervist af erfarne it -fagfolk og undervisere.",
-    "anytimeAnywhere": "Fleksibel læring når som helst og hvor som helst",
-    "learnAtYourOwnPace": "Lær i dit eget tempo med ubegrænset lektionsadgang.",
-    "comprehensiveCurriculum": "Full-Stack IT-læseplan",
-    "coverAllAspects": "Dækker grundlæggende til avancerede it -koncepter, herunder kodning, systemer, netværk og mere.",
-    "viewAllIT": "Gennemse alle Vievlog -kurser og praksisforsøg",
-    "featuredCourses": "Fremhævede IT -programmer",
-    "beginnerIT": "Begynderniveau IT-kursus",
-    "intermediateIT": "Mellemliggende det kursus",
-    "advancedIT": "Avanceret det mestring",
-    "getStartedForFree": "Begynd at lære gratis i dag",
-    "whatOurLearnersSay": "Hvad eleverne siger om Vievlog",
+    "viewAllPosts": "Se alt indlæg",
+    "shoppingExperience": "Shoppingoplevelse",
+    "latestBlogPosts": "Seneste blogindlæg",
+    "exploreArticles": "Udforsk vores seneste artikler og tip til at lære det",
+    "vieTopik": "Vievlog - Top 1 It Learning Hub",
+    "yourOneStopShop": "Din one-stop-platform til at mestre it-færdigheder og forberede sig på certificeringseksamener. Få adgang til premiumindhold uden omkostninger!",
+    "signUpNow": "Tilmeld dig nu",
+    "browseIT": "Gennemse det",
+    "customerTestimonialsTitle": "Hvad vores kunder siger",
+    "customerTestimonialsSubtitle": "Tag ikke bare vores ord for det - hør fra vores tilfredse kunder",
     "testimonial1": {
       "quote": "Vievlog hjalp mig med tillid til at bestå min IT -certificeringseksamen.",
       "name": "Nguyen Minh Anh",
@@ -52,37 +32,11 @@
       "quote": "Takket være Vievlog har jeg forbedret mine programmeringsevner betydeligt.",
       "name": "Le Thanh Huong",
       "role": "Universitetsstuderende"
-    },
-    "vieTopik": "Vievlog - Top 1 It Learning Hub",
-    "yourOneStopShop": "Din one-stop-platform til at mestre it-færdigheder og forberede sig på certificeringseksamener. Få adgang til premiumindhold uden omkostninger!",
-    "connectWithUs": "Følg Vievlog på sociale medier",
-    "socialMedia": {
-      "facebook": "Følg os på Facebook",
-      "twitter": "Følg os på Twitter",
-      "instagram": "Følg os på Instagram",
-      "linkedin": "Opret forbindelse med os på LinkedIn"
-    },
-    "company": {
-      "aboutUs": "Om os",
-      "careers": "Karrierer",
-      "blog": "Teknisk blog - Nyheder og tip",
-      "contact": "Kontakt os"
-    },
-    "support": {
-      "helpCenter": "Hjælp center",
-      "faq": "FAQ - ofte stillede spørgsmål",
-      "privacyPolicy": "Privatlivspolitik",
-      "termsOfService": "Servicevilkår"
-    },
-    "footer": {
-      "copyright": "© 2025 Vievlog. Alle rettigheder forbeholdes."
-    },
-    "metadata": {
-      "lesson": "Udforsk vores gratis lektioner, og vælg det perfekte kursus for at matche dit færdighedsniveau.",
-      "grammar": "Oplev detaljerede teknologiske tutorials og diagrammer."
     }
   },
-  "posts": {},
+  "posts": {
+    "title": "Alle indlæg"
+  },
   "videos": {},
   "chats": {},
   "footer": {
@@ -94,6 +48,27 @@
     "faq": "FAQ - ofte stillede spørgsmål",
     "privacyPolicy": "Privatlivspolitik",
     "termsOfService": "Servicevilkår",
-    "followUs": "Følg os på sociale medier"
+    "followUs": "Følg os på sociale medier",
+    "footerNote": "© 2025 Vievlog. Alle rettigheder forbeholdes.",
+    "privacy": "Privatliv",
+    "terms": "Vilkår",
+    "cookies": "Cookies",
+    "sitemap": "Sitemap",
+    "followUsYoutube": "Følg os på YouTube",
+    "chats": {
+      "chatWithUs": "Chat med os",
+      "chatWithFriend": "Chat med dine venner",
+      "placeholderMessage": "Skriv en besked ...",
+      "sendButton": "Sende"
+    },
+    "videos": {
+      "allVideos": "Alle videoer",
+      "tiktokVideos": "Tiktok -videoer"
+    },
+    "posts": {
+      "allPosts": "Alle indlæg",
+      "ginCourse": "Gin kursus",
+      "GoCourse": "Gå kursus"
+    }
   }
 }

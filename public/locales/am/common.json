@@ -6,38 +6,18 @@
     "videos": "ቪዲዮዎች"
   },
   "home": {
-    "title": "Vievolog - ነፃ የመስመር ላይ በመስመር ላይ | ትምህርቶች, ሀብቶች እና የምስክር ወረቀት",
-    "home": "ቤት",
-    "posts": "ልጥፎች",
-    "chats": "ውይይቶች",
-    "videos": "ቪዲዮዎች",
-    "topiks": "ርዕሶችን መማር",
-    "courses": "ነፃ ኮርሶች",
-    "grammar": "ቴክ ሰዋስኛ ትምህርቶች",
-    "game": "የትምህርት ጨዋታዎች",
-    "features": "የመሣሪያ ስርዓት ባህሪዎች",
-    "logIn": "ወደ ሂሳብዎ ይግቡ",
-    "signUp": "ለነፃነት ኮርሶች ይመዝገቡ",
-    "toggleTheme": "ብርሃን / ጨለማ ሁነታን ቀይር",
-    "newCollection": "የእኛን አዲሱን ኮርስ ስብስብ መመርመር",
     "oneStopPlatform": "Vievolog - የእርስዎ ሁሉ-አንድ-ትምህርት መድረክ",
-    "startLearningNow": "መማር ይጀምሩ እና ዛሬ ለፈተናዎች ይዘጋጁ",
-    "whyChooseVieVlog": "በ Vievolog ጋር ለምን ይማራሉ?",
-    "freeAccess": "ሙሉ በሙሉ ነፃ መዳረሻ",
     "learnIT": "ሙሉ ጥራት ባለው ማጠናከሪያ ትምህርቶች, ትምህርቶች እና ሀብቶች ሙሉ በሙሉ ነፃ በሆነ አስተማሪዎች ይደሰቱ.",
-    "expertInstructors": "ከኢንዱስትሪ ባለሙያዎች ይወቁ",
-    "learnFromExperts": "በተሸፈኑ የባለሙያ ባለሙያዎች እና አስተማሪዎች ይመረምሩ.",
-    "anytimeAnywhere": "ተለዋዋጭ ትምህርት በማንኛውም ጊዜ, በየትኛውም ቦታ",
-    "learnAtYourOwnPace": "ባልተገደበ የትምህርት ተደራሽነት ያለው በራስዎ ፍጥነት ይማሩ.",
-    "comprehensiveCurriculum": "የተሟላ ቁልል ሥርዓተ ትምህርት",
-    "coverAllAspects": "ኮድ, ስርዓቶች, ዲስኮች, አውታረ መረቦች እና ሌሎችም ጨምሮ የላቁ ፅንሰ-ሀሳቦችን ይሸፍናል.",
-    "viewAllIT": "ሁሉንም Vievolog ኮርሶች እና ልምዶች ሙከራዎችን ያስሱ",
-    "featuredCourses": "ለፕሮግራሞች",
-    "beginnerIT": "ጀማሪ - ደረጃው",
-    "intermediateIT": "መካከለኛ",
-    "advancedIT": "የላቀ ችሎታ",
-    "getStartedForFree": "ዛሬ በነፃ መማር መማር ይጀምሩ",
-    "whatOurLearnersSay": "የተማሪዎች ስለ Vievolog ምን ይላሉ?",
+    "viewAllPosts": "ሁሉንም ልጥፍ ይመልከቱ",
+    "shoppingExperience": "የግብይት ተሞክሮ",
+    "latestBlogPosts": "የቅርብ ጊዜ ብሎግ ልጥፎች",
+    "exploreArticles": "የቅርብ ጊዜዎቹን መጣጥፎችን እና ለመማር ጠቃሚ ምክሮች ያስሱ",
+    "vieTopik": "Vievolog - የላይኛው 1 ትምህርት መማሪያ",
+    "yourOneStopShop": "ችሎታዎችን ለማስተማር እና የምስክር ወረቀት ፈተናዎችን ለመዘጋጀት የእርስዎ ሰጪ መድረክ መድረክዎ. ያለምንም ወጪ የፕሪሚየም ይዘት መዳረሻ ያግኙ!",
+    "signUpNow": "አሁን ይመዝገቡ",
+    "browseIT": "ያስሱብኩት",
+    "customerTestimonialsTitle": "ደንበኞቻችን ምን እንደሚሉ",
+    "customerTestimonialsSubtitle": "ቃሎቹን ብቻ አይወስዱም - ከተጠጋጉ ደንበኞቻችን ለመስማት",
     "testimonial1": {
       "quote": "Vievlog የእኔን የማረጋገጫ ማረጋገጫ ፈተናዬን በድፍረት ማለፍ ረድቶኛል.",
       "name": "Nguyen minh ah ah",
@@ -52,37 +32,11 @@
       "quote": "ለቪቪሎግ አመሰግናለሁ, የፕሮግራም ችሎታዬን አሻሽያለሁ.",
       "name": "Lhamh hugo",
       "role": "የዩኒቨርሲቲ ተማሪ"
-    },
-    "vieTopik": "Vievolog - የላይኛው 1 ትምህርት መማሪያ",
-    "yourOneStopShop": "ችሎታዎችን ለማስተማር እና የምስክር ወረቀት ፈተናዎችን ለመዘጋጀት የእርስዎ ሰጪ መድረክ መድረክዎ. ያለምንም ወጪ የፕሪሚየም ይዘት መዳረሻ ያግኙ!",
-    "connectWithUs": "በማህበራዊ ሚዲያ ላይ Vievolog ይከተሉ",
-    "socialMedia": {
-      "facebook": "በፌስቡክ ላይ ተከተሉን",
-      "twitter": "በትዊተር ላይ ይከተሉን",
-      "instagram": "በ Instagram ላይ ይከተሉን",
-      "linkedin": "በ Linkedin ላይ ከእኛ ጋር ይገናኙ"
-    },
-    "company": {
-      "aboutUs": "ስለ እኛ",
-      "careers": "ሙያዎች",
-      "blog": "የቴክኖሎጂ ጦማር - ዜና እና ምክሮች",
-      "contact": "እኛን ያግኙን"
-    },
-    "support": {
-      "helpCenter": "የእገዛ ማዕከል",
-      "faq": "ተዘውትረው የሚጠየቁ ጥያቄዎች - ተዘውትረው የሚጠየቁ ጥያቄዎች",
-      "privacyPolicy": "የግላዊነት ፖሊሲ",
-      "termsOfService": "የአገልግሎት ውሎች"
-    },
-    "footer": {
-      "copyright": "© 2025 Vievolog. ሁሉም መብቶች የተጠበቁ ናቸው."
-    },
-    "metadata": {
-      "lesson": "ነፃ ትምህርቶቻችንን ያስሱ እና ከችሎታዎ ደረጃ ጋር እንዲዛመድ ትክክለኛውን አካሄድ ይምረጡ.",
-      "grammar": "ዝርዝር የቴክኖሎጂ ትምህርቶችን እና ስዕላዊ መግለጫዎችን ያግኙ."
     }
   },
-  "posts": {},
+  "posts": {
+    "title": "ሁሉም ልጥፎች"
+  },
   "videos": {},
   "chats": {},
   "footer": {
@@ -94,6 +48,27 @@
     "faq": "ተዘውትረው የሚጠየቁ ጥያቄዎች - ተዘውትረው የሚጠየቁ ጥያቄዎች",
     "privacyPolicy": "የግላዊነት ፖሊሲ",
     "termsOfService": "የአገልግሎት ውሎች",
-    "followUs": "በማህበራዊ ሚዲያዎች ላይ ይከተሉን"
+    "followUs": "በማህበራዊ ሚዲያዎች ላይ ይከተሉን",
+    "footerNote": "© 2025 Vievolog. ሁሉም መብቶች የተጠበቁ ናቸው.",
+    "privacy": "ግላዊነት",
+    "terms": "ውሎች",
+    "cookies": "ኩኪዎች",
+    "sitemap": "ጣቢያ",
+    "followUsYoutube": "በ YouTube ላይ ይከተሉን",
+    "chats": {
+      "chatWithUs": "ከእኛ ጋር ይወያዩ",
+      "chatWithFriend": "ከጓደኞችዎ ጋር ይወያዩ",
+      "placeholderMessage": "መልእክት ይተይቡ ...",
+      "sendButton": "ላክ"
+    },
+    "videos": {
+      "allVideos": "ሁሉም ቪዲዮዎች",
+      "tiktokVideos": "የቲክቶክ ቪዲዮዎች"
+    },
+    "posts": {
+      "allPosts": "ሁሉም ልጥፎች",
+      "ginCourse": "ጂን ኮርስ",
+      "GoCourse": "ሂድ ሂድ"
+    }
   }
 }

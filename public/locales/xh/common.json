@@ -6,38 +6,18 @@
     "videos": "Iividiyo"
   },
   "home": {
-    "title": "Vievlog-Simahla Akukho mlinganiselo I-intanethi ifunda | Iikhosi, izixhobo kunye nesiqinisekiso",
-    "home": "Ikhaya",
-    "posts": "Izithuba",
-    "chats": "Iingxoxo",
-    "videos": "Iividiyo",
-    "topiks": "Ifunda izihloko",
-    "courses": "Iikhosi zasimahla",
-    "grammar": "Izifundo zeGech Grammar",
-    "game": "Imidlalo yemfundo",
-    "features": "Iimpawu zeqonga",
-    "logIn": "Ngena kwiakhawunti yakho",
-    "signUp": "Bhalisela iikhosi zasimahla",
-    "toggleTheme": "Tshintshela Imowudi yeHigh / emnyama",
-    "newCollection": "Jonga ingqokelela yethu entsha",
     "oneStopPlatform": "I-Vievlog-kwiqonga lakho le-IT-enye i-IT",
-    "startLearningNow": "Qala ngokufunda kwaye ulungiselele iimviwo namhlanje",
-    "whyChooseVieVlog": "Kutheni le nto ndifunda nge-vievlog?",
-    "freeAccess": "Ufikelelo simahla",
     "learnIT": "Yonwabela umgangatho ophezulu we-ITToraials, izifundo, kunye nezixhobo ezivela kubafundisi-ntsapho-zimahla.",
-    "expertInstructors": "Funda kwiingcali zeshishini",
-    "learnFromExperts": "Ifundiswa ngokufumana iingcali ze-IT kunye nootitshala.",
-    "anytimeAnywhere": "Ukufunda ngokuthe ngqo nangaliphi na ixesha, naphi na",
-    "learnAtYourOwnPace": "Funda ngesantya sakho ngesantya esingenamkhawulo.",
-    "comprehensiveCurriculum": "Ikharityhulamu egcweleyo",
-    "coverAllAspects": "I-Cogns esisiseko yokuqhubela phambili inyanzelisile ukubandakanya ukufaka iikhowudi, iinkqubo, inethiwekhi, nangaphezulu.",
-    "viewAllIT": "Bhrawuza zonke iikhosi zeVievlog kunye neemvavanyo zokuziqhelanisa",
-    "featuredCourses": "Iinkqubo ze-IT",
-    "beginnerIT": "Ikhosi yenqanaba",
-    "intermediateIT": "Ikhosi yekhosi",
-    "advancedIT": "I-Lostery",
-    "getStartedForFree": "Qala ukufunda simahla namhlanje",
-    "whatOurLearnersSay": "OKUTHETHWA NGABANTU malunga neVievlog",
+    "viewAllPosts": "Jonga yonke iposti",
+    "shoppingExperience": "Amava okuthenga",
+    "latestBlogPosts": "Iiposti zebhlog zamva nje",
+    "exploreArticles": "Jonga amanqaku ethu amva kunye neengcebiso zokufunda",
+    "vieTopik": "I-Vievlog-I-1 i-1 ifunda hub",
+    "yourOneStopShop": "Iqonga lakho lokumisa i-STOP lokuphumelela kwizakhono ze-IT kwaye lilungiselela iimviwo zesiqinisekiso. Fumana ukufikelela kumxholo wepremiyamu ngaphandle kwendleko!",
+    "signUpNow": "Bhalisa ngoku",
+    "browseIT": "Bhawula",
+    "customerTestimonialsTitle": "Oko bakuthethayo abathengi bethu",
+    "customerTestimonialsSubtitle": "Sukuthatha nje igama lethu lalo-live kubathengi bethu abanelisiweyo",
     "testimonial1": {
       "quote": "I-Vievlog yandinceda ukuba ndigqithe iimviwo zam zesiqinisekiso.",
       "name": "Nguyen Minh Anh",
@@ -52,37 +32,11 @@
       "quote": "Enkosi kwiVievlog, ndizifezekise kakhulu izakhono zam zoqoqosho.",
       "name": "Leh huong",
       "role": "Umfundi waseyunivesithi"
-    },
-    "vieTopik": "I-Vievlog-I-1 i-1 ifunda hub",
-    "yourOneStopShop": "Iqonga lakho lokumisa i-STOP lokuphumelela kwizakhono ze-IT kwaye lilungiselela iimviwo zesiqinisekiso. Fumana ukufikelela kumxholo wepremiyamu ngaphandle kwendleko!",
-    "connectWithUs": "Landela iVievlog kwimidiya yoluntu",
-    "socialMedia": {
-      "facebook": "Silandele kwi-Facebook",
-      "twitter": "Silandele kwi-twitter",
-      "instagram": "Silandele kwi-Instagram",
-      "linkedin": "Qhagamshela nathi kwi-LinkedIn"
-    },
-    "company": {
-      "aboutUs": "Ngathi",
-      "careers": "Imisebenzi",
-      "blog": "I-Tech Blog - Iindaba kunye neeTiki",
-      "contact": "Qhagamshelana nathi"
-    },
-    "support": {
-      "helpCenter": "IZiko loNcedo",
-      "faq": "I-FAQ-Imibuzo ebuzwa rhoqo",
-      "privacyPolicy": "Umthetho wabucala",
-      "termsOfService": "Imimmisele yenkonzo"
-    },
-    "footer": {
-      "copyright": "© 2025 Vievlog. Onke Amalungelo Agciniwe."
-    },
-    "metadata": {
-      "lesson": "Jonga izifundo zethu zasimahla kwaye ukhethe ikhosi egqibeleleyo yokutshatisa inqanaba lezakhono zakho.",
-      "grammar": "Fumanisa ii-tutorials ezineenkcukacha kunye nemizobo."
     }
   },
-  "posts": {},
+  "posts": {
+    "title": "Zonke izithuba"
+  },
   "videos": {},
   "chats": {},
   "footer": {
@@ -94,6 +48,27 @@
     "faq": "I-FAQ-Imibuzo ebuzwa rhoqo",
     "privacyPolicy": "Umthetho wabucala",
     "termsOfService": "Imimmisele yenkonzo",
-    "followUs": "Silandele kwimidiya yoluntu"
+    "followUs": "Silandele kwimidiya yoluntu",
+    "footerNote": "© 2025 Vievlog. Onke Amalungelo Agciniwe.",
+    "privacy": "Ubumfihlo",
+    "terms": "Amagama",
+    "cookies": "Iicookies",
+    "sitemap": "Indawo",
+    "followUsYoutube": "Silandele kwiYouTube",
+    "chats": {
+      "chatWithUs": "Incoko nathi",
+      "chatWithFriend": "Incoko kunye nabahlobo bakho",
+      "placeholderMessage": "Chwetheza umyalezo ...",
+      "sendButton": "Thumela"
+    },
+    "videos": {
+      "allVideos": "Zonke iividiyo",
+      "tiktokVideos": "Iividiyo zeTiktok"
+    },
+    "posts": {
+      "allPosts": "Zonke izithuba",
+      "ginCourse": "Ikhosi ye-Gin",
+      "GoCourse": "Yiya"
+    }
   }
 }

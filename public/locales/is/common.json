@@ -6,38 +6,18 @@
     "videos": "Myndbönd"
   },
   "home": {
-    "title": "Vievlog - Ókeypis á netinu það nám | Námskeið, auðlindir og vottun",
-    "home": "Heim",
-    "posts": "Færslur",
-    "chats": "Spjall",
-    "videos": "Myndbönd",
-    "topiks": "Það að læra efni",
-    "courses": "Ókeypis námskeið",
-    "grammar": "Tæknifræðikennsla",
-    "game": "Fræðsluleikir",
-    "features": "Vettvangsaðgerðir",
-    "logIn": "Skráðu þig inn á reikninginn þinn",
-    "signUp": "Skráðu þig fyrir ókeypis námskeið",
-    "toggleTheme": "Skiptu um ljós/dökkan hátt",
-    "newCollection": "Skoðaðu nýja námskeiðssafnið okkar",
-    "oneStopPlatform": "Vievlog-All-í-einn upplýsingatæknipallurinn þinn",
-    "startLearningNow": "Byrjaðu að læra það og undirbúa þig fyrir próf í dag",
-    "whyChooseVieVlog": "Af hverju að læra það með Vievlog?",
-    "freeAccess": "Alveg ókeypis aðgangur",
+    "oneStopPlatform": "Vievlog-All-í-einn upplýsingatæknivettvangurinn þinn",
     "learnIT": "Njóttu hágæða upplýsingatækni, kennslustundir og úrræði frá reyndum leiðbeinendum-fullkomlega ókeypis.",
-    "expertInstructors": "Lærðu af sérfræðingum í iðnaði",
-    "learnFromExperts": "Fáðu kennt af vanurum upplýsingatæknifræðingum og kennurum.",
-    "anytimeAnywhere": "Sveigjanlegt nám hvenær sem er, hvar sem er",
-    "learnAtYourOwnPace": "Lærðu á eigin hraða með ótakmarkaðan aðgang að kennslustundum.",
-    "comprehensiveCurriculum": "Námskrá með fullan staf",
-    "coverAllAspects": "Nær til grundvallar til háþróaðra upplýsingatæknihugtaka, þ.mt kóðunar, kerfa, nets og fleira.",
-    "viewAllIT": "Skoðaðu öll vievlog námskeið og æfingarpróf",
-    "featuredCourses": "Valin upplýsingatækniforrit",
-    "beginnerIT": "Byrjunarstig IT námskeið",
-    "intermediateIT": "Milli þess námskeið",
-    "advancedIT": "Advanced It Mastery",
-    "getStartedForFree": "Byrjaðu að læra ókeypis í dag",
-    "whatOurLearnersSay": "Hvað nemendur segja um Vievlog",
+    "viewAllPosts": "Skoðaðu alla færslu",
+    "shoppingExperience": "Verslunarreynsla",
+    "latestBlogPosts": "Nýjustu bloggfærslur",
+    "exploreArticles": "Kannaðu nýjustu greinar okkar og ráð til að læra það",
+    "vieTopik": "Vievlog - Topp 1 upplýsingatæknin",
+    "yourOneStopShop": "Einn stöðvunarvettvangur þinn til að ná tökum á upplýsingatækni og búa þig undir vottunarpróf. Fáðu aðgang að úrvals efni án kostnaðar!",
+    "signUpNow": "Skráðu þig núna",
+    "browseIT": "Vafraðu það",
+    "customerTestimonialsTitle": "Það sem viðskiptavinir okkar segja",
+    "customerTestimonialsSubtitle": "Ekki bara taka orð okkar fyrir það - heyrðu frá ánægðum viðskiptavinum okkar",
     "testimonial1": {
       "quote": "Vievlog hjálpaði mér með öryggi að standast upplýsingatækniprófið mitt.",
       "name": "Nguyen minh anh",
@@ -52,37 +32,11 @@
       "quote": "Þökk sé Vievlog hef ég bætt forritunarhæfileika mína verulega.",
       "name": "Le Thanh Huong",
       "role": "Háskólanemi"
-    },
-    "vieTopik": "Vievlog - Topp 1 upplýsingatæknin",
-    "yourOneStopShop": "Einn stöðvunarvettvangur þinn til að ná tökum á upplýsingatækni og búa þig undir vottunarpróf. Fáðu aðgang að úrvals efni án kostnaðar!",
-    "connectWithUs": "Fylgdu Vievlog á samfélagsmiðlum",
-    "socialMedia": {
-      "facebook": "Fylgdu okkur á Facebook",
-      "twitter": "Fylgdu okkur á Twitter",
-      "instagram": "Fylgdu okkur á Instagram",
-      "linkedin": "Tengdu okkur á LinkedIn"
-    },
-    "company": {
-      "aboutUs": "Um okkur",
-      "careers": "Starfsferill",
-      "blog": "Tækniblogg - Fréttir og ráð",
-      "contact": "Hafðu samband"
-    },
-    "support": {
-      "helpCenter": "Hjálparmiðstöð",
-      "faq": "Algengar spurningar - Algengar spurningar",
-      "privacyPolicy": "Persónuverndarstefna",
-      "termsOfService": "Þjónustuskilmálar"
-    },
-    "footer": {
-      "copyright": "© 2025 Vievlog. Öll réttindi áskilin."
-    },
-    "metadata": {
-      "lesson": "Kannaðu ókeypis kennslustundir okkar og veldu hið fullkomna námskeið til að passa við færni þína.",
-      "grammar": "Uppgötvaðu ítarlegar tækni og skýringarmyndir."
     }
   },
-  "posts": {},
+  "posts": {
+    "title": "Öll innlegg"
+  },
   "videos": {},
   "chats": {},
   "footer": {
@@ -93,7 +47,28 @@
     "helpCenter": "Hjálparmiðstöð",
     "faq": "Algengar spurningar - Algengar spurningar",
     "privacyPolicy": "Persónuverndarstefna",
-    "termsOfService": "Þjónustuskilmálar",
-    "followUs": "Fylgdu okkur á samfélagsmiðlum"
+    "termsOfService": "Þjónustuskilmála",
+    "followUs": "Fylgdu okkur á samfélagsmiðlum",
+    "footerNote": "© 2025 Vievlog. Öll réttindi áskilin.",
+    "privacy": "Persónuvernd",
+    "terms": "Kjör",
+    "cookies": "Smákökur",
+    "sitemap": "Sitemap",
+    "followUsYoutube": "Fylgdu okkur á YouTube",
+    "chats": {
+      "chatWithUs": "Spjallaðu við okkur",
+      "chatWithFriend": "Spjallaðu við vini þína",
+      "placeholderMessage": "Sláðu inn skilaboð ...",
+      "sendButton": "Senda"
+    },
+    "videos": {
+      "allVideos": "Öll myndbönd",
+      "tiktokVideos": "Tiktok myndbönd"
+    },
+    "posts": {
+      "allPosts": "Öll innlegg",
+      "ginCourse": "Gin námskeið",
+      "GoCourse": "Farðu námskeið"
+    }
   }
 }

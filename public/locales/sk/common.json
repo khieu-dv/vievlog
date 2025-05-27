@@ -6,45 +6,25 @@
     "videos": "Videá"
   },
   "home": {
-    "title": "VievLog - zadarmo online učenie | Kurzy, zdroje a certifikácia",
-    "home": "Domov",
-    "posts": "Pracovné miesta",
-    "chats": "Chatovanie",
-    "videos": "Videá",
-    "topiks": "To sa učia témy",
-    "courses": "ZADARMO IT KURZY",
-    "grammar": "Lekcie gramatiky",
-    "game": "Vzdelávacie hry",
-    "features": "Funkcie platformy",
-    "logIn": "Prihláste sa do svojho účtu",
-    "signUp": "Prihláste sa na bezplatné kurzy IT",
-    "toggleTheme": "Prepnite režim svetla/tmavej",
-    "newCollection": "Preskúmajte našu novú zbierku kurzov IT",
     "oneStopPlatform": "VievLog-vaša platforma pre vzdelávanie typu all-in-one",
-    "startLearningNow": "Začnite sa učiť a pripravovať sa na skúšky ešte dnes",
-    "whyChooseVieVlog": "Prečo sa to naučiť s Vievlogom?",
-    "freeAccess": "Úplne voľný prístup",
     "learnIT": "Vychutnajte si špičkové IT návody, lekcie a zdroje od skúsených inštruktorov-úplne zadarmo.",
-    "expertInstructors": "Učte sa od odborníkov v priemysle",
-    "learnFromExperts": "Vyučujte skúsení odborníci a pedagógovia IT.",
-    "anytimeAnywhere": "Flexibilné učenie kedykoľvek a kdekoľvek",
-    "learnAtYourOwnPace": "Naučte sa svojím vlastným tempom s neobmedzeným prístupom lekcie.",
-    "comprehensiveCurriculum": "Učebné osnovy",
-    "coverAllAspects": "Zahŕňa základné koncepcie pokročilých IT vrátane kódovania, systémov, sietí a ďalších.",
-    "viewAllIT": "Prezrite si všetky kurzy a praktické testy VieVLOG",
-    "featuredCourses": "Predstavené programy IT",
-    "beginnerIT": "Kurz na úrovni začiatočníkov",
-    "intermediateIT": "Stredne pokročilý kurz IT",
-    "advancedIT": "Postúpil to majstrovstvá",
-    "getStartedForFree": "Začnite sa učiť dnes zadarmo",
-    "whatOurLearnersSay": "Čo hovoria študenti o Vievlogu",
+    "viewAllPosts": "Zobraziť všetky príspevky",
+    "shoppingExperience": "Zážitok",
+    "latestBlogPosts": "Najnovšie blogové príspevky",
+    "exploreArticles": "Preskúmajte naše najnovšie články a tipy na to",
+    "vieTopik": "VIEVLOG - TOP 1 IT Learning HUB",
+    "yourOneStopShop": "Vaša jednorazová platforma na zvládnutie IT zručností a prípravu na certifikačné skúšky. Získajte prístup k prémiovému obsahu bezplatne!",
+    "signUpNow": "Zaregistrujte sa teraz",
+    "browseIT": "Prezrite si to",
+    "customerTestimonialsTitle": "Čo hovoria naši zákazníci",
+    "customerTestimonialsSubtitle": "Neberte si to len naše slovo - vypočujte si od našich spokojných zákazníkov",
     "testimonial1": {
       "quote": "VievLog mi s istotou pomohol zložiť moju certifikačnú skúšku IT.",
       "name": "Nguyen Minh Anh",
       "role": "Medzinárodný študent"
     },
     "testimonial2": {
-      "quote": "Učenie sa prostredníctvom Vievlogu je efektívne a príjemné!",
+      "quote": "Učenie sa prostredníctvom VievLog je efektívne a príjemné!",
       "name": "Tran Hai Nam",
       "role": "Profesionál v kancelárii"
     },
@@ -52,37 +32,11 @@
       "quote": "Vďaka VieVlogu som výrazne zlepšil svoje programovacie schopnosti.",
       "name": "Le Thanh Huong",
       "role": "Univerzitný študent"
-    },
-    "vieTopik": "VIEVLOG - TOP 1 IT Learning HUB",
-    "yourOneStopShop": "Vaša jednorazová platforma na zvládnutie IT zručností a prípravu na certifikačné skúšky. Získajte prístup k prémiovému obsahu bezplatne!",
-    "connectWithUs": "Sledujte VieVLog na sociálnych médiách",
-    "socialMedia": {
-      "facebook": "Sledujte nás na Facebooku",
-      "twitter": "Sledujte nás na Twitteri",
-      "instagram": "Sledujte nás na Instagrame",
-      "linkedin": "Spojte sa s nami na LinkedIn"
-    },
-    "company": {
-      "aboutUs": "O nás",
-      "careers": "Kariéra",
-      "blog": "Tech Blog - Novinky a tipy",
-      "contact": "Kontaktujte nás"
-    },
-    "support": {
-      "helpCenter": "Centrum pomoci",
-      "faq": "FAQ - často kladené otázky",
-      "privacyPolicy": "Zásady ochrany osobných údajov",
-      "termsOfService": "Služobné podmienky"
-    },
-    "footer": {
-      "copyright": "© 2025 VVIVLOG. Všetky práva vyhradené."
-    },
-    "metadata": {
-      "lesson": "Preskúmajte naše bezplatné lekcie a vyberte perfektný kurz, ktorý zodpovedá vašej úrovni zručností.",
-      "grammar": "Objavte podrobné technické návody a diagramy."
     }
   },
-  "posts": {},
+  "posts": {
+    "title": "Všetky príspevky"
+  },
   "videos": {},
   "chats": {},
   "footer": {
@@ -94,6 +48,27 @@
     "faq": "FAQ - často kladené otázky",
     "privacyPolicy": "Zásady ochrany osobných údajov",
     "termsOfService": "Služobné podmienky",
-    "followUs": "Sledujte nás na sociálnych médiách"
+    "followUs": "Sledujte nás na sociálnych médiách",
+    "footerNote": "© 2025 VVIVLOG. Všetky práva vyhradené.",
+    "privacy": "Súkromie",
+    "terms": "Podmienky",
+    "cookies": "Cookies",
+    "sitemap": "Simatap",
+    "followUsYoutube": "Sledujte nás na YouTube",
+    "chats": {
+      "chatWithUs": "Porozprávajte sa s nami",
+      "chatWithFriend": "Porozprávajte sa so svojimi priateľmi",
+      "placeholderMessage": "Zadajte správu ...",
+      "sendButton": "Odoslať"
+    },
+    "videos": {
+      "allVideos": "Všetky videá",
+      "tiktokVideos": "Videá Tiktok"
+    },
+    "posts": {
+      "allPosts": "Všetky príspevky",
+      "ginCourse": "Kurz gin",
+      "GoCourse": "Chod"
+    }
   }
 }

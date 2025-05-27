@@ -6,38 +6,18 @@
     "videos": "Videolar"
   },
   "home": {
-    "title": "Vieievlog - Bepul onlayn Onlayn O'qish | Kurslar, resurslar va sertifikatlash",
-    "home": "Uy",
-    "posts": "Xabarlar",
-    "chats": "Chats",
-    "videos": "Videolar",
-    "topiks": "U bilim mavzularini o'rganish",
-    "courses": "Bepul IT kurslari",
-    "grammar": "Grammatik darslar",
-    "game": "Ta'lim o'yinlari",
-    "features": "Platformaning xususiyatlari",
-    "logIn": "Hisobingizga kiring",
-    "signUp": "Bepul IT kurslari uchun ro'yxatdan o'ting",
-    "toggleTheme": "Yonlash chiroq / qorong'i rejim",
-    "newCollection": "Bizning yangi IT kurs to'plamini o'rganing",
     "oneStopPlatform": "Vieievlog - bu sizning umumta'limni o'rganish",
-    "startLearningNow": "Uni o'rganishni boshlang va bugungi kunda imtihonlarga tayyorgarlik ko'ring",
-    "whyChooseVieVlog": "Nega uni Vievlog bilan o'rganasizmi?",
-    "freeAccess": "To'liq bepul kirish",
     "learnIT": "Tajribali o'qituvchilardan olingan darslar, darslar va resurslardan yuqori sifatli sifatli foydalaning.",
-    "expertInstructors": "Sanoat mutaxassislaridan o'rganing",
-    "learnFromExperts": "Majburiy IT mutaxassislari va o'qituvchilari tomonidan o'qitiladi.",
-    "anytimeAnywhere": "Har qanday joyda istalgan vaqtda moslashuvchan o'rganish",
-    "learnAtYourOwnPace": "Cheksiz dars olish imkoniyatiga ega bo'lgan o'zingizning tezligingizni o'rganing.",
-    "comprehensiveCurriculum": "O'quv dasturini to'liq staklang",
-    "coverAllAspects": "IT-ni ilg'or, ularni kodlash, tizimlar, tarmoq va boshqa narsalar uchun asosli o'rinlarni egallaydi.",
-    "viewAllIT": "Barcha Vievlog kurslari va amaliy testlar",
-    "featuredCourses": "IT dasturlari",
-    "beginnerIT": "Boshlang'ich daraja",
-    "intermediateIT": "Bu kurs",
-    "advancedIT": "Murakkablik mahorati",
-    "getStartedForFree": "Bugun bepul o'rganishni boshlang",
-    "whatOurLearnersSay": "Vievlog haqida o'quvchilar nima deyishadi",
+    "viewAllPosts": "Barcha xabarlarni ko'rish",
+    "shoppingExperience": "Savdo tajribasi",
+    "latestBlogPosts": "So'nggi bloglar",
+    "exploreArticles": "Bizning so'nggi maqolalarimiz va uni o'rganish bo'yicha maslahatlarimizni o'rganing",
+    "vieTopik": "Vieievlog - bu eng yaxshi 1-ni o'rganish",
+    "yourOneStopShop": "Uni ko'nikmalarni o'zlashtirish va sertifikatlash imtihonlariga tayyorgarlik ko'rish uchun bitta blokni to'xtatish platformangiz. Hech qanday narxda premium tarkibiga kiring!",
+    "signUpNow": "Hozir ro'yxatdan o'ting",
+    "browseIT": "Uni ko'rib chiqing",
+    "customerTestimonialsTitle": "Bizning mijozlarimiz nima deyishadi",
+    "customerTestimonialsSubtitle": "Bu haqda faqat so'zimizni qabul qilmang - bizning qoniqarli mijozlarimizdan eshiting",
     "testimonial1": {
       "quote": "Vievlog menga o'zining sertifikatlash imtihonini ishonchli tarzda amalga oshirishga yordam berdi.",
       "name": "Nguyen minh anh",
@@ -52,37 +32,11 @@
       "quote": "Virevlog tufayli men dasturiy mahoratimni sezilarli darajada yaxshiladim.",
       "name": "Leanh huong",
       "role": "Universitet talabasi"
-    },
-    "vieTopik": "Vieievlog - bu eng yaxshi 1-ni o'rganish",
-    "yourOneStopShop": "Uni ko'nikmalarni o'zlashtirish va sertifikatlash imtihonlariga tayyorgarlik ko'rish uchun bitta blokni to'xtatish platformangiz. Hech qanday narxda premium tarkibiga kiring!",
-    "connectWithUs": "Vievlogni ijtimoiy tarmoqlarda kuzatib boring",
-    "socialMedia": {
-      "facebook": "Bizni Facebook-da kuzatib boring",
-      "twitter": "Bizni Twitter-da kuzatib boring",
-      "instagram": "Bizni Instagramda kuzatib boring",
-      "linkedin": "Biz bilan bog'lanma-da ulang"
-    },
-    "company": {
-      "aboutUs": "Biz haqimizda",
-      "careers": "Karyeralar",
-      "blog": "Tech blog - Yangiliklar va maslahatlar",
-      "contact": "Biz bilan bog'lanish"
-    },
-    "support": {
-      "helpCenter": "Yordam markazi",
-      "faq": "FAQ - tez-tez beriladigan savollar",
-      "privacyPolicy": "Maxfiylik siyosati",
-      "termsOfService": "Xizmat shartlari"
-    },
-    "footer": {
-      "copyright": "© 2025 Vievlog. Barcha huquqlar himoyalangan."
-    },
-    "metadata": {
-      "lesson": "Bo'sh darslarimizni o'rganing va mahorat darajangizni taqqoslash uchun mukammal kursni tanlang.",
-      "grammar": "Texnika darslari va diagrammalarni kashf eting."
     }
   },
-  "posts": {},
+  "posts": {
+    "title": "Barcha xabarlar"
+  },
   "videos": {},
   "chats": {},
   "footer": {
@@ -94,6 +48,27 @@
     "faq": "FAQ - tez-tez beriladigan savollar",
     "privacyPolicy": "Maxfiylik siyosati",
     "termsOfService": "Xizmat shartlari",
-    "followUs": "Bizni ijtimoiy tarmoqlarda kuzatib boring"
+    "followUs": "Bizni ijtimoiy tarmoqlarda kuzatib boring",
+    "footerNote": "© 2025 Vievlog. Barcha huquqlar himoyalangan.",
+    "privacy": "Maxfiylik",
+    "terms": "Shartlar",
+    "cookies": "Pishiriq",
+    "sitemap": "Sayt xaritasi",
+    "followUsYoutube": "Bizni YouTube-da kuzatib boring",
+    "chats": {
+      "chatWithUs": "Biz bilan suhbat",
+      "chatWithFriend": "Do'stlaringiz bilan suhbat",
+      "placeholderMessage": "Xabarni kiriting ...",
+      "sendButton": "Yuborish"
+    },
+    "videos": {
+      "allVideos": "Barcha videolar",
+      "tiktokVideos": "Tiktok videolari"
+    },
+    "posts": {
+      "allPosts": "Barcha xabarlar",
+      "ginCourse": "Jinsi kursi",
+      "GoCourse": "Bormoq"
+    }
   }
 }

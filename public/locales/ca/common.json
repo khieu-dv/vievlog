@@ -6,38 +6,18 @@
     "videos": "Vídeos"
   },
   "home": {
-    "title": "Vievlog - Aprenentatge informàtic gratuït en línia | Cursos, recursos i certificació",
-    "home": "Casa",
-    "posts": "Pals",
-    "chats": "Xats",
-    "videos": "Vídeos",
-    "topiks": "Temes d’aprenentatge d’aprenentatge",
-    "courses": "Cursos informàtics gratuïts",
-    "grammar": "Lliçons de gramàtica tecnològica",
-    "game": "Jocs educatius",
-    "features": "Característiques de la plataforma",
-    "logIn": "Inicieu la sessió al vostre compte",
-    "signUp": "Inscriviu -vos gratuïtament cursos informàtics",
-    "toggleTheme": "Canvia la llum/el mode fosc",
-    "newCollection": "Exploreu la nostra nova col·lecció de cursos informàtics",
     "oneStopPlatform": "Vievlog: la vostra plataforma d’aprenentatge informàtic tot",
-    "startLearningNow": "Comenceu a aprendre -ho i prepareu -vos per als exàmens avui",
-    "whyChooseVieVlog": "Per què aprendre -ho amb Vievlog?",
-    "freeAccess": "Accés completament gratuït",
     "learnIT": "Gaudeix de tutorials, lliçons i recursos informàtics de primera qualitat, d’instructors experimentats, de forma gratuïta.",
-    "expertInstructors": "Apreneu dels experts de la indústria",
-    "learnFromExperts": "Observeu els professionals i educadors informàtics experimentats.",
-    "anytimeAnywhere": "Aprenentatge flexible en qualsevol moment, a qualsevol lloc",
-    "learnAtYourOwnPace": "Obteniu informació al vostre ritme amb l’accés il·limitat a les lliçons.",
-    "comprehensiveCurriculum": "Currículum de pila completa",
-    "coverAllAspects": "Cobreix els conceptes informàtics fonamentals, com ara codificació, sistemes, xarxes i molt més.",
-    "viewAllIT": "Navegueu tots els cursos de Vievlog i proves de pràctica",
-    "featuredCourses": "Programes informàtics destacats",
-    "beginnerIT": "Curs de TI a nivell principiant",
-    "intermediateIT": "Intermedi IT Curs",
-    "advancedIT": "Va avançar el domini",
-    "getStartedForFree": "Comenceu a aprendre de forma gratuïta avui",
-    "whatOurLearnersSay": "El que diuen els estudiants sobre Vievlog",
+    "viewAllPosts": "Veure tota la publicació",
+    "shoppingExperience": "Experiència de compres",
+    "latestBlogPosts": "Les darreres publicacions del bloc",
+    "exploreArticles": "Exploreu els nostres últims articles i consells per aprendre -ho",
+    "vieTopik": "Vievlog: el primer centre d’aprenentatge de TI",
+    "yourOneStopShop": "La vostra plataforma única per dominar les habilitats informàtiques i preparar-se per als exàmens de certificació. Obteniu accés a contingut premium sense cap cost.",
+    "signUpNow": "Inscriviu -vos ara",
+    "browseIT": "Navegar",
+    "customerTestimonialsTitle": "El que diuen els nostres clients",
+    "customerTestimonialsSubtitle": "No us prengueu la paraula: escolteu els nostres clients satisfets",
     "testimonial1": {
       "quote": "Vievlog em va ajudar a passar amb seguretat el meu examen de certificació informàtica.",
       "name": "Nguyen Minh Anh",
@@ -52,48 +32,43 @@
       "quote": "Gràcies a Vievlog, he millorat significativament les meves habilitats de programació.",
       "name": "Le Thanh Huong",
       "role": "Estudiant universitari"
-    },
-    "vieTopik": "Vievlog: el primer centre d’aprenentatge de TI",
-    "yourOneStopShop": "La vostra plataforma única per dominar les habilitats informàtiques i preparar-se per als exàmens de certificació. Obteniu accés a contingut premium sense cap cost.",
-    "connectWithUs": "Segueix Vievlog a les xarxes socials",
-    "socialMedia": {
-      "facebook": "Segueix -nos a Facebook",
-      "twitter": "Segueix -nos a Twitter",
-      "instagram": "Segueix -nos a Instagram",
-      "linkedin": "Connecteu -vos amb nosaltres a LinkedIn"
-    },
-    "company": {
-      "aboutUs": "Sobre nosaltres",
-      "careers": "Carreres de carreres",
-      "blog": "Blog de tecnologia: notícies i consells",
-      "contact": "Poseu -vos en contacte amb nosaltres"
-    },
-    "support": {
-      "helpCenter": "Ajuda Centre",
-      "faq": "Preguntes freqüents: preguntes més freqüents",
-      "privacyPolicy": "Política de privadesa",
-      "termsOfService": "Condicions del servei"
-    },
-    "footer": {
-      "copyright": "© 2025 Vievlog. Tots els drets reservats."
-    },
-    "metadata": {
-      "lesson": "Exploreu les nostres lliçons gratuïtes i trieu el curs perfecte per adaptar -se al vostre nivell d’habilitat.",
-      "grammar": "Descobriu tutorials i diagrames de tecnologia detallats."
     }
   },
-  "posts": {},
+  "posts": {
+    "title": "Totes les publicacions"
+  },
   "videos": {},
   "chats": {},
   "footer": {
     "aboutUs": "Sobre nosaltres",
-    "careers": "Carreres de carreres",
+    "careers": "Carreres",
     "blog": "Blog de tecnologia: notícies i consells",
     "contact": "Poseu -vos en contacte amb nosaltres",
     "helpCenter": "Ajuda Centre",
     "faq": "Preguntes freqüents: preguntes més freqüents",
     "privacyPolicy": "Política de privadesa",
     "termsOfService": "Condicions del servei",
-    "followUs": "Segueix -nos a les xarxes socials"
+    "followUs": "Segueix -nos a les xarxes socials",
+    "footerNote": "© 2025 Vievlog. Tots els drets reservats.",
+    "privacy": "Intimitat",
+    "terms": "Condicions",
+    "cookies": "Galetes",
+    "sitemap": "Mapa del lloc",
+    "followUsYoutube": "Segueix -nos a YouTube",
+    "chats": {
+      "chatWithUs": "Xateja amb nosaltres",
+      "chatWithFriend": "Xateja amb els teus amics",
+      "placeholderMessage": "Escriviu un missatge ...",
+      "sendButton": "Enviar"
+    },
+    "videos": {
+      "allVideos": "Tots els vídeos",
+      "tiktokVideos": "Vídeos de Tiktok"
+    },
+    "posts": {
+      "allPosts": "Totes les publicacions",
+      "ginCourse": "Curs de ginebra",
+      "GoCourse": "Vaja"
+    }
   }
 }

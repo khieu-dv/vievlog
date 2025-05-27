@@ -6,45 +6,25 @@
     "videos": "Video"
   },
   "home": {
-    "title": "Vievlog - Pembelajaran IT Online Percuma | Kursus, Sumber & Persijilan",
-    "home": "Rumah",
-    "posts": "Catatan",
-    "chats": "Berbual",
-    "videos": "Video",
-    "topiks": "Ia belajar topik",
-    "courses": "Kursus IT Percuma",
-    "grammar": "Pelajaran tatabahasa teknologi",
-    "game": "Permainan pendidikan",
-    "features": "Ciri -ciri platform",
-    "logIn": "Log masuk ke akaun anda",
-    "signUp": "Daftar untuk kursus IT Percuma",
-    "toggleTheme": "Tukar mod cahaya/gelap",
-    "newCollection": "Terokai koleksi kursus IT baru kami",
     "oneStopPlatform": "VievLog-platform pembelajaran IT anda semua-dalam-satu",
-    "startLearningNow": "Mula belajar dan bersiap sedia untuk peperiksaan hari ini",
-    "whyChooseVieVlog": "Mengapa belajar dengan Vievlog?",
-    "freeAccess": "Akses sepenuhnya percuma",
     "learnIT": "Nikmati tutorial IT berkualiti tinggi, pelajaran, dan sumber dari pengajar yang berpengalaman-percuma.",
-    "expertInstructors": "Belajar dari pakar industri",
-    "learnFromExperts": "Diajar oleh profesional IT dan pendidik yang berpengalaman.",
-    "anytimeAnywhere": "Pembelajaran fleksibel pada bila -bila masa, di mana sahaja",
-    "learnAtYourOwnPace": "Belajar pada kadar anda sendiri dengan akses pelajaran yang tidak terhad.",
-    "comprehensiveCurriculum": "Kurikulum IT penuh",
-    "coverAllAspects": "Meliputi asas kepada konsep IT maju termasuk pengekodan, sistem, rangkaian, dan banyak lagi.",
-    "viewAllIT": "Semak imbas semua kursus Vievlog dan ujian amalan",
-    "featuredCourses": "Program IT yang dipaparkan",
-    "beginnerIT": "Kursus IT peringkat pemula",
-    "intermediateIT": "Kursus IT Intermediate",
-    "advancedIT": "Penguasaan IT Lanjutan",
-    "getStartedForFree": "Mula belajar secara percuma hari ini",
-    "whatOurLearnersSay": "Apa yang dikatakan pelajar mengenai Vievlog",
+    "viewAllPosts": "Lihat semua jawatan",
+    "shoppingExperience": "Pengalaman membeli -belah",
+    "latestBlogPosts": "Catatan blog terkini",
+    "exploreArticles": "Terokai artikel dan petua terkini kami untuk mempelajarinya",
+    "vieTopik": "Vievlog - Hub Pembelajaran Top 1 Top 1",
+    "yourOneStopShop": "Platform sehenti anda untuk menguasai kemahiran IT dan bersedia untuk peperiksaan pensijilan. Dapatkan akses kepada kandungan premium tanpa sebarang kos!",
+    "signUpNow": "Daftar sekarang",
+    "browseIT": "Semak imbasnya",
+    "customerTestimonialsTitle": "Apa yang dikatakan oleh pelanggan kami",
+    "customerTestimonialsSubtitle": "Jangan hanya mengambil perkataan kami untuk itu - dengar dari pelanggan kami yang berpuas hati",
     "testimonial1": {
       "quote": "VievLog membantu saya dengan yakin lulus peperiksaan pensijilan IT saya.",
       "name": "Nguyen Minh Anh",
       "role": "Pelajar antarabangsa"
     },
     "testimonial2": {
-      "quote": "Belajarnya melalui VievLog adalah berkesan dan menyeronokkan!",
+      "quote": "Belajar melalui VievLog adalah berkesan dan menyeronokkan!",
       "name": "Tran Hai Nam",
       "role": "Profesional pejabat"
     },
@@ -52,37 +32,11 @@
       "quote": "Terima kasih kepada Vievlog, saya telah meningkatkan kemahiran pengaturcaraan saya dengan ketara.",
       "name": "Le Thanh Huong",
       "role": "Pelajar universiti"
-    },
-    "vieTopik": "Vievlog - Hub Pembelajaran Top 1 Top 1",
-    "yourOneStopShop": "Platform sehenti anda untuk menguasai kemahiran IT dan bersedia untuk peperiksaan pensijilan. Dapatkan akses kepada kandungan premium tanpa sebarang kos!",
-    "connectWithUs": "Ikuti Vievlog di media sosial",
-    "socialMedia": {
-      "facebook": "Ikuti kami di Facebook",
-      "twitter": "Ikuti kami di Twitter",
-      "instagram": "Ikuti kami di Instagram",
-      "linkedin": "Berhubung dengan kami di LinkedIn"
-    },
-    "company": {
-      "aboutUs": "Mengenai kita",
-      "careers": "Kerjaya",
-      "blog": "Blog Tech - Berita & Petua",
-      "contact": "Hubungi kami"
-    },
-    "support": {
-      "helpCenter": "Pusat Bantuan",
-      "faq": "Soalan Lazim - Soalan Lazim",
-      "privacyPolicy": "Dasar Privasi",
-      "termsOfService": "Syarat Perkhidmatan"
-    },
-    "footer": {
-      "copyright": "© 2025 Vievlog. Semua hak terpelihara."
-    },
-    "metadata": {
-      "lesson": "Terokai pelajaran percuma kami dan pilih kursus yang sempurna untuk memadankan tahap kemahiran anda.",
-      "grammar": "Temui tutorial teknologi terperinci dan gambar rajah."
     }
   },
-  "posts": {},
+  "posts": {
+    "title": "Semua jawatan"
+  },
   "videos": {},
   "chats": {},
   "footer": {
@@ -94,6 +48,27 @@
     "faq": "Soalan Lazim - Soalan Lazim",
     "privacyPolicy": "Dasar Privasi",
     "termsOfService": "Syarat Perkhidmatan",
-    "followUs": "Ikuti kami di media sosial"
+    "followUs": "Ikuti kami di media sosial",
+    "footerNote": "© 2025 Vievlog. Semua hak terpelihara.",
+    "privacy": "Privasi",
+    "terms": "Syarat",
+    "cookies": "Kuki",
+    "sitemap": "Sitemap",
+    "followUsYoutube": "Ikuti kami di YouTube",
+    "chats": {
+      "chatWithUs": "Berbual dengan kami",
+      "chatWithFriend": "Berbual dengan rakan anda",
+      "placeholderMessage": "Taipkan mesej ...",
+      "sendButton": "Hantar"
+    },
+    "videos": {
+      "allVideos": "Semua video",
+      "tiktokVideos": "Video Tiktok"
+    },
+    "posts": {
+      "allPosts": "Semua jawatan",
+      "ginCourse": "Kursus Gin",
+      "GoCourse": "Pergi kursus"
+    }
   }
 }

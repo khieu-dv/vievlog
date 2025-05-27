@@ -6,38 +6,18 @@
     "videos": "Físeáin"
   },
   "home": {
-    "title": "Vievlog - Foghlaim ar líne saor in aisce | Cúrsaí, Acmhainní & Deimhniú",
-    "home": "Áit",
-    "posts": "Poss",
-    "chats": "Cainteanna",
-    "videos": "Físeáin",
-    "topiks": "TF ag foghlaim topaicí",
-    "courses": "Cúrsaí TF saor in aisce",
-    "grammar": "Ceachtanna gramadaí ardteicneolaíochta",
-    "game": "Cluichí Oideachais",
-    "features": "Gnéithe Ardán",
-    "logIn": "Logáil isteach i do chuntas",
-    "signUp": "Cláraigh le haghaidh cúrsaí TF saor in aisce",
-    "toggleTheme": "Athraigh Mód Solais/Dorcha",
-    "newCollection": "Déan iniúchadh ar ár mBailiúchán Cúrsa TF nua",
     "oneStopPlatform": "Vievlog-Do Ardán Foghlama TF All-in-One TF",
-    "startLearningNow": "Tosaigh ag foghlaim é agus ullmhaigh do scrúduithe inniu",
-    "whyChooseVieVlog": "Cén fáth é a fhoghlaim le Vievlog?",
-    "freeAccess": "Rochtain saor in aisce go hiomlán",
     "learnIT": "Bain sult as ranganna teagaisc, ceachtanna agus acmhainní den scoth ó theagascóirí a bhfuil taithí acu-saor in aisce.",
-    "expertInstructors": "Foghlaim ó shaineolaithe tionscail",
-    "learnFromExperts": "Faigh múineadh ag gairmithe agus oideachasóirí TF séasúraithe.",
-    "anytimeAnywhere": "Foghlaim solúbtha am ar bith, áit ar bith",
-    "learnAtYourOwnPace": "Foghlaim ar do luas féin le rochtain ceachta neamhtheoranta.",
-    "comprehensiveCurriculum": "An curaclam lán-phaca IT",
-    "coverAllAspects": "Clúdaíonn sé coincheapa bunúsacha go hardleibhéal TF lena n -áirítear códú, córais, líonrú, agus níos mó.",
-    "viewAllIT": "Brabhsáil gach cúrsa Vievlog agus Tástálacha Cleachtais",
-    "featuredCourses": "Cláir TF Réadmhaoin",
-    "beginnerIT": "Cúrsa TF ar leibhéal an tosaitheoirí",
-    "intermediateIT": "Cúrsa TF idirmheánach",
-    "advancedIT": "Mastery Advanced It Mastery",
-    "getStartedForFree": "Tosaigh ag foghlaim saor in aisce inniu",
-    "whatOurLearnersSay": "Cad a deir foghlaimeoirí faoi Vievlog",
+    "viewAllPosts": "Féach ar gach post",
+    "shoppingExperience": "Taithí siopadóireachta",
+    "latestBlogPosts": "Poist bhlag is déanaí",
+    "exploreArticles": "Déan iniúchadh ar ár n -ailt agus ar na leideanna is déanaí chun é a fhoghlaim",
+    "vieTopik": "Vievlog - An mol foghlama is fearr TF",
+    "yourOneStopShop": "Do ardán ilfhreastail chun scileanna TF a mháistir agus ullmhú do scrúduithe deimhniúcháin. Faigh rochtain ar ábhar préimhe gan aon chostas!",
+    "signUpNow": "Cláraigh anois",
+    "browseIT": "Brabhsáil é",
+    "customerTestimonialsTitle": "Cad a deir ár gcustaiméirí",
+    "customerTestimonialsSubtitle": "Ná tóg ár bhfocal ach é - cloisteáil ónár gcustaiméirí sásta",
     "testimonial1": {
       "quote": "Chabhraigh Vievlog liom mo scrúdú deimhniúcháin TF a rith go muiníneach.",
       "name": "Nguyen Minh Anh",
@@ -52,37 +32,11 @@
       "quote": "A bhuíochas le Vievlog, tá feabhas mór tagtha ar mo chuid scileanna cláir.",
       "name": "Le Thanh Huong",
       "role": "Mac léinn ollscoile"
-    },
-    "vieTopik": "Vievlog - An mol foghlama is fearr TF",
-    "yourOneStopShop": "Do ardán ilfhreastail chun scileanna TF a mháistir agus ullmhú do scrúduithe deimhniúcháin. Faigh rochtain ar ábhar préimhe gan aon chostas!",
-    "connectWithUs": "Lean Vievlog ar na meáin shóisialta",
-    "socialMedia": {
-      "facebook": "Lean muid ar Facebook",
-      "twitter": "Lean muid ar Twitter",
-      "instagram": "Lean muid ar Instagram",
-      "linkedin": "Ceangail linn ar LinkedIn"
-    },
-    "company": {
-      "aboutUs": "Maidir Linn",
-      "careers": "Gairm bheatha",
-      "blog": "Blag Tech - Nuacht & Leideanna",
-      "contact": "Déan teagmháil linn"
-    },
-    "support": {
-      "helpCenter": "Ionad cabhrach",
-      "faq": "Ceisteanna Coitianta - Ceisteanna Coitianta",
-      "privacyPolicy": "Polasaí Príobháideachta",
-      "termsOfService": "Téarmaí Seirbhíse"
-    },
-    "footer": {
-      "copyright": "© 2025 Vievlog. Gach ceart ar cosaint."
-    },
-    "metadata": {
-      "lesson": "Déan iniúchadh ar ár gceachtanna saor in aisce agus roghnaigh an cúrsa foirfe chun do leibhéal scileanna a mheaitseáil.",
-      "grammar": "Faigh amach faoi ranganna teagaisc agus léaráidí ardteicneolaíochta mionsonraithe."
     }
   },
-  "posts": {},
+  "posts": {
+    "title": "Gach post"
+  },
   "videos": {},
   "chats": {},
   "footer": {
@@ -94,6 +48,27 @@
     "faq": "Ceisteanna Coitianta - Ceisteanna Coitianta",
     "privacyPolicy": "Polasaí Príobháideachta",
     "termsOfService": "Téarmaí Seirbhíse",
-    "followUs": "Lean muid ar na meáin shóisialta"
+    "followUs": "Lean muid ar na meáin shóisialta",
+    "footerNote": "© 2025 Vievlog. Gach ceart ar cosaint.",
+    "privacy": "Príobháideachas",
+    "terms": "Téarma",
+    "cookies": "Fianáin",
+    "sitemap": "Lonlach",
+    "followUsYoutube": "Lean muid ar YouTube",
+    "chats": {
+      "chatWithUs": "Comhrá linn",
+      "chatWithFriend": "Comhrá le do chairde",
+      "placeholderMessage": "Teachtaireacht Clóscríobh ...",
+      "sendButton": "Cuir"
+    },
+    "videos": {
+      "allVideos": "Gach físeán",
+      "tiktokVideos": "Físeáin tiktok"
+    },
+    "posts": {
+      "allPosts": "Gach post",
+      "ginCourse": "Cúrsa Gin",
+      "GoCourse": "CÚRSA"
+    }
   }
 }

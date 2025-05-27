@@ -6,38 +6,18 @@
     "videos": "ビデオ"
   },
   "home": {
-    "title": "vievlog  - 無料オンラインIT学習|コース、リソース、認定",
-    "home": "家",
-    "posts": "投稿",
-    "chats": "チャット",
-    "videos": "ビデオ",
-    "topiks": "それはトピックを学びます",
-    "courses": "無料ITコース",
-    "grammar": "技術文法のレッスン",
-    "game": "教育ゲーム",
-    "features": "プラットフォーム機能",
-    "logIn": "アカウントにログインします",
-    "signUp": "無料のITコースにサインアップしてください",
-    "toggleTheme": "ライト/ダークモードを切り替えます",
-    "newCollection": "新しいITコースコレクションをご覧ください",
     "oneStopPlatform": "Vievlog  - オールインワンIT学習プラットフォーム",
-    "startLearningNow": "それを学び始めて、今日試験の準備をしてください",
-    "whyChooseVieVlog": "なぜvievlogでそれを学ぶのですか？",
-    "freeAccess": "完全に無料アクセス",
     "learnIT": "経験豊富なインストラクターからの最高品質のITチュートリアル、レッスン、リソースをお楽しみください。",
-    "expertInstructors": "業界の専門家から学ぶ",
-    "learnFromExperts": "ベテランのITプロフェッショナルと教育者によって教えられます。",
-    "anytimeAnywhere": "いつでも柔軟な学習",
-    "learnAtYourOwnPace": "無制限のレッスンアクセスで自分のペースで学びます。",
-    "comprehensiveCurriculum": "フルスタックITカリキュラム",
-    "coverAllAspects": "コーディング、システム、ネットワーキングなどを含む高度なIT概念の基礎をカバーします。",
-    "viewAllIT": "すべてのvievlogコースと練習テストを閲覧します",
-    "featuredCourses": "フィーチャーITプログラム",
-    "beginnerIT": "初心者レベルのITコース",
-    "intermediateIT": "中間ITコース",
-    "advancedIT": "高度なITマスタリー",
-    "getStartedForFree": "今日は無料で学習を開始してください",
-    "whatOurLearnersSay": "ヴィエフログについて学習者が言うこと",
+    "viewAllPosts": "すべての投稿を表示します",
+    "shoppingExperience": "ショッピング体験",
+    "latestBlogPosts": "最新のブログ投稿",
+    "exploreArticles": "それを学ぶための最新の記事とヒントを調べてください",
+    "vieTopik": "Vievlog  - トップ1 IT学習ハブ",
+    "yourOneStopShop": "ITスキルを習得し、認定試験の準備をするためのワンストッププラットフォーム。無料でプレミアムコンテンツにアクセスできます！",
+    "signUpNow": "今すぐサインアップしてください",
+    "browseIT": "閲覧します",
+    "customerTestimonialsTitle": "顧客の言うこと",
+    "customerTestimonialsSubtitle": "私たちの言葉を見てはいけません - 満足している顧客から聞いてください",
     "testimonial1": {
       "quote": "Vievlogは、自信を持ってIT認定試験に合格するのを助けました。",
       "name": "Nguyen Minh Anh",
@@ -52,37 +32,11 @@
       "quote": "Vievlogのおかげで、プログラミングスキルを大幅に向上させました。",
       "name": "ル・タン・フオン",
       "role": "大学生"
-    },
-    "vieTopik": "Vievlog  - トップ1 IT学習ハブ",
-    "yourOneStopShop": "ITスキルを習得し、認定試験の準備をするためのワンストッププラットフォーム。無料でプレミアムコンテンツにアクセスできます！",
-    "connectWithUs": "ソーシャルメディアでVievlogをフォローしてください",
-    "socialMedia": {
-      "facebook": "Facebookでフォローしてください",
-      "twitter": "Twitterでフォローしてください",
-      "instagram": "Instagramでフォローしてください",
-      "linkedin": "LinkedInで私たちとつながります"
-    },
-    "company": {
-      "aboutUs": "私たちについて",
-      "careers": "キャリア",
-      "blog": "技術ブログ - ニュース＆ヒント",
-      "contact": "お問い合わせ"
-    },
-    "support": {
-      "helpCenter": "ヘルプセンター",
-      "faq": "FAQ  - よくある質問",
-      "privacyPolicy": "プライバシーポリシー",
-      "termsOfService": "利用規約"
-    },
-    "footer": {
-      "copyright": "©2025 Vievlog。無断転載を禁じます。"
-    },
-    "metadata": {
-      "lesson": "無料のレッスンを探索し、スキルレベルに合わせて完璧なコースを選択してください。",
-      "grammar": "詳細な技術チュートリアルと図を発見してください。"
     }
   },
-  "posts": {},
+  "posts": {
+    "title": "すべての投稿"
+  },
   "videos": {},
   "chats": {},
   "footer": {
@@ -94,6 +48,27 @@
     "faq": "FAQ  - よくある質問",
     "privacyPolicy": "プライバシーポリシー",
     "termsOfService": "利用規約",
-    "followUs": "ソーシャルメディアでフォローしてください"
+    "followUs": "ソーシャルメディアでフォローしてください",
+    "footerNote": "©2025 Vievlog。無断転載を禁じます。",
+    "privacy": "プライバシー",
+    "terms": "条項",
+    "cookies": "クッキー",
+    "sitemap": "サイトマップ",
+    "followUsYoutube": "YouTubeでフォローしてください",
+    "chats": {
+      "chatWithUs": "私たちとチャットします",
+      "chatWithFriend": "友達とチャットします",
+      "placeholderMessage": "メッセージを入力してください...",
+      "sendButton": "送信"
+    },
+    "videos": {
+      "allVideos": "すべてのビデオ",
+      "tiktokVideos": "ティクトクのビデオ"
+    },
+    "posts": {
+      "allPosts": "すべての投稿",
+      "ginCourse": "ジンコース",
+      "GoCourse": "コースに行きます"
+    }
   }
 }

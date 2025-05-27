@@ -6,38 +6,18 @@
     "videos": "Videod"
   },
   "home": {
-    "title": "Vievlog - tasuta veebis õppimine | Kursused, ressursid ja sertifitseerimine",
-    "home": "Kodu",
-    "posts": "Postitused",
-    "chats": "Vestlus",
-    "videos": "Videod",
-    "topiks": "See õppivad teemad",
-    "courses": "Tasuta IT -kursused",
-    "grammar": "Tehniliste grammatikatunnid",
-    "game": "Haridusmängud",
-    "features": "Platvormi funktsioonid",
-    "logIn": "Logige oma kontole sisse",
-    "signUp": "Registreeruge tasuta IT -kursuste jaoks",
-    "toggleTheme": "Lülitage kerge/tume režiim",
-    "newCollection": "Avastage meie uut IT -kursuste kollektsiooni",
     "oneStopPlatform": "Vievlog-teie kõik-ühes IT-õppimisplatvorm",
-    "startLearningNow": "Alustage seda õppima ja valmistuge eksamiteks juba täna",
-    "whyChooseVieVlog": "Miks õppida seda koos Vievlogiga?",
-    "freeAccess": "Täiesti tasuta juurdepääs",
     "learnIT": "Nautige kogenud juhendajate tippkvaliteediga IT-õpetusi, õppetunde ja ressursse-tasuta.",
-    "expertInstructors": "Õppige tööstuse ekspertidelt",
-    "learnFromExperts": "Saage kogenud IT -spetsialistid ja koolitajad.",
-    "anytimeAnywhere": "Paindlik õppimine igal ajal ja igal pool",
-    "learnAtYourOwnPace": "Õppige oma tempos piiramatu tunniga juurdepääsuga.",
-    "comprehensiveCurriculum": "Täispuld IT-õppekava",
-    "coverAllAspects": "Kaaned täiustatud IT -kontseptsioonidele, sealhulgas kodeerimine, süsteemid, võrgustike loomine ja palju muud.",
-    "viewAllIT": "Sirvige kõiki Vievlogi kursusi ja harjutamise teste",
-    "featuredCourses": "Esiletõstetud IT -programmid",
-    "beginnerIT": "Algaja tasemel IT-kursus",
-    "intermediateIT": "Vahepealne IT -kursus",
-    "advancedIT": "Arenenud see meisterlikkus",
-    "getStartedForFree": "Alustage täna tasuta õppimist",
-    "whatOurLearnersSay": "Mida õppijad Vievlogi kohta ütlevad",
+    "viewAllPosts": "Vaadake kõiki postitusi",
+    "shoppingExperience": "Ostukogemus",
+    "latestBlogPosts": "Viimased ajaveebi postitused",
+    "exploreArticles": "Uurige meie uusimaid artikleid ja näpunäiteid selle õppimiseks",
+    "vieTopik": "Vievlog - parim IT õppija keskus",
+    "yourOneStopShop": "Teie One-Stop platvorm IT-oskuste omandamiseks ja sertifitseerimise eksamiteks valmistumiseks. Saate tasuta juurdepääsu esmaklassilisele sisule tasuta!",
+    "signUpNow": "Registreeru kohe",
+    "browseIT": "Sirvige seda",
+    "customerTestimonialsTitle": "Mida meie kliendid ütlevad",
+    "customerTestimonialsSubtitle": "Ärge võtke ainult seda sõna - kuulge meie rahulolevatelt klientidelt",
     "testimonial1": {
       "quote": "Vievlog aitas mul enesekindlalt sooritada oma IT -sertifitseerimise eksami.",
       "name": "Nguyen Minh anh",
@@ -52,37 +32,11 @@
       "quote": "Tänu Vievlogile olen oma programmeerimisoskusi märkimisväärselt parandanud.",
       "name": "Le Thanh Huong",
       "role": "Ülikooli tudeng"
-    },
-    "vieTopik": "Vievlog - parim IT õppija keskus",
-    "yourOneStopShop": "Teie One-Stop platvorm IT-oskuste omandamiseks ja sertifitseerimise eksamiteks valmistumiseks. Saate tasuta juurdepääsu esmaklassilisele sisule tasuta!",
-    "connectWithUs": "Jälgige sotsiaalmeedias Vievlogi",
-    "socialMedia": {
-      "facebook": "Jälgi meid Facebookis",
-      "twitter": "Jälgi meid Twitteris",
-      "instagram": "Jälgi meid Instagramis",
-      "linkedin": "Võtke meiega ühendust LinkedInis"
-    },
-    "company": {
-      "aboutUs": "Meist",
-      "careers": "Karjäär",
-      "blog": "Tehnikablogi - uudised ja näpunäited",
-      "contact": "Võtke meiega ühendust"
-    },
-    "support": {
-      "helpCenter": "Abikeskus",
-      "faq": "KKK - korduma kippuvad küsimused",
-      "privacyPolicy": "Privaatsuspoliitika",
-      "termsOfService": "Teenuse tingimused"
-    },
-    "footer": {
-      "copyright": "© 2025 VIEVLOG. Kõik õigused kaitstud."
-    },
-    "metadata": {
-      "lesson": "Uurige meie tasuta õppetunde ja valige ideaalne kursus, mis vastaks teie oskuste tasemele.",
-      "grammar": "Avastage üksikasjalikud tehnikaõpetused ja diagrammid."
     }
   },
-  "posts": {},
+  "posts": {
+    "title": "Kõik postitused"
+  },
   "videos": {},
   "chats": {},
   "footer": {
@@ -94,6 +48,27 @@
     "faq": "KKK - korduma kippuvad küsimused",
     "privacyPolicy": "Privaatsuspoliitika",
     "termsOfService": "Teenuse tingimused",
-    "followUs": "Jälgi meid sotsiaalmeedias"
+    "followUs": "Jälgi meid sotsiaalmeedias",
+    "footerNote": "© 2025 VIEVLOG. Kõik õigused kaitstud.",
+    "privacy": "Privaatsus",
+    "terms": "Tingimused",
+    "cookies": "Küpsised",
+    "sitemap": "Saidikaart",
+    "followUsYoutube": "Jälgi meid YouTube'is",
+    "chats": {
+      "chatWithUs": "Vestelda meiega",
+      "chatWithFriend": "Vestelda oma sõpradega",
+      "placeholderMessage": "Sisestage teade ...",
+      "sendButton": "Saatma"
+    },
+    "videos": {
+      "allVideos": "Kõik videod",
+      "tiktokVideos": "Tiktoki videod"
+    },
+    "posts": {
+      "allPosts": "Kõik postitused",
+      "ginCourse": "Džinnikursus",
+      "GoCourse": "Kursus"
+    }
   }
 }

@@ -6,38 +6,18 @@
     "videos": "Filmy"
   },
   "home": {
-    "title": "Vievlog - bezpłatne online uczenie się | Kursy, zasoby i certyfikat",
-    "home": "Dom",
-    "posts": "Posty",
-    "chats": "Rozmowy",
-    "videos": "Filmy",
-    "topiks": "Uczy się tematów",
-    "courses": "Darmowe kursy",
-    "grammar": "Lekcje gramatyki technicznej",
-    "game": "Gry edukacyjne",
-    "features": "Funkcje platformy",
-    "logIn": "Zaloguj się na swoje konto",
-    "signUp": "Zarejestruj się za darmo IT",
-    "toggleTheme": "Przełącz tryb światła/ciemności",
-    "newCollection": "Poznaj naszą nową kolekcję kursów IT",
     "oneStopPlatform": "Vievlog-Twoja wszechstronna platforma edukacyjna IT",
-    "startLearningNow": "Zacznij się uczyć i przygotuj się na egzaminy już dziś",
-    "whyChooseVieVlog": "Po co się tego uczyć z Vievlog?",
-    "freeAccess": "Całkowicie bezpłatny dostęp",
-    "learnIT": "Ciesz się samouczkami, lekcjami i zasobami IT najwyższej jakości od doświadczonych instruktorów-całkowicie za darmo.",
-    "expertInstructors": "Ucz się od ekspertów branżowych",
-    "learnFromExperts": "Nauczaj się przez doświadczonych specjalistów IT i nauczycieli.",
-    "anytimeAnywhere": "Elastyczne uczenie się w dowolnym miejscu i czasie",
-    "learnAtYourOwnPace": "Naucz się we własnym tempie z nieograniczoną lekcją dostępu.",
-    "comprehensiveCurriculum": "Całkowity program nauczania",
-    "coverAllAspects": "Obejmuje fundamentalne dla zaawansowanych koncepcji IT, w tym kodowanie, systemy, sieci i inne.",
-    "viewAllIT": "Przeglądaj wszystkie kursy vievlog i praktyki",
-    "featuredCourses": "Prezentowane programy IT",
-    "beginnerIT": "Kurs IT na poziomie początkujący",
-    "intermediateIT": "Pośredni kurs IT",
-    "advancedIT": "Zaawansowane to mistrzostwo",
-    "getStartedForFree": "Zacznij uczyć się za darmo już dziś",
-    "whatOurLearnersSay": "Co mówią uczniowie o Vievlog",
+    "learnIT": "Ciesz się tutorialkami, lekcjami i zasobami IT najwyższej jakości od doświadczonych instruktorów-całkowicie za darmo.",
+    "viewAllPosts": "Zobacz wszystkie posty",
+    "shoppingExperience": "Doświadczenie zakupów",
+    "latestBlogPosts": "Najnowsze posty na blogu",
+    "exploreArticles": "Przeglądaj nasze najnowsze artykuły i wskazówki dotyczące tego nauki",
+    "vieTopik": "Vievlog - najlepsze centrum uczenia się",
+    "yourOneStopShop": "Twoja kompleksowa platforma do opanowania umiejętności IT i przygotowania do egzaminów certyfikacyjnych. Uzyskaj dostęp do treści premium bez żadnych kosztów!",
+    "signUpNow": "Zarejestruj się teraz",
+    "browseIT": "Przeglądaj to",
+    "customerTestimonialsTitle": "Co mówią nasi klienci",
+    "customerTestimonialsSubtitle": "Nie wierz po prostu na słowo - usłyszysz od naszych zadowolonych klientów",
     "testimonial1": {
       "quote": "Vievlog pomógł mi z pewnością zdać egzamin certyfikacyjny IT.",
       "name": "Nguyen Minh Anh",
@@ -52,37 +32,11 @@
       "quote": "Dzięki Vievlog znacznie poprawiłem swoje umiejętności programowania.",
       "name": "Le Thanh Huong",
       "role": "Student uniwersytetu"
-    },
-    "vieTopik": "Vievlog - najlepszy hub uczenia się",
-    "yourOneStopShop": "Twoja kompleksowa platforma do opanowania umiejętności IT i przygotowania do egzaminów certyfikacyjnych. Uzyskaj dostęp do treści premium bez żadnych kosztów!",
-    "connectWithUs": "Śledź Vievlog w mediach społecznościowych",
-    "socialMedia": {
-      "facebook": "Śledź nas na Facebooku",
-      "twitter": "Śledź nas na Twitterze",
-      "instagram": "Śledź nas na Instagramie",
-      "linkedin": "Połącz się z nami na LinkedIn"
-    },
-    "company": {
-      "aboutUs": "O nas",
-      "careers": "Kariera",
-      "blog": "Blog technologiczny - wiadomości i wskazówki",
-      "contact": "Skontaktuj się z nami"
-    },
-    "support": {
-      "helpCenter": "Centrum pomocy",
-      "faq": "FAQ - często zadawane pytania",
-      "privacyPolicy": "Polityka prywatności",
-      "termsOfService": "Warunki usług"
-    },
-    "footer": {
-      "copyright": "© 2025 Vievlog. Wszelkie prawa zastrzeżone."
-    },
-    "metadata": {
-      "lesson": "Przeglądaj nasze bezpłatne lekcje i wybierz idealny kurs, aby pasował do poziomu umiejętności.",
-      "grammar": "Odkryj szczegółowe samouczki i diagramy technologiczne."
     }
   },
-  "posts": {},
+  "posts": {
+    "title": "Wszystkie posty"
+  },
   "videos": {},
   "chats": {},
   "footer": {
@@ -94,6 +48,27 @@
     "faq": "FAQ - często zadawane pytania",
     "privacyPolicy": "Polityka prywatności",
     "termsOfService": "Warunki usług",
-    "followUs": "Śledź nas w mediach społecznościowych"
+    "followUs": "Śledź nas w mediach społecznościowych",
+    "footerNote": "© 2025 Vievlog. Wszelkie prawa zastrzeżone.",
+    "privacy": "Prywatność",
+    "terms": "Warunki",
+    "cookies": "Ciastka",
+    "sitemap": "Mapa witryny",
+    "followUsYoutube": "Śledź nas na YouTube",
+    "chats": {
+      "chatWithUs": "Porozmawiaj z nami",
+      "chatWithFriend": "Porozmawiaj z przyjaciółmi",
+      "placeholderMessage": "Wpisz wiadomość ...",
+      "sendButton": "Wysłać"
+    },
+    "videos": {
+      "allVideos": "Wszystkie filmy",
+      "tiktokVideos": "Filmy Tiktok"
+    },
+    "posts": {
+      "allPosts": "Wszystkie posty",
+      "ginCourse": "Kurs gin",
+      "GoCourse": "Idź kurs"
+    }
   }
 }

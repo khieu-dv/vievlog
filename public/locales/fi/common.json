@@ -6,38 +6,18 @@
     "videos": "Video"
   },
   "home": {
-    "title": "VievLog - ilmainen online IT -oppiminen | Kurssit, resurssit ja sertifiointi",
-    "home": "Kotiin",
-    "posts": "Viestit",
-    "chats": "Keskustelu",
-    "videos": "Video",
-    "topiks": "Se oppii aiheita",
-    "courses": "Ilmaisia ​​IT -kursseja",
-    "grammar": "Tekniset kieliopin oppitunnit",
-    "game": "Koulutuspelit",
-    "features": "Alustaominaisuudet",
-    "logIn": "Kirjaudu sisään tiliisi",
-    "signUp": "Rekisteröidy ilmaiseksi IT -kursseille",
-    "toggleTheme": "Vaihda valo/tumma tila",
-    "newCollection": "Tutustu uuteen IT -kurssikokoelmaan",
     "oneStopPlatform": "VievLog-All-in-one It -oppimisalusta",
-    "startLearningNow": "Aloita sen oppiminen ja valmistaudu tentteihin tänään",
-    "whyChooseVieVlog": "Miksi oppia se Vievlogilla?",
-    "freeAccess": "Täysin ilmainen pääsy",
     "learnIT": "Nauti korkealaatuisten tietotekniikan opetusohjelmista, oppitunteista ja resursseista kokeneilta ohjaajilta-täysin ilmaiseksi.",
-    "expertInstructors": "Opi alan asiantuntijoilta",
-    "learnFromExperts": "Opettaa kokenut IT -ammattilaiset ja kouluttajat.",
-    "anytimeAnywhere": "Joustava oppiminen milloin tahansa, missä tahansa",
-    "learnAtYourOwnPace": "Opi omassa tahdissasi rajoittamattomalla oppitunnilla.",
-    "comprehensiveCurriculum": "Täysin pino IT-opetussuunnitelma",
-    "coverAllAspects": "Kattaa edistyneille IT -konsepteille perustuvan laajuuden, mukaan lukien koodaus, järjestelmät, verkottuminen ja muut.",
-    "viewAllIT": "Selaa kaikkia Vievlog -kursseja ja harjoittelutestejä",
-    "featuredCourses": "Esitetyt IT -ohjelmat",
-    "beginnerIT": "Aloittelijatason IT-kurssi",
-    "intermediateIT": "Keskitason IT -kurssi",
-    "advancedIT": "Advanced IT Mastery",
-    "getStartedForFree": "Aloita oppiminen ilmaiseksi tänään",
-    "whatOurLearnersSay": "Mitä oppijat sanovat Vievlogista",
+    "viewAllPosts": "Katso kaikki viestit",
+    "shoppingExperience": "Ostoskokemus",
+    "latestBlogPosts": "Viimeisimmät blogiviestit",
+    "exploreArticles": "Tutustu uusimpiin artikkeleihin ja vinkkejä sen oppimiseen",
+    "vieTopik": "Vievlog - Top 1 IT -oppimiskeskuksen",
+    "yourOneStopShop": "Yhden luukun alustasi hallitsee IT-taitoja ja valmistautua sertifiointikokeisiin. Hanki pääsy premium -sisältöön ilmaiseksi!",
+    "signUpNow": "Rekisteröidy nyt",
+    "browseIT": "Selata",
+    "customerTestimonialsTitle": "Mitä asiakkaamme sanovat",
+    "customerTestimonialsSubtitle": "Älä vain ota sanamme siihen - kuule tyytyväisiltä asiakkailtamme",
     "testimonial1": {
       "quote": "Vievlog auttoi minua luottavaisesti läpäisemään IT -sertifiointikokeen.",
       "name": "Nguyen minh anh",
@@ -52,37 +32,11 @@
       "quote": "VievLogin ansiosta olen parantanut merkittävästi ohjelmointitaitojani.",
       "name": "Le Thanh Huong",
       "role": "Yliopisto -opiskelija"
-    },
-    "vieTopik": "Vievlog - Top 1 IT -oppimiskeskuksen",
-    "yourOneStopShop": "Yhden luukun alustasi hallitsee IT-taitoja ja valmistautua sertifiointikokeisiin. Hanki pääsy premium -sisältöön ilmaiseksi!",
-    "connectWithUs": "Seuraa Vievlogia sosiaalisessa mediassa",
-    "socialMedia": {
-      "facebook": "Seuraa meitä Facebookissa",
-      "twitter": "Seuraa meitä Twitterissä",
-      "instagram": "Seuraa meitä Instagramissa",
-      "linkedin": "Yhdistä kanssamme LinkedInissä"
-    },
-    "company": {
-      "aboutUs": "Meistä",
-      "careers": "Ura",
-      "blog": "Tech -blogi - Uutiset ja vinkit",
-      "contact": "Ota yhteyttä"
-    },
-    "support": {
-      "helpCenter": "Avustuskeskus",
-      "faq": "UKK - usein kysyttyjä kysymyksiä",
-      "privacyPolicy": "Tietosuojakäytäntö",
-      "termsOfService": "Palvelusehdot"
-    },
-    "footer": {
-      "copyright": "© 2025 Vievlog. Kaikki oikeudet pidätetään."
-    },
-    "metadata": {
-      "lesson": "Tutustu ilmaisiin oppitunteihimme ja valitse täydellinen kurssi taitotasosi vastaamiseksi.",
-      "grammar": "Löydä yksityiskohtaiset teknologiaoppaat ja kaaviot."
     }
   },
-  "posts": {},
+  "posts": {
+    "title": "Kaikki viestit"
+  },
   "videos": {},
   "chats": {},
   "footer": {
@@ -94,6 +48,27 @@
     "faq": "UKK - usein kysyttyjä kysymyksiä",
     "privacyPolicy": "Tietosuojakäytäntö",
     "termsOfService": "Palvelusehdot",
-    "followUs": "Seuraa meitä sosiaalisessa mediassa"
+    "followUs": "Seuraa meitä sosiaalisessa mediassa",
+    "footerNote": "© 2025 Vievlog. Kaikki oikeudet pidätetään.",
+    "privacy": "Yksityisyys",
+    "terms": "Sanat",
+    "cookies": "Evästeet",
+    "sitemap": "Sivukartta",
+    "followUsYoutube": "Seuraa meitä YouTubessa",
+    "chats": {
+      "chatWithUs": "Keskustella kanssamme",
+      "chatWithFriend": "Keskustele ystävien kanssa",
+      "placeholderMessage": "Kirjoita viesti ...",
+      "sendButton": "Lähettää"
+    },
+    "videos": {
+      "allVideos": "Kaikki videot",
+      "tiktokVideos": "Tiktok -videot"
+    },
+    "posts": {
+      "allPosts": "Kaikki viestit",
+      "ginCourse": "Gin -kurssi",
+      "GoCourse": "Käydä kurssilla"
+    }
   }
 }

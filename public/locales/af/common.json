@@ -6,38 +6,18 @@
     "videos": "Video's"
   },
   "home": {
-    "title": "VieVLog - gratis aanlyn IT -leer | Kursusse, bronne en sertifisering",
-    "home": "Tuiste",
-    "posts": "Posts",
-    "chats": "Geselsies",
-    "videos": "Video's",
-    "topiks": "Dit leer onderwerpe",
-    "courses": "Gratis IT -kursusse",
-    "grammar": "Tegniese grammatikale lesse",
-    "game": "Opvoedkundige speletjies",
-    "features": "Platformfunksies",
-    "logIn": "Meld aan by u rekening",
-    "signUp": "Teken in vir gratis IT -kursusse",
-    "toggleTheme": "Skakel lig/donker modus",
-    "newCollection": "Verken ons nuwe IT -kursusversameling",
     "oneStopPlatform": "VIEVLOG-U alles-in-een IT-leerplatform",
-    "startLearningNow": "Begin dit leer en berei vandag voor vir eksamens",
-    "whyChooseVieVlog": "Waarom leer dit met Vievlog?",
-    "freeAccess": "Heeltemal gratis toegang",
     "learnIT": "Geniet IT-tutoriale, lesse en hulpbronne van ervare instrukteurs van topgehalte-heeltemal gratis.",
-    "expertInstructors": "Leer van kundiges in die bedryf",
-    "learnFromExperts": "Word geleer deur gesoute IT -professionele persone en opvoeders.",
-    "anytimeAnywhere": "Buigsame leer enige tyd en oral",
-    "learnAtYourOwnPace": "Leer in u eie tempo met onbeperkte lestoegang.",
-    "comprehensiveCurriculum": "Volstapel IT-kurrikulum",
-    "coverAllAspects": "Dek die grondslag vir gevorderde IT -konsepte, insluitend kodering, stelsels, netwerke en meer.",
-    "viewAllIT": "Kyk na alle VieVLog -kursusse en oefentoetse",
-    "featuredCourses": "IT -IT -programme",
-    "beginnerIT": "Beginner-vlak IT-kursus",
-    "intermediateIT": "Tussentydse IT -kursus",
-    "advancedIT": "Gevorderde IT -bemeestering",
-    "getStartedForFree": "Begin vandag gratis leer",
-    "whatOurLearnersSay": "Wat leerders oor Vievlog sê",
+    "viewAllPosts": "Kyk na alle pos",
+    "shoppingExperience": "Inkopie -ervaring",
+    "latestBlogPosts": "Nuutste blogplasings",
+    "exploreArticles": "Verken ons nuutste artikels en wenke om dit te leer",
+    "vieTopik": "VIEVLOG - Die top 1 IT -leernaaf",
+    "yourOneStopShop": "U eenstopplatform om IT-vaardighede te bemeester en voor te berei op sertifiseringseksamens. Kry toegang tot premium -inhoud gratis!",
+    "signUpNow": "Teken nou aan",
+    "browseIT": "Blaai dit",
+    "customerTestimonialsTitle": "Wat ons kliënte sê",
+    "customerTestimonialsSubtitle": "Moenie net ons woord daarvoor neem nie - hoor van ons tevrede kliënte",
     "testimonial1": {
       "quote": "Vievlog het my gehelp om my IT -sertifiseringseksamen met selfvertroue te slaag.",
       "name": "Nguyen minh anh",
@@ -52,37 +32,11 @@
       "quote": "Danksy Vievlog het ek my programmeringsvaardighede aansienlik verbeter.",
       "name": "Le Thanh Huong",
       "role": "Universiteitstudent"
-    },
-    "vieTopik": "VIEVLOG - Die top 1 IT -leernaaf",
-    "yourOneStopShop": "U eenstopplatform om IT-vaardighede te bemeester en voor te berei op sertifiseringseksamens. Kry toegang tot premium -inhoud gratis!",
-    "connectWithUs": "Volg Vievlog op sosiale media",
-    "socialMedia": {
-      "facebook": "Volg ons op Facebook",
-      "twitter": "Volg ons op Twitter",
-      "instagram": "Volg ons op Instagram",
-      "linkedin": "Verbind met ons op LinkedIn"
-    },
-    "company": {
-      "aboutUs": "Oor ons",
-      "careers": "Loopbane",
-      "blog": "Tech Blog - News & Tips",
-      "contact": "Kontak ons"
-    },
-    "support": {
-      "helpCenter": "Help Sentrum",
-      "faq": "Vrae - gereeld vrae gevra",
-      "privacyPolicy": "Privaatheidsbeleid",
-      "termsOfService": "Diensvoorwaardes"
-    },
-    "footer": {
-      "copyright": "© 2025 VIEVLOG. Alle regte voorbehou."
-    },
-    "metadata": {
-      "lesson": "Verken ons gratis lesse en kies die perfekte kursus om by u vaardigheidsvlak te pas.",
-      "grammar": "Ontdek gedetailleerde tegniese tutoriale en diagramme."
     }
   },
-  "posts": {},
+  "posts": {
+    "title": "Alle poste"
+  },
   "videos": {},
   "chats": {},
   "footer": {
@@ -94,6 +48,27 @@
     "faq": "Vrae - gereeld vrae gevra",
     "privacyPolicy": "Privaatheidsbeleid",
     "termsOfService": "Diensvoorwaardes",
-    "followUs": "Volg ons op sosiale media"
+    "followUs": "Volg ons op sosiale media",
+    "footerNote": "© 2025 VIEVLOG. Alle regte voorbehou.",
+    "privacy": "Privaatheid",
+    "terms": "Tussen",
+    "cookies": "Koekies",
+    "sitemap": "Sitemap",
+    "followUsYoutube": "Volg ons op YouTube",
+    "chats": {
+      "chatWithUs": "Gesels met ons",
+      "chatWithFriend": "Gesels met jou vriende",
+      "placeholderMessage": "Tik 'n boodskap in ...",
+      "sendButton": "Stuur"
+    },
+    "videos": {
+      "allVideos": "Alle video's",
+      "tiktokVideos": "Tiktok -video's"
+    },
+    "posts": {
+      "allPosts": "Alle poste",
+      "ginCourse": "Gin kursus",
+      "GoCourse": "Gaan kursus"
+    }
   }
 }

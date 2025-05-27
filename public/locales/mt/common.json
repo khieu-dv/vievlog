@@ -6,38 +6,18 @@
     "videos": "Vidjows"
   },
   "home": {
-    "title": "Vievlog - Tagħlim tal-IT online b'xejn | Korsijiet, Riżorsi u Ċertifikazzjoni",
-    "home": "Id-dar",
-    "posts": "Posts",
-    "chats": "Chats",
-    "videos": "Vidjows",
-    "topiks": "Suġġetti tat-tagħlim tal-IT",
-    "courses": "Korsijiet tal-IT b'xejn",
-    "grammar": "Lezzjonijiet tal-Grammatika Teknika",
-    "game": "Logħob edukattivi",
-    "features": "Karatteristiċi tal-pjattaforma",
-    "logIn": "Idħol fil-kont tiegħek",
-    "signUp": "Irreġistra korsijiet tal-IT b'xejn",
-    "toggleTheme": "Swiċċ il-modalità ħafifa / skura",
-    "newCollection": "Esplora l-kollezzjoni l-ġdida tagħna tal-kors tal-IT",
     "oneStopPlatform": "Vievlog - il-pjattaforma kollha tiegħek ta 'tagħlim tal-IT kollha",
-    "startLearningNow": "Ibda titgħallem u ħejji għall-eżamijiet illum",
-    "whyChooseVieVlog": "Għaliex titgħallemha ma 'Vievlog?",
-    "freeAccess": "Aċċess kompletament ħieles",
     "learnIT": "Igawdu tutorials, lezzjonijiet u riżorsi ta 'l-IT ta' l-aqwa kwalità minn għalliema b'esperjenza - b'xejn.",
-    "expertInstructors": "Tgħallem minn esperti tal-industrija",
-    "learnFromExperts": "Tgħallem minn professjonisti tal-IT imħawwar u edukaturi.",
-    "anytimeAnywhere": "Tagħlim flessibbli f'kull ħin",
-    "learnAtYourOwnPace": "Tgħallem bir-ritmu tiegħek b'aċċess illimitat tal-lezzjoni.",
-    "comprehensiveCurriculum": "Kurrikulu full-stack tal-IT",
-    "coverAllAspects": "Tkopri fundamentali għal kunċetti avvanzati tal-IT inkluż kodifikazzjoni, sistemi, netwerking, u aktar.",
-    "viewAllIT": "Ibbrawżja l-korsijiet kollha tal-vievlog u testijiet tal-prattika",
-    "featuredCourses": "Programmi tal-IT dehru",
-    "beginnerIT": "Kors tal-IT fil-livell tal-bidu",
-    "intermediateIT": "Kors tal-IT intermedju",
-    "advancedIT": "Avvanzata tal-ħakma tal-IT",
-    "getStartedForFree": "Ibda titgħallem b'xejn illum",
-    "whatOurLearnersSay": "Dak li jgħidu l-istudenti dwar Vievlog",
+    "viewAllPosts": "Ara l-post kollu",
+    "shoppingExperience": "Esperjenza tax-xiri",
+    "latestBlogPosts": "L-aħħar posts tal-blog",
+    "exploreArticles": "Esplora l-aħħar artikli u pariri tagħna biex nitgħallmuha",
+    "vieTopik": "Vievlog - l-aqwa 1 hub tat-tagħlim tal-IT",
+    "yourOneStopShop": "Il-pjattaforma one-stop tiegħek biex tikkontrolla l-ħiliet tal-IT u tħejji għal eżamijiet ta 'ċertifikazzjoni. Ikseb aċċess għal kontenut premium mingħajr ħlas!",
+    "signUpNow": "Irreġistra issa",
+    "browseIT": "Ibbrawżjaha",
+    "customerTestimonialsTitle": "Dak li jgħidu l-klijenti tagħna",
+    "customerTestimonialsSubtitle": "Tieħux biss il-kelma tagħna għaliha - tisma 'mill-klijenti sodisfatti tagħna",
     "testimonial1": {
       "quote": "Vievlog għenni ngħaddi b'fiduċja l-eżami taċ-ċertifikazzjoni tal-IT tiegħi.",
       "name": "Nguyen Minh Anh",
@@ -52,37 +32,11 @@
       "quote": "Bis-saħħa ta 'Vievlog, tejjeb b'mod sinifikanti l-ħiliet ta' programmazzjoni tiegħi.",
       "name": "Le Thanh Huong",
       "role": "Student tal-Università"
-    },
-    "vieTopik": "Vievlog - l-aqwa 1 hub tat-tagħlim tal-IT",
-    "yourOneStopShop": "Il-pjattaforma one-stop tiegħek biex tikkontrolla l-ħiliet tal-IT u tħejji għal eżamijiet ta 'ċertifikazzjoni. Ikseb aċċess għal kontenut premium mingħajr ħlas!",
-    "connectWithUs": "Segwi vievlog fuq il-midja soċjali",
-    "socialMedia": {
-      "facebook": "Segwi magħna fuq Facebook",
-      "twitter": "Segwi magħna fuq Twitter",
-      "instagram": "Segwi magħna fuq Instagram",
-      "linkedin": "Qabbad magħna fuq LinkedIn"
-    },
-    "company": {
-      "aboutUs": "Dwarna",
-      "careers": "Karrieri",
-      "blog": "Blog Tech - Aħbarijiet u Għajnuniet",
-      "contact": "Ikkuntattjana"
-    },
-    "support": {
-      "helpCenter": "Ċentru ta 'Għajnuna",
-      "faq": "FAQ - Mistoqsijiet Frekwenti",
-      "privacyPolicy": "Politika tal-Privatezza",
-      "termsOfService": "Termini tas-Servizz"
-    },
-    "footer": {
-      "copyright": "© 2025 Vievlog. Id-drittijiet kollha riżervati."
-    },
-    "metadata": {
-      "lesson": "Esplora l-lezzjonijiet b'xejn tagħna u agħżel il-kors perfett biex taqbel mal-livell tal-ħiliet tiegħek.",
-      "grammar": "Skopri tutorials u dijagrammi dettaljati tat-teknoloġija."
     }
   },
-  "posts": {},
+  "posts": {
+    "title": "Il-karigi kollha"
+  },
   "videos": {},
   "chats": {},
   "footer": {
@@ -94,6 +48,27 @@
     "faq": "FAQ - Mistoqsijiet Frekwenti",
     "privacyPolicy": "Politika tal-Privatezza",
     "termsOfService": "Termini tas-Servizz",
-    "followUs": "Segwi magħna fuq il-midja soċjali"
+    "followUs": "Segwi magħna fuq il-midja soċjali",
+    "footerNote": "© 2025 Vievlog. Id-drittijiet kollha riżervati.",
+    "privacy": "Privatezza",
+    "terms": "Termini",
+    "cookies": "Cookies",
+    "sitemap": "Sitemap",
+    "followUsYoutube": "Segwi magħna fuq YouTube",
+    "chats": {
+      "chatWithUs": "Chat magħna",
+      "chatWithFriend": "Chat ma 'sħabek",
+      "placeholderMessage": "Ittajpja messaġġ ...",
+      "sendButton": "Ibgħat"
+    },
+    "videos": {
+      "allVideos": "Il-vidjows kollha",
+      "tiktokVideos": "Vidjows Tiktok"
+    },
+    "posts": {
+      "allPosts": "Il-karigi kollha",
+      "ginCourse": "Kors tal-ġinn",
+      "GoCourse": "Mur kors"
+    }
   }
 }

@@ -6,38 +6,18 @@
     "videos": "Rikaanolo"
   },
   "home": {
-    "title": "Vevlog - bilaash ah khadka tooska ah ee internetka ee internetka | Koorsooyin, Kheyraadka & Shahaadada",
-    "home": "Guri",
-    "posts": "Dhagis",
-    "chats": "Ilxidsho",
-    "videos": "Rikaanolo",
-    "topiks": "Waxay baranaysaa mowduucyada",
-    "courses": "Free koorsooyinka",
-    "grammar": "Casharada Tech naxwaha",
-    "game": "Ciyaaraha Waxbarashada",
-    "features": "Astaamaha dhismaha",
-    "logIn": "Gal koontadaada",
-    "signUp": "Iska qor koorsooyinka",
-    "toggleTheme": "Sawir FARSAMO / MARKA MARKA",
-    "newCollection": "Sahaminta ururinta koorsada ee cusub",
     "oneStopPlatform": "Vasevlog - oo dhan-gebi ahaanba waa goob-waxbarid",
-    "startLearningNow": "Bilow barashada oo u diyaar garow imtixaannada maanta",
-    "whyChooseVieVlog": "Waa maxay sababta ay u bartay Vevlog?",
-    "freeAccess": "Gebi ahaanba helitaan bilaash ah",
     "learnIT": "Ku raaxayso tayada sare ee tayada, casharrada, iyo ilaha laga helo macallimiin khibrad leh-gebi ahaanba bilaash ah.",
-    "expertInstructors": "Ka baro khubarada warshadaha",
-    "learnFromExperts": "Waxaa lagu bartaa xirfadlayaal iyo barayaal.",
-    "anytimeAnywhere": "Barashada dabacsan ee dabacsan wakhti kasta, meel kasta",
-    "learnAtYourOwnPace": "Wax ka baro xawaarahaaga siinta casharka aan xadidneyn.",
-    "comprehensiveCurriculum": "Manhajka buuxa ee manhajka",
-    "coverAllAspects": "Waxay ka kooban tahay aasaaska si ay u horumariyaan fikradaha ay ka mid yihiin doomaha, nidaamyada, isku xirnaanta, iyo inbadan.",
-    "viewAllIT": "Baadh dhammaan koorsooyinka Vevlog iyo imtixaannada ku celcelinta",
-    "featuredCourses": "Waxaa lagu soo bandhigay barnaamijyo",
-    "beginnerIT": "Koorso bilowga ah",
-    "intermediateIT": "Koorsada Dhexe",
-    "advancedIT": "Horumarsan ayey u sarreysay",
-    "getStartedForFree": "Bilow barashada maanta bilaash ah",
-    "whatOurLearnersSay": "Waa maxay bartayaashu ku saabsan yihiin Vevlog",
+    "viewAllPosts": "Eeg dhammaan boostada",
+    "shoppingExperience": "Khibrad iibsi",
+    "latestBlogPosts": "Boostada ugu dambeysay ee barta",
+    "exploreArticles": "Sahamiyaan maqaalkeena iyo talooyinkii ugu dambeeyay ee lagu barto",
+    "vieTopik": "Vevlog - The Top 1 IT-ga ee barashada",
+    "yourOneStopShop": "Maskaxdaada hal-joogsi ah si aad u maamusho xirfadaha oo u diyaargarowga imtixaannada shahaadada. Hel marin u hel waxyaabaha lacagta joogtada ah ee aan kharash lahayn!",
+    "signUpNow": "Iska qor",
+    "browseIT": "Ka raadi",
+    "customerTestimonialsTitle": "Waxa ay macaamiisheena dhahaan",
+    "customerTestimonialsSubtitle": "Kaliya ha u qaadin ereygayaga - maqal macaamiishayada qanacsanaanta",
     "testimonial1": {
       "quote": "Vievlog wuxuu iga caawiyay kalsoonida si aan uga gudbo imtixaankayga caddeynta.",
       "name": "Nguyen MinH anh",
@@ -52,37 +32,11 @@
       "quote": "Thanks to Viaevlog, waxaan si weyn u wanaajiyey xirfadahayga barnaamijkeyga.",
       "name": "Le egh hong",
       "role": "Arday Jaamacadda"
-    },
-    "vieTopik": "Vevlog - The Top 1 IT-ga ee barashada",
-    "yourOneStopShop": "Maskaxdaada hal-joogsi ah si aad u maamusho xirfadaha oo u diyaargarowga imtixaannada shahaadada. Hel marin u hel waxyaabaha lacagta joogtada ah ee aan kharash lahayn!",
-    "connectWithUs": "Raac Vievlog warbaahinta bulshada",
-    "socialMedia": {
-      "facebook": "Nala soco facebook",
-      "twitter": "Nala soco twitter",
-      "instagram": "Nala soco barta Instagram",
-      "linkedin": "Nala xiriir annaga oo ku saabsan LinkedIn"
-    },
-    "company": {
-      "aboutUs": "Naga ku saabsan",
-      "careers": "Xirfadaha",
-      "blog": "Tech Blog Blog - News & Tilmaamaha",
-      "contact": "Nala soo xiriir"
-    },
-    "support": {
-      "helpCenter": "Xarunta caawinta",
-      "faq": "Su'aalaha Faq - Su'aalaha Inta badan la Isweydiiyo",
-      "privacyPolicy": "Qaanuunka Arrimaha Khaaska ah",
-      "termsOfService": "Shuruudaha Adeegga"
-    },
-    "footer": {
-      "copyright": "© 2025 Vevlog. Dhamaan xuquuqaha ayaa ilaaliya."
-    },
-    "metadata": {
-      "lesson": "Baadh casharadayaga bilaashka ah oo dooro koorsada saxda ah si aad ugu dhigto heerka xirfaddaada.",
-      "grammar": "Soo hel tilmaamo farsamo oo faahfaahsan iyo jaantusyo."
     }
   },
-  "posts": {},
+  "posts": {
+    "title": "Dhamaan Posts"
+  },
   "videos": {},
   "chats": {},
   "footer": {
@@ -94,6 +48,27 @@
     "faq": "Su'aalaha Faq - Su'aalaha Inta badan la Isweydiiyo",
     "privacyPolicy": "Qaanuunka Arrimaha Khaaska ah",
     "termsOfService": "Shuruudaha Adeegga",
-    "followUs": "Nala soco warbaahinta bulshada"
+    "followUs": "Nala soco warbaahinta bulshada",
+    "footerNote": "© 2025 Vevlog. Dhamaan xuquuqaha ayaa ilaaliya.",
+    "privacy": "Keli ahaansho",
+    "terms": "Shuruudaha",
+    "cookies": "Kukiyada",
+    "sitemap": "Hartemap",
+    "followUsYoutube": "Nala soco youtube",
+    "chats": {
+      "chatWithUs": "Nala sheekeysi",
+      "chatWithFriend": "La hadal asxaabtaada",
+      "placeholderMessage": "Nooc fariin ah ...",
+      "sendButton": "Dirid"
+    },
+    "videos": {
+      "allVideos": "Dhamaan fiidiyowyada",
+      "tiktokVideos": "TikTok Videos"
+    },
+    "posts": {
+      "allPosts": "Dhamaan Posts",
+      "ginCourse": "Gin koorsada",
+      "GoCourse": "Tag dabcan"
+    }
   }
 }

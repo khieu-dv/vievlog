@@ -6,38 +6,18 @@
     "videos": "비디오"
   },
   "home": {
-    "title": "vievlog - 무료 온라인 IT 학습 | 과정, 리소스 및 인증",
-    "home": "집",
-    "posts": "게시물",
-    "chats": "채팅",
-    "videos": "비디오",
-    "topiks": "그것은 주제를 배우고 있습니다",
-    "courses": "무료 IT 코스",
-    "grammar": "기술 문법 수업",
-    "game": "교육 게임",
-    "features": "플랫폼 기능",
-    "logIn": "계정에 로그인하십시오",
-    "signUp": "무료 IT 코스에 가입하십시오",
-    "toggleTheme": "전환 드림/다크 모드",
-    "newCollection": "새로운 IT 코스 컬렉션을 탐색하십시오",
     "oneStopPlatform": "Vievlog-올인원 IT 학습 플랫폼",
-    "startLearningNow": "배우기 시작하고 오늘 시험을 준비하십시오",
-    "whyChooseVieVlog": "왜 Vievlog와 함께 배우나요?",
-    "freeAccess": "완전 무료 액세스",
     "learnIT": "숙련 된 강사의 최고 품질의 IT 튜토리얼, 레슨 및 리소스를 즐기십시오.",
-    "expertInstructors": "업계 전문가로부터 배우십시오",
-    "learnFromExperts": "노련한 IT 전문가와 교육자로 가르치십시오.",
-    "anytimeAnywhere": "언제 어디서나 유연한 학습",
-    "learnAtYourOwnPace": "무제한 수업 액세스로 자신의 속도로 배우십시오.",
-    "comprehensiveCurriculum": "전체 스택 IT 커리큘럼",
-    "coverAllAspects": "코딩, 시스템, 네트워킹 등을 포함한 고급 IT 개념의 기초를 다룹니다.",
-    "viewAllIT": "모든 vievlog 코스를 찾아보고 테스트를 연습하십시오",
-    "featuredCourses": "IT 프로그램이 소개되었습니다",
-    "beginnerIT": "초보자 수준 IT 코스",
-    "intermediateIT": "중간 IT 코스",
-    "advancedIT": "진보 된 IT 숙달",
-    "getStartedForFree": "오늘 무료로 배우기 시작하십시오",
-    "whatOurLearnersSay": "학습자들이 Vievlog에 대해 말하는 것",
+    "viewAllPosts": "모든 게시물을보십시오",
+    "shoppingExperience": "쇼핑 경험",
+    "latestBlogPosts": "최신 블로그 게시물",
+    "exploreArticles": "최신 기사와 학습을위한 팁을 살펴보십시오",
+    "vieTopik": "VIEVLOG - Top 1 IT Learning Hub",
+    "yourOneStopShop": "IT 기술을 마스터하고 인증 시험을 준비하는 원 스톱 플랫폼. 무료로 프리미엄 콘텐츠에 액세스하십시오!",
+    "signUpNow": "지금 가입하십시오",
+    "browseIT": "찾아보세요",
+    "customerTestimonialsTitle": "우리 고객의 말",
+    "customerTestimonialsSubtitle": "우리의 말만 받아들이지 마십시오 - 만족스러운 고객의 의견을 들어보세요",
     "testimonial1": {
       "quote": "Vievlog는 자신있게 IT 인증 시험을 통과하는 데 도움이되었습니다.",
       "name": "Nguyen Minh Anh",
@@ -52,37 +32,11 @@
       "quote": "Vievlog 덕분에 프로그래밍 기술을 크게 향상 시켰습니다.",
       "name": "Le Thanh Huong",
       "role": "대학생"
-    },
-    "vieTopik": "VIEVLOG - Top 1 IT Learning Hub",
-    "yourOneStopShop": "IT 기술을 마스터하고 인증 시험을 준비하는 원 스톱 플랫폼. 무료로 프리미엄 콘텐츠에 액세스하십시오!",
-    "connectWithUs": "소셜 미디어에서 Vievlog를 따르십시오",
-    "socialMedia": {
-      "facebook": "Facebook에서 우리를 팔로우하십시오",
-      "twitter": "트위터에서 우리를 따르십시오",
-      "instagram": "Instagram에서 우리를 따르십시오",
-      "linkedin": "LinkedIn에서 우리와 연결하십시오"
-    },
-    "company": {
-      "aboutUs": "우리에 대해",
-      "careers": "경력",
-      "blog": "기술 블로그 - 뉴스 및 팁",
-      "contact": "저희에게 연락하십시오"
-    },
-    "support": {
-      "helpCenter": "도움말 센터",
-      "faq": "FAQ - 자주 묻는 질문",
-      "privacyPolicy": "개인 정보 보호 정책",
-      "termsOfService": "서비스 약관"
-    },
-    "footer": {
-      "copyright": "© 2025 Vievlog. 모든 권리 보유."
-    },
-    "metadata": {
-      "lesson": "무료 레슨을 탐색하고 기술 수준에 맞는 완벽한 코스를 선택하십시오.",
-      "grammar": "자세한 기술 자습서 및 다이어그램을 발견하십시오."
     }
   },
-  "posts": {},
+  "posts": {
+    "title": "모든 게시물"
+  },
   "videos": {},
   "chats": {},
   "footer": {
@@ -94,6 +48,27 @@
     "faq": "FAQ - 자주 묻는 질문",
     "privacyPolicy": "개인 정보 보호 정책",
     "termsOfService": "서비스 약관",
-    "followUs": "소셜 미디어에서 우리를 따르십시오"
+    "followUs": "소셜 미디어에서 우리를 따르십시오",
+    "footerNote": "© 2025 Vievlog. 모든 권리 보유.",
+    "privacy": "은둔",
+    "terms": "자귀",
+    "cookies": "쿠키",
+    "sitemap": "사이트 맵",
+    "followUsYoutube": "YouTube에서 우리를 따르십시오",
+    "chats": {
+      "chatWithUs": "우리와 채팅",
+      "chatWithFriend": "친구들과 채팅하십시오",
+      "placeholderMessage": "A 형 메시지 ...",
+      "sendButton": "보내다"
+    },
+    "videos": {
+      "allVideos": "모든 비디오",
+      "tiktokVideos": "Tiktok 비디오"
+    },
+    "posts": {
+      "allPosts": "모든 게시물",
+      "ginCourse": "진 코스",
+      "GoCourse": "코스"
+    }
   }
 }

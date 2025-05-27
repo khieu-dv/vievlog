@@ -6,38 +6,18 @@
     "videos": "Vídeos"
   },
   "home": {
-    "title": "VievLog - Aprendizagem online gratuita de TI | Cursos, recursos e certificação",
-    "home": "Lar",
-    "posts": "Postagens",
-    "chats": "Bate -papos",
-    "videos": "Vídeos",
-    "topiks": "Isso está aprendendo tópicos",
-    "courses": "Correr de TI livre",
-    "grammar": "Aulas de gramática técnica",
-    "game": "Jogos educacionais",
-    "features": "Recursos da plataforma",
-    "logIn": "Faça login em sua conta",
-    "signUp": "Inscreva -se para cursos gratuitos de TI",
-    "toggleTheme": "Mudar o modo claro/escuro",
-    "newCollection": "Explore nossa nova coleção de cursos de TI",
     "oneStopPlatform": "Vievlog-sua plataforma de aprendizado tudo em um",
-    "startLearningNow": "Comece a aprender e prepare -se para os exames hoje",
-    "whyChooseVieVlog": "Por que aprender com o vievlog?",
-    "freeAccess": "Acesso completamente gratuito",
     "learnIT": "Desfrute de tutoriais de TI de alta qualidade, lições e recursos de instrutores experientes-complicamente gratuitos.",
-    "expertInstructors": "Aprenda com especialistas do setor",
-    "learnFromExperts": "Ser ensinado por profissionais e educadores experientes de TI.",
-    "anytimeAnywhere": "Aprendizado flexível a qualquer hora, em qualquer lugar",
-    "learnAtYourOwnPace": "Aprenda no seu próprio ritmo com acesso ilimitado a lição.",
-    "comprehensiveCurriculum": "Currículo de TI de pilha completa",
-    "coverAllAspects": "Abrange os conceitos avançados de TI, incluindo codificação, sistemas, redes e muito mais.",
-    "viewAllIT": "Navegue por todos os cursos e testes de prática do VievLog",
-    "featuredCourses": "Programas de TI em destaque",
-    "beginnerIT": "Curso de TI no nível iniciante",
-    "intermediateIT": "Curso intermediário de TI",
-    "advancedIT": "Domínio avançado de TI",
-    "getStartedForFree": "Comece a aprender gratuitamente hoje",
-    "whatOurLearnersSay": "O que os alunos dizem sobre o vievlog",
+    "viewAllPosts": "Ver todas as postagens",
+    "shoppingExperience": "Experiência de compra",
+    "latestBlogPosts": "Postagens mais recentes do blog",
+    "exploreArticles": "Explore nossos últimos artigos e dicas para aprendê -lo",
+    "vieTopik": "Vievlog - o top 1 hub de aprendizado de TI",
+    "yourOneStopShop": "Sua plataforma única para dominar as habilidades de TI e se preparar para os exames de certificação. Obtenha acesso ao conteúdo premium sem nenhum custo!",
+    "signUpNow": "Inscreva -se agora",
+    "browseIT": "Navegue",
+    "customerTestimonialsTitle": "O que nossos clientes dizem",
+    "customerTestimonialsSubtitle": "Não aceite apenas nossa palavra - ouça de nossos clientes satisfeitos",
     "testimonial1": {
       "quote": "O Vievlog me ajudou a passar com confiança no exame de certificação de TI.",
       "name": "Nguyen Minh Anh",
@@ -52,37 +32,11 @@
       "quote": "Graças ao VievLog, melhorei significativamente minhas habilidades de programação.",
       "name": "Le Thanh Huong",
       "role": "Estudante universitário"
-    },
-    "vieTopik": "Vievlog - o top 1 hub de aprendizado de TI",
-    "yourOneStopShop": "Sua plataforma única para dominar as habilidades de TI e se preparar para os exames de certificação. Obtenha acesso ao conteúdo premium sem nenhum custo!",
-    "connectWithUs": "Siga o VievLog nas mídias sociais",
-    "socialMedia": {
-      "facebook": "Siga -nos no Facebook",
-      "twitter": "Siga -nos no Twitter",
-      "instagram": "Siga -nos no Instagram",
-      "linkedin": "Conecte -se conosco no LinkedIn"
-    },
-    "company": {
-      "aboutUs": "Sobre nós",
-      "careers": "Carreiras",
-      "blog": "Blog de tecnologia - Notícias e dicas",
-      "contact": "Contate-nos"
-    },
-    "support": {
-      "helpCenter": "Centro de ajuda",
-      "faq": "Perguntas frequentes - perguntas frequentes",
-      "privacyPolicy": "política de Privacidade",
-      "termsOfService": "Termos de Serviço"
-    },
-    "footer": {
-      "copyright": "© 2025 VievLog. Todos os direitos reservados."
-    },
-    "metadata": {
-      "lesson": "Explore nossas lições gratuitas e escolha o curso perfeito para corresponder ao seu nível de habilidade.",
-      "grammar": "Descubra tutoriais e diagramas de tecnologia detalhados."
     }
   },
-  "posts": {},
+  "posts": {
+    "title": "Todas as postagens"
+  },
   "videos": {},
   "chats": {},
   "footer": {
@@ -94,6 +48,27 @@
     "faq": "Perguntas frequentes - perguntas frequentes",
     "privacyPolicy": "política de Privacidade",
     "termsOfService": "Termos de Serviço",
-    "followUs": "Siga -nos nas mídias sociais"
+    "followUs": "Siga -nos nas mídias sociais",
+    "footerNote": "© 2025 VievLog. Todos os direitos reservados.",
+    "privacy": "Privacidade",
+    "terms": "Termos",
+    "cookies": "Biscoitos",
+    "sitemap": "Sitemap",
+    "followUsYoutube": "Siga -nos no YouTube",
+    "chats": {
+      "chatWithUs": "Converse conosco",
+      "chatWithFriend": "Converse com seus amigos",
+      "placeholderMessage": "Digite uma mensagem ...",
+      "sendButton": "Enviar"
+    },
+    "videos": {
+      "allVideos": "Todos os vídeos",
+      "tiktokVideos": "Vídeos Tiktok"
+    },
+    "posts": {
+      "allPosts": "Todas as postagens",
+      "ginCourse": "Curso Gin",
+      "GoCourse": "Vá curso"
+    }
   }
 }

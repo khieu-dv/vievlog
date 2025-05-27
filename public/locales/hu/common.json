@@ -6,38 +6,18 @@
     "videos": "Videó"
   },
   "home": {
-    "title": "Vievlog - Ingyenes online informatikai tanulás | Tanfolyamok, erőforrások és tanúsítás",
-    "home": "Otthon",
-    "posts": "Poszt",
-    "chats": "Csevegés",
-    "videos": "Videó",
-    "topiks": "IT tanulási témák",
-    "courses": "Ingyenes IT tanfolyamok",
-    "grammar": "Technikai nyelvtani órák",
-    "game": "Oktatási játékok",
-    "features": "Platformfunkciók",
-    "logIn": "Jelentkezzen be fiókjába",
-    "signUp": "Iratkozzon fel ingyen IT tanfolyamokra",
-    "toggleTheme": "Kapcsolja a világos/sötét módot",
-    "newCollection": "Fedezze fel az új informatikai kurzusgyűjteményünket",
     "oneStopPlatform": "VIEVLOG-ALLAL-egy IT-tanulási platformod",
-    "startLearningNow": "Kezdje el tanulni, és készüljön fel a vizsgákra ma",
-    "whyChooseVieVlog": "Miért tanulja meg a Vievlog segítségével?",
-    "freeAccess": "Teljesen ingyenes hozzáférés",
     "learnIT": "Élvezze a kiváló minőségű oktatóanyagokat, tanulságokat és a tapasztalt oktatók forrásait-teljesen ingyenes.",
-    "expertInstructors": "Tanuljon az iparági szakértőktől",
-    "learnFromExperts": "Tanítsd meg a tapasztalt informatikai szakemberek és oktatók.",
-    "anytimeAnywhere": "Rugalmas tanulás bármikor, bárhol",
-    "learnAtYourOwnPace": "Tanuljon meg saját tempóját korlátlan lecke hozzáféréssel.",
-    "comprehensiveCurriculum": "Teljes verem IT tanterv",
-    "coverAllAspects": "Fedezi az alapvető és fejlett informatikai koncepciókat, beleértve a kódolást, a rendszereket, a hálózatépítést és egyebeket.",
-    "viewAllIT": "Böngésszen az összes VIEVLOG kurzusra és a gyakorlati tesztekre",
-    "featuredCourses": "Kiemelt informatikai programok",
-    "beginnerIT": "Kezdeti szintű informatikai tanfolyam",
-    "intermediateIT": "Köztes IT -tanfolyam",
-    "advancedIT": "Advanced It Mastery",
-    "getStartedForFree": "Kezdje el ma ingyen tanulni",
-    "whatOurLearnersSay": "Amit a tanulók mondanak a vievlogról",
+    "viewAllPosts": "Tekintse meg az All Postot",
+    "shoppingExperience": "Vásárlási élmény",
+    "latestBlogPosts": "Legfrissebb blogbejegyzések",
+    "exploreArticles": "Fedezze fel a legújabb cikkeinket és tippeinket a tanuláshoz",
+    "vieTopik": "Vievlog - az első 1 IT tanulási csomópont",
+    "yourOneStopShop": "Az egyablakos platform az informatikai készségek elsajátításához és a tanúsítási vizsgákra való felkészüléshez. Hozzáférést kap a prémium tartalomhoz költség nélkül!",
+    "signUpNow": "Iratkozzon fel most",
+    "browseIT": "Keresse meg",
+    "customerTestimonialsTitle": "Amit ügyfeleink mondanak",
+    "customerTestimonialsSubtitle": "Ne csak vegye be a szavunkat érte - hallgassa meg elégedett ügyfeleinket",
     "testimonial1": {
       "quote": "A Vievlog magabiztosan segített nekem átadni az informatikai tanúsítási vizsgaomat.",
       "name": "Nguyen Minh anh",
@@ -52,37 +32,11 @@
       "quote": "A Vievlognak köszönhetően jelentősen javítottam a programozási képességeimet.",
       "name": "Le Thanh Huong",
       "role": "Egyetemi hallgató"
-    },
-    "vieTopik": "Vievlog - az első 1 IT tanulási csomópont",
-    "yourOneStopShop": "Az egyablakos platform az informatikai készségek elsajátításához és a tanúsítási vizsgákra való felkészüléshez. Hozzáférést kap a prémium tartalomhoz költség nélkül!",
-    "connectWithUs": "Kövesse a Vievlog -ot a közösségi médiában",
-    "socialMedia": {
-      "facebook": "Kövessen minket a Facebookon",
-      "twitter": "Kövessen minket a Twitteren",
-      "instagram": "Kövessen minket az Instagram -on",
-      "linkedin": "Lépjen kapcsolatba velünk a LinkedIn -en"
-    },
-    "company": {
-      "aboutUs": "Rólunk",
-      "careers": "Karrier",
-      "blog": "Tech Blog - Hírek és tippek",
-      "contact": "Vegye fel velünk a kapcsolatot"
-    },
-    "support": {
-      "helpCenter": "Súgó központ",
-      "faq": "GYIK - gyakran feltett kérdések",
-      "privacyPolicy": "Adatvédelmi irányelv",
-      "termsOfService": "Szolgáltatási feltételek"
-    },
-    "footer": {
-      "copyright": "© 2025 Vievlog. Minden jog fenntartva."
-    },
-    "metadata": {
-      "lesson": "Fedezze fel ingyenes óráinkat, és válassza ki a tökéletes tanfolyamot, hogy megfeleljen a képzettségi szintnek.",
-      "grammar": "Fedezze fel a részletes technológiai oktatóanyagokat és diagramokat."
     }
   },
-  "posts": {},
+  "posts": {
+    "title": "Minden hozzászólás"
+  },
   "videos": {},
   "chats": {},
   "footer": {
@@ -94,6 +48,27 @@
     "faq": "GYIK - gyakran feltett kérdések",
     "privacyPolicy": "Adatvédelmi irányelv",
     "termsOfService": "Szolgáltatási feltételek",
-    "followUs": "Kövessen minket a közösségi médiában"
+    "followUs": "Kövessen minket a közösségi médiában",
+    "footerNote": "© 2025 Vievlog. Minden jog fenntartva.",
+    "privacy": "Magánélet",
+    "terms": "Kifejezés",
+    "cookies": "Sütik",
+    "sitemap": "Oldaltérkép",
+    "followUsYoutube": "Kövessen minket a YouTube -on",
+    "chats": {
+      "chatWithUs": "Csevegjen velünk",
+      "chatWithFriend": "Csevegj a barátaiddal",
+      "placeholderMessage": "Írjon be egy üzenetet ...",
+      "sendButton": "Elküld"
+    },
+    "videos": {
+      "allVideos": "Minden videó",
+      "tiktokVideos": "Tiktok videók"
+    },
+    "posts": {
+      "allPosts": "Minden hozzászólás",
+      "ginCourse": "Gin tanfolyam",
+      "GoCourse": "Menj"
+    }
   }
 }

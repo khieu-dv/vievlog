@@ -6,38 +6,18 @@
     "videos": "Wideolar"
   },
   "home": {
-    "title": "Wiewwog - Mugt onlaýn öwrenmek | Kurslar, çeşmeler we sertifikat",
-    "home": "Öý",
-    "posts": "Azgylar",
-    "chats": "Çatlar",
-    "videos": "Wideolar",
-    "topiks": "Mowzuklary öwrenmek",
-    "courses": "Mugt kurslar",
-    "grammar": "Tehniki grammatika sapaklary",
-    "game": "Bilim oýny",
-    "features": "Platforma aýratynlyklary",
-    "logIn": "Hasabyňyza giriň",
-    "signUp": "Mugt kurslara ýazylyň",
-    "toggleTheme": "Ýagtylyk / garaňky re modeim",
-    "newCollection": "Täze kurs kolleksiýamyzy öwreniň",
     "oneStopPlatform": "WEMULLL - THE-den ýekeje platformany öwrenmek",
-    "startLearningNow": "Öwrenip başlaň we şu gün ekzamenleri taýýarlaň",
-    "whyChooseVieVlog": "Näme üçin viýew bilen öwrenýärsiň?",
-    "freeAccess": "Doly mugt giriş",
     "learnIT": "Tejribeli mugallymlardan, sapaklary we çeşmelerden ýokary hilli, sapaklardan we çeşmelerden lezzet alyň.",
-    "expertInstructors": "Senagat hünärmenlerinden öwreniň",
-    "learnFromExperts": "Tagamly hünärmenler we mugallymçylyk edenler tarapyndan öwrediň.",
-    "anytimeAnywhere": "Islendik ýerde çeýe okuw",
-    "learnAtYourOwnPace": "Çäklendirilmedik sapak bilen öz islegiňiz boýunça öwreniň.",
-    "comprehensiveCurriculum": "Doly meýilnamasy",
-    "coverAllAspects": "Öňdükmek, ulgamlar, ulgamlar, ulgam we has köp.",
-    "viewAllIT": "WEDLOLLOLSY KÜMGINLERI WE TERJIME EDIP BOLUN",
-    "featuredCourses": "IT programmasy",
-    "beginnerIT": "Başlangyç dereje",
-    "intermediateIT": "Suraly",
-    "advancedIT": "Ösen \"ussatlyk\"",
-    "getStartedForFree": "Şu gün mugt öwrenmäge başlaň",
-    "whatOurLearnersSay": "Haýsy okuwçylaryň \"WEDAL\" hakda aýdylýanlar",
+    "viewAllPosts": "Posthli wezipäni görüň",
+    "shoppingExperience": "Söwda tejribesi",
+    "latestBlogPosts": "Iň soňky blog ýazgylary",
+    "exploreArticles": "Öwrenmek üçin iň soňky makalalarymyzy we maslahatlarymyzy öwreniň",
+    "vieTopik": "WEMULLOL - Topokarky 1, HUB-ni öwrenmek",
+    "yourOneStopShop": "IT ussatlyklaryny özleşdirmek we şahadatnamalaryň synagyna taýýarlyk görmek üçin siziň hemişelik platformaňyz. Bahasy bolmadyk premium mazmunyna giriň!",
+    "signUpNow": "Häzir ýazylyň",
+    "browseIT": "Göz aýlaň",
+    "customerTestimonialsTitle": "Müşderilerimiziň aýdýanlary",
+    "customerTestimonialsSubtitle": "Diňe onuň sözümizi almaň - kanagatly müşderilerimiziň eşidişini eşitmäň",
     "testimonial1": {
       "quote": "WEWLUL, men bu şahadatnama synagyny göz öňüne getirmäge kömek etdi.",
       "name": "Nguyen Minh anh",
@@ -52,37 +32,11 @@
       "quote": "Wiýew halkynyň garşysyna, programmirleme endiklerimi ep-esli gowulaşdyrdym.",
       "name": "LEG HUNOON",
       "role": "Uniwersitetiň okuwçysy"
-    },
-    "vieTopik": "WEMULLOL - Topokarky 1, HUB-ni öwrenmek",
-    "yourOneStopShop": "IT ussatlyklaryny özleşdirmek we şahadatnamalaryň synagyna taýýarlyk görmek üçin siziň hemişelik platformaňyz. Bahasy bolmadyk premium mazmunyna giriň!",
-    "connectWithUs": "Sosial mediýada WEDALOL-y yzarlaň",
-    "socialMedia": {
-      "facebook": "\"Facebook\" -da bize eýeriň",
-      "twitter": "Twitterde bize eýeriň",
-      "instagram": "Instagram-da bize eýeriň",
-      "linkedin": "Linkedine bilen bize birikdiriň"
-    },
-    "company": {
-      "aboutUs": "Biz hakda",
-      "careers": "Hünäri",
-      "blog": "Tehniki blogy - Habarlar we maslahatlar",
-      "contact": "Biz bilen habarlaşyň"
-    },
-    "support": {
-      "helpCenter": "Kömek merkezi",
-      "faq": "Fak - ýygy-ýygydan berilýän soraglar",
-      "privacyPolicy": "Gizlinlik syýasaty",
-      "termsOfService": "Hyzmat şertleri"
-    },
-    "footer": {
-      "copyright": "© 2025 WEDALLG. Rightshli hukuklar goralandyr."
-    },
-    "metadata": {
-      "lesson": "Mugt sapaklarymyzy öwreniň we ussatlyk derejäňizi deňeşdirmek üçin ajaýyp kursy saýlaň.",
-      "grammar": "Jikme-jik tupan derejelerini we diagrammalary tapyň."
     }
   },
-  "posts": {},
+  "posts": {
+    "title": "Postshli ýazgylar"
+  },
   "videos": {},
   "chats": {},
   "footer": {
@@ -94,6 +48,27 @@
     "faq": "Fak - ýygy-ýygydan berilýän soraglar",
     "privacyPolicy": "Gizlinlik syýasaty",
     "termsOfService": "Hyzmat şertleri",
-    "followUs": "Sosial mediýada bize eýeriň"
+    "followUs": "Sosial mediýada bize eýeriň",
+    "footerNote": "© 2025 WEDALLG. Rightshli hukuklar goralandyr.",
+    "privacy": "Gizlinlik",
+    "terms": "Şertler",
+    "cookies": "Gutapjyklar",
+    "sitemap": "Pubemap",
+    "followUsYoutube": "YouTube-da bize eýeriň",
+    "chats": {
+      "chatWithUs": "Biziň bilen söhbetdeşlik",
+      "chatWithFriend": "Dostlaryňyz bilen söhbetdeşlik",
+      "placeholderMessage": "Habar ýazyň ...",
+      "sendButton": "Iber"
+    },
+    "videos": {
+      "allVideos": "Ähli wideolar",
+      "tiktokVideos": "Tiktok wideolar"
+    },
+    "posts": {
+      "allPosts": "Postshli ýazgylar",
+      "ginCourse": "Gurnama kursy",
+      "GoCourse": "Kurs"
+    }
   }
 }

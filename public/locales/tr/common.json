@@ -6,38 +6,18 @@
     "videos": "Videolar"
   },
   "home": {
-    "title": "Vievlog - Ücretsiz çevrimiçi BT öğrenme | Kurslar, Kaynaklar ve Sertifikasyon",
-    "home": "Ev",
-    "posts": "Yazılar",
-    "chats": "Sohbetler",
-    "videos": "Videolar",
-    "topiks": "BT öğrenme konuları",
-    "courses": "Ücretsiz BT kursları",
-    "grammar": "Teknik Dilbilgisi Dersleri",
-    "game": "Eğitim oyunları",
-    "features": "Platform Özellikleri",
-    "logIn": "Hesabınızda oturum açın",
-    "signUp": "ÜCRETSİZ BT kursları için kaydolun",
-    "toggleTheme": "Işık/Karanlık Modu Değiştir",
-    "newCollection": "Yeni BT kurs koleksiyonumuzu keşfedin",
     "oneStopPlatform": "Vievlog-hepsi bir arada BT öğrenme platformunuz",
-    "startLearningNow": "Öğrenmeye başlayın ve bugün sınavlara hazırlanın",
-    "whyChooseVieVlog": "Neden Vievlog ile öğrenin?",
-    "freeAccess": "Tamamen ücretsiz erişim",
     "learnIT": "Deneyimli eğitmenlerden en kaliteli BT öğreticilerinin, derslerin ve kaynakların tadını çıkarın-kesinlikle ücretsiz.",
-    "expertInstructors": "Endüstri uzmanlarından öğrenin",
-    "learnFromExperts": "Tecrübeli BT uzmanları ve eğitimciler tarafından öğretin.",
-    "anytimeAnywhere": "Esnek öğrenme her zaman, her yerde",
-    "learnAtYourOwnPace": "Sınırsız ders erişimi ile kendi hızınızda öğrenin.",
-    "comprehensiveCurriculum": "Tam Yığın BT Müfredatı",
-    "coverAllAspects": "Kodlama, sistemler, ağ oluşturma ve daha fazlası dahil olmak üzere ileri BT kavramlarının temelini kapsar.",
-    "viewAllIT": "Tüm Vievlog kurslarına göz atın ve Testler Uygulama",
-    "featuredCourses": "Öne çıkan BT programları",
-    "beginnerIT": "Başlangıç ​​seviyesi BT kursu",
-    "intermediateIT": "Orta BT kursu",
-    "advancedIT": "Gelişmiş BT Ustalık",
-    "getStartedForFree": "Bugün ücretsiz öğrenmeye başlayın",
-    "whatOurLearnersSay": "Öğrenciler Vievlog hakkında ne söylüyor",
+    "viewAllPosts": "Tüm Gönderiyi Görüntüle",
+    "shoppingExperience": "Alışveriş Deneyimi",
+    "latestBlogPosts": "En son blog gönderileri",
+    "exploreArticles": "Öğrenmek için en son makalelerimizi ve ipuçlarımızı keşfedin",
+    "vieTopik": "Vievlog - En İyi 1 BT Öğrenme Hub",
+    "yourOneStopShop": "BT becerilerine hakim olmak ve sertifika sınavlarına hazırlanmak için tek noktadan platformunuz. Premium içeriğe ücretsiz olarak erişin!",
+    "signUpNow": "Şimdi kaydolun",
+    "browseIT": "Göz at",
+    "customerTestimonialsTitle": "Müşterilerimiz ne diyor",
+    "customerTestimonialsSubtitle": "Sadece sözümüzü almayın - memnun müşterilerimizden haber al",
     "testimonial1": {
       "quote": "Vievlog BT sertifika sınavımı güvenle geçmeme yardımcı oldu.",
       "name": "Nguyen Minh Anh",
@@ -52,37 +32,11 @@
       "quote": "Vievlog sayesinde programlama becerilerimi önemli ölçüde geliştirdim.",
       "name": "Le Thanh Huong",
       "role": "Üniversite öğrencisi"
-    },
-    "vieTopik": "Vievlog - En İyi 1 BT Öğrenme Hub",
-    "yourOneStopShop": "BT becerilerine hakim olmak ve sertifika sınavlarına hazırlanmak için tek noktadan platformunuz. Premium içeriğe ücretsiz olarak erişin!",
-    "connectWithUs": "Vievlog'u sosyal medyada takip edin",
-    "socialMedia": {
-      "facebook": "Bizi Facebook'ta takip edin",
-      "twitter": "Twitter'da bizi takip edin",
-      "instagram": "Bizi Instagram'da takip edin",
-      "linkedin": "LinkedIn'de bizimle bağlantı kurun"
-    },
-    "company": {
-      "aboutUs": "Hakkımızda",
-      "careers": "Kariyer",
-      "blog": "Teknoloji Blogu - Haberler ve İpuçları",
-      "contact": "Bize Ulaşın"
-    },
-    "support": {
-      "helpCenter": "Yardım Merkezi",
-      "faq": "SSS - Sık sorulan sorular",
-      "privacyPolicy": "Gizlilik Politikası",
-      "termsOfService": "Hizmet Şartları"
-    },
-    "footer": {
-      "copyright": "© 2025 Vievlog. Her hakkı saklıdır."
-    },
-    "metadata": {
-      "lesson": "Ücretsiz derslerimizi keşfedin ve beceri seviyenize uygun mükemmel kursu seçin.",
-      "grammar": "Ayrıntılı teknoloji öğreticilerini ve diyagramları keşfedin."
     }
   },
-  "posts": {},
+  "posts": {
+    "title": "Tüm Mesajlar"
+  },
   "videos": {},
   "chats": {},
   "footer": {
@@ -94,6 +48,27 @@
     "faq": "SSS - Sık sorulan sorular",
     "privacyPolicy": "Gizlilik Politikası",
     "termsOfService": "Hizmet Şartları",
-    "followUs": "Bizi sosyal medyada takip edin"
+    "followUs": "Bizi sosyal medyada takip edin",
+    "footerNote": "© 2025 Vievlog. Her hakkı saklıdır.",
+    "privacy": "Mahremiyet",
+    "terms": "Şartlar",
+    "cookies": "Kurabiye",
+    "sitemap": "Yer haritası",
+    "followUsYoutube": "Bizi YouTube'da takip edin",
+    "chats": {
+      "chatWithUs": "Bizimle sohbet edin",
+      "chatWithFriend": "Arkadaşlarınızla sohbet edin",
+      "placeholderMessage": "Bir mesaj yazın ...",
+      "sendButton": "Göndermek"
+    },
+    "videos": {
+      "allVideos": "Tüm Videolar",
+      "tiktokVideos": "Tiktok Videoları"
+    },
+    "posts": {
+      "allPosts": "Tüm Mesajlar",
+      "ginCourse": "Cin kursu",
+      "GoCourse": "Git Kursu"
+    }
   }
 }

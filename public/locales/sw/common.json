@@ -6,38 +6,18 @@
     "videos": "Video"
   },
   "home": {
-    "title": "Vievlog - Bure Online IT Kujifunza | Kozi, rasilimali na udhibitisho",
-    "home": "Nyumbani",
-    "posts": "Machapisho",
-    "chats": "Mazungumzo",
-    "videos": "Video",
-    "topiks": "Ni kujifunza mada",
-    "courses": "Bure kozi",
-    "grammar": "Masomo ya sarufi ya Tech",
-    "game": "Michezo ya kielimu",
-    "features": "Vipengele vya Jukwaa",
-    "logIn": "Ingia kwenye akaunti yako",
-    "signUp": "Jisajili kwa kozi za bure za IT",
-    "toggleTheme": "Badili hali nyepesi/giza",
-    "newCollection": "Chunguza mkusanyiko wetu mpya wa kozi ya IT",
     "oneStopPlatform": "Vievlog-Jukwaa lako la kujifunza la IT-moja",
-    "startLearningNow": "Anza kuijifunza na kujiandaa kwa mitihani leo",
-    "whyChooseVieVlog": "Kwa nini ujifunze na Vievlog?",
-    "freeAccess": "Ufikiaji wa bure kabisa",
     "learnIT": "Furahiya mafunzo ya hali ya juu ya IT, masomo, na rasilimali kutoka kwa waalimu wenye uzoefu-bure kabisa.",
-    "expertInstructors": "Jifunze kutoka kwa wataalam wa tasnia",
-    "learnFromExperts": "Pata kufundishwa na wataalamu wa IT na waalimu.",
-    "anytimeAnywhere": "Kujifunza rahisi wakati wowote, mahali popote",
-    "learnAtYourOwnPace": "Jifunze kwa kasi yako mwenyewe na ufikiaji wa masomo usio na kikomo.",
-    "comprehensiveCurriculum": "Mtaala kamili wa IT",
-    "coverAllAspects": "Inashughulikia msingi wa dhana za juu za IT pamoja na kuweka coding, mifumo, mitandao, na zaidi.",
-    "viewAllIT": "Vinjari kozi zote za Vievlog na vipimo vya mazoezi",
-    "featuredCourses": "Ilionyesha mipango ya IT",
-    "beginnerIT": "Kozi ya kiwango cha kwanza",
-    "intermediateIT": "Kati ya kozi ya kati",
-    "advancedIT": "Advanced It Mastery",
-    "getStartedForFree": "Anza kujifunza bure leo",
-    "whatOurLearnersSay": "Wanafunzi wanasema nini juu ya Vievlog",
+    "viewAllPosts": "Tazama chapisho zote",
+    "shoppingExperience": "Uzoefu wa ununuzi",
+    "latestBlogPosts": "Machapisho ya hivi karibuni ya blogi",
+    "exploreArticles": "Chunguza nakala zetu za hivi karibuni na vidokezo vya kuijifunza",
+    "vieTopik": "Vievlog - Kitovu cha juu cha 1 cha Kujifunza",
+    "yourOneStopShop": "Jukwaa lako la kusimamisha ujuzi wa IT na jitayarishe kwa mitihani ya udhibitisho. Pata ufikiaji wa maudhui ya malipo bila malipo!",
+    "signUpNow": "Jisajili sasa",
+    "browseIT": "Vinjari",
+    "customerTestimonialsTitle": "Wateja wetu wanasema nini",
+    "customerTestimonialsSubtitle": "Usichukue neno letu tu - sikia kutoka kwa wateja wetu walioridhika",
     "testimonial1": {
       "quote": "Vievlog ilinisaidia kupitisha kwa ujasiri mtihani wangu wa udhibitisho wa IT.",
       "name": "Nguyen Minh Anh",
@@ -52,37 +32,11 @@
       "quote": "Shukrani kwa Vievlog, nimeboresha sana ujuzi wangu wa programu.",
       "name": "Le Thanh Huong",
       "role": "Mwanafunzi wa Chuo Kikuu"
-    },
-    "vieTopik": "Vievlog - Kitovu cha juu cha 1 cha Kujifunza",
-    "yourOneStopShop": "Jukwaa lako la kusimamisha ujuzi wa IT na jitayarishe kwa mitihani ya udhibitisho. Pata ufikiaji wa maudhui ya malipo bila malipo!",
-    "connectWithUs": "Fuata Vievlog kwenye media ya kijamii",
-    "socialMedia": {
-      "facebook": "Tufuate kwenye Facebook",
-      "twitter": "Tufuate kwenye Twitter",
-      "instagram": "Tufuate kwenye Instagram",
-      "linkedin": "Ungana na sisi kwenye LinkedIn"
-    },
-    "company": {
-      "aboutUs": "Kuhusu sisi",
-      "careers": "Kazi",
-      "blog": "Blogi ya Tech - Habari na Vidokezo",
-      "contact": "Wasiliana nasi"
-    },
-    "support": {
-      "helpCenter": "Kituo cha Msaada",
-      "faq": "Maswali - maswali yanayoulizwa mara kwa mara",
-      "privacyPolicy": "Sera ya faragha",
-      "termsOfService": "Masharti ya Huduma"
-    },
-    "footer": {
-      "copyright": "© 2025 Vievlog. Haki zote zimehifadhiwa."
-    },
-    "metadata": {
-      "lesson": "Chunguza masomo yetu ya bure na uchague kozi nzuri ili kufanana na kiwango chako cha ustadi.",
-      "grammar": "Gundua mafunzo ya kina ya teknolojia na michoro."
     }
   },
-  "posts": {},
+  "posts": {
+    "title": "Machapisho yote"
+  },
   "videos": {},
   "chats": {},
   "footer": {
@@ -94,6 +48,27 @@
     "faq": "Maswali - maswali yanayoulizwa mara kwa mara",
     "privacyPolicy": "Sera ya faragha",
     "termsOfService": "Masharti ya Huduma",
-    "followUs": "Tufuate kwenye media za kijamii"
+    "followUs": "Tufuate kwenye media za kijamii",
+    "footerNote": "© 2025 Vievlog. Haki zote zimehifadhiwa.",
+    "privacy": "Faragha",
+    "terms": "Masharti",
+    "cookies": "Vidakuzi",
+    "sitemap": "Sitemap",
+    "followUsYoutube": "Tufuate kwenye YouTube",
+    "chats": {
+      "chatWithUs": "Ongea na sisi",
+      "chatWithFriend": "Ongea na marafiki wako",
+      "placeholderMessage": "Andika ujumbe ...",
+      "sendButton": "Tuma"
+    },
+    "videos": {
+      "allVideos": "Video zote",
+      "tiktokVideos": "Video za Tiktok"
+    },
+    "posts": {
+      "allPosts": "Machapisho yote",
+      "ginCourse": "Kozi ya gin",
+      "GoCourse": "Nenda kozi"
+    }
   }
 }

@@ -6,38 +6,18 @@
     "videos": "Vaizdo įrašai"
   },
   "home": {
-    "title": "„Vievlog“ - nemokamas internetinis mokymasis | Kursai, ištekliai ir sertifikavimas",
-    "home": "Namai",
-    "posts": "Žinutės",
-    "chats": "Pokalbiai",
-    "videos": "Vaizdo įrašai",
-    "topiks": "IT mokymosi temos",
-    "courses": "Nemokami kursai",
-    "grammar": "Technikos gramatikos pamokos",
-    "game": "Edukaciniai žaidimai",
-    "features": "Platformos funkcijos",
-    "logIn": "Prisijunkite prie savo paskyros",
-    "signUp": "Prisiregistruokite nemokamai",
-    "toggleTheme": "Perjunkite šviesos/tamsią režimą",
-    "newCollection": "Naršykite mūsų naują IT kursų kolekciją",
     "oneStopPlatform": "„Vievlog“-jūsų „viskas viename“ mokymosi platforma",
-    "startLearningNow": "Pradėkite mokytis ir pasiruoškite šiandien egzaminams",
-    "whyChooseVieVlog": "Kodėl verta tai išmokti su „Vievlog“?",
-    "freeAccess": "Visiškai nemokama prieiga",
     "learnIT": "Mėgaukitės aukščiausios kokybės IT vadovėliais, pamokomis ir patyrusiais instruktoriais ištekliais-neįtikėtinai nemokamai.",
-    "expertInstructors": "Sužinokite iš pramonės ekspertų",
-    "learnFromExperts": "Moko patyrę IT specialistai ir pedagogai.",
-    "anytimeAnywhere": "Lankstus mokymasis bet kur ir bet kur",
-    "learnAtYourOwnPace": "Sužinokite savo tempu naudodamiesi neribota prieiga prie pamokos.",
-    "comprehensiveCurriculum": "Pilnas jo mokymo programa",
-    "coverAllAspects": "Apima pagrindines IT koncepcijas, įskaitant kodavimą, sistemas, tinklų kūrimą ir dar daugiau.",
-    "viewAllIT": "Naršykite visus „Vievlog“ kursus ir praktikos testus",
-    "featuredCourses": "Rodomos IT programos",
-    "beginnerIT": "Pradedančiųjų lygio IT kursas",
-    "intermediateIT": "Tarpinis IT kursas",
-    "advancedIT": "Išplėstinis meistriškumas",
-    "getStartedForFree": "Pradėkite mokytis nemokamai šiandien",
-    "whatOurLearnersSay": "Ką besimokantieji sako apie Vievlog",
+    "viewAllPosts": "Peržiūrėti visus įrašus",
+    "shoppingExperience": "Apsipirkimo patirtis",
+    "latestBlogPosts": "Naujausi tinklaraščio įrašai",
+    "exploreArticles": "Naršykite mūsų naujausius straipsnius ir patarimus, kaip juos išmokti",
+    "vieTopik": "„Vievlog“ - „Top 1 IT“ mokymosi centras",
+    "yourOneStopShop": "Jūsų „vieno langelio“ platforma, skirta įsisavinti IT įgūdžius ir pasiruošti sertifikavimo egzaminams. Gaukite prieigą prie aukščiausios kokybės turinio nemokamai!",
+    "signUpNow": "Prisiregistruokite dabar",
+    "browseIT": "Naršykite",
+    "customerTestimonialsTitle": "Ką sako mūsų klientai",
+    "customerTestimonialsSubtitle": "Negalima tik už tai žodį - išgirskite iš mūsų patenkintų klientų",
     "testimonial1": {
       "quote": "„Vievlog“ padėjo man užtikrintai išlaikyti savo IT sertifikavimo egzaminą.",
       "name": "Nguyen Minh Anh",
@@ -52,37 +32,11 @@
       "quote": "„Vievlog“ dėka aš žymiai patobulinau savo programavimo įgūdžius.",
       "name": "Le Thanh Huong",
       "role": "Universiteto studentas"
-    },
-    "vieTopik": "„Vievlog“ - „Top 1 IT“ mokymosi centras",
-    "yourOneStopShop": "Jūsų „vieno langelio“ platforma, skirta įsisavinti IT įgūdžius ir pasiruošti sertifikavimo egzaminams. Gaukite prieigą prie aukščiausios kokybės turinio nemokamai!",
-    "connectWithUs": "Sekite „Vievlog“ socialinėje žiniasklaidoje",
-    "socialMedia": {
-      "facebook": "Sekite mus „Facebook“",
-      "twitter": "Sekite mus „Twitter“",
-      "instagram": "Sekite mus „Instagram“",
-      "linkedin": "Susisiekite su mumis „LinkedIn“"
-    },
-    "company": {
-      "aboutUs": "Apie mus",
-      "careers": "Karjera",
-      "blog": "Technikos tinklaraštis - naujienos ir patarimai",
-      "contact": "Susisiekite su mumis"
-    },
-    "support": {
-      "helpCenter": "Pagalbos centras",
-      "faq": "DUK - dažnai užduodami klausimai",
-      "privacyPolicy": "Privatumo politika",
-      "termsOfService": "Aptarnavimo sąlygos"
-    },
-    "footer": {
-      "copyright": "© 2025 Vievlog. Visos teisės saugomos."
-    },
-    "metadata": {
-      "lesson": "Naršykite mūsų nemokamas pamokas ir pasirinkite geriausią kursą, kuris atitiktų jūsų įgūdžių lygį.",
-      "grammar": "Atraskite išsamius technologijų vadovus ir schemas."
     }
   },
-  "posts": {},
+  "posts": {
+    "title": "Visi pranešimai"
+  },
   "videos": {},
   "chats": {},
   "footer": {
@@ -94,6 +48,27 @@
     "faq": "DUK - dažnai užduodami klausimai",
     "privacyPolicy": "Privatumo politika",
     "termsOfService": "Aptarnavimo sąlygos",
-    "followUs": "Sekite mus socialinėje žiniasklaidoje"
+    "followUs": "Sekite mus socialinėje žiniasklaidoje",
+    "footerNote": "© 2025 Vievlog. Visos teisės saugomos.",
+    "privacy": "Privatumas",
+    "terms": "Sąlygos",
+    "cookies": "Sausainiai",
+    "sitemap": "Svetainės schema",
+    "followUsYoutube": "Sekite mus „YouTube“",
+    "chats": {
+      "chatWithUs": "Pabendrauti su mumis",
+      "chatWithFriend": "Kalbėkitės su savo draugais",
+      "placeholderMessage": "Įveskite pranešimą ...",
+      "sendButton": "Siųsti"
+    },
+    "videos": {
+      "allVideos": "Visi vaizdo įrašai",
+      "tiktokVideos": "„Tiktok“ vaizdo įrašai"
+    },
+    "posts": {
+      "allPosts": "Visi pranešimai",
+      "ginCourse": "Džino kursas",
+      "GoCourse": "Eik kursas"
+    }
   }
 }

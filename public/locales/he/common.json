@@ -6,38 +6,18 @@
     "videos": "סרטונים"
   },
   "home": {
-    "title": "Vievlog - חינם למידת IT מקוונת | קורסים, משאבים והסמכה",
-    "home": "בַּיִת",
-    "posts": "פוסטים",
-    "chats": "צ'אט",
-    "videos": "סרטונים",
-    "topiks": "נושאים לומדים",
-    "courses": "שחרר קורסים",
-    "grammar": "שיעורי דקדוק טק",
-    "game": "משחקי חינוך",
-    "features": "תכונות פלטפורמה",
-    "logIn": "היכנס לחשבונך",
-    "signUp": "הירשם לקורסי IT בחינם",
-    "toggleTheme": "החלף מצב אור/כהה",
-    "newCollection": "חקור את אוסף הקורס החדש שלנו",
     "oneStopPlatform": "Vievlog-פלטפורמת הלמידה של ה- All-in-One שלך",
-    "startLearningNow": "התחל ללמוד אותו ולהתכונן לבחינות היום",
-    "whyChooseVieVlog": "למה ללמוד את זה עם Vievlog?",
-    "freeAccess": "גישה חופשית לחלוטין",
     "learnIT": "תיהנו מהדרכות IT באיכות העליונה, שיעורים ומשאבים של מדריכים מנוסים-בחינם.",
-    "expertInstructors": "למד ממומחים בתעשייה",
-    "learnFromExperts": "נלמדו על ידי אנשי IT מנוסים ומחנכים.",
-    "anytimeAnywhere": "למידה גמישה בכל עת ובכל מקום",
-    "learnAtYourOwnPace": "למד בקצב שלך עם גישה לשיעורים ללא הגבלה.",
-    "comprehensiveCurriculum": "ערעור מלא את תכנית הלימודים",
-    "coverAllAspects": "מכסה יסוד למושגי IT מתקדמים הכוללים קידוד, מערכות, רשת ועוד.",
-    "viewAllIT": "עיין בכל קורסי Vievlog ובמבחני תרגול",
-    "featuredCourses": "הוצגו תוכניות IT",
-    "beginnerIT": "מסלול זה ברמת המתחילים",
-    "intermediateIT": "מסלול זה ביניים",
-    "advancedIT": "התקדמה בשליטה",
-    "getStartedForFree": "התחל ללמוד בחינם היום",
-    "whatOurLearnersSay": "מה הלומדים אומרים על vievlog",
+    "viewAllPosts": "צפה בכל הפוסט",
+    "shoppingExperience": "חווית קנייה",
+    "latestBlogPosts": "פוסטים אחרונים בבלוג",
+    "exploreArticles": "חקור את המאמרים והטיפים האחרונים שלנו ללימוד זה",
+    "vieTopik": "Vievlog - רכזת הלמידה העליונה הראשונה",
+    "yourOneStopShop": "הפלטפורמה האחת-עצירתית שלך לשלוט בכישורי IT ולהתכונן לבחינות הסמכה. קבל גישה לתוכן פרימיום ללא עלות!",
+    "signUpNow": "הירשם עכשיו",
+    "browseIT": "עיין בזה",
+    "customerTestimonialsTitle": "מה הלקוחות שלנו אומרים",
+    "customerTestimonialsSubtitle": "אל תיקח רק את המילה שלנו - שמע מהלקוחות המרוצים שלנו",
     "testimonial1": {
       "quote": "Vievlog עזר לי בביטחון לעבור את בחינת הסמכת ה- IT שלי.",
       "name": "Nguyen Minh Anh",
@@ -46,43 +26,17 @@
     "testimonial2": {
       "quote": "לימודו דרך vievlog הוא יעיל ומהנה כאחד!",
       "name": "טראן חי נאם",
-      "role": "מקצוע במשרד"
+      "role": "מקצוען במשרד"
     },
     "testimonial3": {
       "quote": "בזכות Vievlog, שיפרתי משמעותית את כישורי התכנות שלי.",
       "name": "Le Thanh Huong",
       "role": "סטודנט באוניברסיטה"
-    },
-    "vieTopik": "Vievlog - רכזת הלמידה העליונה הראשונה",
-    "yourOneStopShop": "הפלטפורמה האחת-עצירתית שלך לשלוט בכישורי IT ולהתכונן לבחינות הסמכה. קבל גישה לתוכן פרימיום ללא עלות!",
-    "connectWithUs": "עקוב אחר Vievlog במדיה החברתית",
-    "socialMedia": {
-      "facebook": "עקוב אחרינו בפייסבוק",
-      "twitter": "עקוב אחרינו בטוויטר",
-      "instagram": "עקוב אחרינו באינסטגרם",
-      "linkedin": "התחבר אלינו בלינקדאין"
-    },
-    "company": {
-      "aboutUs": "עלינו",
-      "careers": "קריירה",
-      "blog": "בלוג טק - חדשות וטיפים",
-      "contact": "צרו קשר"
-    },
-    "support": {
-      "helpCenter": "מרכז עזרה",
-      "faq": "שאלות נפוצות - שאלות נפוצות",
-      "privacyPolicy": "מדיניות פרטיות",
-      "termsOfService": "תנאי שירות"
-    },
-    "footer": {
-      "copyright": "© 2025 Vievlog. כֹּל הַזְכוּיוֹת שְׁמוּרוֹת."
-    },
-    "metadata": {
-      "lesson": "חקור את השיעורים החינמיים שלנו ובחר את המסלול המושלם שיתאים לרמת המיומנות שלך.",
-      "grammar": "גלה הדרכות ודיאגרמות טכנולוגיות מפורטות."
     }
   },
-  "posts": {},
+  "posts": {
+    "title": "כל ההודעות"
+  },
   "videos": {},
   "chats": {},
   "footer": {
@@ -94,6 +48,27 @@
     "faq": "שאלות נפוצות - שאלות נפוצות",
     "privacyPolicy": "מדיניות פרטיות",
     "termsOfService": "תנאי שירות",
-    "followUs": "עקוב אחרינו במדיה החברתית"
+    "followUs": "עקוב אחרינו במדיה החברתית",
+    "footerNote": "© 2025 Vievlog. כֹּל הַזְכוּיוֹת שְׁמוּרוֹת.",
+    "privacy": "פְּרָטִיוּת",
+    "terms": "תנאים",
+    "cookies": "עוגיות",
+    "sitemap": "Sitemap",
+    "followUsYoutube": "עקוב אחרינו ב- YouTube",
+    "chats": {
+      "chatWithUs": "לשוחח איתנו",
+      "chatWithFriend": "לשוחח עם החברים שלך",
+      "placeholderMessage": "הקלד הודעה ...",
+      "sendButton": "לִשְׁלוֹחַ"
+    },
+    "videos": {
+      "allVideos": "כל הסרטונים",
+      "tiktokVideos": "סרטוני Tiktok"
+    },
+    "posts": {
+      "allPosts": "כל ההודעות",
+      "ginCourse": "קורס ג'ין",
+      "GoCourse": "ללכת קורס"
+    }
   }
 }

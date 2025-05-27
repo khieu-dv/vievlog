@@ -6,38 +6,18 @@
     "videos": "Awọn fidio"
   },
   "home": {
-    "title": "Queavlog - ọfẹ ọfẹ o kọ ẹkọ | Awọn iṣẹ, Awọn orisun & Iwe-ẹri",
-    "home": "Ile",
-    "posts": "Awọn ifiweranṣẹ",
-    "chats": "Ipe Chats",
-    "videos": "Awọn fidio",
-    "topiks": "O kọ awọn akọle",
-    "courses": "Free o awọn ile-iṣẹ",
-    "grammar": "Awọn ẹkọ ẹkọ imọ-ẹrọ",
-    "game": "Awọn ere Ẹkọ",
-    "features": "Awọn ẹya Syeed",
-    "logIn": "Wọle si akọọlẹ rẹ",
-    "signUp": "Forukọsilẹ fun ọfẹ o awọn iṣẹ",
-    "toggleTheme": "Yi ina / Ipo Dudu",
-    "newCollection": "Ṣawari Gbigba Tuntun wa",
     "oneStopPlatform": "Queavlog - rẹ gbogbo-ọkan o jẹ ọna kika",
-    "startLearningNow": "Bẹrẹ kọ o ati mura fun awọn idanwo loni",
-    "whyChooseVieVlog": "Kini idi ti a kọ ẹkọ pẹlu iwe-ẹri?",
-    "freeAccess": "Wiwọle ọfẹ ọfẹ patapata",
     "learnIT": "Gbadun didara julọ o ṣe ikẹkọ, awọn ẹkọ, ati awọn orisun lati awọn olutọsọna ti o ni iriri patapata.",
-    "expertInstructors": "Kọ ẹkọ lati ọdọ awọn amoye ile-iṣẹ",
-    "learnFromExperts": "Gba kọ nipa ti igba awọn onimose ati awọn olukọni.",
-    "anytimeAnywhere": "O rọ kikọ ẹkọ nigbakugba, nibikibi",
-    "learnAtYourOwnPace": "Kọ ẹkọ ni iyara tirẹ pẹlu aini ikẹkọ ti ko ni opin.",
-    "comprehensiveCurriculum": "Ni kikun-akopọ o kọclulim",
-    "coverAllAspects": "Awọn ideri ti o wa ni wiwa lati ni ilọsiwaju pẹlu ifaminsi, awọn eto, Nẹtiwọki, ati diẹ sii.",
-    "viewAllIT": "Ṣawakiri gbogbo awọn iṣẹ iwe-ẹri fun awọn idanwo ati awọn idanwo adaṣe",
-    "featuredCourses": "Ifihan awọn eto",
-    "beginnerIT": "Akọkọ-ipele o dajudaju",
-    "intermediateIT": "Intermediate rẹ",
-    "advancedIT": "Ti ni ilọsiwaju otare",
-    "getStartedForFree": "Bẹrẹ ẹkọ fun ọfẹ loni",
-    "whatOurLearnersSay": "Ohun ti awọn olukọni sọ nipa iwe-ẹri",
+    "viewAllPosts": "Wo gbogbo ifiweranṣẹ",
+    "shoppingExperience": "Iribora rira",
+    "latestBlogPosts": "Awọn ifiweranṣẹ bulọọgi tuntun",
+    "exploreArticles": "Ṣawari awọn nkan tuntun wa ati awọn imọran fun ẹkọ rẹ",
+    "vieTopik": "Iwe-ẹri - oke 1 o kọ hubu",
+    "yourOneStopShop": "Syeed Syeed Ọkan-Duro si Titunto si ogbon ki o mura fun awọn idanwo ijẹrisi. Gba iraye si akoonu Ere ni ko si idiyele!",
+    "signUpNow": "Forukọsilẹ bayi",
+    "browseIT": "Kiri lori rẹ",
+    "customerTestimonialsTitle": "Ohun ti awọn alabara wa sọ",
+    "customerTestimonialsSubtitle": "Maṣe gba ọrọ wa fun o - gbọ lati ọdọ awọn alabara ti o ni itẹlọrun",
     "testimonial1": {
       "quote": "Queepslog ṣe iranlọwọ fun mi ni igboya ṣe atunyẹwo idanwo mi.",
       "name": "Ngulen minh anh",
@@ -52,37 +32,11 @@
       "quote": "O ṣeun si verlag, Mo ti ni ilọsiwaju awọn ọgbọn siseto mi ni pataki.",
       "name": "Le ju hoong",
       "role": "Ọmọ ile-iwe giga"
-    },
-    "vieTopik": "Iwe-ẹri - oke 1 o kọ hubu",
-    "yourOneStopShop": "Syeed Syeed Ọkan-Duro si Titunto si ogbon ki o mura fun awọn idanwo ijẹrisi. Gba iraye si akoonu Ere ni ko si idiyele!",
-    "connectWithUs": "Tẹle byvlog lori media media",
-    "socialMedia": {
-      "facebook": "Tẹle wa lori Facebook",
-      "twitter": "Tẹle wa lori Twitter",
-      "instagram": "Tẹle Wa lori Instagram",
-      "linkedin": "Sopọ pẹlu wa lori ọna asopọ"
-    },
-    "company": {
-      "aboutUs": "Nipa re",
-      "careers": "Awọn iṣẹ",
-      "blog": "Bulọọgi bulọọgi - Awọn iroyin & Awọn imọran",
-      "contact": "Pe wa"
-    },
-    "support": {
-      "helpCenter": "Ile-iṣẹ iranlọwọ",
-      "faq": "FAQ - Awọn ibeere Nigbagbogbo",
-      "privacyPolicy": "Eto imulo ipamọ",
-      "termsOfService": "Awọn ofin Iṣẹ"
-    },
-    "footer": {
-      "copyright": "© 2025 ©. Gbogbo awọn ẹtọ wa ni ipamọ."
-    },
-    "metadata": {
-      "lesson": "Ṣawari awọn ẹkọ ọfẹ wa ki o yan ọna pipe lati baamu ipele ti oye rẹ.",
-      "grammar": "Ṣawari awọn agbanisiṣẹ imọ-ẹrọ ati awọn aworan apẹrẹ."
     }
   },
-  "posts": {},
+  "posts": {
+    "title": "Gbogbo awọn ifiweranṣẹ"
+  },
   "videos": {},
   "chats": {},
   "footer": {
@@ -94,6 +48,27 @@
     "faq": "FAQ - Awọn ibeere Nigbagbogbo",
     "privacyPolicy": "Eto imulo ipamọ",
     "termsOfService": "Awọn ofin Iṣẹ",
-    "followUs": "Tẹle wa lori media media"
+    "followUs": "Tẹle wa lori media media",
+    "footerNote": "© 2025 ©. Gbogbo awọn ẹtọ wa ni ipamọ.",
+    "privacy": "Ibi aṣiri",
+    "terms": "Awọn ofin",
+    "cookies": "Awọn kuki",
+    "sitemap": "Oju-oju opo",
+    "followUsYoutube": "Tẹle wa lori YouTube",
+    "chats": {
+      "chatWithUs": "Iwiregbe pẹlu wa",
+      "chatWithFriend": "Iwiregbe pẹlu awọn ọrẹ rẹ",
+      "placeholderMessage": "Tẹ ifiranṣẹ kan ...",
+      "sendButton": "Firanṣẹ"
+    },
+    "videos": {
+      "allVideos": "Gbogbo awọn fidio",
+      "tiktokVideos": "Awọn fidio Tiktok"
+    },
+    "posts": {
+      "allPosts": "Gbogbo awọn ifiweranṣẹ",
+      "ginCourse": "Gin dajudaju",
+      "GoCourse": "Lọ Ẹkọ"
+    }
   }
 }

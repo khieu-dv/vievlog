@@ -6,38 +6,18 @@
     "videos": "Bidiyo"
   },
   "home": {
-    "title": "Vivelog - kyauta akan layi yana koyo | Darussan, albarkatu & takardar shaida",
-    "home": "Gida",
-    "posts": "Posts",
-    "chats": "Hira",
-    "videos": "Bidiyo",
-    "topiks": "Yana koyon batutuwa",
-    "courses": "Kyauta shi darasi",
-    "grammar": "Tech Grammar Darussan",
-    "game": "Wasanni na ilimi",
-    "features": "Kayan aiki",
-    "logIn": "Shiga cikin asusunka",
-    "signUp": "Yi rajista don kyauta",
-    "toggleTheme": "Canja hasken / duhu",
-    "newCollection": "Bincika sabon Tarin Mu",
     "oneStopPlatform": "Verevelg - duk-in-daya yana koyon dandamali",
-    "startLearningNow": "Fara koyo shi kuma shirya don jarrabawa a yau",
-    "whyChooseVieVlog": "Me yasa kuma koya shi da vivelog?",
-    "freeAccess": "Gaba daya samun dama",
     "learnIT": "Yi farin ciki da karfi shi ne koyawa, darussan, da albarkatu daga masu koyar da malamai - gaba daya kyauta.",
-    "expertInstructors": "Koya daga masana masana'antu",
-    "learnFromExperts": "Tafiya ta da katun da kwararru da masu ilimi.",
-    "anytimeAnywhere": "Canza koyo kowane lokaci, ko'ina",
-    "learnAtYourOwnPace": "Koya a cikin hanzari tare da samun cikakkiyar darasi mara iyaka.",
-    "comprehensiveCurriculum": "Cikakken tari shi tsarin karatun",
-    "coverAllAspects": "Ya ƙunshi masu ganowa don ci gaba da manufarsa ciki har da lambar sadarwa, tsarin, da ƙari.",
-    "viewAllIT": "Bincika duk ka'idodin vivelog da gwajin gwaji",
-    "featuredCourses": "An bayyana shi Shirye-shiryenta",
-    "beginnerIT": "Mataki mai farawa",
-    "intermediateIT": "Matsakaici A Matsayi hanya",
-    "advancedIT": "Ci gaba da shi",
-    "getStartedForFree": "Fara koyo don kyauta yau",
-    "whatOurLearnersSay": "Abin da xaliban ke faɗi game da vivelog",
+    "viewAllPosts": "Duba duk post",
+    "shoppingExperience": "Kwarewar siye",
+    "latestBlogPosts": "Sabon Blog Posts",
+    "exploreArticles": "Bincika sabbin labaran mu da tukwici don koyon sa",
+    "vieTopik": "Vivelog - saman 1 yana koyon cibiyar",
+    "yourOneStopShop": "Platportayaƙwalwar da ke tsaye ta dayawa don kwarewar fasaha da kuma shirya wa jarrabawar takardar shaida. Samu damar zuwa mafi yawan abun ciki ba tare da tsada ba!",
+    "signUpNow": "Yi rajista yanzu",
+    "browseIT": "Bincika shi",
+    "customerTestimonialsTitle": "Menene abokan cinikinmu suka ce",
+    "customerTestimonialsSubtitle": "Kada ku ɗauki kalmarmu don shi - ji daga abokan cinikinmu mai gamsarwa",
     "testimonial1": {
       "quote": "Vivelo ya taimaka min da karfin gwiwa ta amince da jarrabawar takardar shaida.",
       "name": "Nguyen Minh Anh Anh Anh Anh",
@@ -52,37 +32,11 @@
       "quote": "Godiya ga Vivelog, Na inganta mahimmancin dabarun shirye-shiryena.",
       "name": "Le Thaid",
       "role": "Dalibin jami'a"
-    },
-    "vieTopik": "Vivelog - saman 1 yana koyon cibiyar",
-    "yourOneStopShop": "Platportayaƙwalwar da ke tsaye ta dayawa don kwarewar fasaha da kuma shirya wa jarrabawar takardar shaida. Samu damar zuwa mafi yawan abun ciki ba tare da tsada ba!",
-    "connectWithUs": "Bi vivelog a kan kafofin watsa labarun",
-    "socialMedia": {
-      "facebook": "Biyo mu akan Facebook",
-      "twitter": "Biyo mu akan Twitter",
-      "instagram": "Biyo mu akan Instagram",
-      "linkedin": "Haɗa tare da mu akan LinkedIn"
-    },
-    "company": {
-      "aboutUs": "Game da mu",
-      "careers": "Kula",
-      "blog": "Blog Blog - News & tukwici",
-      "contact": "Tuntube mu"
-    },
-    "support": {
-      "helpCenter": "Cibiyar Taimako",
-      "faq": "Tambaya - Tambayoyi",
-      "privacyPolicy": "takardar kebantawa",
-      "termsOfService": "Sharuɗɗan sabis"
-    },
-    "footer": {
-      "copyright": "© 2025 vievelog. Dukkan hakkoki."
-    },
-    "metadata": {
-      "lesson": "Binciko darussan mu kuma zaɓi cikakkiyar hanya don dacewa da matakin ƙwarewar ku.",
-      "grammar": "Gano cikakken koyaswa da zane-zane."
     }
   },
-  "posts": {},
+  "posts": {
+    "title": "Duk posts"
+  },
   "videos": {},
   "chats": {},
   "footer": {
@@ -94,6 +48,27 @@
     "faq": "Tambaya - Tambayoyi",
     "privacyPolicy": "takardar kebantawa",
     "termsOfService": "Sharuɗɗan sabis",
-    "followUs": "Biyo mu akan kafofin watsa labarun"
+    "followUs": "Biyo mu akan kafofin watsa labarun",
+    "footerNote": "© 2025 vievelog. Dukkan hakkoki.",
+    "privacy": "Madaidaici",
+    "terms": "Sharuddan",
+    "cookies": "Cookies",
+    "sitemap": "Sitemap",
+    "followUsYoutube": "Biyo mu akan YouTube",
+    "chats": {
+      "chatWithUs": "Yi hira da mu",
+      "chatWithFriend": "Hira da abokanka",
+      "placeholderMessage": "Rubuta saƙo ...",
+      "sendButton": "Aika da"
+    },
+    "videos": {
+      "allVideos": "Duk Bidiyo",
+      "tiktokVideos": "Bidiyo na Tiktok"
+    },
+    "posts": {
+      "allPosts": "Duk posts",
+      "ginCourse": "Gin hanya",
+      "GoCourse": "Tafi hanya"
+    }
   }
 }

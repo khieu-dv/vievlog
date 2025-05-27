@@ -6,38 +6,18 @@
     "videos": "Videos"
   },
   "home": {
-    "title": "Vievlog - kostenloses Online -Lernen | Kurse, Ressourcen und Zertifizierung",
-    "home": "Heim",
-    "posts": "Beiträge",
-    "chats": "Chats",
-    "videos": "Videos",
-    "topiks": "Es lernt Themen",
-    "courses": "Freie IT -Kurse",
-    "grammar": "Tech -Grammatikunterricht",
-    "game": "Bildungsspiele",
-    "features": "Plattformfunktionen",
-    "logIn": "Melden Sie sich in Ihrem Konto an",
-    "signUp": "Melden Sie sich kostenlos an IT -Kursen an",
-    "toggleTheme": "Hell/Dunkel -Modus schalten",
-    "newCollection": "Entdecken Sie unsere neue IT -Kurssammlung",
     "oneStopPlatform": "Vievlog-Ihre All-in-One-IT-Lernplattform",
-    "startLearningNow": "Beginnen Sie mit dem Erlernen und bereiten Sie sich noch heute auf Prüfungen vor",
-    "whyChooseVieVlog": "Warum mit Vievlog lernen?",
-    "freeAccess": "Ganz freier Zugang",
     "learnIT": "Genießen Sie IT-Tutorials, Lektionen und Ressourcen von erfahrenen Ausbildern von höchsten Qualität-komplett kostenlos.",
-    "expertInstructors": "Lernen Sie von Branchenexperten",
-    "learnFromExperts": "Lassen Sie sich von erfahrenen IT -Profis und Pädagogen unterrichten.",
-    "anytimeAnywhere": "Flexibles Lernen jederzeit und überall",
-    "learnAtYourOwnPace": "Lernen Sie in Ihrem eigenen Tempo mit unbegrenztem Unterrichtszugriff.",
-    "comprehensiveCurriculum": "Full-Stack It Curriculum",
-    "coverAllAspects": "Deckt grundlegend für fortschrittliche IT -Konzepte, einschließlich Codierung, Systeme, Netzwerk und mehr.",
-    "viewAllIT": "Durchsuchen Sie alle Vievlog -Kurse und Übungstests",
-    "featuredCourses": "IT -Programme vorgestellt",
-    "beginnerIT": "Anfänger-Level It-Kurs",
-    "intermediateIT": "Intermediate It Course",
-    "advancedIT": "Fortgeschrittene IT -Meisterschaft",
-    "getStartedForFree": "Beginnen Sie noch heute kostenlos zu lernen",
-    "whatOurLearnersSay": "Was Lernende über Vievlog sagen",
+    "viewAllPosts": "Alle Posts anzeigen",
+    "shoppingExperience": "Einkaufserlebnis",
+    "latestBlogPosts": "Neueste Blog -Beiträge",
+    "exploreArticles": "Entdecken Sie unsere neuesten Artikel und Tipps zum Lernen",
+    "vieTopik": "Vievlog - die Top 1 IT -Lernschub",
+    "yourOneStopShop": "Ihre One-Stop-Plattform, um IT-Fähigkeiten zu meistern und sich auf Zertifizierungsprüfungen vorzubereiten. Erhalten Sie kostenlos Zugang zu Premium -Inhalten!",
+    "signUpNow": "Melden Sie sich jetzt an",
+    "browseIT": "Durchsuchen Sie es",
+    "customerTestimonialsTitle": "Was unsere Kunden sagen",
+    "customerTestimonialsSubtitle": "Nehmen Sie nicht nur unser Wort dafür - hören Sie von unseren zufriedenen Kunden",
     "testimonial1": {
       "quote": "Vievlog half mir, meine IT -Zertifizierungsprüfung sicher zu bestehen.",
       "name": "Nguyen Minh anh",
@@ -52,37 +32,11 @@
       "quote": "Dank Vievlog habe ich meine Programmierfähigkeiten erheblich verbessert.",
       "name": "Le Thanh Huong",
       "role": "Universitätsstudent"
-    },
-    "vieTopik": "Vievlog - die Top 1 IT -Lernschub",
-    "yourOneStopShop": "Ihre One-Stop-Plattform, um IT-Fähigkeiten zu meistern und sich auf Zertifizierungsprüfungen vorzubereiten. Erhalten Sie kostenlos Zugang zu Premium -Inhalten!",
-    "connectWithUs": "Folgen Sie Vievlog in den sozialen Medien",
-    "socialMedia": {
-      "facebook": "Folgen Sie uns auf Facebook",
-      "twitter": "Folgen Sie uns auf Twitter",
-      "instagram": "Folgen Sie uns auf Instagram",
-      "linkedin": "Verbinden Sie sich mit uns auf LinkedIn"
-    },
-    "company": {
-      "aboutUs": "Über uns",
-      "careers": "Karrieren",
-      "blog": "Tech -Blog - Nachrichten und Tipps",
-      "contact": "Kontaktieren Sie uns"
-    },
-    "support": {
-      "helpCenter": "Hilfezentrum",
-      "faq": "FAQ - häufig gestellte Fragen",
-      "privacyPolicy": "Datenschutzrichtlinie",
-      "termsOfService": "Nutzungsbedingungen"
-    },
-    "footer": {
-      "copyright": "© 2025 Vievlog. Alle Rechte vorbehalten."
-    },
-    "metadata": {
-      "lesson": "Erkunden Sie unseren kostenlosen Unterricht und wählen Sie den perfekten Kurs, um Ihrem Qualifikationsniveau zu entsprechen.",
-      "grammar": "Entdecken Sie detaillierte Tech -Tutorials und Diagramme."
     }
   },
-  "posts": {},
+  "posts": {
+    "title": "Alle Beiträge"
+  },
   "videos": {},
   "chats": {},
   "footer": {
@@ -94,6 +48,27 @@
     "faq": "FAQ - häufig gestellte Fragen",
     "privacyPolicy": "Datenschutzrichtlinie",
     "termsOfService": "Nutzungsbedingungen",
-    "followUs": "Folgen Sie uns in den sozialen Medien"
+    "followUs": "Folgen Sie uns in den sozialen Medien",
+    "footerNote": "© 2025 Vievlog. Alle Rechte vorbehalten.",
+    "privacy": "Privatsphäre",
+    "terms": "Bedingungen",
+    "cookies": "Kekse",
+    "sitemap": "Sitemap",
+    "followUsYoutube": "Folgen Sie uns auf YouTube",
+    "chats": {
+      "chatWithUs": "Chatten mit uns",
+      "chatWithFriend": "Chatten Sie mit Ihren Freunden",
+      "placeholderMessage": "Geben Sie eine Nachricht ein ...",
+      "sendButton": "Schicken"
+    },
+    "videos": {
+      "allVideos": "Alle Videos",
+      "tiktokVideos": "Tiktok -Videos"
+    },
+    "posts": {
+      "allPosts": "Alle Beiträge",
+      "ginCourse": "Gin -Kurs",
+      "GoCourse": "Gehen Sie Kurs"
+    }
   }
 }

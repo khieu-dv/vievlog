@@ -1,45 +1,25 @@
 {
   "header": {
     "home": "Thuis",
-    "posts": "Posten",
+    "posts": "Palen",
     "chats": "Chats",
     "videos": "Video's"
   },
   "home": {
-    "title": "VievLog - Gratis online IT Leren | Cursussen, middelen en certificering",
-    "home": "Thuis",
-    "posts": "Posten",
-    "chats": "Chats",
-    "videos": "Video's",
-    "topiks": "Het leeronderwerpen",
-    "courses": "Gratis het cursussen",
-    "grammar": "Technische grammaticale lessen",
-    "game": "Educatieve spellen",
-    "features": "Platformfuncties",
-    "logIn": "Log in op uw account",
-    "signUp": "Meld u gratis aan om te cursussen",
-    "toggleTheme": "Schakel licht/donkere modus",
-    "newCollection": "Verken onze nieuwe IT -cursuscollectie",
     "oneStopPlatform": "VievLog-je alles-in-één IT-leerplatform",
-    "startLearningNow": "Begin het te leren en bereid je vandaag voor op examens",
-    "whyChooseVieVlog": "Waarom zou je het leren met VievLog?",
-    "freeAccess": "Volledig gratis toegang",
     "learnIT": "Geniet van IT-tutorials, lessen en bronnen van topkwaliteit van ervaren instructeurs-helemaal gratis.",
-    "expertInstructors": "Leer van experts uit de industrie",
-    "learnFromExperts": "Word onderwezen door ervaren IT -professionals en opvoeders.",
-    "anytimeAnywhere": "Flexibel leren altijd, overal overal",
-    "learnAtYourOwnPace": "Leer in je eigen tempo met onbeperkte lespunten.",
-    "comprehensiveCurriculum": "Full-stack it curriculum",
-    "coverAllAspects": "Behandelt fundamentele tot geavanceerde IT -concepten, waaronder codering, systemen, netwerken en meer.",
-    "viewAllIT": "Blader door alle vievLog -cursussen en oefentests",
-    "featuredCourses": "Uitgelichte IT -programma's",
-    "beginnerIT": "Beginnersniveau IT-cursus",
-    "intermediateIT": "Intermediair de cursus",
-    "advancedIT": "Geavanceerde het meesterschap",
-    "getStartedForFree": "Begin vandaag met gratis te leren",
-    "whatOurLearnersSay": "Wat leerlingen zeggen over VievLog",
+    "viewAllPosts": "Bekijk alle post",
+    "shoppingExperience": "Winkelervaring",
+    "latestBlogPosts": "Nieuwste blogberichten",
+    "exploreArticles": "Verken onze nieuwste artikelen en tips om het te leren",
+    "vieTopik": "VievLog - de top 1 IT Learning Hub",
+    "yourOneStopShop": "Uw one-stop-platform om IT-vaardigheden te beheersen en zich voor te bereiden op certificeringsexamens. Krijg zonder kosten toegang tot premium content!",
+    "signUpNow": "Meld u nu aan",
+    "browseIT": "Blader het door",
+    "customerTestimonialsTitle": "Wat onze klanten zeggen",
+    "customerTestimonialsSubtitle": "Geloof ons niet alleen op - hoor van onze tevreden klanten",
     "testimonial1": {
-      "quote": "VievLog hielp me met vertrouwen in mijn IT -certificeringsexamen te slagen.",
+      "quote": "VievLog hielp me vol vertrouwen in mijn IT -certificeringsexamen te halen.",
       "name": "Nguyen minh anh",
       "role": "Internationale student"
     },
@@ -52,37 +32,11 @@
       "quote": "Dankzij VievLog heb ik mijn programmeervaardigheden aanzienlijk verbeterd.",
       "name": "Le Thanh Huong",
       "role": "Student"
-    },
-    "vieTopik": "VIEVLOG - De top 1 IT Learning Hub",
-    "yourOneStopShop": "Uw one-stop-platform om IT-vaardigheden te beheersen en zich voor te bereiden op certificeringsexamens. Krijg zonder kosten toegang tot premium content!",
-    "connectWithUs": "Volg VievLog op sociale media",
-    "socialMedia": {
-      "facebook": "Volg ons op Facebook",
-      "twitter": "Volg ons op Twitter",
-      "instagram": "Volg ons op Instagram",
-      "linkedin": "Maak contact met ons op LinkedIn"
-    },
-    "company": {
-      "aboutUs": "Over ons",
-      "careers": "Carrière",
-      "blog": "Tech Blog - Nieuws en tips",
-      "contact": "Neem contact met ons op"
-    },
-    "support": {
-      "helpCenter": "Helpcentrum",
-      "faq": "FAQ - Veelgestelde vragen",
-      "privacyPolicy": "Privacybeleid",
-      "termsOfService": "Voorwaarden van services"
-    },
-    "footer": {
-      "copyright": "© 2025 VievLog. Alle rechten voorbehouden."
-    },
-    "metadata": {
-      "lesson": "Verken onze gratis lessen en kies de perfecte cursus die bij uw vaardigheidsniveau past.",
-      "grammar": "Ontdek gedetailleerde technische tutorials en -diagrammen."
     }
   },
-  "posts": {},
+  "posts": {
+    "title": "Alle berichten"
+  },
   "videos": {},
   "chats": {},
   "footer": {
@@ -94,6 +48,27 @@
     "faq": "FAQ - Veelgestelde vragen",
     "privacyPolicy": "Privacybeleid",
     "termsOfService": "Voorwaarden van services",
-    "followUs": "Volg ons op sociale media"
+    "followUs": "Volg ons op sociale media",
+    "footerNote": "© 2025 VievLog. Alle rechten voorbehouden.",
+    "privacy": "Privacy",
+    "terms": "Voorwaarden",
+    "cookies": "Koekjes",
+    "sitemap": "Sitemap",
+    "followUsYoutube": "Volg ons op YouTube",
+    "chats": {
+      "chatWithUs": "Praat met ons",
+      "chatWithFriend": "Chat met je vrienden",
+      "placeholderMessage": "Typ een bericht ...",
+      "sendButton": "Versturen"
+    },
+    "videos": {
+      "allVideos": "Alle video's",
+      "tiktokVideos": "Tiktok -video's"
+    },
+    "posts": {
+      "allPosts": "Alle berichten",
+      "ginCourse": "Gin -cursus",
+      "GoCourse": "Ga naar koers"
+    }
   }
 }

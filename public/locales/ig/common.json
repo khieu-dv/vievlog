@@ -6,38 +6,18 @@
     "videos": "Viomaidi"
   },
   "home": {
-    "title": "Vievlog - Free na ntanetị ọ na-amụ | Nkuzi, akụrụngwa na asambodo",
-    "home": "Ulo",
-    "posts": "Posts",
-    "chats": "Chaji",
-    "videos": "Viomaidi",
-    "topiks": "Ọ na-amụta n'isiokwu",
-    "courses": "Free ọ na-eme ya",
-    "grammar": "Ugboro GIRIDI NKE",
-    "game": "Egwuregwu agụmakwụkwọ",
-    "features": "Atụmatụ ntụpọ",
-    "logIn": "Banye na akaụntụ gị",
-    "signUp": "Debanye aha ya na ọmụmụ ya",
-    "toggleTheme": "Gbanwee ìhè / ọchịchịrị",
-    "newCollection": "Nyochaa Nchịkọta Ọhụrụ anyị",
     "oneStopPlatform": "Vievlog - Gị niile na-amụ ihe",
-    "startLearningNow": "Bido na-amụta ya ma kwadebe maka ule taa",
-    "whyChooseVieVlog": "Gini mere eji amuta ya na vievlog?",
-    "freeAccess": "Nweta n'efu",
     "learnIT": "Nwee nkuzi ọ bụla, nkuzi, na akụrụngwa nke ndị nkuzi nwere ahụmahụ - n'efu.",
-    "expertInstructors": "Mụta Ihe Ndị E Si Nweta Ndị Ọmụma",
-    "learnFromExperts": "A kuziiri ya ndi okacha amara na ndi nkuzi.",
-    "anytimeAnywhere": "Reconible mmụta mmụta ọ bụla, ebe ọ bụla",
-    "learnAtYourOwnPace": "Mụta n 'ị na-akpaghị aka.",
-    "comprehensiveCurriculum": "Zuru oke na-atọgbọ ya",
-    "coverAllAspects": "Ekpuchi ntọala maka ya dị elu, ọ bụ echiche gụnyere ịkọwapụta, sistemụ, ngbanwe, na ndị ọzọ.",
-    "viewAllIT": "Chọgharịa usoro Vievlogrog niile na nnwale",
-    "featuredCourses": "Gosiputara ya mmemme",
-    "beginnerIT": "Onye mbido",
-    "intermediateIT": "Etiti ya",
-    "advancedIT": "Ọ dị elu nke ọma",
-    "getStartedForFree": "Bido na-amụta n'efu taa",
-    "whatOurLearnersSay": "Ihe ndị na-amụ ihe na-ekwu banyere Vevlog",
+    "viewAllPosts": "Lelee post niile",
+    "shoppingExperience": "Ahụmịhe ịzụ ahịa",
+    "latestBlogPosts": "Akwụkwọ Blog kacha ọhụrụ",
+    "exploreArticles": "Inyocha isiokwu kachasị ọhụrụ anyị na ndụmọdụ maka ịmụ ya",
+    "vieTopik": "Vievlog - Top 1 ọ na-amụta",
+    "yourOneStopShop": "Igwe okwu gị na-akwụsị iji ma kwado ya ma kwadebe maka nyocha asambodo. Nweta ọdịnaya adịchaghị akwụ ụgwọ!",
+    "signUpNow": "Debanye aha ugbu a",
+    "browseIT": "Na-achọgharị ya",
+    "customerTestimonialsTitle": "Ihe ndị ahịa anyị na-ekwu",
+    "customerTestimonialsSubtitle": "Ekwela ka ị were okwu anyị maka ya - Nụrụ ndị ahịa anyị afọ ojuju",
     "testimonial1": {
       "quote": "Vievlog nyeere m aka iji obi ike gafere ule asambodo m.",
       "name": "Nguyen Minh Ah",
@@ -52,37 +32,11 @@
       "quote": "Daalụ Velamlog, m na-eme ka mmemme m na-eme mmemme.",
       "name": "Le thy huoon",
       "role": "Nwa akwụkwọ mahadum"
-    },
-    "vieTopik": "Vievlog - Top 1 ọ na-amụta",
-    "yourOneStopShop": "Igwe okwu gị na-akwụsị iji ma kwado ya ma kwadebe maka nyocha asambodo. Nweta ọdịnaya adịchaghị akwụ ụgwọ!",
-    "connectWithUs": "Soro Vivevlog na Social Media",
-    "socialMedia": {
-      "facebook": "Soro anyị na Facebook",
-      "twitter": "Soro anyị na Twitter",
-      "instagram": "Soro anyị na Instagram",
-      "linkedin": "Jikọọ na anyị na LinkedIn"
-    },
-    "company": {
-      "aboutUs": "Gbasara anyị",
-      "careers": "Nlekọta",
-      "blog": "Tech Blog - News & Ndụmọdụ",
-      "contact": "Kpọtụrụ anyị"
-    },
-    "support": {
-      "helpCenter": "Enyemaka Center",
-      "faq": "Ajụjụ - Ajuju ajuju",
-      "privacyPolicy": "amụma nzuzo",
-      "termsOfService": "Usoro Ọrụ"
-    },
-    "footer": {
-      "copyright": "© 2025 Vievlogg. Ikike niile echekwabara."
-    },
-    "metadata": {
-      "lesson": "Nyochaa nkuzi anyị n'efu ma họrọ ụzọ zuru oke dakọtara na ọkwa gị.",
-      "grammar": "Chọpụta nkuzi zuru ezu na eserese."
     }
   },
-  "posts": {},
+  "posts": {
+    "title": "Niile posts"
+  },
   "videos": {},
   "chats": {},
   "footer": {
@@ -94,6 +48,27 @@
     "faq": "Ajụjụ - Ajuju ajuju",
     "privacyPolicy": "amụma nzuzo",
     "termsOfService": "Usoro Ọrụ",
-    "followUs": "Soro anyị na mgbasa ozi mmekọrịta"
+    "followUs": "Soro anyị na mgbasa ozi mmekọrịta",
+    "footerNote": "© 2025 Vievlogg. Ikike niile echekwabara.",
+    "privacy": "Nke onye",
+    "terms": "Okwu",
+    "cookies": "Kuki",
+    "sitemap": "Pe",
+    "followUsYoutube": "Soro anyị na YouTube",
+    "chats": {
+      "chatWithUs": "Kparita anyị",
+      "chatWithFriend": "Soro ndị enyi gị kparịta ụka",
+      "placeholderMessage": "Pịnye ozi ...",
+      "sendButton": "Zipu"
+    },
+    "videos": {
+      "allVideos": "Vidiyo niile",
+      "tiktokVideos": "Videk Vidiyo"
+    },
+    "posts": {
+      "allPosts": "Niile posts",
+      "ginCourse": "Gin",
+      "GoCourse": "Gbaa ike"
+    }
   }
 }

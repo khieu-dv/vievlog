@@ -6,38 +6,18 @@
     "videos": "Videos"
   },
   "home": {
-    "title": "Vievlog - Free Online Est Doctrina | Certification & Resources",
-    "home": "In domo",
-    "posts": "Stipes",
-    "chats": "Chats",
-    "videos": "Videos",
-    "topiks": "Doctrina Topics",
-    "courses": "Liberabo eam cursus",
-    "grammar": "Tech Grammatica Lessons",
-    "game": "Educational ludos",
-    "features": "Platform features",
-    "logIn": "Log in rationem vestram",
-    "signUp": "Sign up for free is cursus",
-    "toggleTheme": "Switch Lux / Dark Modus",
-    "newCollection": "Explorarent novi utique collectio",
     "oneStopPlatform": "Vievlog - tuum omnes-in-unum illud discendi platform",
-    "startLearningNow": "Satus doctrina et parare volutpat hodie",
-    "whyChooseVieVlog": "Quid discere cum Vievlog?",
-    "freeAccess": "Omnino liberum aditus",
     "learnIT": "Utor Top-Quality Tutorials, Lectiones et Resources ex experientia eruditores omnino liberum.",
-    "expertInstructors": "Discere ex industria experts",
-    "learnFromExperts": "Get docuit a seasoned ut doctorum et educators.",
-    "anytimeAnywhere": "Flexibilia doctrina aliquando, usquam",
-    "learnAtYourOwnPace": "Disce in vestri own pace cum infinita lectionem accessum.",
-    "comprehensiveCurriculum": "Full-Stack est curriculum",
-    "coverAllAspects": "Covers fundamenta ad provectus conceptus inter coding, systems, networking, et magis.",
-    "viewAllIT": "Honorius Vievlog cursus et Practice probat",
-    "featuredCourses": "Featured eam programs",
-    "beginnerIT": "Inceptor gradu cursus",
-    "intermediateIT": "Medium utique",
-    "advancedIT": "Advanced est dominatus",
-    "getStartedForFree": "Satus doctrina gratis hodie",
-    "whatOurLearnersSay": "Quod discentes dicunt de Vievlog",
+    "viewAllPosts": "Omnes Post",
+    "shoppingExperience": "Shopping experientia",
+    "latestBlogPosts": "Tardus Blog Posts",
+    "exploreArticles": "Explore nostri tardus articulis et tips pro discere eam",
+    "vieTopik": "Vievlog - In Top I Est Doctrina Hub",
+    "yourOneStopShop": "Tua unus-subsisto platform ad dominum artes et parare certification probationes. Ut aditus ad premium contentus ad non sumptus!",
+    "signUpNow": "Sign up Now",
+    "browseIT": "Browse",
+    "customerTestimonialsTitle": "Quid noster customers dicere",
+    "customerTestimonialsSubtitle": "Non solum ut nostro verbo ad eam - audi de nostris placuit customers",
     "testimonial1": {
       "quote": "Vievlog adiuvisti me confidenter transiet mihi certification nito.",
       "name": "Nguyen minh anh",
@@ -52,37 +32,11 @@
       "quote": "Gratias ad Vievlog, Ego significantly melior me programming artes.",
       "name": "Le Thanh Huong",
       "role": "University Student"
-    },
-    "vieTopik": "Vievlog - In Top I Est Doctrina Hub",
-    "yourOneStopShop": "Tua unus-subsisto platform ad dominum artes et parare certification probationes. Ut aditus ad premium contentus ad non sumptus!",
-    "connectWithUs": "Sequere Vievlog in Social Media",
-    "socialMedia": {
-      "facebook": "Sequere nobis Facebook",
-      "twitter": "Post nos on Twitter",
-      "instagram": "Sequere nos in Instagram",
-      "linkedin": "Iungo nobiscum in LinkedIn"
-    },
-    "company": {
-      "aboutUs": "De nobis",
-      "careers": "Gestas",
-      "blog": "Tech Blog - News & Tips",
-      "contact": "Contact Us"
-    },
-    "support": {
-      "helpCenter": "Auxilium Center",
-      "faq": "FAQ - Frequenter Interrogata Quaestiones",
-      "privacyPolicy": "Privacy Policy",
-      "termsOfService": "Termini servitium"
-    },
-    "footer": {
-      "copyright": "© MMXXV Vievlog. Omnes ligula."
-    },
-    "metadata": {
-      "lesson": "Explorarent libera lectiones eligere perfectam cursus par vestra arte elit.",
-      "grammar": "Discover: Detailed Tech Tutorials et Diagrams."
     }
   },
-  "posts": {},
+  "posts": {
+    "title": "Posts"
+  },
   "videos": {},
   "chats": {},
   "footer": {
@@ -94,6 +48,27 @@
     "faq": "FAQ - Frequenter Interrogata Quaestiones",
     "privacyPolicy": "Privacy Policy",
     "termsOfService": "Termini servitium",
-    "followUs": "Sequere nos in Social Media"
+    "followUs": "Sequere nos in Social Media",
+    "footerNote": "© MMXXV Vievlog. Omnes ligula.",
+    "privacy": "Secretum",
+    "terms": "Terms",
+    "cookies": "Cookies",
+    "sitemap": "Sitemap",
+    "followUsYoutube": "Sequere nos in YouTube",
+    "chats": {
+      "chatWithUs": "Chat nobiscum",
+      "chatWithFriend": "Chat cum amicis",
+      "placeholderMessage": "Typus nuntius ...",
+      "sendButton": "Mitto"
+    },
+    "videos": {
+      "allVideos": "Omnes videos",
+      "tiktokVideos": "Videos Tiktok"
+    },
+    "posts": {
+      "allPosts": "Posts",
+      "ginCourse": "CURSUS",
+      "GoCourse": "CURSUS"
+    }
   }
 }

@@ -6,38 +6,18 @@
     "videos": "Vídeos"
   },
   "home": {
-    "title": "Vievlog - Free Online It Learning | Cursos, recursos e certificación",
-    "home": "Casa",
-    "posts": "Mensaxes",
-    "chats": "Chats",
-    "videos": "Vídeos",
-    "topiks": "Temas de aprendizaxe",
-    "courses": "Cursos libres",
-    "grammar": "Clases de gramática tecnolóxica",
-    "game": "Xogos educativos",
-    "features": "Características da plataforma",
-    "logIn": "Inicie sesión na súa conta",
-    "signUp": "Inscríbete para cursos gratuítos",
-    "toggleTheme": "Cambiar o modo de luz/escuro",
-    "newCollection": "Explora a nosa nova colección informática",
     "oneStopPlatform": "Vievlog: a túa plataforma de aprendizaxe de todo en un",
-    "startLearningNow": "Comeza a aprendelo e prepárate para os exames hoxe",
-    "whyChooseVieVlog": "Por que aprendelo con Vievlog?",
-    "freeAccess": "Acceso completamente gratuíto",
     "learnIT": "Goza de tutoriais de alta calidade, leccións e recursos de instrutores expertos, completamente gratuítos.",
-    "expertInstructors": "Aprende dos expertos da industria",
-    "learnFromExperts": "Ensina profesionais e educadores de TI experimentados.",
-    "anytimeAnywhere": "Aprendizaxe flexible en calquera momento, en calquera lugar",
-    "learnAtYourOwnPace": "Aprende ao teu ritmo con acceso á lección ilimitado.",
-    "comprehensiveCurriculum": "Currículo de pilas completas",
-    "coverAllAspects": "Abarca fundacional para conceptos de TI avanzados, incluíndo codificación, sistemas, redes e moito máis.",
-    "viewAllIT": "Navega en todos os cursos e probas de prácticas",
-    "featuredCourses": "Presentou programas de TI",
-    "beginnerIT": "Curso de nivel principiante",
-    "intermediateIT": "Curso de TI intermedio",
-    "advancedIT": "Avanzou o dominio",
-    "getStartedForFree": "Comeza a aprender de balde hoxe",
-    "whatOurLearnersSay": "O que din os estudantes sobre Vievlog",
+    "viewAllPosts": "Ver toda a publicación",
+    "shoppingExperience": "Experiencia de compra",
+    "latestBlogPosts": "Últimas publicacións no blog",
+    "exploreArticles": "Explora os nosos últimos artigos e consellos para aprendelo",
+    "vieTopik": "Vievlog - O Top 1 It Learning Hub",
+    "yourOneStopShop": "A súa plataforma única para dominar as habilidades informáticas e prepararse para os exames de certificación. Acceda a contido premium sen custo.",
+    "signUpNow": "Rexístrate agora",
+    "browseIT": "Navega",
+    "customerTestimonialsTitle": "O que din os nosos clientes",
+    "customerTestimonialsSubtitle": "Non tomes só a nosa palabra por iso: escoita dos nosos clientes satisfeitos",
     "testimonial1": {
       "quote": "Vievlog axudoume a pasar con confianza o meu exame de certificación informática.",
       "name": "Nguyen Minh anh",
@@ -52,37 +32,11 @@
       "quote": "Grazas a Vievlog, mellorei significativamente as miñas habilidades de programación.",
       "name": "Le Thanh Huong",
       "role": "Estudante universitario"
-    },
-    "vieTopik": "Vievlog - O Top 1 It Learning Hub",
-    "yourOneStopShop": "A súa plataforma única para dominar as habilidades informáticas e prepararse para os exames de certificación. Acceda a contido premium sen custo.",
-    "connectWithUs": "Siga Vievlog nas redes sociais",
-    "socialMedia": {
-      "facebook": "Síguenos en Facebook",
-      "twitter": "Síguenos en Twitter",
-      "instagram": "Síguenos en Instagram",
-      "linkedin": "Conéctate connosco en LinkedIn"
-    },
-    "company": {
-      "aboutUs": "Sobre nós",
-      "careers": "Carreiras",
-      "blog": "Blog Tech - Noticias e consellos",
-      "contact": "Póñase en contacto connosco"
-    },
-    "support": {
-      "helpCenter": "Centro de axuda",
-      "faq": "FAQ - Preguntas frecuentes",
-      "privacyPolicy": "Política de privacidade",
-      "termsOfService": "Termos de servizo"
-    },
-    "footer": {
-      "copyright": "© 2025 Vievlog. Todos os dereitos reservados."
-    },
-    "metadata": {
-      "lesson": "Explora as nosas leccións gratuítas e elixe o curso perfecto para coincidir co teu nivel de habilidade.",
-      "grammar": "Descubre tutoriais e diagramas detallados de tecnoloxía."
     }
   },
-  "posts": {},
+  "posts": {
+    "title": "Todas as publicacións"
+  },
   "videos": {},
   "chats": {},
   "footer": {
@@ -94,6 +48,27 @@
     "faq": "FAQ - Preguntas frecuentes",
     "privacyPolicy": "Política de privacidade",
     "termsOfService": "Termos de servizo",
-    "followUs": "Síguenos nas redes sociais"
+    "followUs": "Síguenos nas redes sociais",
+    "footerNote": "© 2025 Vievlog. Todos os dereitos reservados.",
+    "privacy": "Privacidade",
+    "terms": "Termos",
+    "cookies": "Cookies",
+    "sitemap": "Mapa do sitio",
+    "followUsYoutube": "Síguenos en YouTube",
+    "chats": {
+      "chatWithUs": "Chatear connosco",
+      "chatWithFriend": "Chatea cos teus amigos",
+      "placeholderMessage": "Escribe unha mensaxe ...",
+      "sendButton": "Enviar"
+    },
+    "videos": {
+      "allVideos": "Todos os vídeos",
+      "tiktokVideos": "Vídeos de Tiktok"
+    },
+    "posts": {
+      "allPosts": "Todas as publicacións",
+      "ginCourse": "Curso de xenebra",
+      "GoCourse": "Vaia por suposto"
+    }
   }
 }

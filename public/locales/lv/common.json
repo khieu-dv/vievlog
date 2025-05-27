@@ -6,38 +6,18 @@
     "videos": "Video"
   },
   "home": {
-    "title": "Vievlog - bezmaksas tiešsaistes IT mācīšanās | Kursi, resursi un sertifikācija",
-    "home": "Mājas",
-    "posts": "Amats",
-    "chats": "Tērzēšana",
-    "videos": "Video",
-    "topiks": "Tas mācās tēmas",
-    "courses": "Bezmaksas IT kursi",
-    "grammar": "Tech gramatikas nodarbības",
-    "game": "Izglītojošas spēles",
-    "features": "Platformas funkcijas",
-    "logIn": "Piesakieties savā kontā",
-    "signUp": "Reģistrējieties bez maksas IT kursiem",
-    "toggleTheme": "Pārslēgt gaismas/tumšo režīmu",
-    "newCollection": "Izpētiet mūsu jauno IT kursa kolekciju",
     "oneStopPlatform": "Vievlog-visaptveroša IT mācīšanās platforma",
-    "startLearningNow": "Sāciet to mācīties un sagatavoties šodien eksāmeniem",
-    "whyChooseVieVlog": "Kāpēc to iemācīties ar vievlog?",
-    "freeAccess": "Pilnīgi brīva pieeja",
     "learnIT": "Izbaudiet augstākās kvalitātes IT apmācības, mācības un resursus no pieredzējušiem instruktoriem-pilnīgi bez maksas.",
-    "expertInstructors": "Mācieties no nozares ekspertiem",
-    "learnFromExperts": "Māciet pieredzējušos IT speciālistus un pedagogus.",
-    "anytimeAnywhere": "Elastīga mācīšanās jebkurā laikā, jebkur",
-    "learnAtYourOwnPace": "Mācieties savā tempā ar neierobežotu piekļuvi nodarbībai.",
-    "comprehensiveCurriculum": "Pilna kaudze to mācību programma",
-    "coverAllAspects": "Aptveriet pamata IT koncepcijas, ieskaitot kodēšanu, sistēmas, tīklošanu un daudz ko citu.",
-    "viewAllIT": "Pārlūkojiet visus vievlog kursus un prakses testus",
-    "featuredCourses": "Piedāvātas IT programmas",
-    "beginnerIT": "Iesācēja līmeņa IT kurss",
-    "intermediateIT": "Starpposma IT kurss",
-    "advancedIT": "Progresēja to meistarība",
-    "getStartedForFree": "Sāciet mācīties bez maksas šodien",
-    "whatOurLearnersSay": "Ko izglītojamie saka par vievlog",
+    "viewAllPosts": "Skatīt visu pastu",
+    "shoppingExperience": "Iepirkšanās pieredze",
+    "latestBlogPosts": "Jaunākās emuāra ziņas",
+    "exploreArticles": "Izpētiet mūsu jaunākos rakstus un padomus tā apguvei",
+    "vieTopik": "Vievlog - top 1 IT mācīšanās centrs",
+    "yourOneStopShop": "Jūsu vienas pieturas platforma, lai apgūtu IT prasmes un sagatavotos sertifikācijas eksāmeniem. Bez maksas iegūstiet piekļuvi premium saturam!",
+    "signUpNow": "Pierakstieties tūlīt",
+    "browseIT": "Pārlūkot to",
+    "customerTestimonialsTitle": "Ko saka mūsu klienti",
+    "customerTestimonialsSubtitle": "Ne tikai ņemiet vērā mūsu vārdu - dzirdiet no mūsu apmierinātajiem klientiem",
     "testimonial1": {
       "quote": "Vievlog man palīdzēja pārliecinoši nokārtot savu IT sertifikācijas eksāmenu.",
       "name": "Nguyen Minh anh",
@@ -52,37 +32,11 @@
       "quote": "Pateicoties Vievlog, es esmu ievērojami uzlabojis savas programmēšanas prasmes.",
       "name": "Le Thanh Huong",
       "role": "Universitātes students"
-    },
-    "vieTopik": "Vievlog - top 1 IT mācīšanās centrs",
-    "yourOneStopShop": "Jūsu vienas pieturas platforma, lai apgūtu IT prasmes un sagatavotos sertifikācijas eksāmeniem. Bez maksas iegūstiet piekļuvi premium saturam!",
-    "connectWithUs": "Sekojiet Vievlog sociālajos medijos",
-    "socialMedia": {
-      "facebook": "Sekojiet mums Facebook",
-      "twitter": "Sekojiet mums Twitter",
-      "instagram": "Sekojiet mums Instagram",
-      "linkedin": "Sazinieties ar mums LinkedIn"
-    },
-    "company": {
-      "aboutUs": "Par mums",
-      "careers": "Karjera",
-      "blog": "Tehnikas emuārs - ziņas un padomi",
-      "contact": "Sazinieties ar mums"
-    },
-    "support": {
-      "helpCenter": "Palīdzības centrs",
-      "faq": "FAQ - bieži uzdotie jautājumi",
-      "privacyPolicy": "Konfidencialitātes politika",
-      "termsOfService": "Pakalpojuma noteikumi"
-    },
-    "footer": {
-      "copyright": "© 2025 Vievlog. Visas tiesības aizsargātas."
-    },
-    "metadata": {
-      "lesson": "Izpētiet mūsu bezmaksas nodarbības un izvēlieties perfektu kursu, kas atbilst jūsu prasmju līmenim.",
-      "grammar": "Atklājiet detalizētas tehnoloģiju apmācības un diagrammas."
     }
   },
-  "posts": {},
+  "posts": {
+    "title": "Visas ziņas"
+  },
   "videos": {},
   "chats": {},
   "footer": {
@@ -94,6 +48,27 @@
     "faq": "FAQ - bieži uzdotie jautājumi",
     "privacyPolicy": "Konfidencialitātes politika",
     "termsOfService": "Pakalpojuma noteikumi",
-    "followUs": "Sekojiet mums sociālajos medijos"
+    "followUs": "Sekojiet mums sociālajos medijos",
+    "footerNote": "© 2025 Vievlog. Visas tiesības aizsargātas.",
+    "privacy": "Privātums",
+    "terms": "Noteikumi",
+    "cookies": "Cepumi",
+    "sitemap": "Vietņu karte",
+    "followUsYoutube": "Sekojiet mums vietnē YouTube",
+    "chats": {
+      "chatWithUs": "Tērzēt ar mums",
+      "chatWithFriend": "Tērzēt ar draugiem",
+      "placeholderMessage": "Ierakstiet ziņojumu ...",
+      "sendButton": "Nosūtīt"
+    },
+    "videos": {
+      "allVideos": "Visi videoklipi",
+      "tiktokVideos": "Tiktok video"
+    },
+    "posts": {
+      "allPosts": "Visas ziņas",
+      "ginCourse": "Džina kurss",
+      "GoCourse": "Go kurss"
+    }
   }
 }
