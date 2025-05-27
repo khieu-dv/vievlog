@@ -1,31 +1,26 @@
-// lib/types.ts
 export interface Message {
-    id: string;
-    content: string; // Đảm bảo trường này khớp với 'content' trong các chỗ khác
-    sender: string;
-    roomId: string;
-    timestamp: number;
-  }
-  
-  // Thêm interface cho Server IO
-  export interface NextApiResponseServerIO extends Response {
-    socket: {
-      server: any;
-    };
-  }
-  
-  export interface User {
-    id: string;
-    name: string;
-  }
-  
-  export interface Room {
-    id: string;
-    name: string;
-  }
+  id: string;
+  content: string; 
+  sender: string;
+  roomId: string;
+  timestamp: number;
+}
 
+export interface NextApiResponseServerIO extends Response {
+  socket: {
+    server: any;
+  };
+}
 
-  // app/types/index.ts
+export interface User {
+  id: string;
+  name: string;
+}
+
+export interface Room {
+  id: string;
+  name: string;
+}
 
 export interface Comment {
   id: string;
@@ -70,13 +65,14 @@ export interface Category {
 
 }
 
+
 export interface Post {
   id: string;
   title: string;
   excerpt: string;
-  content: string;
+  content?: string;
   publishedAt: string;
-  coverImage: string;
+  coverImage?: string;
   author: {
     name: string;
     avatar: string;
@@ -87,7 +83,7 @@ export interface Post {
   comments?: Comment[];
   categoryId?: string;
   category?: Category;
-  created: string;
+  created?: string;
   expand?: {
       author?: {
         avatar: string;
@@ -98,11 +94,12 @@ export interface Post {
 
 
 export interface PopularTopic {
-    icon: React.ReactNode;
-    title: string;
-    count: number;
-    color: string;
-    id?: string; // Thêm field id
+  id?: string; 
+  icon: React.ReactNode;
+  title: string;
+  count: number;
+  color: string;
+    
 }
 
 

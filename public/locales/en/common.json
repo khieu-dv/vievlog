@@ -6,38 +6,11 @@
     "videos": "Videos"
   },
   "home": {
-    "title": "VieVlog – Free Online IT Learning | Courses, Resources & Certification",
-    "home": "Home",
-    "posts": "Posts",
-    "chats": "Chats",
-    "videos": "Videos",
-    "topiks": "IT Learning Topics",
-    "courses": "Free IT Courses",
-    "grammar": "Tech Grammar Lessons",
-    "game": "Educational Games",
-    "features": "Platform Features",
-    "logIn": "Log In to Your Account",
-    "signUp": "Sign Up for Free IT Courses",
-    "toggleTheme": "Switch Light/Dark Mode",
-    "newCollection": "Explore Our New IT Course Collection",
     "oneStopPlatform": "VieVlog – Your All-in-One IT Learning Platform",
-    "startLearningNow": "Start Learning IT and Prepare for Exams Today",
-    "whyChooseVieVlog": "Why Learn IT with VieVlog?",
-    "freeAccess": "Completely Free Access",
     "learnIT": "Enjoy top-quality IT tutorials, lessons, and resources from experienced instructors—completely free.",
-    "expertInstructors": "Learn from Industry Experts",
-    "learnFromExperts": "Get taught by seasoned IT professionals and educators.",
-    "anytimeAnywhere": "Flexible Learning Anytime, Anywhere",
-    "learnAtYourOwnPace": "Learn at your own pace with unlimited lesson access.",
-    "comprehensiveCurriculum": "Full-Stack IT Curriculum",
-    "coverAllAspects": "Covers foundational to advanced IT concepts including coding, systems, networking, and more.",
-    "viewAllIT": "Browse All VieVlog Courses and Practice Tests",
-    "featuredCourses": "Featured IT Programs",
-    "beginnerIT": "Beginner-Level IT Course",
-    "intermediateIT": "Intermediate IT Course",
-    "advancedIT": "Advanced IT Mastery",
-    "getStartedForFree": "Start Learning for Free Today",
-    "whatOurLearnersSay": "What Learners Say About VieVlog",
+    "vieTopik": "VieVlog – The Top 1 IT Learning Hub",
+    "yourOneStopShop": "Your one-stop platform to master IT skills and prepare for certification exams. Get access to premium content at no cost!",
+
     "testimonial1": {
       "quote": "VieVlog helped me confidently pass my IT certification exam.",
       "name": "Nguyen Minh Anh",
@@ -52,35 +25,9 @@
       "quote": "Thanks to VieVlog, I’ve significantly improved my programming skills.",
       "name": "Le Thanh Huong",
       "role": "University Student"
-    },
-    "vieTopik": "VieVlog – The Top 1 IT Learning Hub",
-    "yourOneStopShop": "Your one-stop platform to master IT skills and prepare for certification exams. Get access to premium content at no cost!",
-    "connectWithUs": "Follow VieVlog on Social Media",
-    "socialMedia": {
-      "facebook": "Follow us on Facebook",
-      "twitter": "Follow us on Twitter",
-      "instagram": "Follow us on Instagram",
-      "linkedin": "Connect with us on LinkedIn"
-    },
-    "company": {
-      "aboutUs": "About Us",
-      "careers": "Careers",
-      "blog": "Tech Blog – News & Tips",
-      "contact": "Contact Us"
-    },
-    "support": {
-      "helpCenter": "Help Center",
-      "faq": "FAQ – Frequently Asked Questions",
-      "privacyPolicy": "Privacy Policy",
-      "termsOfService": "Terms of Service"
-    },
-    "footer": {
-      "copyright": "© 2025 VieVlog. All rights reserved."
-    },
-    "metadata": {
-      "lesson": "Explore our free lessons and choose the perfect course to match your skill level.",
-      "grammar": "Discover detailed tech tutorials and diagrams."
     }
+
+    
   },
 
   "posts": {

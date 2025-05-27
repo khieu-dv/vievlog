@@ -6,11 +6,6 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 
-// app/lib/utils.ts
-
-/**
- * Format date to relative time (e.g., "2 hours ago")
- */
 export const formatRelativeTime = (dateString: string): string => {
   const date = new Date(dateString);
   const now = new Date();

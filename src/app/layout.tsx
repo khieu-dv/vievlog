@@ -4,7 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "~/ui/components/theme-provider";
 import Providers from "./components/providers/Providers";
-import I18nProvider from "./components/providers/i18nProvider"; // Import file mới
+import I18nProvider from "./components/providers/i18nProvider";
 
 
 const geistSans = Geist({
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   authors: [{ name: "VieVlog" }],
   creator: "VieVlog",
   generator: "Next.js",
-  metadataBase: new URL("https://vievlog.com"), // Replace with your actual domainhttps://www.vievlog.com/
+  metadataBase: new URL("https://vievlog.com"),
   openGraph: {
     title: "VieVlog - Advanced Programming Channel",
     description:
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     siteName: "VieVlog",
     images: [
       {
-        url: "https://vievlog.com/og-image.jpg", // Replace with your Open Graph image URL
+        url: "https://vievlog.com/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "VieVlog - Advanced Programming Channel",
@@ -55,14 +55,6 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
-  // twitter: {
-  //   card: "summary_large_image",
-  //   title: "VieVlog - Advanced Programming Channel",
-  //   description:
-  //     "Sharing practical programming knowledge and tutorials on Go, Rust, ReactJS, and Next.js.",
-  //   creator: "@yourTwitterHandle",
-  //   images: ["https://vievlog.com/og-image.jpg"],
-  // },
 };
 
 
@@ -92,7 +84,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <I18nProvider> {/* Đưa vào đây để tránh lỗi Server Component */}
+          <I18nProvider>
             <Providers>
               {children}
               {/* <DevToolsDetector /> */}

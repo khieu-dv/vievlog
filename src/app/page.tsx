@@ -1,6 +1,6 @@
-"use client"; // Bắt buộc để sử dụng useTranslation()
+"use client";
 
-import { ArrowRight, Clock, MessageCircle, ShoppingBag, Star, ThumbsUp, Truck, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, MessageCircle, ThumbsUp, ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
@@ -16,25 +16,11 @@ import {
   CardTitle,
   CardFooter,
 } from "~/ui/primitives/card";
-import { desc } from "drizzle-orm";
 import { useTranslation } from "react-i18next";
 import { ContactButton } from "./components/contact-button";
-import PocketBase from "pocketbase";
 import axios from "axios";
+import { Post } from '../lib/types';
 
-
-// Simple post card component specifically for the homepage
-interface Post {
-  id: string;
-  title: string;
-  excerpt: string;
-  publishedAt: string;
-  coverImage?: string;
-  author: { name: string; avatar: string };
-  likes: number;
-  commentCount: number;
-  tags: string[];
-}
 
 function PostCardSimple({ post }: { post: Post }) {
   return (
@@ -104,79 +90,6 @@ export default function HomePage() {
       scrollContainerRef.current.scrollBy({ left: 350, behavior: 'smooth' });
     }
   };
-
-  // tao bien product
-  const featuredIT = [
-    {
-      id: "9v0i6zzig509tk9",
-      name: "제35회 한국어능력시험 VIEVLOG Ⅰ 듣기",
-      description: t("home.learnIT"),
-      price: 199.99,
-      originalPrice: 249.99,
-      image:
-        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-      category: "Topik I",
-      rating: 4.5,
-      inStock: true,
-      lessonCount: 12,
-    },
-    {
-      id: "tph8rw2hzg51igq",
-      name: "제35회 한국어능력시험 VIEVLOG I 읽기",
-      description: t("home.learnFromExperts"),
-
-      price: 299.99,
-      originalPrice: 349.99,
-      image:
-        "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-      category: "Topik I",
-      rating: 4.2,
-      inStock: true,
-      lessonCount: 12,
-    },
-    {
-      id: "6bve930m9y8vacl",
-      name: "제35회 한국어능력시험 VIEVLOG Ⅱ 듣기",
-      description: t("home.learnAtYourOwnPace"),
-      price: 999.99,
-      originalPrice: 1099.99,
-      image:
-        "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-      category: "Topik II",
-      rating: 4.8,
-      inStock: true,
-      lessonCount: 12,
-    },
-    {
-      id: "giy1vhnk3w7d55c",
-      name: "제35회 한국어능력시험 VIEVLOG IⅠ 읽기",
-      description: t("home.coverAllAspects"),
-      price: 149.99,
-      originalPrice: 179.99,
-      image:
-        "https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-      category: "Topik II",
-      rating: 4.4,
-      inStock: true,
-      lessonCount: 12,
-    },
-  ];
-
-  const categories = [
-    {
-      name: "VIEVLOG I",
-      image:
-        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-      productCount: 12,
-    },
-    {
-      name: "VIEVLOG II",
-      image:
-        "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-      productCount: 15,
-      lessionCount: 12,
-    },
-  ];
 
   // Testimonials for the testimonial carousel
   const testimonials = [

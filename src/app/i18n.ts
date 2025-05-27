@@ -3,10 +3,7 @@
 import i18n from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
-import { readdirSync } from 'fs';
-import path from 'path';
 
-// Tạo object resources động từ tất cả các thư mục trong locales
 const resources = {
   en: {
     common: require('../../public/locales/en/common.json'),
@@ -246,7 +243,7 @@ i18n
   .use(LanguageDetector)
   .init({
     resources,
-    fallbackLng: 'en', // Đổi ngôn ngữ mặc định thành tiếng Anh
+    fallbackLng: 'en', 
     ns: ['common'],
     defaultNS: 'common',
     interpolation: {
@@ -260,7 +257,7 @@ i18n
     react: {
       useSuspense: false,
     },
-    supportedLngs, // Sử dụng mảng đã tạo
+    supportedLngs,
     nonExplicitSupportedLngs: false,
   });
 
