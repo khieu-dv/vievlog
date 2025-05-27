@@ -1,10 +1,12 @@
-import { Facebook, Github, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
+import { Facebook, Github, Youtube } from "lucide-react";
 import Link from "next/link";
 
 import { cn } from "~/lib/utils";
 import { Button } from "~/ui/primitives/button";
+import { useTranslation } from "react-i18next";
 
 export function Footer({ className }: { className?: string }) {
+  const { t } = useTranslation();
   return (
     <footer className={cn("border-t bg-background", className)}>
       <div className="container mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
@@ -51,7 +53,7 @@ export function Footer({ className }: { className?: string }) {
                   href="/posts"
                   className="text-muted-foreground hover:text-foreground"
                 >
-                  All Posts
+                  {t("footer.posts.allPosts")}
                 </Link>
               </li>
               <li>
@@ -59,7 +61,7 @@ export function Footer({ className }: { className?: string }) {
                   href="/posts"
                   className="text-muted-foreground hover:text-foreground"
                 >
-                  Khóa Học Golang
+                  {t("footer.posts.GoCourse")}
                 </Link>
               </li>
               <li>
@@ -67,20 +69,20 @@ export function Footer({ className }: { className?: string }) {
                   href="/posts"
                   className="text-muted-foreground hover:text-foreground"
                 >
-                  Dự Án Gin
+                  {t("footer.posts.ginCourse")}
                 </Link>
               </li>
             </ul>
           </div>
           <div>
-            <h3 className="mb-4 text-sm font-semibold">Video</h3>
+            <h3 className="mb-4 text-sm font-semibold">Videos</h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
                   href="/videos"
                   className="text-muted-foreground hover:text-foreground"
                 >
-                  All Videos
+                  {t("footer.videos.allVideos")}
                 </Link>
               </li>
               <li>
@@ -88,7 +90,7 @@ export function Footer({ className }: { className?: string }) {
                   href="/videos"
                   className="text-muted-foreground hover:text-foreground"
                 >
-                  Tiktok Video
+                  {t("footer.videos.tiktokVideos")}
                 </Link>
               </li>
 
@@ -102,7 +104,7 @@ export function Footer({ className }: { className?: string }) {
                   href="/chat"
                   className="text-muted-foreground hover:text-foreground"
                 >
-                  Chat with us
+                  {t("footer.chats.chatWithUs")}
                 </Link>
               </li>
               <li>
@@ -110,7 +112,7 @@ export function Footer({ className }: { className?: string }) {
                   href="/chat"
                   className="text-muted-foreground hover:text-foreground"
                 >
-                  Chat with your friends
+                  {t("footer.chats.chatWithFriend")}
                 </Link>
               </li>
             </ul>
@@ -123,16 +125,16 @@ export function Footer({ className }: { className?: string }) {
             </p>
             <div className="flex items-center gap-4 text-sm text-muted-foreground">
               <Link href="/" className="hover:text-foreground">
-                Privacy
+                {t("footer.privacy")}
               </Link>
               <Link href="/" className="hover:text-foreground">
-                Terms
+                {t("footer.terms")}
               </Link>
               <Link href="/" className="hover:text-foreground">
-                Cookies
+                {t("footer.cookies")}
               </Link>
               <Link href="/" className="hover:text-foreground">
-                Sitemap
+                {t("footer.sitemap")}
               </Link>
             </div>
           </div>

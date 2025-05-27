@@ -186,7 +186,7 @@ export default function HomePage() {
                 <div className="flex flex-col gap-3 sm:flex-row">
                   <Link href="/posts">
                     <Button size="lg" className="h-12 gap-1.5 px-8">
-                      View All Post <ArrowRight className="h-4 w-4" />
+                      {t("home.viewAllPosts")} <ArrowRight className="h-4 w-4" />
                     </Button>
                   </Link>
                 </div>
@@ -212,11 +212,11 @@ export default function HomePage() {
           <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mb-8 flex flex-col items-center text-center">
               <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-                Latest Blog Posts
+                {t("home.latestBlogPosts")}
               </h2>
               <div className="mt-2 h-1 w-12 rounded-full bg-primary" />
               <p className="mt-4 max-w-2xl text-center text-muted-foreground">
-                Explore our latest articles and tips for learning IT
+                {t("home.exploreArticles")}
               </p>
             </div>
 
@@ -262,7 +262,7 @@ export default function HomePage() {
             <div className="mt-10 flex justify-center">
               <Link href="/posts">
                 <Button variant="outline" size="lg" className="group h-12 px-8">
-                  View All Posts
+                  {t("home.viewAllPosts")}
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Button>
               </Link>
@@ -275,11 +275,11 @@ export default function HomePage() {
           <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mb-8 flex flex-col items-center text-center">
               <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-                What Our Customers Say
+                {t("home.customerTestimonialsTitle")}
               </h2>
               <div className="mt-2 h-1 w-12 rounded-full bg-primary" />
               <p className="mt-4 max-w-2xl text-center text-muted-foreground md:text-lg">
-                Don't just take our word for it - hear from our satisfied
+                {t("home.customerTestimonialsSubtitle")}
                 customers
               </p>
             </div>
@@ -302,12 +302,12 @@ export default function HomePage() {
                 <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
                   <Link href="/auth/sign-up">
                     <Button size="lg" className="h-12 px-8">
-                      Sign Up Now
+                      {t("home.signUpNow")}
                     </Button>
                   </Link>
                   <Link href="/posts">
                     <Button variant="outline" size="lg" className="h-12 px-8">
-                      Browse IT
+                      {t("home.browseIT")}
                     </Button>
                   </Link>
                 </div>

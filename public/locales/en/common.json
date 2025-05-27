@@ -65,16 +65,19 @@
     "sitemap": "Sitemap",
     "followUsYoutube": "Follow us on Youtube",
     "chats": {
-      "title": "Chat with us",
-      "subtitle": "Chat with your friends",
+      "chatWithUs": "Chat with us",
+      "chatWithFriend": "Chat with your friends",
       "placeholderMessage": "Type a message...",
       "sendButton": "Send"
     },
     "videos": {
-      "title": "All Videos"
+      "allVideos": "All Videos",
+      "tiktokVideos": "TikTok Videos"
     },
     "posts": {
-      "title": "All Posts"
+      "allPosts": "All Posts",
+      "ginCourse": "Gin Course",
+      "GoCourse": "Go Course"
     }
   }
 }
