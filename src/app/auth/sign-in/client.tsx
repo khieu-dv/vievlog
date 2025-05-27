@@ -38,7 +38,7 @@ export function SignInPageClient() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center p-4">
+    <div className="flex flex-col items-center justify-start pt-4 min-h-screen">
       <div className="w-full max-w-md space-y-8 rounded-lg border p-6 shadow-md">
         <div className="text-center">
           <h1 className="text-2xl font-bold">Sign in</h1>
