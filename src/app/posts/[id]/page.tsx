@@ -227,7 +227,7 @@ export default function PostDetailPage() {
                 </div>
                 <div className="ml-3">
                   <p className="font-medium text-gray-900">{post.expand?.author?.name || "Anonymous"}</p>
-                  <p className="text-xs text-gray-500">{formatRelativeTime(post.created)}</p>
+                  <p className="text-xs text-gray-500">{formatRelativeTime(post.created ?? "")}</p>
                 </div>
               </div>
               <button className="rounded-full p-2 text-gray-400 hover:bg-gray-100">
@@ -256,7 +256,7 @@ export default function PostDetailPage() {
 
             {/* Post Full Content - Using Markdown Renderer */}
             <div className="px-4 pb-4">
-              <MarkdownRenderer content={post.content} />
+              <MarkdownRenderer content={post.content ?? ""} />
             </div>
 
             {/* Post Tags */}

@@ -1,11 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useSession } from "~/lib/auth-client";
 import { Header } from "~/ui/components/header";
 import { BasicUser } from '../../lib/types';
-
 
 // Define an extended session type
 type BasicSession = {

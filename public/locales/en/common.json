@@ -8,9 +8,16 @@
   "home": {
     "oneStopPlatform": "VieVlog – Your All-in-One IT Learning Platform",
     "learnIT": "Enjoy top-quality IT tutorials, lessons, and resources from experienced instructors—completely free.",
+    "viewAllPosts": "View All Post",
+    "shoppingExperience": "Shopping experience",
+    "latestBlogPosts": "Latest Blog Posts",
+    "exploreArticles": "Explore our latest articles and tips for learning IT",
     "vieTopik": "VieVlog – The Top 1 IT Learning Hub",
     "yourOneStopShop": "Your one-stop platform to master IT skills and prepare for certification exams. Get access to premium content at no cost!",
-
+    "signUpNow": "Sign Up Now",
+    "browseIT": "Browse IT",
+    "customerTestimonialsTitle": "What Our Customers Say",
+    "customerTestimonialsSubtitle": "Don't just take our word for it - hear from our satisfied customers",
     "testimonial1": {
       "quote": "VieVlog helped me confidently pass my IT certification exam.",
       "name": "Nguyen Minh Anh",
@@ -26,16 +33,15 @@
       "name": "Le Thanh Huong",
       "role": "University Student"
     }
-
     
   },
 
   "posts": {
+    "title": "All Posts"
     
   },
 
-  "videos": {
-    
+  "videos": {    
   },
 
   "chats": {
@@ -51,7 +57,24 @@
     "faq": "FAQ – Frequently Asked Questions",
     "privacyPolicy": "Privacy Policy",
     "termsOfService": "Terms of Service",
-    "followUs": "Follow Us on Social Media"
+    "followUs": "Follow Us on Social Media",
+    "footerNote": "© 2025 VieVlog. All rights reserved.",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "cookies": "Cookies",
+    "sitemap": "Sitemap",
+    "followUsYoutube": "Follow us on Youtube",
+    "chats": {
+      "title": "Chat with us",
+      "subtitle": "Chat with your friends",
+      "placeholderMessage": "Type a message...",
+      "sendButton": "Send"
+    },
+    "videos": {
+      "title": "All Videos"
+    },
+    "posts": {
+      "title": "All Posts"
+    }
   }
-
 }
