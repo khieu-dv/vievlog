@@ -7,7 +7,8 @@ export interface GameConfig {
   key?: string;
   playerId?: string;
   worldLayer?: Phaser.Tilemaps.TilemapLayer;
-  map?: string;
+  map?: Phaser.Tilemaps.Tilemap; // Changed from string to Phaser.Tilemaps.Tilemap
+  mapName?: string; // Keep this for the string map name
 }
 
 export interface PlayerData {

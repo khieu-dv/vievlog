@@ -96,24 +96,36 @@ export class Scene2 extends Phaser.Scene {
 
         room.then((room: any) => {
             room.onMessage((data: GameMessage) => {
+                console.log('Received message:', data.event, data);
+
                 if (data.event === 'CURRENT_PLAYERS') {
                     const currentPlayersData = data as CurrentPlayersMessage;
-                    console.log('CURRENT_PLAYERS');
+                    console.log('CURRENT_PLAYERS - Processing existing players');
             
                     if (currentPlayersData.players) {
                         Object.keys(currentPlayersData.players).forEach((playerId: string) => {
                             const player = currentPlayersData.players![playerId];
+                            
+                            console.log(`Processing player ${playerId}, map: ${player.map}, current map: ${this.mapName}`);
             
-                            if (playerId !== room.sessionId) {
+                            // Only create online players for other players (not self) and in same map
+                            if (playerId !== room.sessionId && player.map === this.mapName) {
+                                // Destroy existing player if exists
+                                if (onlinePlayers[player.sessionId]) {
+                                    onlinePlayers[player.sessionId].destroy();
+                                }
+                                
                                 onlinePlayers[player.sessionId] = new OnlinePlayer({
                                     scene: this,
                                     playerId: player.sessionId,
                                     key: player.sessionId,
-                                    map: player.map,
+                                    map: this.map,
                                     x: player.x,
                                     y: player.y,
                                     worldLayer: this.worldLayer
                                 });
+                                
+                                console.log(`Created online player: ${player.sessionId} at (${player.x}, ${player.y})`);
                             }
                         });
                     }
@@ -121,48 +133,50 @@ export class Scene2 extends Phaser.Scene {
                 
                 if (data.event === 'PLAYER_JOINED') {
                     const joinedData = data as PlayerJoinedMessage;
-                    console.log('PLAYER_JOINED');
+                    console.log('PLAYER_JOINED:', joinedData);
             
-                    if (joinedData.sessionId && !onlinePlayers[joinedData.sessionId]) {
-                        onlinePlayers[joinedData.sessionId] = new OnlinePlayer({
-                            scene: this,
-                            playerId: joinedData.sessionId,
-                            key: joinedData.sessionId,
-                            map: joinedData.map || 'town',
-                            x: joinedData.x || 0,
-                            y: joinedData.y || 0,
-                            worldLayer: this.worldLayer
-                        });
+                    if (joinedData.sessionId && joinedData.sessionId !== room.sessionId) {
+                        // Only create if player is in same map
+                        if (joinedData.map === this.mapName) {
+                            // Destroy existing player if exists
+                            if (onlinePlayers[joinedData.sessionId]) {
+                                onlinePlayers[joinedData.sessionId].destroy();
+                            }
+
+                            onlinePlayers[joinedData.sessionId] = new OnlinePlayer({
+                                scene: this,
+                                playerId: joinedData.sessionId,
+                                key: joinedData.sessionId,
+                                map: this.map,
+                                x: joinedData.x || 0,
+                                y: joinedData.y || 0,
+                                worldLayer: this.worldLayer
+                            });
+                            
+                            console.log(`Player joined and created: ${joinedData.sessionId}`);
+                        }
                     }
                 }
                 
                 if (data.event === 'PLAYER_LEFT') {
                     const leftData = data as PlayerLeftMessage;
-                    console.log('PLAYER_LEFT');
+                    console.log('PLAYER_LEFT:', leftData);
             
                     if (leftData.sessionId && onlinePlayers[leftData.sessionId]) {
                         onlinePlayers[leftData.sessionId].destroy();
                         delete onlinePlayers[leftData.sessionId];
+                        console.log(`Player left and removed: ${leftData.sessionId}`);
                     }
                 }
                 
                 if (data.event === 'PLAYER_MOVED') {
                     const movedData = data as PlayerMovedMessage;
-                    if (movedData.sessionId && onlinePlayers[movedData.sessionId]) {
-                        // If player is in same map
-                        if (this.mapName === onlinePlayers[movedData.sessionId].map) {
-                            // If player isn't registered in this scene (map changing bug..)
-                            if (!onlinePlayers[movedData.sessionId].scene) {
-                                onlinePlayers[movedData.sessionId] = new OnlinePlayer({
-                                    scene: this,
-                                    playerId: movedData.sessionId,
-                                    key: movedData.sessionId,
-                                    map: movedData.map || 'town',
-                                    x: movedData.x || 0,
-                                    y: movedData.y || 0,
-                                    worldLayer: this.worldLayer
-                                });
-                            }
+                    if (movedData.sessionId && movedData.sessionId !== room.sessionId) {
+                        // Only process if player exists and is in same map
+                        if (onlinePlayers[movedData.sessionId] && movedData.map === this.mapName) {
+                            // Update the player's map reference
+                            onlinePlayers[movedData.sessionId].map = movedData.map || 'town';
+                            
                             // Start animation and set sprite position
                             onlinePlayers[movedData.sessionId].isWalking(
                                 movedData.position || 'front', 
@@ -175,21 +189,9 @@ export class Scene2 extends Phaser.Scene {
                 
                 if (data.event === 'PLAYER_MOVEMENT_ENDED') {
                     const endedData = data as PlayerMovementEndedMessage;
-                    if (endedData.sessionId && onlinePlayers[endedData.sessionId]) {
-                        // If player is in same map
-                        if (this.mapName === onlinePlayers[endedData.sessionId].map) {
-                            // If player isn't registered in this scene (map changing bug..)
-                            if (!onlinePlayers[endedData.sessionId].scene) {
-                                onlinePlayers[endedData.sessionId] = new OnlinePlayer({
-                                    scene: this,
-                                    playerId: endedData.sessionId,
-                                    key: endedData.sessionId,
-                                    map: endedData.map || 'town',
-                                    x: endedData.x || 0,
-                                    y: endedData.y || 0,
-                                    worldLayer: this.worldLayer
-                                });
-                            }
+                    if (endedData.sessionId && endedData.sessionId !== room.sessionId) {
+                        // Only process if player exists and is in same map
+                        if (onlinePlayers[endedData.sessionId] && endedData.map === this.mapName) {
                             // Stop animation & set sprite texture
                             onlinePlayers[endedData.sessionId].stopWalking(endedData.position || 'front');
                         }
@@ -198,21 +200,28 @@ export class Scene2 extends Phaser.Scene {
                 
                 if (data.event === 'PLAYER_CHANGED_MAP') {
                     const changedMapData = data as PlayerChangedMapMessage;
-                    console.log('PLAYER_CHANGED_MAP');
+                    console.log('PLAYER_CHANGED_MAP:', changedMapData);
             
-                    if (changedMapData.sessionId && onlinePlayers[changedMapData.sessionId]) {
-                        onlinePlayers[changedMapData.sessionId].destroy();
+                    if (changedMapData.sessionId && changedMapData.sessionId !== room.sessionId) {
+                        // Remove player from current scene
+                        if (onlinePlayers[changedMapData.sessionId]) {
+                            onlinePlayers[changedMapData.sessionId].destroy();
+                            delete onlinePlayers[changedMapData.sessionId];
+                        }
             
-                        if (changedMapData.map === this.mapName && !onlinePlayers[changedMapData.sessionId].scene) {
+                        // Add player to new scene if they moved to current map
+                        if (changedMapData.map === this.mapName) {
                             onlinePlayers[changedMapData.sessionId] = new OnlinePlayer({
                                 scene: this,
                                 playerId: changedMapData.sessionId,
                                 key: changedMapData.sessionId,
-                                map: changedMapData.map,
+                                map: this.map,
                                 x: changedMapData.x || 0,
                                 y: changedMapData.y || 0,
                                 worldLayer: this.worldLayer
                             });
+                            
+                            console.log(`Player changed to current map: ${changedMapData.sessionId}`);
                         }
                     }
                 }
@@ -262,7 +271,8 @@ export class Scene2 extends Phaser.Scene {
             key: 'player',
             x: spawnPoint.x || 0,
             y: spawnPoint.y || 0,
-            //map: this.map
+            map: this.map,
+            mapName: this.mapName
         });
 
         const camera = this.cameras.main;
@@ -279,67 +289,85 @@ export class Scene2 extends Phaser.Scene {
         // Loop the player update method
         this.player.update(time, delta);
 
+        // Check for mobile controls as well
+        const isLeftPressed = this.cursors.left.isDown || this.player.mobileControls?.left;
+        const isRightPressed = this.cursors.right.isDown || this.player.mobileControls?.right;
+        const isUpPressed = this.cursors.up.isDown || this.player.mobileControls?.up;
+        const isDownPressed = this.cursors.down.isDown || this.player.mobileControls?.down;
+
         // Horizontal movement
-        if (this.cursors.left.isDown) {
+        if (isLeftPressed) {
             if (this.socketKey) {
-            if (this.player.isMoved()) {
-                room.then((room: any) => room.send("PLAYER_MOVED", {
-                    position: 'left',
-                    x: this.player.x,
-                    y: this.player.y
-                }));
+                if (this.player.isMoved()) {
+                    room.then((room: any) => room.send("PLAYER_MOVED", {
+                        position: 'left',
+                        x: this.player.x,
+                        y: this.player.y
+                    }));
+                }
+                this.socketKey = false;
             }
-            this.socketKey = false;
-        }
-        } else if (this.cursors.right.isDown) {
+        } else if (isRightPressed) {
             if (this.socketKey) {
-            if (this.player.isMoved()) {
-                room.then((room: any) => room.send("PLAYER_MOVED", {
-                    position: 'right',
-                    x: this.player.x,
-                    y: this.player.y
-                }));
+                if (this.player.isMoved()) {
+                    room.then((room: any) => room.send("PLAYER_MOVED", {
+                        position: 'right',
+                        x: this.player.x,
+                        y: this.player.y
+                    }));
+                }
+                this.socketKey = false;
             }
-            this.socketKey = false;
-        }
         }
 
         // Vertical movement
-        if (this.cursors.up.isDown) {
+        if (isUpPressed) {
             if (this.socketKey) {
-            if (this.player.isMoved()) {
-                room.then((room: any) => room.send("PLAYER_MOVED", {
-                    position: 'back',
-                    x: this.player.x,
-                    y: this.player.y
-                }));
+                if (this.player.isMoved()) {
+                    room.then((room: any) => room.send("PLAYER_MOVED", {
+                        position: 'back',
+                        x: this.player.x,
+                        y: this.player.y
+                    }));
+                }
+                this.socketKey = false;
             }
-            this.socketKey = false;
-        }
-        } else if (this.cursors.down.isDown) {
+        } else if (isDownPressed) {
             if (this.socketKey) {
-            if (this.player.isMoved()) {
-                room.then((room: any) => room.send("PLAYER_MOVED", {
-                    position: 'front',
-                    x: this.player.x,
-                    y: this.player.y
-                }));
+                if (this.player.isMoved()) {
+                    room.then((room: any) => room.send("PLAYER_MOVED", {
+                        position: 'front',
+                        x: this.player.x,
+                        y: this.player.y
+                    }));
+                }
+                this.socketKey = false;
             }
-            this.socketKey = false;
-        }
         }
 
-        // Movement ended events
-        if (Phaser.Input.Keyboard.JustUp(this.cursors.left) === true) {
+        // Movement ended events - check both keyboard and mobile controls
+        if (Phaser.Input.Keyboard.JustUp(this.cursors.left) === true || 
+            (this.player.mobileControls?.left === false && this.player.wasMobileControlPressed?.left)) {
             room.then((room: any) => room.send("PLAYER_MOVEMENT_ENDED", { position: 'left' }));
-        } else if (Phaser.Input.Keyboard.JustUp(this.cursors.right) === true) {
+        } else if (Phaser.Input.Keyboard.JustUp(this.cursors.right) === true ||
+                  (this.player.mobileControls?.right === false && this.player.wasMobileControlPressed?.right)) {
             room.then((room: any) => room.send("PLAYER_MOVEMENT_ENDED", { position: 'right' }));
         }
 
-        if (Phaser.Input.Keyboard.JustUp(this.cursors.up) === true) {
+        if (Phaser.Input.Keyboard.JustUp(this.cursors.up) === true ||
+            (this.player.mobileControls?.up === false && this.player.wasMobileControlPressed?.up)) {
             room.then((room: any) => room.send("PLAYER_MOVEMENT_ENDED", { position: 'back' }));
-        } else if (Phaser.Input.Keyboard.JustUp(this.cursors.down) === true) {
+        } else if (Phaser.Input.Keyboard.JustUp(this.cursors.down) === true ||
+                  (this.player.mobileControls?.down === false && this.player.wasMobileControlPressed?.down)) {
             room.then((room: any) => room.send("PLAYER_MOVEMENT_ENDED", { position: 'front' }));
+        }
+
+        // Update mobile control states for next frame
+        if (this.player.mobileControls && this.player.wasMobileControlPressed) {
+            this.player.wasMobileControlPressed.left = this.player.mobileControls.left;
+            this.player.wasMobileControlPressed.right = this.player.mobileControls.right;
+            this.player.wasMobileControlPressed.up = this.player.mobileControls.up;
+            this.player.wasMobileControlPressed.down = this.player.mobileControls.down;
         }
     }
 

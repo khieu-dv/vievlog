@@ -15,7 +15,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     private mapName: string;
 
     // Mobile control states
-    private mobileControls = {
+    public mobileControls = {
         up: false,
         down: false,
         left: false,
@@ -24,7 +24,17 @@ export default class Player extends Phaser.GameObjects.Sprite {
         debug: false
     };
 
-    constructor(config: GameConfig & { map?: Phaser.Tilemaps.Tilemap }) {
+    // Track previous mobile control states for movement ended detection
+    public wasMobileControlPressed = {
+        up: false,
+        down: false,
+        left: false,
+        right: false,
+        space: false,
+        debug: false
+    };
+
+    constructor(config: GameConfig & { map?: Phaser.Tilemaps.Tilemap; mapName?: string }) {
         super(config.scene, config.x, config.y, config.key || 'player');
 
         this.scene.add.existing(this);
@@ -55,7 +65,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.map = config.map || (this.scene as any).map;
         
         // Store map name
-        this.mapName = (config as any).mapName || 'defaultMap';
+        this.mapName = config.mapName || 'defaultMap';
 
         // Player nickname text
         this.playerNickname = this.scene.add.text(
@@ -70,6 +80,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
         // Setup mobile control listeners
         this.setupMobileControls();
+
+        // Initialize previous state tracking
+        this.container.oldPosition = { x: this.x, y: this.y };
     }
 
     setupMobileControls(): void {
@@ -219,6 +232,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
             return false;
         }
     }
+
 
     doorInteraction(): void {
         if (!this.map) return;
