@@ -271,18 +271,6 @@ export class Scene2 extends Phaser.Scene {
 
         this.cursors = this.input.keyboard!.createCursorKeys();
 
-        // Help text that has a "fixed" position on the screen
-        this.add
-            .text(16, 16, "Arrow keys to move\nPress \"D\" to show hitboxes", {
-                fontFamily: "monospace",
-                fontSize: "18px",
-                color: "#000000",
-                padding: { x: 20, y: 10 },
-                backgroundColor: "#ffffff"
-            })
-            .setScrollFactor(0)
-            .setDepth(30);
-
         this.debugGraphics();
         this.movementTimer();
     }
