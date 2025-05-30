@@ -9,9 +9,20 @@ export default class Player extends Phaser.GameObjects.Sprite {
     public canChangeMap: boolean = true;
     public playerNickname: Phaser.GameObjects.Text;
     public spacebar: Phaser.Input.Keyboard.Key;
+    public debugKey: Phaser.Input.Keyboard.Key;
     private map: Phaser.Tilemaps.Tilemap;
     private playerTexturePosition?: string;
-    private mapName: string; // Thêm property để lưu tên map
+    private mapName: string;
+
+    // Mobile control states
+    private mobileControls = {
+        up: false,
+        down: false,
+        left: false,
+        right: false,
+        space: false,
+        debug: false
+    };
 
     constructor(config: GameConfig & { map?: Phaser.Tilemaps.Tilemap }) {
         super(config.scene, config.x, config.y, config.key || 'player');
@@ -43,7 +54,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
         // Store map reference
         this.map = config.map || (this.scene as any).map;
         
-        // Store map name - lấy từ GameConfig thay vì truyền Tilemap
+        // Store map name
         this.mapName = (config as any).mapName || 'defaultMap';
 
         // Player nickname text
@@ -53,8 +64,85 @@ export default class Player extends Phaser.GameObjects.Sprite {
             'Player'
         );
 
-        // Add spacebar input
+        // Add key inputs
         this.spacebar = this.scene.input.keyboard!.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+        this.debugKey = this.scene.input.keyboard!.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+
+        // Setup mobile control listeners
+        this.setupMobileControls();
+    }
+
+    setupMobileControls(): void {
+        // Listen for custom mobile control events
+        this.scene.events.on('mobileControl', (control: string, state: boolean) => {
+            switch(control) {
+                case 'up':
+                    this.mobileControls.up = state;
+                    break;
+                case 'down':
+                    this.mobileControls.down = state;
+                    break;
+                case 'left':
+                    this.mobileControls.left = state;
+                    break;
+                case 'right':
+                    this.mobileControls.right = state;
+                    break;
+                case 'space':
+                    this.mobileControls.space = state;
+                    break;
+                case 'debug':
+                    this.mobileControls.debug = state;
+                    break;
+            }
+        });
+
+        // Also listen for keyboard events on the scene
+        this.scene.input.keyboard!.on('keydown', (event: KeyboardEvent) => {
+            switch(event.code) {
+                case 'ArrowUp':
+                    this.mobileControls.up = true;
+                    break;
+                case 'ArrowDown':
+                    this.mobileControls.down = true;
+                    break;
+                case 'ArrowLeft':
+                    this.mobileControls.left = true;
+                    break;
+                case 'ArrowRight':
+                    this.mobileControls.right = true;
+                    break;
+                case 'Space':
+                    this.mobileControls.space = true;
+                    break;
+                case 'KeyD':
+                    this.mobileControls.debug = true;
+                    break;
+            }
+        });
+
+        this.scene.input.keyboard!.on('keyup', (event: KeyboardEvent) => {
+            switch(event.code) {
+                case 'ArrowUp':
+                    this.mobileControls.up = false;
+                    break;
+                case 'ArrowDown':
+                    this.mobileControls.down = false;
+                    break;
+                case 'ArrowLeft':
+                    this.mobileControls.left = false;
+                    break;
+                case 'ArrowRight':
+                    this.mobileControls.right = false;
+                    break;
+                case 'Space':
+                    this.mobileControls.space = false;
+                    break;
+                case 'KeyD':
+                    this.mobileControls.debug = false;
+                    break;
+            }
+        });
     }
 
     update(time: number, delta: number): void {
@@ -73,17 +161,23 @@ export default class Player extends Phaser.GameObjects.Sprite {
         // Stop any previous movement from the last frame
         body.setVelocity(0);
 
+        // Check movement from both cursors and mobile controls
+        const isLeftPressed = this.cursors.left.isDown || this.mobileControls.left;
+        const isRightPressed = this.cursors.right.isDown || this.mobileControls.right;
+        const isUpPressed = this.cursors.up.isDown || this.mobileControls.up;
+        const isDownPressed = this.cursors.down.isDown || this.mobileControls.down;
+
         // Horizontal movement
-        if (this.cursors.left.isDown) {
+        if (isLeftPressed) {
             body.setVelocityX(-this.speed);
-        } else if (this.cursors.right.isDown) {
+        } else if (isRightPressed) {
             body.setVelocityX(this.speed);
         }
 
         // Vertical movement
-        if (this.cursors.up.isDown) {
+        if (isUpPressed) {
             body.setVelocityY(-this.speed);
-        } else if (this.cursors.down.isDown) {
+        } else if (isDownPressed) {
             body.setVelocityY(this.speed);
         }
 
@@ -91,13 +185,13 @@ export default class Player extends Phaser.GameObjects.Sprite {
         body.velocity.normalize().scale(this.speed);
 
         // Update the animation last and give left/right animations precedence over up/down animations
-        if (this.cursors.left.isDown) {
+        if (isLeftPressed) {
             this.anims.play("misa-left-walk", true);
-        } else if (this.cursors.right.isDown) {
+        } else if (isRightPressed) {
             this.anims.play("misa-right-walk", true);
-        } else if (this.cursors.up.isDown) {
+        } else if (isUpPressed) {
             this.anims.play("misa-back-walk", true);
-        } else if (this.cursors.down.isDown) {
+        } else if (isDownPressed) {
             this.anims.play("misa-front-walk", true);
         } else {
             this.anims.stop();
@@ -129,11 +223,13 @@ export default class Player extends Phaser.GameObjects.Sprite {
     doorInteraction(): void {
         if (!this.map) return;
         
+        const isSpacePressed = this.spacebar.isDown || this.mobileControls.space;
+        
         this.map.findObject("Doors", (obj: any) => {
             if ((this.y >= obj.y && this.y <= (obj.y + obj.height)) && 
                 (this.x >= obj.x && this.x <= (obj.x + obj.width))) {
                 console.log('Player is by ' + obj.name);
-                if (this.spacebar.isDown) {
+                if (isSpacePressed) {
                     console.log('Door is open!');
                 }
             }
@@ -162,8 +258,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
                 // Load new level (tiles map)
                 this.scene.registry.destroy();
-                // Optionally, remove specific event listeners here if needed, e.g.:
-                // this.scene.events.off('eventName');
                 this.scene.scene.restart({
                     map: world.name, 
                     playerTexturePosition: this.playerTexturePosition
@@ -175,5 +269,14 @@ export default class Player extends Phaser.GameObjects.Sprite {
             }
             return false;
         });
+    }
+
+    destroy(): void {
+        // Clean up mobile control listeners
+        this.scene.events.off('mobileControl');
+        super.destroy();
+        if (this.playerNickname) {
+            this.playerNickname.destroy();
+        }
     }
 }
