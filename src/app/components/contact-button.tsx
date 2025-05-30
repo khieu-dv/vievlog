@@ -11,51 +11,13 @@ export const ContactButton = () => {
 
     const youtuberLink = "https://www.youtube.com/@vie-vlogs";
 
-    // Hàm xử lý click YouTube với deep linking
-    interface YouTubeClickEvent extends React.MouseEvent<HTMLButtonElement, MouseEvent> { }
-
-    interface PlatformDetection {
-        isIOS: boolean;
-        isAndroid: boolean;
-    }
-
-    const handleYouTubeClick = (e: YouTubeClickEvent): void => {
-        e.preventDefault();
-
-        // Deep link URLs cho iOS và Android
-        const channelId: string = "vie-vlogs"; // Thay bằng channel ID thực tế của bạn
-        const iOSDeepLink: string = `youtube://www.youtube.com/@${channelId}`;
-        const androidDeepLink: string = `intent://www.youtube.com/@${channelId}#Intent;package=com.google.android.youtube;scheme=https;end`;
-
-        // Detect platform (có thể sử dụng Tauri API để detect chính xác hơn)
-        const platform: PlatformDetection = {
-            isIOS: /iPad|iPhone|iPod/.test(navigator.userAgent),
-            isAndroid: /Android/.test(navigator.userAgent),
-        };
-
-        if (platform.isIOS) {
-            // Thử mở YouTube app trước
-            window.location.href = iOSDeepLink;
-
-            // Fallback: Nếu không mở được app, mở browser sau 1.5s
-            setTimeout((): void => {
-                window.open(youtuberLink, '_blank');
-            }, 1500);
-        } else if (platform.isAndroid) {
-            // Android Intent URL
-            window.location.href = androidDeepLink;
-        } else {
-            // Desktop hoặc platform khác - mở browser
-            window.open(youtuberLink, '_blank');
-        }
-    };
-
     // Xử lý hover
     const handleMouseEnter = () => {
         setIsHovering(true);
     };
 
     const handleMouseLeave = () => {
+        // Chỉ đóng khi không ở trạng thái mở cố định
         if (!isOpen) {
             setIsHovering(false);
         }
@@ -64,6 +26,7 @@ export const ContactButton = () => {
     // Xử lý click
     const handleToggleClick = () => {
         setIsOpen(!isOpen);
+        // Nếu đang mở và click để đóng, đảm bảo isHovering cũng là false
         if (isOpen) {
             setIsHovering(false);
         } else {
@@ -116,9 +79,11 @@ export const ContactButton = () => {
                         {t("Follow us on Youtube")}
                     </div>
 
-                    {/* YouTube Icon - Sử dụng onClick thay vì href */}
-                    <button
-                        onClick={handleYouTubeClick}
+                    {/* YouTube Icon */}
+                    <a
+                        href={youtuberLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className={`
                             relative p-4 rounded-full text-white 
                             bg-gradient-to-r from-red-500 to-red-600
@@ -137,7 +102,7 @@ export const ContactButton = () => {
 
                         {/* Glow effect */}
                         <div className="absolute inset-0 rounded-full bg-gradient-to-r from-red-500 to-red-600 opacity-0 group-hover:opacity-20 blur-xl transition-all duration-300" />
-                    </button>
+                    </a>
                 </div>
             </div>
 
