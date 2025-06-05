@@ -12,10 +12,24 @@ import PostComponent from "../components/PostComponent";
 import { Comment, Post, Category } from '../../lib/types';
 import { LeftSidebar } from "../components/LeftSidebar";
 import { RightSidebar } from "../components/RightSidebar";
+import { useLocalizedContent } from "../../utils/multilingual";
 
+// Import dữ liệu hard-coded từ file riêng biệt
+import {
+  trendingTechnologies,
+  topContributors,
+  popularCourses,
+  recentAnnouncements,
+  upcomingEvents,
+  POSTS_PER_PAGE,
+  COMMENTS_PER_PAGE,
+  DEFAULT_AVATAR,
+  DEFAULT_CATEGORY_COLOR
+} from "../../constants/mockData";
 
 export default function PostsPage() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const { getContent, currentLanguage } = useLocalizedContent();
   const loadMoreRef = useRef<HTMLDivElement>(null);
   const { data: session } = useSession();
   const pb = new PocketBase(process.env.NEXT_PUBLIC_POCKETBASE_URL || 'https://pocketbase.vietopik.com');
@@ -28,70 +42,8 @@ export default function PostsPage() {
   const [hasMore, setHasMore] = useState(true);
   const [commentInputs, setCommentInputs] = useState<{ [key: string]: string }>({});
   const [submittingComment, setSubmittingComment] = useState<{ [key: string]: boolean }>({});
-  const postsPerPage = 20;
   const [commentPages, setCommentPages] = useState<{ [key: string]: number }>({});
   const [sidebarVisible, setSidebarVisible] = useState(true);
-
-  const trendingTechnologies = [
-    { name: "TypeScript", growthPercentage: 28, description: "Strongly typed JavaScript" },
-    { name: "Next.js", growthPercentage: 35, description: "React framework for production" },
-    { name: "Tailwind CSS", growthPercentage: 42, description: "Utility-first CSS framework" },
-    { name: "Docker", growthPercentage: 21, description: "Container platform" },
-    { name: "Kubernetes", growthPercentage: 18, description: "Container orchestration" }
-  ];
-
-  // Data for right sidebar
-  const topContributors = [
-    { name: "Jane Smith", avatar: "/avatars/jane.avif", points: 1453, badge: "Expert" },
-    { name: "Alex Johnson", avatar: "/avatars/alex.avif", points: 1287, badge: "Mentor" },
-    { name: "Sam Wilson", avatar: "/avatars/sam.avif", points: 1142, badge: "Specialist" },
-    { name: "Taylor Kim", avatar: "/avatars/taylor.avif", points: 978, badge: "Contributor" }
-  ];
-
-  const popularCourses = [
-    {
-      title: "Modern JavaScript from Scratch",
-      rating: 4.8,
-      students: 5240,
-      image: "/courses/javascript.png"
-    },
-    {
-      title: "React & Next.js for Production",
-      rating: 4.9,
-      students: 4870,
-      image: "/courses/react.png"
-    },
-    {
-      title: "Full Stack Development Bootcamp",
-      rating: 4.7,
-      students: 3650,
-      image: "/courses/fullstack.jpeg"
-    }
-  ];
-
-  const recentAnnouncements = [
-    {
-      title: "New Python Course Released",
-      date: "May 13, 2025",
-      excerpt: "Learn Python 3.12 with our latest comprehensive course."
-    },
-    {
-      title: "Community Hackathon",
-      date: "May 10, 2025",
-      excerpt: "Join us for a weekend of coding and collaboration."
-    },
-    {
-      title: "Platform Updates",
-      date: "May 5, 2025",
-      excerpt: "We've improved the code editor and added new features."
-    }
-  ];
-
-  const upcomingEvents = [
-    { title: "TypeScript Workshop", date: "May 25, 2025", type: "Workshop" },
-    { title: "React Conference 2025", date: "June 12-15, 2025", type: "Conference" },
-    { title: "Web Performance Summit", date: "July 8, 2025", type: "Summit" }
-  ];
 
   // Fetch categories from database
   const fetchCategories = async () => {
@@ -109,11 +61,13 @@ export default function PostsPage() {
 
       const categoriesData = response.data.items.map((item: any) => ({
         id: item.id,
-        name: item.name,
+        name: getContent(item, 'name'), // Use localized name
         slug: item.slug,
-        color: item.color || "#3B82F6",
-        description: item.description || "",
-        postCount: 0 // Will be updated when we get post counts
+        color: item.color || DEFAULT_CATEGORY_COLOR,
+        description: getContent(item, 'description'), // Use localized description
+        postCount: 0, // Will be updated when we get post counts
+        // Keep original data for reference
+        originalData: item
       }));
 
       // Get post counts for each category
@@ -159,7 +113,7 @@ export default function PostsPage() {
       // Build filter params
       let params: any = {
         page: pageNumber,
-        perPage: postsPerPage,
+        perPage: POSTS_PER_PAGE,
         sort: '-created',
         expand: 'categoryId'
       };
@@ -178,13 +132,14 @@ export default function PostsPage() {
 
       const mappedPosts = result.items.map((item: any) => ({
         id: item.id,
-        title: item.title,
-        excerpt: item.excerpt,
+        title: getContent(item, 'title'), // Use localized title
+        excerpt: getContent(item, 'excerpt'), // Use localized excerpt
+        content: getContent(item, 'content'), // Use localized content
         publishedAt: item.created || item.publishedAt,
         coverImage: item.coverImage || "",
         author: {
           name: item.author?.name || "Anonymous",
-          avatar: item.author?.avatar || "/default-avatar.png",
+          avatar: item.author?.avatar || DEFAULT_AVATAR,
         },
         likes: item.likes || 0,
         commentCount: item.commentCount || 0,
@@ -193,10 +148,12 @@ export default function PostsPage() {
         categoryId: item.categoryId || "",
         category: item.expand?.category ? {
           id: item.expand.category.id,
-          name: item.expand.category.name,
+          name: getContent(item.expand.category, 'name'), // Use localized category name
           slug: item.expand.category.slug,
-          color: item.expand.category.color || "#3B82F6"
-        } : undefined
+          color: item.expand.category.color || DEFAULT_CATEGORY_COLOR
+        } : undefined,
+        // Keep original data for reference
+        originalData: item
       }));
 
       if (pageNumber === 1) {
@@ -205,7 +162,7 @@ export default function PostsPage() {
         setPosts(prevPosts => [...prevPosts, ...mappedPosts]);
       }
 
-      setHasMore(mappedPosts.length === postsPerPage);
+      setHasMore(mappedPosts.length === POSTS_PER_PAGE);
 
       // Fetch comments for each post
       mappedPosts.forEach((post: Post) => {
@@ -245,7 +202,7 @@ export default function PostsPage() {
       const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/collections/comments_tbl/records`, {
         params: {
           page: currentPage,
-          perPage: 5,
+          perPage: COMMENTS_PER_PAGE,
           filter: `postId="${postId}"`,
           sort: '-created'
         }
@@ -319,7 +276,7 @@ export default function PostsPage() {
         postId: postId,
         userId: session.user.id,
         userName: session.user.username || "User",
-        userAvatar: session.user.image || "/default-avatar.png",
+        userAvatar: session.user.image || DEFAULT_AVATAR,
         content: content,
         lessonId: "" // Leave empty if not applicable
       };
@@ -383,6 +340,12 @@ export default function PostsPage() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  // Re-fetch data when language changes
+  useEffect(() => {
+    fetchCategories();
+    fetchPosts(1, selectedCategoryId);
+  }, [currentLanguage]);
+
   const handleLoadMore = () => {
     const nextPage = page + 1;
     setPage(nextPage);
@@ -407,7 +370,7 @@ export default function PostsPage() {
   // Convert categories to popularTopics format that LeftSidebar expects
   const popularTopics = categories.map(category => ({
     icon: <Code size={16} />,
-    title: category.name,
+    title: category.name, // Already localized
     count: category.postCount || 0,
     color: category.color,
     id: category.id
@@ -449,21 +412,21 @@ export default function PostsPage() {
             <div className="mb-6">
               <div className="flex items-center justify-between">
                 <h1 className="text-3xl font-bold text-gray-900">
-                  {selectedCategory ? selectedCategory.name : "IT Language Learning"}
+                  {selectedCategory ? selectedCategory.name : t("IT Language Learning")}
                 </h1>
                 {selectedCategoryId && (
                   <button
                     onClick={handleClearCategory}
                     className="text-sm text-blue-600 hover:text-blue-800 underline"
                   >
-                    Clear Filter
+                    {t("Clear Filter")}
                   </button>
                 )}
               </div>
               <p className="mt-2 text-gray-600">
                 {selectedCategory
-                  ? `Posts in ${selectedCategory.name} category`
-                  : "Explore our latest articles, tips and techniques for mastering IT"
+                  ? t("Posts in {{categoryName}} category", { categoryName: selectedCategory.name })
+                  : t("Explore our latest articles, tips and techniques for mastering IT")
                 }
               </p>
             </div>
@@ -488,8 +451,8 @@ export default function PostsPage() {
               <div className="rounded-lg bg-white p-8 text-center shadow">
                 <p className="text-lg text-gray-600">
                   {selectedCategory
-                    ? `No posts found in ${selectedCategory.name} category.`
-                    : "No posts found."
+                    ? t("No posts found in {{categoryName}} category.", { categoryName: selectedCategory.name })
+                    : t("No posts found.")
                   }
                 </p>
               </div>
@@ -517,7 +480,7 @@ export default function PostsPage() {
                   disabled={isLoading}
                   className="rounded-md bg-white px-6 py-2.5 text-sm font-medium text-blue-600 shadow hover:bg-gray-50 disabled:opacity-70"
                 >
-                  {isLoading ? 'Loading...' : 'See More Posts'}
+                  {isLoading ? t('Loading...') : t('See More Posts')}
                 </button>
               </div>
             )}
