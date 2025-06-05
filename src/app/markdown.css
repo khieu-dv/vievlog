@@ -1,67 +1,246 @@
-/* styles/markdown.css */
+/* VitePress-inspired Markdown Styles */
+.markdown-body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  line-height: 1.6;
+  color: #213547;
+  max-width: none;
+}
+
+/* Headings with VitePress-style spacing and colors */
 .markdown-body h1 {
-  @apply text-3xl font-bold mb-4 mt-6 text-gray-900;
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 2rem 0 1rem 0;
+  color: #213547;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 0.5rem;
 }
+
 .markdown-body h2 {
-  @apply text-2xl font-bold mb-3 mt-5 text-gray-900;
+  font-size: 1.875rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 1.75rem 0 0.75rem 0;
+  color: #213547;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 0.25rem;
 }
+
 .markdown-body h3 {
-  @apply text-xl font-bold mb-2 mt-4 text-gray-900;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 1.5rem 0 0.5rem 0;
+  color: #374151;
 }
+
 .markdown-body h4 {
-  @apply text-lg font-bold mb-2 mt-3 text-gray-900;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 1.25rem 0 0.5rem 0;
+  color: #374151;
 }
+
 .markdown-body h5 {
-  @apply text-base font-bold mb-1 mt-2 text-gray-900;
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 1rem 0 0.25rem 0;
+  color: #4b5563;
 }
+
 .markdown-body h6 {
-  @apply text-sm font-bold mb-1 mt-1 text-gray-900;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 0.75rem 0 0.25rem 0;
+  color: #6b7280;
 }
+
+/* Paragraphs and text */
 .markdown-body p {
-  @apply mb-4 text-gray-800 leading-relaxed;
+  margin-bottom: 1rem;
+  color: #374151;
+  line-height: 1.7;
 }
+
+/* Links with VitePress green accent */
 .markdown-body a {
-  @apply text-blue-600 hover:text-blue-800 underline;
+  color: #10b981;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
 }
-.markdown-body ul {
-  @apply list-disc pl-6 mb-4;
+
+.markdown-body a:hover {
+  color: #059669;
+  text-decoration: underline;
 }
+
+/* Lists */
+.markdown-body ul,
 .markdown-body ol {
-  @apply list-decimal pl-6 mb-4;
+  margin: 0 0 1rem 0;
+  padding-left: 1.5rem;
 }
+
 .markdown-body li {
-  @apply mb-1;
+  margin-bottom: 0.25rem;
+  color: #374151;
+  line-height: 1.6;
 }
+
+.markdown-body ul {
+  list-style-type: disc;
+}
+
+.markdown-body ol {
+  list-style-type: decimal;
+}
+
+.markdown-body li > ul,
+.markdown-body li > ol {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+/* Blockquotes */
 .markdown-body blockquote {
-  @apply border-l-4 border-gray-300 pl-4 py-1 mb-4 text-gray-700 italic;
+  margin: 1.5rem 0;
+  padding: 0.75rem 1rem;
+  border-left: 4px solid #10b981;
+  background-color: #f0fdf4;
+  color: #166534;
+  font-style: italic;
+  border-radius: 0 0.375rem 0.375rem 0;
 }
-.markdown-body table {
-  @apply min-w-full bg-white border border-gray-300 my-4;
+
+.markdown-body blockquote p {
+  margin-bottom: 0;
+  color: inherit;
 }
-.markdown-body thead {
-  @apply bg-gray-100;
-}
-.markdown-body tbody {
-  @apply divide-y divide-gray-200;
-}
-.markdown-body tr {
-  @apply hover:bg-gray-50;
-}
-.markdown-body th {
-  @apply px-4 py-2 text-left text-sm font-medium text-gray-900 border-b border-gray-300;
-}
-.markdown-body td {
-  @apply px-4 py-2 text-sm text-gray-700 border-b border-gray-300;
-}
+
+/* Code blocks */
 .markdown-body pre {
-  @apply bg-gray-800 text-white p-4 rounded-md overflow-x-auto mb-4;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  color: #495057;
+  padding: 1.25rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
-.markdown-body code:not(pre code) {
-  @apply bg-gray-100 text-gray-900 rounded-md px-1 py-0.5 text-sm font-mono;
+
+.markdown-body pre:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.2s ease;
 }
+
+.markdown-body code {
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  font-size: 14px;
+}
+
+.markdown-body :not(pre) > code {
+  color: #476582;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+/* Tables */
+.markdown-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.markdown-body thead {
+  background-color: #f8fafc;
+}
+
+.markdown-body th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: #374151;
+  border-bottom: 2px solid #e2e8f0;
+  font-size: 0.875rem;
+}
+
+.markdown-body td {
+  padding: 0.75rem 1rem;
+  color: #4b5563;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 0.875rem;
+}
+
+.markdown-body tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+.markdown-body tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Horizontal rule */
 .markdown-body hr {
-  @apply my-8 border-t border-gray-300;
+  margin: 2rem 0;
+  border: none;
+  border-top: 1px solid #e2e8f0;
 }
+
+/* Images */
 .markdown-body img {
-  @apply max-w-full h-auto my-4 rounded-md;
+  max-width: 100%;
+  height: auto;
+  margin: 1rem 0;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Strong and emphasis */
+.markdown-body strong {
+  font-weight: 700;
+  color: #111827;
+}
+
+.markdown-body em {
+  font-style: italic;
+  color: #4b5563;
+}
+
+/* Additional VitePress-like enhancements */
+.markdown-body .custom-container {
+  margin: 1rem 0;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border-left: 4px solid;
+}
+
+.markdown-body .custom-container.tip {
+  background-color: #f0fdf4;
+  border-left-color: #10b981;
+}
+
+.markdown-body .custom-container.warning {
+  background-color: #fffbeb;
+  border-left-color: #f59e0b;
+}
+
+.markdown-body .custom-container.danger {
+  background-color: #fef2f2;
+  border-left-color: #ef4444;
 }
