@@ -126,8 +126,8 @@
 .markdown-body pre {
   background-color: #f8f9fa;
   color: #495057;
-  padding: 0.1rem;
-  border-radius: 1px;
+  padding: 1rem;
+  border-radius: 2px;
   overflow-x: auto;
   margin: 1.5rem 0;
   font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
@@ -135,7 +135,23 @@
   line-height: 1.6;
   position: relative;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  /* Fix indentation issues */
+  white-space: pre;
+  text-align: left;
 }
+
+.markdown-body pre code {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  font-size: inherit;
+  color: inherit;
+  font-weight: normal;
+  /* Ensure code inside pre doesn't add extra styling */
+  display: block;
+  white-space: pre;
+}
+
 
 .markdown-body pre:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
