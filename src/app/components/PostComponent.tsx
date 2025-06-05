@@ -66,8 +66,36 @@ const PostComponent: React.FC<PostComponentProps> = ({
                 <p className="mb-4 text-gray-700">{post.excerpt}</p>
             </div>
 
-            {/* Post Category (if available) */}
-            {post.category && (
+            {/* Post Image with Category Overlay */}
+            {post.coverImage && (
+                <div className="relative aspect-video w-full">
+                    <Image
+                        src={post.coverImage}
+                        alt={post.title}
+                        fill
+                        className="object-cover"
+                    />
+                    {/* Category Badge Overlay - Top Left Corner */}
+                    {post.category && (
+                        <div className="absolute top-3 left-3 z-10">
+                            <Link href={`/categories/${post.category.slug}`}>
+                                <span
+                                    className="inline-block rounded-full px-3 py-1 text-xs font-medium shadow-lg backdrop-blur-sm transition-all duration-200 hover:scale-105"
+                                    style={{
+                                        backgroundColor: post.category.color,
+                                        color: getContrastColor(post.category.color || "#000000")
+                                    }}
+                                >
+                                    {post.category.name}
+                                </span>
+                            </Link>
+                        </div>
+                    )}
+                </div>
+            )}
+
+            {/* Fallback Category (only show if no image) */}
+            {!post.coverImage && post.category && (
                 <div className="px-4 mb-2">
                     <Link href={`/categories/${post.category.slug}`}>
                         <span
@@ -80,18 +108,6 @@ const PostComponent: React.FC<PostComponentProps> = ({
                             {post.category.name}
                         </span>
                     </Link>
-                </div>
-            )}
-
-            {/* Post Image */}
-            {post.coverImage && (
-                <div className="relative aspect-video w-full">
-                    <Image
-                        src={post.coverImage}
-                        alt={post.title}
-                        fill
-                        className="object-cover"
-                    />
                 </div>
             )}
 
