@@ -125,10 +125,9 @@
 /* Code blocks */
 .markdown-body pre {
   background-color: #f8f9fa;
-  border: 1px solid #e9ecef;
   color: #495057;
-  padding: 1.25rem;
-  border-radius: 8px;
+  padding: 0.1rem;
+  border-radius: 1px;
   overflow-x: auto;
   margin: 1.5rem 0;
   font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
