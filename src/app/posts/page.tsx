@@ -12,7 +12,10 @@ import PostComponent from "../components/PostComponent";
 import { Comment, Post, Category } from '../../lib/types';
 import { LeftSidebar } from "../components/LeftSidebar";
 import { RightSidebar } from "../components/RightSidebar";
-import { useLocalizedContent } from "../../utils/multilingual";
+import {
+  useLocalizedContent,
+  getSupportedLanguageCodes
+} from "../../utils/multilingual";
 
 // Import dữ liệu hard-coded từ file riêng biệt
 import {
@@ -29,7 +32,14 @@ import {
 
 export default function PostsPage() {
   const { t, i18n } = useTranslation();
-  const { getContent, currentLanguage } = useLocalizedContent();
+  const {
+    getContent,
+    currentLanguage,
+    getSupportedLanguages,
+    getCurrentLanguageInfo,
+    isLanguageSupported: checkLanguageSupport
+  } = useLocalizedContent();
+
   const loadMoreRef = useRef<HTMLDivElement>(null);
   const { data: session } = useSession();
   const pb = new PocketBase(process.env.NEXT_PUBLIC_POCKETBASE_URL || 'https://pocketbase.vietopik.com');
@@ -44,6 +54,7 @@ export default function PostsPage() {
   const [submittingComment, setSubmittingComment] = useState<{ [key: string]: boolean }>({});
   const [commentPages, setCommentPages] = useState<{ [key: string]: number }>({});
   const [sidebarVisible, setSidebarVisible] = useState(true);
+  const [availableLanguages, setAvailableLanguages] = useState<string[]>([]);
 
   // Fetch categories from database
   const fetchCategories = async () => {
@@ -146,11 +157,11 @@ export default function PostsPage() {
         tags: item.tags || [],
         comments: [],
         categoryId: item.categoryId || "",
-        category: item.expand?.category ? {
-          id: item.expand.category.id,
-          name: getContent(item.expand.category, 'name'), // Use localized category name
-          slug: item.expand.category.slug,
-          color: item.expand.category.color || DEFAULT_CATEGORY_COLOR
+        category: item.expand?.categoryId ? {
+          id: item.expand.categoryId.id,
+          name: getContent(item.expand.categoryId, 'name'), // Use localized category name
+          slug: item.expand.categoryId.slug,
+          color: item.expand.categoryId.color || DEFAULT_CATEGORY_COLOR
         } : undefined,
         // Keep original data for reference
         originalData: item
@@ -320,9 +331,22 @@ export default function PostsPage() {
     setSidebarVisible(!sidebarVisible);
   };
 
+  // Get language statistics
+  const getLanguageStats = () => {
+    const stats = {
+      currentLanguage: getCurrentLanguageInfo(),
+      totalLanguages: getSupportedLanguages().length,
+      isCurrentLanguageSupported: checkLanguageSupport(currentLanguage)
+    };
+    return stats;
+  };
+
   useEffect(() => {
     fetchCategories();
     fetchPosts(1);
+
+    // Set available languages
+    setAvailableLanguages(getSupportedLanguageCodes());
 
     // Detect screen size for mobile responsiveness
     const handleResize = () => {
@@ -379,6 +403,9 @@ export default function PostsPage() {
   // Get selected category name for display
   const selectedCategory = categories.find(cat => cat.id === selectedCategoryId);
 
+  // Get language stats for debugging/info
+  const languageStats = getLanguageStats();
+
   return (
     <div className="min-h-screen bg-gray-100">
       <Header />
@@ -426,9 +453,15 @@ export default function PostsPage() {
               <p className="mt-2 text-gray-600">
                 {selectedCategory
                   ? t("Posts in {{categoryName}} category", { categoryName: selectedCategory.name })
-                  : t("Đổi ngôn ngữ để hiển thị bài viết theo ngôn ngữ bạn chọn!")
+                  : t("Switch language to display posts in your preferred language!")
                 }
               </p>
+
+              {/* Language selector hint */}
+              <div className="mt-2 text-xs text-gray-500">
+                {t("Available in {{count}} languages", { count: languageStats.totalLanguages })} •
+                {t("Current")}: {languageStats.currentLanguage.label}
+              </div>
             </div>
 
             {/* Posts Feed */}
@@ -454,6 +487,9 @@ export default function PostsPage() {
                     ? t("No posts found in {{categoryName}} category.", { categoryName: selectedCategory.name })
                     : t("No posts found.")
                   }
+                </p>
+                <p className="mt-2 text-sm text-gray-500">
+                  {t("Try switching to a different language or check back later.")}
                 </p>
               </div>
             ) : (

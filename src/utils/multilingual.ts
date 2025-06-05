@@ -1,34 +1,42 @@
 // utils/multilingual.ts
 import { useTranslation } from "react-i18next";
+import { languages } from "../ui/components/locales";
 
+// Refined interface - now more flexible and dynamic
 export interface MultilingualContent {
   [key: string]: any;
-  title?: string;
-  title_en?: string;
-  title_vi?: string;
-  title_ja?: string;
-  title_ko?: string;
-  excerpt?: string;
-  excerpt_en?: string;
-  excerpt_vi?: string;
-  excerpt_ja?: string;
-  excerpt_ko?: string;
-  content?: string;
-  content_en?: string;
-  content_vi?: string;
-  content_ja?: string;
-  content_ko?: string;
-  name?: string;
-  name_en?: string;
-  name_vi?: string;
-  name_ja?: string;
-  name_ko?: string;
-  description?: string;
-  description_en?: string;
-  description_vi?: string;
-  description_ja?: string;
-  description_ko?: string;
 }
+
+// Helper to get supported language codes
+export const getSupportedLanguageCodes = (): string[] => {
+  return languages.map(lang => lang.code);
+};
+
+// Helper to get language label by code
+export const getLanguageLabel = (code: string): string => {
+  const language = languages.find(lang => lang.code === code);
+  return language?.label || code;
+};
+
+// Helper to check if a language code is supported
+export const isLanguageSupported = (code: string): boolean => {
+  return languages.some(lang => lang.code === code);
+};
+
+// Normalize language code (handle variants like zh-cn, zh-tw)
+export const normalizeLanguageCode = (code: string): string => {
+  const normalized = code.toLowerCase().replace('_', '-');
+  
+  // Handle Chinese variants
+  if (normalized.startsWith('zh')) {
+    if (normalized.includes('tw') || normalized.includes('hant')) {
+      return 'zh-tw';
+    }
+    return 'zh-cn';
+  }
+  
+  return normalized;
+};
 
 /**
  * Get localized content based on current language
@@ -39,29 +47,63 @@ export const getLocalizedContent = (
   field: string,
   currentLanguage: string = 'en'
 ): string => {
+  if (!content || typeof content !== 'object') {
+    return '';
+  }
+
+  // Normalize the current language code
+  const normalizedLang = normalizeLanguageCode(currentLanguage);
+  
   // Try to get content in current language
-  const localizedField = `${field}_${currentLanguage}`;
+  const localizedField = `${field}_${normalizedLang}`;
   const localizedContent = content[localizedField];
   
-  if (localizedContent && localizedContent.trim() !== '') {
-    return localizedContent;
+  if (localizedContent && String(localizedContent).trim() !== '') {
+    return String(localizedContent);
   }
-  
+
+  // If current language is not supported, try to find a supported variant
+  if (!isLanguageSupported(normalizedLang)) {
+    // Try base language (e.g., 'zh' for 'zh-cn')
+    const baseLang = normalizedLang.split('-')[0];
+    const supportedVariant = languages.find(lang => lang.code.startsWith(baseLang));
+    
+    if (supportedVariant) {
+      const variantField = `${field}_${supportedVariant.code}`;
+      const variantContent = content[variantField];
+      
+      if (variantContent && String(variantContent).trim() !== '') {
+        return String(variantContent);
+      }
+    }
+  }
+
   // Fallback to English
   const englishField = `${field}_en`;
   const englishContent = content[englishField];
   
-  if (englishContent && englishContent.trim() !== '') {
-    return englishContent;
+  if (englishContent && String(englishContent).trim() !== '') {
+    return String(englishContent);
   }
-  
+
   // Fallback to the base field (for backward compatibility)
   const baseContent = content[field];
   
-  if (baseContent && baseContent.trim() !== '') {
-    return baseContent;
+  if (baseContent && String(baseContent).trim() !== '') {
+    return String(baseContent);
   }
-  
+
+  // Try to find any available localized version
+  const supportedCodes = getSupportedLanguageCodes();
+  for (const code of supportedCodes) {
+    const fallbackField = `${field}_${code}`;
+    const fallbackContent = content[fallbackField];
+    
+    if (fallbackContent && String(fallbackContent).trim() !== '') {
+      return String(fallbackContent);
+    }
+  }
+
   // Return empty string if nothing is found
   return '';
 };
@@ -72,14 +114,24 @@ export const getLocalizedContent = (
 export const useLocalizedContent = () => {
   const { i18n } = useTranslation();
   const currentLanguage = i18n.language || 'en';
-  
+
   const getContent = (content: MultilingualContent, field: string): string => {
     return getLocalizedContent(content, field, currentLanguage);
   };
+
+  const getSupportedLanguages = () => languages;
   
+  const getCurrentLanguageInfo = () => {
+    return languages.find(lang => lang.code === normalizeLanguageCode(currentLanguage)) || languages[0];
+  };
+
   return {
     getContent,
-    currentLanguage
+    currentLanguage: normalizeLanguageCode(currentLanguage),
+    getSupportedLanguages,
+    getCurrentLanguageInfo,
+    isLanguageSupported: (code: string) => isLanguageSupported(code),
+    getLanguageLabel: (code: string) => getLanguageLabel(code)
   };
 };
 
@@ -92,10 +144,56 @@ export const getLocalizedFields = (
   currentLanguage: string = 'en'
 ): { [key: string]: string } => {
   const result: { [key: string]: string } = {};
-  
+
   fields.forEach(field => {
     result[field] = getLocalizedContent(content, field, currentLanguage);
   });
-  
+
   return result;
+};
+
+/**
+ * Helper to get all available languages for a specific field in content
+ */
+export const getAvailableLanguagesForField = (
+  content: MultilingualContent,
+  field: string
+): string[] => {
+  const availableLanguages: string[] = [];
+  
+  // Check base field
+  if (content[field] && String(content[field]).trim() !== '') {
+    availableLanguages.push('base');
+  }
+  
+  // Check localized fields
+  getSupportedLanguageCodes().forEach(code => {
+    const localizedField = `${field}_${code}`;
+    if (content[localizedField] && String(content[localizedField]).trim() !== '') {
+      availableLanguages.push(code);
+    }
+  });
+  
+  return availableLanguages;
+};
+
+/**
+ * Helper to check if content has translations
+ */
+export const hasTranslations = (content: MultilingualContent, field: string): boolean => {
+  const availableLanguages = getAvailableLanguagesForField(content, field);
+  return availableLanguages.length > 1;
+};
+
+/**
+ * Type guard to check if an object is multilingual content
+ */
+export const isMultilingualContent = (obj: any): obj is MultilingualContent => {
+  if (!obj || typeof obj !== 'object') return false;
+  
+  // Check if object has at least one localized field
+  const keys = Object.keys(obj);
+  return keys.some(key => 
+    getSupportedLanguageCodes().some(code => key.endsWith(`_${code}`))
+  );
 };
