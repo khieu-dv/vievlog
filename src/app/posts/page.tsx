@@ -426,7 +426,7 @@ export default function PostsPage() {
               <p className="mt-2 text-gray-600">
                 {selectedCategory
                   ? t("Posts in {{categoryName}} category", { categoryName: selectedCategory.name })
-                  : t("Explore our latest articles, tips and techniques for mastering IT")
+                  : t("Đổi ngôn ngữ để hiển thị bài viết theo ngôn ngữ bạn chọn!")
                 }
               </p>
             </div>
