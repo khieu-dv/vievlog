@@ -8,17 +8,26 @@ import PocketBase from 'pocketbase';
 import { useSession } from "../../../lib/auth-client";
 import { Header } from "~/ui/components/header";
 import { Footer } from "~/ui/components/footer";
-import { Heart, MessageCircle, Share2, Bookmark, MoreHorizontal, ChevronLeft, Send } from "lucide-react";
+import { Heart, MessageCircle, Share2, Bookmark, MoreHorizontal, ChevronLeft, Send, Globe } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { formatDistanceToNow } from "date-fns";
 import { MarkdownRenderer } from "../../components/MarkdownRenderer";
 import { Comment, Post } from '../../../lib/types';
-import { useLocalizedContent } from "../../../utils/multilingual";
+import {
+  useLocalizedContent,
+  getSupportedLanguageCodes
+} from "../../../utils/multilingual";
 
 export default function PostDetailPage() {
   const { t, i18n } = useTranslation();
-  const { getContent, currentLanguage } = useLocalizedContent();
+  const {
+    getContent,
+    currentLanguage,
+    getSupportedLanguages,
+    getCurrentLanguageInfo,
+    isLanguageSupported: checkLanguageSupport
+  } = useLocalizedContent();
   const params = useParams();
   const router = useRouter();
   const { data: session } = useSession();
@@ -33,6 +42,7 @@ export default function PostDetailPage() {
   const [submittingComment, setSubmittingComment] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
   const [hasLiked, setHasLiked] = useState(false);
+  const [availableLanguages, setAvailableLanguages] = useState<string[]>([]);
 
   // Format date to relative time with localization
   const formatRelativeTime = (dateString: string) => {
@@ -77,6 +87,16 @@ export default function PostDetailPage() {
       expand: postData.expand,
       originalData: postData
     };
+  };
+
+  // Get language statistics
+  const getLanguageStats = () => {
+    const stats = {
+      currentLanguage: getCurrentLanguageInfo(),
+      totalLanguages: getSupportedLanguages().length,
+      isCurrentLanguageSupported: checkLanguageSupport(currentLanguage)
+    };
+    return stats;
   };
 
   useEffect(() => {
@@ -151,6 +171,9 @@ export default function PostDetailPage() {
     };
 
     fetchPostAndComments();
+
+    // Set available languages
+    setAvailableLanguages(getSupportedLanguageCodes());
   }, [params.id, session?.user]);
 
   // Re-process post data when language changes
@@ -298,6 +321,9 @@ export default function PostDetailPage() {
     }
   };
 
+  // Get language stats for display
+  const languageStats = getLanguageStats();
+
   if (isLoading) {
     return (
       <>
@@ -347,6 +373,40 @@ export default function PostDetailPage() {
           <Link href="/posts" className="mb-4 flex items-center text-sm font-medium text-blue-600 hover:text-blue-800">
             <ChevronLeft className="mr-1 h-4 w-4" /> {t("Back to Posts")}
           </Link>
+
+          {/* Language Notification Banner */}
+          <div className="mb-6 rounded-lg bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 p-4">
+            <div className="flex items-start space-x-3">
+              <div className="flex-shrink-0">
+                <Globe className="h-5 w-5 text-blue-600 mt-0.5" />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-sm font-medium text-blue-900">
+                  {t("Language & Content Information")}
+                </h3>
+                <div className="mt-2 text-sm text-blue-700">
+                  <p className="mb-1">
+                    {t("This content is displayed in {{language}}", {
+                      language: languageStats.currentLanguage.label
+                    })}
+                  </p>
+                  <p className="text-xs text-blue-600">
+                    {t("Available in {{count}} languages", {
+                      count: languageStats.totalLanguages
+                    })} •
+                    {t("Switch language in the header to view content in your preferred language")}
+                  </p>
+                </div>
+                {!languageStats.isCurrentLanguageSupported && (
+                  <div className="mt-2 rounded-md bg-yellow-50 border border-yellow-200 p-2">
+                    <p className="text-xs text-yellow-800">
+                      {t("Some content may not be fully translated in this language")}
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
 
           {/* Post Card - Facebook Style */}
           <div className="mb-4 overflow-hidden rounded-lg bg-white shadow">
