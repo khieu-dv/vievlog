@@ -453,13 +453,13 @@ export default function PostsPage() {
               <p className="mt-2 text-gray-600">
                 {selectedCategory
                   ? t("Posts in {{categoryName}} category", { categoryName: selectedCategory.name })
-                  : t("Switch language to display posts in your preferred language!")
+                  : t("posts.switchToPreferred")
                 }
               </p>
 
               {/* Language selector hint */}
               <div className="mt-2 text-xs text-gray-500">
-                {t("Available in {{count}} languages", { count: languageStats.totalLanguages })} •
+                {t("posts.availableCount", { count: languageStats.totalLanguages })} •
                 {t("Current")}: {languageStats.currentLanguage.label}
               </div>
             </div>

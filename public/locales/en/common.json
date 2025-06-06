@@ -68,7 +68,13 @@
     "posts": {
       "allPosts": "Browse Articles",
       "ginCourse": "Learn Gin Framework (Go)",
-      "GoCourse": "Go Programming Language Course"
+      "GoCourse": "Go Programming Language Course",
+      "displayedIn":"This content is displayed in {{language}}",
+    "switchInHeader":"Switch language in the header to view content in your preferred language",
+    "switchToPreferred":"Switch language to display posts in your preferred language!",
+    "availableCount": "Available in {{count}} languages"
+
     }
+
   }
 }

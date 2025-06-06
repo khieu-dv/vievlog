@@ -34,9 +34,15 @@
       "role": "Sinh viên đại học năm 3"
     }
   },
-  "posts": {
-    "title": "Tổng hợp bài viết lập trình & phát triển phần mềm"
-  },
+"posts": {
+  "title": "Tổng hợp bài viết lập trình & phát triển phần mềm",
+  "displayedIn": "Nội dung này được hiển thị bằng {{language}}",
+  "switchInHeader": "Chuyển ngôn ngữ ở phần đầu trang để xem nội dung bằng ngôn ngữ bạn muốn",
+  "switchToPreferred": "Chuyển ngôn ngữ để hiển thị bài viết theo ngôn ngữ bạn chọn!",
+  "availableCount": "Có sẵn bằng {{count}} ngôn ngữ"
+},
+
+
   "videos": {
     "allVideos": "Kho video",
     "tiktokVideos": "Video ngắn Tiktok"

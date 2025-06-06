@@ -386,15 +386,15 @@ export default function PostDetailPage() {
                 </h3>
                 <div className="mt-2 text-sm text-blue-700">
                   <p className="mb-1">
-                    {t("This content is displayed in {{language}}", {
+                    {t("posts.displayedIn", {
                       language: languageStats.currentLanguage.label
                     })}
                   </p>
                   <p className="text-xs text-blue-600">
-                    {t("Available in {{count}} languages", {
+                    {t("posts.availableCount", {
                       count: languageStats.totalLanguages
                     })} •
-                    {t("Switch language in the header to view content in your preferred language")}
+                    {t("posts.switchInHeader")}
                   </p>
                 </div>
                 {!languageStats.isCurrentLanguageSupported && (
