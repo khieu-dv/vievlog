@@ -1,47 +1,56 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { getCurrentWindow } from "@tauri-apps/api/window";
-import { invoke } from "@tauri-apps/api/core";
-import { fetch } from '@tauri-apps/plugin-http';
-
-// Types
-interface IPCUserConfig {
-    // Add your user config properties here
-    [key: string]: any;
-}
-
-interface IPCDownloadConfig {
-    // Add your download config properties here
-    [key: string]: any;
-}
-
-interface Global {
-    userConfig: IPCUserConfig;
-    downloadQueue: IPCDownloadConfig[];
-    downloadHistory: IPCDownloadConfig[];
-}
-
-// Initialize appWindow
-const appWindow = getCurrentWindow();
-
-// Global state (you might want to move this to a context or state management solution)
-let GLOBAL: Global = {
-    userConfig: {}, // Replace with createIPCUserConfig() when available
-    downloadQueue: [],
-    downloadHistory: []
-};
+import { appWindow } from '../../lib/tauri/window';
+import {
+    generateAppId,
+    checkDownloadPermission,
+    startDownload as startDownloadApi,
+    openPathLocation,
+    bootstrapCheck,
+    bootstrapInstall
+} from '../../lib/tauri/window';
+import {
+    IPCDownloadConfig,
+    createIPCDownloadConfig
+} from '../../lib/tauri/window';
+import {
+    IPCUserConfig,
+    createIPCUserConfig
+} from '../../lib/tauri/window';
+import { useGlobalStore } from '../../lib/tauri/window';
+import { useTauriEvents } from '../../lib/tauri/window';
+import { isUrlPlaylist } from '../../lib/tauri/window';
+import { selectFolderDialogAsync } from '../../lib/tauri/window';
 
 export default function ClonePage() {
+    // Global store
+    const {
+        userConfig,
+        downloadQueue,
+        downloadHistory,
+        setUserConfig,
+        addToQueue,
+        addToHistory
+    } = useGlobalStore();
+
+    // Setup Tauri events
+    useTauriEvents();
+
+    // Local state
     const [deviceId, setDeviceId] = useState<string>('Loading...');
     const [consoleOutput, setConsoleOutput] = useState<string>('');
     const [isDownloading, setIsDownloading] = useState<boolean>(false);
     const [progressWidth, setProgressWidth] = useState<number>(0);
+    const [currentConfig, setCurrentConfig] = useState<IPCDownloadConfig>(createIPCDownloadConfig());
 
-    // Form states
+    // Bootstrap states
+    const [isBootstrapped, setIsBootstrapped] = useState<boolean>(false);
+    const [isBootstrapping, setIsBootstrapping] = useState<boolean>(false);
+    const [bootstrapError, setBootstrapError] = useState<string>('');
+
+    // Form states - derived from currentConfig
     const [inputUrl, setInputUrl] = useState<string>('');
-    const [outputName, setOutputName] = useState<string>('');
-    const [outputPath, setOutputPath] = useState<string>('');
 
     // Checkbox states
     const [changeSizeEnabled, setChangeSizeEnabled] = useState<boolean>(false);
@@ -49,86 +58,172 @@ export default function ClonePage() {
     const [trimEnabled, setTrimEnabled] = useState<boolean>(false);
     const [trimStartEnabled, setTrimStartEnabled] = useState<boolean>(false);
     const [trimEndEnabled, setTrimEndEnabled] = useState<boolean>(false);
-    const [videoBitrateEnabled, setVideoBitrateEnabled] = useState<boolean>(false);
-    const [audioBitrateEnabled, setAudioBitrateEnabled] = useState<boolean>(false);
+    const [videoBitrateEnabled, setVideoBitrateEnabled] = useState<boolean>(true);
+    const [audioBitrateEnabled, setAudioBitrateEnabled] = useState<boolean>(true);
     const [ytdlpArgsEnabled, setYtdlpArgsEnabled] = useState<boolean>(false);
     const [ffmpegArgsEnabled, setFfmpegArgsEnabled] = useState<boolean>(false);
     const [queueEnabled, setQueueEnabled] = useState<boolean>(false);
 
     // Input states
-    const [width, setWidth] = useState<string>('');
-    const [height, setHeight] = useState<string>('');
-    const [framerate, setFramerate] = useState<string>('');
-    const [trimStart, setTrimStart] = useState<string>('');
-    const [trimEnd, setTrimEnd] = useState<string>('');
-    const [videoBitrate, setVideoBitrate] = useState<string>('');
-    const [audioBitrate, setAudioBitrate] = useState<string>('');
+    const [width, setWidth] = useState<string>('1280');
+    const [height, setHeight] = useState<string>('-1');
+    const [framerate, setFramerate] = useState<string>('30');
+    const [trimStart, setTrimStart] = useState<string>('0:00');
+    const [trimEnd, setTrimEnd] = useState<string>('0:10');
+    const [videoBitrate, setVideoBitrate] = useState<string>('10M');
+    const [audioBitrate, setAudioBitrate] = useState<string>('320k');
     const [ytdlpArgs, setYtdlpArgs] = useState<string>('');
     const [ffmpegArgs, setFfmpegArgs] = useState<string>('');
 
-    // Functions
-    const displayDeviceId = async (): Promise<string | null> => {
+    // Output states
+    const [outputName, setOutputName] = useState<string>('');
+    const [outputPath, setOutputPath] = useState<string>('');
+
+    // Initialize device ID
+    const initializeDeviceId = async (): Promise<void> => {
         try {
-            const id = await invoke("generate_app_id");
-            const idString = id as string;
-            setDeviceId(idString || "N/A");
-            return idString;
+            const id = await generateAppId();
+            setDeviceId(id || "N/A");
         } catch (error) {
             console.error("Failed to get device ID:", error);
             setDeviceId("Error");
-            return null;
         }
     };
 
-    const checkDownloadPermission = async (userId: string): Promise<{ status: boolean; message?: string }> => {
+    // Check and install bootstrap dependencies
+    const checkBootstrap = async (): Promise<void> => {
         try {
-            const response = await fetch("https://api.vietopik.com/api/v1/user/download", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    user_id: userId,
-                }),
-            });
+            setConsoleOutput(prev => "Checking required dependencies...\n" + prev);
+            const isInstalled = await bootstrapCheck();
 
-            const data = await response.json() as { status: boolean; message?: string; error?: string };
-            return {
-                status: data.status,
-                message: data.message || data.error || "Unknown error",
-            };
+            if (isInstalled) {
+                setIsBootstrapped(true);
+                setConsoleOutput(prev => "✓ All dependencies are installed and ready\n" + prev);
+            } else {
+                setConsoleOutput(prev => "⚠ Missing dependencies detected. Installing...\n" + prev);
+                await installBootstrap();
+            }
         } catch (error) {
-            console.error("API call failed:", error);
-            return {
-                status: false,
-                message: "Failed to connect to the server",
-            };
+            console.error("Bootstrap check failed:", error);
+            setBootstrapError(`Bootstrap check failed: ${error}`);
+            setConsoleOutput(prev => `❌ Bootstrap check failed: ${error}\n` + prev);
         }
     };
 
-    const startDownload = async (): Promise<void> => {
-        const userId = await displayDeviceId();
+    // Install bootstrap dependencies
+    const installBootstrap = async (): Promise<void> => {
+        try {
+            setIsBootstrapping(true);
+            setConsoleOutput(prev => "Installing required dependencies (yt-dlp, ffmpeg)...\n" + prev);
+            setConsoleOutput(prev => "This may take a few minutes on first launch.\n" + prev);
 
-        if (!userId || typeof userId !== "string") {
-            setConsoleOutput(prev => "Error: Could not retrieve user ID\n" + prev);
+            await bootstrapInstall();
+
+            setIsBootstrapped(true);
+            setIsBootstrapping(false);
+            setConsoleOutput(prev => "✓ All dependencies installed successfully!\n" + prev);
+        } catch (error) {
+            console.error("Bootstrap install failed:", error);
+            setBootstrapError(`Bootstrap install failed: ${error}`);
+            setIsBootstrapping(false);
+            setConsoleOutput(prev => `❌ Bootstrap install failed: ${error}\n` + prev);
+        }
+    };
+
+    // Update current config when form values change
+    const updateCurrentConfig = (): void => {
+        const config: IPCDownloadConfig = {
+            valid: true,
+            input: {
+                url: inputUrl,
+                is_playlist: isUrlPlaylist(inputUrl),
+                download_type: "default"
+            },
+            settings: {
+                format: "mp4-fast",
+                format_type: "video",
+                trim_enable: trimEnabled,
+                trim_from_start_enable: trimStartEnabled,
+                trim_start: trimStart,
+                trim_to_end_enable: trimEndEnabled,
+                trim_end: trimEnd,
+                size_change_enable: changeSizeEnabled,
+                size_change_width: width,
+                size_change_height: height,
+                fps_change_enable: changeFpsEnabled,
+                fps_change_framerate: framerate,
+                vbr_set_bitrate_enable: videoBitrateEnabled,
+                vbr_set_bitrate: videoBitrate,
+                abr_set_bitrate_enable: audioBitrateEnabled,
+                abr_set_bitrate: audioBitrate,
+                custom_ytdlp_arguments_enable: ytdlpArgsEnabled,
+                custom_ytdlp_arguments: ytdlpArgs ? ytdlpArgs.split(' ') : [],
+                custom_ffmpeg_arguments_enable: ffmpegArgsEnabled,
+                custom_ffmpeg_arguments: ffmpegArgs ? ffmpegArgs.split(' ') : []
+            },
+            output: {
+                name: outputName,
+                path: outputPath
+            }
+        };
+
+        setCurrentConfig(config);
+    };
+
+    // Start download process
+    const handleStartDownload = async (): Promise<void> => {
+        if (!inputUrl.trim()) {
+            setConsoleOutput(prev => "Error: Please enter a URL\n" + prev);
             return;
         }
 
-        setIsDownloading(true);
-        const permission = await checkDownloadPermission(userId);
-
-        if (permission.status) {
-            setConsoleOutput(prev => `Download permitted: ${permission.message || "Starting download"}\n` + prev);
-            // Add your download logic here
-            // await invoke("start_download", { config: GLOBAL.downloadQueue });
-        } else {
-            setConsoleOutput(prev => `Error: ${permission.message}\n` + prev);
+        if (!isBootstrapped) {
+            setConsoleOutput(prev => "Error: Dependencies not installed. Please wait for installation to complete.\n" + prev);
+            return;
         }
 
-        setIsDownloading(false);
+        try {
+            setIsDownloading(true);
+            setConsoleOutput(prev => "Checking download permission...\n" + prev);
+
+            const permission = await checkDownloadPermission(deviceId);
+
+            if (!permission.status) {
+                setConsoleOutput(prev => `Error: ${permission.message}\n` + prev);
+                return;
+            }
+
+            setConsoleOutput(prev => `Download permitted: ${permission.message || "Starting download"}\n` + prev);
+
+            // Update config before starting download
+            updateCurrentConfig();
+
+            // Add to queue if enabled
+            if (queueEnabled && userConfig.ui_queue_enable) {
+                addToQueue(currentConfig);
+                setConsoleOutput(prev => "Added to download queue\n" + prev);
+            } else {
+                // Start download immediately
+                const result = await startDownloadApi(currentConfig);
+                addToHistory(result);
+                setConsoleOutput(prev => "Download started successfully\n" + prev);
+            }
+
+        } catch (error) {
+            console.error("Download failed:", error);
+            setConsoleOutput(prev => `Download failed: ${error}\n` + prev);
+        } finally {
+            setIsDownloading(false);
+        }
     };
 
-    const handleTitlebarAction = async (action: 'minimize' | 'close' | 'reset' | 'history') => {
+    // Handle manual bootstrap installation
+    const handleManualBootstrap = async (): Promise<void> => {
+        await installBootstrap();
+    };
+
+    // Handle titlebar actions
+    const handleTitlebarAction = async (action: 'minimize' | 'close' | 'reset' | 'history'): Promise<void> => {
         try {
             switch (action) {
                 case 'minimize':
@@ -138,10 +233,20 @@ export default function ClonePage() {
                     await appWindow.close();
                     break;
                 case 'reset':
-                    // Add reset logic
+                    // Reset form to default values
+                    setInputUrl('');
+                    setOutputName('');
+                    setOutputPath('');
+                    setCurrentConfig(createIPCDownloadConfig());
+                    setConsoleOutput('');
+                    setConsoleOutput(prev => "Form reset to default values\n" + prev);
                     break;
                 case 'history':
-                    // Add history logic
+                    // Show download history in console
+                    const historyText = downloadHistory.length > 0
+                        ? downloadHistory.map((item, index) => `${index + 1}. ${item.input.url} -> ${item.output.name || 'Auto'}`).join('\n')
+                        : 'No download history available';
+                    setConsoleOutput(prev => `Download History:\n${historyText}\n` + prev);
                     break;
             }
         } catch (error) {
@@ -149,14 +254,34 @@ export default function ClonePage() {
         }
     };
 
+    // Handle folder selection
     const handleFolderSelect = async (): Promise<void> => {
-        // Add folder selection logic using Tauri's dialog API
-        console.log('Folder select clicked');
+        try {
+            const selectedPath = await selectFolderDialogAsync();
+            if (selectedPath) {
+                setOutputPath(selectedPath);
+                setConsoleOutput(prev => `Output path set to: ${selectedPath}\n` + prev);
+            }
+        } catch (error) {
+            console.error('Failed to select folder:', error);
+            setConsoleOutput(prev => "Error: Failed to select folder\n" + prev);
+        }
     };
 
+    // Handle open folder
     const handleOpenFolder = async (): Promise<void> => {
-        // Add open folder logic
-        console.log('Open folder clicked');
+        if (!outputPath.trim()) {
+            setConsoleOutput(prev => "Error: No output path specified\n" + prev);
+            return;
+        }
+
+        try {
+            await openPathLocation(outputPath);
+            setConsoleOutput(prev => `Opened folder: ${outputPath}\n` + prev);
+        } catch (error) {
+            console.error('Failed to open folder:', error);
+            setConsoleOutput(prev => "Error: Failed to open folder\n" + prev);
+        }
     };
 
     // Custom checkbox component
@@ -192,9 +317,78 @@ export default function ClonePage() {
         </div>
     );
 
+    // Get download button state
+    const getDownloadButtonState = () => {
+        if (isBootstrapping) {
+            return {
+                disabled: true,
+                text: 'Installing Dependencies...',
+                className: 'bg-yellow-600 text-yellow-200 cursor-not-allowed'
+            };
+        }
+
+        if (!isBootstrapped) {
+            return {
+                disabled: true,
+                text: 'Dependencies Required',
+                className: 'bg-red-600 text-red-200 cursor-not-allowed'
+            };
+        }
+
+        if (isDownloading) {
+            return {
+                disabled: true,
+                text: 'Downloading...',
+                className: 'bg-blue-600 text-blue-200 cursor-not-allowed'
+            };
+        }
+
+        if (!inputUrl.trim()) {
+            return {
+                disabled: true,
+                text: 'Enter URL to Download',
+                className: 'bg-gray-600 text-gray-400 cursor-not-allowed'
+            };
+        }
+
+        return {
+            disabled: false,
+            text: queueEnabled && userConfig.ui_queue_enable ? 'Add to Queue' : 'Download',
+            className: 'bg-custom-green-dark text-custom-green border-green-600 hover:bg-custom-green-hover hover:text-green-400 hover:shadow-lg hover:shadow-green-400/20'
+        };
+    };
+
+    // Initialize component
     useEffect(() => {
-        displayDeviceId();
+        const initialize = async () => {
+            await initializeDeviceId();
+            await checkBootstrap();
+
+            // Initialize user config if needed
+            if (!userConfig.valid) {
+                setUserConfig(createIPCUserConfig());
+            }
+        };
+
+        initialize();
     }, []);
+
+    // Update config when form values change
+    useEffect(() => {
+        updateCurrentConfig();
+    }, [
+        inputUrl, outputName, outputPath, changeSizeEnabled, changeFpsEnabled,
+        trimEnabled, trimStartEnabled, trimEndEnabled, videoBitrateEnabled,
+        audioBitrateEnabled, ytdlpArgsEnabled, ffmpegArgsEnabled, width, height,
+        framerate, trimStart, trimEnd, videoBitrate, audioBitrate, ytdlpArgs, ffmpegArgs
+    ]);
+
+    // Update queue enabled state from global config
+    useEffect(() => {
+        setQueueEnabled(userConfig.ui_queue_enable);
+    }, [userConfig.ui_queue_enable]);
+
+    const buttonState = getDownloadButtonState();
 
     return (
         <div className="w-screen h-screen bg-custom-dark text-custom-text font-sans overflow-x-hidden select-none m-0 p-0">
@@ -235,9 +429,40 @@ export default function ClonePage() {
 
             {/* Main Content */}
             <div className="pt-8 p-4">
+                {/* Bootstrap Status */}
+                {!isBootstrapped && (
+                    <div className="mb-4">
+                        <div className="bg-yellow-900 border border-yellow-600 rounded-lg p-4">
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <p className="text-yellow-200 font-semibold">Dependencies Required</p>
+                                    <p className="text-yellow-300 text-sm">
+                                        {isBootstrapping
+                                            ? "Installing yt-dlp and ffmpeg... This may take a few minutes."
+                                            : "Required dependencies (yt-dlp, ffmpeg) are not installed."}
+                                    </p>
+                                    {bootstrapError && (
+                                        <p className="text-red-300 text-sm mt-2">Error: {bootstrapError}</p>
+                                    )}
+                                </div>
+                                {!isBootstrapping && (
+                                    <button
+                                        className="px-4 py-2 bg-yellow-600 text-yellow-100 rounded-lg hover:bg-yellow-500 transition-colors duration-200"
+                                        onClick={handleManualBootstrap}
+                                    >
+                                        Install Now
+                                    </button>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                )}
+
                 {/* Input Section */}
                 <div className="mb-4">
-                    <p className="text-sm text-custom-text-muted mb-2">ID: {deviceId}</p>
+                    <p className="text-sm text-custom-text-muted mb-2">
+                        ID: {deviceId} | Status: {isBootstrapped ? '✓ Ready' : isBootstrapping ? '⏳ Installing' : '❌ Not Ready'}
+                    </p>
                     <p className="text-2xl text-custom-text-dark mb-2">Input</p>
                     <div className="bg-custom-panel border border-custom-border rounded-lg p-4">
                         <p className="text-lg text-custom-text-muted mb-2">URL</p>
@@ -246,20 +471,39 @@ export default function ClonePage() {
                             className="w-full h-12 text-lg bg-custom-input text-custom-text border border-custom-border rounded-lg px-3 focus:border-custom-input-focus focus:outline-none"
                             value={inputUrl}
                             onChange={(e) => setInputUrl(e.target.value)}
+                            placeholder="Enter video URL here..."
                         />
+                        {inputUrl && (
+                            <p className="text-sm text-custom-text-muted mt-2">
+                                {isUrlPlaylist(inputUrl) ? "🎵 Playlist detected" : "🎬 Single video"}
+                            </p>
+                        )}
                     </div>
                 </div>
 
                 {/* Settings Section */}
-                <div className="mb-4 hidden">
+                <div className="mb-4">
                     <p className="text-2xl text-custom-text-dark mb-2">Settings</p>
                     <div className="bg-custom-panel border border-custom-border rounded-lg">
                         {/* Format Panel */}
                         <div className="bg-custom-titlebar p-4 rounded-t-lg">
                             <p className="text-lg text-custom-text-muted mb-2">Format</p>
-                            <select className="w-full h-12 text-lg bg-custom-input text-custom-text border border-custom-border rounded-lg px-3 cursor-pointer focus:border-custom-border-light focus:outline-none">
+                            <select
+                                className="w-full h-12 text-lg bg-custom-input text-custom-text border border-custom-border rounded-lg px-3 cursor-pointer focus:border-custom-border-light focus:outline-none"
+                                value={currentConfig.settings.format}
+                                onChange={(e) => setCurrentConfig(prev => ({
+                                    ...prev,
+                                    settings: { ...prev.settings, format: e.target.value }
+                                }))}
+                            >
                                 <optgroup label="Video">
                                     <option value="mp4-fast">mp4 (fast)</option>
+                                    <option value="mp4-best">mp4 (best)</option>
+                                    <option value="webm">webm</option>
+                                </optgroup>
+                                <optgroup label="Audio">
+                                    <option value="mp3">mp3</option>
+                                    <option value="flac">flac</option>
                                 </optgroup>
                             </select>
                         </div>
@@ -278,12 +522,16 @@ export default function ClonePage() {
                                     className="w-20 h-12 text-base bg-custom-input text-custom-text border border-custom-border rounded-l-lg px-3 focus:border-custom-input-focus focus:outline-none"
                                     value={width}
                                     onChange={(e) => setWidth(e.target.value)}
+                                    placeholder="Width"
+                                    disabled={!changeSizeEnabled}
                                 />
                                 <input
                                     type="text"
                                     className="w-20 h-12 text-base bg-custom-input text-custom-text border border-custom-border rounded-r-lg px-3 focus:border-custom-input-focus focus:outline-none"
                                     value={height}
                                     onChange={(e) => setHeight(e.target.value)}
+                                    placeholder="Height"
+                                    disabled={!changeSizeEnabled}
                                 />
                             </div>
                             <CustomCheckbox
@@ -297,6 +545,8 @@ export default function ClonePage() {
                                 className="w-20 h-12 text-base bg-custom-input text-custom-text border border-custom-border rounded-lg px-3 focus:border-custom-input-focus focus:outline-none"
                                 value={framerate}
                                 onChange={(e) => setFramerate(e.target.value)}
+                                placeholder="FPS"
+                                disabled={!changeFpsEnabled}
                             />
                         </div>
 
@@ -320,6 +570,8 @@ export default function ClonePage() {
                                     className="w-16 h-12 text-base bg-custom-input text-custom-text border border-custom-border rounded-lg px-3 focus:border-custom-input-focus focus:outline-none"
                                     value={trimStart}
                                     onChange={(e) => setTrimStart(e.target.value)}
+                                    placeholder="0:00"
+                                    disabled={!trimEnabled || !trimStartEnabled}
                                 />
                                 <span className="text-base text-custom-text-muted">and</span>
                                 <CustomCheckbox
@@ -333,6 +585,8 @@ export default function ClonePage() {
                                     className="w-16 h-12 text-base bg-custom-input text-custom-text border border-custom-border rounded-lg px-3 focus:border-custom-input-focus focus:outline-none"
                                     value={trimEnd}
                                     onChange={(e) => setTrimEnd(e.target.value)}
+                                    placeholder="0:10"
+                                    disabled={!trimEnabled || !trimEndEnabled}
                                 />
                             </div>
                         </div>
@@ -347,9 +601,11 @@ export default function ClonePage() {
                             />
                             <input
                                 type="text"
-                                className="w-32 h-12 text-base bg-custom-input text-custom-text border border-custom-border rounded-l-lg px-3 focus:border-custom-input-focus focus:outline-none mb-4"
+                                className="w-32 h-12 text-base bg-custom-input text-custom-text border border-custom-border rounded-lg px-3 focus:border-custom-input-focus focus:outline-none mb-4"
                                 value={videoBitrate}
                                 onChange={(e) => setVideoBitrate(e.target.value)}
+                                placeholder="10M"
+                                disabled={!videoBitrateEnabled}
                             />
 
                             <CustomCheckbox
@@ -360,9 +616,11 @@ export default function ClonePage() {
                             />
                             <input
                                 type="text"
-                                className="w-32 h-12 text-base bg-custom-input text-custom-text border border-custom-border rounded-r-lg px-3 focus:border-custom-input-focus focus:outline-none"
+                                className="w-32 h-12 text-base bg-custom-input text-custom-text border border-custom-border rounded-lg px-3 focus:border-custom-input-focus focus:outline-none"
                                 value={audioBitrate}
                                 onChange={(e) => setAudioBitrate(e.target.value)}
+                                placeholder="320k"
+                                disabled={!audioBitrateEnabled}
                             />
                         </div>
 
@@ -378,6 +636,8 @@ export default function ClonePage() {
                                 className="w-full h-24 text-base bg-custom-input text-custom-text border border-custom-border rounded-lg px-3 py-2 resize-none focus:border-custom-input-focus focus:outline-none mb-4"
                                 value={ytdlpArgs}
                                 onChange={(e) => setYtdlpArgs(e.target.value)}
+                                placeholder="--audio-quality 0 --embed-chapters"
+                                disabled={!ytdlpArgsEnabled}
                             />
 
                             <CustomCheckbox
@@ -390,6 +650,8 @@ export default function ClonePage() {
                                 className="w-full h-24 text-base bg-custom-input text-custom-text border border-custom-border rounded-lg px-3 py-2 resize-none focus:border-custom-input-focus focus:outline-none"
                                 value={ffmpegArgs}
                                 onChange={(e) => setFfmpegArgs(e.target.value)}
+                                placeholder="-c:v libx264 -preset fast"
+                                disabled={!ffmpegArgsEnabled}
                             />
                         </div>
                     </div>
@@ -409,6 +671,7 @@ export default function ClonePage() {
                                         className="w-full h-12 text-lg bg-custom-input text-custom-text border border-custom-border rounded-lg px-3 focus:border-custom-input-focus focus:outline-none"
                                         value={outputName}
                                         onChange={(e) => setOutputName(e.target.value)}
+                                        placeholder="Leave empty for auto naming"
                                     />
                                 </div>
                                 <div>
@@ -425,6 +688,7 @@ export default function ClonePage() {
                                             className="flex-1 h-12 text-lg bg-custom-input text-custom-text border-t border-b border-custom-border px-3 focus:border-custom-input-focus focus:outline-none"
                                             value={outputPath}
                                             onChange={(e) => setOutputPath(e.target.value)}
+                                            placeholder="Select output folder"
                                         />
                                         <button
                                             className="w-12 h-12 bg-custom-button text-custom-text border border-custom-border rounded-r-lg hover:bg-custom-button-hover transition-colors duration-200 cursor-pointer flex items-center justify-center"
@@ -438,32 +702,44 @@ export default function ClonePage() {
                         </div>
 
                         {/* Queue Panel */}
-                        <div className="border-b border-custom-border-light p-4 hidden">
-                            <p className="text-lg text-custom-text-muted mb-2">Queue</p>
-                            <div className="bg-custom-titlebar border border-custom-border rounded-lg p-2 flex items-center gap-2">
-                                <button className="w-12 h-12 bg-custom-button text-custom-text border border-custom-border rounded-l-lg hover:bg-custom-button-hover transition-colors duration-200 cursor-pointer flex items-center justify-center">
-                                    <img className="max-w-6 max-h-6" src="/images/saveload-right.png" alt="Add" />
-                                </button>
-                                <button className="w-12 h-12 bg-custom-button text-custom-text border border-custom-border rounded-r-lg hover:bg-custom-button-hover transition-colors duration-200 cursor-pointer flex items-center justify-center">
-                                    <img className="max-w-6 max-h-6" src="/images/gear.png" alt="Edit" />
-                                </button>
-                                <CustomCheckbox
-                                    id="queue-enable-checkbox"
-                                    checked={queueEnabled}
-                                    onChange={setQueueEnabled}
-                                    label="Enable"
-                                />
+                        {userConfig.ui_queue_enable && (
+                            <div className="border-b border-custom-border-light p-4">
+                                <p className="text-lg text-custom-text-muted mb-2">Queue</p>
+                                <div className="bg-custom-titlebar border border-custom-border rounded-lg p-2 flex items-center gap-2">
+                                    <button
+                                        className="w-12 h-12 bg-custom-button text-custom-text border border-custom-border rounded-l-lg hover:bg-custom-button-hover transition-colors duration-200 cursor-pointer flex items-center justify-center"
+                                        onClick={() => {
+                                            updateCurrentConfig();
+                                            addToQueue(currentConfig);
+                                            setConsoleOutput(prev => "Added to queue\n" + prev);
+                                        }}
+                                    >
+                                        <img className="max-w-6 max-h-6" src="/images/saveload-right.png" alt="Add" />
+                                    </button>
+                                    <button className="w-12 h-12 bg-custom-button text-custom-text border border-custom-border rounded-r-lg hover:bg-custom-button-hover transition-colors duration-200 cursor-pointer flex items-center justify-center">
+                                        <img className="max-w-6 max-h-6" src="/images/gear.png" alt="Edit" />
+                                    </button>
+                                    <CustomCheckbox
+                                        id="queue-enable-checkbox"
+                                        checked={queueEnabled}
+                                        onChange={setQueueEnabled}
+                                        label="Enable Queue"
+                                    />
+                                    <span className="text-sm text-custom-text-muted ml-auto">
+                                        {downloadQueue.length} item(s) in queue
+                                    </span>
+                                </div>
                             </div>
-                        </div>
+                        )}
 
                         {/* Download Button */}
                         <div className="p-4">
                             <button
-                                className="w-full h-20 text-2xl font-bold bg-custom-green-dark text-custom-green border border-green-600 rounded-lg hover:bg-custom-green-hover hover:text-green-400 transition-all duration-500 hover:shadow-lg hover:shadow-green-400/20 disabled:bg-gray-600 disabled:text-gray-400 disabled:cursor-not-allowed"
-                                onClick={startDownload}
-                                disabled={isDownloading}
+                                className={`w-full h-20 text-2xl font-bold rounded-lg transition-all duration-500 ${buttonState.className}`}
+                                onClick={handleStartDownload}
+                                disabled={buttonState.disabled}
                             >
-                                {isDownloading ? 'Downloading...' : 'Download'}
+                                {buttonState.text}
                             </button>
                         </div>
 
@@ -471,19 +747,25 @@ export default function ClonePage() {
                         <div className="border-l border-custom-border-light p-4 bg-custom-panel rounded-br-lg">
                             <div className="flex items-center justify-between mb-2">
                                 <p className="text-lg text-custom-text-muted">Console</p>
-                                <button className="w-12 h-12 bg-transparent border-none rounded-lg hover:bg-custom-button transition-colors duration-200 cursor-pointer flex items-center justify-center">
-                                    <img className="max-w-8 max-h-8" src="/images/console.png" alt="Console" />
+                                <button
+                                    className="w-12 h-12 bg-transparent border-none rounded-lg hover:bg-custom-button transition-colors duration-200 cursor-pointer flex items-center justify-center"
+                                    onClick={() => setConsoleOutput('')}
+                                >
+                                    <img className="max-w-8 max-h-8" src="/images/console.png" alt="Clear Console" />
                                 </button>
                             </div>
                             <textarea
                                 readOnly
                                 className="w-full h-32 text-base bg-custom-console text-white border border-custom-border-light rounded-lg px-3 py-2 resize-none focus:border-custom-border-light focus:outline-none"
                                 value={consoleOutput}
+                                placeholder="Console output will appear here..."
                             />
                         </div>
                     </div>
                 </div>
             </div>
+
+
 
             {/* Progress Bar */}
             <div

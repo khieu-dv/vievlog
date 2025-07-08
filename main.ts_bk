@@ -1,0 +1,1155 @@
+import { getCurrentWindow } from "@tauri-apps/api/window";
+import { invoke } from "@tauri-apps/api/core";
+import { fetch } from '@tauri-apps/plugin-http';
+import { init } from "./init";
+import { createIPCUserConfig, IPCUserConfig } from "../common/scripts/user-config";
+import { IPCDownloadConfig } from "../common/scripts/download-config";
+
+export const appWindow = getCurrentWindow();
+
+interface Global {
+    userConfig: IPCUserConfig;
+    downloadQueue: IPCDownloadConfig[];
+    downloadHistory: IPCDownloadConfig[];
+}
+
+export let GLOBAL: Global = {
+    userConfig: createIPCUserConfig(),
+    downloadQueue: [],
+    downloadHistory: []
+};
+
+async function displayDeviceId() {
+    try {
+        const id = await invoke("generate_app_id");
+        const idElement = document.getElementById("titlebar-id-text");
+        if (idElement) {
+            idElement.textContent = `ID: ${id || "N/A"}`;
+        }
+        return id;
+    } catch (error) {
+        console.error("Failed to get device ID:", error);
+        const idElement = document.getElementById("titlebar-id-text");
+        if (idElement) {
+            idElement.textContent = "ID: Error";
+        }
+        return null;
+    }
+}
+
+async function checkDownloadPermission(userId: string): Promise<{ status: boolean; message?: string }> {
+    try {
+
+        const response = await fetch("https://api.vietopik.com/api/v1/user/download", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                user_id: userId,
+            }),
+        });
+
+        const data = await response.json() as { status: boolean; message?: string; error?: string };
+        return {
+            status: data.status,
+            message: data.message || data.error || "Unknown error",
+        };
+    } catch (error) {
+        console.error("API call failed:", error);
+        return {
+            status: false,
+            message: "Failed to connect to the server",
+        };
+    }
+}
+
+async function startDownload() {
+    const consoleTextarea = document.getElementById("output-console-textarea") as HTMLTextAreaElement;
+    const userId = await displayDeviceId();
+
+    if (!userId || typeof userId !== "string") {
+        if (consoleTextarea) {
+            consoleTextarea.value = "Error: Could not retrieve user ID\n" + consoleTextarea.value;
+        }
+        return;
+    }
+
+    const permission = await checkDownloadPermission(userId);
+    if (permission.status) {
+        // Proceed with download logic (replace with your actual download implementation)
+        if (consoleTextarea) {
+            consoleTextarea.value = `Download permitted: ${permission.message || "Starting download"}\n` + consoleTextarea.value;
+        }
+        // Example: Trigger download logic here
+        // await invoke("start_download", { config: GLOBAL.downloadQueue });
+    } else {
+        if (consoleTextarea) {
+            consoleTextarea.value = `Error: ${permission.message}\n` + consoleTextarea.value;
+        }
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    console.log("Main script loaded");
+    init();
+    displayDeviceId();
+
+    const downloadButton = document.getElementById("output-download-button");
+    if (downloadButton) {
+        downloadButton.addEventListener("click", startDownload);
+    }
+});
+
+import { IPCDownloadConfig } from "../../common/scripts/download-config";
+import { isUrlPlaylist } from "../utils";
+
+export function generateIPCDownloadConfig(): IPCDownloadConfig {
+    const $ = (id: string) => document.getElementById(id);
+
+    const url = (document.getElementById("input-url-textbox") as HTMLInputElement).value;
+
+    const settingsFormatSelect = document.getElementById("settings-format-select") as HTMLSelectElement;
+    let formatType = "null";
+    if (settingsFormatSelect) {
+        const selectedOption = settingsFormatSelect.options[settingsFormatSelect.selectedIndex];
+        if (selectedOption) {
+            const attribute = selectedOption.getAttribute("type-value");
+            formatType = attribute ?? "null";
+        }
+    }
+
+    let downloadType;
+    switch (formatType) {
+        case "image": downloadType = "thumbnail"; break;
+        default: downloadType = "default"; break;
+    }
+
+    const config: IPCDownloadConfig = {
+        valid: true,
+
+        input: {
+            url:           url,
+            is_playlist:   isUrlPlaylist(url),
+            download_type: downloadType
+        },
+
+        settings: {
+            format:                         ($("settings-format-select")               as HTMLSelectElement).value,
+            format_type:                    formatType,
+
+            trim_enable:                    ($("settings-trim-checkbox")               as HTMLInputElement)   .checked,
+            trim_from_start_enable:         ($("settings-trim-start-checkbox")         as HTMLInputElement)   .checked,
+            trim_start:                     ($("settings-trim-start-textbox")          as HTMLInputElement)   .value,
+            trim_to_end_enable:             ($("settings-trim-end-checkbox")           as HTMLInputElement)   .checked,
+            trim_end:                       ($("settings-trim-end-textbox")            as HTMLInputElement)   .value,
+
+            size_change_enable:             ($("settings-size-fps-size-checkbox")      as HTMLInputElement)   .checked,
+            size_change_width:              ($("settings-size-fps-width-textbox")      as HTMLInputElement)   .value,
+            size_change_height:             ($("settings-size-fps-height-textbox")     as HTMLInputElement)   .value,
+
+            fps_change_enable:              ($("settings-size-fps-framerate-checkbox") as HTMLInputElement)   .checked,
+            fps_change_framerate:           ($("settings-size-fps-framerate-textbox")  as HTMLInputElement)   .value,
+
+            vbr_set_bitrate_enable:         ($("settings-bitrate-video-checkbox")      as HTMLInputElement)   .checked,
+            vbr_set_bitrate:                ($("settings-bitrate-video-textbox")       as HTMLInputElement)   .value,
+            abr_set_bitrate_enable:         ($("settings-bitrate-audio-checkbox")      as HTMLInputElement)   .checked,
+            abr_set_bitrate:                ($("settings-bitrate-audio-textbox")       as HTMLInputElement)   .value,
+
+            custom_ytdlp_arguments_enable:  ($("settings-arguments-ytdlp-checkbox")    as HTMLInputElement)   .checked,
+            custom_ytdlp_arguments:         ($("settings-arguments-ytdlp-textarea")    as HTMLTextAreaElement).value.split('\n'),
+            
+            custom_ffmpeg_arguments_enable: ($("settings-arguments-ffmpeg-checkbox")   as HTMLInputElement)   .checked,
+            custom_ffmpeg_arguments:        ($("settings-arguments-ffmpeg-textarea")   as HTMLTextAreaElement).value.split('\n')
+        },
+
+        output: {
+            name: ($("output-name-textbox") as HTMLInputElement).value,
+            path: ($("output-path-textbox") as HTMLInputElement).value
+        }
+    };
+
+    return config;
+}
+
+import { IPCDownloadConfig } from "../../common/scripts/download-config";
+import { isUrlPlaylist } from "../utils";
+
+export function loadIPCDownloadConfigIntoUI(config: IPCDownloadConfig) {
+    const $ = (id: string) => document.getElementById(id);
+    
+    ($("input-url-textbox")                    as HTMLInputElement).value    = config.input.url;
+
+    ($("settings-format-select")               as HTMLSelectElement).value   = config.settings.format;
+
+    ($("settings-trim-checkbox")               as HTMLInputElement).checked  = config.settings.trim_enable;
+    ($("settings-trim-start-checkbox")         as HTMLInputElement).checked  = config.settings.trim_from_start_enable;
+    ($("settings-trim-start-textbox")          as HTMLInputElement).value    = config.settings.trim_start;
+    ($("settings-trim-end-checkbox")           as HTMLInputElement).checked  = config.settings.trim_to_end_enable;
+    ($("settings-trim-end-textbox")            as HTMLInputElement).value    = config.settings.trim_end;
+
+    ($("settings-size-fps-size-checkbox")      as HTMLInputElement).checked  = config.settings.size_change_enable;
+    ($("settings-size-fps-width-textbox")      as HTMLInputElement).value    = config.settings.size_change_width;
+    ($("settings-size-fps-height-textbox")     as HTMLInputElement).value    = config.settings.size_change_height;
+
+    ($("settings-size-fps-framerate-checkbox") as HTMLInputElement).checked  = config.settings.fps_change_enable;
+    ($("settings-size-fps-framerate-textbox")  as HTMLInputElement).value    = config.settings.fps_change_framerate;
+
+    ($("settings-bitrate-video-checkbox")      as HTMLInputElement).checked  = config.settings.vbr_set_bitrate_enable;
+    ($("settings-bitrate-video-textbox")       as HTMLInputElement).value    = config.settings.vbr_set_bitrate;
+    ($("settings-bitrate-audio-checkbox")      as HTMLInputElement).checked  = config.settings.abr_set_bitrate_enable;
+    ($("settings-bitrate-audio-textbox")       as HTMLInputElement).value    = config.settings.abr_set_bitrate;
+
+    ($("settings-arguments-ytdlp-checkbox")    as HTMLInputElement).checked  = config.settings.custom_ytdlp_arguments_enable;
+    ($("settings-arguments-ytdlp-textarea")    as HTMLTextAreaElement).value = config.settings.custom_ytdlp_arguments.join('\n');
+
+    ($("settings-arguments-ffmpeg-checkbox")   as HTMLInputElement).checked  = config.settings.custom_ffmpeg_arguments_enable;
+    ($("settings-arguments-ffmpeg-textarea")   as HTMLTextAreaElement).value = config.settings.custom_ffmpeg_arguments.join('\n');
+
+    ($("output-name-textbox")                  as HTMLInputElement).value    = config.output.name;
+    ($("output-path-textbox")                  as HTMLInputElement).value    = config.output.path;
+
+    if (isUrlPlaylist(config.input.url)) ($("input-url-text")   as HTMLParagraphElement).textContent = "URL (Playlist Detected)";
+    if (config.output.name !== "")       ($("output-name-text") as HTMLParagraphElement).textContent = "Name";
+}
+
+import { invoke } from "@tauri-apps/api/core";
+
+import { isUrlPlaylist } from "../utils";
+
+export function initInputUI() {
+    const inputUrlTextbox = document.getElementById("input-url-textbox") as HTMLInputElement | null;
+
+    inputUrlTextbox?.addEventListener("input", () => {
+        const inputUrlText = document.getElementById("input-url-text") as HTMLInputElement | null;
+
+        if (!inputUrlText) return;
+
+        if (isUrlPlaylist(inputUrlTextbox.value)) {
+            inputUrlText.textContent = "URL (Playlist Detected)";
+        }
+        else {
+            inputUrlText.textContent = "URL";
+        }
+    });
+
+    inputUrlTextbox?.addEventListener("dblclick", () => {
+        if (!inputUrlTextbox) return;
+        invoke("util_launch_url", { url: inputUrlTextbox.value })
+    });
+}
+
+import { listen } from "@tauri-apps/api/event";
+import { WebviewWindow } from "@tauri-apps/api/webviewWindow";
+
+import { IPCLoggerEvent } from "../../common/scripts/logger";
+
+export function initMiniConsole() {
+    let consoleTextarea = document.getElementById("output-console-textarea") as HTMLTextAreaElement | null;
+    if (!consoleTextarea) return;
+
+    listen<IPCLoggerEvent>("log", (event) => {
+        consoleTextarea.value += '\n' + event.payload.text;
+        consoleTextarea.scrollTop = consoleTextarea.scrollHeight;
+    });
+}
+
+export function openConsoleWindow() {
+    new WebviewWindow("consoleWindow", {
+        url: "console.html",
+        title: "VieClone Console",
+        width: 750,
+        height: 500,
+        minWidth: 450,
+        minHeight: 300,
+        decorations: false
+    });
+}
+
+import { invoke } from "@tauri-apps/api/core";
+
+import { IPCDownloadConfig } from "../../common/scripts/download-config";
+import { generateIPCDownloadConfig } from "../download-config/generate";
+import { GLOBAL } from "../main";
+
+export function initDownloadButton() {
+    document.getElementById("output-download-button")?.addEventListener("click", () => {
+        console.log("Download button clicked");
+        startDownloadAsync();
+    });
+}
+
+export async function startDownloadAsync() {
+    const downloadButton = document.getElementById("output-download-button") as HTMLButtonElement | null;
+    if (downloadButton) downloadButton.disabled = true;
+
+    const progressBar = document.getElementById("progress-bar") as HTMLDivElement | null;
+    if (progressBar) progressBar.style.width = `0vw`;
+
+    const consoleTextarea = document.getElementById("output-console-textarea") as HTMLTextAreaElement | null;
+    if (consoleTextarea) consoleTextarea.value = "";
+
+    const queueCheckbox = document.getElementById("output-queue-checkbox-enable") as HTMLInputElement | null;
+    if (queueCheckbox?.checked) {
+        for (let i = 0; i < GLOBAL.downloadQueue.length; ++i) {
+            await downloadAsync(GLOBAL.downloadQueue[i]);
+
+            let percent = (i + 1) / GLOBAL.downloadQueue.length * 100;
+            if (progressBar) progressBar.style.width = `${percent}vw`;
+        };
+    }
+    else {
+        await downloadAsync(generateIPCDownloadConfig());
+        if (progressBar) progressBar.style.width = `100vw`;
+    }
+
+    if (downloadButton) downloadButton.disabled = false;
+}
+
+async function downloadAsync(downloadConfig: IPCDownloadConfig) {
+    let purifiedDownloadConfig: IPCDownloadConfig = await invoke("download", { config: downloadConfig });
+    GLOBAL.downloadHistory.push(purifiedDownloadConfig);
+}
+
+import { invoke } from "@tauri-apps/api/core";
+
+import { selectFolderDialogAsync } from "../utils";
+import { initMiniConsole, openConsoleWindow } from "./console-opener";
+import { initQueueOpener } from "./queue-opener";
+import { initDownloadButton } from "./download";
+import { generateIPCDownloadConfig } from "../download-config/generate";
+
+export function initOutputUI() {
+    const outputNameTextbox = document.getElementById("output-name-textbox") as HTMLInputElement | null;
+    const outputNameText = document.getElementById("output-name-text") as HTMLInputElement | null;
+    if (!outputNameTextbox || !outputNameText) return;
+
+    outputNameTextbox?.addEventListener("input", () => {
+        if (outputNameTextbox.value === "") {
+            outputNameText.textContent = "Name (Auto)";
+        }
+        else {
+            outputNameText.textContent = "Name";
+        }
+    });
+
+    document.getElementById("output-path-button")?.addEventListener("click", async () => {
+        let file = await selectFolderDialogAsync();
+
+        const pathTextbox = document.getElementById("output-path-textbox") as HTMLInputElement | null;
+        if (!pathTextbox) return;
+
+        pathTextbox.value = file.toString();
+    });
+
+    document.getElementById("output-path-open-button")?.addEventListener("click", async () => {
+        invoke("util_open_path_location", { path: generateIPCDownloadConfig().output.path });
+    });
+
+    document.getElementById("output-console-open-button")?.addEventListener("click", async () => {
+        openConsoleWindow();
+    });
+
+    initQueueOpener();
+    initDownloadButton();
+    initMiniConsole();
+}
+
+import { WebviewWindow } from "@tauri-apps/api/webviewWindow";
+
+import { GLOBAL } from "../main";
+import { generateIPCDownloadConfig } from "../download-config/generate";
+import { loadIPCDownloadConfigIntoUI } from "../download-config/load";
+
+export function initQueueOpener() {
+    document.getElementById("output-queue-add-button")?.addEventListener("click", async () => {
+        const nameTextbox = document.getElementById("output-name-textbox") as HTMLButtonElement | null;
+
+        if (!nameTextbox) return;
+
+        if (nameTextbox.value === "") {
+            nameTextbox.classList.add("textbox-error");
+            nameTextbox.title = "Please provide a name for the queue entry.";
+
+            setTimeout(() => {
+                nameTextbox.classList.remove("textbox-error");
+                nameTextbox.title = "";
+            }, 2000);
+        } else {
+            nameTextbox.classList.remove("textbox-error");
+            nameTextbox.title = "";
+            GLOBAL.downloadQueue.push(generateIPCDownloadConfig());
+        }
+    });
+
+    document.getElementById("output-queue-edit-button")?.addEventListener("click", async () => {
+        openQueueWindow();
+    });
+
+    document.getElementById("output-queue-checkbox-enable")?.addEventListener("change", async (event) => {
+        const checkbox = event.target as HTMLInputElement;
+
+        const button = document.getElementById("output-download-button") as HTMLButtonElement | null;
+        console.log("Queue checkbox changed:", checkbox.checked);
+        if (checkbox.checked) {
+            if (button) {
+                button.innerText = "Download Queue";
+            }
+        } else {
+            if (button) {
+                button.innerText = "Download";
+            }
+        }
+    });
+}
+
+export async function openQueueWindow() {
+    const names = GLOBAL.downloadQueue.map(item => item.output.name);
+
+    const webview = new WebviewWindow("queueWindow", {
+        url: "queue.html",
+        title: "VieClone Queue",
+        width: 450,
+        height: 300,
+        minWidth: 450,
+        minHeight: 300,
+        decorations: false
+    });
+
+    const unlistenQueueRequest = await webview.listen("queue-request", () => {
+        webview.emit("queue-request-return", names);
+    });
+
+    const unlistenQueueLoad = await webview.listen<number>("queue-load", (event) => {
+        loadIPCDownloadConfigIntoUI(GLOBAL.downloadQueue[event.payload]);
+    });
+
+    const unlistenQueueRemove = await webview.listen<number[]>("queue-remove", (event) => {
+        const sortedIndices = [...event.payload].sort((a, b) => b - a);
+
+        sortedIndices.forEach(index => {
+            if (index >= 0 && index < GLOBAL.downloadQueue.length) {
+                GLOBAL.downloadQueue.splice(index, 1);
+            }
+        });
+    });
+
+    const unlistenClose = await webview.onCloseRequested(async () => {
+        unlistenClose();
+
+        unlistenQueueRequest();
+        unlistenQueueLoad();
+        unlistenQueueRemove();
+    });
+}
+
+interface UIEnableState {
+    trimEnable: boolean;
+
+    sizeEnable: boolean;
+    framerateEnable: boolean;
+
+    vbrEnable: boolean;
+    abrEnable: boolean;
+}
+
+export function initSettingsUIHandler() {
+    const formatSelect = document.getElementById("settings-format-select") as HTMLSelectElement | null;
+    if (!formatSelect) return;
+
+    formatSelect.addEventListener("change", async () => {
+        updateSettingsUI();
+    });
+}
+
+export function updateSettingsUI() {
+    const formatSelect = document.getElementById("settings-format-select") as HTMLSelectElement | null;
+    if (!formatSelect) return;
+
+    const selectedFormat = formatSelect.value;
+
+    let uiEnableState: UIEnableState;
+
+    switch (selectedFormat) {
+        case "mp4-fast":
+            uiEnableState = {
+                trimEnable: true,
+                sizeEnable: false,
+                framerateEnable: false,
+                vbrEnable: false,
+                abrEnable: false
+            };
+            break;
+        case "mp4":
+            uiEnableState = {
+                trimEnable: true,
+                sizeEnable: true,
+                framerateEnable: true,
+                vbrEnable: true,
+                abrEnable: true
+            };
+            break;
+        case "mp4-nvidia":
+            uiEnableState = {
+                trimEnable: true,
+                sizeEnable: true,
+                framerateEnable: true,
+                vbrEnable: true,
+                abrEnable: true
+            };
+            break;
+        case "mp4-amd":
+            uiEnableState = {
+                trimEnable: true,
+                sizeEnable: true,
+                framerateEnable: true,
+                vbrEnable: true,
+                abrEnable: true
+            };
+            break;
+        case "webm":
+            uiEnableState = {
+                trimEnable: true,
+                sizeEnable: true,
+                framerateEnable: true,
+                vbrEnable: true,
+                abrEnable: true
+            };
+            break;
+        case "avi":
+            uiEnableState = {
+                trimEnable: true,
+                sizeEnable: true,
+                framerateEnable: true,
+                vbrEnable: false,
+                abrEnable: false
+            };
+            break;
+
+        case "mp3":
+            uiEnableState = {
+                trimEnable: true,
+                sizeEnable: false,
+                framerateEnable: false,
+                vbrEnable: false,
+                abrEnable: true
+            };
+            break;
+        case "wav":
+            uiEnableState = {
+                trimEnable: true,
+                sizeEnable: false,
+                framerateEnable: false,
+                vbrEnable: false,
+                abrEnable: false
+            };
+            break;
+        case "flac":
+            uiEnableState = {
+                trimEnable: true,
+                sizeEnable: false,
+                framerateEnable: false,
+                vbrEnable: false,
+                abrEnable: false
+            };
+            break;
+        case "ogg":
+            uiEnableState = {
+                trimEnable: true,
+                sizeEnable: false,
+                framerateEnable: false,
+                vbrEnable: false,
+                abrEnable: false
+            };
+            break;
+
+        case "gif":
+            uiEnableState = {
+                trimEnable: true,
+                sizeEnable: true,
+                framerateEnable: true,
+                vbrEnable: true,
+                abrEnable: false
+            };
+            break;
+        case "png-sequence":
+            uiEnableState = {
+                trimEnable: true,
+                sizeEnable: true,
+                framerateEnable: true,
+                vbrEnable: true,
+                abrEnable: false
+            };
+            break;
+        case "jpg-sequence":
+            uiEnableState = {
+                trimEnable: true,
+                sizeEnable: true,
+                framerateEnable: true,
+                vbrEnable: true,
+                abrEnable: false
+            };
+            break;
+
+        case "png-thumbnail":
+            uiEnableState = {
+                trimEnable: false,
+                sizeEnable: true,
+                framerateEnable: false,
+                vbrEnable: false,
+                abrEnable: false
+            };
+            break;
+        case "jpg-thumbnail":
+            uiEnableState = {
+                trimEnable: false,
+                sizeEnable: true,
+                framerateEnable: false,
+                vbrEnable: false,
+                abrEnable: false
+            };
+            break;
+
+        default:
+            uiEnableState = {
+                trimEnable: false,
+                sizeEnable: false,
+                framerateEnable: false,
+                vbrEnable: false,
+                abrEnable: false
+            };
+            break;
+    }
+
+    updateUIElements(uiEnableState);
+}
+
+function updateUIElements(uiEnableState: UIEnableState) {
+    handleTrim(uiEnableState);
+    handleSize(uiEnableState);
+    handleFramerate(uiEnableState);
+    handleVbr(uiEnableState);
+    handleAbr(uiEnableState);
+}
+
+function handleTrim(uiEnableState: UIEnableState) {
+    const trimCheckbox = document.getElementById("settings-trim-checkbox") as HTMLInputElement | null;
+    const trimStartCheckbox = document.getElementById("settings-trim-start-checkbox") as HTMLInputElement | null;
+    const trimStartTextbox = document.getElementById("settings-trim-start-textbox") as HTMLInputElement | null;
+    const trimEndCheckbox = document.getElementById("settings-trim-end-checkbox") as HTMLInputElement | null;
+    const trimEndTextbox = document.getElementById("settings-trim-end-textbox") as HTMLInputElement | null;
+
+    if (!trimCheckbox || !trimStartCheckbox || !trimStartTextbox || !trimEndCheckbox || !trimEndTextbox) return;
+
+    if (uiEnableState.trimEnable) {
+        trimCheckbox.disabled = false;
+        trimStartCheckbox.disabled = false;
+        trimStartTextbox.disabled = false;
+        trimEndCheckbox.disabled = false;
+        trimEndTextbox.disabled = false;
+    }
+    else {
+        trimCheckbox.checked = false;
+
+        trimCheckbox.disabled = true;
+        trimStartCheckbox.disabled = true;
+        trimStartTextbox.disabled = true;
+        trimEndCheckbox.disabled = true;
+        trimEndTextbox.disabled = true;
+    }
+}
+
+function handleSize(uiEnableState: UIEnableState) {
+    const sizeCheckbox = document.getElementById("settings-size-fps-size-checkbox") as HTMLInputElement | null;
+    const sizeWidthTextbox = document.getElementById("settings-size-fps-width-textbox") as HTMLInputElement | null;
+    const sizeHeightTextbox = document.getElementById("settings-size-fps-height-textbox") as HTMLInputElement | null;
+
+    if (!sizeCheckbox || !sizeWidthTextbox || !sizeHeightTextbox) return;
+
+    if (uiEnableState.sizeEnable) {
+        sizeCheckbox.disabled = false;
+        sizeWidthTextbox.disabled = false;
+        sizeHeightTextbox.disabled = false;
+    }
+    else {
+        sizeCheckbox.checked = false;
+
+        sizeCheckbox.disabled = true;
+        sizeWidthTextbox.disabled = true;
+        sizeHeightTextbox.disabled = true;
+    }
+}
+
+function handleFramerate(uiEnableState: UIEnableState) {
+    const framerateCheckbox = document.getElementById("settings-size-fps-framerate-checkbox") as HTMLInputElement | null;
+    const framerateTextbox = document.getElementById("settings-size-fps-framerate-textbox") as HTMLInputElement | null;
+
+    if (!framerateCheckbox || !framerateTextbox) return;
+
+    if (uiEnableState.framerateEnable) {
+        framerateCheckbox.disabled = false;
+        framerateTextbox.disabled = false;
+    }
+    else {
+        framerateCheckbox.checked = false;
+
+        framerateCheckbox.disabled = true;
+        framerateTextbox.disabled = true;
+    }
+}
+
+
+
+
+
+
+function handleVbr(uiEnableState: UIEnableState) {
+    const videoBitrateCheckbox = document.getElementById("settings-bitrate-video-checkbox") as HTMLInputElement | null;
+    const videoBitrateTextbox = document.getElementById("settings-bitrate-video-textbox") as HTMLInputElement | null;
+
+    if (!videoBitrateCheckbox || !videoBitrateTextbox) return;
+
+    if (uiEnableState.vbrEnable) {
+        videoBitrateCheckbox.checked = true;
+
+        videoBitrateCheckbox.disabled = false;
+        videoBitrateTextbox.disabled = false;
+    }
+    else {
+        videoBitrateCheckbox.checked = false;
+
+        videoBitrateCheckbox.disabled = true;
+        videoBitrateTextbox.disabled = true;
+    }
+}
+
+function handleAbr(uiEnableState: UIEnableState) {
+    const audioBitrateCheckbox = document.getElementById("settings-bitrate-audio-checkbox") as HTMLInputElement | null;
+    const audioBitrateTextbox = document.getElementById("settings-bitrate-audio-textbox") as HTMLInputElement | null;
+
+    if (!audioBitrateCheckbox || !audioBitrateTextbox) return;
+
+    if (uiEnableState.abrEnable) {
+        audioBitrateCheckbox.checked = true;
+
+        audioBitrateCheckbox.disabled = false;
+        audioBitrateTextbox.disabled = false;
+    }
+    else {
+        audioBitrateCheckbox.checked = false;
+
+        audioBitrateCheckbox.disabled = true;
+        audioBitrateTextbox.disabled = true;
+    }
+}
+
+import { initSettingsUIHandler } from "./settings-ui-handler";
+
+export function initSettingsUI() {
+    initSettingsUIHandler();
+}
+
+import { IPCUserConfig } from "../../common/scripts/user-config";
+
+export function loadIPCUserConfigIntoUI(config: IPCUserConfig) {
+    const $ = (id: string) => document.getElementById(id);
+
+    ($("output-queue-checkbox-enable") as HTMLInputElement).checked = config.ui_queue_enable;
+
+    if (config.ui_queue_enable) ($("output-download-button") as HTMLButtonElement).textContent = "Download Queue";
+}
+
+import { GLOBAL } from "../main";
+
+export function updateIPCUserConfigFromUI() {
+    const $ = (id: string) => document.getElementById(id);
+
+    GLOBAL.userConfig.ui_queue_enable = ($("output-queue-checkbox-enable") as HTMLInputElement).checked;
+}
+
+import { invoke } from "@tauri-apps/api/core";
+import { emit } from "@tauri-apps/api/event";
+
+import { GLOBAL, appWindow } from "./main";
+import { generateIPCDownloadConfig } from "./download-config/generate";
+import { updateIPCUserConfigFromUI } from "./user-config/update";
+
+export async function cleanupAndClose() {
+    emit("global-close");
+    updateIPCUserConfigFromUI();
+    await invoke("data_write_user_config", { config: GLOBAL.userConfig });
+    await invoke("data_write_download_config", { config: generateIPCDownloadConfig() });
+    await invoke("data_write_queue", { queue: GLOBAL.downloadQueue });
+    await invoke("data_write_history", { history: GLOBAL.downloadHistory });
+    appWindow.close();
+}
+
+import { WebviewWindow } from "@tauri-apps/api/webviewWindow";
+
+import { GLOBAL } from "./main";
+import { loadIPCDownloadConfigIntoUI } from "./download-config/load";
+
+export function initHistoryOpener() {
+    document.getElementById("titlebar-history-edit-button")?.addEventListener("click", async () => {
+        openHistoryWindow();
+    });
+}
+
+export async function openHistoryWindow() {
+    const names = GLOBAL.downloadHistory.map(item => item.output.name);
+
+    const webview = new WebviewWindow("historyWindow", {
+        url: "history.html",
+        title: "VieClone History",
+        width: 450,
+        height: 300,
+        minWidth: 450,
+        minHeight: 300,
+        decorations: false
+    });
+
+    const unlistenHistoryRequest = await webview.listen("history-request", () => {
+        webview.emit("history-request-return", names);
+    });
+
+    const unlistenHistoryLoad = await webview.listen<number>("history-load", (event) => {
+        loadIPCDownloadConfigIntoUI(GLOBAL.downloadHistory[event.payload]);
+    });
+
+    const unlistenHistoryRemove = await webview.listen<number[]>("history-remove", (event) => {
+        const sortedIndices = [...event.payload].sort((a, b) => b - a);
+
+        sortedIndices.forEach(index => {
+            if (index >= 0 && index < GLOBAL.downloadHistory.length) {
+                GLOBAL.downloadHistory.splice(index, 1);
+            }
+        });
+    });
+
+    const unlistenClose = await webview.onCloseRequested(async () => {
+        unlistenClose();
+
+        unlistenHistoryRequest();
+        unlistenHistoryLoad();
+        unlistenHistoryRemove();
+    });
+}
+
+import { invoke } from "@tauri-apps/api/core";
+
+import { GLOBAL, appWindow } from "./main";
+
+import { initUI } from "../common/scripts/ui";
+import { initTitlebar } from "../common/scripts/titlebar";
+import { initInputUI } from "./input/input";
+import { initSettingsUI } from "./settings/settings";
+import { updateSettingsUI } from "./settings/settings-ui-handler";
+import { initOutputUI } from "./output/output";
+import { initHistoryOpener } from "./history-opener";
+
+import { createIPCUserConfig, IPCUserConfig } from "../common/scripts/user-config";
+import { loadIPCUserConfigIntoUI } from "./user-config/load";
+
+import { IPCDownloadConfig, createIPCDownloadConfig } from "../common/scripts/download-config";
+import { loadIPCDownloadConfigIntoUI } from "./download-config/load";
+
+import { checkForUpdates } from "./update-opener";
+import { cleanupAndClose } from "./cleanup";
+
+let runOnce = true;
+
+export async function init() {
+    if (!runOnce) return;
+    runOnce = false;
+
+    initUI();
+
+    initTitlebar();
+    initTitlebarButtons();
+
+    initInputUI();
+    initSettingsUI();
+    initOutputUI();
+    initHistoryOpener();
+
+    loadUserConfig();
+    loadDownloadConfig();
+
+    loadBulkDownloadConfigs();
+
+    const downloadButton = document.getElementById("output-download-button") as HTMLButtonElement | null;
+
+    console.log("Checking download permission...");
+
+    if (!await invoke("bootstrap_check")) {
+        if (downloadButton) downloadButton.disabled = true;
+        await invoke("bootstrap_install")
+        if (downloadButton) downloadButton.disabled = false;
+    }
+
+    checkForUpdates();
+}
+
+async function initTitlebarButtons() {
+    document.getElementById("titlebar-reset-button")?.addEventListener("click", async () => {
+        loadIPCDownloadConfigIntoUI(createIPCDownloadConfig());
+        updateSettingsUI();
+    });
+
+    document.getElementById("titlebar-minimize-button")?.addEventListener("click", async () => {
+        appWindow.minimize();
+    });
+
+    document.getElementById("titlebar-close-button")?.addEventListener("click", async () => {
+        cleanupAndClose();
+    });
+}
+
+
+async function loadUserConfig() {
+    let userConfig: IPCUserConfig = await invoke("data_read_user_config");
+
+    if (!userConfig.valid) {
+        userConfig = createIPCUserConfig();
+    }
+
+    GLOBAL.userConfig = userConfig;
+    loadIPCUserConfigIntoUI(userConfig);
+}
+
+async function loadDownloadConfig() {
+    let downloadConfig: IPCDownloadConfig = await invoke("data_read_download_config");
+
+    if (!downloadConfig.valid) {
+        downloadConfig = createIPCDownloadConfig();
+    }
+
+    loadIPCDownloadConfigIntoUI(downloadConfig);
+    updateSettingsUI();
+}
+
+async function loadBulkDownloadConfigs() {
+    GLOBAL.downloadQueue = await invoke("data_read_queue");
+    GLOBAL.downloadHistory = await invoke("data_read_history");
+}
+
+import { invoke } from "@tauri-apps/api/core";
+import { WebviewWindow } from "@tauri-apps/api/webviewWindow";
+
+import { GLOBAL } from "./main";
+import { IPCUpdateStatus } from "../common/scripts/update";
+import { cleanupAndClose } from "./cleanup";
+
+export async function checkForUpdates() {
+    if (!GLOBAL.userConfig.update_notifications_enable) return;
+
+    const update_status: IPCUpdateStatus = await invoke<IPCUpdateStatus>("update_check");
+    if (!update_status.has_update) return;
+
+    const webview = new WebviewWindow("updateWindow", {
+        url: "update.html",
+        title: "VieClone Update",
+        width: 450,
+        height: 300,
+        minWidth: 450,
+        minHeight: 300,
+        decorations: false
+    });
+
+    const unlistenUpdateRequest = await webview.listen("update-request", () => {
+        webview.emit("update-request-return", update_status.metadata);
+    });
+
+    const unlistenUpdateYes = await webview.listen("update-yes", () => {
+        invoke("update_start");
+        cleanupAndClose();
+    });
+
+    const unlistenUpdateDontShow = await webview.listen("update-dontshow", () => {
+        GLOBAL.userConfig.update_notifications_enable = false;
+    });
+
+    const unlistenClose = await webview.onCloseRequested(async () => {
+        unlistenClose();
+
+        unlistenUpdateRequest();
+        unlistenUpdateYes();
+        unlistenUpdateDontShow();
+    });
+}
+
+import { open } from "@tauri-apps/plugin-dialog";
+
+export function isUrlPlaylist(url: String) {
+    const playlistKeywords = ["/playlist?", "&list=", "?list=", "/sets"];
+    for (const keyword of playlistKeywords) {
+        if (url.includes(keyword)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+export async function selectFolderDialogAsync(): Promise<String> {
+    const file = await open({
+        directory: true,
+    });
+
+    return file ? file : "";
+}
+
+interface IPCDownloadInputConfig {
+    url:           string;
+    is_playlist:   boolean;
+    download_type: string;
+}
+
+interface IPCDownloadSettingsConfig {
+    format:                         string;
+    format_type:                    string;
+
+    trim_enable:                    boolean;
+    trim_from_start_enable:         boolean;
+    trim_start:                     string;
+    trim_to_end_enable:             boolean;
+    trim_end:                       string;
+
+    size_change_enable:             boolean;
+    size_change_width:              string;
+    size_change_height:             string;
+
+    fps_change_enable:              boolean;
+    fps_change_framerate:           string;
+
+    vbr_set_bitrate_enable:         boolean,
+    vbr_set_bitrate:                string,
+    abr_set_bitrate_enable:         boolean,
+    abr_set_bitrate:                string,
+
+    custom_ffmpeg_arguments_enable: boolean;
+    custom_ffmpeg_arguments:        string[];
+
+    custom_ytdlp_arguments_enable:  boolean;
+    custom_ytdlp_arguments:         string[];
+}
+
+interface IPCDownloadOutputConfig {
+    name: string;
+    path: string;
+}
+
+export interface IPCDownloadConfig {
+    valid:    boolean;
+
+    input:    IPCDownloadInputConfig;
+    settings: IPCDownloadSettingsConfig;
+    output:   IPCDownloadOutputConfig;
+}
+
+export function createIPCDownloadConfig(): IPCDownloadConfig {
+    return {
+        valid: true,
+
+        input: {
+            url:           "",
+            is_playlist:   false,
+            download_type: "default"
+        },
+
+        settings: {
+            format:                         "mp4-fast",
+            format_type:                    "video",
+
+            trim_enable:                    false,
+            trim_from_start_enable:         false,
+            trim_start:                     "0:00",
+            trim_to_end_enable:             false,
+            trim_end:                       "0:10",
+
+            size_change_enable:             false,
+            size_change_width:              "1280",
+            size_change_height:             "-1",
+
+            fps_change_enable:              false,
+            fps_change_framerate:           "30",
+
+            vbr_set_bitrate_enable:         true,
+            vbr_set_bitrate:                "10M",
+            abr_set_bitrate_enable:         true,
+            abr_set_bitrate:                "320k",
+
+            custom_ytdlp_arguments_enable:  false,
+            custom_ytdlp_arguments:         [],
+
+            custom_ffmpeg_arguments_enable: false,
+            custom_ffmpeg_arguments:        []
+        },
+
+        output: {
+            name: "",
+            path: ""
+        }
+    };
+}
+
+export interface IPCLoggerEvent {
+    text: string;
+};
+
+import { getCurrentWindow } from '@tauri-apps/api/window';
+export const appWindow = getCurrentWindow();
+
+export function initTitlebar() {
+    document.getElementById("titlebar")?.addEventListener("mousedown", (e: MouseEvent) => {
+        if (
+            e.buttons === 1 &&
+            e.detail !== 2 &&
+            !(
+                (e.target as HTMLElement).closest("button") ||
+                (e.target as HTMLElement).closest("#titlebar-minimize-button") ||
+                (e.target as HTMLElement).closest("#titlebar-close-button")
+            )
+        ) {
+            appWindow.startDragging();
+        }
+    });
+}
+
+export function initUI() {
+    // disable right-click
+    document.addEventListener("contextmenu", (event) => event.preventDefault());
+
+    // disable autocomplete
+    document.querySelectorAll("input, form, textarea, select").forEach(element => {
+        element.setAttribute("autocomplete", "off");
+    });
+}
+
+export interface IPCUpdateMetadata {
+    version_id:  number,
+    version:     string,
+    description: string,
+}
+
+export interface IPCUpdateStatus {
+    has_update:    boolean,
+    metadata:      IPCUpdateMetadata,
+}
+
+export interface IPCUserConfig {
+    valid:                       boolean;
+
+    ui_queue_enable:             boolean;
+
+    update_notifications_enable: boolean;
+}
+
+export function createIPCUserConfig(): IPCUserConfig {
+    return {
+        valid:                       true,
+
+        ui_queue_enable:             false,
+
+        update_notifications_enable: true
+    };
+}

@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'custom-dark': '#141414',
+                        'custom-panel': '#161616',
+                        'custom-button': '#333333',
+                        'custom-button-hover': '#424242',
+                        'custom-text': '#d4d4d4',
+                        'custom-text-muted': '#a0a0a0',
+                        'custom-text-dark': '#585858',
+                        'custom-border': '#555555',
+                        'custom-border-light': '#414141',
+                        'custom-input': '#333333',
+                        'custom-input-focus': '#2d772d',
+                        'custom-titlebar': '#242424',
+                        'custom-titlebar-button': '#1f1f1f',
+                        'custom-green': '#32cd32',
+                        'custom-green-dark': '#104410',
+                        'custom-green-hover': '#135313',
+                        'custom-console': '#000000',
+                        'custom-checkbox': '#2d772d'
+                    }
+                }
+            }
+        }
+    </script>
+    <script type="module" src="windows/index/scripts/main.ts" defer></script>
+</head>
+
+<body class="bg-custom-dark text-custom-text font-sans overflow-x-hidden select-none m-0 p-0">
+    <div class="w-screen h-screen">
+        <!-- Titlebar - Thêm data-tauri-drag-region để có thể kéo thả -->
+        <div class="fixed w-full h-8 bg-custom-titlebar z-50 flex items-center justify-between" data-tauri-drag-region>
+            <div class="flex items-center pointer-events-none">
+                <img class="w-8 h-8 pointer-events-none" src="common/assets/images/banner.png" alt="Banner">
+                <p class="text-xs font-bold text-custom-text-dark absolute left-36 -top-px">v5.1.0</p>
+            </div>
+            <!-- Các nút phải có pointer-events-auto để vẫn có thể click được -->
+            <div class="flex items-center gap-1 h-full pointer-events-auto">
+                <button class="w-6 h-6 flex items-center justify-center bg-custom-titlebar-button text-custom-text-muted hover:text-red-300 hover:bg-custom-button rounded-lg transition-colors duration-200 cursor-pointer pointer-events-auto" id="titlebar-reset-button">
+                    <img class="max-w-4 max-h-4" src="common/assets/images/reset.png" alt="Reset">
+                </button>
+                <button class="w-6 h-6 flex items-center justify-center bg-custom-titlebar-button text-custom-text-muted hover:text-red-300 hover:bg-custom-button rounded-lg transition-colors duration-200 cursor-pointer pointer-events-auto" id="titlebar-history-edit-button">
+                    <img class="max-w-4 max-h-4" src="common/assets/images/history.png" alt="History">
+                </button>
+                <div class="w-px"></div>
+                <button class="w-8 h-full text-xs text-custom-text-muted hover:text-red-300 hover:bg-custom-button rounded-lg transition-colors duration-200 cursor-pointer pointer-events-auto" id="titlebar-minimize-button">_</button>
+                <button class="w-8 h-full text-xs text-custom-text-muted hover:text-red-300 hover:bg-custom-button rounded-lg transition-colors duration-200 cursor-pointer pointer-events-auto" id="titlebar-close-button">x</button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="pt-8 p-4">
+
+            <!-- Input Section -->
+            <div class="mb-4">
+                <p id="titlebar-id-text" class="text-sm text-custom-text-muted mb-2">ID: Loading...</p>
+                <p class="text-2xl text-custom-text-dark mb-2">Input</p>
+                <div class="bg-custom-panel border border-custom-border rounded-lg p-4">
+                    <p class="text-lg text-custom-text-muted mb-2">URL</p>
+                    <input type="text" class="w-full h-12 text-lg bg-custom-input text-custom-text border border-custom-border rounded-lg px-3 focus:border-custom-input-focus focus:outline-none" id="input-url-textbox">
+                </div>
+            </div>
+
+            <!-- Settings Section -->
+            <div class="mb-4 hidden">
+                <p class="text-2xl text-custom-text-dark mb-2">Settings</p>
+                <div class="bg-custom-panel border border-custom-border rounded-lg">
+                    <!-- Format Panel -->
+                    <div class="bg-custom-titlebar p-4 rounded-t-lg">
+                        <p class="text-lg text-custom-text-muted mb-2">Format</p>
+                        <select class="w-full h-12 text-lg bg-custom-input text-custom-text border border-custom-border rounded-lg px-3 cursor-pointer focus:border-custom-border-light focus:outline-none" id="settings-format-select">
+                            <optgroup label="Video">
+                                <option value="mp4-fast" type-value="video" selected="true">mp4 (fast)</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <!-- Size/FPS Panel -->
+                    <div class="border-l border-t border-custom-border-light p-4 bg-custom-panel">
+                        <div class="flex items-center mb-4">
+                            <div class="relative">
+                                <input type="checkbox" class="hidden" id="settings-size-fps-size-checkbox">
+                                <label for="settings-size-fps-size-checkbox" class="w-8 h-8 bg-custom-button rounded-lg cursor-pointer flex items-center justify-center transition-colors duration-200 hover:bg-custom-button-hover">
+                                    <span class="hidden w-2 h-4 border-r-2 border-b-2 border-white transform rotate-45 translate-x-px -translate-y-px"></span>
+                                </label>
+                            </div>
+                            <span class="text-base text-custom-text-muted ml-3">Change Size</span>
+                        </div>
+                        <div class="flex gap-2 mb-4">
+                            <input type="text" class="w-20 h-12 text-base bg-custom-input text-custom-text border border-custom-border rounded-l-lg px-3 focus:border-custom-input-focus focus:outline-none" id="settings-size-fps-width-textbox">
+                            <input type="text" class="w-20 h-12 text-base bg-custom-input text-custom-text border border-custom-border rounded-r-lg px-3 focus:border-custom-input-focus focus:outline-none" id="settings-size-fps-height-textbox">
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <div class="relative">
+                                <input type="checkbox" class="hidden" id="settings-size-fps-framerate-checkbox">
+                                <label for="settings-size-fps-framerate-checkbox" class="w-8 h-8 bg-custom-button rounded-lg cursor-pointer flex items-center justify-center transition-colors duration-200 hover:bg-custom-button-hover">
+                                    <span class="hidden w-2 h-4 border-r-2 border-b-2 border-white transform rotate-45 translate-x-px -translate-y-px"></span>
+                                </label>
+                            </div>
+                            <span class="text-base text-custom-text-muted ml-3">Change FPS</span>
+                        </div>
+                        <input type="text" class="w-20 h-12 text-base bg-custom-input text-custom-text border border-custom-border rounded-lg px-3 focus:border-custom-input-focus focus:outline-none" id="settings-size-fps-framerate-textbox">
+                    </div>
+
+                    <!-- Trim Panel -->
+                    <div class="border-t border-custom-border-light p-4 bg-custom-panel">
+                        <div class="flex items-center mb-4">
+                            <div class="relative">
+                                <input type="checkbox" class="hidden" id="settings-trim-checkbox">
+                                <label for="settings-trim-checkbox" class="w-8 h-8 bg-custom-button rounded-lg cursor-pointer flex items-center justify-center transition-colors duration-200 hover:bg-custom-button-hover">
+                                    <span class="hidden w-2 h-4 border-r-2 border-b-2 border-white transform rotate-45 translate-x-px -translate-y-px"></span>
+                                </label>
+                            </div>
+                            <span class="text-base text-custom-text-muted ml-3">Trim Time Between</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="relative">
+                                <input type="checkbox" class="hidden" id="settings-trim-start-checkbox">
+                                <label for="settings-trim-start-checkbox" class="w-8 h-8 bg-custom-button rounded-lg cursor-pointer flex items-center justify-center transition-colors duration-200 hover:bg-custom-button-hover">
+                                    <span class="hidden w-2 h-4 border-r-2 border-b-2 border-white transform rotate-45 translate-x-px -translate-y-px"></span>
+                                </label>
+                            </div>
+                            <input type="text" class="w-16 h-12 text-base bg-custom-input text-custom-text border border-custom-border rounded-lg px-3 focus:border-custom-input-focus focus:outline-none" id="settings-trim-start-textbox">
+                            <span class="text-base text-custom-text-muted">and</span>
+                            <div class="relative">
+                                <input type="checkbox" class="hidden" id="settings-trim-end-checkbox">
+                                <label for="settings-trim-end-checkbox" class="w-8 h-8 bg-custom-button rounded-lg cursor-pointer flex items-center justify-center transition-colors duration-200 hover:bg-custom-button-hover">
+                                    <span class="hidden w-2 h-4 border-r-2 border-b-2 border-white transform rotate-45 translate-x-px -translate-y-px"></span>
+                                </label>
+                            </div>
+                            <input type="text" class="w-16 h-12 text-base bg-custom-input text-custom-text border border-custom-border rounded-lg px-3 focus:border-custom-input-focus focus:outline-none" id="settings-trim-end-textbox">
+                        </div>
+                    </div>
+
+                    <!-- Bitrate Panel -->
+                    <div class="border-l border-t border-custom-border-light p-4 bg-custom-panel">
+                        <div class="flex items-center mb-4">
+                            <div class="relative">
+                                <input type="checkbox" class="hidden" id="settings-bitrate-video-checkbox">
+                                <label for="settings-bitrate-video-checkbox" class="w-8 h-8 bg-custom-button rounded-lg cursor-pointer flex items-center justify-center transition-colors duration-200 hover:bg-custom-button-hover">
+                                    <span class="hidden w-2 h-4 border-r-2 border-b-2 border-white transform rotate-45 translate-x-px -translate-y-px"></span>
+                                </label>
+                            </div>
+                            <span class="text-base text-custom-text-muted ml-3">Set VBR</span>
+                        </div>
+                        <input type="text" class="w-32 h-12 text-base bg-custom-input text-custom-text border border-custom-border rounded-l-lg px-3 focus:border-custom-input-focus focus:outline-none mb-4" id="settings-bitrate-video-textbox">
+                        
+                        <div class="flex items-center mb-4">
+                            <div class="relative">
+                                <input type="checkbox" class="hidden" id="settings-bitrate-audio-checkbox">
+                                <label for="settings-bitrate-audio-checkbox" class="w-8 h-8 bg-custom-button rounded-lg cursor-pointer flex items-center justify-center transition-colors duration-200 hover:bg-custom-button-hover">
+                                    <span class="hidden w-2 h-4 border-r-2 border-b-2 border-white transform rotate-45 translate-x-px -translate-y-px"></span>
+                                </label>
+                            </div>
+                            <span class="text-base text-custom-text-muted ml-3">Set ABR</span>
+                        </div>
+                        <input type="text" class="w-32 h-12 text-base bg-custom-input text-custom-text border border-custom-border rounded-r-lg px-3 focus:border-custom-input-focus focus:outline-none" id="settings-bitrate-audio-textbox">
+                    </div>
+
+                    <!-- Arguments Panel -->
+                    <div class="border-l border-custom-border-light p-4 bg-custom-panel rounded-br-lg rounded-tr-lg">
+                        <div class="flex items-center mb-4">
+                            <div class="relative">
+                                <input type="checkbox" class="hidden" id="settings-arguments-ytdlp-checkbox">
+                                <label for="settings-arguments-ytdlp-checkbox" class="w-8 h-8 bg-custom-button rounded-lg cursor-pointer flex items-center justify-center transition-colors duration-200 hover:bg-custom-button-hover">
+                                    <span class="hidden w-2 h-4 border-r-2 border-b-2 border-white transform rotate-45 translate-x-px -translate-y-px"></span>
+                                </label>
+                            </div>
+                            <span class="text-base text-custom-text-muted ml-3 whitespace-nowrap">Add yt-dlp Arguments</span>
+                        </div>
+                        <textarea class="w-full h-24 text-base bg-custom-input text-custom-text border border-custom-border rounded-lg px-3 py-2 resize-none focus:border-custom-input-focus focus:outline-none mb-4" id="settings-arguments-ytdlp-textarea"></textarea>
+                        
+                        <div class="flex items-center mb-4">
+                            <div class="relative">
+                                <input type="checkbox" class="hidden" id="settings-arguments-ffmpeg-checkbox">
+                                <label for="settings-arguments-ffmpeg-checkbox" class="w-8 h-8 bg-custom-button rounded-lg cursor-pointer flex items-center justify-center transition-colors duration-200 hover:bg-custom-button-hover">
+                                    <span class="hidden w-2 h-4 border-r-2 border-b-2 border-white transform rotate-45 translate-x-px -translate-y-px"></span>
+                                </label>
+                            </div>
+                            <span class="text-base text-custom-text-muted ml-3 whitespace-nowrap">Add FFmpeg Arguments</span>
+                        </div>
+                        <textarea class="w-full h-24 text-base bg-custom-input text-custom-text border border-custom-border rounded-lg px-3 py-2 resize-none focus:border-custom-input-focus focus:outline-none" id="settings-arguments-ffmpeg-textarea"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Output Section -->
+            <div class="mb-4">
+                <p class="text-2xl text-custom-text-dark mb-2">Output</p>
+                <div class="bg-custom-panel border border-custom-border rounded-lg">
+                    <!-- Name/Path Panel -->
+                    <div class="border-b border-custom-border-light p-4 rounded-t-lg">
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <p class="text-lg text-custom-text-muted mb-2" id="output-name-text">Name (Auto)</p>
+                                <input type="text" class="w-full h-12 text-lg bg-custom-input text-custom-text border border-custom-border rounded-lg px-3 focus:border-custom-input-focus focus:outline-none" id="output-name-textbox">
+                            </div>
+                            <div>
+                                <p class="text-lg text-custom-text-muted mb-2">Path</p>
+                                <div class="flex">
+                                    <button class="w-12 h-12 bg-custom-button text-custom-text border border-custom-border rounded-l-lg hover:bg-custom-button-hover transition-colors duration-200 cursor-pointer flex items-center justify-center" id="output-path-button">
+                                        <img class="max-w-6 max-h-6" src="common/assets/images/folder.png" alt="Folder">
+                                    </button>
+                                    <input type="text" class="flex-1 h-12 text-lg bg-custom-input text-custom-text border-t border-b border-custom-border px-3 focus:border-custom-input-focus focus:outline-none" id="output-path-textbox">
+                                    <button class="w-12 h-12 bg-custom-button text-custom-text border border-custom-border rounded-r-lg hover:bg-custom-button-hover transition-colors duration-200 cursor-pointer flex items-center justify-center" id="output-path-open-button">
+                                        <img class="max-w-6 max-h-6" src="common/assets/images/open.png" alt="Open">
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Queue Panel -->
+                    <div class="border-b border-custom-border-light p-4 hidden">
+                        <p class="text-lg text-custom-text-muted mb-2">Queue</p>
+                        <div class="bg-custom-titlebar border border-custom-border rounded-lg p-2 flex items-center gap-2">
+                            <button class="w-12 h-12 bg-custom-button text-custom-text border border-custom-border rounded-l-lg hover:bg-custom-button-hover transition-colors duration-200 cursor-pointer flex items-center justify-center" id="output-queue-add-button">
+                                <img class="max-w-6 max-h-6" src="common/assets/images/saveload-right.png" alt="Add">
+                            </button>
+                            <button class="w-12 h-12 bg-custom-button text-custom-text border border-custom-border rounded-r-lg hover:bg-custom-button-hover transition-colors duration-200 cursor-pointer flex items-center justify-center" id="output-queue-edit-button">
+                                <img class="max-w-6 max-h-6" src="common/assets/images/gear.png" alt="Edit">
+                            </button>
+                            <div class="flex items-center ml-4">
+                                <div class="relative">
+                                    <input type="checkbox" class="hidden" id="output-queue-checkbox-enable">
+                                    <label for="output-queue-checkbox-enable" class="w-8 h-8 bg-custom-button rounded-lg cursor-pointer flex items-center justify-center transition-colors duration-200 hover:bg-custom-button-hover">
+                                        <span class="hidden w-2 h-4 border-r-2 border-b-2 border-white transform rotate-45 translate-x-px -translate-y-px"></span>
+                                    </label>
+                                </div>
+                                <span class="text-base text-custom-text-muted ml-3">Enable</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Download Button -->
+                    <div class="p-4">
+                        <button class="w-full h-20 text-2xl font-bold bg-custom-green-dark text-custom-green border border-green-600 rounded-lg hover:bg-custom-green-hover hover:text-green-400 transition-all duration-500 hover:shadow-lg hover:shadow-green-400/20 disabled:bg-gray-600 disabled:text-gray-400 disabled:cursor-not-allowed" id="output-download-button">
+                            Download
+                        </button>
+                    </div>
+
+                    <!-- Console Panel -->
+                    <div class="border-l border-custom-border-light p-4 bg-custom-panel rounded-br-lg">
+                        <div class="flex items-center justify-between mb-2">
+                            <p class="text-lg text-custom-text-muted">Console</p>
+                            <button class="w-12 h-12 bg-transparent border-none rounded-lg hover:bg-custom-button transition-colors duration-200 cursor-pointer flex items-center justify-center" id="output-console-open-button">
+                                <img class="max-w-8 max-h-8" src="common/assets/images/console.png" alt="Console">
+                            </button>
+                        </div>
+                        <textarea readonly class="w-full h-32 text-base bg-custom-console text-white border border-custom-border-light rounded-lg px-3 py-2 resize-none focus:border-custom-border-light focus:outline-none" id="output-console-textarea"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="fixed bottom-0 left-0 h-1 bg-green-600 transition-all duration-700 ease-in-out" style="width: 0%" id="progress-bar"></div>
+    </div>
+
+    <script>
+        // Checkbox functionality
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const label = document.querySelector(`label[for="${this.id}"]`);
+                const checkmark = label.querySelector('span');
+                
+                if (this.checked) {
+                    label.classList.add('bg-custom-checkbox');
+                    label.classList.remove('bg-custom-button');
+                    checkmark.classList.remove('hidden');
+                } else {
+                    label.classList.remove('bg-custom-checkbox');
+                    label.classList.add('bg-custom-button');
+                    checkmark.classList.add('hidden');
+                }
+            });
+        });
+
+        // Titlebar button functionality
+        document.getElementById('titlebar-minimize-button').addEventListener('click', () => {
+            if (window.__TAURI__) {
+                window.__TAURI__.window.getCurrent().minimize();
+            }
+        });
+
+        document.getElementById('titlebar-close-button').addEventListener('click', () => {
+            if (window.__TAURI__) {
+                window.__TAURI__.window.getCurrent().close();
+            }
+        });
+
+        // Scrollbar styling
+        const style = document.createElement('style');
+        style.textContent = `
+            ::-webkit-scrollbar {
+                width: 4px;
+            }
+            ::-webkit-scrollbar-track {
+                background: #202020;
+            }
+            ::-webkit-scrollbar-thumb {
+                background: #6e6e6e;
+                border-radius: 5px;
+            }
+            ::-webkit-scrollbar-thumb:hover {
+                background: #505050;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+
+</html>
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script type="module" src="windows/console/scripts/main.ts" defer></script>
+
+    <!-- common -->
+    <link rel="stylesheet" href="common/styles/body.css">
+    <link rel="stylesheet" href="common/styles/fonts.css">
+
+    <link rel="stylesheet" href="common/styles/containers/main.css">
+    <link rel="stylesheet" href="common/styles/containers/titlebar.css">
+
+    <link rel="stylesheet" href="common/styles/controls/button.css">
+    <link rel="stylesheet" href="common/styles/controls/text.css">
+    <link rel="stylesheet" href="common/styles/controls/textarea.css">
+    <!-- common -->
+
+    <link rel="stylesheet" href="windows/console/styles/main.css">
+</head>
+
+<body>
+    <div class="container-main">
+        <div class="titlebar" id="titlebar">
+            <img class="titlebar__banner" src="common/assets/images/banner.png">
+            <div class="titlebar__buttons">
+                <button id="titlebar-minimize-button">_</button>
+                <button id="titlebar-close-button">x</button>
+            </div>
+        </div>
+
+        <p class="text text--console">Console</p>
+
+        <textarea readonly class="console-textarea" id="console-textarea"></textarea>
+        <button class="button button--console-clear" id="console-clear-button">Clear</button>
+    </div>
+</body>
+
+</html>
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script type="module" src="windows/history/scripts/main.ts" defer></script>
+
+    <!-- common -->
+    <link rel="stylesheet" href="common/styles/body.css">
+    <link rel="stylesheet" href="common/styles/fonts.css">
+
+    <link rel="stylesheet" href="common/styles/containers/main.css">
+    <link rel="stylesheet" href="common/styles/containers/titlebar.css">
+
+    <link rel="stylesheet" href="common/styles/controls/button.css">
+    <link rel="stylesheet" href="common/styles/controls/select.css">
+    <link rel="stylesheet" href="common/styles/controls/text.css">
+    <!-- common -->
+
+    <link rel="stylesheet" href="common/styles/tools/select-window.css">
+</head>
+
+<body>
+    <div class="container-main">
+        <div class="titlebar" id="titlebar">
+            <img class="titlebar__banner" src="common/assets/images/banner.png">
+            <div class="titlebar__buttons">
+                <button id="titlebar-minimize-button">_</button>
+                <button id="titlebar-close-button">x</button>
+            </div>
+        </div>
+
+        <p class="text text--header">History</p>
+
+        <select class="select select--box" id="history-select" multiple=""></select>
+
+        <button class="button image-button--custom button--load-selected" id="history-load-selected-button"><img
+                src="common/assets/images/saveload-left.png"></button>
+        <button class="button image-button--custom button--remove-selected" id="history-remove-selected-button"><img
+                src="common/assets/images/trash.png"></button>
+        <button class="button button--saveclose" id="history-saveclose-button">Save & Close</button>
+    </div>
+</body>
+
+</html>
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script type="module" src="windows/queue/scripts/main.ts" defer></script>
+
+    <!-- common -->
+    <link rel="stylesheet" href="common/styles/body.css">
+    <link rel="stylesheet" href="common/styles/fonts.css">
+
+    <link rel="stylesheet" href="common/styles/containers/main.css">
+    <link rel="stylesheet" href="common/styles/containers/titlebar.css">
+
+    <link rel="stylesheet" href="common/styles/controls/button.css">
+    <link rel="stylesheet" href="common/styles/controls/select.css">
+    <link rel="stylesheet" href="common/styles/controls/text.css">
+    <!-- common -->
+
+    <link rel="stylesheet" href="common/styles/tools/select-window.css">
+</head>
+
+<body>
+    <div class="container-main">
+        <div class="titlebar" id="titlebar">
+            <img class="titlebar__banner" src="common/assets/images/banner.png">
+            <div class="titlebar__buttons">
+                <button id="titlebar-minimize-button">_</button>
+                <button id="titlebar-close-button">x</button>
+            </div>
+        </div>
+
+        <p class="text text--header">Queue</p>
+
+        <select class="select select--box" id="queue-select" multiple=""></select>
+
+        <button class="button image-button--custom button--load-selected" id="queue-load-selected-button"><img
+                src="common/assets/images/saveload-left.png"></button>
+        <button class="button image-button--custom button--remove-selected" id="queue-remove-selected-button"><img
+                src="common/assets/images/trash.png"></button>
+        <button class="button button--saveclose" id="queue-saveclose-button">Save & Close</button>
+    </div>
+</body>
+
+</html>
+
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script type="module" src="windows/update/scripts/main.ts" defer></script>
+
+    <!-- common -->
+    <link rel="stylesheet" href="common/styles/body.css">
+    <link rel="stylesheet" href="common/styles/fonts.css">
+
+    <link rel="stylesheet" href="common/styles/containers/main.css">
+    <link rel="stylesheet" href="common/styles/containers/titlebar.css">
+
+    <link rel="stylesheet" href="common/styles/controls/button.css">
+    <link rel="stylesheet" href="common/styles/controls/panel.css">
+    <link rel="stylesheet" href="common/styles/controls/text.css">
+    <!-- common -->
+
+    <link rel="stylesheet" href="windows/update/styles/main.css">
+</head>
+
+<body>
+    <div class="container-main">
+        <div class="titlebar" id="titlebar">
+            <img class="titlebar__banner" src="common/assets/images/banner.png">
+            <div class="titlebar__buttons">
+                <button id="titlebar-minimize-button">_</button>
+                <button id="titlebar-close-button">x</button>
+            </div>
+        </div>
+
+        <p class="text text--header">VieClone has an update!</p>
+
+        <div class="panel panel--background">
+            <p class="text text--version" id="version-text">Version:</p>
+            <p class="text text--changelog">Changelog:</p>
+            <p class="text text--description" id="description-text"></p>
+        </div>
+
+        <p class="text text--prompt">Do you want to automatically install it?</p>
+        <button class="button button--yes" id="yes-button">Yes</button>
+        <button class="button button--no" id="no-button">No</button>
+        <button class="button button--dontshow" id="dontshow-button">No, don't show again</button>
+    </div>
+</body>
+
+</html>

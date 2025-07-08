@@ -11,3 +11,8 @@ next-env.d.ts
 /src-tauri/gen/android/my-release-key.jks
 
 /src-tauri/gen/android/keystore.properties
+
+# Temp files
+src-tauri/VieClone
+*.tmp
+*.temp
