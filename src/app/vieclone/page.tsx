@@ -27,7 +27,7 @@ export default function VieClonePage() {
 
                     <div className="text-center">
                         <a
-                            href="https://viedesk.sgp1.cdn.digitaloceanspaces.com/tools/VieClone.exe"
+                            href="https://github.com/khieu-dv/vie-clone/releases/download/1.0.0/vieclone_tauri_0.1.0_x64-setup.exe"
                             download
                             className="inline-block bg-blue-600 text-white text-lg font-semibold px-6 py-3 rounded-lg hover:bg-blue-700 transition"
                         >
