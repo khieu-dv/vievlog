@@ -1,0 +1,27 @@
+body {
+    margin: 0;
+    padding: 0;
+
+    background-color: rgb(20, 20, 20);
+
+    overflow-x: hidden;
+
+    user-select: none;
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: #202020;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #6e6e6e;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #505050;
+}

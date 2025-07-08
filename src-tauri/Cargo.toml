@@ -10,16 +10,39 @@ rust-version = "1.77.2"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[[bin]]
+name = "VieClone"
+path = "src/main.rs"
+
 [lib]
-name = "app_lib"
+# The `_lib` suffix may seem redundant but it is necessary
+# to make the lib name unique and wouldn't conflict with the bin name.
+# This seems to be only an issue on Windows, see https://github.com/rust-lang/cargo/issues/8519
+name = "media_downloader_lib"
 crate-type = ["staticlib", "cdylib", "rlib"]
 
 [build-dependencies]
-tauri-build = { version = "2.2.0", features = [] }
+tauri-build = { version = "2", features = [] }
 
 [dependencies]
-serde_json = "1.0"
-serde = { version = "1.0", features = ["derive"] }
-log = "0.4"
-tauri = { version = "2.5.0", features = [] }
-tauri-plugin-log = "2.0.0-rc"
+tauri = { version = "2", features = [] }
+tauri-plugin-opener = "2"
+tauri-plugin-dialog = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+reqwest = { version = "0.12.20", features = ["blocking", "stream"] }
+tokio = "1.45.1"
+futures-util = "0.3.31"
+flate2 = "1.1.2"
+zip = { version = "4.1.0", default-features = false, features = ["deflate"] }
+xz2 = "0.1.7"
+tar = "0.4.44"
+sysinfo = "0.35.2"
+webbrowser = "1.0.5"
+dirs = "6.0.0"
+
+base64 = "0.21"
+machine-uid = "0.5.3"
+mac_address = "1.1"
+rand = "0.9.0"
+tauri-plugin-http = "2"

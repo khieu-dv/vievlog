@@ -1,0 +1,10 @@
+.text {
+    font-size: 2.5vw;
+    font-family: Roboto-Medium;
+
+    position: absolute;
+
+    color: rgb(160, 160, 160);
+    
+    line-height: 0px;
+}

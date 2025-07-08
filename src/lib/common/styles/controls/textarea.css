@@ -1,0 +1,30 @@
+.textarea {
+    width: 20vw;
+    height: 10vw;
+
+    font-size: 2vw;
+    font-family: Roboto-Regular;
+
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+    color: rgb(212, 212, 212);
+    background-color: rgb(51, 51, 51);
+
+    border-radius: 1vw;
+    border: 0.1vw solid rgb(85, 85, 85);
+
+    resize: none;
+}
+
+.textarea:focus {
+    border-color: rgb(51, 97, 51);
+    outline: none;
+}
+
+textarea:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

@@ -1,0 +1,47 @@
+/* hide the default checkbox */
+.checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.checkbox .checkbox-checkmark {
+    width: 3.25vw;
+    height: 3.25vw;
+
+    position: absolute;
+
+    background-color: rgb(51, 51, 51);
+
+    border-radius: 1vw;
+
+    cursor: pointer;
+    
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.checkbox input[type="checkbox"]:checked+.checkbox-checkmark {
+    background-color: rgb(45, 119, 45);
+}
+
+/* checkmark symbol */
+.checkbox .checkbox-checkmark::after {
+    width: 0.55vw;
+    height: 1.5vw;
+
+    position: absolute;
+    left: 1.3vw;
+    top: 0.5vw;
+
+    content: "";
+
+    border: solid white;
+    border-width: 0 0.15vw 0.15vw 0;
+
+    transform: rotate(45deg);
+
+    display: none;
+}
+
+/* show checkbox-checkmark*/
+.checkbox input[type="checkbox"]:checked+.checkbox-checkmark::after {
+    display: block;
+}
