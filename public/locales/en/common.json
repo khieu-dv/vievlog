@@ -6,30 +6,30 @@
     "videos": "Videos"
   },
   "home": {
-    "oneStopPlatform": "VieVlog – Your Ultimate Software Development Learning Platform",
+    "oneStopPlatform": "VieClone – Your Ultimate Software Development Learning Platform",
     "learnIT": "Access high-quality programming tutorials, coding lessons, and developer resources—100% free and created by expert instructors.",
     "viewAllPosts": "Browse All Programming Articles",
     "shoppingExperience": "Learning Experience",
     "latestBlogPosts": "Latest Developer Blog Posts",
     "exploreArticles": "Discover trending tech guides, programming tips, and software tutorials",
-    "vieTopik": "VieVlog – Top-Rated Hub for Learning Programming & IT",
+    "vieTopik": "VieClone – Top-Rated Hub for Learning Programming & IT",
     "yourOneStopShop": "Master coding skills, prepare for IT certifications, and grow your tech career with our all-in-one learning platform—free access to premium content!",
     "signUpNow": "Create a Free Account",
     "browseIT": "Explore IT Courses",
     "customerTestimonialsTitle": "What Our Learners Say",
-    "customerTestimonialsSubtitle": "See how developers and students around the world are growing with VieVlog",
+    "customerTestimonialsSubtitle": "See how developers and students around the world are growing with VieClone",
     "testimonial1": {
-      "quote": "VieVlog gave me the confidence to pass my IT certification with ease.",
+      "quote": "VieClone gave me the confidence to pass my IT certification with ease.",
       "name": "Nguyen Minh Anh",
       "role": "International Computer Science Student"
     },
     "testimonial2": {
-      "quote": "Learning coding through VieVlog is engaging, efficient, and fun!",
+      "quote": "Learning coding through VieClone is engaging, efficient, and fun!",
       "name": "Tran Hai Nam",
       "role": "Full-time Office Professional"
     },
     "testimonial3": {
-      "quote": "With VieVlog, my programming skills improved faster than any other platform.",
+      "quote": "With VieClone, my programming skills improved faster than any other platform.",
       "name": "Le Thanh Huong",
       "role": "University Student – Software Engineering"
     }
@@ -40,7 +40,7 @@
   "videos": {},
   "chats": {},
   "footer": {
-    "aboutUs": "About VieVlog",
+    "aboutUs": "About VieClone",
     "careers": "Join Our Team",
     "blog": "Developer Blog – Programming Tips & IT News",
     "contact": "Contact Support",
@@ -49,7 +49,7 @@
     "privacyPolicy": "Privacy Policy",
     "termsOfService": "Terms of Use",
     "followUs": "Connect With Us on Social Media",
-    "footerNote": "© 2025 VieVlog. All rights reserved.",
+    "footerNote": "© 2025 VieClone. All rights reserved.",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
     "cookies": "Cookie Preferences",

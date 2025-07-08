@@ -1,3 +1,3 @@
-package com.vievlog.windows
+package com.vieclone.windows
 
 class MainActivity : TauriActivity()

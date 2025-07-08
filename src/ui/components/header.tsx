@@ -52,7 +52,7 @@ export function Header({ showAuth = true }: HeaderProps) {
           <div className="flex items-center gap-6">
             <Link href="/" className="flex items-center gap-2">
               <span className="text-xl font-bold tracking-tight bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-                VieVlog
+                VieClone
               </span>
             </Link>
             <nav className="hidden md:flex">

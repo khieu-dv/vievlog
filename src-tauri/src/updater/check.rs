@@ -20,7 +20,7 @@ pub struct IPCUpdateStatus {
 
 pub async fn check_for_updates() -> IPCUpdateStatus {
     let result: Result<String, reqwest::Error> =
-        download_text_async("https://github.com/o7q/VieClone/releases/latest/download/meta.json")
+        download_text_async("https://github.com/khieu-dv/VieClone/releases/latest/download/meta.json")
             .await;
 
     match result {

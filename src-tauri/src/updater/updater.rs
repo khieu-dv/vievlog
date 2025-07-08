@@ -56,7 +56,7 @@ impl Updater {
         }
 
         let _ = download_file_sync(
-            "https://github.com/o7q/VieClone/releases/latest/download/VieClone.exe",
+            "https://github.com/khieu-dv/VieClone/releases/latest/download/VieClone.exe",
             "VieClone.exe",
         );
         let _ = Command::new("VieClone.exe")
@@ -77,7 +77,7 @@ impl Updater {
         }
 
         let _ = download_file_sync(
-            "https://github.com/o7q/VieClone/releases/latest/download/VieClone_linux",
+            "https://github.com/khieu-dv/VieClone/releases/latest/download/VieClone_linux",
             "VieClone_linux",
         );
 

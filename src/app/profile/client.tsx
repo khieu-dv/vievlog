@@ -129,7 +129,7 @@ export function ProfilePageClient() {
       </main>
       <footer className="bg-white py-6">
         <div className="container mx-auto max-w-4xl px-4 text-center text-sm text-gray-500">
-          © {new Date().getFullYear()} VieVlog. All rights reserved.
+          © {new Date().getFullYear()} VieClone. All rights reserved.
         </div>
       </footer>
     </div>

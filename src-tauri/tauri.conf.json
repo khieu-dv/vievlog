@@ -1,8 +1,8 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "vievlog_tauri",
+  "productName": "vieclone_tauri",
   "version": "0.1.0",
-  "identifier": "com.vievlog.windows",
+  "identifier": "com.vieclone.windows",
   "build": {
     "frontendDist": "../out",
     "devUrl": "http://localhost:3000",
@@ -13,7 +13,7 @@
     "withGlobalTauri": true,
     "windows": [
       {
-        "title": "vievlog tauri",
+        "title": "VieClone",
         "width": 800,
         "height": 600,
         "resizable": true,
