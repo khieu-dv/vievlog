@@ -43,10 +43,7 @@ export function Header({ showAuth = true }: HeaderProps) {
 
   const navigation = [
     { name: t("header.home"), href: "/" },
-    { name: t("header.posts"), href: "/posts" },
-    { name: "clone", href: "/clone" },
-    { name: t("header.videos"), href: "/videos" },
-    { name: t("header.chats"), href: "/chat" },];
+    { name: "Clone", href: "/clone" },];
 
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">

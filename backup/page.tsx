@@ -481,6 +481,181 @@ export default function ClonePage() {
                     </div>
                 </div>
 
+                {/* Settings Section */}
+                <div className="mb-4">
+                    <p className="text-2xl text-custom-text-dark mb-2">Settings</p>
+                    <div className="bg-custom-panel border border-custom-border rounded-lg">
+                        {/* Format Panel */}
+                        <div className="bg-custom-titlebar p-4 rounded-t-lg">
+                            <p className="text-lg text-custom-text-muted mb-2">Format</p>
+                            <select
+                                className="w-full h-12 text-lg bg-custom-input text-custom-text border border-custom-border rounded-lg px-3 cursor-pointer focus:border-custom-border-light focus:outline-none"
+                                value={currentConfig.settings.format}
+                                onChange={(e) => setCurrentConfig(prev => ({
+                                    ...prev,
+                                    settings: { ...prev.settings, format: e.target.value }
+                                }))}
+                            >
+                                <optgroup label="Video">
+                                    <option value="mp4-fast">mp4 (fast)</option>
+                                    <option value="mp4-best">mp4 (best)</option>
+                                    <option value="webm">webm</option>
+                                </optgroup>
+                                <optgroup label="Audio">
+                                    <option value="mp3">mp3</option>
+                                    <option value="flac">flac</option>
+                                </optgroup>
+                            </select>
+                        </div>
+
+                        {/* Size/FPS Panel */}
+                        <div className="border-l border-t border-custom-border-light p-4 bg-custom-panel">
+                            <CustomCheckbox
+                                id="size-checkbox"
+                                checked={changeSizeEnabled}
+                                onChange={setChangeSizeEnabled}
+                                label="Change Size"
+                            />
+                            <div className="flex gap-2 mb-4">
+                                <input
+                                    type="text"
+                                    className="w-20 h-12 text-base bg-custom-input text-custom-text border border-custom-border rounded-l-lg px-3 focus:border-custom-input-focus focus:outline-none"
+                                    value={width}
+                                    onChange={(e) => setWidth(e.target.value)}
+                                    placeholder="Width"
+                                    disabled={!changeSizeEnabled}
+                                />
+                                <input
+                                    type="text"
+                                    className="w-20 h-12 text-base bg-custom-input text-custom-text border border-custom-border rounded-r-lg px-3 focus:border-custom-input-focus focus:outline-none"
+                                    value={height}
+                                    onChange={(e) => setHeight(e.target.value)}
+                                    placeholder="Height"
+                                    disabled={!changeSizeEnabled}
+                                />
+                            </div>
+                            <CustomCheckbox
+                                id="fps-checkbox"
+                                checked={changeFpsEnabled}
+                                onChange={setChangeFpsEnabled}
+                                label="Change FPS"
+                            />
+                            <input
+                                type="text"
+                                className="w-20 h-12 text-base bg-custom-input text-custom-text border border-custom-border rounded-lg px-3 focus:border-custom-input-focus focus:outline-none"
+                                value={framerate}
+                                onChange={(e) => setFramerate(e.target.value)}
+                                placeholder="FPS"
+                                disabled={!changeFpsEnabled}
+                            />
+                        </div>
+
+                        {/* Trim Panel */}
+                        <div className="border-t border-custom-border-light p-4 bg-custom-panel">
+                            <CustomCheckbox
+                                id="trim-checkbox"
+                                checked={trimEnabled}
+                                onChange={setTrimEnabled}
+                                label="Trim Time Between"
+                            />
+                            <div className="flex items-center gap-2">
+                                <CustomCheckbox
+                                    id="trim-start-checkbox"
+                                    checked={trimStartEnabled}
+                                    onChange={setTrimStartEnabled}
+                                    label=""
+                                />
+                                <input
+                                    type="text"
+                                    className="w-16 h-12 text-base bg-custom-input text-custom-text border border-custom-border rounded-lg px-3 focus:border-custom-input-focus focus:outline-none"
+                                    value={trimStart}
+                                    onChange={(e) => setTrimStart(e.target.value)}
+                                    placeholder="0:00"
+                                    disabled={!trimEnabled || !trimStartEnabled}
+                                />
+                                <span className="text-base text-custom-text-muted">and</span>
+                                <CustomCheckbox
+                                    id="trim-end-checkbox"
+                                    checked={trimEndEnabled}
+                                    onChange={setTrimEndEnabled}
+                                    label=""
+                                />
+                                <input
+                                    type="text"
+                                    className="w-16 h-12 text-base bg-custom-input text-custom-text border border-custom-border rounded-lg px-3 focus:border-custom-input-focus focus:outline-none"
+                                    value={trimEnd}
+                                    onChange={(e) => setTrimEnd(e.target.value)}
+                                    placeholder="0:10"
+                                    disabled={!trimEnabled || !trimEndEnabled}
+                                />
+                            </div>
+                        </div>
+
+                        {/* Bitrate Panel */}
+                        <div className="border-l border-t border-custom-border-light p-4 bg-custom-panel">
+                            <CustomCheckbox
+                                id="video-bitrate-checkbox"
+                                checked={videoBitrateEnabled}
+                                onChange={setVideoBitrateEnabled}
+                                label="Set VBR"
+                            />
+                            <input
+                                type="text"
+                                className="w-32 h-12 text-base bg-custom-input text-custom-text border border-custom-border rounded-lg px-3 focus:border-custom-input-focus focus:outline-none mb-4"
+                                value={videoBitrate}
+                                onChange={(e) => setVideoBitrate(e.target.value)}
+                                placeholder="10M"
+                                disabled={!videoBitrateEnabled}
+                            />
+
+                            <CustomCheckbox
+                                id="audio-bitrate-checkbox"
+                                checked={audioBitrateEnabled}
+                                onChange={setAudioBitrateEnabled}
+                                label="Set ABR"
+                            />
+                            <input
+                                type="text"
+                                className="w-32 h-12 text-base bg-custom-input text-custom-text border border-custom-border rounded-lg px-3 focus:border-custom-input-focus focus:outline-none"
+                                value={audioBitrate}
+                                onChange={(e) => setAudioBitrate(e.target.value)}
+                                placeholder="320k"
+                                disabled={!audioBitrateEnabled}
+                            />
+                        </div>
+
+                        {/* Arguments Panel */}
+                        <div className="border-l border-custom-border-light p-4 bg-custom-panel rounded-br-lg rounded-tr-lg">
+                            <CustomCheckbox
+                                id="ytdlp-args-checkbox"
+                                checked={ytdlpArgsEnabled}
+                                onChange={setYtdlpArgsEnabled}
+                                label="Add yt-dlp Arguments"
+                            />
+                            <textarea
+                                className="w-full h-24 text-base bg-custom-input text-custom-text border border-custom-border rounded-lg px-3 py-2 resize-none focus:border-custom-input-focus focus:outline-none mb-4"
+                                value={ytdlpArgs}
+                                onChange={(e) => setYtdlpArgs(e.target.value)}
+                                placeholder="--audio-quality 0 --embed-chapters"
+                                disabled={!ytdlpArgsEnabled}
+                            />
+
+                            <CustomCheckbox
+                                id="ffmpeg-args-checkbox"
+                                checked={ffmpegArgsEnabled}
+                                onChange={setFfmpegArgsEnabled}
+                                label="Add FFmpeg Arguments"
+                            />
+                            <textarea
+                                className="w-full h-24 text-base bg-custom-input text-custom-text border border-custom-border rounded-lg px-3 py-2 resize-none focus:border-custom-input-focus focus:outline-none"
+                                value={ffmpegArgs}
+                                onChange={(e) => setFfmpegArgs(e.target.value)}
+                                placeholder="-c:v libx264 -preset fast"
+                                disabled={!ffmpegArgsEnabled}
+                            />
+                        </div>
+                    </div>
+                </div>
 
                 {/* Output Section */}
                 <div className="mb-4">
