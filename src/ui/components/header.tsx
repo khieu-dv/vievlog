@@ -45,6 +45,7 @@ export function Header({ showAuth = true }: HeaderProps) {
     { name: t("header.home"), href: "/" },
     { name: t("header.posts"), href: "/posts" },
     { name: "VieClone", href: "/vieclone" },
+    { name: "VieShare", href: "/vieshare" },
     { name: t("header.videos"), href: "/videos" },
     { name: t("header.chats"), href: "/chat" },];
 
