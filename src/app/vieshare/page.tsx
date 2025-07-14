@@ -10,20 +10,20 @@ export default function VieSharePage() {
                     <div className="flex flex-col items-center">
                         <h1 className="text-3xl font-bold text-gray-800">VieShare</h1>
                         <p className="text-gray-600 text-center mt-2">
-                            Ứng dụng quản lý cấu hình và kết nối tới <strong>FRP (Fast Reverse Proxy)</strong> một cách trực quan và dễ dàng.
+                            An intuitive and easy-to-use application for managing configurations and connections to <strong>FRP (Fast Reverse Proxy)</strong>.
                         </p>
                     </div>
 
                     <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-                        <p className="text-gray-700 mb-2 font-medium">Tính năng chính:</p>
+                        <p className="text-gray-700 mb-2 font-medium">Key Features:</p>
                         <ul className="list-disc pl-5 text-gray-600 space-y-1">
-                            <li>Kết nối/ngắt kết nối FRP server nhanh chóng</li>
-                            <li>Thêm và xóa port động ngay trong ứng dụng</li>
-                            <li>Truy cập nhanh ứng dụng từ xa qua port</li>
-                            <li>Tự động đặt tên proxy và chọn port phù hợp</li>
-                            <li>Xem trạng thái kết nối và lượng port đang dùng</li>
-                            <li>Bảo mật bằng token</li>
-                            <li>Giao diện tối giản, hoạt động mượt mà</li>
+                            <li>Quickly connect/disconnect to the FRP server</li>
+                            <li>Add and remove ports dynamically within the app</li>
+                            <li>Instant remote access via port</li>
+                            <li>Auto-generate proxy names and assign suitable ports</li>
+                            <li>Monitor connection status and port usage</li>
+                            <li>Secure access with token-based authentication</li>
+                            <li>Minimalist interface with smooth performance</li>
                         </ul>
                     </div>
 
@@ -33,9 +33,9 @@ export default function VieSharePage() {
                             download
                             className="inline-block bg-green-600 text-white text-lg font-semibold px-6 py-3 rounded-lg hover:bg-green-700 transition"
                         >
-                            Tải xuống cho Windows (.exe)
+                            Download for Windows (.exe)
                         </a>
-                        <p className="text-sm text-gray-500 mt-2">Phiên bản hiện tại: 1.1.0</p>
+                        <p className="text-sm text-gray-500 mt-2">Current version: 1.1.0</p>
                     </div>
                 </div>
             </div>

@@ -11,17 +11,17 @@ export default function VieClonePage() {
 
                         <h1 className="text-3xl font-bold text-gray-800">VieClone</h1>
                         <p className="text-gray-600 text-center mt-2">
-                            Phần mềm tải video từ <strong>YouTube</strong>, <strong>Facebook</strong> và nhiều nền tảng khác chỉ với một đường link.
+                            A tool to download videos from <strong>YouTube</strong>, <strong>Facebook</strong>, and many other platforms using just a link.
                         </p>
                     </div>
 
                     <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-                        <p className="text-gray-700 mb-2 font-medium">Tính năng nổi bật:</p>
+                        <p className="text-gray-700 mb-2 font-medium">Key Features:</p>
                         <ul className="list-disc pl-5 text-gray-600 space-y-1">
-                            <li>Nhập link → tải ngay</li>
-                            <li>Hỗ trợ nhiều nền tảng như YouTube, Facebook</li>
-                            <li>Chạy mượt mà trên hệ điều hành Windows</li>
-                            <li>Giao diện đơn giản, dễ sử dụng</li>
+                            <li>Paste a link → download instantly</li>
+                            <li>Supports multiple platforms like YouTube, Facebook</li>
+                            <li>Runs smoothly on Windows OS</li>
+                            <li>Simple and user-friendly interface</li>
                         </ul>
                     </div>
 
@@ -31,9 +31,9 @@ export default function VieClonePage() {
                             download
                             className="inline-block bg-blue-600 text-white text-lg font-semibold px-6 py-3 rounded-lg hover:bg-blue-700 transition"
                         >
-                            Tải xuống cho Windows (.exe)
+                            Download for Windows (.exe)
                         </a>
-                        <p className="text-sm text-gray-500 mt-2">Phiên bản hiện tại: 5.1.0</p>
+                        <p className="text-sm text-gray-500 mt-2">Current version: 1.1.0</p>
                     </div>
                 </div>
             </div>
