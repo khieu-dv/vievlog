@@ -3,9 +3,7 @@ import { useTranslation } from "react-i18next";
 import { languages } from "../components/common/locales";
 
 // Refined interface - now more flexible and dynamic
-export interface MultilingualContent {
-  [key: string]: any;
-}
+export type MultilingualContent = Record<string, any>
 
 // Helper to get supported language codes
 export const getSupportedLanguageCodes = (): string[] => {
@@ -45,7 +43,7 @@ export const normalizeLanguageCode = (code: string): string => {
 export const getLocalizedContent = (
   content: MultilingualContent,
   field: string,
-  currentLanguage: string = 'en'
+  currentLanguage = 'en'
 ): string => {
   if (!content || typeof content !== 'object') {
     return '';

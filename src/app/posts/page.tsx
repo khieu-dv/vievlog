@@ -6,7 +6,8 @@ import { Footer } from "~/components/common/footer";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import PocketBase from 'pocketbase';
-import { Code } from "lucide-react";
+import { Code, ArrowRight, BookOpen } from "lucide-react";
+import { Button } from "~/components/ui/button";
 import { useSession } from "../../lib/auth-client";
 import PostComponent from "~/components/features/posts/PostComponent";
 import { Comment, Post, Category } from '../../lib/types';
@@ -50,9 +51,9 @@ export default function PostsPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
-  const [commentInputs, setCommentInputs] = useState<{ [key: string]: string }>({});
-  const [submittingComment, setSubmittingComment] = useState<{ [key: string]: boolean }>({});
-  const [commentPages, setCommentPages] = useState<{ [key: string]: number }>({});
+  const [commentInputs, setCommentInputs] = useState<Record<string, string>>({});
+  const [submittingComment, setSubmittingComment] = useState<Record<string, boolean>>({});
+  const [commentPages, setCommentPages] = useState<Record<string, number>>({});
   const [sidebarVisible, setSidebarVisible] = useState(true);
   const [availableLanguages, setAvailableLanguages] = useState<string[]>([]);
 
@@ -116,13 +117,13 @@ export default function PostsPage() {
     }
   };
 
-  const fetchPosts = async (pageNumber: number, categoryId: string = "") => {
+  const fetchPosts = async (pageNumber: number, categoryId = "") => {
     if (isLoading) return;
 
     setIsLoading(true);
     try {
       // Build filter params
-      let params: any = {
+      const params: any = {
         page: pageNumber,
         perPage: POSTS_PER_PAGE,
         sort: '-created',
@@ -206,7 +207,7 @@ export default function PostsPage() {
   };
 
   // Fetch comments for post with pagination support
-  const fetchCommentsForPost = async (postId: string, reset: boolean = false) => {
+  const fetchCommentsForPost = async (postId: string, reset = false) => {
     try {
       const currentPage = reset ? 1 : (commentPages[postId] || 1);
 
@@ -407,23 +408,23 @@ export default function PostsPage() {
   const languageStats = getLanguageStats();
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900">
       <Header />
 
-      {/* Mobile sidebar toggle buttons (visible only on small screens) */}
-      <div className="fixed bottom-4 right-4 z-50 flex space-x-3 lg:hidden">
+      {/* Mobile sidebar toggle */}
+      <div className="fixed bottom-6 right-6 z-50 lg:hidden">
         <button
           onClick={toggleSidebar}
-          className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-600 text-white shadow-lg hover:bg-blue-700"
+          className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
         >
           <Code size={24} />
         </button>
       </div>
 
-      {/* Main content with sidebars */}
-      <div className="container mx-auto px-4 pt-16 pb-10">
-        <div className="flex flex-col lg:flex-row">
-          {/* Left Sidebar Component */}
+      {/* Main Layout */}
+      <div className="container mx-auto px-4 pt-20 pb-10">
+        <div className="flex flex-col lg:flex-row gap-8">
+          {/* Left Sidebar */}
           <LeftSidebar
             sidebarVisible={sidebarVisible}
             toggleSidebar={toggleSidebar}
@@ -433,91 +434,125 @@ export default function PostsPage() {
             selectedCategoryId={selectedCategoryId}
           />
 
-          {/* Main content */}
-          <main className="w-full lg:w-1/2 px-0 lg:px-4">
-            {/* Page Header with Category Filter */}
-            <div className="mb-6">
-              <div className="flex items-center justify-between">
-                <h1 className="text-3xl font-bold text-gray-900">
-                  {selectedCategory ? selectedCategory.name : t("IT Language Learning")}
-                </h1>
+          {/* Main Content */}
+          <main className="flex-1 lg:max-w-3xl">
+            {/* Header Section */}
+            <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 mb-8 shadow-lg">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div>
+                  <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
+                    {selectedCategory ? selectedCategory.name : "IT Learning Hub"}
+                  </h1>
+                  <p className="text-lg text-gray-600 dark:text-gray-300">
+                    {selectedCategory
+                      ? `Exploring ${selectedCategory.name} topics and tutorials`
+                      : "Discover the latest in IT education and programming"
+                    }
+                  </p>
+                </div>
                 {selectedCategoryId && (
-                  <button
+                  <Button
                     onClick={handleClearCategory}
-                    className="text-sm text-blue-600 hover:text-blue-800 underline"
+                    variant="outline"
+                    className="shrink-0"
                   >
-                    {t("Clear Filter")}
-                  </button>
+                    Clear Filter
+                  </Button>
                 )}
               </div>
-              <p className="mt-2 text-gray-600">
-                {selectedCategory
-                  ? t("Posts in {{categoryName}} category", { categoryName: selectedCategory.name })
-                  : t("posts.switchToPreferred")
-                }
-              </p>
-
-              {/* Language selector hint */}
-              <div className="mt-2 text-xs text-gray-500">
-                {t("posts.availableCount", { count: languageStats.totalLanguages })} •
-                {t("Current")}: {languageStats.currentLanguage.label}
+              
+              {/* Stats */}
+              <div className="flex items-center gap-6 mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-blue-600">{posts.length}</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">Posts</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-green-600">{languageStats.totalLanguages}</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">Languages</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-purple-600">{categories.length}</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">Categories</div>
+                </div>
               </div>
             </div>
 
             {/* Posts Feed */}
-            {posts.length === 0 && isLoading ? (
-              Array(3).fill(0).map((_, i) => (
-                <div key={i} className="mb-4 rounded-lg bg-white p-4 shadow">
-                  <div className="flex items-center">
-                    <div className="h-10 w-10 animate-pulse rounded-full bg-gray-200"></div>
-                    <div className="ml-3">
-                      <div className="h-4 w-40 animate-pulse rounded bg-gray-200"></div>
-                      <div className="mt-1 h-3 w-24 animate-pulse rounded bg-gray-200"></div>
+            <div className="space-y-4">
+              {posts.length === 0 && isLoading ? (
+                Array(3).fill(0).map((_, i) => (
+                  <div key={i} className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
+                    <div className="flex items-center mb-4">
+                      <div className="h-10 w-10 animate-pulse rounded-full bg-gray-200 dark:bg-gray-700"></div>
+                      <div className="ml-3 space-y-2">
+                        <div className="h-3 w-24 animate-pulse rounded bg-gray-200 dark:bg-gray-700"></div>
+                        <div className="h-2 w-16 animate-pulse rounded bg-gray-200 dark:bg-gray-700"></div>
+                      </div>
+                    </div>
+                    <div className="space-y-3">
+                      <div className="h-5 w-full animate-pulse rounded bg-gray-200 dark:bg-gray-700"></div>
+                      <div className="h-4 w-2/3 animate-pulse rounded bg-gray-200 dark:bg-gray-700"></div>
+                      <div className="h-40 w-full animate-pulse rounded-lg bg-gray-200 dark:bg-gray-700"></div>
                     </div>
                   </div>
-                  <div className="mt-4 h-4 w-full animate-pulse rounded bg-gray-200"></div>
-                  <div className="mt-2 h-4 w-3/4 animate-pulse rounded bg-gray-200"></div>
-                  <div className="mt-4 h-64 w-full animate-pulse rounded bg-gray-200"></div>
+                ))
+              ) : posts.length === 0 ? (
+                <div className="bg-white dark:bg-gray-800 rounded-xl p-12 text-center shadow-sm border border-gray-100 dark:border-gray-700">
+                  <div className="mx-auto w-20 h-20 bg-blue-50 dark:bg-blue-900/20 rounded-full flex items-center justify-center mb-6">
+                    <BookOpen className="h-10 w-10 text-blue-500" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                    {selectedCategory ? `No posts in ${selectedCategory.name}` : "No posts found"}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-md mx-auto">
+                    {selectedCategory
+                      ? "Try exploring other categories or check back later for new content."
+                      : "Be the first to share your knowledge with the community!"
+                    }
+                  </p>
+                  <Button className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700">
+                    Explore All Posts
+                  </Button>
                 </div>
-              ))
-            ) : posts.length === 0 ? (
-              <div className="rounded-lg bg-white p-8 text-center shadow">
-                <p className="text-lg text-gray-600">
-                  {selectedCategory
-                    ? t("No posts found in {{categoryName}} category.", { categoryName: selectedCategory.name })
-                    : t("No posts found.")
-                  }
-                </p>
-                <p className="mt-2 text-sm text-gray-500">
-                  {t("Try switching to a different language or check back later.")}
-                </p>
-              </div>
-            ) : (
-              posts.map((post) => (
-                <PostComponent
-                  key={post.id}
-                  post={post}
-                  session={session}
-                  formatRelativeTime={formatRelativeTime}
-                  commentInputs={commentInputs}
-                  handleCommentInputChange={handleCommentInputChange}
-                  handleSubmitComment={handleSubmitComment}
-                  submittingComment={submittingComment[post.id] ?? false}
-                  fetchCommentsForPost={fetchCommentsForPost}
-                />
-              ))
-            )}
+              ) : (
+                posts.map((post) => (
+                  <PostComponent
+                    key={post.id}
+                    post={post}
+                    session={session}
+                    formatRelativeTime={formatRelativeTime}
+                    commentInputs={commentInputs}
+                    handleCommentInputChange={handleCommentInputChange}
+                    handleSubmitComment={handleSubmitComment}
+                    submittingComment={submittingComment[post.id] ?? false}
+                    fetchCommentsForPost={fetchCommentsForPost}
+                  />
+                ))
+              )}
+            </div>
 
             {/* Load More Button */}
             {hasMore && posts.length > 0 && (
-              <div className="mt-4 text-center" ref={loadMoreRef}>
-                <button
+              <div className="mt-8 text-center" ref={loadMoreRef}>
+                <Button
                   onClick={handleLoadMore}
                   disabled={isLoading}
-                  className="rounded-md bg-white px-6 py-2.5 text-sm font-medium text-blue-600 shadow hover:bg-gray-50 disabled:opacity-70"
+                  size="lg"
+                  className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg hover:shadow-xl transition-all duration-300"
                 >
-                  {isLoading ? t('Loading...') : t('See More Posts')}
-                </button>
+                  {isLoading ? (
+                    <>
+                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                      Loading...
+                    </>
+                  ) : (
+                    <>
+                      Load More Posts
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </>
+                  )}
+                </Button>
               </div>
             )}
           </main>

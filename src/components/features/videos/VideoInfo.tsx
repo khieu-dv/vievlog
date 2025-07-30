@@ -1,7 +1,7 @@
 import React from "react";
 import { Video } from '~/lib/types';
 
-interface VideoInfoProps {
+type VideoInfoProps = {
     video: Video;
 }
 

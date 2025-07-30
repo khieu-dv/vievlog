@@ -6,7 +6,7 @@ import { Loader2, Play, Pause, Volume2, VolumeX } from "lucide-react";
 import { Video } from '~/lib/types';
 
 
-interface VideoPlayerProps {
+type VideoPlayerProps = {
     video: Video;
     isPlaying: boolean;
     globalMuted: boolean;

@@ -4,14 +4,14 @@ import { Send } from "lucide-react";
 import { Comment, Category, Post, PopularTopic, Resource, TrendingTech } from '~/lib/types';
 
 
-interface CommentSectionProps {
+type CommentSectionProps = {
     post: Post;
     session: any;
     formatRelativeTime: (date: string | number | Date) => string;
-    commentInputs: { [postId: string]: string };
+    commentInputs: Record<string, string>;
     handleCommentInputChange: (postId: string, value: string) => void;
     handleSubmitComment: (postId: string) => void;
-    submittingComment: { [postId: string]: boolean };
+    submittingComment: Record<string, boolean>;
     fetchCommentsForPost: (postId: string) => void;
 }
 

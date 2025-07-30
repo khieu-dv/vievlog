@@ -6,7 +6,7 @@ import VideoInfo from "./VideoInfo";
 import { Video } from '~/lib/types';
 
 
-interface VideoFeedProps {
+type VideoFeedProps = {
     videos: Video[];
 }
 

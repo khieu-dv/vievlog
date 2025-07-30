@@ -1,4 +1,4 @@
-export interface Message {
+export type Message = {
   id: string;
   content: string; 
   sender: string;
@@ -8,12 +8,12 @@ export interface Message {
 
 
 
-export interface Room {
+export type Room = {
   id: string;
   name: string;
 }
 
-export interface Comment {
+export type Comment = {
   id: string;
   postId: string;
   userId?: string;
@@ -35,7 +35,7 @@ export type BasicUser = {
 
 
 
-export interface Category {
+export type Category = {
   id: string;
   name: string;
   slug: string;
@@ -46,7 +46,7 @@ export interface Category {
 }
 
 
-export interface Post {
+export type Post = {
   id: string;
   title: string;
   excerpt: string;
@@ -73,7 +73,7 @@ export interface Post {
 }
 
 
-export interface PopularTopic {
+export type PopularTopic = {
   id?: string; 
   icon: React.ReactNode;
   title: string;
@@ -83,61 +83,64 @@ export interface PopularTopic {
 }
 
 
-export interface Resource {
+export type Resource = {
   icon: React.ReactNode;
   title: string;
   description: string;
   url: string;
 }
 
-export interface TrendingTech {
+export type TrendingTech = {
   name: string;
   growthPercentage: number;
   description: string;
 }
 
-export interface Video {
+export type Video = {
   id: string;
   title: string;
-  description: string;
-  author: string;
+  description?: string;
+  author?: string;
   video_url: string;
-  thumbnail_url: string;
-  tags: string;
-  views: number;
-  likes: number;
+  thumbnail_url?: string;
+  thumbnail?: string;
+  tags?: string;
+  views?: number;
+  likes?: number;
+  duration?: string;
+  created: string;
 }
 
 
 
 
-export interface TopContributor {
+export type TopContributor = {
     name: string;
     avatar: string;
     points: number;
     badge: string;
 }
 
-export interface PopularCourse {
+export type PopularCourse = {
     title: string;
     rating: number;
     students: number;
     image: string;
 }
 
-export interface Announcement {
+export type Announcement = {
     title: string;
     date: string;
     excerpt: string;
 }
 
-export interface Event {
+export type Event = {
     title: string;
     date: string;
     type: string;
 }
 
-export interface RightSidebarProps {
+export type RightSidebarProps = {
     topContributors: TopContributor[];
     popularCourses: PopularCourse[];
     recentAnnouncements: Announcement[];

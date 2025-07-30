@@ -1,12 +1,11 @@
 "use client";
 
-import { ArrowRight, MessageCircle, ThumbsUp, ChevronLeft, ChevronRight, Sparkles, TrendingUp, Users } from "lucide-react";
+import { ArrowRight, MessageCircle, ThumbsUp, ChevronLeft, ChevronRight, Sparkles, TrendingUp, Users, Play, BookOpen, Star } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { Footer } from "~/components/common/footer";
 import { Header } from "~/components/common/header";
-import { TestimonialCarousel } from "~/components/common/testimonial-carousel";
 import { Button } from "~/components/ui/button";
 import {
   Card,
@@ -23,47 +22,58 @@ import { Post } from '../lib/types';
 
 function PostCardSimple({ post }: { post: Post }) {
   return (
-    <Card className="group relative min-w-[280px] w-[320px] overflow-hidden border-0 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-primary/10">
+    <Card className="group relative min-w-[300px] w-[340px] overflow-hidden bg-white dark:bg-card transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1">
       {post.coverImage && (
         <div className="relative aspect-[16/10] w-full overflow-hidden">
           <Image
             src={post.coverImage}
             alt={post.title}
             fill
-            className="object-cover transition-transform duration-300 group-hover:scale-105"
+            className="object-cover transition-transform duration-500 group-hover:scale-110"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+          <div className="absolute bottom-4 left-4 right-4">
+            <h3 className="text-white font-bold text-lg line-clamp-2 mb-2">
+              {post.title}
+            </h3>
+            <div className="flex items-center gap-3 text-white/80 text-sm">
+              <div className="flex items-center gap-1">
+                <ThumbsUp className="h-4 w-4" />
+                <span>{post.likes}</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <MessageCircle className="h-4 w-4" />
+                <span>{post.commentCount}</span>
+              </div>
+            </div>
+          </div>
         </div>
       )}
-      <CardHeader className="pb-3">
-        <CardTitle className="line-clamp-2 text-lg font-semibold leading-tight">
-          {post.title}
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="pb-3">
-        <CardDescription className="line-clamp-2 text-sm leading-relaxed text-muted-foreground/80">
-          {post.excerpt}
-        </CardDescription>
-      </CardContent>
-      <CardFooter className="flex items-center justify-between border-t border-border/50 pt-4">
-        <div className="flex items-center gap-4 text-xs text-muted-foreground">
-          <div className="flex items-center gap-1.5">
-            <ThumbsUp className="h-3.5 w-3.5" />
-            <span className="font-medium">{post.likes}</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <MessageCircle className="h-3.5 w-3.5" />
-            <span className="font-medium">{post.commentCount}</span>
+      {!post.coverImage && (
+        <div className="p-6">
+          <h3 className="font-bold text-xl line-clamp-2 mb-3">
+            {post.title}
+          </h3>
+          <p className="text-muted-foreground line-clamp-3 mb-4">
+            {post.excerpt}
+          </p>
+          <div className="flex items-center gap-4 text-sm text-muted-foreground">
+            <div className="flex items-center gap-1">
+              <ThumbsUp className="h-4 w-4" />
+              <span>{post.likes}</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <MessageCircle className="h-4 w-4" />
+              <span>{post.commentCount}</span>
+            </div>
           </div>
         </div>
-        <Link
-          href={`/posts/${post.id}`}
-          className="group/link flex items-center gap-1 text-xs font-medium text-primary transition-colors hover:text-primary/80"
-        >
-          Read more
-          <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover/link:translate-x-0.5" />
-        </Link>
-      </CardFooter>
+      )}
+      <Link
+        href={`/posts/${post.id}`}
+        className="absolute inset-0 z-10"
+        aria-label={`Read ${post.title}`}
+      />
     </Card>
   );
 }
@@ -168,150 +178,146 @@ export default function HomePage() {
   }, []);
 
   return (
-    <>
+    <div>
       <Header />
       <main className="flex-1 overflow-hidden">
         {/* Hero Section */}
-        <section className="relative py-20 md:py-28 lg:py-32">
-          {/* Background Elements */}
+        <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+          {/* Background */}
           <div className="absolute inset-0 -z-10">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,hsl(var(--primary))_0%,transparent_50%)] opacity-[0.15]" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,hsl(var(--secondary))_0%,transparent_50%)] opacity-[0.1]" />
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-blue-900" />
+            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgZmlsbD0iIzRmNDZlNSIgZmlsbC1vcGFjaXR5PSIwLjA1Ij4KICAgICAgICAgICAgPGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+')] opacity-40" />
           </div>
 
           <div className="container relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-              <div className="flex flex-col justify-center space-y-8">
-                <div className="space-y-6">
-                  <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
-                    <Sparkles className="h-4 w-4" />
-                    Welcome to our platform
-                  </div>
-
-                  <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
-                    {t("home.oneStopPlatform")}{" "}
-                    <span className="bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
-                      IT Learning
-                    </span>
-                  </h1>
-
-                  <p className="max-w-[600px] text-lg leading-relaxed text-muted-foreground md:text-xl">
-                    {t("home.learnIT")}
-                  </p>
-                </div>
-
-                <div className="flex flex-col gap-4 sm:flex-row">
-                  <Link href="/posts">
-                    <Button size="lg" className="group h-12 px-8 font-medium shadow-lg shadow-primary/25">
-                      {t("home.viewAllPosts")}
-                      <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-                    </Button>
-                  </Link>
-                  <Link href="/auth/sign-in">
-                    <Button variant="outline" size="lg" className="h-12 px-8 font-medium">
-                      Learn More
-                    </Button>
-                  </Link>
-                </div>
-
-                {/* Stats */}
-                <div className="flex items-center gap-8 pt-4">
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10">
-                      <Users className="h-4 w-4 text-primary" />
-                    </div>
-                    <span className="font-medium">10K+ Users</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10">
-                      <TrendingUp className="h-4 w-4 text-primary" />
-                    </div>
-                    <span className="font-medium">500+ Articles</span>
-                  </div>
-                </div>
+            <div className="text-center space-y-8">
+              {/* Badge */}
+              <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-600/10 to-indigo-600/10 border border-blue-200/50 px-6 py-2 text-sm font-medium text-blue-700 dark:text-blue-300 backdrop-blur-sm">
+                <Sparkles className="h-4 w-4" />
+                <span>Welcome to VievLog Platform</span>
               </div>
 
-              <div className="relative mx-auto hidden aspect-square w-full max-w-lg lg:block">
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-primary/20 via-primary/5 to-transparent" />
-                <div className="absolute -inset-4 rounded-2xl bg-gradient-to-r from-primary/10 to-secondary/10 blur-xl" />
-                <div className="relative h-full overflow-hidden rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm">
-                  <Image
-                    src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
-                    alt="Platform showcase"
-                    fill
-                    className="object-cover"
-                    priority
-                  />
+              {/* Main Heading */}
+              <div className="space-y-6">
+                <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight">
+                  <span className="block text-gray-900 dark:text-white">Your</span>
+                  <span className="block bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                    IT Learning
+                  </span>
+                  <span className="block text-gray-900 dark:text-white">Journey</span>
+                </h1>
+                
+                <p className="mx-auto max-w-3xl text-xl md:text-2xl leading-relaxed text-gray-600 dark:text-gray-300">
+                  {t("home.learnIT")}
+                </p>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8">
+                <Link href="/posts">
+                  <Button size="lg" className="group h-14 px-8 text-lg font-semibold bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/40 transition-all duration-300">
+                    <BookOpen className="mr-2 h-5 w-5" />
+                    {t("home.viewAllPosts")}
+                    <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
+                  </Button>
+                </Link>
+                <Link href="/videos">
+                  <Button variant="outline" size="lg" className="group h-14 px-8 text-lg font-semibold border-2 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-300">
+                    <Play className="mr-2 h-5 w-5" />
+                    Watch Videos
+                    <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
+                  </Button>
+                </Link>
+              </div>
+
+              {/* Stats */}
+              <div className="flex items-center justify-center gap-12 pt-12">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-gray-900 dark:text-white">10K+</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">Active Users</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-gray-900 dark:text-white">500+</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">IT Articles</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-gray-900 dark:text-white">50+</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">Video Tutorials</div>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-
-        {/* Blog Posts Section */}
-        <section className="py-16 md:py-20">
+        {/* Featured Content */}
+        <section className="py-20 bg-white dark:bg-gray-900">
           <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="mb-12 text-center">
-              <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-sm font-medium text-primary mb-4">
+            {/* Section Header */}
+            <div className="text-center mb-16">
+              <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-green-500/10 to-blue-500/10 border border-green-200/50 px-4 py-2 text-sm font-medium text-green-700 dark:text-green-300 mb-6">
                 <TrendingUp className="h-4 w-4" />
-                Latest Content
+                <span>Latest Content</span>
               </div>
-
-              <h2 className="text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
+              
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
                 {t("home.latestBlogPosts")}
               </h2>
-
-              <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
+              
+              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
                 {t("home.exploreArticles")}
               </p>
             </div>
 
-            {/* Navigation buttons */}
-            <div className="flex justify-end gap-2 mb-6">
-              <button
-                onClick={scrollLeft}
-                className="group flex h-10 w-10 items-center justify-center rounded-full border border-border/50 bg-background/50 backdrop-blur-sm transition-all duration-200 hover:border-primary/50 hover:bg-primary/10"
-                aria-label="Scroll left"
-              >
-                <ChevronLeft className="h-5 w-5 transition-colors group-hover:text-primary" />
-              </button>
-              <button
-                onClick={scrollRight}
-                className="group flex h-10 w-10 items-center justify-center rounded-full border border-border/50 bg-background/50 backdrop-blur-sm transition-all duration-200 hover:border-primary/50 hover:bg-primary/10"
-                aria-label="Scroll right"
-              >
-                <ChevronRight className="h-5 w-5 transition-colors group-hover:text-primary" />
-              </button>
+            {/* Posts Container */}
+            <div className="relative">
+              {/* Navigation Buttons */}
+              <div className="absolute -top-16 right-0 flex gap-2 z-10">
+                <button
+                  onClick={scrollLeft}
+                  className="group flex h-12 w-12 items-center justify-center rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-xl hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-300"
+                  aria-label="Scroll left"
+                >
+                  <ChevronLeft className="h-6 w-6 text-gray-600 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400" />
+                </button>
+                <button
+                  onClick={scrollRight}
+                  className="group flex h-12 w-12 items-center justify-center rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-xl hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-300"
+                  aria-label="Scroll right"
+                >
+                  <ChevronRight className="h-6 w-6 text-gray-600 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400" />
+                </button>
+              </div>
+
+              {/* Posts Carousel */}
+              {isLoadingPosts ? (
+                <div className="flex gap-6 overflow-x-auto pb-4">
+                  {[1, 2, 3, 4].map((i) => (
+                    <div key={i} className="min-w-[300px] w-[340px] h-96 animate-pulse rounded-2xl bg-gray-200 dark:bg-gray-700"></div>
+                  ))}
+                </div>
+              ) : (
+                <div
+                  ref={scrollContainerRef}
+                  className="flex gap-6 overflow-x-auto pb-4 scroll-smooth"
+                  style={{
+                    scrollbarWidth: 'none',
+                    msOverflowStyle: 'none'
+                  }}
+                >
+                  {posts.map((post) => (
+                    <PostCardSimple key={post.id} post={post} />
+                  ))}
+                </div>
+              )}
             </div>
 
-            {isLoadingPosts ? (
-              <div className="flex gap-6 overflow-x-auto pb-4">
-                {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="min-w-[280px] w-[320px] h-80 animate-pulse rounded-xl bg-muted/50"></div>
-                ))}
-              </div>
-            ) : (
-              <div
-                ref={scrollContainerRef}
-                className="flex gap-6 overflow-x-auto pb-4 scroll-smooth scrollbar-hide"
-                style={{
-                  scrollbarWidth: 'none',
-                  msOverflowStyle: 'none'
-                }}
-              >
-                {posts.map((post) => (
-                  <PostCardSimple key={post.id} post={post} />
-                ))}
-              </div>
-            )}
-
-            <div className="mt-12 flex justify-center">
+            {/* View All Button */}
+            <div className="text-center mt-16">
               <Link href="/posts">
-                <Button variant="outline" size="lg" className="group h-12 px-8 font-medium">
+                <Button size="lg" className="group h-14 px-8 text-lg font-semibold bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg hover:shadow-xl transition-all duration-300">
+                  <BookOpen className="mr-2 h-5 w-5" />
                   {t("home.viewAllPosts")}
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+                  <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
                 </Button>
               </Link>
             </div>
@@ -319,51 +325,54 @@ export default function HomePage() {
         </section>
 
         {/* Testimonials */}
-        <section className="py-16 md:py-20 bg-muted/30">
+        <section className="py-20 bg-gray-50 dark:bg-gray-800">
           <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-            <div className="mb-12 text-center">
-              <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-sm font-medium text-primary mb-4">
-                <Users className="h-4 w-4" />
-                Testimonials
+            <div className="text-center mb-16">
+              <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-200/50 px-4 py-2 text-sm font-medium text-purple-700 dark:text-purple-300 mb-6">
+                <Star className="h-4 w-4" />
+                <span>Testimonials</span>
               </div>
-
-              <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
+              
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
                 {t("home.customerTestimonialsTitle")}
               </h2>
-
-              <p className="mt-4 max-w-xl mx-auto text-muted-foreground">
+              
+              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
                 {t("home.customerTestimonialsSubtitle")}
               </p>
             </div>
 
-            {/* Simple Grid Layout */}
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {/* Testimonials Grid */}
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               {testimonials.map((testimonial) => (
                 <div
                   key={testimonial.id}
-                  className="group relative rounded-xl border border-border/50 bg-card/50 p-6 backdrop-blur-sm transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5"
+                  className="group relative bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
                 >
-                  {/* Quote */}
-                  <div className="mb-4">
-                    <div className="mb-3 flex">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <svg
-                          key={i}
-                          className="h-4 w-4 fill-yellow-400 text-yellow-400"
-                          viewBox="0 0 20 20"
-                        >
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                        </svg>
-                      ))}
+                  {/* Quote Icon */}
+                  <div className="absolute -top-4 left-8">
+                    <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-full p-3">
+                      <svg className="h-6 w-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                      </svg>
                     </div>
-                    <p className="text-sm leading-relaxed text-foreground/90">
-                      "{testimonial.content}"
-                    </p>
                   </div>
 
+                  {/* Rating */}
+                  <div className="flex mb-4 mt-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                    ))}
+                  </div>
+
+                  {/* Content */}
+                  <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+                    "{testimonial.content}"
+                  </p>
+
                   {/* Author */}
-                  <div className="flex items-center gap-3">
-                    <div className="relative h-10 w-10 overflow-hidden rounded-full">
+                  <div className="flex items-center gap-4">
+                    <div className="relative h-12 w-12 overflow-hidden rounded-full">
                       <Image
                         src={testimonial.author.avatar}
                         alt={testimonial.author.name}
@@ -372,66 +381,64 @@ export default function HomePage() {
                       />
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-foreground">
+                      <p className="font-semibold text-gray-900 dark:text-white">
                         {testimonial.author.name}
                       </p>
-                      <p className="text-xs text-muted-foreground">
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
                         {testimonial.author.role}
                       </p>
                     </div>
                   </div>
-
-                  {/* Decorative element */}
-                  <div className="absolute -top-2 -left-2 h-4 w-4 rounded-full bg-primary/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                  <div className="absolute -bottom-2 -right-2 h-6 w-6 rounded-full bg-secondary/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 </div>
               ))}
             </div>
 
-            {/* Simple CTA */}
-            <div className="mt-12 text-center">
-              <p className="text-sm text-muted-foreground mb-4">
-                Join thousands of satisfied users
+            {/* CTA */}
+            <div className="text-center mt-16">
+              <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
+                Join thousands of satisfied learners today
               </p>
               <Link href="/auth/sign-up">
-                <Button className="h-10 px-6 text-sm font-medium">
+                <Button size="lg" className="h-14 px-8 text-lg font-semibold bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 shadow-lg hover:shadow-xl transition-all duration-300">
                   Get Started Today
+                  <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
             </div>
           </div>
         </section>
 
-
-        {/* CTA Section */}
-        <section className="py-16 md:py-20">
-          <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-primary/10 via-primary/5 to-secondary/10 p-8 md:p-12 lg:p-16">
-              {/* Background Pattern */}
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(var(--primary))_0%,transparent_50%)] opacity-[0.1]" />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,hsl(var(--secondary))_0%,transparent_50%)] opacity-[0.1]" />
-
-              <div className="relative z-10 mx-auto max-w-3xl text-center">
-                <h2 className="text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
-                  {t("home.vieTopik")}
-                </h2>
-
-                <p className="mt-6 text-lg leading-relaxed text-muted-foreground md:text-xl">
-                  {t("home.yourOneStopShop")}
-                </p>
-
-                <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-                  <Link href="/auth/sign-up">
-                    <Button size="lg" className="h-12 px-8 font-medium shadow-lg shadow-primary/25">
-                      {t("home.signUpNow")}
-                    </Button>
-                  </Link>
-                  <Link href="/posts">
-                    <Button variant="outline" size="lg" className="h-12 px-8 font-medium">
-                      {t("home.browseIT")}
-                    </Button>
-                  </Link>
-                </div>
+        {/* Final CTA Section */}
+        <section className="py-20 bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-900 relative overflow-hidden">
+          {/* Background Pattern */}
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgZmlsbD0iI2ZmZmZmZiIgZmlsbC1vcGFjaXR5PSIwLjEiPgogICAgICAgICAgICA8Y2lyY2xlIGN4PSIzMCIgY3k9IjMwIiByPSIyIi8+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4=')] opacity-30" />
+          
+          <div className="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="text-center text-white space-y-8">
+              <h2 className="text-4xl md:text-6xl font-bold">
+                Ready to Start Learning?
+              </h2>
+              
+              <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
+                {t("home.yourOneStopShop")}
+              </p>
+              
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-8">
+                <Link href="/auth/sign-up">
+                  <Button size="lg" className="h-16 px-10 text-lg font-bold bg-white text-blue-900 hover:bg-gray-100 shadow-2xl hover:shadow-3xl hover:scale-105 transition-all duration-300">
+                    {t("home.signUpNow")}
+                    <ArrowRight className="ml-2 h-6 w-6" />
+                  </Button>
+                </Link>
+                <Link href="/posts">
+                  <Button 
+                    size="lg" 
+                    className="h-16 px-10 text-lg font-bold bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-900 hover:border-white transition-all duration-300 backdrop-blur-sm group"
+                  >
+                    <span>{t("home.browseIT")}</span>
+                    <BookOpen className="ml-2 h-6 w-6" />
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
@@ -439,6 +446,6 @@ export default function HomePage() {
       </main>
       <Footer />
       <ContactButton />
-    </>
+    </div>
   );
 }

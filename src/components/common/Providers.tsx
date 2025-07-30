@@ -2,7 +2,7 @@
 
 import { ReactNode } from "react";
 
-interface ProvidersProps {
+type ProvidersProps = {
   children: ReactNode;
 }
 

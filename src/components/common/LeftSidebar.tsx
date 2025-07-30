@@ -2,7 +2,7 @@
 
 import { PopularTopic, TrendingTech } from '~/lib/types';
 
-interface LeftSidebarProps {
+type LeftSidebarProps = {
     sidebarVisible: boolean;
     toggleSidebar: () => void;
     popularTopics: PopularTopic[];

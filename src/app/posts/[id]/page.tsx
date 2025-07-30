@@ -126,7 +126,7 @@ export default function PostDetailPage() {
           }
         });
 
-        interface CommentResponseItem {
+        type CommentResponseItem = {
           id: string;
           userName?: string;
           content?: string;
@@ -136,7 +136,7 @@ export default function PostDetailPage() {
           postId?: string;
         }
 
-        interface CommentMapped {
+        type CommentMapped = {
           id: string;
           userName: string;
           content: string;
