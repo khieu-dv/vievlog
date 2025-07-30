@@ -6,18 +6,18 @@ import { useTranslation } from "react-i18next";
 import axios from "axios";
 import PocketBase from 'pocketbase';
 import { useSession } from "../../../lib/auth-client";
-import { Header } from "~/ui/components/header";
-import { Footer } from "~/ui/components/footer";
+import { Header } from "~/components/common/header";
+import { Footer } from "~/components/common/footer";
 import { Heart, MessageCircle, Share2, Bookmark, MoreHorizontal, ChevronLeft, Send, Globe } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { formatDistanceToNow } from "date-fns";
-import { MarkdownRenderer } from "../../components/MarkdownRenderer";
+import { MarkdownRenderer } from "~/components/common/MarkdownRenderer";
 import { Comment, Post } from '../../../lib/types';
 import {
   useLocalizedContent,
   getSupportedLanguageCodes
-} from "../../../utils/multilingual";
+} from "~/lib/multilingual";
 
 export default function PostDetailPage() {
   const { t, i18n } = useTranslation();

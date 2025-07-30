@@ -1,21 +1,21 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { Header } from "~/ui/components/header";
-import { Footer } from "~/ui/components/footer";
+import { Header } from "~/components/common/header";
+import { Footer } from "~/components/common/footer";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import PocketBase from 'pocketbase';
 import { Code } from "lucide-react";
 import { useSession } from "../../lib/auth-client";
-import PostComponent from "../components/PostComponent";
+import PostComponent from "~/components/features/posts/PostComponent";
 import { Comment, Post, Category } from '../../lib/types';
-import { LeftSidebar } from "../components/LeftSidebar";
-import { RightSidebar } from "../components/RightSidebar";
+import { LeftSidebar } from "~/components/common/LeftSidebar";
+import { RightSidebar } from "~/components/common/RightSidebar";
 import {
   useLocalizedContent,
   getSupportedLanguageCodes
-} from "../../utils/multilingual";
+} from "~/lib/multilingual";
 
 // Import dữ liệu hard-coded từ file riêng biệt
 import {

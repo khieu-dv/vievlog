@@ -6,16 +6,7 @@ export interface Message {
   timestamp: number;
 }
 
-export interface NextApiResponseServerIO extends Response {
-  socket: {
-    server: any;
-  };
-}
 
-export interface User {
-  id: string;
-  name: string;
-}
 
 export interface Room {
   id: string;
@@ -32,17 +23,6 @@ export interface Comment {
   created: string;
 }
 
-export interface Video {
-  id: string;
-  title: string;
-  description: string;
-  author: string;
-  video_url: string;
-  thumbnail_url: string;
-  tags: string;
-  views: number;
-  likes: number;
-}
 
 export type BasicUser = {
   id: string;
@@ -116,12 +96,6 @@ export interface TrendingTech {
   description: string;
 }
 
-export interface UpcomingEvent {
-  title: string;
-  date: string;
-  type: string;
-}
-
 export interface Video {
   id: string;
   title: string;
@@ -133,6 +107,8 @@ export interface Video {
   views: number;
   likes: number;
 }
+
+
 
 
 export interface TopContributor {

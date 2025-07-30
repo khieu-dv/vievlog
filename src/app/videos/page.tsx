@@ -2,11 +2,11 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import VideoFeed from "../components/VideoFeed";
+import VideoFeed from "~/components/features/videos/VideoFeed";
 import PocketBase from "pocketbase";
 import { Loader2 } from "lucide-react";
-import { Header } from "~/ui/components/header";
-import { Video } from '../../lib/types';
+import { Header } from "~/components/common/header";
+import { Video } from '~/lib/types';
 
 
 export default function Home() {

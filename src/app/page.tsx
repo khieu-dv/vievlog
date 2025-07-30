@@ -4,10 +4,10 @@ import { ArrowRight, MessageCircle, ThumbsUp, ChevronLeft, ChevronRight, Sparkle
 import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
-import { Footer } from "~/ui/components/footer";
-import { Header } from "~/ui/components/header";
-import { TestimonialCarousel } from "~/ui/components/testimonial-carousel";
-import { Button } from "~/ui/primitives/button";
+import { Footer } from "~/components/common/footer";
+import { Header } from "~/components/common/header";
+import { TestimonialCarousel } from "~/components/common/testimonial-carousel";
+import { Button } from "~/components/ui/button";
 import {
   Card,
   CardContent,
@@ -15,9 +15,9 @@ import {
   CardHeader,
   CardTitle,
   CardFooter,
-} from "~/ui/primitives/card";
+} from "~/components/ui/card";
 import { useTranslation } from "react-i18next";
-import { ContactButton } from "./components/contact-button";
+import { ContactButton } from "~/components/common/contact-button";
 import axios from "axios";
 import { Post } from '../lib/types';
 
@@ -249,35 +249,6 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* VieClone Section */}
-        <section className="py-16 md:py-20 bg-background">
-          <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-sm font-medium text-primary mb-4">
-                <Sparkles className="h-4 w-4" />
-                Featured Tool
-              </div>
-              <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-                VieClone – Download videos with ease
-              </h2>
-              <p className="mt-4 max-w-2xl mx-auto text-muted-foreground text-lg">
-                VieClone helps you easily download videos from platforms like YouTube and Facebook using a simple link.
-              </p>
-            </div>
-
-            <div className="flex flex-col items-center justify-center gap-6">
-              <Link href="/vieclone">
-                <Button size="lg" className="px-8 h-12 font-medium shadow-md">
-                  Explore VieClone
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
-              <p className="text-sm text-muted-foreground">
-                Simple · Fast · Windows Supported
-              </p>
-            </div>
-          </div>
-        </section>
 
         {/* Blog Posts Section */}
         <section className="py-16 md:py-20">
