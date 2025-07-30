@@ -11,7 +11,7 @@ type LeftSidebarProps = {
     selectedCategoryId?: string;
 }
 
-export const LeftSidebar: React.FC<LeftSidebarProps> = ({
+export const Sidebar: React.FC<LeftSidebarProps> = ({
     sidebarVisible,
     toggleSidebar,
     popularTopics,

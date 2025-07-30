@@ -1,18 +1,18 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { Header } from "~/components/common/header";
-import { Footer } from "~/components/common/footer";
+import { Header } from "~/components/common/Header";
+import { Footer } from "~/components/common/Footer";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import PocketBase from 'pocketbase';
 import { Code, ArrowRight, BookOpen } from "lucide-react";
-import { Button } from "~/components/ui/button";
-import { useSession } from "../../lib/auth-client";
-import PostComponent from "~/components/features/posts/PostComponent";
+import { Button } from "~/components/ui/Button";
+import { useSession } from "../../lib/authClient";
+import PostComponent from "~/components/features/posts/Post";
 import { Comment, Post, Category } from '../../lib/types';
-import { LeftSidebar } from "~/components/common/LeftSidebar";
-import { RightSidebar } from "~/components/common/RightSidebar";
+import { Sidebar } from "~/components/common/Sidebar";
+import { ActivitySidebar } from "~/components/common/ActivitySidebar";
 import {
   useLocalizedContent,
   getSupportedLanguageCodes
@@ -29,7 +29,7 @@ import {
   COMMENTS_PER_PAGE,
   DEFAULT_AVATAR,
   DEFAULT_CATEGORY_COLOR
-} from "../../constants/mockData";
+} from "../../constants/MOCK_DATA";
 
 export default function PostsPage() {
   const { t, i18n } = useTranslation();
@@ -425,7 +425,7 @@ export default function PostsPage() {
       <div className="container mx-auto px-4 pt-20 pb-10">
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Left Sidebar */}
-          <LeftSidebar
+          <Sidebar
             sidebarVisible={sidebarVisible}
             toggleSidebar={toggleSidebar}
             popularTopics={popularTopics}
@@ -558,7 +558,7 @@ export default function PostsPage() {
           </main>
 
           {/* Right Sidebar Component */}
-          <RightSidebar
+          <ActivitySidebar
             topContributors={topContributors}
             popularCourses={popularCourses}
             recentAnnouncements={recentAnnouncements}

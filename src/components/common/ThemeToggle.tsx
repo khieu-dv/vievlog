@@ -5,13 +5,13 @@ import { useTheme } from "next-themes";
 import * as React from "react";
 
 import { cn } from "~/lib/utils";
-import { Button } from "~/components/ui/button";
+import { Button } from "~/components/ui/Button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "~/components/ui/dropdown-menu";
+} from "~/components/ui/DropdownMenu";
 
 export function ThemeToggle({ className }: { className?: string }) {
   const { setTheme, theme } = useTheme();

@@ -4,9 +4,9 @@ import { ArrowRight, MessageCircle, ThumbsUp, ChevronLeft, ChevronRight, Sparkle
 import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
-import { Footer } from "~/components/common/footer";
-import { Header } from "~/components/common/header";
-import { Button } from "~/components/ui/button";
+import { Footer } from "~/components/common/Footer";
+import { Header } from "~/components/common/Header";
+import { Button } from "~/components/ui/Button";
 import {
   Card,
   CardContent,
@@ -14,9 +14,9 @@ import {
   CardHeader,
   CardTitle,
   CardFooter,
-} from "~/components/ui/card";
+} from "~/components/ui/Card";
 import { useTranslation } from "react-i18next";
-import { ContactButton } from "~/components/common/contact-button";
+import { ContactButton } from "~/components/common/ContactButton";
 import axios from "axios";
 import { Post } from '../lib/types';
 

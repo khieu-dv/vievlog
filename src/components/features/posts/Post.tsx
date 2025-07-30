@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Heart, MessageCircle, Share2, MoreHorizontal, ArrowRight } from "lucide-react";
 import { getContrastColor } from '~/lib/utils';
-import CommentSection from "./CommentSection";
+import Comments from "./Comments";
 import { Post } from '~/lib/types';
 
 type PostComponentProps = {
@@ -202,7 +202,7 @@ const PostComponent: React.FC<PostComponentProps> = ({
             {/* Comments Section - Only show if there are comments */}
             {post.comments && post.comments.length > 0 && (
                 <div className="border-t border-gray-100 dark:border-gray-700 bg-gray-50/30 dark:bg-gray-800/20">
-                    <CommentSection
+                    <Comments
                         post={post}
                         session={session}
                         formatRelativeTime={formatRelativeTime}

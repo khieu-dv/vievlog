@@ -6,7 +6,7 @@ import { RightSidebarProps } from '~/lib/types';
 
 
 
-export const RightSidebar: React.FC<RightSidebarProps> = ({
+export const ActivitySidebar: React.FC<RightSidebarProps> = ({
     topContributors,
     popularCourses,
     recentAnnouncements,
