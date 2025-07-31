@@ -1,14 +1,11 @@
-git config core.ignorecase false
-git add -A
-git commit -m "Fix: enforce case-sensitive renames"
-git push
+# Bước 1: Xóa toàn bộ cache trong Git index
+git rm -r --cached .
 
+# Bước 2: Add lại toàn bộ file theo đúng case hiện tại
+git add .
 
-# Đổi tên sang tên tạm
-git mv src/components/ui/button.tsx src/components/ui/button_temp.tsx
-# Commit thay đổi tạm
-git commit -m "Rename button.tsx to button_temp.tsx"
+# Bước 3: Commit thay đổi
+git commit -m "Clear Git cache and re-add all files with correct casing"
 
-# Sau đó đổi sang tên đúng với chữ hoa
-git mv src/components/ui/button_temp.tsx src/components/ui/Button.tsx
-git commit -m "Rename button_temp.tsx to Button.tsx"
+# Bước 4: Push lên GitHub
+git push origin <tên-nhánh-của-bạn>

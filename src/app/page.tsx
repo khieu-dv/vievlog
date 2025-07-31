@@ -78,7 +78,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       {/* Reddit-style main layout */}
       <div className="max-w-6xl mx-auto px-4 pt-4">
         <div className="flex gap-6">
@@ -171,7 +171,7 @@ export default function HomePage() {
                             <Share2 className="h-4 w-4" />
                             <span>Share</span>
                           </button>
-                          <Link 
+                          <Link
                             href={`/posts/${post.id}`}
                             className="flex items-center gap-1 hover:bg-muted px-2 py-1 rounded transition-colors"
                           >
@@ -205,7 +205,7 @@ export default function HomePage() {
                 <p className="text-sm text-muted-foreground mb-4">
                   {t("home.description")}
                 </p>
-                <div className="space-y-2">
+                <div className="grid grid-cols-1 gap-3">
                   <Link href="/posts">
                     <Button className="w-full" size="sm">
                       Browse Posts
@@ -224,7 +224,7 @@ export default function HomePage() {
                 <h3 className="font-medium text-foreground mb-3">Trending Today</h3>
                 <div className="space-y-2">
                   {['JavaScript', 'React', 'Node.js', 'Python', 'Go'].map((topic, index) => (
-                    <Link 
+                    <Link
                       key={topic}
                       href={`/posts?category=${topic.toLowerCase()}`}
                       className="flex items-center justify-between py-2 px-3 rounded hover:bg-muted transition-colors group"
@@ -264,7 +264,7 @@ export default function HomePage() {
           </aside>
         </div>
       </div>
-      
+
       <Footer />
     </div>
   );
