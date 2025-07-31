@@ -3,18 +3,18 @@
 import { LogOut, Menu, Settings, User, X, Globe, ChevronDown } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { signOut, useSession } from "~/lib/authClient";
+import { signOut, useSession } from "../../lib/authClient";
 
 import { useState } from "react";
-import { cn } from "~/lib/utils";
-import { Button } from "~/components/ui/Button";
+import { cn } from "../../lib/utils";
+import { Button } from "../ui/Button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "~/components/ui/DropdownMenu";
+} from "../ui/DropdownMenu";
 import { ThemeToggle } from "./ThemeToggle";
 import { useTranslation } from "react-i18next";
 import { languages } from "./locales";

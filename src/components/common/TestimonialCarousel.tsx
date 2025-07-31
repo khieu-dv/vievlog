@@ -4,9 +4,9 @@ import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import * as React from "react";
 
 import Image from "next/image";
-import { cn } from "~/lib/utils";
-import { Button } from "~/components/ui/Button";
-import { Card, CardContent } from "~/components/ui/Card";
+import { cn } from "../../lib/utils";
+import { Button } from "../ui/Button";
+import { Card, CardContent } from "../ui/Card";
 
 type Testimonial = {
   id: string;

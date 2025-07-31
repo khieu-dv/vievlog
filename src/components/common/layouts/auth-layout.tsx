@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ThemeToggle } from "~/components/common/ThemeToggle";
+import { ThemeToggle } from "../ThemeToggle";
 
 type AuthLayoutProps = {
   children: React.ReactNode;

@@ -1,8 +1,8 @@
 import { Facebook, Github, Youtube } from "lucide-react";
 import Link from "next/link";
 
-import { cn } from "~/lib/utils";
-import { Button } from "~/components/ui/Button";
+import { cn } from "../../lib/utils";
+import { Button } from "../ui/Button";
 import { useTranslation } from "react-i18next";
 
 export function Footer({ className }: { className?: string }) {
