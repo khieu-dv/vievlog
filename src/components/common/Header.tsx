@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { signOut, useSession } from "../../lib/authClient";
 
 import { useState } from "react";
-import { cn } from "../../lib/utils";
+import { cn } from "~/lib/utils";
 import { Button } from "../ui/Button";
 import {
   DropdownMenu,
@@ -96,8 +96,8 @@ export function Header({ showAuth = true }: HeaderProps) {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-48 max-h-64 overflow-y-auto">
                 {languages.slice(0, 10).map(lang => (
-                  <DropdownMenuItem 
-                    key={lang.code} 
+                  <DropdownMenuItem
+                    key={lang.code}
                     onClick={() => handleLanguageChange(lang.code)}
                     className="text-sm"
                   >
