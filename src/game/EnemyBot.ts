@@ -13,9 +13,9 @@ export default class EnemyBot extends Phaser.GameObjects.Sprite {
     public difficulty: 'easy' | 'medium' | 'hard';
     public reward: Question;
     
-    private nameText: Phaser.GameObjects.Text;
-    private healthBar: Phaser.GameObjects.Graphics;
-    private hitEffect: Phaser.GameObjects.Graphics;
+    private nameText!: Phaser.GameObjects.Text;
+    private healthBar!: Phaser.GameObjects.Graphics;
+    private hitEffect!: Phaser.GameObjects.Graphics;
     private targetPlayer: any;
     private movementPattern: 'patrol' | 'chase' | 'idle' = 'patrol';
     private patrolPoints: { x: number; y: number }[] = [];

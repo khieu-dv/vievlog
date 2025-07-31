@@ -16,12 +16,12 @@ export interface PlayerStats {
 
 export class ScoreSystem {
     private scene: Phaser.Scene;
-    private scoreUI: Phaser.GameObjects.Container;
-    private scoreText: Phaser.GameObjects.Text;
-    private levelText: Phaser.GameObjects.Text;
-    private streakText: Phaser.GameObjects.Text;
-    private expBar: Phaser.GameObjects.Graphics;
-    private expText: Phaser.GameObjects.Text;
+    private scoreUI!: Phaser.GameObjects.Container;
+    private scoreText!: Phaser.GameObjects.Text;
+    private levelText!: Phaser.GameObjects.Text;
+    private streakText!: Phaser.GameObjects.Text;
+    private expBar!: Phaser.GameObjects.Graphics;
+    private expText!: Phaser.GameObjects.Text;
     
     private stats: PlayerStats = {
         totalScore: 0,

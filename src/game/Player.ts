@@ -21,16 +21,17 @@ export default class Player extends Phaser.GameObjects.Sprite {
     public maxEnergy: number = 100;
     public isAttacking: boolean = false;
     public isShooting: boolean = false;
+    public isBlocking: boolean = false;
     public combo: number = 0;
     public lastAttackTime: number = 0;
     public lastShootTime: number = 0;
     public attackCooldown: number = 300; // milliseconds
     public shootCooldown: number = 500; // milliseconds
     public shootRange: number = 200;
-    public healthBar: Phaser.GameObjects.Graphics;
-    public energyBar: Phaser.GameObjects.Graphics;
-    private combatText: Phaser.GameObjects.Text;
-    private hitEffect: Phaser.GameObjects.Graphics;
+    public healthBar!: Phaser.GameObjects.Graphics;
+    public energyBar!: Phaser.GameObjects.Graphics;
+    private combatText!: Phaser.GameObjects.Text;
+    private hitEffect!: Phaser.GameObjects.Graphics;
     private bullets: Phaser.GameObjects.Graphics[] = [];
 
     // Mobile control states
