@@ -1,12 +1,12 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import VideoFeed from "~/components/features/videos/VideoFeed";
+import VideoFeed from "../../components/features/videos/VideoFeed";
 import PocketBase from "pocketbase";
 import { Loader2, Play, Eye, Clock, TrendingUp } from "lucide-react";
-import { Header } from "~/components/common/Header";
-import { Video } from '~/lib/types';
-import { Button } from "~/components/ui/Button";
+import { Header } from "../../components/common/Header";
+import { Video } from '../../lib/types';
+import { Button } from "../../components/ui/Button";
 
 export default function VideosPage() {
   const [videos, setVideos] = useState<Video[]>([]);

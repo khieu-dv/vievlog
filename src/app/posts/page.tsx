@@ -1,22 +1,22 @@
 "use client";
 
 import { useEffect, useState, useRef, useCallback } from "react";
-import { Header } from "../../components/common/Header";
-import { Footer } from "../../components/common/Footer";
+import { Header } from "src/components/common/Header";
+import { Footer } from "src/components/common/Footer";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import PocketBase from 'pocketbase';
 import { Code, ArrowRight, BookOpen, ChevronDown, Filter } from "lucide-react";
-import { Button } from "../../components/ui/Button";
-import { useSession } from "../../lib/authClient";
-import PostComponent from "../../components/features/posts/Post";
-import { Comment, Post, Category } from '../../lib/types';
-import { Sidebar } from "../../components/common/Sidebar";
-import { ActivitySidebar } from "../../components/common/ActivitySidebar";
+import { Button } from "src/components/ui/Button";
+import { useSession } from "src/lib/authClient";
+import PostComponent from "src/components/features/posts/Post";
+import { Comment, Post, Category } from 'src/lib/types';
+import { Sidebar } from "src/components/common/Sidebar";
+import { ActivitySidebar } from "src/components/common/ActivitySidebar";
 import {
   useLocalizedContent,
   getSupportedLanguageCodes
-} from "../../lib/multilingual";
+} from "src/lib/multilingual";
 
 // Import dữ liệu hard-coded từ file riêng biệt
 import {
