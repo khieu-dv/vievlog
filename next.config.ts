@@ -14,6 +14,13 @@ const nextConfig = {
     ],
   },
   eslint: { ignoreDuringBuilds: true },
+  experimental: {
+    turbo: {
+      resolveAlias: {
+        "~": "./src",
+      },
+    },
+  },
 } satisfies NextConfig;
 
 export default nextConfig;

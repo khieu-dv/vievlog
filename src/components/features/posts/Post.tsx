@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ChevronUp, ChevronDown, MessageCircle, Share2, ExternalLink, Calendar } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import Comments from "./Comments";
-import { Post } from '~/lib/types';
+import { Post } from '../../../lib/types';
 
 type PostComponentProps = {
     post: Post;

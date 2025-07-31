@@ -4,9 +4,9 @@ import { ArrowRight, MessageCircle, ChevronUp, ChevronDown, Share2 } from "lucid
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { Footer } from "~/components/common/Footer";
-import { Header } from "~/components/common/Header";
-import { Button } from "~/components/ui/Button";
+import { Footer } from "../components/common/Footer";
+import { Header } from "../components/common/Header";
+import { Button } from "../components/ui/Button";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import { Post } from '../lib/types';
