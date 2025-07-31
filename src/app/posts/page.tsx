@@ -6,7 +6,7 @@ import { Footer } from "~/components/common/Footer";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import PocketBase from 'pocketbase';
-import { Code, ArrowRight, BookOpen } from "lucide-react";
+import { Code, ArrowRight, BookOpen, ChevronDown, Filter } from "lucide-react";
 import { Button } from "~/components/ui/Button";
 import { useSession } from "../../lib/authClient";
 import PostComponent from "~/components/features/posts/Post";
@@ -57,6 +57,7 @@ export default function PostsPage() {
   const [commentPages, setCommentPages] = useState<Record<string, number>>({});
   const [sidebarVisible, setSidebarVisible] = useState(true);
   const [availableLanguages, setAvailableLanguages] = useState<string[]>([]);
+  const [showMobileCategories, setShowMobileCategories] = useState(false);
 
   // Fetch categories from database
   const fetchCategories = async () => {
@@ -369,8 +370,17 @@ export default function PostsPage() {
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
         setSidebarVisible(true);
+        setShowMobileCategories(false); // Close mobile dropdown on large screens
       } else {
         setSidebarVisible(false);
+      }
+    };
+
+    // Close mobile categories dropdown when clicking outside
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      if (showMobileCategories && !target.closest('.mobile-categories-container')) {
+        setShowMobileCategories(false);
       }
     };
 
@@ -378,8 +388,13 @@ export default function PostsPage() {
     handleResize();
 
     window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+    document.addEventListener('mousedown', handleClickOutside);
+    
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showMobileCategories]);
 
   // Re-fetch data when language changes
   useEffect(() => {
@@ -477,6 +492,77 @@ export default function PostsPage() {
 
           {/* Main Content */}
           <main className="flex-1">
+            {/* Mobile Category Selector - Only visible on small screens */}
+            <div className="lg:hidden mb-4 mobile-categories-container">
+              <button
+                onClick={() => setShowMobileCategories(!showMobileCategories)}
+                className={`flex items-center justify-between w-full p-3 bg-card border rounded-lg hover:bg-muted/50 transition-colors ${
+                  showMobileCategories ? 'border-primary/50 bg-muted/20' : ''
+                }`}
+              >
+                <div className="flex items-center gap-2">
+                  <Filter className="h-4 w-4" />
+                  <span className="font-medium">
+                    {selectedCategory ? selectedCategory.name : t("posts.allPosts")}
+                  </span>
+                  {selectedCategory && (
+                    <span className="text-xs px-2 py-1 bg-muted rounded-full">
+                      {selectedCategory.postCount || 0}
+                    </span>
+                  )}
+                </div>
+                <ChevronDown className={`h-4 w-4 transition-transform ${showMobileCategories ? 'rotate-180' : ''}`} />
+              </button>
+              
+              {/* Mobile Categories Dropdown */}
+              {showMobileCategories && (
+                <div className="mt-2 p-2 bg-card border rounded-lg shadow-lg animate-in slide-in-from-top-2 duration-200">
+                  <div className="max-h-64 overflow-y-auto space-y-1">
+                    <button
+                      onClick={() => {
+                        handleClearCategory();
+                        setShowMobileCategories(false);
+                      }}
+                      disabled={isCategoryChanging}
+                      className={`block w-full text-left px-3 py-2 text-sm rounded transition-all duration-200 ${
+                        !selectedCategoryId ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:bg-muted'
+                      } ${isCategoryChanging ? 'opacity-50 cursor-not-allowed' : ''}`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <span>{t("posts.allPosts")}</span>
+                        {isCategoryChanging && !selectedCategoryId && (
+                          <div className="h-3 w-3 animate-spin rounded-full border border-current border-r-transparent"></div>
+                        )}
+                      </div>
+                    </button>
+                    {popularTopics.map((topic) => (
+                      <button
+                        key={topic.id}
+                        onClick={() => {
+                          handleCategorySelect(topic.id);
+                          setShowMobileCategories(false);
+                        }}
+                        disabled={isCategoryChanging}
+                        className={`block w-full text-left px-3 py-2 text-sm rounded transition-all duration-200 ${
+                          selectedCategoryId === topic.id ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:bg-muted'
+                        } ${isCategoryChanging ? 'opacity-50 cursor-not-allowed' : ''}`}
+                      >
+                        <div className="flex items-center justify-between">
+                          <span>{topic.title}</span>
+                          <div className="flex items-center gap-2">
+                            <span className="text-xs">{topic.count}</span>
+                            {isCategoryChanging && selectedCategoryId === topic.id && (
+                              <div className="h-3 w-3 animate-spin rounded-full border border-current border-r-transparent"></div>
+                            )}
+                          </div>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
             {/* Header Section */}
             <div className="mb-6">
               <div className="flex items-center justify-between">

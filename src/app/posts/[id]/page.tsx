@@ -1,35 +1,30 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import PocketBase from 'pocketbase';
 import { useSession } from "../../../lib/authClient";
 import { Header } from "~/components/common/Header";
 import { Footer } from "~/components/common/Footer";
-import { Heart, MessageCircle, Share2, Bookmark, MoreHorizontal, ChevronLeft, Send, Globe, ChevronUp, ChevronDown, Calendar, ExternalLink } from "lucide-react";
+import { MessageCircle, Share2, Bookmark, ChevronLeft, ChevronUp, ChevronDown, Calendar } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { formatDistanceToNow } from "date-fns";
 import { MarkdownRenderer } from "~/components/common/MarkdownRenderer";
 import { Comment, Post } from '../../../lib/types';
 import {
-  useLocalizedContent,
-  getSupportedLanguageCodes
+  useLocalizedContent
 } from "~/lib/multilingual";
 
 export default function PostDetailPage() {
   const { t, i18n } = useTranslation();
   const {
     getContent,
-    currentLanguage,
-    getSupportedLanguages,
-    getCurrentLanguageInfo,
-    isLanguageSupported: checkLanguageSupport
+    currentLanguage
   } = useLocalizedContent();
   const params = useParams();
-  const router = useRouter();
   const { data: session } = useSession();
   const commentInputRef = useRef<HTMLTextAreaElement>(null);
   const pb = new PocketBase(process.env.NEXT_PUBLIC_POCKETBASE_URL || 'https://pocketbase.vietopik.com');
@@ -40,9 +35,6 @@ export default function PostDetailPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [commentInput, setCommentInput] = useState("");
   const [submittingComment, setSubmittingComment] = useState(false);
-  const [likeCount, setLikeCount] = useState(0);
-  const [hasLiked, setHasLiked] = useState(false);
-  const [availableLanguages, setAvailableLanguages] = useState<string[]>([]);
   const [userVote, setUserVote] = useState<'up' | 'down' | null>(null);
   const [currentScore, setCurrentScore] = useState(0);
 
@@ -91,15 +83,6 @@ export default function PostDetailPage() {
     };
   };
 
-  // Get language statistics
-  const getLanguageStats = () => {
-    const stats = {
-      currentLanguage: getCurrentLanguageInfo(),
-      totalLanguages: getSupportedLanguages().length,
-      isCurrentLanguageSupported: checkLanguageSupport(currentLanguage)
-    };
-    return stats;
-  };
 
   useEffect(() => {
     const fetchPostAndComments = async () => {
@@ -117,7 +100,6 @@ export default function PostDetailPage() {
         // Process and set localized post data
         const processedPost = processPostData(postRes.data);
         setPost(processedPost);
-        setLikeCount(postRes.data.likes || 0);
         setCurrentScore(postRes.data.likes || 0);
 
         // Fetch comments
@@ -161,10 +143,6 @@ export default function PostDetailPage() {
           })) || []
         );
 
-        // Check if user has liked this post (you'll need to implement this based on your like system)
-        if (session?.user) {
-          checkUserLikeStatus(postRes.data.id, session.user.id);
-        }
 
       } catch (error) {
         console.error("Error fetching post or comments:", error);
@@ -175,8 +153,6 @@ export default function PostDetailPage() {
 
     fetchPostAndComments();
 
-    // Set available languages
-    setAvailableLanguages(getSupportedLanguageCodes());
   }, [params.id, session?.user]);
 
   // Re-process post data when language changes
@@ -187,19 +163,6 @@ export default function PostDetailPage() {
     }
   }, [currentLanguage, originalPost, i18n.language]);
 
-  // Check if user has liked the post
-  const checkUserLikeStatus = async (postId: string, userId: string) => {
-    try {
-      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/collections/likes_tbl/records`, {
-        params: {
-          filter: `postId="${postId}" && userId="${userId}"`
-        }
-      });
-      setHasLiked(response.data.items.length > 0);
-    } catch (error) {
-      console.error("Error checking like status:", error);
-    }
-  };
 
   const handleCommentSubmit = async (e?: React.FormEvent) => {
     if (e) e.preventDefault();
@@ -254,47 +217,6 @@ export default function PostDetailPage() {
     }
   };
 
-  const handleLike = async () => {
-    if (!session?.user) {
-      alert(t("Please log in to like this post."));
-      return;
-    }
-
-    try {
-      if (hasLiked) {
-        // Unlike the post
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/collections/likes_tbl/records`, {
-          params: {
-            filter: `postId="${post?.id}" && userId="${session.user.id}"`
-          }
-        });
-
-        if (response.data.items.length > 0) {
-          await pb.collection('likes_tbl').delete(response.data.items[0].id);
-          setLikeCount(prev => Math.max(0, prev - 1));
-          setHasLiked(false);
-        }
-      } else {
-        // Like the post
-        await pb.collection('likes_tbl').create({
-          postId: post?.id,
-          userId: session.user.id
-        });
-        setLikeCount(prev => prev + 1);
-        setHasLiked(true);
-      }
-
-      // Update the post's like count in the database
-      if (post?.id) {
-        await pb.collection('posts_tbl').update(post.id, {
-          likes: hasLiked ? Math.max(0, likeCount - 1) : likeCount + 1
-        });
-      }
-    } catch (error) {
-      console.error("Error updating like:", error);
-      alert(t("Failed to update like. Please try again."));
-    }
-  };
 
   const focusCommentInput = () => {
     if (commentInputRef.current) {
@@ -339,8 +261,6 @@ export default function PostDetailPage() {
     }
   };
 
-  // Get language stats for display
-  const languageStats = getLanguageStats();
 
   if (isLoading) {
     return (

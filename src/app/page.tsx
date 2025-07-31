@@ -1,82 +1,16 @@
 "use client";
 
-import { ArrowRight, MessageCircle, ThumbsUp, ChevronUp, ChevronDown, Share2 } from "lucide-react";
+import { ArrowRight, MessageCircle, ChevronUp, ChevronDown, Share2 } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Footer } from "~/components/common/Footer";
 import { Header } from "~/components/common/Header";
 import { Button } from "~/components/ui/Button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-  CardFooter,
-} from "~/components/ui/Card";
 import { useTranslation } from "react-i18next";
-import { ContactButton } from "~/components/common/ContactButton";
 import axios from "axios";
 import { Post } from '../lib/types';
 
-function PostCardSimple({ post }: { post: Post }) {
-  return (
-    <Card className="group relative min-w-[300px] w-[340px] overflow-hidden bg-white dark:bg-card transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1">
-      {post.coverImage && (
-        <div className="relative aspect-[16/10] w-full overflow-hidden">
-          <Image
-            src={post.coverImage}
-            alt={post.title}
-            fill
-            className="object-cover transition-transform duration-500 group-hover:scale-110"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-          <div className="absolute bottom-4 left-4 right-4">
-            <h3 className="text-white font-bold text-lg line-clamp-2 mb-2">
-              {post.title}
-            </h3>
-            <div className="flex items-center gap-3 text-white/80 text-sm">
-              <div className="flex items-center gap-1">
-                <ThumbsUp className="h-4 w-4" />
-                <span>{post.likes}</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <MessageCircle className="h-4 w-4" />
-                <span>{post.commentCount}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-      {!post.coverImage && (
-        <div className="p-6">
-          <h3 className="font-bold text-xl line-clamp-2 mb-3">
-            {post.title}
-          </h3>
-          <p className="text-muted-foreground line-clamp-3 mb-4">
-            {post.excerpt}
-          </p>
-          <div className="flex items-center gap-4 text-sm text-muted-foreground">
-            <div className="flex items-center gap-1">
-              <ThumbsUp className="h-4 w-4" />
-              <span>{post.likes}</span>
-            </div>
-            <div className="flex items-center gap-1">
-              <MessageCircle className="h-4 w-4" />
-              <span>{post.commentCount}</span>
-            </div>
-          </div>
-        </div>
-      )}
-      <Link
-        href={`/posts/${post.id}`}
-        className="absolute inset-0 z-10"
-        aria-label={`Read ${post.title}`}
-      />
-    </Card>
-  );
-}
 
 export default function HomePage() {
   const { t } = useTranslation();
@@ -92,57 +26,6 @@ export default function HomePage() {
     tags: string[];
   }>>([]);
   const [isLoadingPosts, setIsLoadingPosts] = useState(true);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-
-  // Scroll navigation functions
-  const scrollLeft = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: -340, behavior: 'smooth' });
-    }
-  };
-
-  const scrollRight = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: 340, behavior: 'smooth' });
-    }
-  };
-
-  // Testimonials for the testimonial carousel
-  const testimonials = [
-    {
-      id: "1",
-      content: t("home.testimonial1.quote"),
-      author: {
-        name: t("home.testimonial1.name"),
-        role: t("home.testimonial1.role"),
-        avatar:
-          "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-      },
-      rating: 5,
-    },
-    {
-      id: "2",
-      content: t("home.testimonial2.quote"),
-      author: {
-        name: t("home.testimonial2.name"),
-        role: t("home.testimonial2.role"),
-        avatar:
-          "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-      },
-      rating: 4,
-    },
-    {
-      id: "3",
-      content: t("home.testimonial3.quote"),
-      author: {
-        name: t("home.testimonial3.name"),
-        role: t("home.testimonial3.role"),
-        avatar:
-          "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-      },
-      rating: 5,
-    },
-  ];
 
   // Load blog posts for the homepage
   useEffect(() => {
