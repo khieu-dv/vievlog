@@ -8,133 +8,134 @@ import { useTranslation } from "react-i18next";
 export function Footer({ className }: { className?: string }) {
   const { t } = useTranslation();
   return (
-    <footer className={cn("border-t bg-background", className)}>
-      <div className="container mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <footer className={cn("border-t bg-background mt-12", className)}>
+      <div className="max-w-6xl mx-auto px-4 py-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
+          {/* Brand Section */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-2">
-              <span className="text-xl font-bold tracking-tight bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+              <span className="text-lg font-semibold text-foreground">
                 VieVlog
               </span>
             </Link>
             <p className="text-sm text-muted-foreground">
-              Your one-stop shop for everything tech. Premium lessions at
-              competitive prices.
+              {t("footer.description")}
             </p>
-            <div className="flex space-x-4">
+            <div className="flex space-x-2">
               <a href="https://www.facebook.com/khieu.dv96" target="_blank" rel="noopener noreferrer">
-                <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full">
+                <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
                   <Facebook className="h-4 w-4" />
                   <span className="sr-only">Facebook</span>
                 </Button>
               </a>
               <a href="https://www.youtube.com/@vie-vlogs" target="_blank" rel="noopener noreferrer">
-                <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full">
+                <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
                   <Youtube className="h-4 w-4" />
                   <span className="sr-only">YouTube</span>
                 </Button>
               </a>
-
               <a href="https://github.com/khieu-dv" target="_blank" rel="noopener noreferrer">
-                <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full">
+                <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
                   <Github className="h-4 w-4" />
                   <span className="sr-only">GitHub</span>
                 </Button>
               </a>
-
             </div>
-
           </div>
+
+          {/* Posts Section */}
           <div>
-            <h3 className="mb-4 text-sm font-semibold">Post</h3>
+            <h3 className="mb-3 text-sm font-medium text-foreground">{t("footer.posts")}</h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
                   href="/posts"
-                  className="text-muted-foreground hover:text-foreground"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  {t("footer.posts.allPosts")}
+                  {t("footer.allPosts")}
                 </Link>
               </li>
               <li>
                 <Link
                   href="/posts"
-                  className="text-muted-foreground hover:text-foreground"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  {t("footer.posts.GoCourse")}
+                  {t("footer.goCourse")}
                 </Link>
               </li>
               <li>
                 <Link
                   href="/posts"
-                  className="text-muted-foreground hover:text-foreground"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  {t("footer.posts.ginCourse")}
+                  {t("footer.ginCourse")}
                 </Link>
               </li>
             </ul>
           </div>
+
+          {/* Videos Section */}
           <div>
-            <h3 className="mb-4 text-sm font-semibold">Videos</h3>
+            <h3 className="mb-3 text-sm font-medium text-foreground">{t("footer.videos")}</h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
                   href="/videos"
-                  className="text-muted-foreground hover:text-foreground"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  {t("footer.videos.allVideos")}
+                  {t("footer.allVideos")}
                 </Link>
               </li>
               <li>
                 <Link
                   href="/videos"
-                  className="text-muted-foreground hover:text-foreground"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  {t("footer.videos.tiktokVideos")}
+                  {t("footer.shortVideos")}
                 </Link>
               </li>
-
             </ul>
           </div>
+
+          {/* Community Section */}
           <div>
-            <h3 className="mb-4 text-sm font-semibold">Chat</h3>
+            <h3 className="mb-3 text-sm font-medium text-foreground">{t("footer.community")}</h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
                   href="/chat"
-                  className="text-muted-foreground hover:text-foreground"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  {t("footer.chats.chatWithUs")}
+                  {t("footer.chatWithUs")}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/chat"
-                  className="text-muted-foreground hover:text-foreground"
+                  href="/posts"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  {t("footer.chats.chatWithFriend")}
+                  {t("footer.discussions")}
                 </Link>
               </li>
             </ul>
           </div>
         </div>
-        <div className="mt-12 border-t pt-8">
+
+        {/* Bottom Section */}
+        <div className="mt-8 pt-6 border-t">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <p className="text-sm text-muted-foreground">
-              &copy; {new Date().getFullYear()} VieVlog. All rights reserved.
+              &copy; {new Date().getFullYear()} VieVlog. {t("footer.allRightsReserved")}
             </p>
-            <div className="flex items-center gap-4 text-sm text-muted-foreground">
-              <Link href="/" className="hover:text-foreground">
+            <div className="flex items-center gap-4 text-sm">
+              <Link href="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">
                 {t("footer.privacy")}
               </Link>
-              <Link href="/" className="hover:text-foreground">
+              <Link href="/terms" className="text-muted-foreground hover:text-foreground transition-colors">
                 {t("footer.terms")}
               </Link>
-              <Link href="/" className="hover:text-foreground">
-                {t("footer.cookies")}
-              </Link>
-              <Link href="/" className="hover:text-foreground">
-                {t("footer.sitemap")}
+              <Link href="/contact" className="text-muted-foreground hover:text-foreground transition-colors">
+                {t("footer.contact")}
               </Link>
             </div>
           </div>

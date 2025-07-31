@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { Header } from "~/components/common/Header";
 import { Footer } from "~/components/common/Footer";
 import { useTranslation } from "react-i18next";
@@ -49,6 +49,7 @@ export default function PostsPage() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [selectedCategoryId, setSelectedCategoryId] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isCategoryChanging, setIsCategoryChanging] = useState(false);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [commentInputs, setCommentInputs] = useState<Record<string, string>>({});
@@ -117,10 +118,14 @@ export default function PostsPage() {
     }
   };
 
-  const fetchPosts = async (pageNumber: number, categoryId = "") => {
+  const fetchPosts = async (pageNumber: number, categoryId = "", isNewCategory = false) => {
     if (isLoading) return;
 
     setIsLoading(true);
+    if (isNewCategory) {
+      setIsCategoryChanging(true);
+    }
+
     try {
       // Build filter params
       const params: any = {
@@ -176,8 +181,8 @@ export default function PostsPage() {
 
       setHasMore(mappedPosts.length === POSTS_PER_PAGE);
 
-      // Fetch comments for each post
-      mappedPosts.forEach((post: Post) => {
+      // Only fetch comments for visible posts (first few) to improve performance
+      mappedPosts.slice(0, 3).forEach((post: Post) => {
         fetchCommentsForPost(post.id);
       });
 
@@ -185,26 +190,37 @@ export default function PostsPage() {
       console.error("Failed to fetch posts:", error);
     } finally {
       setIsLoading(false);
+      if (isNewCategory) {
+        setIsCategoryChanging(false);
+      }
     }
   };
 
-  // Handle category selection
-  const handleCategorySelect = (categoryId: string) => {
+  // Handle category selection with smooth transition and debouncing
+  const handleCategorySelect = useCallback(async (categoryId: string) => {
+    if (selectedCategoryId === categoryId || isCategoryChanging) return;
+    
+    // Update states in batch to avoid multiple re-renders
     setSelectedCategoryId(categoryId);
     setPage(1);
-    setPosts([]);
     setHasMore(true);
-    fetchPosts(1, categoryId);
-  };
+    
+    // Start loading new posts immediately without clearing existing ones
+    await fetchPosts(1, categoryId, true);
+  }, [selectedCategoryId, isCategoryChanging]);
 
-  // Clear category filter
-  const handleClearCategory = () => {
+  // Clear category filter with smooth transition and debouncing
+  const handleClearCategory = useCallback(async () => {
+    if (!selectedCategoryId || isCategoryChanging) return;
+    
+    // Update states in batch
     setSelectedCategoryId("");
     setPage(1);
-    setPosts([]);
     setHasMore(true);
-    fetchPosts(1);
-  };
+    
+    // Start loading all posts without clearing existing ones
+    await fetchPosts(1, "", true);
+  }, [selectedCategoryId, isCategoryChanging]);
 
   // Fetch comments for post with pagination support
   const fetchCommentsForPost = async (postId: string, reset = false) => {
@@ -408,45 +424,70 @@ export default function PostsPage() {
   const languageStats = getLanguageStats();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900">
+    <div className="min-h-screen bg-background">
       <Header />
 
-      {/* Mobile sidebar toggle */}
-      <div className="fixed bottom-6 right-6 z-50 lg:hidden">
-        <button
-          onClick={toggleSidebar}
-          className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
-        >
-          <Code size={24} />
-        </button>
-      </div>
-
       {/* Main Layout */}
-      <div className="container mx-auto px-4 pt-20 pb-10">
-        <div className="flex flex-col lg:flex-row gap-8">
+      <div className="max-w-6xl mx-auto px-4 pt-6">
+        <div className="flex gap-6">
           {/* Left Sidebar */}
-          <Sidebar
-            sidebarVisible={sidebarVisible}
-            toggleSidebar={toggleSidebar}
-            popularTopics={popularTopics}
-            trendingTechnologies={trendingTechnologies}
-            onCategorySelect={handleCategorySelect}
-            selectedCategoryId={selectedCategoryId}
-          />
+          <aside className="w-64 hidden lg:block">
+            <div className="sticky top-20 space-y-4">
+              <div className="p-4 bg-card rounded-lg border">
+                <h3 className="font-medium text-foreground mb-3">{t("posts.categories")}</h3>
+                <div className="space-y-2">
+                  <button
+                    onClick={handleClearCategory}
+                    disabled={isCategoryChanging}
+                    className={`block w-full text-left px-3 py-2 text-sm rounded transition-all duration-200 ${
+                      !selectedCategoryId ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:bg-muted'
+                    } ${isCategoryChanging ? 'opacity-50 cursor-not-allowed' : ''}`}
+                  >
+                    <div className="flex items-center justify-between">
+                      <span>{t("posts.allPosts")}</span>
+                      {isCategoryChanging && !selectedCategoryId && (
+                        <div className="h-3 w-3 animate-spin rounded-full border border-current border-r-transparent"></div>
+                      )}
+                    </div>
+                  </button>
+                  {popularTopics.map((topic) => (
+                    <button
+                      key={topic.id}
+                      onClick={() => handleCategorySelect(topic.id)}
+                      disabled={isCategoryChanging}
+                      className={`block w-full text-left px-3 py-2 text-sm rounded transition-all duration-200 ${
+                        selectedCategoryId === topic.id ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:bg-muted'
+                      } ${isCategoryChanging ? 'opacity-50 cursor-not-allowed' : ''}`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <span>{topic.title}</span>
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs">{topic.count}</span>
+                          {isCategoryChanging && selectedCategoryId === topic.id && (
+                            <div className="h-3 w-3 animate-spin rounded-full border border-current border-r-transparent"></div>
+                          )}
+                        </div>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </aside>
 
           {/* Main Content */}
-          <main className="flex-1 lg:max-w-3xl">
+          <main className="flex-1">
             {/* Header Section */}
-            <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 mb-8 shadow-lg">
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div className="mb-6">
+              <div className="flex items-center justify-between">
                 <div>
-                  <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
-                    {selectedCategory ? selectedCategory.name : "IT Learning Hub"}
+                  <h1 className="text-2xl font-semibold text-foreground mb-1">
+                    {selectedCategory ? selectedCategory.name : t("posts.title")}
                   </h1>
-                  <p className="text-lg text-gray-600 dark:text-gray-300">
+                  <p className="text-muted-foreground">
                     {selectedCategory
-                      ? `Exploring ${selectedCategory.name} topics and tutorials`
-                      : "Discover the latest in IT education and programming"
+                      ? `${selectedCategory.name} posts and discussions`
+                      : t("posts.subtitle")
                     }
                   </p>
                 </div>
@@ -454,65 +495,65 @@ export default function PostsPage() {
                   <Button
                     onClick={handleClearCategory}
                     variant="outline"
-                    className="shrink-0"
+                    size="sm"
                   >
-                    Clear Filter
+                    {t("posts.clearFilter")}
                   </Button>
                 )}
-              </div>
-              
-              {/* Stats */}
-              <div className="flex items-center gap-6 mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-blue-600">{posts.length}</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">Posts</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-green-600">{languageStats.totalLanguages}</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">Languages</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-purple-600">{categories.length}</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">Categories</div>
-                </div>
               </div>
             </div>
 
             {/* Posts Feed */}
-            <div className="space-y-4">
+            <div className={`space-y-2 relative transition-opacity duration-300 ${isCategoryChanging ? 'opacity-70' : 'opacity-100'}`}>
+              {/* Category changing overlay */}
+              {isCategoryChanging && posts.length > 0 && (
+                <div className="absolute inset-0 bg-background/50 backdrop-blur-sm z-10 rounded-lg flex items-center justify-center">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground bg-background/90 px-4 py-2 rounded-full border">
+                    <div className="h-4 w-4 animate-spin rounded-full border border-current border-r-transparent"></div>
+                    <span>{t("posts.loading")}</span>
+                  </div>
+                </div>
+              )}
+              
               {posts.length === 0 && isLoading ? (
-                Array(3).fill(0).map((_, i) => (
-                  <div key={i} className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
-                    <div className="flex items-center mb-4">
-                      <div className="h-10 w-10 animate-pulse rounded-full bg-gray-200 dark:bg-gray-700"></div>
-                      <div className="ml-3 space-y-2">
-                        <div className="h-3 w-24 animate-pulse rounded bg-gray-200 dark:bg-gray-700"></div>
-                        <div className="h-2 w-16 animate-pulse rounded bg-gray-200 dark:bg-gray-700"></div>
+                Array(5).fill(0).map((_, i) => (
+                  <div key={i} className="bg-card rounded-md border animate-pulse">
+                    <div className="flex">
+                      <div className="w-10 bg-muted/30 rounded-l-md p-2">
+                        <div className="space-y-1">
+                          <div className="h-5 w-5 bg-muted rounded"></div>
+                          <div className="h-3 w-6 bg-muted rounded"></div>
+                          <div className="h-5 w-5 bg-muted rounded"></div>
+                        </div>
                       </div>
-                    </div>
-                    <div className="space-y-3">
-                      <div className="h-5 w-full animate-pulse rounded bg-gray-200 dark:bg-gray-700"></div>
-                      <div className="h-4 w-2/3 animate-pulse rounded bg-gray-200 dark:bg-gray-700"></div>
-                      <div className="h-40 w-full animate-pulse rounded-lg bg-gray-200 dark:bg-gray-700"></div>
+                      <div className="flex-1 p-3 space-y-2">
+                        <div className="h-3 bg-muted rounded w-2/3"></div>
+                        <div className="h-4 bg-muted rounded w-full"></div>
+                        <div className="h-3 bg-muted rounded w-3/4"></div>
+                        <div className="flex gap-2">
+                          <div className="h-6 w-16 bg-muted rounded"></div>
+                          <div className="h-6 w-12 bg-muted rounded"></div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 ))
               ) : posts.length === 0 ? (
-                <div className="bg-white dark:bg-gray-800 rounded-xl p-12 text-center shadow-sm border border-gray-100 dark:border-gray-700">
-                  <div className="mx-auto w-20 h-20 bg-blue-50 dark:bg-blue-900/20 rounded-full flex items-center justify-center mb-6">
-                    <BookOpen className="h-10 w-10 text-blue-500" />
+                <div className="bg-card rounded-lg border p-8 text-center">
+                  <div className="mx-auto w-16 h-16 bg-muted rounded-full flex items-center justify-center mb-4">
+                    <BookOpen className="h-8 w-8 text-muted-foreground" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                    {selectedCategory ? `No posts in ${selectedCategory.name}` : "No posts found"}
+                  <h3 className="text-lg font-medium text-foreground mb-2">
+                    {selectedCategory ? t("posts.noPostsInCategory") : t("posts.noPostsFound")}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-md mx-auto">
+                  <p className="text-muted-foreground mb-4">
                     {selectedCategory
-                      ? "Try exploring other categories or check back later for new content."
-                      : "Be the first to share your knowledge with the community!"
+                      ? t("posts.tryOtherCategories")
+                      : t("posts.beFirstToShare")
                     }
                   </p>
-                  <Button className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700">
-                    Explore All Posts
+                  <Button variant="outline">
+                    {t("posts.exploreAllPosts")}
                   </Button>
                 </div>
               ) : (
@@ -534,36 +575,26 @@ export default function PostsPage() {
 
             {/* Load More Button */}
             {hasMore && posts.length > 0 && (
-              <div className="mt-8 text-center" ref={loadMoreRef}>
+              <div className="mt-6 text-center" ref={loadMoreRef}>
                 <Button
                   onClick={handleLoadMore}
                   disabled={isLoading}
-                  size="lg"
-                  className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg hover:shadow-xl transition-all duration-300"
+                  variant="outline"
+                  className="w-full"
                 >
                   {isLoading ? (
                     <>
-                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                      Loading...
+                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-current mr-2"></div>
+                      {t("posts.loading")}
                     </>
                   ) : (
-                    <>
-                      Load More Posts
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </>
+                    t("posts.loadMore")
                   )}
                 </Button>
               </div>
             )}
           </main>
 
-          {/* Right Sidebar Component */}
-          <ActivitySidebar
-            topContributors={topContributors}
-            popularCourses={popularCourses}
-            recentAnnouncements={recentAnnouncements}
-            upcomingEvents={upcomingEvents}
-          />
         </div>
       </div>
       <Footer />

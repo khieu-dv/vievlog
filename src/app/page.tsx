@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, MessageCircle, ThumbsUp, ChevronLeft, ChevronRight, Sparkles, TrendingUp, Users, Play, BookOpen, Star } from "lucide-react";
+import { ArrowRight, MessageCircle, ThumbsUp, ChevronUp, ChevronDown, Share2 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
@@ -177,275 +177,212 @@ export default function HomePage() {
     fetchPosts();
   }, []);
 
+  // Format date to relative time (e.g., "2 hours ago")
+  const formatRelativeTime = (date: string | number | Date): string => {
+    const dateObj = new Date(date);
+    const now = new Date();
+    const diffInSeconds = Math.floor((now.getTime() - dateObj.getTime()) / 1000);
+
+    if (diffInSeconds < 60) return `${diffInSeconds} seconds ago`;
+    if (diffInSeconds < 3600) return `${Math.floor(diffInSeconds / 60)} minutes ago`;
+    if (diffInSeconds < 86400) return `${Math.floor(diffInSeconds / 3600)} hours ago`;
+    if (diffInSeconds < 604800) return `${Math.floor(diffInSeconds / 86400)} days ago`;
+    if (diffInSeconds < 2592000) return `${Math.floor(diffInSeconds / 604800)} weeks ago`;
+
+    return dateObj.toLocaleDateString();
+  };
+
   return (
-    <div>
+    <div className="min-h-screen bg-background">
       <Header />
-      <main className="flex-1 overflow-hidden">
-        {/* Hero Section */}
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-          {/* Background */}
-          <div className="absolute inset-0 -z-10">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-blue-900" />
-            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgZmlsbD0iIzRmNDZlNSIgZmlsbC1vcGFjaXR5PSIwLjA1Ij4KICAgICAgICAgICAgPGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+')] opacity-40" />
-          </div>
-
-          <div className="container relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center space-y-8">
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-600/10 to-indigo-600/10 border border-blue-200/50 px-6 py-2 text-sm font-medium text-blue-700 dark:text-blue-300 backdrop-blur-sm">
-                <Sparkles className="h-4 w-4" />
-                <span>Welcome to VievLog Platform</span>
+      
+      {/* Reddit-style main layout */}
+      <div className="max-w-6xl mx-auto px-4 pt-4">
+        <div className="flex gap-6">
+          {/* Main Feed - Reddit Style */}
+          <main className="flex-1 max-w-2xl">
+            {/* Feed Header */}
+            <div className="mb-4">
+              <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
+                <span className="font-medium text-foreground">Popular posts</span>
+                <span>•</span>
+                <span>Programming & Tech</span>
               </div>
-
-              {/* Main Heading */}
-              <div className="space-y-6">
-                <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight">
-                  <span className="block text-gray-900 dark:text-white">Your</span>
-                  <span className="block bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                    IT Learning
-                  </span>
-                  <span className="block text-gray-900 dark:text-white">Journey</span>
-                </h1>
-                
-                <p className="mx-auto max-w-3xl text-xl md:text-2xl leading-relaxed text-gray-600 dark:text-gray-300">
-                  {t("home.learnIT")}
-                </p>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8">
-                <Link href="/posts">
-                  <Button size="lg" className="group h-14 px-8 text-lg font-semibold bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/40 transition-all duration-300">
-                    <BookOpen className="mr-2 h-5 w-5" />
-                    {t("home.viewAllPosts")}
-                    <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
-                  </Button>
-                </Link>
-                <Link href="/videos">
-                  <Button variant="outline" size="lg" className="group h-14 px-8 text-lg font-semibold border-2 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-300">
-                    <Play className="mr-2 h-5 w-5" />
-                    Watch Videos
-                    <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
-                  </Button>
-                </Link>
-              </div>
-
-              {/* Stats */}
-              <div className="flex items-center justify-center gap-12 pt-12">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-gray-900 dark:text-white">10K+</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">Active Users</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-gray-900 dark:text-white">500+</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">IT Articles</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-gray-900 dark:text-white">50+</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">Video Tutorials</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Featured Content */}
-        <section className="py-20 bg-white dark:bg-gray-900">
-          <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            {/* Section Header */}
-            <div className="text-center mb-16">
-              <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-green-500/10 to-blue-500/10 border border-green-200/50 px-4 py-2 text-sm font-medium text-green-700 dark:text-green-300 mb-6">
-                <TrendingUp className="h-4 w-4" />
-                <span>Latest Content</span>
-              </div>
-              
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-                {t("home.latestBlogPosts")}
-              </h2>
-              
-              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                {t("home.exploreArticles")}
-              </p>
+              <div className="border-b border-border"></div>
             </div>
 
-            {/* Posts Container */}
-            <div className="relative">
-              {/* Navigation Buttons */}
-              <div className="absolute -top-16 right-0 flex gap-2 z-10">
-                <button
-                  onClick={scrollLeft}
-                  className="group flex h-12 w-12 items-center justify-center rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-xl hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-300"
-                  aria-label="Scroll left"
-                >
-                  <ChevronLeft className="h-6 w-6 text-gray-600 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400" />
-                </button>
-                <button
-                  onClick={scrollRight}
-                  className="group flex h-12 w-12 items-center justify-center rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-xl hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-300"
-                  aria-label="Scroll right"
-                >
-                  <ChevronRight className="h-6 w-6 text-gray-600 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400" />
-                </button>
-              </div>
-
-              {/* Posts Carousel */}
+            {/* Posts Feed */}
+            <div className="space-y-2">
               {isLoadingPosts ? (
-                <div className="flex gap-6 overflow-x-auto pb-4">
-                  {[1, 2, 3, 4].map((i) => (
-                    <div key={i} className="min-w-[300px] w-[340px] h-96 animate-pulse rounded-2xl bg-gray-200 dark:bg-gray-700"></div>
-                  ))}
-                </div>
+                Array(5).fill(0).map((_, i) => (
+                  <div key={i} className="bg-card rounded-md border animate-pulse">
+                    <div className="flex">
+                      <div className="w-10 bg-muted/30 rounded-l-md p-2">
+                        <div className="space-y-1">
+                          <div className="h-5 w-5 bg-muted rounded"></div>
+                          <div className="h-3 w-6 bg-muted rounded"></div>
+                          <div className="h-5 w-5 bg-muted rounded"></div>
+                        </div>
+                      </div>
+                      <div className="flex-1 p-3 space-y-2">
+                        <div className="h-3 bg-muted rounded w-2/3"></div>
+                        <div className="h-4 bg-muted rounded w-full"></div>
+                        <div className="h-3 bg-muted rounded w-3/4"></div>
+                        <div className="flex gap-2">
+                          <div className="h-6 w-16 bg-muted rounded"></div>
+                          <div className="h-6 w-12 bg-muted rounded"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))
               ) : (
-                <div
-                  ref={scrollContainerRef}
-                  className="flex gap-6 overflow-x-auto pb-4 scroll-smooth"
-                  style={{
-                    scrollbarWidth: 'none',
-                    msOverflowStyle: 'none'
-                  }}
-                >
-                  {posts.map((post) => (
-                    <PostCardSimple key={post.id} post={post} />
-                  ))}
-                </div>
+                posts.slice(0, 8).map((post, index) => (
+                  <div key={post.id} className="bg-card border rounded-md hover:border-muted-foreground/20 transition-colors">
+                    <div className="flex">
+                      {/* Reddit-style voting panel */}
+                      <div className="flex flex-col items-center p-2 w-10 bg-muted/30 rounded-l-md">
+                        <button className="p-1 rounded hover:bg-muted transition-colors text-muted-foreground hover:text-orange-500">
+                          <ChevronUp className="h-4 w-4" />
+                        </button>
+                        <span className="text-xs font-medium text-muted-foreground px-1">
+                          {post.likes || Math.floor(Math.random() * 100)}
+                        </span>
+                        <button className="p-1 rounded hover:bg-muted transition-colors text-muted-foreground hover:text-blue-500">
+                          <ChevronDown className="h-4 w-4" />
+                        </button>
+                      </div>
+
+                      {/* Main content */}
+                      <div className="flex-1 p-3">
+                        {/* Post header */}
+                        <div className="flex items-center gap-2 text-xs text-muted-foreground mb-2">
+                          <span className="font-medium text-foreground">r/programming</span>
+                          <span>•</span>
+                          <span>Posted by u/{post.author.name}</span>
+                          <span>•</span>
+                          <span>{formatRelativeTime(post.publishedAt)}</span>
+                        </div>
+
+                        {/* Post title */}
+                        <Link href={`/posts/${post.id}`} className="block group">
+                          <h3 className="font-medium text-foreground group-hover:text-primary transition-colors mb-2 line-clamp-2">
+                            {post.title}
+                          </h3>
+                        </Link>
+
+                        {/* Post excerpt */}
+                        {post.excerpt && (
+                          <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
+                            {post.excerpt}
+                          </p>
+                        )}
+
+                        {/* Actions */}
+                        <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                          <button className="flex items-center gap-1 hover:bg-muted px-2 py-1 rounded transition-colors">
+                            <MessageCircle className="h-4 w-4" />
+                            <span>{post.commentCount} comments</span>
+                          </button>
+                          <button className="flex items-center gap-1 hover:bg-muted px-2 py-1 rounded transition-colors">
+                            <Share2 className="h-4 w-4" />
+                            <span>Share</span>
+                          </button>
+                          <Link 
+                            href={`/posts/${post.id}`}
+                            className="flex items-center gap-1 hover:bg-muted px-2 py-1 rounded transition-colors"
+                          >
+                            <ArrowRight className="h-4 w-4" />
+                            <span>Read</span>
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))
               )}
             </div>
 
-            {/* View All Button */}
-            <div className="text-center mt-16">
+            {/* Load more */}
+            <div className="mt-6">
               <Link href="/posts">
-                <Button size="lg" className="group h-14 px-8 text-lg font-semibold bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg hover:shadow-xl transition-all duration-300">
-                  <BookOpen className="mr-2 h-5 w-5" />
-                  {t("home.viewAllPosts")}
-                  <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
+                <Button variant="outline" className="w-full">
+                  View more posts
                 </Button>
               </Link>
             </div>
-          </div>
-        </section>
+          </main>
 
-        {/* Testimonials */}
-        <section className="py-20 bg-gray-50 dark:bg-gray-800">
-          <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-200/50 px-4 py-2 text-sm font-medium text-purple-700 dark:text-purple-300 mb-6">
-                <Star className="h-4 w-4" />
-                <span>Testimonials</span>
+          {/* Right Sidebar - Reddit Style */}
+          <aside className="w-80 hidden lg:block">
+            <div className="sticky top-20 space-y-4">
+              {/* Welcome Card */}
+              <div className="bg-card rounded-lg border p-4">
+                <h3 className="font-medium text-foreground mb-2">Welcome to VieVlog</h3>
+                <p className="text-sm text-muted-foreground mb-4">
+                  {t("home.description")}
+                </p>
+                <div className="space-y-2">
+                  <Link href="/posts">
+                    <Button className="w-full" size="sm">
+                      Browse Posts
+                    </Button>
+                  </Link>
+                  <Link href="/videos">
+                    <Button variant="outline" className="w-full" size="sm">
+                      Watch Videos
+                    </Button>
+                  </Link>
+                </div>
               </div>
-              
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-                {t("home.customerTestimonialsTitle")}
-              </h2>
-              
-              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                {t("home.customerTestimonialsSubtitle")}
-              </p>
-            </div>
 
-            {/* Testimonials Grid */}
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {testimonials.map((testimonial) => (
-                <div
-                  key={testimonial.id}
-                  className="group relative bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
-                >
-                  {/* Quote Icon */}
-                  <div className="absolute -top-4 left-8">
-                    <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-full p-3">
-                      <svg className="h-6 w-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
-                      </svg>
-                    </div>
+              {/* Trending Topics */}
+              <div className="bg-card rounded-lg border p-4">
+                <h3 className="font-medium text-foreground mb-3">Trending Today</h3>
+                <div className="space-y-2">
+                  {['JavaScript', 'React', 'Node.js', 'Python', 'Go'].map((topic, index) => (
+                    <Link 
+                      key={topic}
+                      href={`/posts?category=${topic.toLowerCase()}`}
+                      className="flex items-center justify-between py-2 px-3 rounded hover:bg-muted transition-colors group"
+                    >
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-medium text-foreground group-hover:text-primary">
+                          {topic}
+                        </span>
+                      </div>
+                      <span className="text-xs text-muted-foreground">
+                        {Math.floor(Math.random() * 50) + 10}k posts
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {/* Quick Stats */}
+              <div className="bg-card rounded-lg border p-4">
+                <h3 className="font-medium text-foreground mb-3">Community Stats</h3>
+                <div className="space-y-3">
+                  <div className="flex justify-between text-sm">
+                    <span className="text-muted-foreground">Members</span>
+                    <span className="font-medium">12.5k</span>
                   </div>
-
-                  {/* Rating */}
-                  <div className="flex mb-4 mt-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
-                    ))}
+                  <div className="flex justify-between text-sm">
+                    <span className="text-muted-foreground">Online</span>
+                    <span className="font-medium text-green-500">1.2k</span>
                   </div>
-
-                  {/* Content */}
-                  <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-                    "{testimonial.content}"
-                  </p>
-
-                  {/* Author */}
-                  <div className="flex items-center gap-4">
-                    <div className="relative h-12 w-12 overflow-hidden rounded-full">
-                      <Image
-                        src={testimonial.author.avatar}
-                        alt={testimonial.author.name}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                    <div>
-                      <p className="font-semibold text-gray-900 dark:text-white">
-                        {testimonial.author.name}
-                      </p>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
-                        {testimonial.author.role}
-                      </p>
-                    </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-muted-foreground">Posts today</span>
+                    <span className="font-medium">87</span>
                   </div>
                 </div>
-              ))}
-            </div>
-
-            {/* CTA */}
-            <div className="text-center mt-16">
-              <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-                Join thousands of satisfied learners today
-              </p>
-              <Link href="/auth/sign-up">
-                <Button size="lg" className="h-14 px-8 text-lg font-semibold bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 shadow-lg hover:shadow-xl transition-all duration-300">
-                  Get Started Today
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* Final CTA Section */}
-        <section className="py-20 bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-900 relative overflow-hidden">
-          {/* Background Pattern */}
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgZmlsbD0iI2ZmZmZmZiIgZmlsbC1vcGFjaXR5PSIwLjEiPgogICAgICAgICAgICA8Y2lyY2xlIGN4PSIzMCIgY3k9IjMwIiByPSIyIi8+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4=')] opacity-30" />
-          
-          <div className="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="text-center text-white space-y-8">
-              <h2 className="text-4xl md:text-6xl font-bold">
-                Ready to Start Learning?
-              </h2>
-              
-              <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
-                {t("home.yourOneStopShop")}
-              </p>
-              
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-8">
-                <Link href="/auth/sign-up">
-                  <Button size="lg" className="h-16 px-10 text-lg font-bold bg-white text-blue-900 hover:bg-gray-100 shadow-2xl hover:shadow-3xl hover:scale-105 transition-all duration-300">
-                    {t("home.signUpNow")}
-                    <ArrowRight className="ml-2 h-6 w-6" />
-                  </Button>
-                </Link>
-                <Link href="/posts">
-                  <Button 
-                    size="lg" 
-                    className="h-16 px-10 text-lg font-bold bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-900 hover:border-white transition-all duration-300 backdrop-blur-sm group"
-                  >
-                    <span>{t("home.browseIT")}</span>
-                    <BookOpen className="ml-2 h-6 w-6" />
-                  </Button>
-                </Link>
               </div>
             </div>
-          </div>
-        </section>
-      </main>
+          </aside>
+        </div>
+      </div>
+      
       <Footer />
-      <ContactButton />
     </div>
   );
 }

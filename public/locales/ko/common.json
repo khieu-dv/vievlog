@@ -1,74 +1,81 @@
 {
   "header": {
-    "home": "집",
-    "posts": "게시물",
-    "chats": "채팅",
-    "videos": "비디오"
+    "home": "홈",
+    "posts": "게시글",
+    "videos": "비디오",
+    "languageSelector": "언어"
   },
   "home": {
-    "oneStopPlatform": "Vievlog-올인원 IT 학습 플랫폼",
-    "learnIT": "숙련 된 강사의 최고 품질의 IT 튜토리얼, 레슨 및 리소스를 즐기십시오.",
-    "viewAllPosts": "모든 게시물을보십시오",
-    "shoppingExperience": "쇼핑 경험",
-    "latestBlogPosts": "최신 블로그 게시물",
-    "exploreArticles": "최신 기사와 학습을위한 팁을 살펴보십시오",
-    "vieTopik": "VIEVLOG - Top 1 IT Learning Hub",
-    "yourOneStopShop": "IT 기술을 마스터하고 인증 시험을 준비하는 원 스톱 플랫폼. 무료로 프리미엄 콘텐츠에 액세스하십시오!",
-    "signUpNow": "지금 가입하십시오",
-    "browseIT": "찾아보세요",
-    "customerTestimonialsTitle": "우리 고객의 말",
-    "customerTestimonialsSubtitle": "우리의 말만 받아들이지 마십시오 - 만족스러운 고객의 의견을 들어보세요",
-    "testimonial1": {
-      "quote": "Vievlog는 자신있게 IT 인증 시험을 통과하는 데 도움이되었습니다.",
-      "name": "Nguyen Minh Anh",
-      "role": "국제 학생"
-    },
-    "testimonial2": {
-      "quote": "Vievlog를 통해 그것을 배우는 것은 효과적이고 즐겁습니다!",
-      "name": "트란 하이 남",
-      "role": "사무실 전문가"
-    },
-    "testimonial3": {
-      "quote": "Vievlog 덕분에 프로그래밍 기술을 크게 향상 시켰습니다.",
-      "name": "Le Thanh Huong",
-      "role": "대학생"
-    }
+    "title": "VieVlog IT 학습",
+    "description": "고품질 프로그래밍 튜토리얼, 코딩 레슨, 개발자 리소스에 액세스하세요. 전문 강사로부터 배우고 기술 스킬을 성장시키세요.",
+    "viewAllPosts": "모든 게시글 보기",
+    "watchVideos": "비디오 보기",
+    "latestPosts": "최신 게시글",
+    "exploreContent": "최신 프로그래밍 튜토리얼과 개발 가이드를 탐색하세요"
   },
   "posts": {
-    "title": "모든 게시물"
+    "title": "모든 게시글",
+    "subtitle": "최신 프로그래밍 토론과 튜토리얼",
+    "categories": "카테고리",
+    "allPosts": "모든 게시글",
+    "loadMore": "더 많은 게시글 로드",
+    "noPostsFound": "게시글을 찾을 수 없습니다",
+    "noPostsInCategory": "이 카테고리에 게시글이 없습니다",
+    "tryOtherCategories": "다른 카테고리를 탐색하거나 나중에 다시 확인해보세요.",
+    "beFirstToShare": "첫 번째로 지식을 공유해보세요!",
+    "exploreAllPosts": "모든 게시글 탐색",
+    "clearFilter": "필터 지우기",
+    "loading": "로딩 중...",
+    "postedBy": "게시자",
+    "comments": "댓글",
+    "comment": "댓글",
+    "share": "공유",
+    "readMore": "더 읽기",
+    "upvote": "추천",
+    "downvote": "비추천"
   },
-  "videos": {},
-  "chats": {},
+  "videos": {
+    "title": "모든 비디오",
+    "subtitle": "프로그래밍 튜토리얼과 기술 강연"
+  },
+  "common": {
+    "search": "검색",
+    "submit": "제출",
+    "cancel": "취소",
+    "save": "저장",
+    "edit": "편집",
+    "delete": "삭제",
+    "loading": "로딩 중...",
+    "error": "오류",
+    "success": "성공",
+    "close": "닫기",
+    "back": "뒤로",
+    "next": "다음",
+    "previous": "이전"
+  },
+  "auth": {
+    "signIn": "로그인",
+    "signUp": "회원가입",
+    "signOut": "로그아웃",
+    "profile": "프로필",
+    "settings": "설정"
+  },
   "footer": {
-    "aboutUs": "우리에 대해",
-    "careers": "경력",
-    "blog": "기술 블로그 - 뉴스 및 팁",
-    "contact": "저희에게 연락하십시오",
-    "helpCenter": "도움말 센터",
-    "faq": "FAQ - 자주 묻는 질문",
-    "privacyPolicy": "개인 정보 보호 정책",
-    "termsOfService": "서비스 약관",
-    "followUs": "소셜 미디어에서 우리를 따르십시오",
-    "footerNote": "© 2025 Vievlog. 모든 권리 보유.",
-    "privacy": "은둔",
-    "terms": "자귀",
-    "cookies": "쿠키",
-    "sitemap": "사이트 맵",
-    "followUsYoutube": "YouTube에서 우리를 따르십시오",
-    "chats": {
-      "chatWithUs": "우리와 채팅",
-      "chatWithFriend": "친구들과 채팅하십시오",
-      "placeholderMessage": "A 형 메시지 ...",
-      "sendButton": "보내다"
-    },
-    "videos": {
-      "allVideos": "모든 비디오",
-      "tiktokVideos": "Tiktok 비디오"
-    },
-    "posts": {
-      "allPosts": "모든 게시물",
-      "ginCourse": "진 코스",
-      "GoCourse": "코스"
-    }
+    "description": "모든 기술을 위한 원스톱 플랫폼. 프리미엄 프로그래밍 강의와 튜토리얼.",
+    "posts": "게시글",
+    "allPosts": "모든 게시글",
+    "goCourse": "Go 프로그래밍 강좌",
+    "ginCourse": "Gin 프레임워크 튜토리얼",
+    "videos": "비디오",
+    "allVideos": "모든 비디오",
+    "shortVideos": "짧은 비디오",
+    "community": "커뮤니티",
+    "chatWithUs": "채팅 지원",
+    "discussions": "토론",
+    "aboutUs": "VieVlog 소개",
+    "contact": "연락처",
+    "privacy": "개인정보 보호정책",
+    "terms": "서비스 약관",
+    "allRightsReserved": "모든 권리 보유."
   }
 }

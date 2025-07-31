@@ -49,11 +49,11 @@ export function Header({ showAuth = true }: HeaderProps) {
 
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
+      <div className="max-w-6xl mx-auto px-4">
+        <div className="flex h-14 items-center justify-between">
           <div className="flex items-center gap-6">
             <Link href="/" className="flex items-center gap-2">
-              <span className="text-xl font-bold tracking-tight bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+              <span className="text-lg font-semibold text-foreground">
                 VieVlog
               </span>
             </Link>
@@ -69,9 +69,9 @@ export function Header({ showAuth = true }: HeaderProps) {
                       <Link
                         href={item.href}
                         className={cn(
-                          "text-sm font-medium transition-colors hover:text-primary",
+                          "text-sm font-medium transition-colors hover:text-foreground",
                           isActive
-                            ? "text-primary font-semibold"
+                            ? "text-foreground"
                             : "text-muted-foreground",
                         )}
                       >
@@ -89,26 +89,25 @@ export function Header({ showAuth = true }: HeaderProps) {
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="relative">
-                  <Globe className="h-5 w-5" /> {/* Biểu tượng Globe cho ngôn ngữ */}
+                <Button variant="ghost" size="sm" className="text-sm text-muted-foreground hover:text-foreground">
+                  <Globe className="h-4 w-4 mr-1" />
+                  {t("header.languageSelector")}
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-56">
-                {languages.map(lang => (
-                  <DropdownMenuItem key={lang.code} onClick={() => handleLanguageChange(lang.code)}>
+              <DropdownMenuContent align="end" className="w-48 max-h-64 overflow-y-auto">
+                {languages.slice(0, 10).map(lang => (
+                  <DropdownMenuItem 
+                    key={lang.code} 
+                    onClick={() => handleLanguageChange(lang.code)}
+                    className="text-sm"
+                  >
                     {lang.label}
                   </DropdownMenuItem>
                 ))}
-
-                {/* <DropdownMenuItem onClick={() => handleLanguageChange("en")}>
-                  English
+                <DropdownMenuSeparator />
+                <DropdownMenuItem className="text-xs text-muted-foreground cursor-default">
+                  More languages available
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => handleLanguageChange("vi")}>
-                  Tiếng Việt
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => handleLanguageChange("ko")}>
-                  한국어
-                </DropdownMenuItem> */}
               </DropdownMenuContent>
             </DropdownMenu>
             {/* <Cart /> */}

@@ -2,79 +2,80 @@
   "header": {
     "home": "Home",
     "posts": "Posts",
-    "chats": "Chats",
-    "videos": "Videos"
+    "videos": "Videos",
+    "languageSelector": "Language"
   },
   "home": {
-    "oneStopPlatform": "VieVlog – Your Ultimate Software Development Learning Platform",
-    "learnIT": "Access high-quality programming tutorials, coding lessons, and developer resources—100% free and created by expert instructors.",
-    "viewAllPosts": "Browse All Programming Articles",
-    "shoppingExperience": "Learning Experience",
-    "latestBlogPosts": "Latest Developer Blog Posts",
-    "exploreArticles": "Discover trending tech guides, programming tips, and software tutorials",
-    "vieTopik": "VieVlog – Top-Rated Hub for Learning Programming & IT",
-    "yourOneStopShop": "Master coding skills, prepare for IT certifications, and grow your tech career with our all-in-one learning platform—free access to premium content!",
-    "signUpNow": "Create a Free Account",
-    "browseIT": "Explore IT Courses",
-    "customerTestimonialsTitle": "What Our Learners Say",
-    "customerTestimonialsSubtitle": "See how developers and students around the world are growing with VieVlog",
-    "testimonial1": {
-      "quote": "VieVlog gave me the confidence to pass my IT certification with ease.",
-      "name": "Nguyen Minh Anh",
-      "role": "International Computer Science Student"
-    },
-    "testimonial2": {
-      "quote": "Learning coding through VieVlog is engaging, efficient, and fun!",
-      "name": "Tran Hai Nam",
-      "role": "Full-time Office Professional"
-    },
-    "testimonial3": {
-      "quote": "With VieVlog, my programming skills improved faster than any other platform.",
-      "name": "Le Thanh Huong",
-      "role": "University Student – Software Engineering"
-    }
+    "title": "VieVlog IT Learning",
+    "description": "Access high-quality programming tutorials, coding lessons, and developer resources. Learn from expert instructors and grow your tech skills.",
+    "viewAllPosts": "View All Posts",
+    "watchVideos": "Watch Videos",
+    "latestPosts": "Latest Posts",
+    "exploreContent": "Explore the latest programming tutorials and development guides"
   },
   "posts": {
-    "title": "All Programming Articles and Guides",
-    "GoCourse": "Go Programming Language Course",
-    "displayedIn":"This content is displayed in {{language}}",
-    "switchInHeader":"Switch language in the header to view content in your preferred language",
-    "switchToPreferred":"Switch language to display posts in your preferred language!",
-    "availableCount": "Available in {{count}} languages"
+    "title": "All Posts",
+    "subtitle": "Latest programming discussions and tutorials",
+    "categories": "Categories",
+    "allPosts": "All Posts",
+    "loadMore": "Load More Posts",
+    "noPostsFound": "No posts found",
+    "noPostsInCategory": "No posts in this category",
+    "tryOtherCategories": "Try exploring other categories or check back later.",
+    "beFirstToShare": "Be the first to share your knowledge!",
+    "exploreAllPosts": "Explore All Posts",
+    "clearFilter": "Clear Filter",
+    "loading": "Loading...",
+    "postedBy": "Posted by",
+    "comments": "comments",
+    "comment": "comment",
+    "share": "Share",
+    "readMore": "Read more",
+    "upvote": "Upvote",
+    "downvote": "Downvote"
   },
-  "videos": {},
-  "chats": {},
+  "videos": {
+    "title": "All Videos",
+    "subtitle": "Programming tutorials and tech talks"
+  },
+  "common": {
+    "search": "Search",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous"
+  },
+  "auth": {
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "signOut": "Sign Out",
+    "profile": "Profile",
+    "settings": "Settings"
+  },
   "footer": {
+    "description": "Your one-stop platform for everything tech. Premium programming lessons and tutorials.",
+    "posts": "Posts",
+    "allPosts": "All Posts",
+    "goCourse": "Go Programming Course",
+    "ginCourse": "Gin Framework Tutorial",
+    "videos": "Videos",
+    "allVideos": "All Videos",
+    "shortVideos": "Short Videos",
+    "community": "Community",
+    "chatWithUs": "Chat Support",
+    "discussions": "Discussions",
     "aboutUs": "About VieVlog",
-    "careers": "Join Our Team",
-    "blog": "Developer Blog – Programming Tips & IT News",
-    "contact": "Contact Support",
-    "helpCenter": "Help Center for Developers",
-    "faq": "FAQs – Coding, Courses & Platform Info",
-    "privacyPolicy": "Privacy Policy",
-    "termsOfService": "Terms of Use",
-    "followUs": "Connect With Us on Social Media",
-    "footerNote": "© 2025 VieVlog. All rights reserved.",
+    "contact": "Contact",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
-    "cookies": "Cookie Preferences",
-    "sitemap": "Website Sitemap",
-    "followUsYoutube": "Subscribe to Our YouTube Channel",
-    "chats": {
-      "chatWithUs": "Live Chat Support",
-      "chatWithFriend": "Connect with Fellow Developers",
-      "placeholderMessage": "Write a message...",
-      "sendButton": "Send Message"
-    },
-    "videos": {
-      "allVideos": "All Video",
-      "tiktokVideos": "Short TikTok Videos"
-    },
-    "posts": {
-      "allPosts": "Browse Articles",
-      "ginCourse": "Learn Gin Framework (Go)"
-      
-
-    }
+    "allRightsReserved": "All rights reserved."
   }
 }

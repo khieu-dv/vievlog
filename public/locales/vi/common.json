@@ -2,77 +2,80 @@
   "header": {
     "home": "Trang chủ",
     "posts": "Bài viết",
-    "chats": "Trò chuyện",
-    "videos": "Video"
+    "videos": "Video",
+    "languageSelector": "Ngôn ngữ"
   },
   "home": {
-    "oneStopPlatform": "Vievlog - Nền tảng học lập trình phần mềm toàn diện",
-    "learnIT": "Khám phá hướng dẫn lập trình, khóa học IT và tài nguyên chuyên sâu từ chuyên gia công nghệ hàng đầu – hoàn toàn miễn phí.",
-    "viewAllPosts": "Xem tất cả bài viết lập trình",
-    "shoppingExperience": "Trải nghiệm học tập thực tiễn",
-    "latestBlogPosts": "Bài viết kỹ thuật mới nhất",
-    "exploreArticles": "Khám phá mẹo lập trình và bài viết chuyên sâu mới nhất",
-    "vieTopik": "VIEVLOG - Nơi hội tụ kiến thức lập trình & công nghệ",
-    "yourOneStopShop": "Nền tảng toàn diện giúp bạn làm chủ kỹ năng lập trình, phát triển phần mềm và sẵn sàng cho các kỳ thi chứng chỉ IT.",
-    "signUpNow": "Tham gia ngay",
-    "browseIT": "Khám phá nội dung lập trình",
-    "customerTestimonialsTitle": "Người học nói gì về chúng tôi",
-    "customerTestimonialsSubtitle": "Lắng nghe chia sẻ thực tế từ cộng đồng học viên công nghệ",
-    "testimonial1": {
-      "quote": "Vievlog đã giúp tôi tự tin vượt qua kỳ thi chứng chỉ lập trình viên quốc tế.",
-      "name": "Nguyễn Minh Anh",
-      "role": "Sinh viên ngành Công nghệ thông tin"
-    },
-    "testimonial2": {
-      "quote": "Học lập trình trên Vievlog rất trực quan, dễ hiểu và hiệu quả.",
-      "name": "Trần Hải Nam",
-      "role": "Nhân viên phát triển phần mềm"
-    },
-    "testimonial3": {
-      "quote": "Nhờ Vievlog, kỹ năng viết mã của tôi được cải thiện đáng kể.",
-      "name": "Lê Thanh Hương",
-      "role": "Sinh viên đại học năm 3"
-    }
+    "title": "VieVlog Học Lập Trình",
+    "description": "Khám phá hướng dẫn lập trình chất lượng cao, bài học lập trình và tài nguyên cho nhà phát triển. Học từ các giảng viên chuyên gia và phát triển kỹ năng công nghệ.",
+    "viewAllPosts": "Xem Tất Cả Bài Viết",
+    "watchVideos": "Xem Video",
+    "latestPosts": "Bài Viết Mới Nhất",
+    "exploreContent": "Khám phá các hướng dẫn lập trình và hướng dẫn phát triển mới nhất"
   },
-"posts": {
-  "title": "Tổng hợp bài viết lập trình & phát triển phần mềm",
-  "displayedIn": "Nội dung này được hiển thị bằng {{language}}",
-  "switchInHeader": "Chuyển ngôn ngữ ở phần đầu trang để xem nội dung bằng ngôn ngữ bạn muốn",
-  "switchToPreferred": "Chuyển ngôn ngữ để hiển thị bài viết theo ngôn ngữ bạn chọn!",
-  "availableCount": "Có sẵn bằng {{count}} ngôn ngữ"
-},
-
-
+  "posts": {
+    "title": "Tất Cả Bài Viết",
+    "subtitle": "Thảo luận lập trình và hướng dẫn mới nhất",
+    "categories": "Danh Mục",
+    "allPosts": "Tất Cả Bài Viết",
+    "loadMore": "Tải Thêm Bài Viết",
+    "noPostsFound": "Không tìm thấy bài viết",
+    "noPostsInCategory": "Không có bài viết trong danh mục này",
+    "tryOtherCategories": "Thử khám phá các danh mục khác hoặc quay lại sau.",
+    "beFirstToShare": "Hãy là người đầu tiên chia sẻ kiến thức!",
+    "exploreAllPosts": "Khám Phá Tất Cả Bài Viết",
+    "clearFilter": "Xóa Bộ Lọc",
+    "loading": "Đang tải...",
+    "postedBy": "Đăng bởi",
+    "comments": "bình luận",
+    "comment": "bình luận",
+    "share": "Chia sẻ",
+    "readMore": "Đọc thêm",
+    "upvote": "Thích",
+    "downvote": "Không thích"
+  },
   "videos": {
-    "allVideos": "Kho video",
-    "tiktokVideos": "Video ngắn Tiktok"
+    "title": "Tất Cả Video",
+    "subtitle": "Hướng dẫn lập trình và bài thuyết trình công nghệ"
   },
-  "chats": {
-    "chatWithUs": "Trò chuyện cùng đội ngũ hỗ trợ kỹ thuật",
-    "chatWithFriend": "Giao lưu với cộng đồng lập trình viên",
-    "placeholderMessage": "Nhập tin nhắn...",
-    "sendButton": "Gửi tin nhắn"
+  "common": {
+    "search": "Tìm kiếm",
+    "submit": "Gửi",
+    "cancel": "Hủy",
+    "save": "Lưu",
+    "edit": "Chỉnh sửa",
+    "delete": "Xóa",
+    "loading": "Đang tải...",
+    "error": "Lỗi",
+    "success": "Thành công",
+    "close": "Đóng",
+    "back": "Quay lại",
+    "next": "Tiếp theo",
+    "previous": "Trước đó"
+  },
+  "auth": {
+    "signIn": "Đăng Nhập",
+    "signUp": "Đăng Ký",
+    "signOut": "Đăng Xuất",
+    "profile": "Hồ Sơ",
+    "settings": "Cài Đặt"
   },
   "footer": {
-    "aboutUs": "Giới thiệu về Vievlog",
-    "careers": "Cơ hội nghề nghiệp",
-    "blog": "Blog lập trình - Tin tức & Kỹ thuật",
-    "contact": "Liên hệ",
-    "helpCenter": "Trung tâm trợ giúp",
-    "faq": "Câu hỏi thường gặp",
-    "privacyPolicy": "Chính sách bảo mật thông tin",
-    "termsOfService": "Điều khoản sử dụng",
-    "followUs": "Theo dõi Vievlog trên mạng xã hội",
-    "footerNote": "© 2025 Vievlog. Bản quyền thuộc về chúng tôi.",
-    "privacy": "Bảo mật",
-    "terms": "Điều khoản",
-    "cookies": "Chính sách Cookie",
-    "sitemap": "Sơ đồ trang",
-    "followUsYoutube": "Theo dõi Vievlog trên YouTube",
-    "posts": {
-      "allPosts": "Tất cả bài viết",
-      "ginCourse": "Khóa học lập trình Gin (Golang)",
-      "GoCourse": "Lộ trình học Golang chuyên sâu"
-    }
+    "description": "Nền tảng toàn diện cho mọi thứ về công nghệ. Khóa học lập trình chất lượng cao và hướng dẫn.",
+    "posts": "Bài Viết",
+    "allPosts": "Tất Cả Bài Viết",
+    "goCourse": "Khóa Học Lập Trình Go",
+    "ginCourse": "Hướng Dẫn Gin Framework",
+    "videos": "Video",
+    "allVideos": "Tất Cả Video",
+    "shortVideos": "Video Ngắn",
+    "community": "Cộng Đồng",
+    "chatWithUs": "Hỗ Trợ Trò Chuyện",
+    "discussions": "Thảo Luận",
+    "aboutUs": "Về VieVlog",
+    "contact": "Liên Hệ",
+    "privacy": "Chính Sách Bảo Mật",
+    "terms": "Điều Khoản Dịch Vụ",
+    "allRightsReserved": "Tất cả quyền được bảo lưu."
   }
 }

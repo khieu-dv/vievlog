@@ -8,7 +8,7 @@ import PocketBase from 'pocketbase';
 import { useSession } from "../../../lib/authClient";
 import { Header } from "~/components/common/Header";
 import { Footer } from "~/components/common/Footer";
-import { Heart, MessageCircle, Share2, Bookmark, MoreHorizontal, ChevronLeft, Send, Globe } from "lucide-react";
+import { Heart, MessageCircle, Share2, Bookmark, MoreHorizontal, ChevronLeft, Send, Globe, ChevronUp, ChevronDown, Calendar, ExternalLink } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { formatDistanceToNow } from "date-fns";
@@ -31,7 +31,7 @@ export default function PostDetailPage() {
   const params = useParams();
   const router = useRouter();
   const { data: session } = useSession();
-  const commentInputRef = useRef<HTMLInputElement>(null);
+  const commentInputRef = useRef<HTMLTextAreaElement>(null);
   const pb = new PocketBase(process.env.NEXT_PUBLIC_POCKETBASE_URL || 'https://pocketbase.vietopik.com');
 
   const [post, setPost] = useState<Post | null>(null);
@@ -43,6 +43,8 @@ export default function PostDetailPage() {
   const [likeCount, setLikeCount] = useState(0);
   const [hasLiked, setHasLiked] = useState(false);
   const [availableLanguages, setAvailableLanguages] = useState<string[]>([]);
+  const [userVote, setUserVote] = useState<'up' | 'down' | null>(null);
+  const [currentScore, setCurrentScore] = useState(0);
 
   // Format date to relative time with localization
   const formatRelativeTime = (dateString: string) => {
@@ -116,6 +118,7 @@ export default function PostDetailPage() {
         const processedPost = processPostData(postRes.data);
         setPost(processedPost);
         setLikeCount(postRes.data.likes || 0);
+        setCurrentScore(postRes.data.likes || 0);
 
         // Fetch comments
         const commentRes = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/collections/comments_tbl/records`, {
@@ -299,6 +302,21 @@ export default function PostDetailPage() {
     }
   };
 
+  const handleVote = (voteType: 'up' | 'down') => {
+    if (userVote === voteType) {
+      // Remove vote
+      setUserVote(null);
+      setCurrentScore(prev => voteType === 'up' ? prev - 1 : prev + 1);
+    } else {
+      // Add/change vote
+      const scoreChange = userVote === null 
+        ? (voteType === 'up' ? 1 : -1)
+        : (voteType === 'up' ? 2 : -2);
+      setUserVote(voteType);
+      setCurrentScore(prev => prev + scoreChange);
+    }
+  };
+
   const handleShare = async () => {
     if (navigator.share && post) {
       try {
@@ -366,245 +384,222 @@ export default function PostDetailPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-background">
       <Header />
-      <main className="pt-16 pb-10">
-        <div className="container mx-auto max-w-2xl px-4">
-          <Link href="/posts" className="mb-4 flex items-center text-sm font-medium text-blue-600 hover:text-blue-800">
+      <main className="pt-4 pb-10">
+        <div className="max-w-4xl mx-auto px-4">
+          <Link href="/posts" className="mb-4 flex items-center text-sm font-medium text-primary hover:underline">
             <ChevronLeft className="mr-1 h-4 w-4" /> {t("Back to Posts")}
           </Link>
 
-          {/* Language Notification Banner */}
-          <div className="mb-6 rounded-lg bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 p-4">
-            <div className="flex items-start space-x-3">
-              <div className="flex-shrink-0">
-                <Globe className="h-5 w-5 text-blue-600 mt-0.5" />
+          {/* Reddit-style Post Layout */}
+          <div className="bg-card rounded-md border hover:border-muted-foreground/20 transition-colors">
+            <div className="flex">
+              {/* Left Voting Panel - Reddit Style */}
+              <div className="flex flex-col items-center p-3 w-12 bg-muted/30 rounded-l-md">
+                <button 
+                  onClick={() => handleVote('up')}
+                  className={`p-1 rounded hover:bg-muted transition-colors ${
+                    userVote === 'up' ? 'text-orange-500' : 'text-muted-foreground hover:text-foreground'
+                  }`}
+                >
+                  <ChevronUp className="h-6 w-6" />
+                </button>
+                <span className={`text-sm font-bold px-1 min-w-[2rem] text-center ${
+                  currentScore > 0 ? 'text-orange-500' : 
+                  currentScore < 0 ? 'text-blue-500' : 
+                  'text-muted-foreground'
+                }`}>
+                  {currentScore > 0 ? `+${currentScore}` : currentScore}
+                </span>
+                <button 
+                  onClick={() => handleVote('down')}
+                  className={`p-1 rounded hover:bg-muted transition-colors ${
+                    userVote === 'down' ? 'text-blue-500' : 'text-muted-foreground hover:text-foreground'
+                  }`}
+                >
+                  <ChevronDown className="h-6 w-6" />
+                </button>
               </div>
-              <div className="flex-1">
-                <h3 className="text-sm font-medium text-blue-900">
-                  {t("Language & Content Information")}
-                </h3>
-                <div className="mt-2 text-sm text-blue-700">
-                  <p className="mb-1">
-                    {t("posts.displayedIn", {
-                      language: languageStats.currentLanguage.label
-                    })}
-                  </p>
-                  <p className="text-xs text-blue-600">
-                    {t("posts.availableCount", {
-                      count: languageStats.totalLanguages
-                    })} •
-                    {t("posts.switchInHeader")}
-                  </p>
+
+              {/* Main Content Area */}
+              <div className="flex-1 p-4">
+                {/* Post Header - Reddit Style */}
+                <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
+                  {post.category && (
+                    <>
+                      <Link 
+                        href={`/category/${post.category.slug}`} 
+                        className="font-medium text-foreground hover:underline"
+                      >
+                        r/{post.category.name}
+                      </Link>
+                      <span>•</span>
+                    </>
+                  )}
+                  <span>Posted by</span>
+                  <span className="hover:underline cursor-pointer">u/{post.author.name}</span>
+                  <span>•</span>
+                  <span className="flex items-center gap-1">
+                    <Calendar className="h-3 w-3" />
+                    {formatRelativeTime(post.created ?? "")}
+                  </span>
                 </div>
-                {!languageStats.isCurrentLanguageSupported && (
-                  <div className="mt-2 rounded-md bg-yellow-50 border border-yellow-200 p-2">
-                    <p className="text-xs text-yellow-800">
-                      {t("Some content may not be fully translated in this language")}
+
+                {/* Post Title */}
+                <h1 className="text-xl font-medium text-foreground mb-3 line-clamp-3">
+                  {post.title}
+                </h1>
+
+                {/* Post Excerpt */}
+                {post.excerpt && (
+                  <p className="text-muted-foreground mb-4 line-clamp-3">
+                    {post.excerpt}
+                  </p>
+                )}
+
+                {/* Post Cover Image */}
+                {post.coverImage && (
+                  <div className="relative w-full h-80 mb-4 rounded overflow-hidden">
+                    <Image
+                      src={post.coverImage}
+                      alt={post.title}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                )}
+
+                {/* Post Full Content */}
+                <div className="prose prose-sm max-w-none mb-4">
+                  <MarkdownRenderer content={post.content ?? ""} />
+                </div>
+
+                {/* Post Tags */}
+                {post.tags && post.tags.length > 0 && (
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {post.tags.map((tag, index) => (
+                      <span key={index} className="text-xs px-2 py-1 bg-muted rounded-full text-muted-foreground">
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+                {/* Actions Bar - Reddit Style */}
+                <div className="flex items-center gap-4 text-xs text-muted-foreground pt-2 border-t border-border">
+                  <button 
+                    onClick={focusCommentInput}
+                    className="flex items-center gap-1 hover:bg-muted px-2 py-1 rounded transition-colors"
+                  >
+                    <MessageCircle className="h-4 w-4" />
+                    <span>{comments.length} {comments.length === 1 ? 'comment' : 'comments'}</span>
+                  </button>
+                  <button 
+                    onClick={handleShare}
+                    className="flex items-center gap-1 hover:bg-muted px-2 py-1 rounded transition-colors"
+                  >
+                    <Share2 className="h-4 w-4" />
+                    <span>Share</span>
+                  </button>
+                  <button className="flex items-center gap-1 hover:bg-muted px-2 py-1 rounded transition-colors">
+                    <Bookmark className="h-4 w-4" />
+                    <span>Save</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Comments Section - Reddit Style */}
+            <div className="border-t border-border bg-muted/20">
+              {/* Comment Input */}
+              <div className="p-4 border-b border-border bg-background">
+                <div className="flex items-start gap-3">
+                  <div className="h-8 w-8 flex-shrink-0 overflow-hidden rounded-full bg-muted">
+                    {session?.user?.image ? (
+                      <Image
+                        src={session.user.image}
+                        alt={session.user.username || session.user.name || t("User")}
+                        width={32}
+                        height={32}
+                        className="h-full w-full object-cover"
+                      />
+                    ) : (
+                      <div className="h-8 w-8 flex items-center justify-center rounded-full bg-primary text-primary-foreground text-xs font-semibold">
+                        {session?.user?.name?.charAt(0).toUpperCase() || 'U'}
+                      </div>
+                    )}
+                  </div>
+                  <div className="flex-1">
+                    <textarea
+                      ref={commentInputRef}
+                      placeholder={t("What are your thoughts?")}
+                      className="w-full p-3 border border-border rounded-md bg-background text-sm resize-vertical min-h-[80px] focus:outline-none focus:ring-2 focus:ring-primary/20"
+                      value={commentInput}
+                      onChange={(e) => setCommentInput(e.target.value)}
+                    />
+                    <div className="flex justify-end mt-2">
+                      <button
+                        onClick={() => handleCommentSubmit()}
+                        disabled={submittingComment || !commentInput.trim()}
+                        className="px-4 py-2 bg-primary text-primary-foreground rounded-md text-sm font-medium hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                      >
+                        {submittingComment ? 'Posting...' : 'Comment'}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Comments List */}
+              <div className="p-4">
+                {comments.length > 0 ? (
+                  <div className="space-y-4">
+                    {comments.map((comment) => (
+                      <div key={comment.id} className="flex gap-3">
+                        <div className="h-6 w-6 flex-shrink-0 overflow-hidden rounded-full">
+                          {comment.userAvatar && comment.userAvatar !== "/default-avatar.png" ? (
+                            <Image
+                              src={comment.userAvatar}
+                              alt={comment.userName}
+                              width={24}
+                              height={24}
+                              className="h-6 w-6 rounded-full object-cover"
+                            />
+                          ) : (
+                            <div className="h-6 w-6 flex items-center justify-center rounded-full bg-primary text-primary-foreground text-xs font-semibold">
+                              {comment.userName.charAt(0).toUpperCase()}
+                            </div>
+                          )}
+                        </div>
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 text-xs text-muted-foreground mb-1">
+                            <span className="font-medium text-foreground">u/{comment.userName}</span>
+                            <span>•</span>
+                            <span>{formatRelativeTime(comment.created)}</span>
+                          </div>
+                          <p className="text-sm text-foreground mb-2">{comment.content}</p>
+                          <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                            <button className="flex items-center gap-1 hover:bg-muted px-2 py-1 rounded transition-colors">
+                              <ChevronUp className="h-3 w-3" />
+                              <span>0</span>
+                              <ChevronDown className="h-3 w-3" />
+                            </button>
+                            <button className="hover:bg-muted px-2 py-1 rounded transition-colors">Reply</button>
+                            <button className="hover:bg-muted px-2 py-1 rounded transition-colors">Share</button>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-center py-8">
+                    <MessageCircle className="h-12 w-12 text-muted-foreground mx-auto mb-3" />
+                    <p className="text-muted-foreground">
+                      {t("No comments yet. Be the first to share what you think!")}
                     </p>
                   </div>
                 )}
-              </div>
-            </div>
-          </div>
-
-          {/* Post Card - Facebook Style */}
-          <div className="mb-4 overflow-hidden rounded-lg bg-white shadow">
-            {/* Post Header */}
-            <div className="flex items-center justify-between p-4">
-              <div className="flex items-center">
-                <div className="h-10 w-10 overflow-hidden rounded-full">
-                  <Image
-                    src={post.author.avatar || "/default-avatar.png"}
-                    alt={post.author.name || t("Author")}
-                    width={40}
-                    height={40}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-                <div className="ml-3">
-                  <p className="font-medium text-gray-900">{post.author.name}</p>
-                  <div className="flex items-center text-xs text-gray-500">
-                    <span>{formatRelativeTime(post.created ?? "")}</span>
-                    {post.category && (
-                      <>
-                        <span className="mx-1">•</span>
-                        <span
-                          className="rounded px-2 py-1 text-white"
-                          style={{ backgroundColor: post.category.color }}
-                        >
-                          {post.category.name}
-                        </span>
-                      </>
-                    )}
-                  </div>
-                </div>
-              </div>
-              <button className="rounded-full p-2 text-gray-400 hover:bg-gray-100">
-                <MoreHorizontal size={20} />
-              </button>
-            </div>
-
-            {/* Post Content */}
-            <div className="px-4 pb-3">
-              <h1 className="mb-2 text-xl font-semibold text-gray-900">{post.title}</h1>
-              {post.excerpt && <p className="mb-3 text-gray-700">{post.excerpt}</p>}
-            </div>
-
-            {/* Post Cover Image */}
-            {post.coverImage && (
-              <div className="relative mb-3 w-full">
-                <Image
-                  src={post.coverImage}
-                  alt={post.title}
-                  width={1200}
-                  height={630}
-                  className="w-full object-cover"
-                />
-              </div>
-            )}
-
-            {/* Post Full Content - Using Markdown Renderer */}
-            <div className="px-4 pb-4">
-              <MarkdownRenderer content={post.content ?? ""} />
-            </div>
-
-            {/* Post Tags */}
-            {post.tags && post.tags.length > 0 && (
-              <div className="flex flex-wrap gap-2 border-t border-gray-100 px-4 py-3">
-                {post.tags.map((tag, index) => (
-                  <span key={index} className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-600">
-                    #{tag}
-                  </span>
-                ))}
-              </div>
-            )}
-
-            {/* Post Stats */}
-            <div className="flex items-center justify-between border-t border-gray-100 px-4 py-2">
-              <div className="flex items-center text-sm text-gray-500">
-                {likeCount > 0 && (
-                  <>
-                    <div className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-100 text-blue-500">
-                      <Heart size={12} fill="currentColor" />
-                    </div>
-                    <span className="ml-1">{likeCount}</span>
-                  </>
-                )}
-              </div>
-              <div className="text-sm text-gray-500">
-                {comments.length} {t("comments")}
-              </div>
-            </div>
-
-            {/* Post Actions */}
-            <div className="flex border-b border-t border-gray-100 text-gray-600">
-              <button
-                onClick={handleLike}
-                className={`flex flex-1 items-center justify-center py-3 hover:bg-gray-50 transition-colors ${hasLiked ? 'text-blue-500 font-medium' : ''
-                  }`}
-              >
-                <Heart size={20} className="mr-2" fill={hasLiked ? "currentColor" : "none"} />
-                <span>{t("Like")}</span>
-              </button>
-              <button
-                onClick={focusCommentInput}
-                className="flex flex-1 items-center justify-center py-3 hover:bg-gray-50 transition-colors"
-              >
-                <MessageCircle size={20} className="mr-2" />
-                <span>{t("Comment")}</span>
-              </button>
-              <button
-                onClick={handleShare}
-                className="flex flex-1 items-center justify-center py-3 hover:bg-gray-50 transition-colors"
-              >
-                <Share2 size={20} className="mr-2" />
-                <span>{t("Share")}</span>
-              </button>
-            </div>
-
-            {/* Comments Section */}
-            <div className="border-b border-gray-100 px-4 py-2">
-              {comments.length > 0 ? (
-                comments.map((comment) => (
-                  <div key={comment.id} className="mb-3 flex">
-                    <div className="h-8 w-8 flex-shrink-0 overflow-hidden rounded-full">
-                      {comment.userAvatar && comment.userAvatar !== "/default-avatar.png" ? (
-                        <Image
-                          src={comment.userAvatar}
-                          alt={comment.userName}
-                          width={32}
-                          height={32}
-                          className="h-8 w-8 rounded-full object-cover"
-                        />
-                      ) : (
-                        <div className="h-8 w-8 flex items-center justify-center rounded-full bg-blue-500 text-white font-semibold">
-                          {comment.userName.charAt(0).toUpperCase()}
-                        </div>
-                      )}
-                    </div>
-                    <div className="ml-2 flex-1">
-                      <div className="rounded-2xl bg-gray-100 px-3 py-2">
-                        <p className="text-sm font-medium text-gray-900">{comment.userName}</p>
-                        <p className="text-sm text-gray-700">{comment.content}</p>
-                      </div>
-                      <div className="mt-1 flex items-center space-x-3 pl-2 text-xs text-gray-500">
-                        <span>{formatRelativeTime(comment.created)}</span>
-                        <button className="font-medium hover:underline">{t("Like")}</button>
-                        <button className="font-medium hover:underline">{t("Reply")}</button>
-                      </div>
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <p className="py-4 text-center text-sm text-gray-500">
-                  {t("No comments yet. Be the first to comment!")}
-                </p>
-              )}
-            </div>
-
-            {/* Comment Box */}
-            <div className="flex items-center p-4">
-              <div className="h-8 w-8 flex-shrink-0 overflow-hidden rounded-full bg-gray-200">
-                {session?.user?.image ? (
-                  <Image
-                    src={session.user.image}
-                    alt={session.user.username || session.user.name || t("User")}
-                    width={32}
-                    height={32}
-                    className="h-full w-full object-cover"
-                  />
-                ) : (
-                  <div className="h-8 w-8 flex items-center justify-center rounded-full bg-blue-500 text-white font-semibold">
-                    {session?.user?.name?.charAt(0).toUpperCase() || 'U'}
-                  </div>
-                )}
-              </div>
-              <div className="ml-2 flex flex-grow items-center rounded-full bg-gray-100 pr-2">
-                <input
-                  type="text"
-                  ref={commentInputRef}
-                  placeholder={t("Write a comment...")}
-                  className="flex-grow bg-transparent px-4 py-2 text-sm outline-none"
-                  value={commentInput}
-                  onChange={(e) => setCommentInput(e.target.value)}
-                  onKeyPress={(e) => {
-                    if (e.key === 'Enter') {
-                      handleCommentSubmit();
-                    }
-                  }}
-                />
-                <button
-                  onClick={() => handleCommentSubmit()}
-                  disabled={submittingComment || !commentInput.trim()}
-                  className="flex h-8 w-8 items-center justify-center rounded-full text-blue-500 hover:bg-blue-50 disabled:opacity-50 transition-colors"
-                >
-                  {submittingComment ? (
-                    <div className="h-4 w-4 animate-spin rounded-full border-2 border-blue-500 border-t-transparent"></div>
-                  ) : (
-                    <Send size={16} />
-                  )}
-                </button>
               </div>
             </div>
           </div>
