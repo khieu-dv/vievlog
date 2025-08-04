@@ -47,9 +47,10 @@ export class QuestionUI {
         this.background.setDepth(1000);
         this.allUIElements.push(this.background);
 
-        // Create question panel
-        const panelWidth = Math.min(600, camera.width - 40);
-        const panelHeight = 400;
+        // Create question panel - responsive sizing
+        const isMobile = camera.width < 768 || camera.height < 600;
+        const panelWidth = isMobile ? Math.min(camera.width - 20, 350) : Math.min(600, camera.width - 40);
+        const panelHeight = isMobile ? Math.min(camera.height - 40, camera.height * 0.85) : 400;
         const panelX = baseX + (camera.width - panelWidth) / 2;
         const panelY = baseY + (camera.height - panelHeight) / 2;
 
@@ -64,10 +65,10 @@ export class QuestionUI {
         // Create title
         const titleText = this.scene.add.text(
             baseX + camera.width / 2,
-            panelY + 30,
+            panelY + (isMobile ? 20 : 30),
             '🎓 English Challenge! 🎓',
             {
-                fontSize: '24px',
+                fontSize: isMobile ? '18px' : '24px',
                 color: '#f39c12',
                 fontStyle: 'bold'
             }
@@ -79,13 +80,13 @@ export class QuestionUI {
         // Create question text
         this.questionText = this.scene.add.text(
             baseX + camera.width / 2,
-            panelY + 80,
+            panelY + (isMobile ? 50 : 80),
             question.question,
             {
-                fontSize: '18px',
+                fontSize: isMobile ? '14px' : '18px',
                 color: '#ecf0f1',
                 align: 'center',
-                wordWrap: { width: panelWidth - 60 }
+                wordWrap: { width: panelWidth - (isMobile ? 30 : 60) }
             }
         );
         this.questionText.setOrigin(0.5);
@@ -94,30 +95,34 @@ export class QuestionUI {
 
         // Create option buttons
         this.optionButtons = [];
-        const startY = panelY + 160;
+        const startY = panelY + (isMobile ? 100 : 160);
+        const buttonSpacing = isMobile ? 45 : 60;
+        const buttonHeight = isMobile ? 40 : 50;
+        const buttonMargin = isMobile ? 20 : 100;
 
         for (let i = 0; i < question.options.length; i++) {
-            const buttonX = baseX + (camera.width - (panelWidth - 100)) / 2;
-            const buttonY = startY + i * 60;
+            const buttonX = baseX + (camera.width - (panelWidth - buttonMargin)) / 2;
+            const buttonY = startY + i * buttonSpacing;
 
             // Create button background
             const buttonBg = this.scene.add.graphics();
             buttonBg.fillStyle(0x34495e, 1);
-            buttonBg.fillRoundedRect(buttonX, buttonY, panelWidth - 100, 50, 5);
+            buttonBg.fillRoundedRect(buttonX, buttonY, panelWidth - buttonMargin, buttonHeight, 5);
             buttonBg.lineStyle(2, 0x95a5a6, 1);
-            buttonBg.strokeRoundedRect(buttonX, buttonY, panelWidth - 100, 50, 5);
+            buttonBg.strokeRoundedRect(buttonX, buttonY, panelWidth - buttonMargin, buttonHeight, 5);
             buttonBg.setDepth(1002);
-            buttonBg.setInteractive(new Phaser.Geom.Rectangle(buttonX, buttonY, panelWidth - 100, 50), Phaser.Geom.Rectangle.Contains);
+            buttonBg.setInteractive(new Phaser.Geom.Rectangle(buttonX, buttonY, panelWidth - buttonMargin, buttonHeight), Phaser.Geom.Rectangle.Contains);
             this.allUIElements.push(buttonBg);
 
             // Create button text
             const buttonText = this.scene.add.text(
-                buttonX + (panelWidth - 100) / 2,
-                buttonY + 25,
+                buttonX + (panelWidth - buttonMargin) / 2,
+                buttonY + buttonHeight / 2,
                 `${String.fromCharCode(65 + i)}. ${question.options[i]}`,
                 {
-                    fontSize: '16px',
-                    color: '#ecf0f1'
+                    fontSize: isMobile ? '12px' : '16px',
+                    color: '#ecf0f1',
+                    wordWrap: { width: panelWidth - buttonMargin - 20 }
                 }
             );
             buttonText.setOrigin(0.5);
@@ -136,11 +141,11 @@ export class QuestionUI {
 
         // Create close button
         const closeButton = this.scene.add.text(
-            panelX + panelWidth - 30,
-            panelY + 20,
+            panelX + panelWidth - 25,
+            panelY + 15,
             '✕',
             {
-                fontSize: '20px',
+                fontSize: isMobile ? '16px' : '20px',
                 color: '#e74c3c',
                 fontStyle: 'bold'
             }
@@ -191,43 +196,48 @@ export class QuestionUI {
         const camera = this.scene.cameras.main;
         const baseX = camera.scrollX;
         const baseY = camera.scrollY;
-        const panelWidth = Math.min(600, camera.width - 40);
+        const isMobile = camera.width < 768 || camera.height < 600;
+        const panelWidth = isMobile ? Math.min(camera.width - 20, 350) : Math.min(600, camera.width - 40);
+        const panelHeight = isMobile ? Math.min(camera.height - 40, camera.height * 0.85) : 400;
+        const buttonSpacing = isMobile ? 45 : 60;
+        const buttonHeight = isMobile ? 40 : 50;
+        const buttonMargin = isMobile ? 20 : 100;
 
         // Highlight selected answer
         const selectedButton = this.optionButtons[selectedIndex];
         if (selectedButton && selectedButton.bg) {
-            const buttonX = baseX + (camera.width - (panelWidth - 100)) / 2;
-            const buttonY = baseY + (camera.height - 400) / 2 + 160 + selectedIndex * 60;
+            const buttonX = baseX + (camera.width - (panelWidth - buttonMargin)) / 2;
+            const buttonY = baseY + (camera.height - panelHeight) / 2 + (isMobile ? 100 : 160) + selectedIndex * buttonSpacing;
             
             selectedButton.bg.clear();
             selectedButton.bg.fillStyle(isCorrect ? 0x27ae60 : 0xe74c3c, 1);
-            selectedButton.bg.fillRoundedRect(buttonX, buttonY, panelWidth - 100, 50, 5);
+            selectedButton.bg.fillRoundedRect(buttonX, buttonY, panelWidth - buttonMargin, buttonHeight, 5);
             selectedButton.bg.lineStyle(2, isCorrect ? 0x229954 : 0xc0392b, 1);
-            selectedButton.bg.strokeRoundedRect(buttonX, buttonY, panelWidth - 100, 50, 5);
+            selectedButton.bg.strokeRoundedRect(buttonX, buttonY, panelWidth - buttonMargin, buttonHeight, 5);
         }
 
         // Highlight correct answer if user was wrong
         if (!isCorrect && this.currentQuestion.correctAnswer < this.optionButtons.length) {
             const correctButton = this.optionButtons[this.currentQuestion.correctAnswer];
             if (correctButton && correctButton.bg) {
-                const buttonX = baseX + (camera.width - (panelWidth - 100)) / 2;
-                const buttonY = baseY + (camera.height - 400) / 2 + 160 + this.currentQuestion.correctAnswer * 60;
+                const buttonX = baseX + (camera.width - (panelWidth - buttonMargin)) / 2;
+                const buttonY = baseY + (camera.height - panelHeight) / 2 + (isMobile ? 100 : 160) + this.currentQuestion.correctAnswer * buttonSpacing;
                 
                 correctButton.bg.clear();
                 correctButton.bg.fillStyle(0x27ae60, 1);
-                correctButton.bg.fillRoundedRect(buttonX, buttonY, panelWidth - 100, 50, 5);
+                correctButton.bg.fillRoundedRect(buttonX, buttonY, panelWidth - buttonMargin, buttonHeight, 5);
                 correctButton.bg.lineStyle(2, 0x229954, 1);
-                correctButton.bg.strokeRoundedRect(buttonX, buttonY, panelWidth - 100, 50, 5);
+                correctButton.bg.strokeRoundedRect(buttonX, buttonY, panelWidth - buttonMargin, buttonHeight, 5);
             }
         }
 
         // Show result text
         const resultText = this.scene.add.text(
             baseX + camera.width / 2,
-            baseY + camera.height / 2 + 150,
+            baseY + camera.height / 2 + (isMobile ? 120 : 150),
             isCorrect ? '✅ Correct! Well done!' : '❌ Wrong answer!',
             {
-                fontSize: '20px',
+                fontSize: isMobile ? '16px' : '20px',
                 color: isCorrect ? '#27ae60' : '#e74c3c',
                 fontStyle: 'bold'
             }
@@ -240,13 +250,13 @@ export class QuestionUI {
         if (this.currentQuestion.explanation) {
             const explanationText = this.scene.add.text(
                 baseX + camera.width / 2,
-                baseY + camera.height / 2 + 180,
+                baseY + camera.height / 2 + (isMobile ? 145 : 180),
                 this.currentQuestion.explanation,
                 {
-                    fontSize: '14px',
+                    fontSize: isMobile ? '12px' : '14px',
                     color: '#bdc3c7',
                     align: 'center',
-                    wordWrap: { width: panelWidth - 60 }
+                    wordWrap: { width: panelWidth - (isMobile ? 30 : 60) }
                 }
             );
             explanationText.setOrigin(0.5);

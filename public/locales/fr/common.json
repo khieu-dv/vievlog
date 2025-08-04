@@ -5,6 +5,11 @@
     "chats": "Chats",
     "videos": "Vidéos"
   },
+  "vieShareBanner": {
+    "title": "Bureau à Distance Simplifié",
+    "description": "Connectez-vous à n'importe quel ordinateur à distance avec une sécurité de niveau entreprise et des performances ultra-rapides.",
+    "cta": "Essayer VieShare"
+  },
   "home": {
     "oneStopPlatform": "Vievlog - votre plateforme d'apprentissage informatique tout-en-un",
     "learnIT": "Profitez des tutoriels informatiques de qualité supérieure, des leçons et des ressources d'instructeurs expérimentés - parfaitement gratuits.",

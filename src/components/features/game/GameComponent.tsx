@@ -31,12 +31,24 @@ export default function GameComponent() {
         const checkMobile = () => {
             const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
             setIsMobile(isMobileDevice);
+            
+            // Set viewport meta for mobile
+            if (isMobileDevice) {
+                const viewport = document.querySelector('meta[name="viewport"]');
+                if (viewport) {
+                    viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover');
+                }
+            }
         };
 
         checkMobile();
         window.addEventListener('resize', checkMobile);
+        window.addEventListener('orientationchange', checkMobile);
 
-        return () => window.removeEventListener('resize', checkMobile);
+        return () => {
+            window.removeEventListener('resize', checkMobile);
+            window.removeEventListener('orientationchange', checkMobile);
+        };
     }, []);
 
     // Simulate key press/release for Phaser
@@ -149,6 +161,7 @@ export default function GameComponent() {
     // Touch event handlers for joystick
     const handleTouchStart = useCallback((e: React.TouchEvent | React.MouseEvent) => {
         e.preventDefault();
+        e.stopPropagation();
         if (!joystickRef.current) return;
 
         const rect = joystickRef.current.getBoundingClientRect();
@@ -183,6 +196,7 @@ export default function GameComponent() {
 
     const handleTouchMove = useCallback((e: React.TouchEvent | React.MouseEvent) => {
         e.preventDefault();
+        e.stopPropagation();
         if (!joystick.pressed || !joystickRef.current || !touchStartPos.current) return;
 
         const rect = joystickRef.current.getBoundingClientRect();
@@ -219,6 +233,7 @@ export default function GameComponent() {
 
     const handleTouchEnd = useCallback((e: React.TouchEvent | React.MouseEvent) => {
         e.preventDefault();
+        e.stopPropagation();
 
         // Release all movement keys
         ['Up', 'Down', 'Left', 'Right'].forEach(direction => {
@@ -235,7 +250,11 @@ export default function GameComponent() {
     // Action button handlers
     const handleActionPress = useCallback((action: string) => {
         simulateKey(action, 'down');
-        setTimeout(() => simulateKey(action, 'up'), 150);
+        // Add haptic feedback for mobile
+        if (navigator.vibrate) {
+            navigator.vibrate(50);
+        }
+        setTimeout(() => simulateKey(action, 'up'), 100);
     }, [simulateKey]);
 
     useEffect(() => {
@@ -243,10 +262,22 @@ export default function GameComponent() {
 
         // Create game instance
         if (containerRef.current && !gameRef.current) {
-            // Calculate responsive dimensions
+            // Calculate responsive dimensions based on viewport
             const containerWidth = containerRef.current.offsetWidth;
-            const maxWidth = isMobile ? Math.min(containerWidth - 16, 380) : 800;
-            const maxHeight = isMobile ? Math.min(maxWidth * 0.6, 280) : 450;
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+            
+            let maxWidth, maxHeight;
+            
+            if (isMobile) {
+                // Mobile: use most of screen width, optimize for mobile screens with more height for questions
+                maxWidth = Math.min(containerWidth - 8, viewportWidth - 16);
+                maxHeight = Math.min(viewportHeight * 0.55, maxWidth * 0.7);
+            } else {
+                // Desktop: responsive to viewport size
+                maxWidth = Math.min(containerWidth - 32, viewportWidth * 0.85, 1000);
+                maxHeight = Math.min(viewportHeight * 0.6, maxWidth * 0.6, 600);
+            }
 
             const config = {
                 ...gameConfig,
@@ -273,12 +304,22 @@ export default function GameComponent() {
 
             if (isMobile && containerRef.current) {
                 containerRef.current.addEventListener('contextmenu', (e) => e.preventDefault());
+                
+                // Prevent scrolling when touching the game area
+                const preventScroll = (e: Event) => {
+                    e.preventDefault();
+                };
+                
+                containerRef.current.addEventListener('touchstart', preventScroll, { passive: false });
+                containerRef.current.addEventListener('touchmove', preventScroll, { passive: false });
+                containerRef.current.addEventListener('touchend', preventScroll, { passive: false });
 
                 // Make sure the game canvas can receive focus for keyboard events
                 const canvas = containerRef.current.querySelector('canvas');
                 if (canvas) {
                     canvas.setAttribute('tabindex', '0');
                     canvas.style.outline = 'none';
+                    canvas.style.touchAction = 'none';
                 }
             }
         }
@@ -292,19 +333,19 @@ export default function GameComponent() {
     }, [isMobile]);
 
     return (
-        <div className="relative w-full h-full flex items-center justify-center bg-gray-900">
+        <div className={`relative w-full h-full flex items-center justify-center bg-gray-900 ${isMobile ? 'overflow-hidden' : ''}`}>
             <div
                 ref={containerRef}
-                className={`border-2 border-gray-700 rounded-lg shadow-lg ${isMobile
-                    ? 'w-full max-w-sm h-auto min-h-[280px]'
-                    : 'w-[800px] h-[450px]'
-                    }`}
+                className="border-2 border-gray-700 rounded-lg shadow-lg w-full h-auto"
                 style={{
                     touchAction: 'none',
                     userSelect: 'none',
                     WebkitUserSelect: 'none',
                     WebkitTouchCallout: 'none',
                     WebkitTapHighlightColor: 'transparent',
+                    aspectRatio: isMobile ? '16/10' : '5/3',
+                    maxWidth: '100%',
+                    maxHeight: isMobile ? '55vh' : '60vh'
                 }}
             />
 
@@ -312,13 +353,14 @@ export default function GameComponent() {
             {isMobile && (
                 <>
                     {/* Virtual Joystick - Left Side */}
-                    <div className="fixed bottom-20 left-6 z-50">
+                    <div className="fixed bottom-6 left-4 z-50">
                         <div
                             ref={joystickRef}
-                            className="relative w-24 h-24 bg-gray-800 bg-opacity-70 rounded-full border-4 border-gray-600 shadow-lg cursor-pointer select-none"
+                            className="relative w-28 h-28 bg-gray-800 bg-opacity-80 rounded-full border-4 border-gray-600 shadow-lg cursor-pointer select-none"
                             onTouchStart={handleTouchStart}
                             onTouchMove={handleTouchMove}
                             onTouchEnd={handleTouchEnd}
+                            onTouchCancel={handleTouchEnd}
                             onMouseDown={handleTouchStart}
                             onMouseMove={handleTouchMove}
                             onMouseUp={handleTouchEnd}
@@ -333,7 +375,7 @@ export default function GameComponent() {
                             {/* Joystick Knob */}
                             <div
                                 ref={knobRef}
-                                className="absolute w-8 h-8 bg-blue-500 rounded-full shadow-lg transition-all duration-75 pointer-events-none"
+                                className="absolute w-10 h-10 bg-blue-500 rounded-full shadow-lg transition-all duration-75 pointer-events-none"
                                 style={{
                                     left: '50%',
                                     top: '50%',
@@ -348,16 +390,18 @@ export default function GameComponent() {
                     </div>
 
                     {/* Action Buttons - Right Side */}
-                    <div className="fixed bottom-20 right-6 z-50 flex flex-col space-y-3">
+                    <div className="fixed bottom-6 right-4 z-50 flex flex-col space-y-4">
                         {/* Shoot Button */}
                         <button
-                            className="w-16 h-16 bg-orange-600 hover:bg-orange-700 active:bg-orange-800 text-white rounded-full font-bold text-xs shadow-lg flex flex-col items-center justify-center select-none transform hover:scale-110 active:scale-95 transition-all duration-150 animate-pulse border-2 border-orange-400"
+                            className="w-20 h-20 bg-orange-600 hover:bg-orange-700 active:bg-orange-800 text-white rounded-full font-bold text-sm shadow-lg flex flex-col items-center justify-center select-none transform hover:scale-110 active:scale-95 transition-all duration-150 animate-pulse border-2 border-orange-400"
                             onTouchStart={(e) => {
                                 e.preventDefault();
+                                e.stopPropagation();
                                 handleActionPress(' ');
                             }}
                             onMouseDown={(e) => {
                                 e.preventDefault();
+                                e.stopPropagation();
                                 handleActionPress(' ');
                             }}
                             style={{
@@ -367,19 +411,21 @@ export default function GameComponent() {
                                 WebkitTouchCallout: 'none'
                             }}
                         >
-                            <span className="text-lg">🔫</span>
-                            <span className="text-xs">SHOOT!</span>
+                            <span className="text-xl">🔫</span>
+                            <span className="text-sm font-bold">SHOOT</span>
                         </button>
 
                         {/* Special Button */}
                         <button
-                            className="w-12 h-12 bg-purple-600 hover:bg-purple-700 active:bg-purple-800 text-white rounded-full font-bold text-xs shadow-lg flex flex-col items-center justify-center select-none transform hover:scale-110 active:scale-95 transition-all duration-150 border border-purple-400"
+                            className="w-16 h-16 bg-purple-600 hover:bg-purple-700 active:bg-purple-800 text-white rounded-full font-bold text-sm shadow-lg flex flex-col items-center justify-center select-none transform hover:scale-110 active:scale-95 transition-all duration-150 border-2 border-purple-400"
                             onTouchStart={(e) => {
                                 e.preventDefault();
+                                e.stopPropagation();
                                 handleActionPress('d');
                             }}
                             onMouseDown={(e) => {
                                 e.preventDefault();
+                                e.stopPropagation();
                                 handleActionPress('d');
                             }}
                             style={{
@@ -389,8 +435,8 @@ export default function GameComponent() {
                                 WebkitTouchCallout: 'none'
                             }}
                         >
-                            <span className="text-sm">🔥</span>
-                            <span className="text-xs">POWER</span>
+                            <span className="text-lg">🔥</span>
+                            <span className="text-sm font-bold">POWER</span>
                         </button>
 
                         <div className="text-white text-xs text-center opacity-70 animate-bounce">🔫 Gun Combat</div>

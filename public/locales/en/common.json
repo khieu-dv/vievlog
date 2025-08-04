@@ -60,6 +60,11 @@
     "profile": "Profile",
     "settings": "Settings"
   },
+  "vieShareBanner": {
+    "title": "Remote Desktop Made Simple",
+    "description": "Connect to any computer remotely with enterprise-grade security and lightning-fast performance.",
+    "cta": "Try VieShare"
+  },
   "footer": {
     "description": "Your one-stop platform for everything tech. Premium programming lessons and tutorials.",
     "posts": "Posts",

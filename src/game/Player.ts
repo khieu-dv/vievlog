@@ -33,6 +33,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     private combatText!: Phaser.GameObjects.Text;
     private hitEffect!: Phaser.GameObjects.Graphics;
     private bullets: Phaser.GameObjects.Graphics[] = [];
+    private lastFacingDirection: string = 'down'; // Track player's facing direction
 
     // Mobile control states
     public mobileControls = {
@@ -265,29 +266,24 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
 
     fireBulletInDirection(): void {
-        // Get player's facing direction based on last movement
-        const body = this.body as Phaser.Physics.Arcade.Body;
+        // Use the last facing direction for bullet direction
         let targetX = this.x;
-        let targetY = this.y - this.shootRange; // Default up
+        let targetY = this.y;
 
-        // Determine direction based on recent movement or input
-        const isLeftPressed = this.cursors.left.isDown || this.mobileControls.left;
-        const isRightPressed = this.cursors.right.isDown || this.mobileControls.right;
-        const isUpPressed = this.cursors.up.isDown || this.mobileControls.up;
-        const isDownPressed = this.cursors.down.isDown || this.mobileControls.down;
-
-        if (isLeftPressed) {
-            targetX = this.x - this.shootRange;
-            targetY = this.y;
-        } else if (isRightPressed) {
-            targetX = this.x + this.shootRange;
-            targetY = this.y;
-        } else if (isUpPressed) {
-            targetX = this.x;
-            targetY = this.y - this.shootRange;
-        } else if (isDownPressed) {
-            targetX = this.x;
-            targetY = this.y + this.shootRange;
+        switch (this.lastFacingDirection) {
+            case 'left':
+                targetX = this.x - this.shootRange;
+                break;
+            case 'right':
+                targetX = this.x + this.shootRange;
+                break;
+            case 'up':
+                targetY = this.y - this.shootRange;
+                break;
+            case 'down':
+            default:
+                targetY = this.y + this.shootRange;
+                break;
         }
 
         // Create bullet
@@ -570,20 +566,33 @@ export default class Player extends Phaser.GameObjects.Sprite {
         // Update the animation last and give left/right animations precedence over up/down animations
         if (isLeftPressed) {
             this.anims.play("misa-left-walk", true);
+            this.lastFacingDirection = 'left';
         } else if (isRightPressed) {
             this.anims.play("misa-right-walk", true);
+            this.lastFacingDirection = 'right';
         } else if (isUpPressed) {
             this.anims.play("misa-back-walk", true);
+            this.lastFacingDirection = 'up';
         } else if (isDownPressed) {
             this.anims.play("misa-front-walk", true);
+            this.lastFacingDirection = 'down';
         } else {
             this.anims.stop();
 
-            // If we were moving, pick and idle frame to use
-            if (prevVelocity.x < 0) this.setTexture("currentPlayer", "misa-left");
-            else if (prevVelocity.x > 0) this.setTexture("currentPlayer", "misa-right");
-            else if (prevVelocity.y < 0) this.setTexture("currentPlayer", "misa-back");
-            else if (prevVelocity.y > 0) this.setTexture("currentPlayer", "misa-front");
+            // If we were moving, pick and idle frame to use and update facing direction
+            if (prevVelocity.x < 0) {
+                this.setTexture("currentPlayer", "misa-left");
+                this.lastFacingDirection = 'left';
+            } else if (prevVelocity.x > 0) {
+                this.setTexture("currentPlayer", "misa-right");
+                this.lastFacingDirection = 'right';
+            } else if (prevVelocity.y < 0) {
+                this.setTexture("currentPlayer", "misa-back");
+                this.lastFacingDirection = 'up';
+            } else if (prevVelocity.y > 0) {
+                this.setTexture("currentPlayer", "misa-front");
+                this.lastFacingDirection = 'down';
+            }
         }
     }
 

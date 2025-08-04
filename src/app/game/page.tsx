@@ -80,85 +80,35 @@ export default function GamePage() {
                 <div className="absolute top-1/4 right-1/4 text-2xl animate-bounce opacity-10" style={{animationDelay: '2.5s'}}>🧠</div>
             </div>
             
-            <div className="container mx-auto px-2 sm:px-4 py-4 sm:py-8 relative z-10">
-                <div className="text-center mb-4 sm:mb-8">
-                    <h1 className="text-2xl sm:text-4xl font-bold text-white mb-2 sm:mb-4 transition-all duration-500 transform hover:scale-105 hover:text-yellow-300">
+            <div className="container mx-auto px-1 sm:px-4 py-1 sm:py-2 relative z-10">
+                <div className="text-center mb-1 sm:mb-3">
+                    <h1 className="text-lg sm:text-3xl font-bold text-white mb-1 sm:mb-2">
                         {gameTitles[currentTitle]}
                     </h1>
-                    <p className="text-sm sm:text-xl text-gray-300 px-4 hover:text-blue-300 transition-colors duration-300">
-                        📚 Defeat enemies to unlock English challenges and become the ultimate language champion! 🏆
-                    </p>
-                    <div className="mt-2 text-xs sm:text-sm text-blue-300 animate-pulse">
-                        ✨ Learn English through epic battles - Knowledge is your greatest weapon! ✨
-                    </div>
                 </div>
 
-                <div className="flex justify-center mb-4">
-                    <div className="bg-gray-800 p-2 sm:p-6 rounded-lg shadow-2xl w-full max-w-4xl">
+                <div className="flex justify-center mb-1 sm:mb-2">
+                    <div className="bg-gray-800 p-1 sm:p-2 rounded-lg shadow-2xl w-full max-w-6xl">
                         <GameComponent />
                     </div>
                 </div>
 
-                {/* Controls Info - Now with more fun! */}
-                <div className="mt-4 sm:mt-8 text-center">
-                    <div className="bg-gray-800 bg-opacity-50 rounded-lg p-4 sm:p-6 max-w-2xl mx-auto mx-4 hover:bg-opacity-70 transition-all duration-300 transform hover:scale-105">
-                        <h2 className="text-lg sm:text-2xl font-semibold text-white mb-4 flex items-center justify-center gap-2">
-                            🎓 Master The Art of Learning Combat 📚
-                        </h2>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-300 text-sm sm:text-base">
-                            <div className="bg-gray-700 bg-opacity-50 rounded-lg p-3 hover:bg-opacity-70 transition-all duration-300 border border-blue-800">
-                                <h3 className="font-semibold text-yellow-300 mb-2 flex items-center gap-2">
-                                    🏃‍♂️ Champion Movement Skills
-                                </h3>
-                                <ul className="space-y-2">
-                                    <li className="hidden sm:flex items-center gap-2 hover:text-white transition-colors">
-                                        <span className="text-lg">⬆️</span> Arrow Key - Move to victory!
-                                    </li>
-                                    <li className="hidden sm:flex items-center gap-2 hover:text-white transition-colors">
-                                        <span className="text-lg">⬇️</span> Arrow Key - Advance forward!
-                                    </li>
-                                    <li className="hidden sm:flex items-center gap-2 hover:text-white transition-colors">
-                                        <span className="text-lg">⬅️</span> Arrow Key - Strategic left move!
-                                    </li>
-                                    <li className="hidden sm:flex items-center gap-2 hover:text-white transition-colors">
-                                        <span className="text-lg">➡️</span> Arrow Key - Power right dash!
-                                    </li>
-                                    <li className="sm:hidden flex items-center gap-2">
-                                        <span className="text-lg">🕹️</span> Use champion joystick to explore!
-                                    </li>
-                                </ul>
+                {/* Controls Info */}
+                <div className="mt-1 sm:mt-2 text-center px-2">
+                    <div className="bg-gray-800 bg-opacity-60 rounded-lg p-2 sm:p-3 max-w-xl mx-auto">
+                        <div className="grid grid-cols-2 gap-2 text-gray-300 text-xs sm:text-sm">
+                            <div className="text-center">
+                                <span className="hidden sm:inline">⬆️⬇️⬅️➡️ Move</span>
+                                <span className="sm:hidden text-yellow-300">🕹️ Use Joystick to Move</span>
                             </div>
-                            <div className="bg-gray-700 bg-opacity-50 rounded-lg p-3 hover:bg-opacity-70 transition-all duration-300 border border-blue-800">
-                                <h3 className="font-semibold text-green-300 mb-2 flex items-center gap-2">
-                                    ⚡ Learning Combat Actions
-                                </h3>
-                                <ul className="space-y-2">
-                                    <li className="hidden sm:flex items-center gap-2 hover:text-white transition-colors">
-                                        <span className="text-lg">🔫</span> Space - Shoot study bots!
-                                    </li>
-                                    <li className="hidden sm:flex items-center gap-2 hover:text-white transition-colors">
-                                        <span className="text-lg">🔥</span> D - Special gun power!
-                                    </li>
-                                    <li className="sm:hidden flex items-center gap-2">
-                                        <span className="text-lg">👆</span> Tap shoot button to blast bots!
-                                    </li>
-                                </ul>
+                            <div className="text-center">
+                                <span className="hidden sm:inline">Space/D - Shoot</span>
+                                <span className="sm:hidden text-orange-300">🔫 Tap Buttons to Attack</span>
                             </div>
                         </div>
-                        <div className="mt-4 text-xs text-blue-300 italic animate-pulse">
-                            🔫 Marksman tip: Shoot bots to unlock English questions and earn points! 🎯
+                        <div className="sm:hidden mt-2 text-center text-xs text-blue-300">
+                            💡 Tap and hold for better control
                         </div>
-                    </div>
-                </div>
-
-                {/* Learning wisdom section */}
-                <div className="mt-4 text-center">
-                    <div className="bg-gradient-to-r from-blue-900 to-purple-900 bg-opacity-50 rounded-lg p-3 max-w-xl mx-auto mx-4 hover:from-blue-800 hover:to-purple-800 transition-all duration-300 border border-blue-700">
-                        <p className="text-sm text-white flex items-center justify-center gap-2">
-                            <span className="animate-pulse">🎓</span>
-                            <span>Study Wisdom: "Knowledge gained through battle becomes wisdom that lasts forever"</span>
-                            <span className="animate-bounce">📚</span>
-                        </p>
                     </div>
                 </div>
             </div>

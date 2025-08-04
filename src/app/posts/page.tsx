@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import { Header } from "~/components/common/Header";
 import { Footer } from "~/components/common/Footer";
+import { VieShareBanner } from "~/components/common/VieShareBanner";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import PocketBase from 'pocketbase';
@@ -441,6 +442,7 @@ export default function PostsPage() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
+      <VieShareBanner />
 
       {/* Main Layout */}
       <div className="max-w-6xl mx-auto px-4 pt-6">

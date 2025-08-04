@@ -5,6 +5,11 @@
     "chats": "聊天",
     "videos": "视频"
   },
+  "vieShareBanner": {
+    "title": "远程桌面简化版",
+    "description": "通过企业级安全和闪电般的性能远程连接到任何计算机。",
+    "cta": "试用 VieShare"
+  },
   "home": {
     "oneStopPlatform": "Vievlog  - 您的多合一IT学习平台",
     "learnIT": "享受经验丰富的教练的高质量IT教程，课程和资源 - 完全免费。",

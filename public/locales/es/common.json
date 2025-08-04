@@ -5,6 +5,11 @@
     "chats": "Charlatanes",
     "videos": "Videos"
   },
+  "vieShareBanner": {
+    "title": "Escritorio Remoto Simplificado",
+    "description": "Conéctate a cualquier computadora de forma remota con seguridad de nivel empresarial y rendimiento ultrarrápido.",
+    "cta": "Probar VieShare"
+  },
   "home": {
     "oneStopPlatform": "Vievlog: su plataforma de aprendizaje de TI todo en uno",
     "learnIT": "Disfrute de tutoriales de TI de alta calidad, lecciones y recursos de instructores experimentados, de manera gratuita.",

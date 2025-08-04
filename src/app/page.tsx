@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Footer } from "~/components/common/Footer";
 import { Header } from "~/components/common/Header";
+import { VieShareBanner } from "~/components/common/VieShareBanner";
 import { Button } from "~/components/ui/Button";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
@@ -78,6 +79,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
+      <VieShareBanner />
 
       {/* Reddit-style main layout */}
       <div className="max-w-6xl mx-auto px-4 pt-4">

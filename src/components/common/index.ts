@@ -1,6 +1,7 @@
 // Common Components Barrel Export
 export { Header } from './Header';
 export { Footer } from './Footer';
+export { VieShareBanner } from './VieShareBanner';
 export { ContactButton } from './ContactButton';
 export { ThemeToggle } from './ThemeToggle';
 export { ThemeProvider } from './ThemeProvider';

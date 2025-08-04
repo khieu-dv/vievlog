@@ -60,6 +60,11 @@
     "profile": "Hồ Sơ",
     "settings": "Cài Đặt"
   },
+  "vieShareBanner": {
+    "title": "Điều Khiển Từ Xa Đơn Giản",
+    "description": "Kết nối với bất kỳ máy tính nào từ xa với bảo mật cấp doanh nghiệp và hiệu suất siêu nhanh.",
+    "cta": "Thử VieShare"
+  },
   "footer": {
     "description": "Nền tảng toàn diện cho mọi thứ về công nghệ. Khóa học lập trình chất lượng cao và hướng dẫn.",
     "posts": "Bài Viết",
