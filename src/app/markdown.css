@@ -59,6 +59,35 @@
   color: #6b7280;
 }
 
+/* Mobile responsive typography */
+@media (max-width: 640px) {
+  .markdown-body h1 {
+    font-size: 1.875rem;
+    margin: 1.5rem 0 0.75rem 0;
+  }
+  
+  .markdown-body h2 {
+    font-size: 1.5rem;
+    margin: 1.25rem 0 0.5rem 0;
+  }
+  
+  .markdown-body h3 {
+    font-size: 1.25rem;
+    margin: 1rem 0 0.5rem 0;
+  }
+  
+  .markdown-body h4 {
+    font-size: 1.125rem;
+    margin: 1rem 0 0.25rem 0;
+  }
+  
+  .markdown-body h5,
+  .markdown-body h6 {
+    font-size: 1rem;
+    margin: 0.75rem 0 0.25rem 0;
+  }
+}
+
 /* Paragraphs and text */
 .markdown-body p {
   margin-bottom: 1rem;
@@ -140,6 +169,17 @@
   text-align: left;
 }
 
+/* Mobile responsive code blocks */
+@media (max-width: 640px) {
+  .markdown-body pre {
+    margin: 1rem -1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+}
+
 .markdown-body pre code {
   background: none;
   padding: 0;
@@ -182,6 +222,17 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
+/* Mobile responsive tables */
+@media (max-width: 640px) {
+  .markdown-body table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    margin: 1rem -1rem;
+    border-radius: 0;
+  }
+}
+
 .markdown-body thead {
   background-color: #f8fafc;
 }
@@ -200,6 +251,15 @@
   color: #4b5563;
   border-bottom: 1px solid #f1f5f9;
   font-size: 0.875rem;
+}
+
+/* Mobile table cells */
+@media (max-width: 640px) {
+  .markdown-body th,
+  .markdown-body td {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8125rem;
+  }
 }
 
 .markdown-body tbody tr:hover {
@@ -224,6 +284,16 @@
   margin: 1rem 0;
   border-radius: 0.5rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile responsive images */
+@media (max-width: 640px) {
+  .markdown-body img {
+    margin: 0.75rem -1rem;
+    border-radius: 0;
+    width: calc(100% + 2rem);
+    max-width: calc(100% + 2rem);
+  }
 }
 
 /* Strong and emphasis */

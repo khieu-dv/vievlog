@@ -117,12 +117,13 @@ const PostComponent: React.FC<PostComponentProps> = ({
 
                     {/* Post Image - Compact */}
                     {post.coverImage && (
-                        <div className="relative w-full h-48 mb-3 rounded overflow-hidden">
+                        <div className="relative w-full h-48 sm:h-56 md:h-64 mb-3 rounded overflow-hidden">
                             <Image
                                 src={post.coverImage}
                                 alt={post.title}
                                 fill
                                 className="object-cover"
+                                sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
                             />
                         </div>
                     )}
