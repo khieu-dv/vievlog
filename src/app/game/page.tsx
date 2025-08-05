@@ -2,6 +2,8 @@
 
 import dynamic from 'next/dynamic';
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
 
 // English learning loading messages
 const loadingMessages = [
@@ -78,6 +80,20 @@ export default function GamePage() {
                 <div className="absolute top-1/3 right-1/3 text-3xl animate-bounce opacity-10" style={{animationDelay: '1.5s'}}>🏆</div>
                 <div className="absolute top-3/4 left-1/3 text-4xl animate-pulse opacity-15" style={{animationDelay: '3s'}}>📖</div>
                 <div className="absolute top-1/4 right-1/4 text-2xl animate-bounce opacity-10" style={{animationDelay: '2.5s'}}>🧠</div>
+            </div>
+            
+            {/* Back to Home Button */}
+            <div className="container mx-auto px-1 sm:px-4 py-1 sm:py-2 relative z-20">
+                <div className="absolute top-4">
+                    <Link 
+                        href="/"
+                        className="flex items-center gap-2 bg-gray-800/80 hover:bg-gray-700/80 text-white px-4 py-2 rounded-lg shadow-lg backdrop-blur-sm transition-all duration-200 hover:scale-105 border border-gray-600/50"
+                    >
+                        <ArrowLeft size={18} />
+                        <span className="hidden sm:inline font-medium">Back to Home</span>
+                        <span className="sm:hidden font-medium">Home</span>
+                    </Link>
+                </div>
             </div>
             
             <div className="container mx-auto px-1 sm:px-4 py-1 sm:py-2 relative z-10">
