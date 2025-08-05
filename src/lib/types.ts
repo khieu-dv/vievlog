@@ -1,3 +1,6 @@
+// Export common types
+export * from './types/common';
+
 export type Message = {
   id: string;
   content: string; 

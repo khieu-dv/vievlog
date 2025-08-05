@@ -1,6 +1,6 @@
 import * as Phaser from 'phaser';
 
-export interface GameConfig {
+export type GameConfig = {
   scene: Phaser.Scene;
   x: number;
   y: number;
@@ -11,14 +11,14 @@ export interface GameConfig {
   mapName?: string; // Keep this for the string map name
 }
 
-export interface PlayerData {
+export type PlayerData = {
   sessionId: string;
   x: number;
   y: number;
   map: string;
 }
 
-export interface GameMessage {
+export type GameMessage = {
   event: string;
   sessionId?: string;
   x?: number;
@@ -28,7 +28,7 @@ export interface GameMessage {
   players?: Record<string, PlayerData>;
 }
 
-export interface SceneData {
+export type SceneData = {
   map: string;
   playerTexturePosition: string;
 }

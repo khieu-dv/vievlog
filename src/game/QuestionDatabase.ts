@@ -1,4 +1,4 @@
-export interface Question {
+export type Question = {
     id: number;
     category: string;
     difficulty: 'easy' | 'medium' | 'hard';

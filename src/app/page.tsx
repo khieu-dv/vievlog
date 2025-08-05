@@ -100,7 +100,7 @@ export default function HomePage() {
   };
 
   // Fetch posts for selected category
-  const fetchPosts = async (categoryId: string = "") => {
+  const fetchPosts = async (categoryId = "") => {
     try {
       setIsLoadingPosts(true);
       const params: any = {

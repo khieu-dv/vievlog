@@ -133,27 +133,3 @@ export const useLocalizedContent = () => {
   };
 };
 
-/**
- * Helper to get all available languages for a specific field in content
- */
-export const getAvailableLanguagesForField = (
-  content: MultilingualContent,
-  field: string
-): string[] => {
-  const availableLanguages: string[] = [];
-  
-  // Check base field
-  if (content[field] && String(content[field]).trim() !== '') {
-    availableLanguages.push('base');
-  }
-  
-  // Check localized fields
-  getSupportedLanguageCodes().forEach(code => {
-    const localizedField = `${field}_${code}`;
-    if (content[localizedField] && String(content[localizedField]).trim() !== '') {
-      availableLanguages.push(code);
-    }
-  });
-  
-  return availableLanguages;
-};

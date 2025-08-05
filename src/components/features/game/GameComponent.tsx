@@ -4,7 +4,7 @@ import { useEffect, useRef, useState, useCallback } from 'react';
 import * as Phaser from 'phaser';
 import { gameConfig } from '../../../game/gameConfig';
 
-interface JoystickState {
+type JoystickState = {
     x: number;
     y: number;
     distance: number;
@@ -57,10 +57,10 @@ export default function GameComponent() {
 
         // Get the current scene - try both Scene1 and Scene2 (playGame)
         const scene = gameRef.current.scene.getScene('playGame') || gameRef.current.scene.getScene('bootGame');
-        if (!scene || !scene.input || !scene.input.keyboard) return;
+        if (!scene?.input?.keyboard) return;
 
         // Map our directions to Phaser key codes
-        const keyMappings: { [key: string]: number } = {
+        const keyMappings: Record<string, number> = {
             'Up': Phaser.Input.Keyboard.KeyCodes.UP,
             'Down': Phaser.Input.Keyboard.KeyCodes.DOWN,
             'Left': Phaser.Input.Keyboard.KeyCodes.LEFT,

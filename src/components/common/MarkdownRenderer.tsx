@@ -50,7 +50,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) =
                         const match = /language-(\w+)/.exec(className || '');
                         let language = match ? match[1] : '';
 
-                        const languageMap: { [key: string]: string } = {
+                        const languageMap: Record<string, string> = {
                             'js': 'javascript',
                             'jsx': 'jsx',
                             'ts': 'typescript',

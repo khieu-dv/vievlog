@@ -19,13 +19,13 @@ export class Scene2 extends Phaser.Scene {
     public grassLayer!: Phaser.Tilemaps.TilemapLayer;
     public aboveLayer!: Phaser.Tilemaps.TilemapLayer;
     private cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
-    private socketKey: boolean = false;
+    private socketKey = false;
     
     // English Learning Game Systems
     private enemyBots: EnemyBot[] = [];
     private questionUI!: QuestionUI;
     private scoreSystem!: ScoreSystem;
-    private maxBots: number = 5;
+    private maxBots = 5;
     private botSpawnTimer!: Phaser.Time.TimerEvent;
 
     constructor() {
@@ -44,60 +44,58 @@ export class Scene2 extends Phaser.Scene {
     }
 
     create(): void {
-        interface PlayerData {
+        type PlayerData = {
             sessionId: string;
             map: string;
             x: number;
             y: number;
         }
 
-        interface PlayersMap {
-            [playerId: string]: PlayerData;
-        }
+        type PlayersMap = Record<string, PlayerData>
 
-        interface CurrentPlayersMessage extends GameMessage {
+        type CurrentPlayersMessage = {
             event: 'CURRENT_PLAYERS';
             players?: PlayersMap;
-        }
+        } & GameMessage
 
-        interface PlayerJoinedMessage extends GameMessage {
+        type PlayerJoinedMessage = {
             event: 'PLAYER_JOINED';
             sessionId?: string;
             map?: string;
             x?: number;
             y?: number;
-        }
+        } & GameMessage
 
-        interface PlayerLeftMessage extends GameMessage {
+        type PlayerLeftMessage = {
             event: 'PLAYER_LEFT';
             sessionId?: string;
-        }
+        } & GameMessage
 
-        interface PlayerMovedMessage extends GameMessage {
+        type PlayerMovedMessage = {
             event: 'PLAYER_MOVED';
             sessionId?: string;
             position?: string;
             map?: string;
             x?: number;
             y?: number;
-        }
+        } & GameMessage
 
-        interface PlayerMovementEndedMessage extends GameMessage {
+        type PlayerMovementEndedMessage = {
             event: 'PLAYER_MOVEMENT_ENDED';
             sessionId?: string;
             position?: string;
             map?: string;
             x?: number;
             y?: number;
-        }
+        } & GameMessage
 
-        interface PlayerChangedMapMessage extends GameMessage {
+        type PlayerChangedMapMessage = {
             event: 'PLAYER_CHANGED_MAP';
             sessionId?: string;
             map?: string;
             x?: number;
             y?: number;
-        }
+        } & GameMessage
 
         type RoomType = {
             sessionId: string;

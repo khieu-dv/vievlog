@@ -5,8 +5,8 @@ import { GameConfig } from "../lib/game";
 export default class Player extends Phaser.GameObjects.Sprite {
     public cursors: Phaser.Types.Input.Keyboard.CursorKeys;
     public container: { oldPosition?: { x: number; y: number } } = {};
-    public speed: number = 150;
-    public canChangeMap: boolean = true;
+    public speed = 150;
+    public canChangeMap = true;
     public playerNickname: Phaser.GameObjects.Text;
     public spacebar: Phaser.Input.Keyboard.Key;
     public debugKey: Phaser.Input.Keyboard.Key;
@@ -15,25 +15,25 @@ export default class Player extends Phaser.GameObjects.Sprite {
     private mapName: string;
 
     // Champion Combat System with Gun
-    public health: number = 100;
-    public maxHealth: number = 100;
-    public energy: number = 100;
-    public maxEnergy: number = 100;
-    public isAttacking: boolean = false;
-    public isShooting: boolean = false;
-    public isBlocking: boolean = false;
-    public combo: number = 0;
-    public lastAttackTime: number = 0;
-    public lastShootTime: number = 0;
-    public attackCooldown: number = 300; // milliseconds
-    public shootCooldown: number = 500; // milliseconds
-    public shootRange: number = 200;
+    public health = 100;
+    public maxHealth = 100;
+    public energy = 100;
+    public maxEnergy = 100;
+    public isAttacking = false;
+    public isShooting = false;
+    public isBlocking = false;
+    public combo = 0;
+    public lastAttackTime = 0;
+    public lastShootTime = 0;
+    public attackCooldown = 300; // milliseconds
+    public shootCooldown = 500; // milliseconds
+    public shootRange = 200;
     public healthBar!: Phaser.GameObjects.Graphics;
     public energyBar!: Phaser.GameObjects.Graphics;
     private combatText!: Phaser.GameObjects.Text;
     private hitEffect!: Phaser.GameObjects.Graphics;
     private bullets: Phaser.GameObjects.Graphics[] = [];
-    private lastFacingDirection: string = 'down'; // Track player's facing direction
+    private lastFacingDirection = 'down'; // Track player's facing direction
 
     // Mobile control states
     public mobileControls = {
@@ -319,8 +319,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
         flash.setDepth(8);
         
         // Determine muzzle position based on facing direction
-        let flashX = this.x + 15;
-        let flashY = this.y;
+        const flashX = this.x + 15;
+        const flashY = this.y;
 
         flash.fillStyle(0xffffff, 0.8);
         flash.fillCircle(flashX, flashY, 8);

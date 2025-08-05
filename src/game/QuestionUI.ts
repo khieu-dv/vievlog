@@ -6,7 +6,7 @@ export class QuestionUI {
     private background: Phaser.GameObjects.Graphics | null = null;
     private questionText: Phaser.GameObjects.Text | null = null;
     private optionButtons: any[] = [];
-    private isVisible: boolean = false;
+    private isVisible = false;
     private currentQuestion: Question | null = null;
     private onAnswerCallback: ((correct: boolean, question: Question) => void) | null = null;
     private allUIElements: Phaser.GameObjects.GameObject[] = [];
@@ -205,7 +205,7 @@ export class QuestionUI {
 
         // Highlight selected answer
         const selectedButton = this.optionButtons[selectedIndex];
-        if (selectedButton && selectedButton.bg) {
+        if (selectedButton?.bg) {
             const buttonX = baseX + (camera.width - (panelWidth - buttonMargin)) / 2;
             const buttonY = baseY + (camera.height - panelHeight) / 2 + (isMobile ? 100 : 160) + selectedIndex * buttonSpacing;
             
@@ -219,7 +219,7 @@ export class QuestionUI {
         // Highlight correct answer if user was wrong
         if (!isCorrect && this.currentQuestion.correctAnswer < this.optionButtons.length) {
             const correctButton = this.optionButtons[this.currentQuestion.correctAnswer];
-            if (correctButton && correctButton.bg) {
+            if (correctButton?.bg) {
                 const buttonX = baseX + (camera.width - (panelWidth - buttonMargin)) / 2;
                 const buttonY = baseY + (camera.height - panelHeight) / 2 + (isMobile ? 100 : 160) + this.currentQuestion.correctAnswer * buttonSpacing;
                 

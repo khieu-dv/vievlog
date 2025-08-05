@@ -2,13 +2,13 @@ import * as Phaser from "phaser";
 import { questionDatabase, Question } from "./QuestionDatabase";
 
 export default class EnemyBot extends Phaser.GameObjects.Sprite {
-    public health: number = 50;
-    public maxHealth: number = 50;
-    public isAlive: boolean = true;
-    public movementSpeed: number = 80;
-    public attackRange: number = 100;
-    public lastAttackTime: number = 0;
-    public attackCooldown: number = 2000;
+    public health = 50;
+    public maxHealth = 50;
+    public isAlive = true;
+    public movementSpeed = 80;
+    public attackRange = 100;
+    public lastAttackTime = 0;
+    public attackCooldown = 2000;
     public botName: string;
     public difficulty: 'easy' | 'medium' | 'hard';
     public reward: Question;
@@ -19,8 +19,8 @@ export default class EnemyBot extends Phaser.GameObjects.Sprite {
     private targetPlayer: any;
     private movementPattern: 'patrol' | 'chase' | 'idle' = 'patrol';
     private patrolPoints: { x: number; y: number }[] = [];
-    private currentPatrolIndex: number = 0;
-    private patrolDirection: number = 1;
+    private currentPatrolIndex = 0;
+    private patrolDirection = 1;
 
     // English learning themed bot names
     private static botNames = [

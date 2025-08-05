@@ -14,21 +14,15 @@ import {
   Calendar
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { Post } from '~/lib/types';
+import { Post, Session, DateFormatter, CategoryWithCount } from '~/lib/types';
 import { useRoadmapProgress } from '~/lib/hooks/useRoadmapProgress';
 
 type RoadmapPostsViewProps = {
   posts: Post[];
-  session: any;
-  formatRelativeTime: (date: string | number | Date) => string;  
+  session: Session;
+  formatRelativeTime: DateFormatter;
   selectedCategoryId?: string;
-  categories: Array<{
-    id: string;
-    name: string;
-    slug: string;
-    color: string;
-    postCount?: number;
-  }>;
+  categories: CategoryWithCount[];
   onPostClick?: (postId: string) => void;
   onCategorySelect?: (categoryId: string) => void;
 };

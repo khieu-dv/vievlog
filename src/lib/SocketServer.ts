@@ -7,15 +7,15 @@ export const onlinePlayers: Record<string, OnlinePlayer> = {};
 // Colyseus connection with server
 const client = new Colyseus.Client('ws://localhost:3005');
 
-export interface Room {
+export type Room = {
     sessionId: string;
     name: string;
     // Add other properties/methods from Colyseus.Room as needed
 }
 
-export interface JoinError extends Error {
+export type JoinError = {
     // Extend with additional properties if needed
-}
+} & Error
 
 // Create a mock room for offline mode
 const createMockRoom = (): Room => ({

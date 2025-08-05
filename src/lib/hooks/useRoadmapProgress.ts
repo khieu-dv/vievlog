@@ -1,10 +1,10 @@
 import { useState, useEffect, useCallback } from 'react';
 
 export const useRoadmapProgress = (userId?: string) => {
-  const [completedPosts, setCompletedPosts] = useState<Set<string>>(new Set());
+  const [completedPosts, setCompletedPosts] = useState<Set<string>>(() => new Set());
 
   const getStorageKey = useCallback(() => {
-    return `roadmap_completed_${userId || 'anonymous'}`;
+    return `roadmap_completed_${userId ?? 'anonymous'}`;
   }, [userId]);
 
   // Load completion status from localStorage
@@ -13,7 +13,7 @@ export const useRoadmapProgress = (userId?: string) => {
       const key = getStorageKey();
       const stored = localStorage.getItem(key);
       if (stored) {
-        const completedArray = JSON.parse(stored);
+        const completedArray = JSON.parse(stored) as string[];
         setCompletedPosts(new Set(completedArray));
       } else {
         setCompletedPosts(new Set());
@@ -32,9 +32,10 @@ export const useRoadmapProgress = (userId?: string) => {
       localStorage.setItem(key, JSON.stringify(completedArray));
       
       // Dispatch a custom event to notify other components
-      window.dispatchEvent(new CustomEvent('roadmapProgressUpdate', {
+      const event = new CustomEvent('roadmapProgressUpdate', {
         detail: { userId, completedPosts: completedArray }
-      }));
+      });
+      window.dispatchEvent(event);
     } catch (error) {
       console.error('Error saving completion status:', error);
     }
@@ -76,15 +77,16 @@ export const useRoadmapProgress = (userId?: string) => {
 
   // Listen for custom progress update events
   useEffect(() => {
-    const handleProgressUpdate = (event: CustomEvent) => {
-      const { userId: eventUserId, completedPosts: eventCompletedPosts } = event.detail;
+    const handleProgressUpdate = (event: Event) => {
+      const customEvent = event as CustomEvent<{ userId: string; completedPosts: string[] }>;
+      const { userId: eventUserId, completedPosts: eventCompletedPosts } = customEvent.detail;
       if (eventUserId === userId) {
         setCompletedPosts(new Set(eventCompletedPosts));
       }
     };
 
-    window.addEventListener('roadmapProgressUpdate', handleProgressUpdate as EventListener);
-    return () => window.removeEventListener('roadmapProgressUpdate', handleProgressUpdate as EventListener);
+    window.addEventListener('roadmapProgressUpdate', handleProgressUpdate);
+    return () => window.removeEventListener('roadmapProgressUpdate', handleProgressUpdate);
   }, [userId]);
 
   // Listen for storage events to sync across tabs

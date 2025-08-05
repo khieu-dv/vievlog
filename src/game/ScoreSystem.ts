@@ -1,7 +1,7 @@
 import * as Phaser from "phaser";
 import { Question } from "./QuestionDatabase";
 
-export interface PlayerStats {
+export type PlayerStats = {
     totalScore: number;
     questionsAnswered: number;
     correctAnswers: number;
@@ -11,7 +11,7 @@ export interface PlayerStats {
     botsDefeated: number;
     level: number;
     experience: number;
-    categoryStats: { [category: string]: { correct: number; total: number } };
+    categoryStats: Record<string, { correct: number; total: number }>;
 }
 
 export class ScoreSystem {
