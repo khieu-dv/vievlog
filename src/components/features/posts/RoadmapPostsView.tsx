@@ -54,9 +54,9 @@ const RoadmapPostsView: React.FC<RoadmapPostsViewProps> = ({
           <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
             <Target className="h-8 w-8 text-primary" />
           </div>
-          <h2 className="text-2xl font-bold text-foreground mb-2">Choose Your Learning Path</h2>
+          <h2 className="text-2xl font-bold text-foreground mb-2">{t('roadmap.chooseYourLearningPath')}</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Select a category to start your structured learning journey. Each roadmap is designed to guide you step-by-step through the topics.
+            {t('roadmap.selectCategoryDescription')}
           </p>
         </div>
 
@@ -77,7 +77,7 @@ const RoadmapPostsView: React.FC<RoadmapPostsViewProps> = ({
                 </div>
                 <div className="text-right">
                   <div className="text-sm font-medium text-foreground">{category.postCount || 0}</div>
-                  <div className="text-xs text-muted-foreground">posts</div>
+                  <div className="text-xs text-muted-foreground">{t('roadmap.posts')}</div>
                 </div>
               </div>
               
@@ -86,13 +86,13 @@ const RoadmapPostsView: React.FC<RoadmapPostsViewProps> = ({
               </h3>
               
               <p className="text-sm text-muted-foreground mb-4">
-                Learn {category.name} through a structured roadmap with {category.postCount || 0} comprehensive posts.
+                {t('roadmap.learnStructured', { category: category.name, count: category.postCount || 0 })}
               </p>
               
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full" />
-                  <span className="text-xs text-muted-foreground">Ready to start</span>
+                  <span className="text-xs text-muted-foreground">{t('roadmap.readyToStart')}</span>
                 </div>
                 <ChevronRight className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
               </div>
@@ -107,10 +107,10 @@ const RoadmapPostsView: React.FC<RoadmapPostsViewProps> = ({
               <BookOpen className="h-8 w-8 text-muted-foreground" />
             </div>
             <h3 className="text-lg font-medium text-foreground mb-2">
-              No categories available
+              {t('roadmap.noCategoriesAvailable')}
             </h3>
             <p className="text-muted-foreground">
-              Categories will appear here once they are created.
+              {t('roadmap.categoriesWillAppear')}
             </p>
           </div>
         )}
@@ -126,10 +126,10 @@ const RoadmapPostsView: React.FC<RoadmapPostsViewProps> = ({
           <BookOpen className="h-8 w-8 text-muted-foreground" />
         </div>
         <h3 className="text-lg font-medium text-foreground mb-2">
-          No posts in this category yet
+          {t('roadmap.noPostsInCategory')}
         </h3>
         <p className="text-muted-foreground">
-          Posts will appear here once they are added to this category.
+          {t('roadmap.postsWillAppear')}
         </p>
       </div>
     );
@@ -145,13 +145,13 @@ const RoadmapPostsView: React.FC<RoadmapPostsViewProps> = ({
               <Target className="h-6 w-6 text-primary" />
             </div>
             <div>
-              <h2 className="text-xl font-semibold text-foreground">Learning Roadmap</h2>
-              <p className="text-sm text-muted-foreground">Track your progress through the posts</p>
+              <h2 className="text-xl font-semibold text-foreground">{t('roadmap.learningRoadmap')}</h2>
+              <p className="text-sm text-muted-foreground">{t('roadmap.trackProgress')}</p>
             </div>
           </div>
           <div className="text-right">
             <div className="text-2xl font-bold text-primary">{stats.progress}%</div>
-            <div className="text-xs text-muted-foreground">{stats.completed}/{stats.total} completed</div>
+            <div className="text-xs text-muted-foreground">{stats.completed}/{stats.total} {t('roadmap.completed')}</div>
           </div>
         </div>
         
@@ -226,7 +226,7 @@ const RoadmapPostsView: React.FC<RoadmapPostsViewProps> = ({
                             </span>
                             {isCompleted && (
                               <span className="text-xs px-2 py-1 bg-green-100 text-green-700 rounded-full font-medium">
-                                ✓ Completed
+                                ✓ {t('roadmap.completedStatus')}
                               </span>
                             )}
                           </div>
@@ -264,7 +264,7 @@ const RoadmapPostsView: React.FC<RoadmapPostsViewProps> = ({
                           </div>
                           <div className="flex items-center gap-1">
                             <MessageCircle className="h-3 w-3" />
-                            <span>{post.commentCount} comments</span>
+                            <span>{post.commentCount} {t('posts.comments')}</span>
                           </div>
                         </div>
                       </div>
@@ -306,7 +306,7 @@ const RoadmapPostsView: React.FC<RoadmapPostsViewProps> = ({
                           isCompleted ? 'bg-green-500' : 'bg-orange-500'
                         }`} />
                         <span className="text-xs font-medium text-muted-foreground">
-                          {isCompleted ? 'Completed' : 'In Progress'}
+                          {isCompleted ? t('roadmap.completedStatus') : t('roadmap.inProgress')}
                         </span>
                       </div>
                       
@@ -315,7 +315,7 @@ const RoadmapPostsView: React.FC<RoadmapPostsViewProps> = ({
                         onClick={() => onPostClick?.(post.id)}
                         className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
                       >
-                        {isCompleted ? 'Review' : 'Continue'}
+                        {isCompleted ? t('roadmap.review') : t('roadmap.continue')}
                         <ChevronRight className="h-4 w-4" />
                       </Link>
                     </div>
@@ -333,11 +333,11 @@ const RoadmapPostsView: React.FC<RoadmapPostsViewProps> = ({
           <div className="flex items-center gap-3">
             <TrendingUp className="h-5 w-5 text-primary" />
             <div>
-              <h4 className="font-medium text-foreground">Keep Going!</h4>
+              <h4 className="font-medium text-foreground">{t('roadmap.keepGoing')}</h4>
               <p className="text-sm text-muted-foreground">
                 {stats.completed === stats.total 
-                  ? "🎉 Congratulations! You've completed all posts!"
-                  : `${stats.total - stats.completed} posts remaining`
+                  ? t('roadmap.congratulations')
+                  : t('roadmap.postsRemaining', { count: stats.total - stats.completed })
                 }
               </p>
             </div>
@@ -345,9 +345,9 @@ const RoadmapPostsView: React.FC<RoadmapPostsViewProps> = ({
           
           {stats.completed < stats.total && (
             <div className="text-right">
-              <div className="text-sm font-medium text-foreground">Next Up</div>
+              <div className="text-sm font-medium text-foreground">{t('roadmap.nextUp')}</div>
               <div className="text-xs text-muted-foreground">
-                Continue your learning journey
+                {t('roadmap.continueJourney')}
               </div>
             </div>
           )}

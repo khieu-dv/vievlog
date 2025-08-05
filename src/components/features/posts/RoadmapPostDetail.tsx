@@ -135,7 +135,7 @@ const RoadmapPostDetail: React.FC<RoadmapPostDetailProps> = ({
             {/* Back Button */}
             <Link href={getBackLink()} className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
               <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Roadmap
+              {t('roadmap.backToRoadmap')}
             </Link>
 
             {/* Progress Info */}
@@ -166,12 +166,12 @@ const RoadmapPostDetail: React.FC<RoadmapPostDetailProps> = ({
               {isCompleted ? (
                 <>
                   <CheckCircle className="h-4 w-4" />
-                  Completed
+                  {t('roadmap.completedStatus')}
                 </>
               ) : (
                 <>
                   <Circle className="h-4 w-4" />
-                  Mark Complete
+                  {t('roadmap.markComplete')}
                 </>
               )}
             </button>
@@ -197,7 +197,7 @@ const RoadmapPostDetail: React.FC<RoadmapPostDetailProps> = ({
                     {post.category.name}
                   </span>
                   <div className="w-1 h-1 bg-muted-foreground/30 rounded-full" />
-                  <span className="text-sm text-muted-foreground">Step {currentIndex + 1}</span>
+                  <span className="text-sm text-muted-foreground">{t('roadmap.stepNumber', { number: currentIndex + 1 })}</span>
                 </div>
               )}
 
@@ -225,11 +225,11 @@ const RoadmapPostDetail: React.FC<RoadmapPostDetailProps> = ({
                 </div>
                 <div className="flex items-center gap-2">
                   <Clock className="h-4 w-4" />
-                  <span>{readingTime} min read</span>
+                  <span>{t('roadmap.minRead', { minutes: readingTime })}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <MessageCircle className="h-4 w-4" />
-                  <span>{comments.length} comments</span>
+                  <span>{comments.length} {t('posts.comments')}</span>
                 </div>
               </div>
             </div>
@@ -256,10 +256,10 @@ const RoadmapPostDetail: React.FC<RoadmapPostDetailProps> = ({
               <div className="flex items-center gap-4">
                 <div className="flex items-center gap-2">
                   <Target className="h-5 w-5 text-primary" />
-                  <span className="font-medium text-foreground">Reading Progress</span>
+                  <span className="font-medium text-foreground">{t('roadmap.readingProgress')}</span>
                 </div>
                 <div className="text-sm text-muted-foreground">
-                  Time: {formatTime(timeSpent)} / ~{readingTime} min
+                  {t('roadmap.timeSpent', { current: formatTime(timeSpent), estimated: readingTime })}
                 </div>
               </div>
               
@@ -271,12 +271,12 @@ const RoadmapPostDetail: React.FC<RoadmapPostDetailProps> = ({
                   {isReading ? (
                     <>
                       <PauseCircle className="h-4 w-4" />
-                      Pause
+                      {t('roadmap.pause')}
                     </>
                   ) : (
                     <>
                       <PlayCircle className="h-4 w-4" />
-                      Start
+                      {t('roadmap.start')}
                     </>
                   )}
                 </button>
@@ -321,7 +321,7 @@ const RoadmapPostDetail: React.FC<RoadmapPostDetailProps> = ({
             >
               <ChevronLeft className="h-5 w-5 text-muted-foreground group-hover:text-primary" />
               <div className="text-left">
-                <div className="text-xs text-muted-foreground mb-1">Previous</div>
+                <div className="text-xs text-muted-foreground mb-1">{t('roadmap.previous')}</div>
                 <div className="font-medium text-foreground group-hover:text-primary line-clamp-1">
                   {prevPost.title}
                 </div>
@@ -337,7 +337,7 @@ const RoadmapPostDetail: React.FC<RoadmapPostDetailProps> = ({
               className="flex items-center gap-3 p-4 bg-card border rounded-lg hover:border-primary/30 hover:bg-primary/5 transition-all group"
             >
               <div className="text-right">
-                <div className="text-xs text-muted-foreground mb-1">Next</div>
+                <div className="text-xs text-muted-foreground mb-1">{t('roadmap.next')}</div>
                 <div className="font-medium text-foreground group-hover:text-primary line-clamp-1">
                   {nextPost.title}
                 </div>
@@ -353,7 +353,7 @@ const RoadmapPostDetail: React.FC<RoadmapPostDetailProps> = ({
         <div className="bg-card rounded-lg border p-6">
           <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
             <MessageCircle className="h-5 w-5" />
-            Discussion ({comments.length})
+            {t('roadmap.discussion')} ({comments.length})
           </h3>
 
           {/* Comment Input */}
@@ -377,7 +377,7 @@ const RoadmapPostDetail: React.FC<RoadmapPostDetailProps> = ({
                 </div>
                 <div className="flex-1">
                   <textarea
-                    placeholder={t("What are your thoughts on this step?")}
+                    placeholder={t('roadmap.commentPlaceholder')}
                     className="w-full p-3 border border-border rounded-md bg-background text-sm resize-vertical min-h-[100px] focus:outline-none focus:ring-2 focus:ring-primary/20"
                     value={commentInput}
                     onChange={(e) => onCommentInputChange(e.target.value)}
@@ -388,7 +388,7 @@ const RoadmapPostDetail: React.FC<RoadmapPostDetailProps> = ({
                       disabled={submittingComment || !commentInput.trim()}
                       className="px-4 py-2 bg-primary text-primary-foreground rounded-md text-sm font-medium hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                     >
-                      {submittingComment ? 'Posting...' : 'Add Comment'}
+                      {submittingComment ? t('roadmap.posting') : t('roadmap.addComment')}
                     </button>
                   </div>
                 </div>
@@ -430,7 +430,7 @@ const RoadmapPostDetail: React.FC<RoadmapPostDetailProps> = ({
               <div className="text-center py-8">
                 <MessageCircle className="h-12 w-12 text-muted-foreground mx-auto mb-3" />
                 <p className="text-muted-foreground">
-                  {t("No comments yet. Be the first to share what you think!")}
+                  {t('roadmap.noCommentsYet')}
                 </p>
               </div>
             )}

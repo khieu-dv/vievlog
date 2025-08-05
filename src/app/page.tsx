@@ -196,21 +196,21 @@ export default function HomePage() {
                 <div>
                   <h1 className="text-2xl font-semibold text-foreground mb-1">
                     {selectedCategoryId 
-                      ? `${categories.find(c => c.id === selectedCategoryId)?.name} Learning Path`
-                      : "Choose Your Learning Journey"
+                      ? t('home.learningPathTitle', { category: categories.find(c => c.id === selectedCategoryId)?.name })
+                      : t('home.chooseYourLearningJourney')
                     }
                   </h1>
                   <p className="text-muted-foreground">
                     {selectedCategoryId
-                      ? "Follow the structured roadmap to master this technology step by step"
-                      : "Select a category to start your personalized learning roadmap"
+                      ? t('home.followStructuredRoadmap')
+                      : t('home.selectCategoryToStart')
                     }
                   </p>
                 </div>
                 {selectedCategoryId && (
                   <Link href="/posts?view=roadmap">
                     <Button variant="outline" size="sm">
-                      View Full Roadmap
+                      {t('home.viewFullRoadmap')}
                     </Button>
                   </Link>
                 )}
@@ -246,7 +246,7 @@ export default function HomePage() {
               <div className="mt-8 text-center">
                 <Link href={`/posts?view=roadmap&category=${selectedCategoryId}`}>
                   <Button className="w-full max-w-md">
-                    Continue Full Learning Path →
+                    {t('home.continueFullLearningPath')}
                   </Button>
                 </Link>
               </div>
@@ -258,19 +258,19 @@ export default function HomePage() {
             <div className="sticky top-20 space-y-4">
               {/* Welcome Card */}
               <div className="bg-card rounded-lg border p-4">
-                <h3 className="font-medium text-foreground mb-2">Start Your Learning Journey</h3>
+                <h3 className="font-medium text-foreground mb-2">{t('home.startYourLearningJourney')}</h3>
                 <p className="text-sm text-muted-foreground mb-4">
-                  Choose a structured learning path and track your progress through curated content.
+                  {t('home.chooseStructuredPath')}
                 </p>
                 <div className="grid grid-cols-1 gap-3">
                   <Link href="/posts?view=roadmap">
                     <Button className="w-full" size="sm">
-                      Explore All Roadmaps
+                      {t('home.exploreAllRoadmaps')}
                     </Button>
                   </Link>
                   <Link href="/videos">
                     <Button variant="outline" className="w-full" size="sm">
-                      Watch Video Tutorials
+                      {t('home.watchVideoTutorials')}
                     </Button>
                   </Link>
                 </div>
@@ -278,7 +278,7 @@ export default function HomePage() {
 
               {/* Learning Paths */}
               <div className="bg-card rounded-lg border p-4">
-                <h3 className="font-medium text-foreground mb-3">Popular Learning Paths</h3>
+                <h3 className="font-medium text-foreground mb-3">{t('home.popularLearningPaths')}</h3>
                 <div className="space-y-2">
                   {categories.slice(0, 5).map((category) => (
                     <button
@@ -296,7 +296,7 @@ export default function HomePage() {
                         </span>
                       </div>
                       <span className="text-xs text-muted-foreground">
-                        {category.postCount || 0} steps
+                        {category.postCount || 0} {t('home.steps')}
                       </span>
                     </button>
                   ))}
@@ -306,20 +306,20 @@ export default function HomePage() {
               {/* Progress Stats */}
               {selectedCategoryId && (
                 <div className="bg-card rounded-lg border p-4">
-                  <h3 className="font-medium text-foreground mb-3">Your Progress</h3>
+                  <h3 className="font-medium text-foreground mb-3">{t('home.yourProgress')}</h3>
                   <div className="space-y-3">
                     <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Current Path</span>
+                      <span className="text-muted-foreground">{t('home.currentPath')}</span>
                       <span className="font-medium">
                         {categories.find(c => c.id === selectedCategoryId)?.name}
                       </span>
                     </div>
                     <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Total Steps</span>
+                      <span className="text-muted-foreground">{t('home.totalSteps')}</span>
                       <span className="font-medium">{posts.length}</span>
                     </div>
                     <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Completed</span>
+                      <span className="text-muted-foreground">{t('home.completed')}</span>
                       <span className="font-medium text-green-500">0</span>
                     </div>
                   </div>
@@ -328,12 +328,12 @@ export default function HomePage() {
 
               {/* Learning Tips */}
               <div className="bg-card rounded-lg border p-4">
-                <h3 className="font-medium text-foreground mb-3">Learning Tips</h3>
+                <h3 className="font-medium text-foreground mb-3">{t('home.learningTips')}</h3>
                 <div className="space-y-2 text-sm text-muted-foreground">
-                  <p>📚 Follow the roadmap step by step</p>
-                  <p>✅ Mark posts as complete to track progress</p>
-                  <p>💬 Join discussions in the comments</p>
-                  <p>🎯 Focus on one path at a time</p>
+                  <p>{t('home.followRoadmapStepByStep')}</p>
+                  <p>{t('home.markPostsComplete')}</p>
+                  <p>{t('home.joinDiscussions')}</p>
+                  <p>{t('home.focusOnOnePath')}</p>
                 </div>
               </div>
             </div>
