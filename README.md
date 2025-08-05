@@ -15,13 +15,13 @@
 VieVlog is a cutting-edge, open-source educational platform built with modern web technologies to revolutionize IT learning experiences. Perfect for educators, students, and tech enthusiasts!
 
 <p align="center">
-  <img src="./public/screenshot15.png" width="400" alt="VieVlog Dashboard" />
-  <img src="./public/screenshot16.png" width="400" alt="VieVlog Content Creation" />
+  <img src="./public/screenshot15.png" height="400" alt="VieVlog Dashboard" />
+  <img src="./public/screenshot16.png" height="400" alt="VieVlog Content Creation" />
 </p>
 
 <p align="center">
-  <img src="./public/screenshot17.png" width="400" alt="VieVlog Learning Interface" />
-  <img src="./public/screenshot18.png" width="400" alt="VieVlog Mobile View" />
+  <img src="./public/screenshot17.png" height="400" alt="VieVlog Learning Interface" />
+  <img src="./public/screenshot18.png" height="400" alt="VieVlog Mobile View" />
 </p>
 
 ## 🎓 Learning Resources
