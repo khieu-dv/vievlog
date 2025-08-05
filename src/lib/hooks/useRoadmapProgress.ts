@@ -63,11 +63,13 @@ export const useRoadmapProgress = (userId?: string) => {
     return completedPosts.has(postId);
   }, [completedPosts]);
 
-  // Get progress statistics
-  const getProgressStats = useCallback((totalPosts: number) => {
-    const completed = completedPosts.size;
-    const progress = totalPosts > 0 ? Math.round((completed / totalPosts) * 100) : 0;
-    return { total: totalPosts, completed, progress };
+  // Get progress statistics for specific posts
+  const getProgressStats = useCallback((posts: { id: string }[]) => {
+    // Count only completed posts that are in the current posts array
+    const completed = posts.filter(post => completedPosts.has(post.id)).length;
+    const total = posts.length;
+    const progress = total > 0 ? Math.min(Math.round((completed / total) * 100), 100) : 0;
+    return { total, completed, progress };
   }, [completedPosts]);
 
   // Load completion status on mount and user change

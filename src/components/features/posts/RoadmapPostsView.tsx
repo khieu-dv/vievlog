@@ -43,40 +43,30 @@ const RoadmapPostsView: React.FC<RoadmapPostsViewProps> = ({
     getProgressStats 
   } = useRoadmapProgress(session?.user?.id);
 
-  const stats = getProgressStats(posts.length);
+  const stats = getProgressStats(posts);
 
   // Show category selection if no category is selected
   if (!selectedCategoryId) {
     return (
-      <div className="space-y-6">
-        {/* Category Selection Header */}
-        <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-transparent rounded-lg p-8 border border-primary/10 text-center">
-          <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-            <Target className="h-8 w-8 text-primary" />
-          </div>
-          <h2 className="text-2xl font-bold text-foreground mb-2">{t('roadmap.chooseYourLearningPath')}</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            {t('roadmap.selectCategoryDescription')}
-          </p>
-        </div>
-
-        {/* Category Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="space-y-8">
+        
+        {/* Clean Category Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {categories.map((category) => (
             <button
               key={category.id}
               onClick={() => onCategorySelect?.(category.id)}
-              className="group p-6 bg-card border rounded-lg hover:border-primary/30 hover:shadow-md transition-all duration-200 text-left"
+              className="group p-6 bg-card border rounded-lg hover:border-primary/50 hover:shadow-sm transition-all text-left"
             >
               <div className="flex items-start justify-between mb-4">
                 <div 
-                  className="w-12 h-12 rounded-lg flex items-center justify-center text-white font-semibold"
+                  className="w-10 h-10 rounded-lg flex items-center justify-center text-white font-semibold"
                   style={{ backgroundColor: category.color }}
                 >
                   {category.name.charAt(0).toUpperCase()}
                 </div>
                 <div className="text-right">
-                  <div className="text-sm font-medium text-foreground">{category.postCount || 0}</div>
+                  <div className="text-sm font-semibold text-foreground">{category.postCount || 0}</div>
                   <div className="text-xs text-muted-foreground">{t('roadmap.posts')}</div>
                 </div>
               </div>
@@ -85,17 +75,9 @@ const RoadmapPostsView: React.FC<RoadmapPostsViewProps> = ({
                 {category.name}
               </h3>
               
-              <p className="text-sm text-muted-foreground mb-4">
+              <p className="text-sm text-muted-foreground">
                 {t('roadmap.learnStructured', { category: category.name, count: category.postCount || 0 })}
               </p>
-              
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full" />
-                  <span className="text-xs text-muted-foreground">{t('roadmap.readyToStart')}</span>
-                </div>
-                <ChevronRight className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
-              </div>
             </button>
           ))}
         </div>
@@ -159,7 +141,7 @@ const RoadmapPostsView: React.FC<RoadmapPostsViewProps> = ({
         <div className="w-full bg-muted rounded-full h-2">
           <div 
             className="bg-gradient-to-r from-primary to-primary/80 h-2 rounded-full transition-all duration-500 ease-out"
-            style={{ width: `${stats.progress}%` }}
+            style={{ width: `${Math.min(stats.progress, 100)}%` }}
           />
         </div>
       </div>

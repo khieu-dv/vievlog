@@ -185,49 +185,60 @@ export default function HomePage() {
       <Header />
       <VieShareBanner />
 
-      {/* Roadmap-style main layout */}
-      <div className="max-w-6xl mx-auto px-4 pt-4">
-        <div className="flex gap-6">
+      {/* Clean Hero Section */}
+      <div className="max-w-6xl mx-auto px-4 py-16">
+        <div className="text-center mb-16">
+          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+            {selectedCategoryId ? (
+              <span className="text-primary">
+                {categories.find(c => c.id === selectedCategoryId)?.name}
+              </span>
+            ) : (
+              <>
+                A New Way to Learn <span className="text-primary">Programming</span>
+              </>
+            )}
+          </h1>
+          
+          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+            {selectedCategoryId
+              ? t('home.followStructuredRoadmap')
+              : "Master programming skills through structured learning paths designed by experts."
+            }
+          </p>
+
+          {selectedCategoryId ? (
+            <Link href="/posts?view=roadmap">
+              <Button size="lg" className="px-8 py-3 text-base">
+                {t('home.viewFullRoadmap')}
+              </Button>
+            </Link>
+          ) : (
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/posts?view=roadmap">
+                <Button size="lg" className="px-8 py-3">
+                  {t('home.exploreAllRoadmaps')}
+                </Button>
+              </Link>
+              <Link href="/videos">
+                <Button variant="outline" size="lg" className="px-8 py-3">
+                  {t('home.watchVideoTutorials')}
+                </Button>
+              </Link>
+            </div>
+          )}
+        </div>
+
+        {/* Main Content */}
+        <div className="flex flex-col lg:flex-row gap-8">
           {/* Main Feed - Roadmap Style */}
           <main className="flex-1">
-            {/* Feed Header */}
-            <div className="mb-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h1 className="text-2xl font-semibold text-foreground mb-1">
-                    {selectedCategoryId 
-                      ? t('home.learningPathTitle', { category: categories.find(c => c.id === selectedCategoryId)?.name })
-                      : t('home.chooseYourLearningJourney')
-                    }
-                  </h1>
-                  <p className="text-muted-foreground">
-                    {selectedCategoryId
-                      ? t('home.followStructuredRoadmap')
-                      : t('home.selectCategoryToStart')
-                    }
-                  </p>
-                </div>
-                {selectedCategoryId && (
-                  <Link href="/posts?view=roadmap">
-                    <Button variant="outline" size="sm">
-                      {t('home.viewFullRoadmap')}
-                    </Button>
-                  </Link>
-                )}
-              </div>
-            </div>
 
-            {/* Roadmap Posts View */}
+            {/* Clean Loading State */}
             {isLoadingCategories ? (
-              <div className="space-y-6">
-                <div className="animate-pulse">
-                  <div className="bg-muted rounded-lg h-32 mb-4"></div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {Array(6).fill(0).map((_, i) => (
-                      <div key={i} className="bg-muted rounded-lg h-40"></div>
-                    ))}
-                  </div>
-                </div>
+              <div className="text-center py-16">
+                <div className="animate-spin inline-block w-8 h-8 border-2 border-current border-t-transparent text-primary rounded-full mb-4"></div>
+                <p className="text-muted-foreground">Loading learning paths...</p>
               </div>
             ) : (
               <RoadmapPostsView
@@ -241,11 +252,11 @@ export default function HomePage() {
               />
             )}
 
-            {/* Show additional content when category is selected */}
+            {/* Continue Button */}
             {selectedCategoryId && posts.length > 0 && (
-              <div className="mt-8 text-center">
+              <div className="mt-12 text-center">
                 <Link href={`/posts?view=roadmap&category=${selectedCategoryId}`}>
-                  <Button className="w-full max-w-md">
+                  <Button size="lg" className="px-8 py-3">
                     {t('home.continueFullLearningPath')}
                   </Button>
                 </Link>
@@ -253,60 +264,43 @@ export default function HomePage() {
             )}
           </main>
 
-          {/* Right Sidebar - Learning Focused */}
+          {/* Clean Sidebar */}
           <aside className="w-80 hidden lg:block">
-            <div className="sticky top-20 space-y-4">
-              {/* Welcome Card */}
-              <div className="bg-card rounded-lg border p-4">
-                <h3 className="font-medium text-foreground mb-2">{t('home.startYourLearningJourney')}</h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  {t('home.chooseStructuredPath')}
-                </p>
-                <div className="grid grid-cols-1 gap-3">
-                  <Link href="/posts?view=roadmap">
-                    <Button className="w-full" size="sm">
-                      {t('home.exploreAllRoadmaps')}
-                    </Button>
-                  </Link>
-                  <Link href="/videos">
-                    <Button variant="outline" className="w-full" size="sm">
-                      {t('home.watchVideoTutorials')}
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-
+            <div className="sticky top-20 space-y-6">
+              
               {/* Learning Paths */}
-              <div className="bg-card rounded-lg border p-4">
-                <h3 className="font-medium text-foreground mb-3">{t('home.popularLearningPaths')}</h3>
-                <div className="space-y-2">
-                  {categories.slice(0, 5).map((category) => (
+              <div className="bg-card rounded-lg border p-6">
+                <h3 className="font-semibold text-foreground mb-4">{t('home.popularLearningPaths')}</h3>
+                <div className="space-y-3">
+                  {categories.slice(0, 6).map((category) => (
                     <button
                       key={category.id}
                       onClick={() => handleCategorySelect(category.id)}
-                      className="flex items-center justify-between w-full py-2 px-3 rounded hover:bg-muted transition-colors group text-left"
+                      className="flex items-center justify-between w-full py-2 px-3 rounded-md hover:bg-muted transition-colors group text-left"
                     >
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-3">
                         <div 
-                          className="w-3 h-3 rounded-full"
+                          className="w-6 h-6 rounded flex items-center justify-center text-white text-xs font-medium"
                           style={{ backgroundColor: category.color }}
-                        />
+                        >
+                          {category.name.charAt(0).toUpperCase()}
+                        </div>
                         <span className="text-sm font-medium text-foreground group-hover:text-primary">
                           {category.name}
                         </span>
                       </div>
                       <span className="text-xs text-muted-foreground">
-                        {category.postCount || 0} {t('home.steps')}
+                        {category.postCount || 0}
                       </span>
                     </button>
                   ))}
                 </div>
               </div>
 
-              {/* Progress Stats */}
+              {/* Progress Stats - Only show when category selected */}
               {selectedCategoryId && (
-                <div className="bg-card rounded-lg border p-4">
-                  <h3 className="font-medium text-foreground mb-3">{t('home.yourProgress')}</h3>
+                <div className="bg-card rounded-lg border p-6">
+                  <h3 className="font-semibold text-foreground mb-4">{t('home.yourProgress')}</h3>
                   <div className="space-y-3">
                     <div className="flex justify-between text-sm">
                       <span className="text-muted-foreground">{t('home.currentPath')}</span>
@@ -320,22 +314,12 @@ export default function HomePage() {
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-muted-foreground">{t('home.completed')}</span>
-                      <span className="font-medium text-green-500">0</span>
+                      <span className="font-medium text-green-600">0</span>
                     </div>
                   </div>
                 </div>
               )}
 
-              {/* Learning Tips */}
-              <div className="bg-card rounded-lg border p-4">
-                <h3 className="font-medium text-foreground mb-3">{t('home.learningTips')}</h3>
-                <div className="space-y-2 text-sm text-muted-foreground">
-                  <p>{t('home.followRoadmapStepByStep')}</p>
-                  <p>{t('home.markPostsComplete')}</p>
-                  <p>{t('home.joinDiscussions')}</p>
-                  <p>{t('home.focusOnOnePath')}</p>
-                </div>
-              </div>
             </div>
           </aside>
         </div>
