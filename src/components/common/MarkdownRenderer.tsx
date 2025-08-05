@@ -4,7 +4,7 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 type MarkdownRendererProps = {
     content: string;
@@ -12,7 +12,7 @@ type MarkdownRendererProps = {
 
 export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) => {
     return (
-        <div className="markdown-body light">
+        <div className="markdown-body">
             <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
                 components={{
@@ -49,27 +49,178 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) =
                     code: ({ node, inline, className, children, ...props }: { node?: any; inline?: boolean; className?: string; children?: React.ReactNode }) => {
                         const match = /language-(\w+)/.exec(className || '');
                         let language = match ? match[1] : '';
-                        if (language === 'golang' || language === 'go') {
-                            language = 'go';
-                        }
+
+                        const languageMap: { [key: string]: string } = {
+                            'js': 'javascript',
+                            'jsx': 'jsx',
+                            'ts': 'typescript',
+                            'tsx': 'tsx',
+                            'py': 'python',
+                            'rb': 'ruby',
+                            'go': 'go',
+                            'golang': 'go',
+                            'rust': 'rust',
+                            'rs': 'rust',
+                            'java': 'java',
+                            'c': 'c',
+                            'cpp': 'cpp',
+                            'c++': 'cpp',
+                            'csharp': 'csharp',
+                            'cs': 'csharp',
+                            'php': 'php',
+                            'swift': 'swift',
+                            'kotlin': 'kotlin',
+                            'scala': 'scala',
+                            'dart': 'dart',
+                            'r': 'r',
+                            'matlab': 'matlab',
+                            'sql': 'sql',
+                            'html': 'xml',
+                            'css': 'css',
+                            'scss': 'scss',
+                            'sass': 'sass',
+                            'less': 'less',
+                            'json': 'json',
+                            'xml': 'xml',
+                            'yaml': 'yaml',
+                            'yml': 'yaml',
+                            'toml': 'toml',
+                            'ini': 'ini',
+                            'conf': 'ini',
+                            'sh': 'bash',
+                            'bash': 'bash',
+                            'zsh': 'bash',
+                            'fish': 'bash',
+                            'powershell': 'powershell',
+                            'ps1': 'powershell',
+                            'dockerfile': 'dockerfile',
+                            'docker': 'dockerfile',
+                            'makefile': 'makefile',
+                            'make': 'makefile',
+                            'cmake': 'cmake',
+                            'gradle': 'gradle',
+                            'maven': 'xml',
+                            'vue': 'vue',
+                            'svelte': 'svelte',
+                            'angular': 'typescript',
+                            'react': 'jsx',
+                            'graphql': 'graphql',
+                            'gql': 'graphql',
+                            'markdown': 'markdown',
+                            'md': 'markdown',
+                            'latex': 'latex',
+                            'tex': 'latex',
+                            'vim': 'vim',
+                            'nginx': 'nginx',
+                            'apache': 'apache',
+                            'lua': 'lua',
+                            'perl': 'perl',
+                            'haskell': 'haskell',
+                            'hs': 'haskell',
+                            'clojure': 'clojure',
+                            'clj': 'clojure',
+                            'lisp': 'lisp',
+                            'scheme': 'scheme',
+                            'erlang': 'erlang',
+                            'elixir': 'elixir',
+                            'ex': 'elixir',
+                            'elm': 'elm',
+                            'ocaml': 'ocaml',
+                            'fsharp': 'fsharp',
+                            'fs': 'fsharp',
+                            'julia': 'julia',
+                            'jl': 'julia',
+                            'zig': 'zig',
+                            'assembly': 'x86asm',
+                            'asm': 'x86asm',
+                            'nasm': 'x86asm',
+                            'mips': 'mipsasm',
+                            'arm': 'armasm',
+                            'vb': 'vbnet',
+                            'vbnet': 'vbnet',
+                            'pascal': 'pascal',
+                            'delphi': 'delphi',
+                            'cobol': 'cobol',
+                            'fortran': 'fortran',
+                            'ada': 'ada',
+                            'd': 'd',
+                            'nim': 'nim',
+                            'crystal': 'crystal',
+                            'reason': 'reason',
+                            're': 'reason',
+                            'rescript': 'rescript',
+                            'res': 'rescript',
+                            'purescript': 'purescript',
+                            'purs': 'purescript',
+                            'coffeescript': 'coffeescript',
+                            'coffee': 'coffeescript',
+                            'livescript': 'livescript',
+                            'ls': 'livescript',
+                            'stylus': 'stylus',
+                            'styl': 'stylus',
+                            'pug': 'pug',
+                            'jade': 'pug',
+                            'handlebars': 'handlebars',
+                            'hbs': 'handlebars',
+                            'mustache': 'handlebars',
+                            'twig': 'twig',
+                            'jinja': 'jinja2',
+                            'jinja2': 'jinja2',
+                            'smarty': 'smarty',
+                            'erb': 'erb',
+                            'haml': 'haml',
+                            'slim': 'slim',
+                            'liquid': 'liquid',
+                            'django': 'django',
+                            'mako': 'mako',
+                            'prolog': 'prolog',
+                            'pl': 'prolog',
+                            'smalltalk': 'smalltalk',
+                            'st': 'smalltalk',
+                            'tcl': 'tcl',
+                            'verilog': 'verilog',
+                            'v': 'verilog',
+                            'vhdl': 'vhdl',
+                            'systemverilog': 'systemverilog',
+                            'sv': 'systemverilog',
+                            'plaintext': 'plaintext',
+                            'text': 'plaintext',
+                            'txt': 'plaintext'
+                        };
+
+                        language = languageMap[language.toLowerCase()] || language;
 
                         return !inline && match ? (
-                            <SyntaxHighlighter
-                                style={atomDark}
-                                language={language}
-                                PreTag="div"
-                                className="rounded-md my-4"
-                                {...props}
-                            >
-                                {String(children).replace(/\n$/, '')}
-                            </SyntaxHighlighter>
+                            <div className="relative">
+                                <SyntaxHighlighter
+                                    style={vscDarkPlus}
+                                    language={language}
+                                    PreTag="div"
+                                    className="!bg-[#1e1e1e] !text-[#d4d4d4] rounded-lg my-6 text-sm leading-relaxed"
+                                    customStyle={{
+                                        margin: 0,
+                                        padding: '1.5rem',
+                                        backgroundColor: '#1e1e1e',
+                                        borderRadius: '8px',
+                                        fontSize: '14px',
+                                        lineHeight: '1.6'
+                                    }}
+                                    {...props}
+                                >
+                                    {String(children).replace(/\n$/, '')}
+                                </SyntaxHighlighter>
+                                {language && (
+                                    <div className="absolute top-0 right-0 px-3 py-1 text-xs text-gray-400 bg-gray-800 rounded-bl-md rounded-tr-lg border-l border-b border-gray-600 font-mono">
+                                        {language}
+                                    </div>
+                                )}
+                            </div>
                         ) : (
-                            <code className="bg-gray-100 text-gray-900 rounded-md px-1 py-0.5 text-sm font-mono" {...props}>
+                            <code className="bg-gray-100 dark:bg-gray-800 text-red-600 dark:text-red-400 rounded px-1.5 py-0.5 text-sm font-mono border" {...props}>
                                 {children}
                             </code>
                         );
                     },
-                    pre: ({ node, ...props }) => <pre className="bg-gray-800 text-white p-4 rounded-md overflow-x-auto mb-4" {...props} />,
                     hr: ({ node, ...props }) => <hr className="my-8 border-t border-gray-300" {...props} />,
                     img: ({ node, ...props }) => <img className="max-w-full h-auto my-4 rounded-md" {...props} />,
                     em: ({ node, ...props }) => <em className="italic" {...props} />,

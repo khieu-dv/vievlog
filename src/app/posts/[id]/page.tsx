@@ -391,7 +391,7 @@ export default function PostDetailPage() {
                 )}
 
                 {/* Post Full Content */}
-                <div className="prose prose-sm max-w-none mb-4">
+                <div className="max-w-none mb-6">
                   <MarkdownRenderer content={post.content ?? ""} />
                 </div>
 
