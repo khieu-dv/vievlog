@@ -45,6 +45,7 @@ export function Header({ showAuth = true }: HeaderProps) {
     { name: t("header.home"), href: "/" },
     { name: t("header.posts"), href: "/posts" },
     { name: t("header.videos"), href: "/videos" },
+    { name: t("header.games"), href: "/game" },
   ];
 
   return (
