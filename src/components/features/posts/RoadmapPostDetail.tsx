@@ -182,8 +182,8 @@ const RoadmapPostDetail: React.FC<RoadmapPostDetailProps> = ({
       <main className="max-w-4xl mx-auto px-4 py-8">
         {/* Post Header Card */}
         <div className="bg-gradient-to-br from-primary/5 via-primary/3 to-transparent rounded-xl p-6 mb-8 border border-primary/10">
-          <div className="flex items-start justify-between mb-4">
-            <div className="flex-1">
+          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-4 gap-4">
+            <div className="flex-1 min-w-0">
               {/* Category Badge */}
               {post.category && (
                 <div className="flex items-center gap-2 mb-3">
@@ -202,19 +202,19 @@ const RoadmapPostDetail: React.FC<RoadmapPostDetailProps> = ({
               )}
 
               {/* Title */}
-              <h1 className="text-3xl font-bold text-foreground mb-3 leading-tight">
+              <h1 className="text-2xl lg:text-3xl font-bold text-foreground mb-3 leading-tight">
                 {post.title}
               </h1>
 
               {/* Excerpt */}
               {post.excerpt && (
-                <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
+                <p className="text-base lg:text-lg text-muted-foreground mb-4 leading-relaxed">
                   {post.excerpt}
                 </p>
               )}
 
               {/* Meta Information */}
-              <div className="flex items-center gap-6 text-sm text-muted-foreground">
+              <div className="flex flex-wrap items-center gap-4 lg:gap-6 text-sm text-muted-foreground">
                 <div className="flex items-center gap-2">
                   <User className="h-4 w-4" />
                   <span>{post.author.name}</span>
@@ -236,13 +236,13 @@ const RoadmapPostDetail: React.FC<RoadmapPostDetailProps> = ({
 
             {/* Cover Image */}
             {post.coverImage && (
-              <div className="ml-6 flex-shrink-0">
-                <div className="w-32 h-32 rounded-lg overflow-hidden">
+              <div className="w-full lg:w-auto lg:flex-shrink-0 lg:ml-6">
+                <div className="w-full h-48 sm:h-56 lg:w-32 lg:h-32 rounded-lg overflow-hidden">
                   <Image
                     src={post.coverImage}
                     alt={post.title}
-                    width={128}
-                    height={128}
+                    width={512}
+                    height={384}
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -313,39 +313,39 @@ const RoadmapPostDetail: React.FC<RoadmapPostDetailProps> = ({
         </article>
 
         {/* Navigation */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-6 mb-8">
           {prevPost ? (
             <button
               onClick={() => onNavigate?.('prev')}
-              className="flex items-center gap-3 p-4 bg-card border rounded-lg hover:border-primary/30 hover:bg-primary/5 transition-all group"
+              className="flex items-center gap-2 px-3 py-2 bg-card border rounded-md hover:border-primary/30 hover:bg-primary/5 transition-all group w-full sm:max-w-xs"
             >
-              <ChevronLeft className="h-5 w-5 text-muted-foreground group-hover:text-primary" />
-              <div className="text-left">
-                <div className="text-xs text-muted-foreground mb-1">{t('roadmap.previous')}</div>
-                <div className="font-medium text-foreground group-hover:text-primary line-clamp-1">
+              <ChevronLeft className="h-4 w-4 text-muted-foreground group-hover:text-primary flex-shrink-0" />
+              <div className="text-left min-w-0 flex-1">
+                <div className="text-xs text-muted-foreground mb-0.5">{t('roadmap.previous')}</div>
+                <div className="text-sm font-medium text-foreground group-hover:text-primary truncate">
                   {prevPost.title}
                 </div>
               </div>
             </button>
           ) : (
-            <div />
+            <div className="hidden sm:block sm:max-w-xs" />
           )}
 
           {nextPost ? (
             <button
               onClick={() => onNavigate?.('next')}
-              className="flex items-center gap-3 p-4 bg-card border rounded-lg hover:border-primary/30 hover:bg-primary/5 transition-all group"
+              className="flex items-center gap-2 px-3 py-2 bg-card border rounded-md hover:border-primary/30 hover:bg-primary/5 transition-all group w-full sm:max-w-xs"
             >
-              <div className="text-right">
-                <div className="text-xs text-muted-foreground mb-1">{t('roadmap.next')}</div>
-                <div className="font-medium text-foreground group-hover:text-primary line-clamp-1">
+              <div className="text-left sm:text-right min-w-0 flex-1 sm:order-2">
+                <div className="text-xs text-muted-foreground mb-0.5">{t('roadmap.next')}</div>
+                <div className="text-sm font-medium text-foreground group-hover:text-primary truncate">
                   {nextPost.title}
                 </div>
               </div>
-              <ChevronRight className="h-5 w-5 text-muted-foreground group-hover:text-primary" />
+              <ChevronRight className="h-4 w-4 text-muted-foreground group-hover:text-primary flex-shrink-0 sm:order-3" />
             </button>
           ) : (
-            <div />
+            <div className="hidden sm:block sm:max-w-xs" />
           )}
         </div>
 
