@@ -27,7 +27,7 @@ type RoadmapPostsViewProps = {
     name: string;
     slug: string;
     color: string;
-    postCount: number;
+    postCount?: number;
   }>;
   onPostClick?: (postId: string) => void;
   onCategorySelect?: (categoryId: string) => void;
@@ -82,7 +82,7 @@ const RoadmapPostsView: React.FC<RoadmapPostsViewProps> = ({
                   {category.name.charAt(0).toUpperCase()}
                 </div>
                 <div className="text-right">
-                  <div className="text-sm font-medium text-foreground">{category.postCount}</div>
+                  <div className="text-sm font-medium text-foreground">{category.postCount || 0}</div>
                   <div className="text-xs text-muted-foreground">posts</div>
                 </div>
               </div>
@@ -92,7 +92,7 @@ const RoadmapPostsView: React.FC<RoadmapPostsViewProps> = ({
               </h3>
               
               <p className="text-sm text-muted-foreground mb-4">
-                Learn {category.name} through a structured roadmap with {category.postCount} comprehensive posts.
+                Learn {category.name} through a structured roadmap with {category.postCount || 0} comprehensive posts.
               </p>
               
               <div className="flex items-center justify-between">

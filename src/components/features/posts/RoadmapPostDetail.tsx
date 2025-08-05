@@ -114,6 +114,18 @@ const RoadmapPostDetail: React.FC<RoadmapPostDetailProps> = ({
     return Math.round(((currentIndex + 1) / allPosts.length) * 100);
   };
 
+  // Generate back link with proper view mode and category parameters
+  const getBackLink = () => {
+    const params = new URLSearchParams();
+    params.set('view', 'roadmap');
+    
+    if (post.categoryId) {
+      params.set('category', post.categoryId);
+    }
+    
+    return `/posts?${params.toString()}`;
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Roadmap Progress Header */}
@@ -121,7 +133,7 @@ const RoadmapPostDetail: React.FC<RoadmapPostDetailProps> = ({
         <div className="max-w-4xl mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
             {/* Back Button */}
-            <Link href="/posts" className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+            <Link href={getBackLink()} className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Roadmap
             </Link>

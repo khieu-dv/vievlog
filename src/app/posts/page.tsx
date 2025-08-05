@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef, useCallback } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Header } from "~/components/common/Header";
 import { Footer } from "~/components/common/Footer";
 import { VieShareBanner } from "~/components/common/VieShareBanner";
@@ -35,6 +36,8 @@ import {
 
 export default function PostsPage() {
   const { t, i18n } = useTranslation();
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const {
     getContent,
     currentLanguage,
@@ -49,7 +52,7 @@ export default function PostsPage() {
 
   const [posts, setPosts] = useState<Post[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
-  const [selectedCategoryId, setSelectedCategoryId] = useState<string>("");
+  const [selectedCategoryId, setSelectedCategoryId] = useState<string>(searchParams.get('category') || "");
   const [isLoading, setIsLoading] = useState(false);
   const [isCategoryChanging, setIsCategoryChanging] = useState(false);
   const [page, setPage] = useState(1);
@@ -60,7 +63,9 @@ export default function PostsPage() {
   const [sidebarVisible, setSidebarVisible] = useState(true);
   const [availableLanguages, setAvailableLanguages] = useState<string[]>([]);
   const [showMobileCategories, setShowMobileCategories] = useState(false);
-  const [viewMode, setViewMode] = useState<'list' | 'roadmap'>('list');
+  const [viewMode, setViewMode] = useState<'list' | 'roadmap'>(
+    searchParams.get('view') === 'roadmap' ? 'roadmap' : 'list'
+  );
 
   // Fetch categories from database
   const fetchCategories = async () => {
@@ -200,6 +205,30 @@ export default function PostsPage() {
     }
   };
 
+  // Update URL parameters
+  const updateURLParams = useCallback((newViewMode?: 'list' | 'roadmap', newCategoryId?: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    
+    if (newViewMode !== undefined) {
+      if (newViewMode === 'roadmap') {
+        params.set('view', 'roadmap');
+      } else {
+        params.delete('view');
+      }
+    }
+    
+    if (newCategoryId !== undefined) {
+      if (newCategoryId) {
+        params.set('category', newCategoryId);
+      } else {
+        params.delete('category');
+      }
+    }
+    
+    const newURL = params.toString() ? `/posts?${params.toString()}` : '/posts';
+    router.replace(newURL, { scroll: false });
+  }, [searchParams, router]);
+
   // Handle category selection with smooth transition and debouncing
   const handleCategorySelect = useCallback(async (categoryId: string) => {
     if (selectedCategoryId === categoryId || isCategoryChanging) return;
@@ -209,9 +238,12 @@ export default function PostsPage() {
     setPage(1);
     setHasMore(true);
     
+    // Update URL parameters
+    updateURLParams(viewMode, categoryId);
+    
     // Start loading new posts immediately without clearing existing ones
     await fetchPosts(1, categoryId, true);
-  }, [selectedCategoryId, isCategoryChanging]);
+  }, [selectedCategoryId, isCategoryChanging, updateURLParams, viewMode]);
 
   // Clear category filter with smooth transition and debouncing
   const handleClearCategory = useCallback(async () => {
@@ -222,17 +254,21 @@ export default function PostsPage() {
     setPage(1);
     setHasMore(true);
     
+    // Update URL parameters
+    updateURLParams(viewMode, "");
+    
     // Start loading all posts without clearing existing ones
     await fetchPosts(1, "", true);
-  }, [selectedCategoryId, isCategoryChanging]);
+  }, [selectedCategoryId, isCategoryChanging, updateURLParams, viewMode]);
 
   // Handle view mode change
   const handleViewModeChange = useCallback((newMode: 'list' | 'roadmap') => {
     setViewMode(newMode);
+    updateURLParams(newMode, selectedCategoryId);
     
     // If switching to list view and in roadmap mode, we might want to keep the category
     // If switching to roadmap view and no category selected, user will be prompted to select one
-  }, []);
+  }, [updateURLParams, selectedCategoryId]);
 
   // Fetch comments for post with pagination support
   const fetchCommentsForPost = async (postId: string, reset = false) => {
@@ -372,7 +408,14 @@ export default function PostsPage() {
 
   useEffect(() => {
     fetchCategories();
-    fetchPosts(1);
+    
+    // Load posts with category from URL if present
+    const categoryFromURL = searchParams.get('category');
+    if (categoryFromURL) {
+      fetchPosts(1, categoryFromURL);
+    } else {
+      fetchPosts(1);
+    }
 
     // Set available languages
     setAvailableLanguages(getSupportedLanguageCodes());

@@ -2,7 +2,8 @@
 
 import { ArrowRight, MessageCircle, ChevronUp, ChevronDown, Share2 } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Footer } from "~/components/common/Footer";
 import { Header } from "~/components/common/Header";
@@ -10,56 +11,158 @@ import { VieShareBanner } from "~/components/common/VieShareBanner";
 import { Button } from "~/components/ui/Button";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
-import { Post } from '~/lib/types';
+import { Post, Category } from '~/lib/types';
+import { RoadmapPostsView } from "~/components/features/posts";
+import { useSession } from "~/lib/authClient";
+import {
+  useLocalizedContent,
+  getSupportedLanguageCodes
+} from "~/lib/multilingual";
 
 
 export default function HomePage() {
   const { t } = useTranslation();
-  const [posts, setPosts] = useState<Array<{
-    id: string;
-    title: string;
-    excerpt: string;
-    publishedAt: string;
-    coverImage: string;
-    author: { name: string; avatar: string };
-    likes: number;
-    commentCount: number;
-    tags: string[];
-  }>>([]);
+  const router = useRouter();
+  const { data: session } = useSession();
+  const {
+    getContent,
+    currentLanguage,
+    getSupportedLanguages,
+    getCurrentLanguageInfo,
+    isLanguageSupported: checkLanguageSupport
+  } = useLocalizedContent();
+
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [selectedCategoryId, setSelectedCategoryId] = useState<string>("");
   const [isLoadingPosts, setIsLoadingPosts] = useState(true);
+  const [isLoadingCategories, setIsLoadingCategories] = useState(true);
 
-  // Load blog posts for the homepage
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/collections/posts_tbl/records`);
-        const result = response.data;
+  // Fetch categories from database
+  const fetchCategories = async () => {
+    try {
+      setIsLoadingCategories(true);
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/collections/categories_tbl/records`,
+        {
+          params: {
+            page: 1,
+            perPage: 50,
+            sort: 'name'
+          }
+        }
+      );
 
-        const mappedPosts = result.items.map((item: any) => ({
-          id: item.id,
-          title: item.title,
-          excerpt: item.excerpt,
-          publishedAt: item.created || item.publishedAt,
-          coverImage: item.coverImage || "",
-          author: {
-            name: item.author?.name || "Anonymous",
-            avatar: item.author?.avatar || "/default-avatar.png",
-          },
-          likes: item.likes || 0,
-          commentCount: item.commentCount || 0,
-          tags: item.tags || [],
-        }));
+      const categoriesData = response.data.items.map((item: any) => ({
+        id: item.id,
+        name: getContent(item, 'name'),
+        slug: item.slug,
+        color: item.color || '#3B82F6',
+        description: getContent(item, 'description'),
+        postCount: 0, // Will be updated when we get post counts
+        originalData: item
+      }));
 
-        setPosts(mappedPosts);
-      } catch (error) {
-        console.error("Failed to fetch posts:", error);
-      } finally {
-        setIsLoadingPosts(false);
+      // Get post counts for each category
+      const categoriesWithCounts = await Promise.all(
+        categoriesData.map(async (category: Category) => {
+          try {
+            const countResponse = await axios.get(
+              `${process.env.NEXT_PUBLIC_API_URL}/collections/posts_tbl/records`,
+              {
+                params: {
+                  page: 1,
+                  perPage: 1,
+                  filter: `categoryId="${category.id}"`
+                }
+              }
+            );
+            return {
+              ...category,
+              postCount: countResponse.data.totalItems || 0
+            };
+          } catch (error) {
+            return {
+              ...category,
+              postCount: 0
+            };
+          }
+        })
+      );
+
+      setCategories(categoriesWithCounts);
+    } catch (error) {
+      console.error("Failed to fetch categories:", error);
+      setCategories([]);
+    } finally {
+      setIsLoadingCategories(false);
+    }
+  };
+
+  // Fetch posts for selected category
+  const fetchPosts = async (categoryId: string = "") => {
+    try {
+      setIsLoadingPosts(true);
+      const params: any = {
+        page: 1,
+        perPage: 20,
+        sort: '-created',
+        expand: 'categoryId'
+      };
+
+      if (categoryId) {
+        params.filter = `categoryId="${categoryId}"`;
       }
-    };
 
-    fetchPosts();
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/collections/posts_tbl/records`,
+        { params }
+      );
+
+      const result = response.data;
+      const mappedPosts = result.items.map((item: any) => ({
+        id: item.id,
+        title: getContent(item, 'title'),
+        excerpt: getContent(item, 'excerpt'),
+        content: getContent(item, 'content'),
+        publishedAt: item.created || item.publishedAt,
+        coverImage: item.coverImage || "",
+        author: {
+          name: item.author?.name || "Anonymous",
+          avatar: item.author?.avatar || "/default-avatar.png",
+        },
+        likes: item.likes || 0,
+        commentCount: item.commentCount || 0,
+        tags: item.tags || [],
+        comments: [],
+        categoryId: item.categoryId || "",
+        category: item.expand?.categoryId ? {
+          id: item.expand.categoryId.id,
+          name: getContent(item.expand.categoryId, 'name'),
+          slug: item.expand.categoryId.slug,
+          color: item.expand.categoryId.color || '#3B82F6'
+        } : undefined,
+        originalData: item
+      }));
+
+      setPosts(mappedPosts);
+    } catch (error) {
+      console.error("Failed to fetch posts:", error);
+    } finally {
+      setIsLoadingPosts(false);
+    }
+  };
+
+  // Handle category selection
+  const handleCategorySelect = useCallback((categoryId: string) => {
+    setSelectedCategoryId(categoryId);
+    fetchPosts(categoryId);
   }, []);
+
+  // Load initial data
+  useEffect(() => {
+    fetchCategories();
+  }, [currentLanguage]);
 
   // Format date to relative time (e.g., "2 hours ago")
   const formatRelativeTime = (date: string | number | Date): string => {
@@ -81,185 +184,155 @@ export default function HomePage() {
       <Header />
       <VieShareBanner />
 
-      {/* Reddit-style main layout */}
+      {/* Roadmap-style main layout */}
       <div className="max-w-6xl mx-auto px-4 pt-4">
         <div className="flex gap-6">
-          {/* Main Feed - Reddit Style */}
-          <main className="flex-1 max-w-2xl">
+          {/* Main Feed - Roadmap Style */}
+          <main className="flex-1">
             {/* Feed Header */}
-            <div className="mb-4">
-              <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
-                <span className="font-medium text-foreground">Popular posts</span>
-                <span>•</span>
-                <span>Programming & Tech</span>
+            <div className="mb-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h1 className="text-2xl font-semibold text-foreground mb-1">
+                    {selectedCategoryId 
+                      ? `${categories.find(c => c.id === selectedCategoryId)?.name} Learning Path`
+                      : "Choose Your Learning Journey"
+                    }
+                  </h1>
+                  <p className="text-muted-foreground">
+                    {selectedCategoryId
+                      ? "Follow the structured roadmap to master this technology step by step"
+                      : "Select a category to start your personalized learning roadmap"
+                    }
+                  </p>
+                </div>
+                {selectedCategoryId && (
+                  <Link href="/posts?view=roadmap">
+                    <Button variant="outline" size="sm">
+                      View Full Roadmap
+                    </Button>
+                  </Link>
+                )}
               </div>
-              <div className="border-b border-border"></div>
             </div>
 
-            {/* Posts Feed */}
-            <div className="space-y-2">
-              {isLoadingPosts ? (
-                Array(5).fill(0).map((_, i) => (
-                  <div key={i} className="bg-card rounded-md border animate-pulse">
-                    <div className="flex">
-                      <div className="w-10 bg-muted/30 rounded-l-md p-2">
-                        <div className="space-y-1">
-                          <div className="h-5 w-5 bg-muted rounded"></div>
-                          <div className="h-3 w-6 bg-muted rounded"></div>
-                          <div className="h-5 w-5 bg-muted rounded"></div>
-                        </div>
-                      </div>
-                      <div className="flex-1 p-3 space-y-2">
-                        <div className="h-3 bg-muted rounded w-2/3"></div>
-                        <div className="h-4 bg-muted rounded w-full"></div>
-                        <div className="h-3 bg-muted rounded w-3/4"></div>
-                        <div className="flex gap-2">
-                          <div className="h-6 w-16 bg-muted rounded"></div>
-                          <div className="h-6 w-12 bg-muted rounded"></div>
-                        </div>
-                      </div>
-                    </div>
+            {/* Roadmap Posts View */}
+            {isLoadingCategories ? (
+              <div className="space-y-6">
+                <div className="animate-pulse">
+                  <div className="bg-muted rounded-lg h-32 mb-4"></div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {Array(6).fill(0).map((_, i) => (
+                      <div key={i} className="bg-muted rounded-lg h-40"></div>
+                    ))}
                   </div>
-                ))
-              ) : (
-                posts.slice(0, 8).map((post, index) => (
-                  <div key={post.id} className="bg-card border rounded-md hover:border-muted-foreground/20 transition-colors">
-                    <div className="flex">
-                      {/* Reddit-style voting panel */}
-                      <div className="flex flex-col items-center p-2 w-10 bg-muted/30 rounded-l-md">
-                        <button className="p-1 rounded hover:bg-muted transition-colors text-muted-foreground hover:text-orange-500">
-                          <ChevronUp className="h-4 w-4" />
-                        </button>
-                        <span className="text-xs font-medium text-muted-foreground px-1">
-                          {post.likes || Math.floor(Math.random() * 100)}
-                        </span>
-                        <button className="p-1 rounded hover:bg-muted transition-colors text-muted-foreground hover:text-blue-500">
-                          <ChevronDown className="h-4 w-4" />
-                        </button>
-                      </div>
+                </div>
+              </div>
+            ) : (
+              <RoadmapPostsView
+                posts={posts}
+                session={session}
+                formatRelativeTime={formatRelativeTime}
+                selectedCategoryId={selectedCategoryId}
+                categories={categories}
+                onCategorySelect={handleCategorySelect}
+                onPostClick={(postId) => router.push(`/posts/roadmap/${postId}`)}
+              />
+            )}
 
-                      {/* Main content */}
-                      <div className="flex-1 p-3">
-                        {/* Post header */}
-                        <div className="flex items-center gap-2 text-xs text-muted-foreground mb-2">
-                          <span className="font-medium text-foreground">r/programming</span>
-                          <span>•</span>
-                          <span>Posted by u/{post.author.name}</span>
-                          <span>•</span>
-                          <span>{formatRelativeTime(post.publishedAt)}</span>
-                        </div>
-
-                        {/* Post title */}
-                        <Link href={`/posts/${post.id}`} className="block group">
-                          <h3 className="font-medium text-foreground group-hover:text-primary transition-colors mb-2 line-clamp-2">
-                            {post.title}
-                          </h3>
-                        </Link>
-
-                        {/* Post excerpt */}
-                        {post.excerpt && (
-                          <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
-                            {post.excerpt}
-                          </p>
-                        )}
-
-                        {/* Actions */}
-                        <div className="flex items-center gap-4 text-xs text-muted-foreground">
-                          <button className="flex items-center gap-1 hover:bg-muted px-2 py-1 rounded transition-colors">
-                            <MessageCircle className="h-4 w-4" />
-                            <span>{post.commentCount} comments</span>
-                          </button>
-                          <button className="flex items-center gap-1 hover:bg-muted px-2 py-1 rounded transition-colors">
-                            <Share2 className="h-4 w-4" />
-                            <span>Share</span>
-                          </button>
-                          <Link
-                            href={`/posts/${post.id}`}
-                            className="flex items-center gap-1 hover:bg-muted px-2 py-1 rounded transition-colors"
-                          >
-                            <ArrowRight className="h-4 w-4" />
-                            <span>Read</span>
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))
-              )}
-            </div>
-
-            {/* Load more */}
-            <div className="mt-6">
-              <Link href="/posts">
-                <Button variant="outline" className="w-full">
-                  View more posts
-                </Button>
-              </Link>
-            </div>
+            {/* Show additional content when category is selected */}
+            {selectedCategoryId && posts.length > 0 && (
+              <div className="mt-8 text-center">
+                <Link href={`/posts?view=roadmap&category=${selectedCategoryId}`}>
+                  <Button className="w-full max-w-md">
+                    Continue Full Learning Path →
+                  </Button>
+                </Link>
+              </div>
+            )}
           </main>
 
-          {/* Right Sidebar - Reddit Style */}
+          {/* Right Sidebar - Learning Focused */}
           <aside className="w-80 hidden lg:block">
             <div className="sticky top-20 space-y-4">
               {/* Welcome Card */}
               <div className="bg-card rounded-lg border p-4">
-                <h3 className="font-medium text-foreground mb-2">Welcome to VieVlog</h3>
+                <h3 className="font-medium text-foreground mb-2">Start Your Learning Journey</h3>
                 <p className="text-sm text-muted-foreground mb-4">
-                  {t("home.description")}
+                  Choose a structured learning path and track your progress through curated content.
                 </p>
                 <div className="grid grid-cols-1 gap-3">
-                  <Link href="/posts">
+                  <Link href="/posts?view=roadmap">
                     <Button className="w-full" size="sm">
-                      Browse Posts
+                      Explore All Roadmaps
                     </Button>
                   </Link>
                   <Link href="/videos">
                     <Button variant="outline" className="w-full" size="sm">
-                      Watch Videos
+                      Watch Video Tutorials
                     </Button>
                   </Link>
                 </div>
               </div>
 
-              {/* Trending Topics */}
+              {/* Learning Paths */}
               <div className="bg-card rounded-lg border p-4">
-                <h3 className="font-medium text-foreground mb-3">Trending Today</h3>
+                <h3 className="font-medium text-foreground mb-3">Popular Learning Paths</h3>
                 <div className="space-y-2">
-                  {['JavaScript', 'React', 'Node.js', 'Python', 'Go'].map((topic, index) => (
-                    <Link
-                      key={topic}
-                      href={`/posts?category=${topic.toLowerCase()}`}
-                      className="flex items-center justify-between py-2 px-3 rounded hover:bg-muted transition-colors group"
+                  {categories.slice(0, 5).map((category) => (
+                    <button
+                      key={category.id}
+                      onClick={() => handleCategorySelect(category.id)}
+                      className="flex items-center justify-between w-full py-2 px-3 rounded hover:bg-muted transition-colors group text-left"
                     >
                       <div className="flex items-center gap-2">
+                        <div 
+                          className="w-3 h-3 rounded-full"
+                          style={{ backgroundColor: category.color }}
+                        />
                         <span className="text-sm font-medium text-foreground group-hover:text-primary">
-                          {topic}
+                          {category.name}
                         </span>
                       </div>
                       <span className="text-xs text-muted-foreground">
-                        {Math.floor(Math.random() * 50) + 10}k posts
+                        {category.postCount || 0} steps
                       </span>
-                    </Link>
+                    </button>
                   ))}
                 </div>
               </div>
 
-              {/* Quick Stats */}
+              {/* Progress Stats */}
+              {selectedCategoryId && (
+                <div className="bg-card rounded-lg border p-4">
+                  <h3 className="font-medium text-foreground mb-3">Your Progress</h3>
+                  <div className="space-y-3">
+                    <div className="flex justify-between text-sm">
+                      <span className="text-muted-foreground">Current Path</span>
+                      <span className="font-medium">
+                        {categories.find(c => c.id === selectedCategoryId)?.name}
+                      </span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span className="text-muted-foreground">Total Steps</span>
+                      <span className="font-medium">{posts.length}</span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span className="text-muted-foreground">Completed</span>
+                      <span className="font-medium text-green-500">0</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Learning Tips */}
               <div className="bg-card rounded-lg border p-4">
-                <h3 className="font-medium text-foreground mb-3">Community Stats</h3>
-                <div className="space-y-3">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-muted-foreground">Members</span>
-                    <span className="font-medium">12.5k</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-muted-foreground">Online</span>
-                    <span className="font-medium text-green-500">1.2k</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-muted-foreground">Posts today</span>
-                    <span className="font-medium">87</span>
-                  </div>
+                <h3 className="font-medium text-foreground mb-3">Learning Tips</h3>
+                <div className="space-y-2 text-sm text-muted-foreground">
+                  <p>📚 Follow the roadmap step by step</p>
+                  <p>✅ Mark posts as complete to track progress</p>
+                  <p>💬 Join discussions in the comments</p>
+                  <p>🎯 Focus on one path at a time</p>
                 </div>
               </div>
             </div>
