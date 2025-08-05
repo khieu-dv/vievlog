@@ -7,10 +7,11 @@ import { VieShareBanner } from "~/components/common/VieShareBanner";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import PocketBase from 'pocketbase';
-import { Code, ArrowRight, BookOpen, ChevronDown, Filter } from "lucide-react";
+import { Code, ArrowRight, BookOpen, ChevronDown, Filter, List, MapPin } from "lucide-react";
 import { Button } from "~/components/ui/Button";
 import { useSession } from "~/lib/authClient";
 import PostComponent from "~/components/features/posts/Post";
+import { RoadmapPostsView } from "~/components/features/posts";
 import { Comment, Post, Category } from '~/lib/types';
 import { Sidebar } from "~/components/common/Sidebar";
 import { ActivitySidebar } from "~/components/common/ActivitySidebar";
@@ -59,6 +60,7 @@ export default function PostsPage() {
   const [sidebarVisible, setSidebarVisible] = useState(true);
   const [availableLanguages, setAvailableLanguages] = useState<string[]>([]);
   const [showMobileCategories, setShowMobileCategories] = useState(false);
+  const [viewMode, setViewMode] = useState<'list' | 'roadmap'>('list');
 
   // Fetch categories from database
   const fetchCategories = async () => {
@@ -223,6 +225,14 @@ export default function PostsPage() {
     // Start loading all posts without clearing existing ones
     await fetchPosts(1, "", true);
   }, [selectedCategoryId, isCategoryChanging]);
+
+  // Handle view mode change
+  const handleViewModeChange = useCallback((newMode: 'list' | 'roadmap') => {
+    setViewMode(newMode);
+    
+    // If switching to list view and in roadmap mode, we might want to keep the category
+    // If switching to roadmap view and no category selected, user will be prompted to select one
+  }, []);
 
   // Fetch comments for post with pagination support
   const fetchCommentsForPost = async (postId: string, reset = false) => {
@@ -570,29 +580,66 @@ export default function PostsPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <h1 className="text-2xl font-semibold text-foreground mb-1">
-                    {selectedCategory ? selectedCategory.name : t("posts.title")}
+                    {viewMode === 'roadmap' && !selectedCategory 
+                      ? "Learning Roadmaps" 
+                      : selectedCategory 
+                        ? `${selectedCategory.name} Roadmap`
+                        : t("posts.title")
+                    }
                   </h1>
                   <p className="text-muted-foreground">
-                    {selectedCategory
-                      ? `${selectedCategory.name} posts and discussions`
-                      : t("posts.subtitle")
+                    {viewMode === 'roadmap' && !selectedCategory
+                      ? "Choose a category to start your structured learning journey"
+                      : selectedCategory && viewMode === 'roadmap'
+                        ? `Follow the ${selectedCategory.name} learning path step by step`
+                        : selectedCategory
+                          ? `${selectedCategory.name} posts and discussions`
+                          : t("posts.subtitle")
                     }
                   </p>
                 </div>
-                {selectedCategoryId && (
-                  <Button
-                    onClick={handleClearCategory}
-                    variant="outline"
-                    size="sm"
-                  >
-                    {t("posts.clearFilter")}
-                  </Button>
-                )}
+                <div className="flex items-center gap-3">
+                  {/* View Mode Toggle */}
+                  <div className="flex items-center bg-muted rounded-lg p-1">
+                    <button
+                      onClick={() => handleViewModeChange('list')}
+                      className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
+                        viewMode === 'list' 
+                          ? 'bg-background text-foreground shadow-sm' 
+                          : 'text-muted-foreground hover:text-foreground'
+                      }`}
+                    >
+                      <List className="h-4 w-4" />
+                      List
+                    </button>
+                    <button
+                      onClick={() => handleViewModeChange('roadmap')}
+                      className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
+                        viewMode === 'roadmap' 
+                          ? 'bg-background text-foreground shadow-sm' 
+                          : 'text-muted-foreground hover:text-foreground'
+                      }`}
+                    >
+                      <MapPin className="h-4 w-4" />
+                      Roadmap
+                    </button>
+                  </div>
+                  
+                  {selectedCategoryId && (
+                    <Button
+                      onClick={handleClearCategory}
+                      variant="outline"
+                      size="sm"
+                    >
+                      {t("posts.clearFilter")}
+                    </Button>
+                  )}
+                </div>
               </div>
             </div>
 
             {/* Posts Feed */}
-            <div className={`space-y-2 relative transition-opacity duration-300 ${isCategoryChanging ? 'opacity-70' : 'opacity-100'}`}>
+            <div className={`relative transition-opacity duration-300 ${isCategoryChanging ? 'opacity-70' : 'opacity-100'}`}>
               {/* Category changing overlay */}
               {isCategoryChanging && posts.length > 0 && (
                 <div className="absolute inset-0 bg-background/50 backdrop-blur-sm z-10 rounded-lg flex items-center justify-center">
@@ -604,28 +651,30 @@ export default function PostsPage() {
               )}
               
               {posts.length === 0 && isLoading ? (
-                Array(5).fill(0).map((_, i) => (
-                  <div key={i} className="bg-card rounded-md border animate-pulse">
-                    <div className="flex">
-                      <div className="w-10 bg-muted/30 rounded-l-md p-2">
-                        <div className="space-y-1">
-                          <div className="h-5 w-5 bg-muted rounded"></div>
-                          <div className="h-3 w-6 bg-muted rounded"></div>
-                          <div className="h-5 w-5 bg-muted rounded"></div>
+                <div className={viewMode === 'list' ? 'space-y-2' : ''}>
+                  {Array(5).fill(0).map((_, i) => (
+                    <div key={i} className="bg-card rounded-md border animate-pulse">
+                      <div className="flex">
+                        <div className="w-10 bg-muted/30 rounded-l-md p-2">
+                          <div className="space-y-1">
+                            <div className="h-5 w-5 bg-muted rounded"></div>
+                            <div className="h-3 w-6 bg-muted rounded"></div>
+                            <div className="h-5 w-5 bg-muted rounded"></div>
+                          </div>
                         </div>
-                      </div>
-                      <div className="flex-1 p-3 space-y-2">
-                        <div className="h-3 bg-muted rounded w-2/3"></div>
-                        <div className="h-4 bg-muted rounded w-full"></div>
-                        <div className="h-3 bg-muted rounded w-3/4"></div>
-                        <div className="flex gap-2">
-                          <div className="h-6 w-16 bg-muted rounded"></div>
-                          <div className="h-6 w-12 bg-muted rounded"></div>
+                        <div className="flex-1 p-3 space-y-2">
+                          <div className="h-3 bg-muted rounded w-2/3"></div>
+                          <div className="h-4 bg-muted rounded w-full"></div>
+                          <div className="h-3 bg-muted rounded w-3/4"></div>
+                          <div className="flex gap-2">
+                            <div className="h-6 w-16 bg-muted rounded"></div>
+                            <div className="h-6 w-12 bg-muted rounded"></div>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))
+                  ))}
+                </div>
               ) : posts.length === 0 ? (
                 <div className="bg-card rounded-lg border p-8 text-center">
                   <div className="mx-auto w-16 h-16 bg-muted rounded-full flex items-center justify-center mb-4">
@@ -644,25 +693,36 @@ export default function PostsPage() {
                     {t("posts.exploreAllPosts")}
                   </Button>
                 </div>
+              ) : viewMode === 'roadmap' ? (
+                <RoadmapPostsView
+                  posts={posts}
+                  session={session}
+                  formatRelativeTime={formatRelativeTime}
+                  selectedCategoryId={selectedCategoryId}
+                  categories={categories}
+                  onCategorySelect={handleCategorySelect}
+                />
               ) : (
-                posts.map((post) => (
-                  <PostComponent
-                    key={post.id}
-                    post={post}
-                    session={session}
-                    formatRelativeTime={formatRelativeTime}
-                    commentInputs={commentInputs}
-                    handleCommentInputChange={handleCommentInputChange}
-                    handleSubmitComment={handleSubmitComment}
-                    submittingComment={submittingComment[post.id] ?? false}
-                    fetchCommentsForPost={fetchCommentsForPost}
-                  />
-                ))
+                <div className="space-y-2">
+                  {posts.map((post) => (
+                    <PostComponent
+                      key={post.id}
+                      post={post}
+                      session={session}
+                      formatRelativeTime={formatRelativeTime}
+                      commentInputs={commentInputs}
+                      handleCommentInputChange={handleCommentInputChange}
+                      handleSubmitComment={handleSubmitComment}
+                      submittingComment={submittingComment[post.id] ?? false}
+                      fetchCommentsForPost={fetchCommentsForPost}
+                    />
+                  ))}
+                </div>
               )}
             </div>
 
-            {/* Load More Button */}
-            {hasMore && posts.length > 0 && (
+            {/* Load More Button - Only show in list view */}
+            {hasMore && posts.length > 0 && viewMode === 'list' && (
               <div className="mt-6 text-center" ref={loadMoreRef}>
                 <Button
                   onClick={handleLoadMore}
