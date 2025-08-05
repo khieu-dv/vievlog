@@ -127,7 +127,7 @@ export default function PostsPage() {
     }
   };
 
-  const fetchPosts = async (pageNumber: number, categoryId = "", isNewCategory = false) => {
+  const fetchPosts = async (pageNumber: number, categoryId = "", isNewCategory = false, currentViewMode?: 'list' | 'roadmap') => {
     if (isLoading) return;
 
     setIsLoading(true);
@@ -136,11 +136,15 @@ export default function PostsPage() {
     }
 
     try {
+      // Use provided view mode or current view mode
+      const activeViewMode = currentViewMode || viewMode;
+      
       // Build filter params
       const params: any = {
         page: pageNumber,
         perPage: POSTS_PER_PAGE,
-        sort: '-created',
+        // Sort by created date: newest first for list view, oldest first for roadmap view
+        sort: activeViewMode === 'roadmap' ? 'created' : '-created',
         expand: 'categoryId'
       };
 
@@ -262,12 +266,12 @@ export default function PostsPage() {
   }, [selectedCategoryId, isCategoryChanging, updateURLParams, viewMode]);
 
   // Handle view mode change
-  const handleViewModeChange = useCallback((newMode: 'list' | 'roadmap') => {
+  const handleViewModeChange = useCallback(async (newMode: 'list' | 'roadmap') => {
     setViewMode(newMode);
     updateURLParams(newMode, selectedCategoryId);
     
-    // If switching to list view and in roadmap mode, we might want to keep the category
-    // If switching to roadmap view and no category selected, user will be prompted to select one
+    // Re-fetch posts with correct sorting for the new view mode
+    await fetchPosts(1, selectedCategoryId, true, newMode);
   }, [updateURLParams, selectedCategoryId]);
 
   // Fetch comments for post with pagination support

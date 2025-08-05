@@ -106,7 +106,8 @@ export default function HomePage() {
       const params: any = {
         page: 1,
         perPage: 20,
-        sort: '-created',
+        // Sort by created date: oldest first for roadmap progression (basic to advanced)
+        sort: 'created',
         expand: 'categoryId'
       };
 

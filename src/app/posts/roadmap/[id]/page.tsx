@@ -96,7 +96,8 @@ export default function RoadmapPostDetailPage() {
             params: {
               page: 1,
               perPage: 500, // Get a large number to include all posts
-              sort: '-created',
+              // Sort by created date: oldest first for proper roadmap progression
+              sort: 'created',
               expand: 'author,categoryId'
             }
           }
