@@ -21,6 +21,9 @@ export class Scene2 extends Phaser.Scene {
     private cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
     private socketKey = false;
     
+    // Game pause state
+    public isPaused = false;
+    
     // English Learning Game Systems
     private enemyBots: EnemyBot[] = [];
     private questionUI!: QuestionUI;
@@ -303,6 +306,11 @@ export class Scene2 extends Phaser.Scene {
     }
 
     update(time: number, delta: number): void {
+        // Don't update game logic when paused (question is being shown)
+        if (this.isPaused) {
+            return;
+        }
+        
         // Loop the player update method
         this.player.update(time, delta);
 

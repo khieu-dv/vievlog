@@ -26,6 +26,11 @@ export class QuestionUI {
         console.log('Question text:', question.question);
         console.log('Question options:', question.options);
         
+        // Pause the game when showing question
+        this.scene.physics.pause();
+        // Set pause state instead of pausing the entire scene
+        (this.scene as any).isPaused = true;
+        
         this.currentQuestion = question;
         this.onAnswerCallback = onAnswer;
 
@@ -46,6 +51,22 @@ export class QuestionUI {
         this.background.fillRect(baseX, baseY, camera.width, camera.height);
         this.background.setDepth(1000);
         this.allUIElements.push(this.background);
+
+        // Add pause indicator
+        const pauseText = this.scene.add.text(
+            baseX + camera.width - 100,
+            baseY + 20,
+            '⏸️ PAUSED',
+            {
+                fontSize: '16px',
+                color: '#f39c12',
+                fontStyle: 'bold',
+                backgroundColor: '#2c3e50',
+                padding: { x: 8, y: 4 }
+            }
+        );
+        pauseText.setDepth(999);
+        this.allUIElements.push(pauseText);
 
         // Create question panel - responsive sizing
         const isMobile = camera.width < 768 || camera.height < 600;
@@ -267,6 +288,12 @@ export class QuestionUI {
 
     hide(): void {
         console.log('QuestionUI hide() called');
+        
+        // Resume the game when hiding question
+        this.scene.physics.resume();
+        // Clear pause state
+        (this.scene as any).isPaused = false;
+        
         this.clearUI();
         this.isVisible = false;
         this.currentQuestion = null;
