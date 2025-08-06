@@ -553,23 +553,17 @@ export class Scene2 extends Phaser.Scene {
     }
 
     initializeLearningSystems(): void {
-        console.log('Initializing learning systems...');
-        
         // Initialize Question UI
         this.questionUI = new QuestionUI(this);
-        console.log('QuestionUI initialized:', !!this.questionUI);
         
         // Initialize Score System
         this.scoreSystem = new ScoreSystem(this);
-        console.log('ScoreSystem initialized:', !!this.scoreSystem);
         
         // Set up event listeners
         this.events.on('botDefeated', this.handleBotDefeated, this);
-        console.log('Event listener for botDefeated set up');
         
         // Spawn initial bots
         this.spawnEnemyBots();
-        console.log('Initial bots spawned, total bots:', this.enemyBots.length);
         
         // Set up bot spawning timer
         this.botSpawnTimer = this.time.addEvent({

@@ -22,14 +22,3 @@ export type CategoryWithCount = {
   postCount?: number;
 };
 
-export type ApiResponse<T> = {
-  items: T[];
-  totalItems: number;
-  page: number;
-  perPage: number;
-};
-
-export type LoadingState = {
-  isLoading: boolean;
-  error?: string | null;
-};

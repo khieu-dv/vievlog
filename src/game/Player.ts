@@ -743,9 +743,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.map.findObject("Doors", (obj: any) => {
             if ((this.y >= obj.y && this.y <= (obj.y + obj.height)) && 
                 (this.x >= obj.x && this.x <= (obj.x + obj.width))) {
-                console.log('Player is by ' + obj.name);
                 if (isSpacePressed) {
-                    console.log('Door is open!');
+                    // Door interaction logic can be added here
                 }
             }
             return false;
@@ -758,7 +757,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this.map.findObject("Worlds", (world: any) => {
             if ((this.y >= world.y && this.y <= (world.y + world.height)) && 
                 (this.x >= world.x && this.x <= (world.x + world.width))) {
-                console.log('Player is by world entry: ' + world.name);
 
                 // Get playerTexturePosition from Worlds object property
                 let playerTexturePosition: any;

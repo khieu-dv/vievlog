@@ -1,23 +1,19 @@
 "use client";
 
-import { ArrowRight, MessageCircle, ChevronUp, ChevronDown, Share2 } from "lucide-react";
+import { ArrowRight, MessageCircle, ChevronUp, Share2 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
+import axios from "axios";
+import { useTranslation } from "react-i18next";
 import { Footer } from "~/components/common/Footer";
 import { Header } from "~/components/common/Header";
 import { VieShareBanner } from "~/components/common/VieShareBanner";
 import { Button } from "~/components/ui/Button";
-import { useTranslation } from "react-i18next";
-import axios from "axios";
 import { Post, Category } from '~/lib/types';
 import { RoadmapPostsView } from "~/components/features/posts";
 import { useSession } from "~/lib/authClient";
-import {
-  useLocalizedContent,
-  getSupportedLanguageCodes
-} from "~/lib/multilingual";
+import { useLocalizedContent } from "~/lib/multilingual";
 
 
 export default function HomePage() {

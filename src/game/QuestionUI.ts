@@ -17,14 +17,10 @@ export class QuestionUI {
     }
 
     private createUI(): void {
-        console.log('QuestionUI createUI called - will create UI dynamically when showing question');
         this.isVisible = false;
     }
 
     showQuestion(question: Question, onAnswer: (correct: boolean, question: Question) => void): void {
-        console.log('QuestionUI.showQuestion called with:', question);
-        console.log('Question text:', question.question);
-        console.log('Question options:', question.options);
         
         // Pause the game when showing question
         this.scene.physics.pause();
@@ -42,8 +38,6 @@ export class QuestionUI {
         const baseX = camera.scrollX;
         const baseY = camera.scrollY;
         
-        console.log('Creating UI at camera position:', baseX, baseY);
-        console.log('Camera dimensions:', camera.width, camera.height);
 
         // Create background overlay
         this.background = this.scene.add.graphics();
@@ -152,7 +146,6 @@ export class QuestionUI {
 
             // Add click handler
             buttonBg.on('pointerdown', () => {
-                console.log(`Option ${i} clicked: ${question.options[i]}`);
                 this.selectOption(i);
             });
 
@@ -180,7 +173,6 @@ export class QuestionUI {
         this.allUIElements.push(closeButton);
 
         this.isVisible = true;
-        console.log('Question UI created and should be visible now');
     }
 
     private clearUI(): void {
@@ -287,7 +279,6 @@ export class QuestionUI {
     }
 
     hide(): void {
-        console.log('QuestionUI hide() called');
         
         // Resume the game when hiding question
         this.scene.physics.resume();
@@ -298,7 +289,6 @@ export class QuestionUI {
         this.isVisible = false;
         this.currentQuestion = null;
         this.onAnswerCallback = null;
-        console.log('QuestionUI hidden successfully');
     }
 
     isShowing(): boolean {
