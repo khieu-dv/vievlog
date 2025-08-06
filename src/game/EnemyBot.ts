@@ -51,8 +51,9 @@ export default class EnemyBot extends Phaser.GameObjects.Sprite {
         // Set random bot name
         this.botName = EnemyBot.botNames[Math.floor(Math.random() * EnemyBot.botNames.length)];
         
-        // Get a question for this bot
-        this.reward = questionDatabase.getRandomQuestion(this.difficulty);
+        // Get a question for this bot based on selected category
+        const selectedCategory = (window as any)?.gameCategory;
+        this.reward = questionDatabase.getRandomQuestion(this.difficulty, selectedCategory);
 
         // Set physics properties
         if (this.body && 'setOffset' in this.body) {

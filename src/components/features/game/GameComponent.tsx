@@ -12,7 +12,11 @@ type JoystickState = {
     pressed: boolean;
 }
 
-export default function GameComponent() {
+interface GameComponentProps {
+    selectedCategory?: string;
+}
+
+export default function GameComponent({ selectedCategory }: GameComponentProps) {
     const gameRef = useRef<Phaser.Game | null>(null);
     const containerRef = useRef<HTMLDivElement>(null);
     const joystickRef = useRef<HTMLDivElement>(null);
@@ -297,7 +301,7 @@ export default function GameComponent() {
                 input: {
                     keyboard: true,
                     touch: true
-                }
+                },
             };
 
             gameRef.current = new Phaser.Game(config);
@@ -330,7 +334,14 @@ export default function GameComponent() {
                 gameRef.current = null;
             }
         };
-    }, [isMobile]);
+    }, [isMobile, selectedCategory]);
+
+    // Store selected category globally for game access
+    useEffect(() => {
+        if (selectedCategory && typeof window !== 'undefined') {
+            (window as any).gameCategory = selectedCategory;
+        }
+    }, [selectedCategory]);
 
     return (
         <div className={`relative w-full h-full flex items-center justify-center bg-gray-900 ${isMobile ? 'overflow-hidden' : ''}`}>
