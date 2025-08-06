@@ -24,6 +24,11 @@ export class Scene2 extends Phaser.Scene {
     // Game pause state
     public isPaused = false;
     
+    // Map transition states
+    public isTransitioning = false;
+    private transitionOverlay!: Phaser.GameObjects.Graphics;
+    private loadingText!: Phaser.GameObjects.Text;
+    
     // English Learning Game Systems
     private enemyBots: EnemyBot[] = [];
     private questionUI!: QuestionUI;
@@ -35,7 +40,7 @@ export class Scene2 extends Phaser.Scene {
         super("playGame");
     }
 
-    init(data: SceneData): void {
+    init(data: SceneData & { playerX?: number; playerY?: number; smoothTransition?: boolean }): void {
         // Map data
         this.mapName = data.map;
 
@@ -44,6 +49,12 @@ export class Scene2 extends Phaser.Scene {
 
         // Set container
         this.container = [];
+        
+        // Handle smooth transition data
+        if (data.smoothTransition) {
+            this.isTransitioning = true;
+            this.isPaused = true;
+        }
     }
 
     create(): void {
@@ -245,8 +256,15 @@ export class Scene2 extends Phaser.Scene {
         console.log("this.mapName", this.mapName);
         console.log("this.map", this.map);
 
-        // Set current map Bounds (accounting for player body offset of 24 pixels)
-        this.physics.world.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels - 24);
+        // Set current map Bounds smoothly (accounting for player body offset of 24 pixels)
+        if (this.isTransitioning) {
+            // Update physics bounds after a delay to allow map to settle
+            this.time.delayedCall(500, () => {
+                this.physics.world.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels - 24);
+            });
+        } else {
+            this.physics.world.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels - 24);
+        }
 
         // Parameters are the name you gave the tileset in Tiled and then the key of the tileset image in
         // Phaser's cache (i.e. the name you used in preload)
@@ -294,7 +312,22 @@ export class Scene2 extends Phaser.Scene {
 
         const camera = this.cameras.main;
         camera.startFollow(this.player);
-        camera.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
+        
+        // Set camera bounds smoothly during transition
+        if (this.isTransitioning) {
+            // Gradually adjust camera bounds with longer duration for smoother transition
+            this.tweens.add({
+                targets: camera,
+                duration: 800,
+                ease: 'Power2',
+                delay: 200,
+                onUpdate: () => {
+                    camera.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
+                }
+            });
+        } else {
+            camera.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
+        }
 
         this.cursors = this.input.keyboard!.createCursorKeys();
 
@@ -303,6 +336,90 @@ export class Scene2 extends Phaser.Scene {
         
         // Initialize English Learning Systems
         this.initializeLearningSystems();
+        
+        // Initialize transition overlay
+        this.initializeTransitionOverlay();
+        
+        // Complete transition if this was a smooth transition
+        // Wait 1.5s total for map to fully load and resize
+        if (this.isTransitioning) {
+            this.time.delayedCall(1500, () => {
+                this.completeTransition();
+            });
+        }
+    }
+
+    initializeTransitionOverlay(): void {
+        // Create transition overlay (initially hidden)
+        this.transitionOverlay = this.add.graphics();
+        this.transitionOverlay.setDepth(1000);
+        this.transitionOverlay.setAlpha(0);
+        
+        // Create loading text
+        this.loadingText = this.add.text(400, 225, 'Loading...', {
+            fontSize: '24px',
+            color: '#ffffff',
+            fontStyle: 'bold'
+        });
+        this.loadingText.setOrigin(0.5);
+        this.loadingText.setDepth(1001);
+        this.loadingText.setAlpha(0);
+    }
+
+    smoothMapTransition(newMapName: string, playerTexturePosition?: string): void {
+        if (this.isTransitioning) return;
+        
+        this.isTransitioning = true;
+        this.isPaused = true;
+        
+        // Start fade out transition
+        this.transitionOverlay.clear();
+        this.transitionOverlay.fillStyle(0x000000, 1);
+        this.transitionOverlay.fillRect(0, 0, 800, 450);
+        
+        // Fade in overlay
+        this.tweens.add({
+            targets: this.transitionOverlay,
+            alpha: 1,
+            duration: 500,
+            ease: 'Power2',
+            onComplete: () => {
+                // Show loading text
+                this.loadingText.setAlpha(1);
+                
+                // Wait 300ms to show loading text, then transition
+                this.time.delayedCall(300, () => {
+                    // Store player position for smoother transition
+                    const playerX = this.player.x;
+                    const playerY = this.player.y;
+                    
+                    // Restart scene with new map
+                    this.scene.restart({
+                        map: newMapName,
+                        playerTexturePosition: playerTexturePosition || 'front',
+                        playerX: playerX,
+                        playerY: playerY,
+                        smoothTransition: true
+                    });
+                });
+            }
+        });
+    }
+
+    completeTransition(): void {
+        if (!this.isTransitioning) return;
+        
+        // Fade out overlay and loading text with longer duration for smoother finish
+        this.tweens.add({
+            targets: [this.transitionOverlay, this.loadingText],
+            alpha: 0,
+            duration: 800,
+            ease: 'Power2',
+            onComplete: () => {
+                this.isTransitioning = false;
+                this.isPaused = false;
+            }
+        });
     }
 
     update(time: number, delta: number): void {

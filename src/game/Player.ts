@@ -771,12 +771,18 @@ export default class Player extends Phaser.GameObjects.Sprite {
                     this.playerTexturePosition = playerTexturePosition.value;
                 }
 
-                // Load new level (tiles map)
-                this.scene.registry.destroy();
-                this.scene.scene.restart({
-                    map: world.name, 
-                    playerTexturePosition: this.playerTexturePosition
-                });
+                // Use smooth map transition instead of abrupt restart
+                const scene2 = this.scene as any;
+                if (scene2.smoothMapTransition) {
+                    scene2.smoothMapTransition(world.name, this.playerTexturePosition);
+                } else {
+                    // Fallback to old method if smoothMapTransition is not available
+                    this.scene.registry.destroy();
+                    this.scene.scene.restart({
+                        map: world.name, 
+                        playerTexturePosition: this.playerTexturePosition
+                    });
+                }
 
                 room.then((room: any) => room.send("PLAYER_CHANGED_MAP", {
                     map: world.name
