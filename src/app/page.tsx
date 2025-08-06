@@ -158,6 +158,19 @@ export default function HomePage() {
   const handleCategorySelect = useCallback((categoryId: string) => {
     setSelectedCategoryId(categoryId);
     fetchPosts(categoryId);
+    
+    // Scroll to selected category section after a short delay to ensure content is rendered
+    if (categoryId) {
+      setTimeout(() => {
+        const element = document.getElementById('selected-category-section');
+        if (element) {
+          element.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }, 100);
+    }
   }, []);
 
   // Load initial data
@@ -185,60 +198,107 @@ export default function HomePage() {
       <Header />
       <VieShareBanner />
 
-      {/* Clean Hero Section */}
-      <div className="max-w-6xl mx-auto px-4 py-16">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            {selectedCategoryId ? (
-              <span className="text-primary">
-                {categories.find(c => c.id === selectedCategoryId)?.name}
-              </span>
-            ) : (
-              <>
-                A New Way to Learn <span className="text-primary">Programming</span>
-              </>
-            )}
-          </h1>
-          
-          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-            {selectedCategoryId
-              ? t('home.followStructuredRoadmap')
-              : "Master programming skills through structured learning paths designed by experts."
-            }
-          </p>
+      {/* Hero Section - Programiz Style */}
+      <div className="bg-gradient-to-b from-blue-50 to-white dark:from-slate-900 dark:to-background">
+        <div className="max-w-6xl mx-auto px-4 py-16">
+          <div className="text-center mb-12">
+            <h1 className="text-4xl md:text-6xl font-bold text-slate-900 dark:text-foreground mb-6">
+              {t('home.learnToCode')}
+            </h1>
+            <h2 className="text-2xl md:text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-6">
+              {t('home.forFree')}
+            </h2>
+            
+            <p className="text-lg text-slate-600 dark:text-muted-foreground mb-8 max-w-3xl mx-auto">
+              {t('home.heroDescription')}
+            </p>
 
-          {selectedCategoryId ? (
-            <Link href="/posts?view=roadmap">
-              <Button size="lg" className="px-8 py-3 text-base">
-                {t('home.viewFullRoadmap')}
-              </Button>
-            </Link>
-          ) : (
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Link href="/posts?view=roadmap">
-                <Button size="lg" className="px-8 py-3">
-                  {t('home.exploreAllRoadmaps')}
+                <Button size="lg" className="px-8 py-4 text-lg bg-blue-600 hover:bg-blue-700 text-white">
+                  {t('home.startLearning')}
                 </Button>
               </Link>
               <Link href="/videos">
-                <Button variant="outline" size="lg" className="px-8 py-3">
-                  {t('home.watchVideoTutorials')}
+                <Button variant="outline" size="lg" className="px-8 py-4 text-lg border-blue-600 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-950">
+                  {t('home.watchTutorials')}
                 </Button>
               </Link>
             </div>
-          )}
+          </div>
+        </div>
+      </div>
+
+      {/* Programming Languages Grid - Programiz Style */}
+      <div className="max-w-6xl mx-auto px-4 py-16">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-foreground mb-4">
+            {t('home.chooseLanguage')}
+          </h2>
+          <p className="text-lg text-slate-600 dark:text-muted-foreground">
+            {t('home.languageDescription')}
+          </p>
         </div>
 
-        {/* Main Content */}
-        <div className="flex flex-col lg:flex-row gap-8">
-          {/* Main Feed - Roadmap Style */}
-          <main className="flex-1">
+        {/* Programming Languages Grid */}
+        {isLoadingCategories ? (
+          <div className="text-center py-16">
+            <div className="animate-spin inline-block w-8 h-8 border-2 border-current border-t-transparent text-blue-600 rounded-full mb-4"></div>
+            <p className="text-slate-600 dark:text-muted-foreground">{t('home.loadingLanguages')}</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-16">
+            {categories.map((category) => (
+              <button
+                key={category.id}
+                onClick={() => handleCategorySelect(category.id)}
+                className="group relative bg-white dark:bg-card border border-slate-200 dark:border-border rounded-lg p-6 hover:shadow-lg hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-200"
+              >
+                <div className="flex flex-col items-center text-center">
+                  <div 
+                    className="w-16 h-16 rounded-lg flex items-center justify-center text-white text-xl font-bold mb-4 group-hover:scale-110 transition-transform"
+                    style={{ backgroundColor: category.color }}
+                  >
+                    {category.name.charAt(0).toUpperCase()}
+                  </div>
+                  <h3 className="text-lg font-semibold text-slate-900 dark:text-foreground mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400">
+                    {category.name}
+                  </h3>
+                  <p className="text-sm text-slate-600 dark:text-muted-foreground mb-3 line-clamp-2">
+                    {category.description || t('home.learnLanguageDescription', { language: category.name })}
+                  </p>
+                  <div className="flex items-center justify-between w-full mt-auto">
+                    <span className="text-xs bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 px-2 py-1 rounded-full">
+                      {category.postCount || 0} {t('home.tutorials')}
+                    </span>
+                    <ArrowRight className="h-4 w-4 text-slate-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 group-hover:translate-x-1 transition-all" />
+                  </div>
+                </div>
+              </button>
+            ))}
+          </div>
+        )}
 
-            {/* Clean Loading State */}
-            {isLoadingCategories ? (
-              <div className="text-center py-16">
-                <div className="animate-spin inline-block w-8 h-8 border-2 border-current border-t-transparent text-primary rounded-full mb-4"></div>
-                <p className="text-muted-foreground">Loading learning paths...</p>
+        {/* Selected Category Posts */}
+        {selectedCategoryId && (
+          <div id="selected-category-section" className="bg-white dark:bg-card border border-slate-200 dark:border-border rounded-lg p-8 mb-16">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-foreground">
+                {t('home.learningPathTitle', { category: categories.find(c => c.id === selectedCategoryId)?.name })}
+              </h3>
+              <Button
+                variant="ghost"
+                onClick={() => handleCategorySelect("")}
+                className="text-slate-500 hover:text-slate-700 dark:text-muted-foreground dark:hover:text-foreground"
+              >
+                ← {t('home.backToAllLanguages')}
+              </Button>
+            </div>
+            
+            {isLoadingPosts ? (
+              <div className="text-center py-8">
+                <div className="animate-spin inline-block w-6 h-6 border-2 border-current border-t-transparent text-blue-600 rounded-full mb-4"></div>
+                <p className="text-slate-600 dark:text-muted-foreground">{t('home.loadingTutorials')}</p>
               </div>
             ) : (
               <RoadmapPostsView
@@ -252,77 +312,58 @@ export default function HomePage() {
               />
             )}
 
-            {/* Continue Button */}
-            {selectedCategoryId && posts.length > 0 && (
-              <div className="mt-12 text-center">
+            {posts.length > 0 && (
+              <div className="mt-8 text-center">
                 <Link href={`/posts?view=roadmap&category=${selectedCategoryId}`}>
-                  <Button size="lg" className="px-8 py-3">
-                    {t('home.continueFullLearningPath')}
+                  <Button size="lg" className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white">
+                    {t('home.viewCompleteLearningPath')}
                   </Button>
                 </Link>
               </div>
             )}
-          </main>
+          </div>
+        )}
 
-          {/* Clean Sidebar */}
-          <aside className="w-80 hidden lg:block">
-            <div className="sticky top-20 space-y-6">
-              
-              {/* Learning Paths */}
-              <div className="bg-card rounded-lg border p-6">
-                <h3 className="font-semibold text-foreground mb-4">{t('home.popularLearningPaths')}</h3>
-                <div className="space-y-3">
-                  {categories.slice(0, 6).map((category) => (
-                    <button
-                      key={category.id}
-                      onClick={() => handleCategorySelect(category.id)}
-                      className="flex items-center justify-between w-full py-2 px-3 rounded-md hover:bg-muted transition-colors group text-left"
-                    >
-                      <div className="flex items-center gap-3">
-                        <div 
-                          className="w-6 h-6 rounded flex items-center justify-center text-white text-xs font-medium"
-                          style={{ backgroundColor: category.color }}
-                        >
-                          {category.name.charAt(0).toUpperCase()}
-                        </div>
-                        <span className="text-sm font-medium text-foreground group-hover:text-primary">
-                          {category.name}
-                        </span>
-                      </div>
-                      <span className="text-xs text-muted-foreground">
-                        {category.postCount || 0}
-                      </span>
-                    </button>
-                  ))}
-                </div>
+        {/* Features Section */}
+        {!selectedCategoryId && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <MessageCircle className="h-8 w-8 text-blue-600 dark:text-blue-400" />
               </div>
-
-              {/* Progress Stats - Only show when category selected */}
-              {selectedCategoryId && (
-                <div className="bg-card rounded-lg border p-6">
-                  <h3 className="font-semibold text-foreground mb-4">{t('home.yourProgress')}</h3>
-                  <div className="space-y-3">
-                    <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">{t('home.currentPath')}</span>
-                      <span className="font-medium">
-                        {categories.find(c => c.id === selectedCategoryId)?.name}
-                      </span>
-                    </div>
-                    <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">{t('home.totalSteps')}</span>
-                      <span className="font-medium">{posts.length}</span>
-                    </div>
-                    <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">{t('home.completed')}</span>
-                      <span className="font-medium text-green-600">0</span>
-                    </div>
-                  </div>
-                </div>
-              )}
-
+              <h3 className="text-xl font-semibold text-slate-900 dark:text-foreground mb-2">
+                {t('home.interactiveTutorials')}
+              </h3>
+              <p className="text-slate-600 dark:text-muted-foreground">
+                {t('home.interactiveTutorialsDesc')}
+              </p>
             </div>
-          </aside>
-        </div>
+            
+            <div className="text-center">
+              <div className="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <Share2 className="h-8 w-8 text-green-600 dark:text-green-400" />
+              </div>
+              <h3 className="text-xl font-semibold text-slate-900 dark:text-foreground mb-2">
+                {t('home.videoTutorials')}
+              </h3>
+              <p className="text-slate-600 dark:text-muted-foreground">
+                {t('home.videoTutorialsDesc')}
+              </p>
+            </div>
+            
+            <div className="text-center">
+              <div className="w-16 h-16 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <ChevronUp className="h-8 w-8 text-purple-600 dark:text-purple-400" />
+              </div>
+              <h3 className="text-xl font-semibold text-slate-900 dark:text-foreground mb-2">
+                {t('home.structuredLearning')}
+              </h3>
+              <p className="text-slate-600 dark:text-muted-foreground">
+                {t('home.structuredLearningDesc')}
+              </p>
+            </div>
+          </div>
+        )}
       </div>
 
       <Footer />

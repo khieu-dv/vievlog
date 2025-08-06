@@ -34,6 +34,11 @@ export function Header({ showAuth = true }: HeaderProps) {
     i18n.changeLanguage(lng); // Thay đổi ngôn ngữ bằng i18n
   };
 
+  // Get current language info
+  const getCurrentLanguage = () => {
+    return languages.find(lang => lang.code === i18n.language) || languages[0];
+  };
+
   const handleSignOut = () => {
     const auth = localStorage.getItem("pocketbase_auth");
     const token = auth ? JSON.parse(auth)?.token : undefined;
@@ -43,18 +48,28 @@ export function Header({ showAuth = true }: HeaderProps) {
 
   const navigation = [
     { name: t("header.home"), href: "/" },
-    { name: t("header.posts"), href: "/posts" },
-    { name: t("header.videos"), href: "/videos" },
-    { name: t("header.games"), href: "/game" },
+    { 
+      name: "Tutorials", 
+      href: "/posts",
+      dropdown: [
+        { name: "All Tutorials", href: "/posts" },
+        { name: "Roadmaps", href: "/posts?view=roadmap" }
+      ]
+    },
+    { name: "Videos", href: "/videos" },
+    { name: "Practice", href: "/game" },
   ];
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-40 w-full border-b border-slate-200 dark:border-border bg-white/95 dark:bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-white/95 dark:supports-[backdrop-filter]:bg-background/95">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex h-14 items-center justify-between">
           <div className="flex items-center gap-6">
             <Link href="/" className="flex items-center gap-2">
-              <span className="text-lg font-semibold text-foreground">
+              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-sm">V</span>
+              </div>
+              <span className="text-xl font-bold text-slate-900 dark:text-foreground">
                 VieVlog
               </span>
             </Link>
@@ -67,17 +82,48 @@ export function Header({ showAuth = true }: HeaderProps) {
 
                   return (
                     <li key={item.name}>
-                      <Link
-                        href={item.href}
-                        className={cn(
-                          "text-sm font-medium transition-colors hover:text-foreground",
-                          isActive
-                            ? "text-foreground"
-                            : "text-muted-foreground",
-                        )}
-                      >
-                        {item.name}
-                      </Link>
+                      {item.dropdown ? (
+                        <DropdownMenu>
+                          <DropdownMenuTrigger asChild>
+                            <Button
+                              variant="ghost"
+                              className={cn(
+                                "text-sm font-medium transition-colors hover:text-slate-900 dark:hover:text-foreground px-3 py-2 h-auto",
+                                isActive
+                                  ? "text-slate-900 dark:text-foreground"
+                                  : "text-slate-600 dark:text-muted-foreground",
+                              )}
+                            >
+                              {item.name}
+                              <ChevronDown className="ml-1 h-3 w-3" />
+                            </Button>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent align="start" className="w-48">
+                            {item.dropdown.map((subItem) => (
+                              <DropdownMenuItem key={subItem.name} asChild>
+                                <Link 
+                                  href={subItem.href}
+                                  className="w-full cursor-pointer text-sm"
+                                >
+                                  {subItem.name}
+                                </Link>
+                              </DropdownMenuItem>
+                            ))}
+                          </DropdownMenuContent>
+                        </DropdownMenu>
+                      ) : (
+                        <Link
+                          href={item.href}
+                          className={cn(
+                            "text-sm font-medium transition-colors hover:text-slate-900 dark:hover:text-foreground px-3 py-2 rounded-md",
+                            isActive
+                              ? "text-slate-900 dark:text-foreground bg-blue-50 dark:bg-blue-950"
+                              : "text-slate-600 dark:text-muted-foreground",
+                          )}
+                        >
+                          {item.name}
+                        </Link>
+                      )}
                     </li>
                   );
                 })}
@@ -90,25 +136,24 @@ export function Header({ showAuth = true }: HeaderProps) {
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="sm" className="text-sm text-muted-foreground hover:text-foreground">
+                <Button variant="ghost" size="sm" className="text-sm text-slate-600 dark:text-muted-foreground hover:text-slate-900 dark:hover:text-foreground hidden md:flex">
                   <Globe className="h-4 w-4 mr-1" />
-                  {t("header.languageSelector")}
+                  {getCurrentLanguage().short}
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-48 max-h-64 overflow-y-auto">
-                {languages.slice(0, 10).map(lang => (
+              <DropdownMenuContent align="end" className="w-40">
+                {languages.map(lang => (
                   <DropdownMenuItem
                     key={lang.code}
                     onClick={() => handleLanguageChange(lang.code)}
-                    className="text-sm"
+                    className={`text-sm ${i18n.language === lang.code ? 'bg-blue-50 dark:bg-blue-950 text-blue-600 dark:text-blue-400 font-medium' : ''}`}
                   >
                     {lang.label}
+                    {i18n.language === lang.code && (
+                      <span className="ml-auto text-blue-600 dark:text-blue-400">✓</span>
+                    )}
                   </DropdownMenuItem>
                 ))}
-                <DropdownMenuSeparator />
-                <DropdownMenuItem className="text-xs text-muted-foreground cursor-default">
-                  More languages available
-                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
             {/* <Cart /> */}
@@ -185,12 +230,14 @@ export function Header({ showAuth = true }: HeaderProps) {
                 ) : (
                   <div className="flex items-center gap-2">
                     <Link href="/auth/sign-in">
-                      <Button variant="ghost" size="sm">
+                      <Button variant="ghost" size="sm" className="text-slate-600 dark:text-muted-foreground hover:text-slate-900 dark:hover:text-foreground">
                         Log in
                       </Button>
                     </Link>
                     <Link href="/auth/sign-up">
-                      <Button size="sm">Sign up</Button>
+                      <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white">
+                        Sign up
+                      </Button>
                     </Link>
                   </div>
                 )}
@@ -291,7 +338,7 @@ export function Header({ showAuth = true }: HeaderProps) {
               </Link>
               <Link
                 href="/auth/sign-up"
-                className="block py-2 px-3 text-base font-medium rounded-md bg-primary text-primary-foreground hover:bg-primary/90"
+                className="block py-2 px-3 text-base font-medium rounded-md bg-blue-600 text-white hover:bg-blue-700"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Sign up
