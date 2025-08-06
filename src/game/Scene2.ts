@@ -245,8 +245,8 @@ export class Scene2 extends Phaser.Scene {
         console.log("this.mapName", this.mapName);
         console.log("this.map", this.map);
 
-        // Set current map Bounds
-        this.physics.world.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
+        // Set current map Bounds (accounting for player body offset of 24 pixels)
+        this.physics.world.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels - 24);
 
         // Parameters are the name you gave the tileset in Tiled and then the key of the tileset image in
         // Phaser's cache (i.e. the name you used in preload)
@@ -472,8 +472,8 @@ export class Scene2 extends Phaser.Scene {
         console.log('New bot reward question:', bot.reward);
         
         // Set up collision detection for this specific bot
-        this.physics.add.overlap(this.player, bot, (player: any, botCollider: any) => {
-            // Handle collision if needed
+        this.physics.add.collider(this.player, bot, (player: any, botCollider: any) => {
+            // Physical collision prevents overlap
         }, undefined, this);
     }
 

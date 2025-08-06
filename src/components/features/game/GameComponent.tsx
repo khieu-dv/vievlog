@@ -270,13 +270,13 @@ export default function GameComponent() {
             let maxWidth, maxHeight;
             
             if (isMobile) {
-                // Mobile: use most of screen width, optimize for mobile screens with more height for questions
-                maxWidth = Math.min(containerWidth - 8, viewportWidth - 16);
-                maxHeight = Math.min(viewportHeight * 0.55, maxWidth * 0.7);
+                // Mobile: use most of screen space for better gameplay
+                maxWidth = Math.min(containerWidth - 4, viewportWidth - 8);
+                maxHeight = Math.min(viewportHeight * 0.75, maxWidth * 0.7);
             } else {
-                // Desktop: responsive to viewport size
-                maxWidth = Math.min(containerWidth - 32, viewportWidth * 0.85, 1000);
-                maxHeight = Math.min(viewportHeight * 0.6, maxWidth * 0.6, 600);
+                // Desktop: maximize game area
+                maxWidth = Math.min(containerWidth - 16, viewportWidth * 0.95, 1200);
+                maxHeight = Math.min(viewportHeight * 0.8, maxWidth * 0.65, 800);
             }
 
             const config = {
@@ -345,7 +345,7 @@ export default function GameComponent() {
                     WebkitTapHighlightColor: 'transparent',
                     aspectRatio: isMobile ? '16/10' : '5/3',
                     maxWidth: '100%',
-                    maxHeight: isMobile ? '55vh' : '60vh'
+                    maxHeight: isMobile ? '75vh' : '80vh'
                 }}
             />
 
@@ -353,7 +353,7 @@ export default function GameComponent() {
             {isMobile && (
                 <>
                     {/* Virtual Joystick - Left Side */}
-                    <div className="fixed bottom-6 left-4 z-50">
+                    <div className="fixed bottom-4 left-2 z-50">
                         <div
                             ref={joystickRef}
                             className="relative w-28 h-28 bg-gray-800 bg-opacity-80 rounded-full border-4 border-gray-600 shadow-lg cursor-pointer select-none"
@@ -390,7 +390,7 @@ export default function GameComponent() {
                     </div>
 
                     {/* Action Buttons - Right Side */}
-                    <div className="fixed bottom-6 right-4 z-50 flex flex-col space-y-4">
+                    <div className="fixed bottom-4 right-2 z-50 flex flex-col space-y-3">
                         {/* Shoot Button */}
                         <button
                             className="w-20 h-20 bg-orange-600 hover:bg-orange-700 active:bg-orange-800 text-white rounded-full font-bold text-sm shadow-lg flex flex-col items-center justify-center select-none transform hover:scale-110 active:scale-95 transition-all duration-150 animate-pulse border-2 border-orange-400"

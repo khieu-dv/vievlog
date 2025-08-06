@@ -185,7 +185,10 @@ export default class EnemyBot extends Phaser.GameObjects.Sprite {
         if (distanceToPlayer <= this.attackRange) {
             this.movementPattern = 'chase';
             this.chasePlayer(player);
-            this.tryAttackPlayer(player);
+            // Only attack if we're close enough but not overlapping
+            if (distanceToPlayer >= 30 && distanceToPlayer <= this.attackRange) {
+                this.tryAttackPlayer(player);
+            }
         } else if (distanceToPlayer <= 200) {
             this.movementPattern = 'chase';
             this.chasePlayer(player);
@@ -219,7 +222,18 @@ export default class EnemyBot extends Phaser.GameObjects.Sprite {
     }
 
     private chasePlayer(player: any): void {
-        this.moveTowards(player.x, player.y);
+        const distanceToPlayer = Phaser.Math.Distance.Between(this.x, this.y, player.x, player.y);
+        const minDistance = 40; // Minimum distance to maintain from player
+        
+        // Only move closer if we're too far away
+        if (distanceToPlayer > minDistance) {
+            this.moveTowards(player.x, player.y);
+        } else {
+            // Stop moving when close enough
+            const body = this.body as Phaser.Physics.Arcade.Body;
+            body.setVelocity(0, 0);
+            this.anims.stop();
+        }
     }
 
     private moveTowards(targetX: number, targetY: number): void {
