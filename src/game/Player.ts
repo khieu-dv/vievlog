@@ -33,7 +33,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     private combatText!: Phaser.GameObjects.Text;
     private hitEffect!: Phaser.GameObjects.Graphics;
     private bullets: Phaser.GameObjects.Graphics[] = [];
-    private lastFacingDirection = 'down'; // Track player's facing direction
+    public lastFacingDirection = 'down'; // Track player's facing direction
 
     // Mobile control states
     public mobileControls = {
