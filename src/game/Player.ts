@@ -55,6 +55,15 @@ export default class Player extends Phaser.GameObjects.Sprite {
         debug: false
     };
 
+    // Mouse control states
+    public mouseControls = {
+        isMoving: false,
+        targetX: 0,
+        targetY: 0,
+        isDesktop: false,
+        wasMoving: false
+    };
+
     constructor(config: GameConfig & { map?: Phaser.Tilemaps.Tilemap; mapName?: string }) {
         super(config.scene, config.x, config.y, config.key || 'player');
 
@@ -101,6 +110,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
         // Setup mobile control listeners
         this.setupMobileControls();
+
+        // Setup mouse controls
+        this.setupMouseControls();
 
         // Initialize previous state tracking
         this.container.oldPosition = { x: this.x, y: this.y };
@@ -518,6 +530,32 @@ export default class Player extends Phaser.GameObjects.Sprite {
         });
     }
 
+    setupMouseControls(): void {
+        // Detect if desktop (has mouse and no touch)
+        this.mouseControls.isDesktop = !('ontouchstart' in window) && navigator.maxTouchPoints === 0;
+        
+        if (!this.mouseControls.isDesktop) {
+            return; // Only enable mouse controls on desktop
+        }
+
+        // Listen for mouse clicks on the game canvas
+        this.scene.input.on('pointerdown', (pointer: Phaser.Input.Pointer) => {
+            // Get world coordinates from pointer
+            const camera = this.scene.cameras.main;
+            const worldPoint = camera.getWorldPoint(pointer.x, pointer.y);
+            
+            this.mouseControls.targetX = worldPoint.x;
+            this.mouseControls.targetY = worldPoint.y;
+            this.mouseControls.isMoving = true;
+        });
+
+        // Stop movement when clicking on player
+        this.setInteractive();
+        this.on('pointerdown', () => {
+            this.mouseControls.isMoving = false;
+        });
+    }
+
     update(time: number, delta: number): void {
         const body = this.body as Phaser.Physics.Arcade.Body;
         const prevVelocity = body.velocity.clone();
@@ -540,46 +578,80 @@ export default class Player extends Phaser.GameObjects.Sprite {
         // Stop any previous movement from the last frame
         body.setVelocity(0);
 
-        // Check movement from both cursors and mobile controls
-        const isLeftPressed = this.cursors.left.isDown || this.mobileControls.left;
-        const isRightPressed = this.cursors.right.isDown || this.mobileControls.right;
-        const isUpPressed = this.cursors.up.isDown || this.mobileControls.up;
-        const isDownPressed = this.cursors.down.isDown || this.mobileControls.down;
+        // Handle mouse movement for desktop users
+        if (this.mouseControls.isDesktop && this.mouseControls.isMoving) {
+            const distance = Phaser.Math.Distance.Between(
+                this.x, this.y, 
+                this.mouseControls.targetX, this.mouseControls.targetY
+            );
+            
+            // Stop if close enough to target
+            if (distance < 5) {
+                this.mouseControls.isMoving = false;
+            } else {
+                // Move towards target
+                const angle = Phaser.Math.Angle.Between(
+                    this.x, this.y,
+                    this.mouseControls.targetX, this.mouseControls.targetY
+                );
+                
+                body.setVelocityX(Math.cos(angle) * this.speed);
+                body.setVelocityY(Math.sin(angle) * this.speed);
+            }
+        } else if (!this.mouseControls.isDesktop || !this.mouseControls.isMoving) {
+            // Check movement from both cursors and mobile controls (only if not using mouse)
+            const isLeftPressed = this.cursors.left.isDown || this.mobileControls.left;
+            const isRightPressed = this.cursors.right.isDown || this.mobileControls.right;
+            const isUpPressed = this.cursors.up.isDown || this.mobileControls.up;
+            const isDownPressed = this.cursors.down.isDown || this.mobileControls.down;
 
-        // Horizontal movement
-        if (isLeftPressed) {
-            body.setVelocityX(-this.speed);
-        } else if (isRightPressed) {
-            body.setVelocityX(this.speed);
+            // Horizontal movement
+            if (isLeftPressed) {
+                body.setVelocityX(-this.speed);
+            } else if (isRightPressed) {
+                body.setVelocityX(this.speed);
+            }
+
+            // Vertical movement
+            if (isUpPressed) {
+                body.setVelocityY(-this.speed);
+            } else if (isDownPressed) {
+                body.setVelocityY(this.speed);
+            }
+
+            // Normalize and scale the velocity so that player can't move faster along a diagonal
+            body.velocity.normalize().scale(this.speed);
         }
 
-        // Vertical movement
-        if (isUpPressed) {
-            body.setVelocityY(-this.speed);
-        } else if (isDownPressed) {
-            body.setVelocityY(this.speed);
-        }
+        // Update the animation based on movement (mouse or keyboard/mobile)
+        const currentVelocity = body.velocity;
+        const isMoving = Math.abs(currentVelocity.x) > 0 || Math.abs(currentVelocity.y) > 0;
 
-        // Normalize and scale the velocity so that player can't move faster along a diagonal
-        body.velocity.normalize().scale(this.speed);
-
-        // Update the animation last and give left/right animations precedence over up/down animations
-        if (isLeftPressed) {
-            this.anims.play("misa-left-walk", true);
-            this.lastFacingDirection = 'left';
-        } else if (isRightPressed) {
-            this.anims.play("misa-right-walk", true);
-            this.lastFacingDirection = 'right';
-        } else if (isUpPressed) {
-            this.anims.play("misa-back-walk", true);
-            this.lastFacingDirection = 'up';
-        } else if (isDownPressed) {
-            this.anims.play("misa-front-walk", true);
-            this.lastFacingDirection = 'down';
+        if (isMoving) {
+            // Determine direction based on velocity (works for both mouse and keyboard movement)
+            if (Math.abs(currentVelocity.x) > Math.abs(currentVelocity.y)) {
+                // Horizontal movement takes precedence
+                if (currentVelocity.x < 0) {
+                    this.anims.play("misa-left-walk", true);
+                    this.lastFacingDirection = 'left';
+                } else {
+                    this.anims.play("misa-right-walk", true);
+                    this.lastFacingDirection = 'right';
+                }
+            } else {
+                // Vertical movement
+                if (currentVelocity.y < 0) {
+                    this.anims.play("misa-back-walk", true);
+                    this.lastFacingDirection = 'up';
+                } else {
+                    this.anims.play("misa-front-walk", true);
+                    this.lastFacingDirection = 'down';
+                }
+            }
         } else {
             this.anims.stop();
 
-            // If we were moving, pick and idle frame to use and update facing direction
+            // If we were moving, pick an idle frame to use and update facing direction
             if (prevVelocity.x < 0) {
                 this.setTexture("currentPlayer", "misa-left");
                 this.lastFacingDirection = 'left';
@@ -594,6 +666,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
                 this.lastFacingDirection = 'down';
             }
         }
+
+        // Update mouse control state for next frame
+        this.mouseControls.wasMoving = this.mouseControls.isMoving;
     }
 
     updateCombatSystem(): void {

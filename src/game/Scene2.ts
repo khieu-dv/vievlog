@@ -314,77 +314,107 @@ export class Scene2 extends Phaser.Scene {
         // Loop the player update method
         this.player.update(time, delta);
 
-        // Check for mobile controls as well
+        // Check for mobile controls and mouse movement
         const isLeftPressed = this.cursors.left.isDown || this.player.mobileControls?.left;
         const isRightPressed = this.cursors.right.isDown || this.player.mobileControls?.right;
         const isUpPressed = this.cursors.up.isDown || this.player.mobileControls?.up;
         const isDownPressed = this.cursors.down.isDown || this.player.mobileControls?.down;
+        const isMouseMoving = this.player.mouseControls?.isMoving;
 
-        // Horizontal movement
-        if (isLeftPressed) {
+        // Handle mouse movement or keyboard/mobile movement
+        if (isMouseMoving) {
             if (this.socketKey) {
                 if (this.player.isMoved()) {
+                    // Determine direction based on player's facing direction for mouse movement
                     room.then((room: any) => room.send("PLAYER_MOVED", {
-                        position: 'left',
+                        position: this.player.lastFacingDirection === 'up' ? 'back' : 
+                                 this.player.lastFacingDirection === 'down' ? 'front' :
+                                 this.player.lastFacingDirection,
                         x: this.player.x,
                         y: this.player.y
                     }));
                 }
                 this.socketKey = false;
             }
-        } else if (isRightPressed) {
-            if (this.socketKey) {
-                if (this.player.isMoved()) {
-                    room.then((room: any) => room.send("PLAYER_MOVED", {
-                        position: 'right',
-                        x: this.player.x,
-                        y: this.player.y
-                    }));
+        } else {
+            // Horizontal movement
+            if (isLeftPressed) {
+                if (this.socketKey) {
+                    if (this.player.isMoved()) {
+                        room.then((room: any) => room.send("PLAYER_MOVED", {
+                            position: 'left',
+                            x: this.player.x,
+                            y: this.player.y
+                        }));
+                    }
+                    this.socketKey = false;
                 }
-                this.socketKey = false;
+            } else if (isRightPressed) {
+                if (this.socketKey) {
+                    if (this.player.isMoved()) {
+                        room.then((room: any) => room.send("PLAYER_MOVED", {
+                            position: 'right',
+                            x: this.player.x,
+                            y: this.player.y
+                        }));
+                    }
+                    this.socketKey = false;
+                }
+            }
+
+            // Vertical movement
+            if (isUpPressed) {
+                if (this.socketKey) {
+                    if (this.player.isMoved()) {
+                        room.then((room: any) => room.send("PLAYER_MOVED", {
+                            position: 'back',
+                            x: this.player.x,
+                            y: this.player.y
+                        }));
+                    }
+                    this.socketKey = false;
+                }
+            } else if (isDownPressed) {
+                if (this.socketKey) {
+                    if (this.player.isMoved()) {
+                        room.then((room: any) => room.send("PLAYER_MOVED", {
+                            position: 'front',
+                            x: this.player.x,
+                            y: this.player.y
+                        }));
+                    }
+                    this.socketKey = false;
+                }
             }
         }
 
-        // Vertical movement
-        if (isUpPressed) {
-            if (this.socketKey) {
-                if (this.player.isMoved()) {
-                    room.then((room: any) => room.send("PLAYER_MOVED", {
-                        position: 'back',
-                        x: this.player.x,
-                        y: this.player.y
-                    }));
-                }
-                this.socketKey = false;
+        // Movement ended events - check keyboard, mobile controls, and mouse movement
+        if (this.player.mouseControls?.isDesktop && 
+            this.player.mouseControls?.wasMoving && 
+            !this.player.mouseControls?.isMoving) {
+            // Mouse movement ended
+            room.then((room: any) => room.send("PLAYER_MOVEMENT_ENDED", { 
+                position: this.player.lastFacingDirection === 'up' ? 'back' : 
+                         this.player.lastFacingDirection === 'down' ? 'front' :
+                         this.player.lastFacingDirection
+            }));
+        } else if (!this.player.mouseControls?.isDesktop || !this.player.mouseControls?.isMoving) {
+            // Keyboard and mobile control movement ended events
+            if (Phaser.Input.Keyboard.JustUp(this.cursors.left) === true || 
+                (this.player.mobileControls?.left === false && this.player.wasMobileControlPressed?.left)) {
+                room.then((room: any) => room.send("PLAYER_MOVEMENT_ENDED", { position: 'left' }));
+            } else if (Phaser.Input.Keyboard.JustUp(this.cursors.right) === true ||
+                      (this.player.mobileControls?.right === false && this.player.wasMobileControlPressed?.right)) {
+                room.then((room: any) => room.send("PLAYER_MOVEMENT_ENDED", { position: 'right' }));
             }
-        } else if (isDownPressed) {
-            if (this.socketKey) {
-                if (this.player.isMoved()) {
-                    room.then((room: any) => room.send("PLAYER_MOVED", {
-                        position: 'front',
-                        x: this.player.x,
-                        y: this.player.y
-                    }));
-                }
-                this.socketKey = false;
+
+            if (Phaser.Input.Keyboard.JustUp(this.cursors.up) === true ||
+                (this.player.mobileControls?.up === false && this.player.wasMobileControlPressed?.up)) {
+                room.then((room: any) => room.send("PLAYER_MOVEMENT_ENDED", { position: 'back' }));
+            } else if (Phaser.Input.Keyboard.JustUp(this.cursors.down) === true ||
+                      (this.player.mobileControls?.down === false && this.player.wasMobileControlPressed?.down)) {
+                room.then((room: any) => room.send("PLAYER_MOVEMENT_ENDED", { position: 'front' }));
             }
-        }
-
-        // Movement ended events - check both keyboard and mobile controls
-        if (Phaser.Input.Keyboard.JustUp(this.cursors.left) === true || 
-            (this.player.mobileControls?.left === false && this.player.wasMobileControlPressed?.left)) {
-            room.then((room: any) => room.send("PLAYER_MOVEMENT_ENDED", { position: 'left' }));
-        } else if (Phaser.Input.Keyboard.JustUp(this.cursors.right) === true ||
-                  (this.player.mobileControls?.right === false && this.player.wasMobileControlPressed?.right)) {
-            room.then((room: any) => room.send("PLAYER_MOVEMENT_ENDED", { position: 'right' }));
-        }
-
-        if (Phaser.Input.Keyboard.JustUp(this.cursors.up) === true ||
-            (this.player.mobileControls?.up === false && this.player.wasMobileControlPressed?.up)) {
-            room.then((room: any) => room.send("PLAYER_MOVEMENT_ENDED", { position: 'back' }));
-        } else if (Phaser.Input.Keyboard.JustUp(this.cursors.down) === true ||
-                  (this.player.mobileControls?.down === false && this.player.wasMobileControlPressed?.down)) {
-            room.then((room: any) => room.send("PLAYER_MOVEMENT_ENDED", { position: 'front' }));
         }
 
         // Update mobile control states for next frame
