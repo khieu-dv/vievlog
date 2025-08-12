@@ -106,7 +106,7 @@ export default function PostDetailPage() {
         const commentRes = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/collections/comments_tbl/records`, {
           params: {
             filter: `postId="${params.id}"`,
-            sort: '-created',
+            sort: 'created',
             expand: 'userId'
           }
         });
@@ -231,7 +231,7 @@ export default function PostDetailPage() {
       setCurrentScore(prev => voteType === 'up' ? prev - 1 : prev + 1);
     } else {
       // Add/change vote
-      const scoreChange = userVote === null 
+      const scoreChange = userVote === null
         ? (voteType === 'up' ? 1 : -1)
         : (voteType === 'up' ? 2 : -2);
       setUserVote(voteType);
@@ -317,26 +317,23 @@ export default function PostDetailPage() {
             <div className="flex flex-col sm:flex-row">
               {/* Left Voting Panel - Desktop Only */}
               <div className="hidden sm:flex flex-col items-center p-3 w-12 bg-muted/30 rounded-l-md">
-                <button 
+                <button
                   onClick={() => handleVote('up')}
-                  className={`p-1 rounded hover:bg-muted transition-colors ${
-                    userVote === 'up' ? 'text-orange-500' : 'text-muted-foreground hover:text-foreground'
-                  }`}
+                  className={`p-1 rounded hover:bg-muted transition-colors ${userVote === 'up' ? 'text-orange-500' : 'text-muted-foreground hover:text-foreground'
+                    }`}
                 >
                   <ChevronUp className="h-6 w-6" />
                 </button>
-                <span className={`text-sm font-bold px-1 min-w-[2rem] text-center ${
-                  currentScore > 0 ? 'text-orange-500' : 
-                  currentScore < 0 ? 'text-blue-500' : 
-                  'text-muted-foreground'
-                }`}>
+                <span className={`text-sm font-bold px-1 min-w-[2rem] text-center ${currentScore > 0 ? 'text-orange-500' :
+                    currentScore < 0 ? 'text-blue-500' :
+                      'text-muted-foreground'
+                  }`}>
                   {currentScore > 0 ? `+${currentScore}` : currentScore}
                 </span>
-                <button 
+                <button
                   onClick={() => handleVote('down')}
-                  className={`p-1 rounded hover:bg-muted transition-colors ${
-                    userVote === 'down' ? 'text-blue-500' : 'text-muted-foreground hover:text-foreground'
-                  }`}
+                  className={`p-1 rounded hover:bg-muted transition-colors ${userVote === 'down' ? 'text-blue-500' : 'text-muted-foreground hover:text-foreground'
+                    }`}
                 >
                   <ChevronDown className="h-6 w-6" />
                 </button>
@@ -348,8 +345,8 @@ export default function PostDetailPage() {
                 <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
                   {post.category && (
                     <>
-                      <Link 
-                        href={`/category/${post.category.slug}`} 
+                      <Link
+                        href={`/category/${post.category.slug}`}
                         className="font-medium text-foreground hover:underline"
                       >
                         r/{post.category.name}
@@ -410,27 +407,24 @@ export default function PostDetailPage() {
 
                 {/* Mobile Voting Controls */}
                 <div className="flex sm:hidden items-center justify-center gap-4 py-3 border-y border-border mb-4">
-                  <button 
+                  <button
                     onClick={() => handleVote('up')}
-                    className={`flex items-center gap-1 px-3 py-2 rounded-full transition-colors ${
-                      userVote === 'up' ? 'bg-orange-100 text-orange-600' : 'hover:bg-muted'
-                    }`}
+                    className={`flex items-center gap-1 px-3 py-2 rounded-full transition-colors ${userVote === 'up' ? 'bg-orange-100 text-orange-600' : 'hover:bg-muted'
+                      }`}
                   >
                     <ChevronUp className="h-5 w-5" />
                     <span className="text-sm font-medium">Upvote</span>
                   </button>
-                  <span className={`text-lg font-bold px-3 ${
-                    currentScore > 0 ? 'text-orange-500' : 
-                    currentScore < 0 ? 'text-blue-500' : 
-                    'text-muted-foreground'
-                  }`}>
+                  <span className={`text-lg font-bold px-3 ${currentScore > 0 ? 'text-orange-500' :
+                      currentScore < 0 ? 'text-blue-500' :
+                        'text-muted-foreground'
+                    }`}>
                     {currentScore > 0 ? `+${currentScore}` : currentScore}
                   </span>
-                  <button 
+                  <button
                     onClick={() => handleVote('down')}
-                    className={`flex items-center gap-1 px-3 py-2 rounded-full transition-colors ${
-                      userVote === 'down' ? 'bg-blue-100 text-blue-600' : 'hover:bg-muted'
-                    }`}
+                    className={`flex items-center gap-1 px-3 py-2 rounded-full transition-colors ${userVote === 'down' ? 'bg-blue-100 text-blue-600' : 'hover:bg-muted'
+                      }`}
                   >
                     <ChevronDown className="h-5 w-5" />
                     <span className="text-sm font-medium">Downvote</span>
@@ -439,7 +433,7 @@ export default function PostDetailPage() {
 
                 {/* Actions Bar - Reddit Style */}
                 <div className="flex items-center gap-2 sm:gap-4 text-xs text-muted-foreground pt-2 border-t border-border">
-                  <button 
+                  <button
                     onClick={focusCommentInput}
                     className="flex items-center gap-1 hover:bg-muted px-2 py-1 rounded transition-colors"
                   >
@@ -447,7 +441,7 @@ export default function PostDetailPage() {
                     <span className="hidden sm:inline">{comments.length} {comments.length === 1 ? 'comment' : 'comments'}</span>
                     <span className="sm:hidden">{comments.length}</span>
                   </button>
-                  <button 
+                  <button
                     onClick={handleShare}
                     className="flex items-center gap-1 hover:bg-muted px-2 py-1 rounded transition-colors"
                   >

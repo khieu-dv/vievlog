@@ -10,8 +10,7 @@ import { Footer } from "~/components/common/Footer";
 import { Header } from "~/components/common/Header";
 import { VieShareBanner } from "~/components/common/VieShareBanner";
 import { Button } from "~/components/ui/Button";
-import { Post, Category } from '~/lib/types';
-import { RoadmapPostsView } from "~/components/features/posts";
+import { Category } from '~/lib/types';
 import { useSession } from "~/lib/authClient";
 import { useLocalizedContent } from "~/lib/multilingual";
 
@@ -28,10 +27,7 @@ export default function HomePage() {
     isLanguageSupported: checkLanguageSupport
   } = useLocalizedContent();
 
-  const [posts, setPosts] = useState<Post[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
-  const [selectedCategoryId, setSelectedCategoryId] = useState<string>("");
-  const [isLoadingPosts, setIsLoadingPosts] = useState(true);
   const [isLoadingCategories, setIsLoadingCategories] = useState(true);
 
   // Fetch categories from database
@@ -95,99 +91,17 @@ export default function HomePage() {
     }
   };
 
-  // Fetch posts for selected category
-  const fetchPosts = async (categoryId = "") => {
-    try {
-      setIsLoadingPosts(true);
-      const params: any = {
-        page: 1,
-        perPage: 20,
-        // Sort by created date: oldest first for roadmap progression (basic to advanced)
-        sort: 'created',
-        expand: 'categoryId'
-      };
 
-      if (categoryId) {
-        params.filter = `categoryId="${categoryId}"`;
-      }
-
-      const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/collections/posts_tbl/records`,
-        { params }
-      );
-
-      const result = response.data;
-      const mappedPosts = result.items.map((item: any) => ({
-        id: item.id,
-        title: getContent(item, 'title'),
-        excerpt: getContent(item, 'excerpt'),
-        content: getContent(item, 'content'),
-        publishedAt: item.created || item.publishedAt,
-        coverImage: item.coverImage || "",
-        author: {
-          name: item.author?.name || "Anonymous",
-          avatar: item.author?.avatar || "/default-avatar.png",
-        },
-        likes: item.likes || 0,
-        commentCount: item.commentCount || 0,
-        tags: item.tags || [],
-        comments: [],
-        categoryId: item.categoryId || "",
-        category: item.expand?.categoryId ? {
-          id: item.expand.categoryId.id,
-          name: getContent(item.expand.categoryId, 'name'),
-          slug: item.expand.categoryId.slug,
-          color: item.expand.categoryId.color || '#3B82F6'
-        } : undefined,
-        originalData: item
-      }));
-
-      setPosts(mappedPosts);
-    } catch (error) {
-      console.error("Failed to fetch posts:", error);
-    } finally {
-      setIsLoadingPosts(false);
-    }
-  };
-
-  // Handle category selection
+  // Handle category selection - redirect to posts page
   const handleCategorySelect = useCallback((categoryId: string) => {
-    setSelectedCategoryId(categoryId);
-    fetchPosts(categoryId);
-    
-    // Scroll to selected category section after a short delay to ensure content is rendered
-    if (categoryId) {
-      setTimeout(() => {
-        const element = document.getElementById('selected-category-section');
-        if (element) {
-          element.scrollIntoView({ 
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
-      }, 100);
-    }
-  }, []);
+    router.push(`/posts?category=${categoryId}`);
+  }, [router]);
 
   // Load initial data
   useEffect(() => {
     fetchCategories();
   }, [currentLanguage]);
 
-  // Format date to relative time (e.g., "2 hours ago")
-  const formatRelativeTime = (date: string | number | Date): string => {
-    const dateObj = new Date(date);
-    const now = new Date();
-    const diffInSeconds = Math.floor((now.getTime() - dateObj.getTime()) / 1000);
-
-    if (diffInSeconds < 60) return `${diffInSeconds} seconds ago`;
-    if (diffInSeconds < 3600) return `${Math.floor(diffInSeconds / 60)} minutes ago`;
-    if (diffInSeconds < 86400) return `${Math.floor(diffInSeconds / 3600)} hours ago`;
-    if (diffInSeconds < 604800) return `${Math.floor(diffInSeconds / 86400)} days ago`;
-    if (diffInSeconds < 2592000) return `${Math.floor(diffInSeconds / 604800)} weeks ago`;
-
-    return dateObj.toLocaleDateString();
-  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -210,7 +124,7 @@ export default function HomePage() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Link href="/posts?view=roadmap">
+              <Link href="/posts">
                 <Button size="lg" className="px-8 py-4 text-lg bg-blue-600 hover:bg-blue-700 text-white">
                   {t('home.startLearning')}
                 </Button>
@@ -309,53 +223,9 @@ export default function HomePage() {
           </div>
         )}
 
-        {/* Selected Category Posts */}
-        {selectedCategoryId && (
-          <div id="selected-category-section" className="bg-white dark:bg-card border border-slate-200 dark:border-border rounded-lg p-8 mb-16">
-            <div className="flex items-center justify-between mb-6">
-              <h3 className="text-2xl font-bold text-slate-900 dark:text-foreground">
-                {t('home.learningPathTitle', { category: categories.find(c => c.id === selectedCategoryId)?.name })}
-              </h3>
-              <Button
-                variant="ghost"
-                onClick={() => handleCategorySelect("")}
-                className="text-slate-500 hover:text-slate-700 dark:text-muted-foreground dark:hover:text-foreground"
-              >
-                ← {t('home.backToAllLanguages')}
-              </Button>
-            </div>
-            
-            {isLoadingPosts ? (
-              <div className="text-center py-8">
-                <div className="animate-spin inline-block w-6 h-6 border-2 border-current border-t-transparent text-blue-600 rounded-full mb-4"></div>
-                <p className="text-slate-600 dark:text-muted-foreground">{t('home.loadingTutorials')}</p>
-              </div>
-            ) : (
-              <RoadmapPostsView
-                posts={posts}
-                session={session}
-                formatRelativeTime={formatRelativeTime}
-                selectedCategoryId={selectedCategoryId}
-                categories={categories}
-                onCategorySelect={handleCategorySelect}
-                onPostClick={(postId) => router.push(`/posts/roadmap/${postId}`)}
-              />
-            )}
-
-            {posts.length > 0 && (
-              <div className="mt-8 text-center">
-                <Link href={`/posts?view=roadmap&category=${selectedCategoryId}`}>
-                  <Button size="lg" className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white">
-                    {t('home.viewCompleteLearningPath')}
-                  </Button>
-                </Link>
-              </div>
-            )}
-          </div>
-        )}
 
         {/* Features Section */}
-        {!selectedCategoryId && (
+        {(
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             <div className="text-center">
               <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mx-auto mb-4">

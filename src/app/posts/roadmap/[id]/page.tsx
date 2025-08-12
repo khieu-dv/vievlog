@@ -119,7 +119,7 @@ export default function RoadmapPostDetailPage() {
         const commentRes = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/collections/comments_tbl/records`, {
           params: {
             filter: `postId="${params.id}"`,
-            sort: '-created',
+            sort: 'created',
             expand: 'userId'
           }
         });

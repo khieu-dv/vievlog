@@ -20,7 +20,7 @@ export default function VideosPage() {
       try {
         const pb = new PocketBase("https://pocketbase.vietopik.com");
         const resultList = await pb.collection("videos").getList(1, 20, {
-          sort: "-created",
+          sort: "created",
         });
         setVideos(resultList.items as unknown as Video[]);
         setTotalVideos(resultList.totalItems);
@@ -63,8 +63,8 @@ export default function VideosPage() {
             </div>
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Oops! Something went wrong</h2>
             <p className="text-gray-600 dark:text-gray-300">{error}</p>
-            <button 
-              onClick={() => window.location.reload()} 
+            <button
+              onClick={() => window.location.reload()}
               className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
             >
               Try Again
@@ -78,7 +78,7 @@ export default function VideosPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900">
       <Header />
-      
+
       {/* Hero Section */}
       <div className="bg-white dark:bg-gray-800 shadow-sm">
         <div className="container mx-auto px-4 py-8">
@@ -91,7 +91,7 @@ export default function VideosPage() {
                 Discover interactive video content and tutorials
               </p>
             </div>
-            
+
             {/* Stats */}
             <div className="flex items-center gap-8">
               <div className="text-center">
@@ -108,28 +108,26 @@ export default function VideosPage() {
               </div>
             </div>
           </div>
-          
+
           {/* View Mode Toggle */}
           <div className="flex items-center gap-4 mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
             <span className="text-sm font-medium text-gray-700 dark:text-gray-300">View:</span>
             <div className="flex items-center bg-gray-100 dark:bg-gray-700 rounded-lg p-1">
               <button
                 onClick={() => setViewMode('feed')}
-                className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
-                  viewMode === 'feed'
+                className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${viewMode === 'feed'
                     ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm'
                     : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
-                }`}
+                  }`}
               >
                 <Play className="h-4 w-4 inline mr-2" />Feed
               </button>
               <button
                 onClick={() => setViewMode('grid')}
-                className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
-                  viewMode === 'grid'
+                className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${viewMode === 'grid'
                     ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm'
                     : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
-                }`}
+                  }`}
               >
                 <TrendingUp className="h-4 w-4 inline mr-2" />Grid
               </button>
@@ -190,7 +188,7 @@ export default function VideosPage() {
               </div>
             ))}
           </div>
-          
+
           {videos.length === 0 && (
             <div className="text-center py-20">
               <div className="w-24 h-24 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-6">

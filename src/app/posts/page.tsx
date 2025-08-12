@@ -8,11 +8,12 @@ import { VieShareBanner } from "~/components/common/VieShareBanner";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import PocketBase from 'pocketbase';
-import { Code, ArrowRight, BookOpen, ChevronDown, Filter, List, MapPin } from "lucide-react";
+import { Code, ArrowRight, BookOpen, ChevronDown, Filter } from "lucide-react";
 import { Button } from "~/components/ui/Button";
 import { useSession } from "~/lib/authClient";
 import PostComponent from "~/components/features/posts/Post";
 import { RoadmapPostsView } from "~/components/features/posts";
+import DocsView from "~/components/features/posts/DocsView";
 import { Comment, Post, Category } from '~/lib/types';
 import { Sidebar } from "~/components/common/Sidebar";
 import { ActivitySidebar } from "~/components/common/ActivitySidebar";
@@ -63,9 +64,7 @@ export default function PostsPage() {
   const [sidebarVisible, setSidebarVisible] = useState(true);
   const [availableLanguages, setAvailableLanguages] = useState<string[]>([]);
   const [showMobileCategories, setShowMobileCategories] = useState(false);
-  const [viewMode, setViewMode] = useState<'list' | 'roadmap'>(
-    searchParams.get('view') === 'roadmap' ? 'roadmap' : 'list'
-  );
+  const [viewMode, setViewMode] = useState<'docs'>('docs');
 
   // Fetch categories from database
   const fetchCategories = async () => {
@@ -127,7 +126,7 @@ export default function PostsPage() {
     }
   };
 
-  const fetchPosts = async (pageNumber: number, categoryId = "", isNewCategory = false, currentViewMode?: 'list' | 'roadmap') => {
+  const fetchPosts = async (pageNumber: number, categoryId = "", isNewCategory = false, currentViewMode?: 'list' | 'roadmap' | 'docs') => {
     if (isLoading) return;
 
     setIsLoading(true);
@@ -138,13 +137,13 @@ export default function PostsPage() {
     try {
       // Use provided view mode or current view mode
       const activeViewMode = currentViewMode || viewMode;
-      
+
       // Build filter params
       const params: any = {
         page: pageNumber,
         perPage: POSTS_PER_PAGE,
-        // Sort by created date: newest first for list view, oldest first for roadmap view
-        sort: activeViewMode === 'roadmap' ? 'created' : '-created',
+        // Sort by created date: newest first
+        sort: '-created',
         expand: 'categoryId'
       };
 
@@ -209,18 +208,11 @@ export default function PostsPage() {
     }
   };
 
-  // Update URL parameters
-  const updateURLParams = useCallback((newViewMode?: 'list' | 'roadmap', newCategoryId?: string) => {
+  // Update URL parameters (simplified for docs-only mode)
+  const updateURLParams = useCallback((newCategoryId?: string) => {
     const params = new URLSearchParams(searchParams.toString());
-    
-    if (newViewMode !== undefined) {
-      if (newViewMode === 'roadmap') {
-        params.set('view', 'roadmap');
-      } else {
-        params.delete('view');
-      }
-    }
-    
+    params.set('view', 'docs');
+
     if (newCategoryId !== undefined) {
       if (newCategoryId) {
         params.set('category', newCategoryId);
@@ -228,7 +220,7 @@ export default function PostsPage() {
         params.delete('category');
       }
     }
-    
+
     const newURL = params.toString() ? `/posts?${params.toString()}` : '/posts';
     router.replace(newURL, { scroll: false });
   }, [searchParams, router]);
@@ -236,15 +228,15 @@ export default function PostsPage() {
   // Handle category selection with smooth transition and debouncing
   const handleCategorySelect = useCallback(async (categoryId: string) => {
     if (selectedCategoryId === categoryId || isCategoryChanging) return;
-    
+
     // Update states in batch to avoid multiple re-renders
     setSelectedCategoryId(categoryId);
     setPage(1);
     setHasMore(true);
-    
+
     // Update URL parameters
-    updateURLParams(viewMode, categoryId);
-    
+    updateURLParams(categoryId);
+
     // Start loading new posts immediately without clearing existing ones
     await fetchPosts(1, categoryId, true);
   }, [selectedCategoryId, isCategoryChanging, updateURLParams, viewMode]);
@@ -252,27 +244,19 @@ export default function PostsPage() {
   // Clear category filter with smooth transition and debouncing
   const handleClearCategory = useCallback(async () => {
     if (!selectedCategoryId || isCategoryChanging) return;
-    
+
     // Update states in batch
     setSelectedCategoryId("");
     setPage(1);
     setHasMore(true);
-    
+
     // Update URL parameters
-    updateURLParams(viewMode, "");
-    
+    updateURLParams("");
+
     // Start loading all posts without clearing existing ones
     await fetchPosts(1, "", true);
   }, [selectedCategoryId, isCategoryChanging, updateURLParams, viewMode]);
 
-  // Handle view mode change
-  const handleViewModeChange = useCallback(async (newMode: 'list' | 'roadmap') => {
-    setViewMode(newMode);
-    updateURLParams(newMode, selectedCategoryId);
-    
-    // Re-fetch posts with correct sorting for the new view mode
-    await fetchPosts(1, selectedCategoryId, true, newMode);
-  }, [updateURLParams, selectedCategoryId]);
 
   // Fetch comments for post with pagination support
   const fetchCommentsForPost = async (postId: string, reset = false) => {
@@ -412,7 +396,7 @@ export default function PostsPage() {
 
   useEffect(() => {
     fetchCategories();
-    
+
     // Load posts with category from URL if present
     const categoryFromURL = searchParams.get('category');
     if (categoryFromURL) {
@@ -447,7 +431,7 @@ export default function PostsPage() {
 
     window.addEventListener('resize', handleResize);
     document.addEventListener('mousedown', handleClickOutside);
-    
+
     return () => {
       window.removeEventListener('resize', handleResize);
       document.removeEventListener('mousedown', handleClickOutside);
@@ -502,292 +486,30 @@ export default function PostsPage() {
       <VieShareBanner />
 
       {/* Main Layout */}
-      <div className="max-w-6xl mx-auto px-4 pt-6">
-        <div className="flex gap-6">
-          {/* Left Sidebar */}
-          <aside className="w-64 hidden lg:block">
-            <div className="sticky top-20 space-y-4">
-              <div className="p-4 bg-card rounded-lg border">
-                <h3 className="font-medium text-foreground mb-3">{t("posts.categories")}</h3>
-                <div className="space-y-2">
-                  <button
-                    onClick={handleClearCategory}
-                    disabled={isCategoryChanging}
-                    className={`block w-full text-left px-3 py-2 text-sm rounded transition-all duration-200 ${
-                      !selectedCategoryId ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:bg-muted'
-                    } ${isCategoryChanging ? 'opacity-50 cursor-not-allowed' : ''}`}
-                  >
-                    <div className="flex items-center justify-between">
-                      <span>{t("posts.allPosts")}</span>
-                      {isCategoryChanging && !selectedCategoryId && (
-                        <div className="h-3 w-3 animate-spin rounded-full border border-current border-r-transparent"></div>
-                      )}
-                    </div>
-                  </button>
-                  {popularTopics.map((topic) => (
-                    <button
-                      key={topic.id}
-                      onClick={() => handleCategorySelect(topic.id)}
-                      disabled={isCategoryChanging}
-                      className={`block w-full text-left px-3 py-2 text-sm rounded transition-all duration-200 ${
-                        selectedCategoryId === topic.id ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:bg-muted'
-                      } ${isCategoryChanging ? 'opacity-50 cursor-not-allowed' : ''}`}
-                    >
-                      <div className="flex items-center justify-between">
-                        <span>{topic.title}</span>
-                        <div className="flex items-center gap-2">
-                          <span className="text-xs">{topic.count}</span>
-                          {isCategoryChanging && selectedCategoryId === topic.id && (
-                            <div className="h-3 w-3 animate-spin rounded-full border border-current border-r-transparent"></div>
-                          )}
-                        </div>
-                      </div>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </aside>
+      <div className="max-w-7xl mx-auto px-4 pt-6">
+        <div className="flex flex-col">
 
           {/* Main Content */}
-          <main className="flex-1">
-            {/* Mobile Category Selector - Only visible on small screens */}
-            <div className="lg:hidden mb-4 mobile-categories-container">
-              <button
-                onClick={() => setShowMobileCategories(!showMobileCategories)}
-                className={`flex items-center justify-between w-full p-3 bg-card border rounded-lg hover:bg-muted/50 transition-colors ${
-                  showMobileCategories ? 'border-primary/50 bg-muted/20' : ''
-                }`}
-              >
-                <div className="flex items-center gap-2">
-                  <Filter className="h-4 w-4" />
-                  <span className="font-medium">
-                    {selectedCategory ? selectedCategory.name : t("posts.allPosts")}
-                  </span>
-                  {selectedCategory && (
-                    <span className="text-xs px-2 py-1 bg-muted rounded-full">
-                      {selectedCategory.postCount || 0}
-                    </span>
-                  )}
-                </div>
-                <ChevronDown className={`h-4 w-4 transition-transform ${showMobileCategories ? 'rotate-180' : ''}`} />
-              </button>
-              
-              {/* Mobile Categories Dropdown */}
-              {showMobileCategories && (
-                <div className="mt-2 p-2 bg-card border rounded-lg shadow-lg animate-in slide-in-from-top-2 duration-200">
-                  <div className="max-h-64 overflow-y-auto space-y-1">
-                    <button
-                      onClick={() => {
-                        handleClearCategory();
-                        setShowMobileCategories(false);
-                      }}
-                      disabled={isCategoryChanging}
-                      className={`block w-full text-left px-3 py-2 text-sm rounded transition-all duration-200 ${
-                        !selectedCategoryId ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:bg-muted'
-                      } ${isCategoryChanging ? 'opacity-50 cursor-not-allowed' : ''}`}
-                    >
-                      <div className="flex items-center justify-between">
-                        <span>{t("posts.allPosts")}</span>
-                        {isCategoryChanging && !selectedCategoryId && (
-                          <div className="h-3 w-3 animate-spin rounded-full border border-current border-r-transparent"></div>
-                        )}
-                      </div>
-                    </button>
-                    {popularTopics.map((topic) => (
-                      <button
-                        key={topic.id}
-                        onClick={() => {
-                          handleCategorySelect(topic.id);
-                          setShowMobileCategories(false);
-                        }}
-                        disabled={isCategoryChanging}
-                        className={`block w-full text-left px-3 py-2 text-sm rounded transition-all duration-200 ${
-                          selectedCategoryId === topic.id ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:bg-muted'
-                        } ${isCategoryChanging ? 'opacity-50 cursor-not-allowed' : ''}`}
-                      >
-                        <div className="flex items-center justify-between">
-                          <span>{topic.title}</span>
-                          <div className="flex items-center gap-2">
-                            <span className="text-xs">{topic.count}</span>
-                            {isCategoryChanging && selectedCategoryId === topic.id && (
-                              <div className="h-3 w-3 animate-spin rounded-full border border-current border-r-transparent"></div>
-                            )}
-                          </div>
-                        </div>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
+          <main className="w-full">
 
             {/* Header Section */}
-            <div className="mb-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h1 className="text-2xl font-semibold text-foreground mb-1">
-                    {viewMode === 'roadmap' && !selectedCategory 
-                      ? "Learning Roadmaps" 
-                      : selectedCategory 
-                        ? `${selectedCategory.name} Roadmap`
-                        : t("posts.title")
-                    }
-                  </h1>
-                  <p className="text-muted-foreground">
-                    {viewMode === 'roadmap' && !selectedCategory
-                      ? "Choose a category to start your structured learning journey"
-                      : selectedCategory && viewMode === 'roadmap'
-                        ? `Follow the ${selectedCategory.name} learning path step by step`
-                        : selectedCategory
-                          ? `${selectedCategory.name} posts and discussions`
-                          : t("posts.subtitle")
-                    }
-                  </p>
-                </div>
-                <div className="flex items-center gap-3">
-                  {/* View Mode Toggle */}
-                  <div className="flex items-center bg-muted rounded-lg p-1">
-                    <button
-                      onClick={() => handleViewModeChange('list')}
-                      className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
-                        viewMode === 'list' 
-                          ? 'bg-background text-foreground shadow-sm' 
-                          : 'text-muted-foreground hover:text-foreground'
-                      }`}
-                    >
-                      <List className="h-4 w-4" />
-                      List
-                    </button>
-                    <button
-                      onClick={() => handleViewModeChange('roadmap')}
-                      className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
-                        viewMode === 'roadmap' 
-                          ? 'bg-background text-foreground shadow-sm' 
-                          : 'text-muted-foreground hover:text-foreground'
-                      }`}
-                    >
-                      <MapPin className="h-4 w-4" />
-                      Roadmap
-                    </button>
-                  </div>
-                  
-                  {selectedCategoryId && (
-                    <Button
-                      onClick={handleClearCategory}
-                      variant="outline"
-                      size="sm"
-                    >
-                      {t("posts.clearFilter")}
-                    </Button>
-                  )}
-                </div>
+            <div className="mb-8">
+              <div className="text-center">
+                <h1 className="text-4xl font-bold text-foreground mb-4">
+                  Documentation Center
+                </h1>
+                <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                  Comprehensive guides, tutorials, and resources to help you make the most of VieVlog platform.
+                  Explore our learning materials organized by topic.
+                </p>
               </div>
             </div>
 
-            {/* Posts Feed */}
-            <div className={`relative transition-opacity duration-300 ${isCategoryChanging ? 'opacity-70' : 'opacity-100'}`}>
-              {/* Category changing overlay */}
-              {isCategoryChanging && posts.length > 0 && (
-                <div className="absolute inset-0 bg-background/50 backdrop-blur-sm z-10 rounded-lg flex items-center justify-center">
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground bg-background/90 px-4 py-2 rounded-full border">
-                    <div className="h-4 w-4 animate-spin rounded-full border border-current border-r-transparent"></div>
-                    <span>{t("posts.loading")}</span>
-                  </div>
-                </div>
-              )}
-              
-              {posts.length === 0 && isLoading ? (
-                <div className={viewMode === 'list' ? 'space-y-2' : ''}>
-                  {Array(5).fill(0).map((_, i) => (
-                    <div key={i} className="bg-card rounded-md border animate-pulse">
-                      <div className="flex">
-                        <div className="w-10 bg-muted/30 rounded-l-md p-2">
-                          <div className="space-y-1">
-                            <div className="h-5 w-5 bg-muted rounded"></div>
-                            <div className="h-3 w-6 bg-muted rounded"></div>
-                            <div className="h-5 w-5 bg-muted rounded"></div>
-                          </div>
-                        </div>
-                        <div className="flex-1 p-3 space-y-2">
-                          <div className="h-3 bg-muted rounded w-2/3"></div>
-                          <div className="h-4 bg-muted rounded w-full"></div>
-                          <div className="h-3 bg-muted rounded w-3/4"></div>
-                          <div className="flex gap-2">
-                            <div className="h-6 w-16 bg-muted rounded"></div>
-                            <div className="h-6 w-12 bg-muted rounded"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              ) : posts.length === 0 ? (
-                <div className="bg-card rounded-lg border p-8 text-center">
-                  <div className="mx-auto w-16 h-16 bg-muted rounded-full flex items-center justify-center mb-4">
-                    <BookOpen className="h-8 w-8 text-muted-foreground" />
-                  </div>
-                  <h3 className="text-lg font-medium text-foreground mb-2">
-                    {selectedCategory ? t("posts.noPostsInCategory") : t("posts.noPostsFound")}
-                  </h3>
-                  <p className="text-muted-foreground mb-4">
-                    {selectedCategory
-                      ? t("posts.tryOtherCategories")
-                      : t("posts.beFirstToShare")
-                    }
-                  </p>
-                  <Button variant="outline">
-                    {t("posts.exploreAllPosts")}
-                  </Button>
-                </div>
-              ) : viewMode === 'roadmap' ? (
-                <RoadmapPostsView
-                  posts={posts}
-                  session={session}
-                  formatRelativeTime={formatRelativeTime}
-                  selectedCategoryId={selectedCategoryId}
-                  categories={categories}
-                  onCategorySelect={handleCategorySelect}
-                />
-              ) : (
-                <div className="space-y-2">
-                  {posts.map((post) => (
-                    <PostComponent
-                      key={post.id}
-                      post={post}
-                      session={session}
-                      formatRelativeTime={formatRelativeTime}
-                      commentInputs={commentInputs}
-                      handleCommentInputChange={handleCommentInputChange}
-                      handleSubmitComment={handleSubmitComment}
-                      submittingComment={submittingComment[post.id] ?? false}
-                      fetchCommentsForPost={fetchCommentsForPost}
-                    />
-                  ))}
-                </div>
-              )}
+            {/* Documentation Content */}
+            <div className="relative">
+              <DocsView />
             </div>
 
-            {/* Load More Button - Only show in list view */}
-            {hasMore && posts.length > 0 && viewMode === 'list' && (
-              <div className="mt-6 text-center" ref={loadMoreRef}>
-                <Button
-                  onClick={handleLoadMore}
-                  disabled={isLoading}
-                  variant="outline"
-                  className="w-full"
-                >
-                  {isLoading ? (
-                    <>
-                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-current mr-2"></div>
-                      {t("posts.loading")}
-                    </>
-                  ) : (
-                    t("posts.loadMore")
-                  )}
-                </Button>
-              </div>
-            )}
           </main>
 
         </div>
