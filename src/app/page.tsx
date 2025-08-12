@@ -11,21 +11,13 @@ import { Header } from "~/components/common/Header";
 import { VieShareBanner } from "~/components/common/VieShareBanner";
 import { Button } from "~/components/ui/Button";
 import { Category } from '~/lib/types';
-import { useSession } from "~/lib/authClient";
 import { useLocalizedContent } from "~/lib/multilingual";
 
 
 export default function HomePage() {
   const { t } = useTranslation();
   const router = useRouter();
-  const { data: session } = useSession();
-  const {
-    getContent,
-    currentLanguage,
-    getSupportedLanguages,
-    getCurrentLanguageInfo,
-    isLanguageSupported: checkLanguageSupport
-  } = useLocalizedContent();
+  const { getContent, currentLanguage } = useLocalizedContent();
 
   const [categories, setCategories] = useState<Category[]>([]);
   const [isLoadingCategories, setIsLoadingCategories] = useState(true);

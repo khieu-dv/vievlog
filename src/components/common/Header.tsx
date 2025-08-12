@@ -1,6 +1,6 @@
 "use client";
 
-import { LogOut, Menu, Settings, User, X, Globe, ChevronDown } from "lucide-react";
+import { LogOut, Menu, Settings, User, X, Globe } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { signOut, useSession } from "../../lib/authClient";
@@ -48,14 +48,7 @@ export function Header({ showAuth = true }: HeaderProps) {
 
   const navigation = [
     { name: t("header.home"), href: "/" },
-    { 
-      name: "Tutorials", 
-      href: "/posts",
-      dropdown: [
-        { name: "All Tutorials", href: "/posts" },
-        { name: "Roadmaps", href: "/posts?view=roadmap" }
-      ]
-    },
+    { name: "Docs", href: "/posts" },
     { name: "Videos", href: "/videos" },
     { name: "Practice", href: "/game" },
   ];
@@ -82,48 +75,17 @@ export function Header({ showAuth = true }: HeaderProps) {
 
                   return (
                     <li key={item.name}>
-                      {item.dropdown ? (
-                        <DropdownMenu>
-                          <DropdownMenuTrigger asChild>
-                            <Button
-                              variant="ghost"
-                              className={cn(
-                                "text-sm font-medium transition-colors hover:text-slate-900 dark:hover:text-foreground px-3 py-2 h-auto",
-                                isActive
-                                  ? "text-slate-900 dark:text-foreground"
-                                  : "text-slate-600 dark:text-muted-foreground",
-                              )}
-                            >
-                              {item.name}
-                              <ChevronDown className="ml-1 h-3 w-3" />
-                            </Button>
-                          </DropdownMenuTrigger>
-                          <DropdownMenuContent align="start" className="w-48">
-                            {item.dropdown.map((subItem) => (
-                              <DropdownMenuItem key={subItem.name} asChild>
-                                <Link 
-                                  href={subItem.href}
-                                  className="w-full cursor-pointer text-sm"
-                                >
-                                  {subItem.name}
-                                </Link>
-                              </DropdownMenuItem>
-                            ))}
-                          </DropdownMenuContent>
-                        </DropdownMenu>
-                      ) : (
-                        <Link
-                          href={item.href}
-                          className={cn(
-                            "text-sm font-medium transition-colors hover:text-slate-900 dark:hover:text-foreground px-3 py-2 rounded-md",
-                            isActive
-                              ? "text-slate-900 dark:text-foreground bg-blue-50 dark:bg-blue-950"
-                              : "text-slate-600 dark:text-muted-foreground",
-                          )}
-                        >
-                          {item.name}
-                        </Link>
-                      )}
+                      <Link
+                        href={item.href}
+                        className={cn(
+                          "text-sm font-medium transition-colors hover:text-slate-900 dark:hover:text-foreground px-3 py-2 rounded-md",
+                          isActive
+                            ? "text-slate-900 dark:text-foreground bg-blue-50 dark:bg-blue-950"
+                            : "text-slate-600 dark:text-muted-foreground",
+                        )}
+                      >
+                        {item.name}
+                      </Link>
                     </li>
                   );
                 })}

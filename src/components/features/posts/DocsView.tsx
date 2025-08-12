@@ -1,50 +1,29 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { ChevronDown, ChevronRight, BookOpen, Rocket, Settings, Code, Users, Video, MessageCircle, Shield, Globe, GitBranch, Search, X, Home } from 'lucide-react';
+import { ChevronDown, ChevronRight, Search, X, Home, BookOpen } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useRouter, useSearchParams } from 'next/navigation';
-import axios from 'axios';
-import { Post, Category } from '~/lib/types';
-import { useLocalizedContent } from "~/lib/multilingual";
 import { MarkdownRenderer } from '~/components/common/MarkdownRenderer';
+import { useDocsData, DocSection } from '~/lib/hooks/useDocsData';
+import { getIconComponent } from '~/lib/utils/iconMapper';
 
-interface DocSection {
-  id: string;
-  title: string;
-  content: string;
-  icon?: React.ReactNode;
-  posts?: Post[];
-  category?: Category;
-}
 
 interface DocsViewProps {
   className?: string;
 }
 
-// Simple cache to prevent refetching - cleared on reload
-let docsCache: {
-  categories?: Category[];
-  categoryPosts?: Record<string, Post[]>;
-  docsData?: DocSection[];
-  version?: string;
-} = { version: '1.4' }; // Version bump to clear old cache
 
 const DocsView: React.FC<DocsViewProps> = ({ className }) => {
   const { t } = useTranslation();
-  const { getContent } = useLocalizedContent();
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { categories, categoryPosts, docsData, loading } = useDocsData();
+  
   const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set());
   const [activeSection, setActiveSection] = useState<string>('');
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [categoryPosts, setCategoryPosts] = useState<Record<string, Post[]>>({});
-  const [docsData, setDocsData] = useState<DocSection[]>([]);
-  const [loading, setLoading] = useState(true);
   const [expandedPostSections, setExpandedPostSections] = useState<Set<string>>(new Set());
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredDocsData, setFilteredDocsData] = useState<DocSection[]>([]);
   const [showAllPosts, setShowAllPosts] = useState<Record<string, boolean>>({});
-  const [sidebarHovered, setSidebarHovered] = useState(false);
-  const [mainContentHovered, setMainContentHovered] = useState(false);
 
   // Update URL when viewing posts for shareable links
   const updateURL = (postId: string) => {
@@ -100,264 +79,25 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
     };
   }, []);
 
-  // Fetch categories and posts data
+  // Set initial active section when data loads
   useEffect(() => {
-    const fetchDocsData = async () => {
-      try {
-        setLoading(true);
-
-        // Check cache first (with version check)
-        if (docsCache.categories && docsCache.categoryPosts && docsCache.docsData && docsCache.version === '1.3') {
-          console.log('Using cached data');
-          setCategories(docsCache.categories);
-          setCategoryPosts(docsCache.categoryPosts);
-          setDocsData(docsCache.docsData);
-
-          if (docsCache.docsData.length > 0) {
-            setActiveSection(docsCache.docsData[0].id);
-            setExpandedSections(new Set([docsCache.docsData[0].id]));
-          }
-
-          setLoading(false);
-          return;
+    if (!loading && docsData.length > 0) {
+      const postIdFromURL = searchParams.get('post');
+      if (postIdFromURL) {
+        // If there's a post ID in URL, show that post
+        setActiveSection(`post-${postIdFromURL}`);
+        // Find which category this post belongs to and expand that section
+        const allPosts = Object.values(categoryPosts).flat();
+        const post = allPosts.find(p => p.id === postIdFromURL);
+        if (post && post.categoryId) {
+          setExpandedSections(new Set([post.categoryId]));
         }
-
-        // First, fetch all categories
-        console.log('Fetching categories...');
-        const categoriesResponse = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_URL}/collections/categories_tbl/records`,
-          {
-            params: {
-              page: 1,
-              perPage: 50,
-              sort: 'name'
-            },
-            timeout: 10000 // 10 second timeout
-          }
-        );
-
-        const categoriesData = categoriesResponse.data.items.map((item: any) => ({
-          id: item.id,
-          name: getContent(item, 'name'),
-          slug: item.slug,
-          color: item.color || '#6366f1',
-          description: getContent(item, 'description'),
-          postCount: 0,
-          originalData: item
-        }));
-
-        setCategories(categoriesData);
-        console.log(`Fetched ${categoriesData.length} categories`);
-
-        // Fetch all posts with pagination to get everything
-        console.log('Fetching all posts...');
-        let allPosts: any[] = [];
-        let currentPage = 1;
-        let hasMorePosts = true;
-
-        while (hasMorePosts) {
-          const allPostsResponse = await axios.get(
-            `${process.env.NEXT_PUBLIC_API_URL}/collections/posts_tbl/records`,
-            {
-              params: {
-                page: currentPage,
-                perPage: 500, // Fetch more per page to reduce API calls
-                sort: '-created',
-                expand: 'categoryId'
-              },
-              timeout: 15000 // 15 second timeout
-            }
-          );
-
-          const fetchedPosts = allPostsResponse.data.items;
-          allPosts = [...allPosts, ...fetchedPosts];
-
-          // Check if we have more pages
-          hasMorePosts = fetchedPosts.length === 500;
-          currentPage++;
-
-          console.log(`Fetched page ${currentPage - 1}, total posts: ${allPosts.length}`);
-        }
-
-        console.log(`Fetched ${allPosts.length} total posts`);
-
-        // Group posts by category
-        const categoryPostsData: Record<string, Post[]> = {};
-
-        // Initialize empty arrays for all categories
-        categoriesData.forEach((category: Category) => {
-          categoryPostsData[category.id] = [];
-        });
-
-        // Map and group posts by category
-        allPosts.forEach((item: any) => {
-          const mappedPost: Post = {
-            id: item.id,
-            title: getContent(item, 'title'),
-            excerpt: getContent(item, 'excerpt'),
-            content: getContent(item, 'content'),
-            publishedAt: item.created || item.publishedAt,
-            coverImage: item.coverImage || "",
-            author: {
-              name: item.author?.name || "Anonymous",
-              avatar: item.author?.avatar || "",
-            },
-            likes: item.likes || 0,
-            commentCount: item.commentCount || 0,
-            tags: item.tags || [],
-            comments: [],
-            categoryId: item.categoryId || "",
-            category: item.expand?.categoryId ? {
-              id: item.expand.categoryId.id,
-              name: getContent(item.expand.categoryId, 'name'),
-              slug: item.expand.categoryId.slug,
-              color: item.expand.categoryId.color || '#6366f1'
-            } : undefined
-          };
-
-          // Add to appropriate category
-          if (mappedPost.categoryId && categoryPostsData[mappedPost.categoryId]) {
-            categoryPostsData[mappedPost.categoryId].push(mappedPost);
-          }
-        });
-
-        // Sort posts within each category by creation date (oldest first for learning progression)
-        Object.keys(categoryPostsData).forEach(categoryId => {
-          categoryPostsData[categoryId].sort((a, b) =>
-            new Date(a.publishedAt).getTime() - new Date(b.publishedAt).getTime()
-          );
-        });
-
-        setCategoryPosts(categoryPostsData);
-        console.log('Posts grouped by category');
-
-        // Create dynamic documentation structure
-        const dynamicDocsData: DocSection[] = [
-          {
-            id: 'overview',
-            title: 'Platform Overview',
-            icon: <BookOpen className="h-4 w-4" />,
-            content: `# VieVlog Documentation
-
-Welcome to VieVlog - a modern learning platform for IT education. This documentation is dynamically generated from our content database, ensuring you always have access to the latest information.
-
-## Available Categories
-
-We currently have ${categoriesData.length} categories with educational content:
-
-${categoriesData.map((cat: Category) => `- **${cat.name}**: ${cat.description || 'Educational content and tutorials'}`).join('\n')}
-
-## Getting Started
-
-Choose a category below to explore our comprehensive learning materials, tutorials, and guides. Each section contains real posts and content from our community.`,
-          },
-          ...categoriesData.map((category: Category) => {
-            const posts = categoryPostsData[category.id] || [];
-            return {
-              id: category.id,
-              title: category.name,
-              icon: getCategoryIcon(category.name),
-              category: category,
-              posts: posts,
-              content: `# ${category.name}
-
-${category.description || `Comprehensive guide to ${category.name} development and best practices.`}
-
-## Available Content
-
-This section contains ${posts.length} posts covering various aspects of ${category.name}.
-
-${posts.length > 0 ? `
-
-### Learning Path (Start Here)
-
-${posts.slice(0, 5).map((post, index) => `
-#### ${index + 1}. ${post.title}
-
-${post.excerpt || 'Educational content and tutorials.'}
-
-*Published: ${new Date(post.publishedAt).toLocaleDateString()}*
-
----
-`).join('\n')}
-
-${posts.length > 5 ? `\n*Continue with ${posts.length - 5} more articles in this learning path...*` : ''}
-
-` : '\n*No posts available in this category yet. Check back later for new content!*'}
-
-## Structured Learning
-
-${posts.length > 0 ? `
-These articles are organized chronologically to provide a structured learning experience. Start with the first article and progress through each one to build your knowledge step by step.
-
-**Learning progression:**
-${posts.slice(0, 5).map((post, index) => `${index + 1}. ${post.title}`).join('\n')}
-${posts.length > 5 ? `\n...and ${posts.length - 5} more articles` : ''}
-` : ''}
-`
-            };
-          })
-        ];
-
-        setDocsData(dynamicDocsData);
-
-        // Cache the data
-        docsCache = {
-          categories: categoriesData,
-          categoryPosts: categoryPostsData,
-          docsData: dynamicDocsData,
-          version: '1.3'
-        };
-
-        // Set initial active section - check URL for post parameter
-        const postIdFromURL = searchParams.get('post');
-        if (postIdFromURL) {
-          // If there's a post ID in URL, show that post
-          setActiveSection(`post-${postIdFromURL}`);
-          // Find which category this post belongs to and expand that section
-          const allPosts = Object.values(categoryPostsData).flat();
-          const post = allPosts.find(p => p.id === postIdFromURL);
-          if (post && post.categoryId) {
-            setExpandedSections(new Set([post.categoryId]));
-          }
-        } else if (dynamicDocsData.length > 0) {
-          setActiveSection(dynamicDocsData[0].id);
-          setExpandedSections(new Set([dynamicDocsData[0].id]));
-        }
-
-      } catch (error) {
-        console.error('Failed to fetch documentation data:', error);
-        // Provide more helpful error information
-        const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
-        setDocsData([
-          {
-            id: 'error',
-            title: 'Error Loading Documentation',
-            icon: <BookOpen className="h-4 w-4" />,
-            content: `# Error Loading Documentation
-
-Unable to load documentation content from the server.
-
-**Error Details:** ${errorMessage}
-
-**Possible Solutions:**
-- Check your internet connection
-- Verify the API server is running
-- Try refreshing the page
-- Contact support if the issue persists
-
-**API Endpoint:** \`${process.env.NEXT_PUBLIC_API_URL}\``
-          }
-        ]);
-        setActiveSection('error');
-      } finally {
-        setLoading(false);
+      } else {
+        setActiveSection(docsData[0].id);
+        setExpandedSections(new Set([docsData[0].id]));
       }
-    };
-
-    // Only fetch data once
-    fetchDocsData();
-  }, []); // Remove getContent dependency to prevent refetching
+    }
+  }, [loading, docsData, categoryPosts, searchParams]);
 
   // Filter docs data based on search query
   const searchResults = useMemo(() => {
@@ -389,19 +129,6 @@ Unable to load documentation content from the server.
     setFilteredDocsData(searchResults);
   }, [searchResults]);
 
-  // Helper function to get category icons
-  const getCategoryIcon = (categoryName: string) => {
-    const name = categoryName.toLowerCase();
-    if (name.includes('javascript') || name.includes('js')) return <Code className="h-4 w-4" />;
-    if (name.includes('react') || name.includes('vue') || name.includes('angular')) return <Rocket className="h-4 w-4" />;
-    if (name.includes('node') || name.includes('backend')) return <Settings className="h-4 w-4" />;
-    if (name.includes('video') || name.includes('media')) return <Video className="h-4 w-4" />;
-    if (name.includes('community') || name.includes('discussion')) return <MessageCircle className="h-4 w-4" />;
-    if (name.includes('security')) return <Shield className="h-4 w-4" />;
-    if (name.includes('web') || name.includes('frontend')) return <Globe className="h-4 w-4" />;
-    if (name.includes('git') || name.includes('version')) return <GitBranch className="h-4 w-4" />;
-    return <BookOpen className="h-4 w-4" />;
-  };
 
   const toggleSection = (sectionId: string) => {
     const newExpanded = new Set(expandedSections);
@@ -589,7 +316,7 @@ Unable to load documentation content from the server.
                           }`}
                       >
                         <div className="flex items-center gap-2 min-w-0 flex-1">
-                          {section.icon}
+                          {section.iconName && getIconComponent(section.iconName)}
                           <span className="truncate">{section.title}</span>
                           {section.category && (
                             <div
@@ -621,7 +348,7 @@ Unable to load documentation content from the server.
                           }`}
                       >
                         <div className="flex items-center gap-2 min-w-0 flex-1">
-                          {section.icon}
+                          {section.iconName && getIconComponent(section.iconName)}
                           <span className="truncate">{section.title}</span>
                           {section.category && (
                             <div
