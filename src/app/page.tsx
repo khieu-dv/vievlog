@@ -21,6 +21,16 @@ export default function HomePage() {
 
   const [categories, setCategories] = useState<Category[]>([]);
   const [isLoadingCategories, setIsLoadingCategories] = useState(true);
+  
+  // Group categories by mainName
+  const groupedCategories = categories.reduce((acc, category) => {
+    const mainName = category.mainName || 'Languages';
+    if (!acc[mainName]) {
+      acc[mainName] = [];
+    }
+    acc[mainName].push(category);
+    return acc;
+  }, {} as Record<string, Category[]>);
 
   // Fetch categories from database
   const fetchCategories = async () => {
@@ -43,6 +53,7 @@ export default function HomePage() {
         slug: item.slug,
         color: item.color || '#3B82F6',
         description: getContent(item, 'description'),
+        mainName: item.mainName || 'Languages', // Default to Languages if not set
         postCount: 0, // Will be updated when we get post counts
         originalData: item
       }));
@@ -129,51 +140,77 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Programming Languages Grid - shadcn/ui Style */}
+      {/* Programming Categories - shadcn/ui Style */}
       <div className="relative py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-50 sm:text-4xl">
-              {t('home.chooseLanguage')}
-            </h2>
-            <p className="mt-6 text-lg leading-8 text-slate-600 dark:text-slate-400">
-              {t('home.languageDescription')}
-            </p>
-          </div>
 
-          {/* Programming Languages Grid */}
+          {/* Programming Categories - Grouped by mainName */}
           {isLoadingCategories ? (
-            <div className="mx-auto mt-16 text-center">
+            <div className="mx-auto text-center">
               <div className="animate-spin inline-block w-8 h-8 border-2 border-current border-t-transparent text-slate-900 dark:text-slate-50 rounded-full mb-4"></div>
-              <p className="text-slate-600 dark:text-slate-400">{t('home.loadingLanguages')}</p>
+              <p className="text-slate-600 dark:text-slate-400">Loading categories...</p>
             </div>
           ) : (
-            <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-6 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3 xl:grid-cols-4">
-              {categories.map((category) => (
-                <div
-                  key={category.id}
-                  onClick={() => handleCategorySelect(category.id)}
-                  className="group cursor-pointer rounded-2xl bg-white p-8 ring-1 ring-inset ring-slate-200 hover:bg-slate-50 dark:bg-slate-900 dark:ring-slate-800 dark:hover:bg-slate-800/50 transition-all duration-300"
-                >
-                  <div className="flex items-center gap-x-4">
-                    <div 
-                      className="h-12 w-12 flex-none rounded-lg flex items-center justify-center text-white text-lg font-semibold"
-                      style={{ backgroundColor: category.color }}
-                    >
-                      {category.name.charAt(0).toUpperCase()}
-                    </div>
-                    <div className="text-sm font-semibold leading-6 text-slate-900 dark:text-slate-50 group-hover:text-primary transition-colors">
-                      {category.name}
-                    </div>
-                  </div>
-                  <p className="mt-4 text-sm leading-6 text-slate-600 dark:text-slate-400">
-                    {category.postCount || 0} tutorials available
-                  </p>
-                  {category.description && (
-                    <p className="mt-2 text-sm leading-6 text-slate-500 dark:text-slate-500 line-clamp-2">
-                      {category.description}
+            <div className="mx-auto space-y-16">
+              {Object.entries(groupedCategories)
+                .sort(([a], [b]) => {
+                  const order = ['Languages', 'Frameworks', 'Soft Skills'];
+                  return order.indexOf(a) - order.indexOf(b);
+                })
+                .map(([mainName, categoryList]) => (
+                <div key={mainName}>
+                  {/* Section Header */}
+                  <div className="text-center mb-12">
+                    <h3 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-slate-50 mb-4">
+                      {mainName}
+                    </h3>
+                    <p className="text-base text-slate-600 dark:text-slate-400">
+                      {mainName === 'Frameworks' 
+                        ? 'Popular frameworks and tools to build amazing applications'
+                        : mainName === 'Languages'
+                        ? 'Programming languages to master your coding skills'
+                        : 'Essential soft skills to advance your career and personal development'
+                      }
                     </p>
-                  )}
+                  </div>
+
+                  {/* Categories Grid */}
+                  <div className="grid max-w-2xl mx-auto grid-cols-1 gap-6 sm:grid-cols-2 lg:max-w-none lg:grid-cols-3 xl:grid-cols-4">
+                    {categoryList.map((category) => (
+                      <div
+                        key={category.id}
+                        onClick={() => handleCategorySelect(category.id)}
+                        className="group cursor-pointer rounded-2xl bg-white p-6 ring-1 ring-inset ring-slate-200 hover:bg-slate-50 hover:ring-slate-300 dark:bg-slate-900 dark:ring-slate-800 dark:hover:bg-slate-800/50 dark:hover:ring-slate-700 transition-all duration-300 hover:shadow-md"
+                      >
+                        <div className="flex items-center gap-x-4 mb-4">
+                          <div 
+                            className="h-12 w-12 flex-none rounded-xl flex items-center justify-center text-white text-lg font-semibold shadow-sm"
+                            style={{ backgroundColor: category.color }}
+                          >
+                            {category.name.charAt(0).toUpperCase()}
+                          </div>
+                          <div className="text-base font-semibold leading-6 text-slate-900 dark:text-slate-50 group-hover:text-primary transition-colors">
+                            {category.name}
+                          </div>
+                        </div>
+                        
+                        {category.description && (
+                          <p className="text-sm leading-6 text-slate-600 dark:text-slate-400 mb-4 line-clamp-2">
+                            {category.description}
+                          </p>
+                        )}
+                        
+                        <div className="flex items-center justify-between">
+                          <p className="text-sm font-medium text-slate-500 dark:text-slate-500">
+                            {category.postCount || 0} tutorials
+                          </p>
+                          <div className="opacity-0 group-hover:opacity-100 transition-opacity">
+                            <ArrowRight className="h-4 w-4 text-primary" />
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               ))}
             </div>

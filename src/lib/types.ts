@@ -45,7 +45,7 @@ export type Category = {
   color: string;
   description?: string;
   postCount?: number;
-
+  mainName?: string; // "Frameworks" or "Languages"
 }
 
 
