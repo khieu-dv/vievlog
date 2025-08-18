@@ -197,7 +197,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
   }
 
   return (
-    <div className={`flex flex-col lg:flex-row gap-6 lg:gap-8 ${className}`}>
+    <div className={`flex flex-col lg:flex-row gap-8 ${className}`}>
       {/* Mobile Toggle Button */}
       <div className="lg:hidden">
         <button
@@ -211,7 +211,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
             }
             setExpandedSections(newExpanded);
           }}
-          className="flex items-center justify-between w-full p-3 bg-card border rounded-lg hover:bg-muted/50 transition-colors"
+          className="flex items-center justify-between w-full p-3 bg-card/50 backdrop-blur-sm border rounded-lg hover:bg-accent/50 transition-all duration-200"
         >
           <div className="flex items-center gap-2">
             <BookOpen className="h-4 w-4" />
@@ -237,16 +237,16 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
         />
       )}
 
-      {/* Sidebar Navigation */}
-      <aside className={`w-full lg:w-80 flex-shrink-0 ${expandedSections.has('mobile-nav') ? 'block relative z-50' : 'hidden lg:block'
+      {/* Sidebar Navigation - shadcn style */}
+      <aside className={`w-full lg:w-72 xl:w-80 flex-shrink-0 ${expandedSections.has('mobile-nav') ? 'block relative z-50' : 'hidden lg:block'
         }`}>
         <div className="sticky top-6">
-          <div className="bg-card border rounded-lg shadow-sm flex flex-col" style={{height: 'calc(100vh - 8rem)'}}>
-            {/* Header with Search */}
-            <div className="p-4 border-b flex-shrink-0">
-              <h2 className="text-lg font-semibold text-foreground mb-3 hidden lg:block">Documentation</h2>
+          <div className="bg-card/50 backdrop-blur-sm border rounded-xl shadow-sm flex flex-col" style={{height: 'calc(100vh - 8rem)'}}>
+            {/* Header with Search - shadcn style */}
+            <div className="p-4 border-b border-border/40 flex-shrink-0">
+              <h2 className="text-sm font-medium text-foreground/80 mb-4 hidden lg:block tracking-wide uppercase">Documentation</h2>
 
-              {/* Search Bar */}
+              {/* Search Bar - shadcn style */}
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <input
@@ -254,12 +254,12 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                   placeholder="Search documentation..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-10 pr-10 py-2 bg-muted/50 border border-muted-foreground/20 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
+                  className="w-full pl-10 pr-10 py-2.5 bg-background border border-border/60 rounded-lg text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-border transition-colors"
                 />
                 {searchQuery && (
                   <button
                     onClick={() => setSearchQuery('')}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
                   >
                     <X className="h-4 w-4" />
                   </button>
@@ -268,14 +268,14 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
 
               {/* Search Results Count */}
               {searchQuery && (
-                <p className="text-xs text-muted-foreground mt-2">
+                <p className="text-xs text-muted-foreground mt-3">
                   {filteredDocsData.length} section{filteredDocsData.length !== 1 ? 's' : ''} found
                 </p>
               )}
             </div>
 
             {/* Navigation Content - Scrollable */}
-            <div className="p-3 lg:p-4 flex-1 overflow-y-auto" data-scroll-area="sidebar">
+            <div className="p-4 flex-1 overflow-y-auto" data-scroll-area="sidebar">
 
               <nav className="space-y-2">
                 {/* Home/Overview always visible */}
@@ -290,9 +290,9 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                         return newSet;
                       });
                     }}
-                    className={`flex items-center gap-2 w-full p-2 text-sm font-medium rounded-md transition-colors ${activeSection === 'overview'
-                        ? 'bg-primary text-primary-foreground'
-                        : 'text-foreground hover:bg-muted'
+                    className={`flex items-center gap-3 w-full p-2.5 text-sm font-medium rounded-lg transition-all duration-200 ${activeSection === 'overview'
+                        ? 'bg-accent text-accent-foreground shadow-sm'
+                        : 'text-muted-foreground hover:text-foreground hover:bg-accent/50'
                       }`}
                   >
                     <Home className="h-4 w-4" />
@@ -310,9 +310,9 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                           setActiveSection(section.id);
                           toggleSection(section.id);
                         }}
-                        className={`flex items-center gap-2 w-full p-2 lg:p-2 text-sm font-medium rounded-md transition-colors justify-between ${activeSection === section.id
-                            ? 'bg-muted text-foreground'
-                            : 'text-foreground hover:bg-muted'
+                        className={`flex items-center gap-3 w-full p-2.5 text-sm font-medium rounded-lg transition-all duration-200 justify-between ${activeSection === section.id
+                            ? 'bg-accent text-accent-foreground shadow-sm'
+                            : 'text-muted-foreground hover:text-foreground hover:bg-accent/50'
                           }`}
                       >
                         <div className="flex items-center gap-2 min-w-0 flex-1">
@@ -342,9 +342,9 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                         onClick={() => {
                           setActiveSection(section.id);
                         }}
-                        className={`flex items-center gap-2 w-full p-2 lg:p-2 text-sm font-medium rounded-md transition-colors ${activeSection === section.id
-                            ? 'bg-muted text-foreground'
-                            : 'text-foreground hover:bg-muted'
+                        className={`flex items-center gap-3 w-full p-2.5 text-sm font-medium rounded-lg transition-all duration-200 ${activeSection === section.id
+                            ? 'bg-accent text-accent-foreground shadow-sm'
+                            : 'text-muted-foreground hover:text-foreground hover:bg-accent/50'
                           }`}
                       >
                         <div className="flex items-center gap-2 min-w-0 flex-1">
@@ -368,9 +368,9 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                           <button
                             key={post.id}
                             onClick={() => handlePostSelect(post.id)}
-                            className={`block w-full text-left p-2 lg:p-2 text-xs rounded-md transition-colors ${activeSection === `post-${post.id}`
-                                ? 'bg-muted text-foreground font-medium'
-                                : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+                            className={`block w-full text-left p-2.5 text-xs rounded-lg transition-all duration-200 ${activeSection === `post-${post.id}`
+                                ? 'bg-accent/70 text-accent-foreground font-medium shadow-sm'
+                                : 'text-muted-foreground/80 hover:bg-accent/30 hover:text-foreground'
                               }`}
                           >
                             <div className="truncate pr-2">{post.title}</div>
@@ -387,9 +387,9 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                               <button
                                 key={post.id}
                                 onClick={() => handlePostSelect(post.id)}
-                                className={`block w-full text-left p-2 lg:p-2 text-xs rounded-md transition-colors ${activeSection === `post-${post.id}`
-                                    ? 'bg-muted text-foreground font-medium'
-                                    : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+                                className={`block w-full text-left p-2.5 text-xs rounded-lg transition-all duration-200 ${activeSection === `post-${post.id}`
+                                    ? 'bg-accent/70 text-accent-foreground font-medium shadow-sm'
+                                    : 'text-muted-foreground/80 hover:bg-accent/30 hover:text-foreground'
                                   }`}
                               >
                                 <div className="truncate pr-2">{post.title}</div>
@@ -432,14 +432,14 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
         </div>
       </aside>
 
-      {/* Main Content */}
+      {/* Main Content - shadcn style */}
       <main className="flex-1 min-w-0">
-        <div className="bg-card border rounded-lg shadow-sm">
-          {/* Content Header with Breadcrumbs */}
-          <div className="border-b px-6 py-4">
-            <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
+        <div className="bg-card/50 backdrop-blur-sm border rounded-xl shadow-sm">
+          {/* Content Header with Breadcrumbs - shadcn style */}
+          <div className="border-b border-border/40 px-6 py-4">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground/80 mb-2">
               <Home className="h-4 w-4" />
-              <ChevronRight className="h-3 w-3" />
+              <ChevronRight className="h-3 w-3 text-muted-foreground/60" />
               <span className="text-foreground font-medium">
                 {activeSection.startsWith('post-')
                   ? (() => {
@@ -468,7 +468,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
           </div>
 
           {/* Content Body - Full Height */}
-          <div className="p-6 lg:p-8">
+          <div className="p-6 lg:p-8 bg-gradient-to-br from-background/50 to-background">
             {activeSection.startsWith('post-') ? (
               // Render individual post content
               (() => {
@@ -505,7 +505,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                         </div>
                       </div>
 
-                      <h1 className="text-4xl font-bold text-foreground mb-6 leading-tight">{post.title}</h1>
+                      <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground mb-6 leading-tight">{post.title}</h1>
 
                       {post.excerpt && (
                         <p className="text-xl text-muted-foreground mb-8 leading-relaxed">{post.excerpt}</p>
@@ -513,7 +513,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                     </div>
 
                     {/* Article Content */}
-                    <div className="prose prose-slate dark:prose-invert prose-lg max-w-none">
+                    <div className="prose prose-slate dark:prose-invert prose-lg max-w-none prose-headings:font-semibold prose-headings:tracking-tight">
                       <MarkdownRenderer content={post.content || 'No content available for this post.'} />
                     </div>
 
@@ -569,7 +569,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                       {(showAllPosts[activeSection] ? findActivePosts() : findActivePosts().slice(0, 6)).map((post) => (
                         <div
                           key={post.id}
-                          className="group p-6 border rounded-xl hover:border-primary/20 hover:shadow-lg transition-all duration-300 cursor-pointer bg-gradient-to-br from-card to-muted/20"
+                          className="group p-6 border border-border/60 rounded-xl hover:border-border hover:shadow-md hover:shadow-black/5 transition-all duration-300 cursor-pointer bg-card/50 hover:bg-card/80 backdrop-blur-sm"
                           onClick={() => handlePostSelect(post.id)}
                         >
                           <div className="flex items-start gap-6">
