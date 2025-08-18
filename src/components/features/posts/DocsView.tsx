@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { ChevronDown, ChevronRight, Search, X, Home, BookOpen } from 'lucide-react';
+import { ChevronDown, ChevronRight, Search, X, Home, BookOpen, Menu } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { MarkdownRenderer } from '~/components/common/MarkdownRenderer';
@@ -198,8 +198,8 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
 
   return (
     <div className={`flex flex-col lg:flex-row gap-8 ${className}`}>
-      {/* Mobile Toggle Button */}
-      <div className="lg:hidden">
+      {/* Mobile Toggle Button - Icon Only */}
+      <div className="lg:hidden fixed bottom-6 left-4 z-50">
         <button
           onClick={() => {
             const newExpanded = new Set(expandedSections);
@@ -211,24 +211,17 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
             }
             setExpandedSections(newExpanded);
           }}
-          className="flex items-center justify-between w-full p-3 bg-card/50 backdrop-blur-sm border rounded-lg hover:bg-accent/50 transition-all duration-200"
+          className="p-3 bg-card/90 backdrop-blur-sm border rounded-xl shadow-lg hover:bg-accent/50 transition-all duration-200"
+          aria-label="Toggle Documentation Menu"
         >
-          <div className="flex items-center gap-2">
-            <BookOpen className="h-4 w-4" />
-            <span className="font-medium">Documentation Menu</span>
-          </div>
-          {expandedSections.has('mobile-nav') ? (
-            <ChevronDown className="h-4 w-4" />
-          ) : (
-            <ChevronRight className="h-4 w-4" />
-          )}
+          <Menu className="h-5 w-5 text-foreground" />
         </button>
       </div>
 
       {/* Mobile Backdrop */}
       {expandedSections.has('mobile-nav') && (
         <div
-          className="fixed inset-0 bg-black/20 z-40 lg:hidden"
+          className="fixed inset-0 bg-black/40 z-40 lg:hidden"
           onClick={() => setExpandedSections(prev => {
             const newSet = new Set(prev);
             newSet.delete('mobile-nav');
@@ -238,13 +231,36 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
       )}
 
       {/* Sidebar Navigation - shadcn style */}
-      <aside className={`w-full lg:w-72 xl:w-80 flex-shrink-0 ${expandedSections.has('mobile-nav') ? 'block relative z-50' : 'hidden lg:block'
-        }`}>
-        <div className="sticky top-6">
-          <div className="bg-card/50 backdrop-blur-sm border rounded-xl shadow-sm flex flex-col" style={{height: 'calc(100vh - 8rem)'}}>
+      <aside className={`
+        lg:w-72 xl:w-80 flex-shrink-0 transition-all duration-300 ease-in-out
+        ${expandedSections.has('mobile-nav') 
+          ? 'fixed left-0 top-0 bottom-0 w-3/4 z-50 lg:relative lg:w-72 xl:w-80 transform translate-x-0' 
+          : 'fixed left-0 top-0 bottom-0 w-3/4 z-50 lg:relative lg:w-72 xl:w-80 transform -translate-x-full lg:translate-x-0 lg:block'
+        }
+      `}>
+        <div className={`${expandedSections.has('mobile-nav') ? 'h-full' : 'sticky top-6'}`}>
+          <div className={`bg-card/95 backdrop-blur-sm border ${expandedSections.has('mobile-nav') ? 'rounded-none border-l-0 border-t-0 border-b-0' : 'rounded-xl'} shadow-sm flex flex-col ${expandedSections.has('mobile-nav') ? 'h-full' : ''}`} style={expandedSections.has('mobile-nav') ? {} : {height: 'calc(100vh - 8rem)'}}>
             {/* Header with Search - shadcn style */}
             <div className="p-4 border-b border-border/40 flex-shrink-0">
-              <h2 className="text-sm font-medium text-foreground/80 mb-4 hidden lg:block tracking-wide uppercase">Documentation</h2>
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-sm font-medium text-foreground/80 tracking-wide uppercase">
+                  {expandedSections.has('mobile-nav') ? 'Documentation' : 'Documentation'}
+                </h2>
+                {/* Close button for mobile */}
+                {expandedSections.has('mobile-nav') && (
+                  <button
+                    onClick={() => setExpandedSections(prev => {
+                      const newSet = new Set(prev);
+                      newSet.delete('mobile-nav');
+                      return newSet;
+                    })}
+                    className="lg:hidden p-1 rounded-md hover:bg-accent/50 transition-colors"
+                    aria-label="Close Documentation Menu"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
+                )}
+              </div>
 
               {/* Search Bar - shadcn style */}
               <div className="relative">
@@ -275,7 +291,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
             </div>
 
             {/* Navigation Content - Scrollable */}
-            <div className="p-4 flex-1 overflow-y-auto" data-scroll-area="sidebar">
+            <div className={`p-4 flex-1 overflow-y-auto ${expandedSections.has('mobile-nav') ? 'pb-6' : ''}`} data-scroll-area="sidebar">
 
               <nav className="space-y-2">
                 {/* Home/Overview always visible */}
@@ -318,12 +334,6 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                         <div className="flex items-center gap-2 min-w-0 flex-1">
                           {section.iconName && getIconComponent(section.iconName)}
                           <span className="truncate">{section.title}</span>
-                          {section.category && (
-                            <div
-                              className="w-3 h-3 rounded-full flex-shrink-0"
-                              style={{ backgroundColor: section.category.color }}
-                            />
-                          )}
                         </div>
                         <div className="flex items-center gap-1 flex-shrink-0">
                           <span className="text-xs font-medium">
@@ -350,12 +360,6 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                         <div className="flex items-center gap-2 min-w-0 flex-1">
                           {section.iconName && getIconComponent(section.iconName)}
                           <span className="truncate">{section.title}</span>
-                          {section.category && (
-                            <div
-                              className="w-3 h-3 rounded-full flex-shrink-0"
-                              style={{ backgroundColor: section.category.color }}
-                            />
-                          )}
                         </div>
                       </button>
                     )}
@@ -433,7 +437,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
       </aside>
 
       {/* Main Content - shadcn style */}
-      <main className="flex-1 min-w-0">
+      <main className={`flex-1 min-w-0 ${expandedSections.has('mobile-nav') ? 'lg:block hidden' : 'block'}`}>
         <div className="bg-card/50 backdrop-blur-sm border rounded-xl shadow-sm">
           {/* Content Header with Breadcrumbs - shadcn style */}
           <div className="border-b border-border/40 px-6 py-4">
@@ -577,10 +581,6 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                               {/* Category badge */}
                               {post.category && (
                                 <div className="flex items-center gap-2 mb-3">
-                                  <div
-                                    className="w-2 h-2 rounded-full flex-shrink-0"
-                                    style={{ backgroundColor: post.category.color }}
-                                  />
                                   <span
                                     className="text-xs font-medium px-2 py-1 rounded-full"
                                     style={{
