@@ -1,8 +1,12 @@
 import React from 'react';
 import { BookOpen, Rocket, Settings, Code, Video, MessageCircle, Shield, Globe, GitBranch } from 'lucide-react';
 
+interface IconProps {
+  className?: string;
+}
+
 export const getIconComponent = (iconName: string): React.ReactNode => {
-  const iconMap: Record<string, React.ComponentType<any>> = {
+  const iconMap: Record<string, React.ComponentType<IconProps>> = {
     'book-open': BookOpen,
     'code': Code,
     'rocket': Rocket,

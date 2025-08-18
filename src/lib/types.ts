@@ -117,35 +117,3 @@ export type Video = {
 
 
 
-export type TopContributor = {
-    name: string;
-    avatar: string;
-    points: number;
-    badge: string;
-}
-
-export type PopularCourse = {
-    title: string;
-    rating: number;
-    students: number;
-    image: string;
-}
-
-export type Announcement = {
-    title: string;
-    date: string;
-    excerpt: string;
-}
-
-export type Event = {
-    title: string;
-    date: string;
-    type: string;
-}
-
-export type RightSidebarProps = {
-    topContributors: TopContributor[];
-    popularCourses: PopularCourse[];
-    recentAnnouncements: Announcement[];
-    upcomingEvents: Event[];
-}

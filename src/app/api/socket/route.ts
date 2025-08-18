@@ -1,10 +1,9 @@
 // app/api/socket/route.ts
 import { NextRequest } from 'next/server';
-import { Message } from '../../../lib/types';
 import { subscriber } from '../../../lib/redis';
 
 // Server-Sent Events (SSE) endpoint
-export async function GET(request: NextRequest) {
+export function GET(request: NextRequest) {
   const url = new URL(request.url);
   const roomId = url.searchParams.get('roomId');
   
@@ -14,6 +13,7 @@ export async function GET(request: NextRequest) {
 
   const encoder = new TextEncoder();
   let controllerRef: ReadableStreamDefaultController | null = null;
+  let cleanupFunc: (() => void) | null = null;
 
   const stream = new ReadableStream({
     start(controller) {
@@ -27,7 +27,7 @@ export async function GET(request: NextRequest) {
           controller.enqueue(encoder.encode('event: ping\ndata: {}\n\n'));
         } catch (err) {
           console.error('Error sending ping, cleaning up:', err);
-          cleanup();
+          cleanupFunc?.();
         }
       }, 30000);
 
@@ -42,29 +42,29 @@ export async function GET(request: NextRequest) {
         }
       };
 
-      subscriber.subscribe(channelName);
+      void subscriber.subscribe(channelName);
       subscriber.on('message', messageHandler);
 
-      const cleanup = () => {
+      cleanupFunc = () => {
         clearInterval(pingInterval);
         subscriber.off('message', messageHandler);
-        subscriber.unsubscribe(channelName);
+        void subscriber.unsubscribe(channelName);
         try {
           controller.close(); // đóng stream để ngăn enqueue tiếp tục
-        } catch (_) {}
+        } catch {
+          // Ignore cleanup errors
+        }
       };
 
       // Cleanup khi client ngắt kết nối
       request.signal.addEventListener('abort', () => {
         console.log('Client disconnected, cleaning up');
-        cleanup();
+        cleanupFunc?.();
       });
 
     },
     cancel() {
-      if (controllerRef) {
-        cleanup();
-      }
+      cleanupFunc?.();
     }
   });
 
@@ -76,8 +76,5 @@ export async function GET(request: NextRequest) {
       'X-Accel-Buffering': 'no'
     }
   });
-}
-function cleanup() {
-  throw new Error('Function not implemented.');
 }
 

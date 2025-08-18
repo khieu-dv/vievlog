@@ -32,10 +32,29 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
     router.replace(`/posts?${params.toString()}`, { scroll: false });
   };
 
-  // Handle post selection with URL update
+  // Handle post selection with URL update and smooth scroll
   const handlePostSelect = (postId: string) => {
     setActiveSection(`post-${postId}`);
     updateURL(postId);
+    
+    // Scroll to top of main content area smoothly
+    setTimeout(() => {
+      const mainContent = document.querySelector('main');
+      if (mainContent) {
+        mainContent.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'start',
+          inline: 'nearest'
+        });
+      } else {
+        // Fallback to window scroll if main element not found
+        window.scrollTo({ 
+          top: 0, 
+          behavior: 'smooth' 
+        });
+      }
+    }, 100); // Small delay to ensure content has rendered
+    
     // Close mobile menu when post is selected
     setExpandedSections(prev => {
       const newSet = new Set(prev);
