@@ -102,7 +102,14 @@ const VideoFeed: React.FC<VideoFeedProps> = ({ videos }) => {
     return (
         <div
             ref={containerRef}
-            className="h-full overflow-y-auto video-container"
+            className="video-container"
+            style={{
+                height: '100%',
+                overflowY: 'auto',
+                scrollSnapType: 'y mandatory',
+                WebkitOverflowScrolling: 'touch',
+                overscrollBehavior: 'contain'
+            }}
         >
             {videos.map((video, index) => (
                 <div
@@ -110,10 +117,14 @@ const VideoFeed: React.FC<VideoFeedProps> = ({ videos }) => {
                     ref={(el) => {
                         videoRefs.current[index] = el;
                     }}
-                    className="w-full relative"
+                    className="w-full"
                     style={{
                         height: 'calc(100vh - 56px)',
-                        minHeight: 'calc(100vh - 56px)'
+                        minHeight: 'calc(100vh - 56px)',
+                        scrollSnapAlign: 'start',
+                        scrollSnapStop: 'always',
+                        position: 'relative',
+                        display: 'block'
                     }}
                 >
                     <VideoPlayer

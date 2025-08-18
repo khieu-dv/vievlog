@@ -210,19 +210,24 @@ a:focus-visible {
   background: var(--color-foreground);
 }
 
-/* Enhanced video feed scroll snapping */
+/* Enhanced video feed scroll snapping - high specificity for production */
 .video-container {
-  -webkit-overflow-scrolling: touch;
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch !important;
+  scroll-snap-type: y mandatory !important;
+  scroll-behavior: auto !important;
+  overscroll-behavior: contain !important;
+  height: 100% !important;
+  overflow-y: auto !important;
 }
 
 .video-container > div {
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
+  scroll-snap-align: start !important;
+  scroll-snap-stop: always !important;
+  display: block !important;
+  position: relative !important;
 }
 
-/* Smooth scrolling for all elements */
-* {
+/* Smooth scrolling for all elements except video container */
+*:not(.video-container) {
   scroll-behavior: smooth;
 }
