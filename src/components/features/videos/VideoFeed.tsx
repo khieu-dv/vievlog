@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import VideoPlayer from "./VideoPlayer";
 import VideoInfo from "./VideoInfo";
 import { Video } from '~/lib/types';
@@ -11,23 +11,22 @@ type VideoFeedProps = {
 
 const VideoFeed: React.FC<VideoFeedProps> = ({ videos }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [muted, setMuted] = useState(true);
     const containerRef = useRef<HTMLDivElement>(null);
     const videoRefs = useRef<(HTMLDivElement | null)[]>([]);
-    const [globalMuted, setGlobalMuted] = useState(true);
-    const [hasPlayedBefore, setHasPlayedBefore] = useState(false);
 
     // Initialize video refs
     useEffect(() => {
-        videoRefs.current = Array(videos.length).fill(null);
+        videoRefs.current = videoRefs.current.slice(0, videos.length);
     }, [videos.length]);
 
-    // Simple intersection observer for video visibility
+    // Intersection Observer to detect which video is in view
     useEffect(() => {
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
-                    if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
-                        const index = videoRefs.current.findIndex(ref => ref === entry.target);
+                    if (entry.isIntersecting) {
+                        const index = videoRefs.current.indexOf(entry.target as HTMLDivElement);
                         if (index !== -1 && index !== currentIndex) {
                             setCurrentIndex(index);
                         }
@@ -35,9 +34,8 @@ const VideoFeed: React.FC<VideoFeedProps> = ({ videos }) => {
                 });
             },
             {
-                threshold: 0.5,
-                root: containerRef.current,
-                rootMargin: '0px'
+                threshold: 0.7, // Video must be 70% visible to be considered active
+                root: containerRef.current
             }
         );
 
@@ -48,67 +46,24 @@ const VideoFeed: React.FC<VideoFeedProps> = ({ videos }) => {
         return () => observer.disconnect();
     }, [videos, currentIndex]);
 
-    // Update play state
-    useEffect(() => {
-        if (!hasPlayedBefore && currentIndex >= 0) {
-            setHasPlayedBefore(true);
-        }
-    }, [currentIndex, hasPlayedBefore]);
-
-    // Keyboard navigation
-    useEffect(() => {
-        const handleKeyDown = (e: KeyboardEvent) => {
-            switch (e.key) {
-                case "ArrowUp":
-                    e.preventDefault();
-                    if (currentIndex > 0 && containerRef.current) {
-                        const targetElement = videoRefs.current[currentIndex - 1];
-                        targetElement?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                    break;
-                case "ArrowDown":
-                    e.preventDefault();
-                    if (currentIndex < videos.length - 1 && containerRef.current) {
-                        const targetElement = videoRefs.current[currentIndex + 1];
-                        targetElement?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                    break;
-                case "m":
-                case "M":
-                    setGlobalMuted(prev => !prev);
-                    break;
-                case " ":
-                    e.preventDefault();
-                    if (globalMuted) {
-                        setGlobalMuted(false);
-                    }
-                    break;
-            }
-        };
-
-        window.addEventListener("keydown", handleKeyDown);
-        return () => window.removeEventListener("keydown", handleKeyDown);
-    }, [currentIndex, videos.length, globalMuted]);
-
-    // Mute state handler
-    const handleMutedChange = useCallback((muted: boolean) => {
-        setGlobalMuted(muted);
-    }, []);
+    const toggleMute = () => {
+        setMuted(!muted);
+    };
 
     if (videos.length === 0) {
-        return <div className="text-white text-center p-4">No videos found</div>;
+        return (
+            <div className="flex items-center justify-center h-full">
+                <p className="text-white text-center">No videos found</p>
+            </div>
+        );
     }
 
     return (
         <div
             ref={containerRef}
-            className="video-container"
+            className="video-feed"
             style={{
-                height: '100%',
-                overflowY: 'auto',
-                scrollSnapType: 'y mandatory',
-                WebkitOverflowScrolling: 'touch',
-                overscrollBehavior: 'contain'
+                height: 'calc(100vh - 56px)' // Account for header
             }}
         >
             {videos.map((video, index) => (
@@ -117,22 +72,16 @@ const VideoFeed: React.FC<VideoFeedProps> = ({ videos }) => {
                     ref={(el) => {
                         videoRefs.current[index] = el;
                     }}
-                    className="w-full"
+                    className="video-item"
                     style={{
-                        height: 'calc(100vh - 56px)',
-                        minHeight: 'calc(100vh - 56px)',
-                        scrollSnapAlign: 'start',
-                        scrollSnapStop: 'always',
-                        position: 'relative',
-                        display: 'block'
+                        height: 'calc(100vh - 56px)' // Match container height
                     }}
                 >
                     <VideoPlayer
                         video={video}
-                        isPlaying={index === currentIndex}
-                        globalMuted={globalMuted}
-                        onMutedChange={handleMutedChange}
-                        playedBefore={hasPlayedBefore}
+                        isActive={index === currentIndex}
+                        muted={muted}
+                        onToggleMute={toggleMute}
                     />
                     <VideoInfo video={video} />
                 </div>

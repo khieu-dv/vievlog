@@ -210,21 +210,41 @@ a:focus-visible {
   background: var(--color-foreground);
 }
 
-/* Enhanced video feed scroll snapping - high specificity for production */
-.video-container {
-  -webkit-overflow-scrolling: touch !important;
-  scroll-snap-type: y mandatory !important;
-  scroll-behavior: auto !important;
-  overscroll-behavior: contain !important;
-  height: 100% !important;
-  overflow-y: auto !important;
+/* TikTok-style video feed */
+.video-feed {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+  margin: 0 auto;
 }
 
-.video-container > div {
-  scroll-snap-align: start !important;
-  scroll-snap-stop: always !important;
-  display: block !important;
-  position: relative !important;
+/* Hide scrollbar */
+.video-feed::-webkit-scrollbar {
+  display: none;
+}
+
+.video-feed {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.video-item {
+  height: 100vh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Desktop: Center video and limit width */
+@media (min-width: 1024px) {
+  .video-feed {
+    max-width: 500px; /* Limit width on desktop like TikTok */
+  }
 }
 
 /* Smooth scrolling for all elements except video container */
