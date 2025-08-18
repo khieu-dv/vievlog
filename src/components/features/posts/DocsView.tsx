@@ -234,12 +234,12 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
       <aside className={`
         lg:w-72 xl:w-80 flex-shrink-0 transition-all duration-300 ease-in-out
         ${expandedSections.has('mobile-nav') 
-          ? 'fixed left-0 top-0 bottom-0 w-3/4 z-50 lg:relative lg:w-72 xl:w-80 transform translate-x-0' 
-          : 'fixed left-0 top-0 bottom-0 w-3/4 z-50 lg:relative lg:w-72 xl:w-80 transform -translate-x-full lg:translate-x-0 lg:block'
+          ? 'fixed left-0 top-0 bottom-0 w-3/4 z-50 lg:relative lg:w-72 xl:w-80 lg:z-auto transform translate-x-0' 
+          : 'fixed left-0 top-0 bottom-0 w-3/4 z-50 lg:relative lg:w-72 xl:w-80 lg:z-auto transform -translate-x-full lg:translate-x-0 lg:block'
         }
       `}>
-        <div className={`${expandedSections.has('mobile-nav') ? 'h-full' : 'sticky top-6'}`}>
-          <div className={`bg-card/95 backdrop-blur-sm border ${expandedSections.has('mobile-nav') ? 'rounded-none border-l-0 border-t-0 border-b-0' : 'rounded-xl'} shadow-sm flex flex-col ${expandedSections.has('mobile-nav') ? 'h-full' : ''}`} style={expandedSections.has('mobile-nav') ? {} : {height: 'calc(100vh - 8rem)'}}>
+        <div className={`${expandedSections.has('mobile-nav') ? 'h-full' : 'sticky top-20'}`}>
+          <div className={`bg-card/95 backdrop-blur-sm border ${expandedSections.has('mobile-nav') ? 'rounded-none border-l-0 border-t-0 border-b-0' : 'rounded-xl'} shadow-sm flex flex-col ${expandedSections.has('mobile-nav') ? 'h-full' : ''}`} style={expandedSections.has('mobile-nav') ? {} : {height: 'calc(100vh - 6rem)'}}>
             {/* Header with Search - shadcn style */}
             <div className="p-4 border-b border-border/40 flex-shrink-0">
               <div className="flex items-center justify-between mb-4">
