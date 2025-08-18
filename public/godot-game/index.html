@@ -111,12 +111,173 @@
 			padding: 4px 6px;
 			visibility: visible;
 		}
+
+		/* Back button styles */
+		#back-button {
+			position: fixed;
+			top: 20px;
+			left: 20px;
+			z-index: 1000;
+			background-color: rgba(0, 0, 0, 0.8);
+			color: white;
+			border: 2px solid rgba(255, 255, 255, 0.3);
+			border-radius: 8px;
+			padding: 12px 16px;
+			font-family: 'Noto Sans', 'Droid Sans', Arial, sans-serif;
+			font-size: 14px;
+			font-weight: bold;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			backdrop-filter: blur(10px);
+		}
+
+		#back-button:hover {
+			background-color: rgba(255, 255, 255, 0.1);
+			border-color: rgba(255, 255, 255, 0.5);
+			transform: scale(1.05);
+		}
+
+		#back-button:active {
+			transform: scale(0.95);
+		}
+
+		/* Mobile responsive */
+		@media (max-width: 768px) {
+			#back-button {
+				top: 10px;
+				left: 10px;
+				padding: 10px 12px;
+				font-size: 12px;
+			}
+		}
+
+		/* Confirmation popup styles */
+		#confirm-modal {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.8);
+			display: none;
+			justify-content: center;
+			align-items: center;
+			z-index: 2000;
+			backdrop-filter: blur(5px);
+		}
+
+		#confirm-dialog {
+			background-color: #2a2a2a;
+			border: 2px solid #555;
+			border-radius: 12px;
+			padding: 30px;
+			max-width: 400px;
+			width: 90%;
+			text-align: center;
+			color: white;
+			font-family: 'Noto Sans', 'Droid Sans', Arial, sans-serif;
+			box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+		}
+
+		#confirm-dialog h3 {
+			margin: 0 0 15px 0;
+			font-size: 20px;
+			color: #ffcc00;
+		}
+
+		#confirm-dialog p {
+			margin: 0 0 25px 0;
+			font-size: 16px;
+			line-height: 1.4;
+			color: #ccc;
+		}
+
+		.confirm-buttons {
+			display: flex;
+			gap: 15px;
+			justify-content: center;
+		}
+
+		.confirm-btn {
+			padding: 12px 24px;
+			border: none;
+			border-radius: 8px;
+			font-size: 14px;
+			font-weight: bold;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			font-family: inherit;
+		}
+
+		.confirm-btn-yes {
+			background-color: #ff4757;
+			color: white;
+		}
+
+		.confirm-btn-yes:hover {
+			background-color: #ff3742;
+			transform: scale(1.05);
+		}
+
+		.confirm-btn-no {
+			background-color: #747d8c;
+			color: white;
+		}
+
+		.confirm-btn-no:hover {
+			background-color: #57606f;
+			transform: scale(1.05);
+		}
+
+		.confirm-btn:active {
+			transform: scale(0.95);
+		}
+
+		/* Mobile responsive for dialog */
+		@media (max-width: 768px) {
+			#confirm-dialog {
+				padding: 25px;
+			}
+			
+			#confirm-dialog h3 {
+				font-size: 18px;
+			}
+			
+			#confirm-dialog p {
+				font-size: 14px;
+			}
+			
+			.confirm-buttons {
+				flex-direction: column;
+			}
+		}
 	</style>
 <link id='-gd-engine-icon' rel='icon' type='image/png' href='index.icon.png' />
 <link rel='apple-touch-icon' href='index.apple-touch-icon.png'/>
 
 </head>
 <body>
+	<!-- Back button -->
+	<button id="back-button" onclick="showConfirmModal()">
+		<span>←</span>
+		<span>Back to Home</span>
+	</button>
+
+	<!-- Confirmation modal -->
+	<div id="confirm-modal">
+		<div id="confirm-dialog">
+			<h3>🎮 Exit Game?</h3>
+			<p>Are you sure you want to leave the game and return to the home page?<br>Your current progress might be lost.</p>
+			<div class="confirm-buttons">
+				<button class="confirm-btn confirm-btn-yes" onclick="confirmExit()">Yes, Exit</button>
+				<button class="confirm-btn confirm-btn-no" onclick="hideConfirmModal()">Cancel</button>
+			</div>
+		</div>
+	</div>
+
 	<canvas id='canvas'>
 		HTML5 canvas appears to be unsupported in the current browser.<br />
 		Please try updating or use a different browser.
@@ -138,6 +299,39 @@
 
 	<script type='text/javascript' src='index.js'></script>
 	<script type='text/javascript'>//<![CDATA[
+
+		// Modal functions
+		function showConfirmModal() {
+			document.getElementById('confirm-modal').style.display = 'flex';
+		}
+
+		function hideConfirmModal() {
+			document.getElementById('confirm-modal').style.display = 'none';
+		}
+
+		function confirmExit() {
+			// Get the current domain and redirect to home page
+			window.location.href = window.location.origin;
+		}
+
+		// Close modal when clicking outside of dialog
+		document.addEventListener('DOMContentLoaded', function() {
+			const modal = document.getElementById('confirm-modal');
+			const dialog = document.getElementById('confirm-dialog');
+			
+			modal.addEventListener('click', function(e) {
+				if (e.target === modal) {
+					hideConfirmModal();
+				}
+			});
+
+			// ESC key to close modal
+			document.addEventListener('keydown', function(e) {
+				if (e.key === 'Escape') {
+					hideConfirmModal();
+				}
+			});
+		});
 
 		const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":83147856,"index.wasm":13793958},"focusCanvas":true,"gdnativeLibs":[]};
 		var engine = new Engine(GODOT_CONFIG);
