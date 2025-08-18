@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { ChevronDown, ChevronRight, Search, X, Home, BookOpen, Menu } from 'lucide-react';
+import { ChevronDown, ChevronRight, Search, X, Home, BookOpen, Menu, ArrowLeft, ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { MarkdownRenderer } from '~/components/common/MarkdownRenderer';
@@ -183,6 +183,17 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
   const findActivePosts = () => {
     const section = docsData.find(section => section.id === activeSection);
     return section?.posts || [];
+  };
+
+  // Find previous and next posts for navigation
+  const findAdjacentPosts = (currentPostId: string) => {
+    const allPosts = Object.values(categoryPosts).flat();
+    const currentIndex = allPosts.findIndex(post => post.id === currentPostId);
+    
+    return {
+      previousPost: currentIndex > 0 ? allPosts[currentIndex - 1] : null,
+      nextPost: currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null
+    };
   };
 
   if (loading) {
@@ -538,15 +549,68 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                       </div>
                     )}
 
-                    {/* Back to section button */}
-                    <div className="mt-8 pt-6 border-t">
-                      <button
-                        onClick={() => setActiveSection(post.categoryId || 'overview')}
-                        className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-                      >
-                        <ChevronRight className="h-4 w-4 rotate-180" />
-                        <span>Back to {post.category?.name || 'Overview'}</span>
-                      </button>
+                    {/* Previous/Next Post Navigation */}
+                    <div className="mt-12 pt-8 border-t">
+                      {(() => {
+                        const postId = activeSection.replace('post-', '');
+                        const { previousPost, nextPost } = findAdjacentPosts(postId);
+                        
+                        if (!previousPost && !nextPost) {
+                          return (
+                            <button
+                              onClick={() => setActiveSection(post.categoryId || 'overview')}
+                              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+                            >
+                              <ChevronRight className="h-4 w-4 rotate-180" />
+                              <span>Back to {post.category?.name || 'Overview'}</span>
+                            </button>
+                          );
+                        }
+
+                        return (
+                          <div className="flex items-center justify-between gap-6">
+                            {/* Previous Post */}
+                            {previousPost ? (
+                              <button
+                                onClick={() => handlePostSelect(previousPost.id)}
+                                className="group flex items-center gap-3 px-4 py-3 rounded-lg bg-card/50 hover:bg-card border border-border/40 hover:border-border transition-all duration-200 hover:shadow-sm max-w-xs"
+                              >
+                                <ArrowLeft className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
+                                <div className="text-left min-w-0">
+                                  <div className="text-xs text-muted-foreground mb-1">Bài trước</div>
+                                  <div className="text-sm font-medium text-foreground group-hover:text-primary transition-colors truncate">
+                                    {previousPost.title}
+                                  </div>
+                                </div>
+                              </button>
+                            ) : (
+                              <button
+                                onClick={() => setActiveSection(post.categoryId || 'overview')}
+                                className="flex items-center gap-2 px-3 py-2 text-sm text-muted-foreground hover:text-primary transition-colors rounded-md hover:bg-accent/30"
+                              >
+                                <ChevronRight className="h-4 w-4 rotate-180" />
+                                <span>Back to {post.category?.name || 'Overview'}</span>
+                              </button>
+                            )}
+
+                            {/* Next Post */}
+                            {nextPost && (
+                              <button
+                                onClick={() => handlePostSelect(nextPost.id)}
+                                className="group flex items-center gap-3 px-4 py-3 rounded-lg bg-card/50 hover:bg-card border border-border/40 hover:border-border transition-all duration-200 hover:shadow-sm max-w-xs"
+                              >
+                                <div className="text-right min-w-0">
+                                  <div className="text-xs text-muted-foreground mb-1">Bài kế tiếp</div>
+                                  <div className="text-sm font-medium text-foreground group-hover:text-primary transition-colors truncate">
+                                    {nextPost.title}
+                                  </div>
+                                </div>
+                                <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
+                              </button>
+                            )}
+                          </div>
+                        );
+                      })()}
                     </div>
                   </div>
                 );
