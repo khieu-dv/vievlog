@@ -8,6 +8,7 @@ export class ContentMapper {
       slug: item.slug,
       color: item.color || '#6366f1',
       description: getContent(item, 'description'),
+      mainName: item.mainName || 'Languages',
       postCount: 0
     };
   }
@@ -34,6 +35,7 @@ export class ContentMapper {
         name: getContent(item.expand.categoryId, 'name'),
         slug: item.expand.categoryId.slug,
         color: item.expand.categoryId.color || '#6366f1',
+        mainName: item.expand.categoryId.mainName || 'Languages',
         postCount: 0
       } : undefined
     };

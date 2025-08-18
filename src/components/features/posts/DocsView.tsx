@@ -111,23 +111,49 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
         const allPosts = Object.values(categoryPosts).flat();
         const post = allPosts.find(p => p.id === postIdFromURL);
         if (post && post.categoryId) {
-          setExpandedSections(new Set([post.categoryId]));
+          // Preserve mobile-nav state when setting expanded sections
+          setExpandedSections(prev => {
+            const newSet = new Set([post.categoryId]);
+            if (prev.has('mobile-nav')) {
+              newSet.add('mobile-nav');
+            }
+            return newSet;
+          });
         }
       } else if (categoryIdFromURL) {
         // If there's a category ID in URL, show that category
         const categoryExists = docsData.find(section => section.id === categoryIdFromURL);
         if (categoryExists) {
           setActiveSection(categoryIdFromURL);
-          setExpandedSections(new Set([categoryIdFromURL]));
+          // Preserve mobile-nav state when setting expanded sections
+          setExpandedSections(prev => {
+            const newSet = new Set([categoryIdFromURL]);
+            if (prev.has('mobile-nav')) {
+              newSet.add('mobile-nav');
+            }
+            return newSet;
+          });
         } else {
           // If category doesn't exist, fall back to overview
           setActiveSection('overview');
-          setExpandedSections(new Set());
+          setExpandedSections(prev => {
+            const newSet = new Set();
+            if (prev.has('mobile-nav')) {
+              newSet.add('mobile-nav');
+            }
+            return newSet;
+          });
         }
       } else {
         // Default to overview if no specific selection
         setActiveSection('overview');
-        setExpandedSections(new Set());
+        setExpandedSections(prev => {
+          const newSet = new Set();
+          if (prev.has('mobile-nav')) {
+            newSet.add('mobile-nav');
+          }
+          return newSet;
+        });
       }
     }
   }, [loading, docsData, categoryPosts, searchParams]);
@@ -203,6 +229,9 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
       }
       params.delete('post'); // Remove post parameter when viewing category
       router.replace(`/posts?${params.toString()}`, { scroll: false });
+      
+      // Don't close mobile sidebar when selecting category - let user choose posts
+      // Mobile sidebar will only close when a post is selected
     }
 
     setExpandedSections(newExpanded);
@@ -351,19 +380,16 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                 {/* Home/Overview always visible */}
                 {!searchQuery && (
                   <button
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
                       setActiveSection('overview');
                       // Update URL to remove category parameter
                       const params = new URLSearchParams(searchParams.toString());
                       params.delete('category');
                       params.delete('post');
                       router.replace(`/posts?${params.toString()}`, { scroll: false });
-                      // Close mobile menu when section is selected
-                      setExpandedSections(prev => {
-                        const newSet = new Set(prev);
-                        newSet.delete('mobile-nav');
-                        return newSet;
-                      });
+                      // Don't close mobile sidebar - let user see overview content first
                     }}
                     className={`flex items-center gap-3 w-full p-2.5 text-sm font-medium rounded-lg transition-all duration-200 ${activeSection === 'overview'
                         ? 'bg-accent text-accent-foreground shadow-sm'
@@ -375,126 +401,159 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                   </button>
                 )}
 
-                {(searchQuery ? filteredDocsData : docsData).map((section) => (
-                  <div key={section.id}>
-                    {/* Different layout for sections with/without posts */}
-                    {section.posts && section.posts.length > 0 ? (
-                      <button
-                        onClick={() => {
-                          // Toggle both section view and dropdown
-                          setActiveSection(section.id);
-                          toggleSection(section.id);
-                        }}
-                        className={`flex items-center gap-3 w-full p-2.5 text-sm font-medium rounded-lg transition-all duration-200 justify-between ${activeSection === section.id
-                            ? 'bg-accent text-accent-foreground shadow-sm'
-                            : 'text-muted-foreground hover:text-foreground hover:bg-accent/50'
-                          }`}
-                      >
-                        <div className="flex items-center gap-2 min-w-0 flex-1">
-                          {section.iconName && getIconComponent(section.iconName)}
-                          <span className="truncate">{section.title}</span>
-                        </div>
-                        <div className="flex items-center gap-1 flex-shrink-0">
-                          <span className="text-xs font-medium">
-                            {section.posts.length}
-                          </span>
-                          {expandedSections.has(section.id) ? (
-                            <ChevronDown className="h-3 w-3" />
-                          ) : (
-                            <ChevronRight className="h-3 w-3" />
-                          )}
-                        </div>
-                      </button>
-                    ) : (
-                      /* Simple button for sections without posts */
-                      <button
-                        onClick={() => {
-                          setActiveSection(section.id);
-                          // Update URL with category parameter for shareable links
-                          const params = new URLSearchParams(searchParams.toString());
-                          if (section.id !== 'overview') {
-                            params.set('category', section.id);
-                          } else {
-                            params.delete('category');
-                          }
-                          params.delete('post'); // Remove post parameter when viewing category
-                          router.replace(`/posts?${params.toString()}`, { scroll: false });
-                          // Close mobile menu when section is selected
-                          setExpandedSections(prev => {
-                            const newSet = new Set(prev);
-                            newSet.delete('mobile-nav');
-                            return newSet;
-                          });
-                        }}
-                        className={`flex items-center gap-3 w-full p-2.5 text-sm font-medium rounded-lg transition-all duration-200 ${activeSection === section.id
-                            ? 'bg-accent text-accent-foreground shadow-sm'
-                            : 'text-muted-foreground hover:text-foreground hover:bg-accent/50'
-                          }`}
-                      >
-                        <div className="flex items-center gap-2 min-w-0 flex-1">
-                          {section.iconName && getIconComponent(section.iconName)}
-                          <span className="truncate">{section.title}</span>
-                        </div>
-                      </button>
-                    )}
-
-                    {/* Show posts as subsections */}
-                    {expandedSections.has(section.id) && section.posts && section.posts.length > 0 && (
-                      <div className="ml-3 lg:ml-6 mt-2 space-y-1">
-                        {/* Show first 10 posts */}
-                        {section.posts.slice(0, 10).map((post) => (
-                          <button
-                            key={post.id}
-                            onClick={() => handlePostSelect(post.id)}
-                            className={`block w-full text-left p-2.5 text-xs rounded-lg transition-all duration-200 ${activeSection === `post-${post.id}`
-                                ? 'bg-accent/70 text-accent-foreground font-medium shadow-sm'
-                                : 'text-muted-foreground/80 hover:bg-accent/30 hover:text-foreground'
-                              }`}
-                          >
-                            <div className="truncate pr-2">{post.title}</div>
-                            <div className="text-xs text-muted-foreground mt-1 hidden sm:block">
-                              {new Date(post.publishedAt).toLocaleDateString()}
-                            </div>
-                          </button>
-                        ))}
-
-                        {/* Show remaining posts if expanded */}
-                        {expandedPostSections.has(section.id) && section.posts.length > 10 && (
-                          <>
-                            {section.posts.slice(10, 30).map((post) => (
+{(() => {
+                  const sectionsToDisplay = searchQuery ? filteredDocsData : docsData;
+                  
+                  // Group sections by mainName for display
+                  const groupedSections = sectionsToDisplay.reduce((acc, section) => {
+                    const mainName = section.category?.mainName || 'Languages';
+                    if (!acc[mainName]) {
+                      acc[mainName] = [];
+                    }
+                    acc[mainName].push(section);
+                    return acc;
+                  }, {} as Record<string, typeof sectionsToDisplay>);
+                  
+                  // Define the order for mainName groups
+                  const mainNameOrder = ['Languages', 'Frameworks', 'Soft Skills'];
+                  
+                  return mainNameOrder.map((mainName, mainNameIndex) => {
+                    const sectionsInGroup = groupedSections[mainName] || [];
+                    if (sectionsInGroup.length === 0) return null;
+                    
+                    return (
+                      <div key={mainName}>
+                        {/* Add separator between groups (not before the first group) */}
+                        {mainNameIndex > 0 && (
+                          <div className="my-4">
+                            <hr className="border-border/40" />
+                          </div>
+                        )}
+                        
+                        {sectionsInGroup.map((section) => (
+                          <div key={section.id} className="mb-2">
+                            {/* Different layout for sections with/without posts */}
+                            {section.posts && section.posts.length > 0 ? (
                               <button
-                                key={post.id}
-                                onClick={() => handlePostSelect(post.id)}
-                                className={`block w-full text-left p-2.5 text-xs rounded-lg transition-all duration-200 ${activeSection === `post-${post.id}`
-                                    ? 'bg-accent/70 text-accent-foreground font-medium shadow-sm'
-                                    : 'text-muted-foreground/80 hover:bg-accent/30 hover:text-foreground'
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                  // Toggle both section view and dropdown
+                                  setActiveSection(section.id);
+                                  toggleSection(section.id);
+                                  // Don't close mobile sidebar here - let user select posts first
+                                }}
+                                className={`flex items-center gap-3 w-full p-2.5 text-sm font-medium rounded-lg transition-all duration-200 justify-between ${activeSection === section.id
+                                    ? 'bg-accent text-accent-foreground shadow-sm'
+                                    : 'text-muted-foreground hover:text-foreground hover:bg-accent/50'
                                   }`}
                               >
-                                <div className="truncate pr-2">{post.title}</div>
-                                <div className="text-xs text-muted-foreground mt-1 hidden sm:block">
-                                  {new Date(post.publishedAt).toLocaleDateString()}
+                                <div className="flex items-center gap-2 min-w-0 flex-1">
+                                  {section.iconName && getIconComponent(section.iconName)}
+                                  <span className="truncate">{section.title}</span>
+                                </div>
+                                <div className="flex items-center gap-1 flex-shrink-0">
+                                  <span className="text-xs font-medium">
+                                    {section.posts.length}
+                                  </span>
+                                  {expandedSections.has(section.id) ? (
+                                    <ChevronDown className="h-3 w-3" />
+                                  ) : (
+                                    <ChevronRight className="h-3 w-3" />
+                                  )}
                                 </div>
                               </button>
-                            ))}
-                          </>
-                        )}
+                            ) : (
+                              /* Simple button for sections without posts */
+                              <button
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                  setActiveSection(section.id);
+                                  // Update URL with category parameter for shareable links
+                                  const params = new URLSearchParams(searchParams.toString());
+                                  if (section.id !== 'overview') {
+                                    params.set('category', section.id);
+                                  } else {
+                                    params.delete('category');
+                                  }
+                                  params.delete('post'); // Remove post parameter when viewing category
+                                  router.replace(`/posts?${params.toString()}`, { scroll: false });
+                                  // Don't close mobile sidebar - let user see content first
+                                }}
+                                className={`flex items-center gap-3 w-full p-2.5 text-sm font-medium rounded-lg transition-all duration-200 ${activeSection === section.id
+                                    ? 'bg-accent text-accent-foreground shadow-sm'
+                                    : 'text-muted-foreground hover:text-foreground hover:bg-accent/50'
+                                  }`}
+                              >
+                                <div className="flex items-center gap-2 min-w-0 flex-1">
+                                  {section.iconName && getIconComponent(section.iconName)}
+                                  <span className="truncate">{section.title}</span>
+                                </div>
+                              </button>
+                            )}
 
-                        {/* Show more/less toggle */}
-                        {section.posts.length > 10 && (
-                          <button
-                            onClick={() => togglePostSection(section.id)}
-                            className="text-xs text-primary hover:text-primary/80 pl-2 py-1 transition-colors"
-                          >
-                            {expandedPostSections.has(section.id)
-                              ? `Show less`
-                              : `+${Math.min(section.posts.length - 10, 20)} more posts${section.posts.length > 30 ? ` (${section.posts.length} total)` : ''}`
-                            }
-                          </button>
-                        )}
+                            {/* Show posts as subsections */}
+                            {expandedSections.has(section.id) && section.posts && section.posts.length > 0 && (
+                              <div className="ml-3 lg:ml-6 mt-2 space-y-1">
+                                {/* Show first 10 posts */}
+                                {section.posts.slice(0, 10).map((post) => (
+                                  <button
+                                    key={post.id}
+                                    onClick={() => handlePostSelect(post.id)}
+                                    className={`block w-full text-left p-2.5 text-xs rounded-lg transition-all duration-200 ${activeSection === `post-${post.id}`
+                                        ? 'bg-accent/70 text-accent-foreground font-medium shadow-sm'
+                                        : 'text-muted-foreground/80 hover:bg-accent/30 hover:text-foreground'
+                                      }`}
+                                  >
+                                    <div className="truncate pr-2">{post.title}</div>
+                                    <div className="text-xs text-muted-foreground mt-1 hidden sm:block">
+                                      {new Date(post.publishedAt).toLocaleDateString()}
+                                    </div>
+                                  </button>
+                                ))}
+
+                                {/* Show remaining posts if expanded */}
+                                {expandedPostSections.has(section.id) && section.posts.length > 10 && (
+                                  <>
+                                    {section.posts.slice(10, 30).map((post) => (
+                                      <button
+                                        key={post.id}
+                                        onClick={() => handlePostSelect(post.id)}
+                                        className={`block w-full text-left p-2.5 text-xs rounded-lg transition-all duration-200 ${activeSection === `post-${post.id}`
+                                            ? 'bg-accent/70 text-accent-foreground font-medium shadow-sm'
+                                            : 'text-muted-foreground/80 hover:bg-accent/30 hover:text-foreground'
+                                          }`}
+                                      >
+                                        <div className="truncate pr-2">{post.title}</div>
+                                        <div className="text-xs text-muted-foreground mt-1 hidden sm:block">
+                                          {new Date(post.publishedAt).toLocaleDateString()}
+                                        </div>
+                                      </button>
+                                    ))}
+                                  </>
+                                )}
+
+                                {/* Show more/less toggle */}
+                                {section.posts.length > 10 && (
+                                  <button
+                                    onClick={() => togglePostSection(section.id)}
+                                    className="text-xs text-primary hover:text-primary/80 pl-2 py-1 transition-colors"
+                                  >
+                                    {expandedPostSections.has(section.id)
+                                      ? `Show less`
+                                      : `+${Math.min(section.posts.length - 10, 20)} more posts${section.posts.length > 30 ? ` (${section.posts.length} total)` : ''}`
+                                    }
+                                  </button>
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        ))}
                       </div>
-                    )}
-                  </div>
-                ))}
+                    );
+                  }).filter(Boolean);
+                })()}
 
                 {/* No results message */}
                 {searchQuery && filteredDocsData.length === 0 && (
@@ -511,7 +570,19 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
       </aside>
 
       {/* Main Content - shadcn style */}
-      <main className={`flex-1 min-w-0 ${expandedSections.has('mobile-nav') ? 'lg:block hidden' : 'block'}`}>
+      <main 
+        className={`flex-1 min-w-0 ${expandedSections.has('mobile-nav') ? 'lg:block hidden' : 'block'}`}
+        onClick={() => {
+          // Close mobile sidebar when clicking on main content
+          if (expandedSections.has('mobile-nav')) {
+            setExpandedSections(prev => {
+              const newSet = new Set(prev);
+              newSet.delete('mobile-nav');
+              return newSet;
+            });
+          }
+        }}
+      >
         <div className="bg-card/50 backdrop-blur-sm border rounded-xl shadow-sm">
           {/* Content Header with Breadcrumbs - shadcn style */}
           <div className="border-b border-border/40 px-6 py-4">
