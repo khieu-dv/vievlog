@@ -210,14 +210,16 @@ a:focus-visible {
   background: var(--color-foreground);
 }
 
-/* Simple video feed scroll snapping */
+/* Enhanced video feed scroll snapping */
 .video-container {
   -webkit-overflow-scrolling: touch;
   scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
 }
 
 .video-container > div {
   scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 /* Smooth scrolling for all elements */
