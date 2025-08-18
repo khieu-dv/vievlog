@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns='http://www.w3.org/1999/xhtml' lang='' xml:lang=''>
+
 <head>
 	<meta charset='utf-8' />
 	<meta name='viewport' content='width=device-width, user-scalable=no' />
 	<title>VieHero</title>
 	<style type='text/css'>
-
 		body {
 			touch-action: none;
 			margin: 0;
@@ -85,7 +85,7 @@
 			position: relative;
 		}
 
-		#status-indeterminate > div {
+		#status-indeterminate>div {
 			width: 4.5px;
 			height: 0;
 			border-style: solid;
@@ -95,14 +95,37 @@
 			position: absolute;
 		}
 
-		#status-indeterminate > div:nth-child(1) { transform: rotate( 22.5deg); }
-		#status-indeterminate > div:nth-child(2) { transform: rotate( 67.5deg); }
-		#status-indeterminate > div:nth-child(3) { transform: rotate(112.5deg); }
-		#status-indeterminate > div:nth-child(4) { transform: rotate(157.5deg); }
-		#status-indeterminate > div:nth-child(5) { transform: rotate(202.5deg); }
-		#status-indeterminate > div:nth-child(6) { transform: rotate(247.5deg); }
-		#status-indeterminate > div:nth-child(7) { transform: rotate(292.5deg); }
-		#status-indeterminate > div:nth-child(8) { transform: rotate(337.5deg); }
+		#status-indeterminate>div:nth-child(1) {
+			transform: rotate(22.5deg);
+		}
+
+		#status-indeterminate>div:nth-child(2) {
+			transform: rotate(67.5deg);
+		}
+
+		#status-indeterminate>div:nth-child(3) {
+			transform: rotate(112.5deg);
+		}
+
+		#status-indeterminate>div:nth-child(4) {
+			transform: rotate(157.5deg);
+		}
+
+		#status-indeterminate>div:nth-child(5) {
+			transform: rotate(202.5deg);
+		}
+
+		#status-indeterminate>div:nth-child(6) {
+			transform: rotate(247.5deg);
+		}
+
+		#status-indeterminate>div:nth-child(7) {
+			transform: rotate(292.5deg);
+		}
+
+		#status-indeterminate>div:nth-child(8) {
+			transform: rotate(337.5deg);
+		}
 
 		#status-notice {
 			margin: 0 100px;
@@ -241,36 +264,38 @@
 			#confirm-dialog {
 				padding: 25px;
 			}
-			
+
 			#confirm-dialog h3 {
 				font-size: 18px;
 			}
-			
+
 			#confirm-dialog p {
 				font-size: 14px;
 			}
-			
+
 			.confirm-buttons {
 				flex-direction: column;
 			}
 		}
 	</style>
-<link id='-gd-engine-icon' rel='icon' type='image/png' href='index.icon.png' />
-<link rel='apple-touch-icon' href='index.apple-touch-icon.png'/>
+	<link id='-gd-engine-icon' rel='icon' type='image/png' href='index.icon.png' />
+	<link rel='apple-touch-icon' href='index.apple-touch-icon.png' />
 
 </head>
+
 <body>
 	<!-- Back button -->
 	<button id="back-button" onclick="showConfirmModal()">
 		<span>←</span>
-		<span>Back to Home</span>
+		<span>Back</span>
 	</button>
 
 	<!-- Confirmation modal -->
 	<div id="confirm-modal">
 		<div id="confirm-dialog">
 			<h3>🎮 Exit Game?</h3>
-			<p>Are you sure you want to leave the game and return to the home page?<br>Your current progress might be lost.</p>
+			<p>Are you sure you want to leave the game and return to the home page?<br>Your current progress might be
+				lost.</p>
 			<div class="confirm-buttons">
 				<button class="confirm-btn confirm-btn-yes" onclick="confirmExit()">Yes, Exit</button>
 				<button class="confirm-btn confirm-btn-no" onclick="hideConfirmModal()">Cancel</button>
@@ -283,7 +308,9 @@
 		Please try updating or use a different browser.
 	</canvas>
 	<div id='status'>
-		<div id='status-progress' style='display: none;' oncontextmenu='event.preventDefault();'><div id ='status-progress-inner'></div></div>
+		<div id='status-progress' style='display: none;' oncontextmenu='event.preventDefault();'>
+			<div id='status-progress-inner'></div>
+		</div>
 		<div id='status-indeterminate' style='display: none;' oncontextmenu='event.preventDefault();'>
 			<div></div>
 			<div></div>
@@ -315,28 +342,28 @@
 		}
 
 		// Close modal when clicking outside of dialog
-		document.addEventListener('DOMContentLoaded', function() {
+		document.addEventListener('DOMContentLoaded', function () {
 			const modal = document.getElementById('confirm-modal');
 			const dialog = document.getElementById('confirm-dialog');
-			
-			modal.addEventListener('click', function(e) {
+
+			modal.addEventListener('click', function (e) {
 				if (e.target === modal) {
 					hideConfirmModal();
 				}
 			});
 
 			// ESC key to close modal
-			document.addEventListener('keydown', function(e) {
+			document.addEventListener('keydown', function (e) {
 				if (e.key === 'Escape') {
 					hideConfirmModal();
 				}
 			});
 		});
 
-		const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":83147856,"index.wasm":13793958},"focusCanvas":true,"gdnativeLibs":[]};
+		const GODOT_CONFIG = { "args": [], "canvasResizePolicy": 2, "executable": "index", "experimentalVK": false, "fileSizes": { "index.pck": 83147856, "index.wasm": 13793958 }, "focusCanvas": true, "gdnativeLibs": [] };
 		var engine = new Engine(GODOT_CONFIG);
 
-		(function() {
+		(function () {
 			const INDETERMINATE_STATUS_STEP_MS = 100;
 			var statusProgress = document.getElementById('status-progress');
 			var statusProgressInner = document.getElementById('status-progress-inner');
@@ -360,7 +387,7 @@
 				[statusProgress, statusIndeterminate, statusNotice].forEach(elem => {
 					elem.style.display = 'none';
 				});
-				animationCallbacks = animationCallbacks.filter(function(value) {
+				animationCallbacks = animationCallbacks.filter(function (value) {
 					return (value != animateStatusIndeterminate);
 				});
 				switch (mode) {
@@ -418,7 +445,7 @@
 				engine.startGame({
 					'onProgress': function (current, total) {
 						if (total > 0) {
-							statusProgressInner.style.width = current/total * 100 + '%';
+							statusProgressInner.style.width = current / total * 100 + '%';
 							setStatusMode('progress');
 							if (current === total) {
 								// wait for progress bar animation
@@ -436,7 +463,7 @@
 				}, displayFailureNotice);
 			}
 		})();
-	//]]></script>
+		//]]></script>
 </body>
-</html>
 
+</html>
