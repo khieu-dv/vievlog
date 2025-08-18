@@ -18,7 +18,7 @@ export function VieShareBanner() {
           <div className="flex items-center gap-4">
             <div>
               <h3 className="font-semibold text-lg">{t("vieShareBanner.title")}</h3>
-              <p className="text-blue-100 text-sm">
+              <p className="text-blue-100 text-sm hidden lg:block">
                 {t("vieShareBanner.description")}
               </p>
             </div>
