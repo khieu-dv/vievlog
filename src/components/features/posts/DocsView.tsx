@@ -102,6 +102,8 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
   useEffect(() => {
     if (!loading && docsData.length > 0) {
       const postIdFromURL = searchParams.get('post');
+      const categoryIdFromURL = searchParams.get('category');
+      
       if (postIdFromURL) {
         // If there's a post ID in URL, show that post
         setActiveSection(`post-${postIdFromURL}`);
@@ -111,9 +113,21 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
         if (post && post.categoryId) {
           setExpandedSections(new Set([post.categoryId]));
         }
+      } else if (categoryIdFromURL) {
+        // If there's a category ID in URL, show that category
+        const categoryExists = docsData.find(section => section.id === categoryIdFromURL);
+        if (categoryExists) {
+          setActiveSection(categoryIdFromURL);
+          setExpandedSections(new Set([categoryIdFromURL]));
+        } else {
+          // If category doesn't exist, fall back to overview
+          setActiveSection('overview');
+          setExpandedSections(new Set());
+        }
       } else {
-        setActiveSection(docsData[0].id);
-        setExpandedSections(new Set([docsData[0].id]));
+        // Default to overview if no specific selection
+        setActiveSection('overview');
+        setExpandedSections(new Set());
       }
     }
   }, [loading, docsData, categoryPosts, searchParams]);
@@ -179,6 +193,16 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
 
       // Close all expanded post sections when opening a new category
       setExpandedPostSections(new Set());
+      
+      // Update URL with category parameter for shareable links
+      const params = new URLSearchParams(searchParams.toString());
+      if (sectionId !== 'overview') {
+        params.set('category', sectionId);
+      } else {
+        params.delete('category');
+      }
+      params.delete('post'); // Remove post parameter when viewing category
+      router.replace(`/posts?${params.toString()}`, { scroll: false });
     }
 
     setExpandedSections(newExpanded);
@@ -329,6 +353,11 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                   <button
                     onClick={() => {
                       setActiveSection('overview');
+                      // Update URL to remove category parameter
+                      const params = new URLSearchParams(searchParams.toString());
+                      params.delete('category');
+                      params.delete('post');
+                      router.replace(`/posts?${params.toString()}`, { scroll: false });
                       // Close mobile menu when section is selected
                       setExpandedSections(prev => {
                         const newSet = new Set(prev);
@@ -381,6 +410,21 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                       <button
                         onClick={() => {
                           setActiveSection(section.id);
+                          // Update URL with category parameter for shareable links
+                          const params = new URLSearchParams(searchParams.toString());
+                          if (section.id !== 'overview') {
+                            params.set('category', section.id);
+                          } else {
+                            params.delete('category');
+                          }
+                          params.delete('post'); // Remove post parameter when viewing category
+                          router.replace(`/posts?${params.toString()}`, { scroll: false });
+                          // Close mobile menu when section is selected
+                          setExpandedSections(prev => {
+                            const newSet = new Set(prev);
+                            newSet.delete('mobile-nav');
+                            return newSet;
+                          });
                         }}
                         className={`flex items-center gap-3 w-full p-2.5 text-sm font-medium rounded-lg transition-all duration-200 ${activeSection === section.id
                             ? 'bg-accent text-accent-foreground shadow-sm'
@@ -482,7 +526,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                     const post = allPosts.find(p => p.id === postId);
                     return post?.category?.name || 'Post';
                   })()
-                  : docsData.find(s => s.id === activeSection)?.title || 'Documentation'
+                  : activeSection === 'overview' ? 'Overview' : docsData.find(s => s.id === activeSection)?.title || 'Posts'
                 }
               </span>
               {activeSection.startsWith('post-') && (
@@ -640,7 +684,23 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
             ) : (
               // Render section overview content
               <div className="prose prose-slate dark:prose-invert max-w-none">
-                <MarkdownRenderer content={findActiveContent()} />
+                {activeSection === 'overview' ? (
+                  <MarkdownRenderer content={`# VieVlog Documentation
+
+Welcome to VieVlog - a modern learning platform for IT education. This documentation is dynamically generated from our content database, ensuring you always have access to the latest information.
+
+## Available Categories
+
+We currently have ${categories.length} categories with educational content:
+
+${categories.map((cat) => `- **${cat.name}**: ${cat.description || 'Educational content and tutorials'}`).join('\n')}
+
+## Getting Started
+
+Choose a category below to explore our comprehensive learning materials, tutorials, and guides. Each section contains real posts and content from our community.`} />
+                ) : (
+                  <MarkdownRenderer content={findActiveContent()} />
+                )}
 
                 {/* Show recent posts for category sections */}
                 {findActivePosts().length > 0 && (

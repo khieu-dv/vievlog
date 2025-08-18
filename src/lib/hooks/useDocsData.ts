@@ -142,12 +142,6 @@ const getCategoryIconName = (categoryName: string): string => {
 
 const createDocsData = (categories: Category[], categoryPosts: Record<string, Post[]>): DocSection[] => {
   return [
-    {
-      id: 'overview',
-      title: 'Platform Overview',
-      iconName: 'book-open',
-      content: `# VieVlog Documentation\n\nWelcome to VieVlog - a modern learning platform for IT education. This documentation is dynamically generated from our content database, ensuring you always have access to the latest information.\n\n## Available Categories\n\nWe currently have ${categories.length} categories with educational content:\n\n${categories.map((cat: Category) => `- **${cat.name}**: ${cat.description || 'Educational content and tutorials'}`).join('\n')}\n\n## Getting Started\n\nChoose a category below to explore our comprehensive learning materials, tutorials, and guides. Each section contains real posts and content from our community.`,
-    },
     ...categories.map((category: Category) => {
       const posts = categoryPosts[category.id] || [];
       return {
