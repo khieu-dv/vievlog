@@ -13,13 +13,13 @@ export interface DocSection {
   category?: Category;
 }
 
-// Simple cache to prevent refetching
-let docsCache: {
+// Cache by language to prevent refetching
+let docsCache: Record<string, {
   categories?: Category[];
   categoryPosts?: Record<string, Post[]>;
   docsData?: DocSection[];
   timestamp?: number;
-} = {};
+}> = {};
 
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 
@@ -35,19 +35,20 @@ export const useDocsData = () => {
       try {
         setLoading(true);
 
-        // Check cache first
+        // Check cache first (by language)
         const now = Date.now();
-        if (docsCache.categories && docsCache.categoryPosts && docsCache.docsData && 
-            docsCache.timestamp && (now - docsCache.timestamp < CACHE_DURATION)) {
-          console.log('Using cached documentation data');
-          setCategories(docsCache.categories);
-          setCategoryPosts(docsCache.categoryPosts);
-          setDocsData(docsCache.docsData);
+        const languageCache = docsCache[currentLanguage];
+        if (languageCache && languageCache.categories && languageCache.categoryPosts && languageCache.docsData && 
+            languageCache.timestamp && (now - languageCache.timestamp < CACHE_DURATION)) {
+          console.log(`Using cached documentation data for language: ${currentLanguage}`);
+          setCategories(languageCache.categories);
+          setCategoryPosts(languageCache.categoryPosts);
+          setDocsData(languageCache.docsData);
           setLoading(false);
           return;
         }
 
-        console.log('Fetching fresh documentation data');
+        console.log(`Fetching fresh documentation data for language: ${currentLanguage}`);
 
         // Fetch categories
         const categoriesResponse = await ApiService.getCategories();
@@ -95,8 +96,8 @@ export const useDocsData = () => {
 
         const finalDocsData = createDocsData(categoriesWithCounts, categoryPostsData);
 
-        // Update cache
-        docsCache = {
+        // Update cache for current language
+        docsCache[currentLanguage] = {
           categories: categoriesWithCounts,
           categoryPosts: categoryPostsData,
           docsData: finalDocsData,
