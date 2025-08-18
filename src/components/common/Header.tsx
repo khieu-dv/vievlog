@@ -96,11 +96,11 @@ export function Header({ showAuth = true }: HeaderProps) {
 
           <div className="flex items-center gap-4">
 
+            {/* Language Switcher - visible on all screen sizes */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="sm" className="text-sm text-slate-600 dark:text-muted-foreground hover:text-slate-900 dark:hover:text-foreground hidden md:flex">
-                  <Globe className="h-4 w-4 mr-1" />
-                  {getCurrentLanguage().short}
+                <Button variant="ghost" size="icon" className="text-slate-600 dark:text-muted-foreground hover:text-slate-900 dark:hover:text-foreground">
+                  <Globe className="h-5 w-5" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-40">
