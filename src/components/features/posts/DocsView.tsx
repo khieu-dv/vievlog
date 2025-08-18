@@ -113,7 +113,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
         if (post && post.categoryId) {
           // Preserve mobile-nav state when setting expanded sections
           setExpandedSections(prev => {
-            const newSet = new Set([post.categoryId]);
+            const newSet = new Set<string>([post.categoryId!]);
             if (prev.has('mobile-nav')) {
               newSet.add('mobile-nav');
             }
@@ -137,7 +137,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
           // If category doesn't exist, fall back to overview
           setActiveSection('overview');
           setExpandedSections(prev => {
-            const newSet = new Set();
+            const newSet = new Set<string>();
             if (prev.has('mobile-nav')) {
               newSet.add('mobile-nav');
             }
@@ -148,7 +148,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
         // Default to overview if no specific selection
         setActiveSection('overview');
         setExpandedSections(prev => {
-          const newSet = new Set();
+          const newSet = new Set<string>();
           if (prev.has('mobile-nav')) {
             newSet.add('mobile-nav');
           }
