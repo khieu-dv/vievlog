@@ -161,5 +161,31 @@
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
     "allRightsReserved": "All rights reserved."
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "Sorry, we couldn't find the page you're looking for. The link might be broken or the page may have been moved.",
+    "backToHome": "Back to Home",
+    "searchPosts": "Search Posts",
+    "goBack": "Go Back",
+    "helpfulLinks": "You might be looking for:",
+    "programmingPosts": "Programming posts",
+    "videoTutorials": "Video tutorials",
+    "programmingGames": "Programming games"
+  },
+  "gamePromo": {
+    "title": "Learn Programming Through Games",
+    "subtitle": "Fun and interactive learning experience",
+    "description": "Discover how to learn programming in a fun way through interactive games. From programming language quizzes to exciting platformer adventures.",
+    "playNow": "Play Now",
+    "learnMore": "Learn More",
+    "features": {
+      "interactive": "Interactive Learning",
+      "interactiveDesc": "Learn programming concepts through real gameplay",
+      "multiplayer": "Multiplayer Mode",
+      "multiplayerDesc": "Compete with friends and other developers",
+      "progress": "Progress Tracking",
+      "progressDesc": "Track your skills and achievements"
+    }
   }
 }

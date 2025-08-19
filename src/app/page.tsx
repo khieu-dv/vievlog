@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, MessageCircle, ChevronUp, Share2 } from "lucide-react";
+import { ArrowRight, MessageCircle, ChevronUp, Share2, Gamepad2, Users, TrendingUp } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
@@ -267,6 +267,130 @@ export default function HomePage() {
                 </dd>
               </div>
             </dl>
+          </div>
+        </div>
+      </div>
+
+      {/* Game Promotion Section */}
+      <div className="relative py-24 sm:py-32 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-slate-900 dark:via-blue-900/20 dark:to-purple-900/20"></div>
+        <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl lg:max-w-none">
+            <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:gap-x-12 lg:items-center">
+              
+              {/* Content */}
+              <div>
+                <h2 className="text-base font-semibold leading-7 text-primary">
+                  {t('gamePromo.subtitle')}
+                </h2>
+                <p className="mt-2 text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-50 sm:text-4xl">
+                  {t('gamePromo.title')}
+                </p>
+                <p className="mt-6 text-lg leading-8 text-slate-600 dark:text-slate-400">
+                  {t('gamePromo.description')}
+                </p>
+
+                {/* Features */}
+                <div className="mt-10 space-y-6">
+                  <div className="flex items-start gap-x-4">
+                    <div className="h-8 w-8 flex items-center justify-center rounded-lg bg-primary/10">
+                      <Gamepad2 className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="text-base font-semibold text-slate-900 dark:text-slate-50">
+                        {t('gamePromo.features.interactive')}
+                      </h3>
+                      <p className="text-sm text-slate-600 dark:text-slate-400">
+                        {t('gamePromo.features.interactiveDesc')}
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-x-4">
+                    <div className="h-8 w-8 flex items-center justify-center rounded-lg bg-primary/10">
+                      <Users className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="text-base font-semibold text-slate-900 dark:text-slate-50">
+                        {t('gamePromo.features.multiplayer')}
+                      </h3>
+                      <p className="text-sm text-slate-600 dark:text-slate-400">
+                        {t('gamePromo.features.multiplayerDesc')}
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-x-4">
+                    <div className="h-8 w-8 flex items-center justify-center rounded-lg bg-primary/10">
+                      <TrendingUp className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="text-base font-semibold text-slate-900 dark:text-slate-50">
+                        {t('gamePromo.features.progress')}
+                      </h3>
+                      <p className="text-sm text-slate-600 dark:text-slate-400">
+                        {t('gamePromo.features.progressDesc')}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* CTAs */}
+                <div className="mt-10 flex items-center gap-x-6">
+                  <Link href="/godot-game">
+                    <Button className="bg-primary hover:bg-primary/90 text-white">
+                      <Gamepad2 className="h-4 w-4 mr-2" />
+                      {t('gamePromo.playNow')}
+                    </Button>
+                  </Link>
+                  <Link href="/godot-game">
+                    <Button variant="outline">
+                      {t('gamePromo.learnMore')}
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+
+              {/* Screenshots Grid */}
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-4">
+                  <div className="relative group cursor-pointer">
+                    <img
+                      src="/screenshot20.png"
+                      alt="Game Screenshot 1"
+                      className="w-full h-auto rounded-lg shadow-lg transition-transform group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors rounded-lg"></div>
+                  </div>
+                  <div className="relative group cursor-pointer">
+                    <img
+                      src="/screenshot22.png"
+                      alt="Game Screenshot 3"
+                      className="w-full h-auto rounded-lg shadow-lg transition-transform group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors rounded-lg"></div>
+                  </div>
+                </div>
+                <div className="space-y-4 mt-8">
+                  <div className="relative group cursor-pointer">
+                    <img
+                      src="/screenshot21.png"
+                      alt="Game Screenshot 2"
+                      className="w-full h-auto rounded-lg shadow-lg transition-transform group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors rounded-lg"></div>
+                  </div>
+                  <div className="relative group cursor-pointer">
+                    <img
+                      src="/screenshot23.png"
+                      alt="Game Screenshot 4"
+                      className="w-full h-auto rounded-lg shadow-lg transition-transform group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors rounded-lg"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

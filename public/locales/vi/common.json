@@ -161,5 +161,31 @@
     "privacy": "Chính Sách Bảo Mật",
     "terms": "Điều Khoản Dịch Vụ",
     "allRightsReserved": "Tất cả quyền được bảo lưu."
+  },
+  "notFound": {
+    "title": "Trang không tồn tại",
+    "description": "Xin lỗi, chúng tôi không thể tìm thấy trang bạn đang tìm kiếm. Có thể link bị hỏng hoặc trang đã được di chuyển.",
+    "backToHome": "Về trang chủ",
+    "searchPosts": "Tìm kiếm bài viết",
+    "goBack": "Quay lại",
+    "helpfulLinks": "Có thể bạn đang tìm:",
+    "programmingPosts": "Bài viết lập trình",
+    "videoTutorials": "Video tutorials",
+    "programmingGames": "Game học lập trình"
+  },
+  "gamePromo": {
+    "title": "Học Lập Trình Qua Game",
+    "subtitle": "Trải nghiệm học tập thú vị và tương tác",
+    "description": "Khám phá cách học lập trình một cách vui nhộn thông qua các trò chơi tương tác. Từ quiz về các ngôn ngữ lập trình đến platformer game thú vị.",
+    "playNow": "Chơi Ngay",
+    "learnMore": "Tìm Hiểu Thêm",
+    "features": {
+      "interactive": "Học Tương Tác",
+      "interactiveDesc": "Học các khái niệm lập trình thông qua gameplay thực tế",
+      "multiplayer": "Chế Độ Multiplayer",
+      "multiplayerDesc": "Thi đấu với bạn bè và lập trình viên khác",
+      "progress": "Theo Dõi Tiến Độ",
+      "progressDesc": "Theo dõi kỹ năng và thành tích của bạn"
+    }
   }
 }
