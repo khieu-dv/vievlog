@@ -322,7 +322,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
         }
       `}>
         <div className={`${expandedSections.has('mobile-nav') ? 'h-full' : 'sticky top-20'}`}>
-          <div className={`bg-white/95 dark:bg-black/95 backdrop-blur-xl border border-gray-200 dark:border-gray-700 ${expandedSections.has('mobile-nav') ? 'rounded-none border-l-0 border-t-0 border-b-0' : 'rounded-2xl'} shadow-xl flex flex-col ${expandedSections.has('mobile-nav') ? 'h-full' : ''}`} style={expandedSections.has('mobile-nav') ? {} : {height: 'calc(100vh - 6rem)'}}>
+          <div className={`bg-white/95 dark:bg-black/95 backdrop-blur-xl border border-gray-200 dark:border-gray-700 ${expandedSections.has('mobile-nav') ? 'rounded-none border-l-0 border-t-0 border-b-0' : 'rounded-2xl'} shadow-xl flex flex-col ${expandedSections.has('mobile-nav') ? 'h-full' : ''}`} style={expandedSections.has('mobile-nav') ? {} : {height: 'calc(100vh - 10rem)'}}>
             {/* Header with Search - Apple Style */}
             <div className="p-6 border-b border-gray-200 dark:border-gray-700 flex-shrink-0">
               <div className="flex items-center justify-between mb-6">
@@ -391,7 +391,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                       router.replace(`/posts?${params.toString()}`, { scroll: false });
                       // Don't close mobile sidebar - let user see overview content first
                     }}
-                    className={`flex items-center gap-4 w-full p-4 text-base font-medium rounded-xl transition-all duration-200 ${activeSection === 'overview'
+                    className={`flex items-center gap-4 w-full px-4 py-3 text-base font-medium rounded-xl transition-all duration-200 ${activeSection === 'overview'
                         ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 shadow-sm'
                         : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800'
                       }`}
@@ -443,7 +443,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                                   toggleSection(section.id);
                                   // Don't close mobile sidebar here - let user select posts first
                                 }}
-                                className={`flex items-center gap-4 w-full p-4 text-base font-medium rounded-xl transition-all duration-200 justify-between ${activeSection === section.id
+                                className={`flex items-center gap-4 w-full px-4 py-3 text-base font-medium rounded-xl transition-all duration-200 justify-between ${activeSection === section.id
                                     ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 shadow-sm'
                                     : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800'
                                   }`}
@@ -481,7 +481,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                                   router.replace(`/posts?${params.toString()}`, { scroll: false });
                                   // Don't close mobile sidebar - let user see content first
                                 }}
-                                className={`flex items-center gap-4 w-full p-4 text-base font-medium rounded-xl transition-all duration-200 ${activeSection === section.id
+                                className={`flex items-center gap-4 w-full px-4 py-3 text-base font-medium rounded-xl transition-all duration-200 ${activeSection === section.id
                                     ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 shadow-sm'
                                     : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800'
                                   }`}
