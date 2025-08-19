@@ -50,6 +50,7 @@ export type Post = {
   title: string;
   excerpt: string;
   content?: string;
+  code?: string;
   publishedAt: string;
   coverImage?: string;
   author: {

@@ -8,9 +8,14 @@ import estree from "prettier/plugins/estree";
 import Prism from "prismjs";
 import "prismjs/themes/prism.css";
 
-export default function JSCodeEditor() {
+interface JSCodeEditorProps {
+    initialCode?: string;
+    className?: string;
+}
+
+export default function JSCodeEditor({ initialCode, className }: JSCodeEditorProps = {}) {
     const [code, setCode] = useState(
-        `// Type or paste your code here...\nconsole.log("Hello, Monaco!");\n\nfunction add(a, b) {\n  return a + b;\n}`
+        initialCode || `// Type or paste your code here...\nconsole.log("Hello, Monaco!");\n\nfunction add(a, b) {\n  return a + b;\n}`
     );
     const [output, setOutput] = useState("Output will appear here...");
     const editorRef = useRef<Parameters<OnMount>[0] | null>(null);
@@ -97,10 +102,10 @@ export default function JSCodeEditor() {
     };
 
     return (
-        <div className="p-4 md:p-6 h-screen flex flex-col">
+        <div className={`p-4 md:p-6 flex flex-col ${className?.includes('h-') ? '' : 'h-screen'} ${className || ''}`}>
             <div className="flex-grow flex flex-col lg:flex-row lg:space-x-4 space-y-4 lg:space-y-0">
                 {/* Editor Column */}
-                <div className="w-full lg:w-1/2 flex flex-col h-[50vh] lg:h-full">
+                <div className="w-full lg:w-1/2 flex flex-col h-[40vh] lg:h-full">
                     <div
                         className="flex-shrink-0 mb-2 flex items-center"
                         style={{ height: "40px" }}

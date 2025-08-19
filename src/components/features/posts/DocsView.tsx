@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { ChevronDown, ChevronRight, Search, X, Home, BookOpen, Menu, ArrowLeft, ArrowRight, MessageCircle } from 'lucide-react';
+import { ChevronDown, ChevronRight, Search, X, Home, BookOpen, Menu, ArrowLeft, ArrowRight, MessageCircle, Code, FileText, PanelLeftClose, PanelLeftOpen } from 'lucide-react';
 import Image from 'next/image';
 import { useTranslation } from 'react-i18next';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { MarkdownRenderer } from '~/components/common/MarkdownRenderer';
+import JSCodeEditor from '~/components/common/JSCodeEditor';
 import { useDocsData, DocSection } from '~/lib/hooks/useDocsData';
 import { getIconComponent } from '~/lib/utils/iconMapper';
 import { ApiService } from '~/lib/services/api';
@@ -34,6 +35,13 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
   const [postComments, setPostComments] = useState<Record<string, Comment[]>>({});
   const [commentInputs, setCommentInputs] = useState<Record<string, string>>({});
   const [submittingComment, setSubmittingComment] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState<Record<string, 'content' | 'code'>>({});
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('sidebarCollapsed') === 'true';
+    }
+    return false;
+  });
   
   const { data: session } = useSession();
   const pb = new PocketBase(process.env.NEXT_PUBLIC_POCKETBASE_URL || 'https://pocketbase.vietopik.com');
@@ -93,6 +101,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
           title: postData.title || '',
           excerpt: postData.excerpt || '',
           content: postData.content || '',
+          code: postData.code || '',
           publishedAt: postData.created || postData.publishedAt || '',
           coverImage: postData.coverImage || '',
           author: {
@@ -236,6 +245,13 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
       });
     };
   }, []);
+
+  // Save sidebar collapse state to localStorage
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('sidebarCollapsed', sidebarCollapsed.toString());
+    }
+  }, [sidebarCollapsed]);
 
   // Set initial active section when data loads
   useEffect(() => {
@@ -424,7 +440,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
   }
 
   return (
-    <div className={`flex flex-col lg:flex-row gap-12 ${className}`}>
+    <div className={`flex flex-col lg:flex-row gap-12 transition-all duration-300 ${className}`}>
       {/* Mobile Toggle Button - Apple Style */}
       <div className="lg:hidden fixed bottom-6 left-4 z-50">
         <button
@@ -459,10 +475,14 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
 
       {/* Sidebar Navigation - Apple Style */}
       <aside className={`
-        lg:w-80 xl:w-96 flex-shrink-0 transition-all duration-300 ease-in-out
+        flex-shrink-0 transition-all duration-300 ease-in-out
         ${expandedSections.has('mobile-nav') 
-          ? 'fixed left-0 top-0 bottom-0 w-4/5 z-50 lg:relative lg:w-80 xl:w-96 lg:z-auto transform translate-x-0' 
-          : 'fixed left-0 top-0 bottom-0 w-4/5 z-50 lg:relative lg:w-80 xl:w-96 lg:z-auto transform -translate-x-full lg:translate-x-0 lg:block'
+          ? 'fixed left-0 top-0 bottom-0 w-4/5 z-50 lg:relative lg:z-auto transform translate-x-0' 
+          : 'fixed left-0 top-0 bottom-0 w-4/5 z-50 lg:relative lg:z-auto transform -translate-x-full lg:translate-x-0 lg:block'
+        }
+        ${sidebarCollapsed 
+          ? 'lg:w-0 lg:opacity-0 lg:pointer-events-none xl:w-0 xl:opacity-0 xl:pointer-events-none' 
+          : 'lg:w-80 xl:w-96 lg:opacity-100 lg:pointer-events-auto xl:opacity-100 xl:pointer-events-auto'
         }
       `}>
         <div className={`${expandedSections.has('mobile-nav') ? 'h-full' : 'sticky top-16'}`}>
@@ -713,9 +733,28 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
         </div>
       </aside>
 
+      {/* Sidebar Toggle Button for Large Screens */}
+      <div className={`hidden lg:block fixed top-1/2 z-40 transition-all duration-300 ${
+        sidebarCollapsed ? 'left-4' : 'left-[calc(20rem+1rem)] xl:left-[calc(24rem+1rem)]'
+      }`}>
+        <button
+          onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+          className="p-2 bg-white/90 dark:bg-black/90 backdrop-blur-xl border border-gray-200 dark:border-gray-700 rounded-full shadow-lg hover:scale-105 transition-all duration-200"
+          aria-label={sidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+        >
+          {sidebarCollapsed ? (
+            <PanelLeftOpen className="h-5 w-5 text-gray-900 dark:text-white" />
+          ) : (
+            <PanelLeftClose className="h-5 w-5 text-gray-900 dark:text-white" />
+          )}
+        </button>
+      </div>
+
       {/* Main Content - Apple Style */}
       <main 
-        className={`flex-1 min-w-0 ${expandedSections.has('mobile-nav') ? 'lg:block hidden' : 'block'}`}
+        className={`flex-1 min-w-0 transition-all duration-300 ${expandedSections.has('mobile-nav') ? 'lg:block hidden' : 'block'} ${
+          sidebarCollapsed ? 'lg:ml-0' : 'lg:ml-0'
+        }`}
         onClick={() => {
           // Close mobile sidebar when clicking on main content
           if (expandedSections.has('mobile-nav')) {
@@ -727,7 +766,9 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
           }
         }}
       >
-        <div className="bg-white/95 dark:bg-black/95 backdrop-blur-xl sm:rounded-2xl sm:shadow-xl">
+        <div className={`bg-white/95 dark:bg-black/95 backdrop-blur-xl sm:rounded-2xl sm:shadow-xl transition-all duration-300 ${
+          sidebarCollapsed ? 'lg:max-w-none lg:mx-8' : ''
+        }`}>
           {/* Content Header with Breadcrumbs - Apple style */}
           <div className="px-4 sm:px-8 py-6">
             <div className="flex items-center gap-3 text-base text-gray-500 dark:text-gray-400 mb-2">
@@ -761,7 +802,9 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
           </div>
 
           {/* Content Body - Full Height */}
-          <div className="p-4 sm:p-8 lg:p-12 bg-gradient-to-br from-gray-50/50 to-white dark:from-gray-900/50 dark:to-black">
+          <div className={`p-4 sm:p-8 bg-gradient-to-br from-gray-50/50 to-white dark:from-gray-900/50 dark:to-black transition-all duration-300 ${
+            sidebarCollapsed ? 'lg:p-16 xl:p-20' : 'lg:p-12'
+          }`}>
             {activeSection.startsWith('post-') ? (
               // Render individual post content
               (() => {
@@ -806,19 +849,85 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                       <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground mb-6 leading-tight">{post.title}</h1>
                     </div>
 
-                    {/* Article Content */}
-                    <div className="prose prose-slate dark:prose-invert prose-lg max-w-none prose-headings:font-semibold prose-headings:tracking-tight">
-                      {isLoading ? (
-                        <div className="flex items-center justify-center py-12">
-                          <div className="text-center">
-                            <div className="animate-spin rounded-full h-8 w-8 border-2 border-gray-300 border-t-blue-600 mx-auto mb-4"></div>
-                            <p className="text-gray-600 dark:text-gray-300">Loading content...</p>
+                    {/* Article Content with Tabs */}
+                    {(() => {
+                      const hasCode = post.code && post.code.trim().length > 0;
+                      const currentTab = activeTab[post.id] || 'content';
+
+                      if (!hasCode) {
+                        // No code - show content only (current behavior)
+                        return (
+                          <div className="prose prose-slate dark:prose-invert prose-lg max-w-none prose-headings:font-semibold prose-headings:tracking-tight">
+                            {isLoading ? (
+                              <div className="flex items-center justify-center py-12">
+                                <div className="text-center">
+                                  <div className="animate-spin rounded-full h-8 w-8 border-2 border-gray-300 border-t-blue-600 mx-auto mb-4"></div>
+                                  <p className="text-gray-600 dark:text-gray-300">Loading content...</p>
+                                </div>
+                              </div>
+                            ) : (
+                              <MarkdownRenderer content={post.content || (fullPost ? 'No content available for this post.' : 'Loading content...')} />
+                            )}
+                          </div>
+                        );
+                      }
+
+                      // Has code - show tab system
+                      return (
+                        <div>
+                          {/* Tab Headers */}
+                          <div className="flex border-b border-gray-200 dark:border-gray-700 mb-6">
+                            <button
+                              onClick={() => setActiveTab(prev => ({ ...prev, [post.id]: 'content' }))}
+                              className={`flex items-center gap-2 px-6 py-3 text-sm font-medium border-b-2 transition-colors ${
+                                currentTab === 'content'
+                                  ? 'border-primary text-primary bg-primary/5'
+                                  : 'border-transparent text-muted-foreground hover:text-foreground hover:border-gray-300 dark:hover:border-gray-600'
+                              }`}
+                            >
+                              <FileText className="h-4 w-4" />
+                              Content
+                            </button>
+                            <button
+                              onClick={() => setActiveTab(prev => ({ ...prev, [post.id]: 'code' }))}
+                              className={`flex items-center gap-2 px-6 py-3 text-sm font-medium border-b-2 transition-colors ${
+                                currentTab === 'code'
+                                  ? 'border-primary text-primary bg-primary/5'
+                                  : 'border-transparent text-muted-foreground hover:text-foreground hover:border-gray-300 dark:hover:border-gray-600'
+                              }`}
+                            >
+                              <Code className="h-4 w-4" />
+                              Code Editor
+                            </button>
+                          </div>
+
+                          {/* Tab Content */}
+                          <div className="min-h-[400px]">
+                            {currentTab === 'content' ? (
+                              <div className="prose prose-slate dark:prose-invert prose-lg max-w-none prose-headings:font-semibold prose-headings:tracking-tight">
+                                {isLoading ? (
+                                  <div className="flex items-center justify-center py-12">
+                                    <div className="text-center">
+                                      <div className="animate-spin rounded-full h-8 w-8 border-2 border-gray-300 border-t-blue-600 mx-auto mb-4"></div>
+                                      <p className="text-gray-600 dark:text-gray-300">Loading content...</p>
+                                    </div>
+                                  </div>
+                                ) : (
+                                  <MarkdownRenderer content={post.content || (fullPost ? 'No content available for this post.' : 'Loading content...')} />
+                                )}
+                              </div>
+                            ) : (
+                              <div className="h-[600px] border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+                                <JSCodeEditor 
+                                  initialCode={post.code} 
+                                  className="h-full p-0"
+                                />
+                              </div>
+                            )}
                           </div>
                         </div>
-                      ) : (
-                        <MarkdownRenderer content={post.content || (fullPost ? 'No content available for this post.' : 'Loading content...')} />
-                      )}
-                    </div>
+                      );
+                    })()}
 
                     {/* Article Footer */}
                     {post.tags && post.tags.length > 0 && (
