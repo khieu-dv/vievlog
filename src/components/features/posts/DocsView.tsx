@@ -917,7 +917,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                                 )}
                               </div>
                             ) : (
-                              <div className="h-[600px] border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+                              <div className="h-[600px] rounded-lg overflow-hidden">
                                 <JSCodeEditor 
                                   initialCode={post.code} 
                                   className="h-full p-0"

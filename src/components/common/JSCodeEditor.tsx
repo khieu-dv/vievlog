@@ -107,12 +107,26 @@ export default function JSCodeEditor({ initialCode, className }: JSCodeEditorPro
                 {/* Editor Column */}
                 <div className="w-full lg:w-1/2 flex flex-col h-[40vh] lg:h-full">
                     <div
-                        className="flex-shrink-0 mb-2 flex items-center"
+                        className="flex-shrink-0 mb-2 flex items-center justify-between"
                         style={{ height: "40px" }}
                     >
                         <h2 className="text-lg font-semibold text-gray-700">Code Editor</h2>
+                        <div className="flex items-center space-x-2">
+                            <button
+                                onClick={runCode}
+                                className="px-3 py-1.5 bg-blue-600 text-white rounded text-sm hover:bg-blue-700"
+                            >
+                                Run
+                            </button>
+                            <button
+                                onClick={formatCodeManual}
+                                className="px-3 py-1.5 bg-gray-600 text-white rounded text-sm hover:bg-gray-700"
+                            >
+                                Format
+                            </button>
+                        </div>
                     </div>
-                    <div className="flex-grow border rounded-md overflow-hidden">
+                    <div className="flex-grow rounded-md overflow-hidden">
                         <Editor
                             height="100%"
                             defaultLanguage="javascript"
@@ -133,24 +147,13 @@ export default function JSCodeEditor({ initialCode, className }: JSCodeEditorPro
                 {/* Output Column */}
                 <div className="w-full lg:w-1/2 flex flex-col lg:h-full">
                     <div
-                        className="flex-shrink-0 mb-2 flex items-center space-x-2"
+                        className="flex-shrink-0 mb-2 flex items-center"
                         style={{ height: "40px" }}
                     >
-                        <button
-                            onClick={runCode}
-                            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-                        >
-                            Run
-                        </button>
-                        <button
-                            onClick={formatCodeManual}
-                            className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700"
-                        >
-                            Format Code
-                        </button>
+                        <h2 className="text-lg font-semibold text-gray-700">Output</h2>
                     </div>
                     <pre
-                        className="flex-grow p-2 border rounded bg-gray-100 overflow-auto whitespace-pre-wrap"
+                        className="flex-grow p-2 rounded bg-gray-100 overflow-auto whitespace-pre-wrap"
                         dangerouslySetInnerHTML={{
                             __html: Prism.highlight(output, Prism.languages.javascript, "javascript"),
                         }}
