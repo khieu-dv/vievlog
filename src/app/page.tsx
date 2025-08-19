@@ -107,32 +107,30 @@ export default function HomePage() {
 
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white dark:bg-black">
       <Header />
       <VieShareBanner />
 
-      {/* Hero Section - shadcn/ui Style */}
-      <div className="relative">
-        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="pt-20 pb-16 text-center lg:pt-32">
-            <h1 className="mx-auto max-w-4xl font-bold tracking-tight text-slate-900 dark:text-slate-50 text-4xl sm:text-6xl">
-              The Foundation for your
-              <span className="relative whitespace-nowrap text-primary">
-                <span className="relative"> Learning System</span>
-              </span>
+      {/* Hero Section - Apple Style */}
+      <div className="relative overflow-hidden bg-white dark:bg-black">
+        <div className="max-w-6xl mx-auto">
+          <div className="pt-24 pb-20 text-center lg:pt-40 lg:pb-32">
+            <h1 className="mx-auto max-w-4xl font-semibold tracking-tight text-gray-900 dark:text-white text-5xl sm:text-7xl lg:text-8xl leading-none">
+              VieVlog.
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg tracking-tight text-slate-700 dark:text-slate-400">
-              {t('home.heroDescription')}
+            <p className="mx-auto mt-8 max-w-3xl text-2xl font-light text-gray-600 dark:text-gray-300 leading-relaxed">
+              The future of programming education.<br />
+              Beautiful. Powerful. Easy to learn.
             </p>
-            <div className="mt-10 flex justify-center gap-x-6">
+            <div className="mt-12 flex justify-center gap-x-4">
               <Link href="/posts">
-                <Button className="bg-slate-900 text-white hover:bg-slate-700 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-200">
-                  {t('home.startLearning')}
+                <Button className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-8 py-3 rounded-full text-lg">
+                  Start Learning
                 </Button>
               </Link>
               <Link href="/videos">
-                <Button variant="outline" className="text-slate-900 dark:text-slate-100">
-                  {t('home.watchTutorials')}
+                <Button variant="outline" className="border-gray-300 dark:border-gray-600 text-blue-600 dark:text-blue-400 font-medium px-8 py-3 rounded-full text-lg hover:bg-gray-50 dark:hover:bg-gray-900">
+                  Watch Videos
                 </Button>
               </Link>
             </div>
@@ -140,31 +138,31 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Programming Categories - shadcn/ui Style */}
-      <div className="relative py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      {/* Programming Categories - Apple Style */}
+      <div className="relative py-20 lg:py-32 bg-gray-50 dark:bg-gray-900">
+        <div className="mx-auto max-w-6xl px-6">
 
           {/* Programming Categories - Grouped by mainName */}
           {isLoadingCategories ? (
             <div className="mx-auto text-center">
-              <div className="animate-spin inline-block w-8 h-8 border-2 border-current border-t-transparent text-slate-900 dark:text-slate-50 rounded-full mb-4"></div>
-              <p className="text-slate-600 dark:text-slate-400">Loading categories...</p>
+              <div className="animate-spin inline-block w-6 h-6 border-2 border-current border-t-transparent text-gray-900 dark:text-white rounded-full mb-4"></div>
+              <p className="text-gray-600 dark:text-gray-400 font-light">Loading categories...</p>
             </div>
           ) : (
-            <div className="mx-auto space-y-16">
+            <div className="mx-auto space-y-24">
               {Object.entries(groupedCategories)
                 .sort(([a], [b]) => {
                   const order = ['Languages', 'Frameworks', 'Soft Skills'];
                   return order.indexOf(a) - order.indexOf(b);
                 })
                 .map(([mainName, categoryList]) => (
-                <div key={mainName}>
+                <div key={mainName} className="text-center">
                   {/* Section Header */}
-                  <div className="text-center mb-12">
-                    <h3 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-slate-50 mb-4">
+                  <div className="mb-16">
+                    <h2 className="text-4xl lg:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-6">
                       {mainName}
-                    </h3>
-                    <p className="text-base text-slate-600 dark:text-slate-400">
+                    </h2>
+                    <p className="text-xl font-light text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
                       {mainName === 'Frameworks' 
                         ? 'Popular frameworks and tools to build amazing applications'
                         : mainName === 'Languages'
@@ -175,38 +173,26 @@ export default function HomePage() {
                   </div>
 
                   {/* Categories Grid */}
-                  <div className="grid max-w-2xl mx-auto grid-cols-1 gap-6 sm:grid-cols-2 lg:max-w-none lg:grid-cols-3 xl:grid-cols-4">
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-5xl mx-auto">
                     {categoryList.map((category) => (
                       <div
                         key={category.id}
                         onClick={() => handleCategorySelect(category.id)}
-                        className="group cursor-pointer rounded-2xl bg-white p-6 ring-1 ring-inset ring-slate-200 hover:bg-slate-50 hover:ring-slate-300 dark:bg-slate-900 dark:ring-slate-800 dark:hover:bg-slate-800/50 dark:hover:ring-slate-700 transition-all duration-300 hover:shadow-md"
+                        className="group cursor-pointer bg-white dark:bg-black rounded-xl p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
                       >
-                        <div className="flex items-center gap-x-4 mb-4">
+                        <div className="flex flex-col items-center text-center">
                           <div 
-                            className="h-12 w-12 flex-none rounded-xl flex items-center justify-center text-white text-lg font-semibold shadow-sm"
+                            className="h-14 w-14 rounded-full flex items-center justify-center text-white text-xl font-medium mb-4"
                             style={{ backgroundColor: category.color }}
                           >
                             {category.name.charAt(0).toUpperCase()}
                           </div>
-                          <div className="text-base font-semibold leading-6 text-slate-900 dark:text-slate-50 group-hover:text-primary transition-colors">
+                          <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
                             {category.name}
-                          </div>
-                        </div>
-                        
-                        {category.description && (
-                          <p className="text-sm leading-6 text-slate-600 dark:text-slate-400 mb-4 line-clamp-2">
-                            {category.description}
-                          </p>
-                        )}
-                        
-                        <div className="flex items-center justify-between">
-                          <p className="text-sm font-medium text-slate-500 dark:text-slate-500">
+                          </h3>
+                          <p className="text-sm text-gray-500 dark:text-gray-400 font-light">
                             {category.postCount || 0} tutorials
                           </p>
-                          <div className="opacity-0 group-hover:opacity-100 transition-opacity">
-                            <ArrowRight className="h-4 w-4 text-primary" />
-                          </div>
                         </div>
                       </div>
                     ))}
@@ -219,176 +205,132 @@ export default function HomePage() {
       </div>
 
 
-      {/* Features Section - shadcn/ui Style */}
-      <div className="bg-slate-50 py-24 sm:py-32 dark:bg-slate-900/50">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl lg:text-center">
-            <h2 className="text-base font-semibold leading-7 text-primary">Everything you need</h2>
-            <p className="mt-2 text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-50 sm:text-4xl">
-              A better way to learn programming
-            </p>
-            <p className="mt-6 text-lg leading-8 text-slate-600 dark:text-slate-400">
-              Our platform provides comprehensive learning tools designed to help you master programming from beginner to advanced levels.
+      {/* Features Section - Apple Style */}
+      <div className="bg-white dark:bg-black py-20 lg:py-32">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl lg:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-6">
+              Why VieVlog?
+            </h2>
+            <p className="text-xl font-light text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Everything you need to master programming. Beautifully designed, thoughtfully crafted.
             </p>
           </div>
-          <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
-            <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
-              <div className="flex flex-col">
-                <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-slate-900 dark:text-slate-50">
-                  <div className="h-10 w-10 flex items-center justify-center rounded-lg bg-primary">
-                    <MessageCircle className="h-6 w-6 text-white" aria-hidden="true" />
-                  </div>
-                  {t('home.interactiveTutorials')}
-                </dt>
-                <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-slate-600 dark:text-slate-400">
-                  <p className="flex-auto">{t('home.interactiveTutorialsDesc')}</p>
-                </dd>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <div className="text-center">
+              <div className="h-16 w-16 mx-auto mb-6 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center">
+                <MessageCircle className="h-8 w-8 text-blue-600 dark:text-blue-400" />
               </div>
-              <div className="flex flex-col">
-                <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-slate-900 dark:text-slate-50">
-                  <div className="h-10 w-10 flex items-center justify-center rounded-lg bg-primary">
-                    <Share2 className="h-6 w-6 text-white" aria-hidden="true" />
-                  </div>
-                  {t('home.videoTutorials')}
-                </dt>
-                <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-slate-600 dark:text-slate-400">
-                  <p className="flex-auto">{t('home.videoTutorialsDesc')}</p>
-                </dd>
+              <h3 className="text-xl font-medium text-gray-900 dark:text-white mb-4">
+                Interactive Learning
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 font-light leading-relaxed">
+                Learn with hands-on examples and interactive code snippets that bring concepts to life.
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="h-16 w-16 mx-auto mb-6 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center">
+                <Share2 className="h-8 w-8 text-green-600 dark:text-green-400" />
               </div>
-              <div className="flex flex-col">
-                <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-slate-900 dark:text-slate-50">
-                  <div className="h-10 w-10 flex items-center justify-center rounded-lg bg-primary">
-                    <ChevronUp className="h-6 w-6 text-white" aria-hidden="true" />
-                  </div>
-                  {t('home.structuredLearning')}
-                </dt>
-                <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-slate-600 dark:text-slate-400">
-                  <p className="flex-auto">{t('home.structuredLearningDesc')}</p>
-                </dd>
+              <h3 className="text-xl font-medium text-gray-900 dark:text-white mb-4">
+                Video Tutorials
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 font-light leading-relaxed">
+                Watch comprehensive video guides designed for visual learners and complex topics.
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="h-16 w-16 mx-auto mb-6 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center">
+                <ChevronUp className="h-8 w-8 text-purple-600 dark:text-purple-400" />
               </div>
-            </dl>
+              <h3 className="text-xl font-medium text-gray-900 dark:text-white mb-4">
+                Structured Paths
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 font-light leading-relaxed">
+                Follow curated roadmaps that take you from beginner to advanced level systematically.
+              </p>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Game Promotion Section */}
-      <div className="relative py-24 sm:py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-slate-900 dark:via-blue-900/20 dark:to-purple-900/20"></div>
-        <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl lg:max-w-none">
-            <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:gap-x-12 lg:items-center">
-              
-              {/* Content */}
-              <div>
-                <h2 className="text-base font-semibold leading-7 text-primary">
-                  {t('gamePromo.subtitle')}
-                </h2>
-                <p className="mt-2 text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-50 sm:text-4xl">
-                  {t('gamePromo.title')}
-                </p>
-                <p className="mt-6 text-lg leading-8 text-slate-600 dark:text-slate-400">
-                  {t('gamePromo.description')}
-                </p>
+      {/* Game Promotion Section - Apple Style */}
+      <div className="relative py-20 lg:py-32 overflow-hidden bg-gray-50 dark:bg-gray-900">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
+            
+            {/* Content */}
+            <div className="text-center lg:text-left">
+              <h2 className="text-4xl lg:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-6">
+                Learn Through Play
+              </h2>
+              <p className="text-xl font-light text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
+                Master programming concepts through interactive games and challenges. 
+                Fun, engaging, and surprisingly effective.
+              </p>
 
-                {/* Features */}
-                <div className="mt-10 space-y-6">
-                  <div className="flex items-start gap-x-4">
-                    <div className="h-8 w-8 flex items-center justify-center rounded-lg bg-primary/10">
-                      <Gamepad2 className="h-5 w-5 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="text-base font-semibold text-slate-900 dark:text-slate-50">
-                        {t('gamePromo.features.interactive')}
-                      </h3>
-                      <p className="text-sm text-slate-600 dark:text-slate-400">
-                        {t('gamePromo.features.interactiveDesc')}
-                      </p>
-                    </div>
+              {/* Features */}
+              <div className="space-y-4 mb-8">
+                <div className="flex items-center lg:justify-start justify-center gap-x-3">
+                  <div className="h-6 w-6 bg-blue-600 rounded-full flex items-center justify-center">
+                    <Gamepad2 className="h-3 w-3 text-white" />
                   </div>
-                  
-                  <div className="flex items-start gap-x-4">
-                    <div className="h-8 w-8 flex items-center justify-center rounded-lg bg-primary/10">
-                      <Users className="h-5 w-5 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="text-base font-semibold text-slate-900 dark:text-slate-50">
-                        {t('gamePromo.features.multiplayer')}
-                      </h3>
-                      <p className="text-sm text-slate-600 dark:text-slate-400">
-                        {t('gamePromo.features.multiplayerDesc')}
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-x-4">
-                    <div className="h-8 w-8 flex items-center justify-center rounded-lg bg-primary/10">
-                      <TrendingUp className="h-5 w-5 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="text-base font-semibold text-slate-900 dark:text-slate-50">
-                        {t('gamePromo.features.progress')}
-                      </h3>
-                      <p className="text-sm text-slate-600 dark:text-slate-400">
-                        {t('gamePromo.features.progressDesc')}
-                      </p>
-                    </div>
-                  </div>
+                  <span className="text-gray-700 dark:text-gray-200 font-light">Interactive Learning</span>
                 </div>
-
-                {/* CTAs */}
-                <div className="mt-10 flex items-center gap-x-6">
-                  <Link href="/godot-game">
-                    <Button className="bg-primary hover:bg-primary/90 text-white">
-                      <Gamepad2 className="h-4 w-4 mr-2" />
-                      {t('gamePromo.playNow')}
-                    </Button>
-                  </Link>
-                  <Link href="/godot-game">
-                    <Button variant="outline">
-                      {t('gamePromo.learnMore')}
-                    </Button>
-                  </Link>
+                <div className="flex items-center lg:justify-start justify-center gap-x-3">
+                  <div className="h-6 w-6 bg-green-600 rounded-full flex items-center justify-center">
+                    <Users className="h-3 w-3 text-white" />
+                  </div>
+                  <span className="text-gray-700 dark:text-gray-200 font-light">Multiplayer Challenges</span>
+                </div>
+                <div className="flex items-center lg:justify-start justify-center gap-x-3">
+                  <div className="h-6 w-6 bg-purple-600 rounded-full flex items-center justify-center">
+                    <TrendingUp className="h-3 w-3 text-white" />
+                  </div>
+                  <span className="text-gray-700 dark:text-gray-200 font-light">Progress Tracking</span>
                 </div>
               </div>
 
-              {/* Screenshots Grid */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-4">
-                  <div className="relative group cursor-pointer">
-                    <img
-                      src="/screenshot20.png"
-                      alt="Game Screenshot 1"
-                      className="w-full h-auto rounded-lg shadow-lg transition-transform group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors rounded-lg"></div>
-                  </div>
-                  <div className="relative group cursor-pointer">
-                    <img
-                      src="/screenshot22.png"
-                      alt="Game Screenshot 3"
-                      className="w-full h-auto rounded-lg shadow-lg transition-transform group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors rounded-lg"></div>
-                  </div>
-                </div>
-                <div className="space-y-4 mt-8">
-                  <div className="relative group cursor-pointer">
-                    <img
-                      src="/screenshot21.png"
-                      alt="Game Screenshot 2"
-                      className="w-full h-auto rounded-lg shadow-lg transition-transform group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors rounded-lg"></div>
-                  </div>
-                  <div className="relative group cursor-pointer">
-                    <img
-                      src="/screenshot23.png"
-                      alt="Game Screenshot 4"
-                      className="w-full h-auto rounded-lg shadow-lg transition-transform group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors rounded-lg"></div>
-                  </div>
-                </div>
+              {/* CTAs */}
+              <div className="flex flex-col sm:flex-row items-center lg:justify-start justify-center gap-4">
+                <Link href="/godot-game">
+                  <Button className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-8 py-3 rounded-full text-lg">
+                    Play Now
+                  </Button>
+                </Link>
+                <Link href="/godot-game">
+                  <Button variant="outline" className="border-gray-300 dark:border-gray-600 text-blue-600 dark:text-blue-400 font-medium px-8 py-3 rounded-full text-lg hover:bg-gray-50 dark:hover:bg-gray-800">
+                    Learn More
+                  </Button>
+                </Link>
+              </div>
+            </div>
+
+            {/* Screenshots Grid - Simplified */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-4">
+                <img
+                  src="/screenshot20.png"
+                  alt="Game Screenshot 1"
+                  className="w-full h-auto rounded-2xl shadow-2xl transition-transform hover:scale-105"
+                />
+                <img
+                  src="/screenshot22.png"
+                  alt="Game Screenshot 3"
+                  className="w-full h-auto rounded-2xl shadow-2xl transition-transform hover:scale-105"
+                />
+              </div>
+              <div className="space-y-4 mt-8">
+                <img
+                  src="/screenshot21.png"
+                  alt="Game Screenshot 2"
+                  className="w-full h-auto rounded-2xl shadow-2xl transition-transform hover:scale-105"
+                />
+                <img
+                  src="/screenshot23.png"
+                  alt="Game Screenshot 4"
+                  className="w-full h-auto rounded-2xl shadow-2xl transition-transform hover:scale-105"
+                />
               </div>
             </div>
           </div>
