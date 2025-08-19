@@ -23,7 +23,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { categories, categoryPosts, docsData, loading } = useDocsData();
-  
+
   const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set());
   const [activeSection, setActiveSection] = useState<string>('');
   const [expandedPostSections, setExpandedPostSections] = useState<Set<string>>(new Set());
@@ -42,7 +42,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
     }
     return false;
   });
-  
+
   const { data: session } = useSession();
   const pb = new PocketBase(process.env.NEXT_PUBLIC_POCKETBASE_URL || 'https://pocketbase.vietopik.com');
 
@@ -144,31 +144,31 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
   const handlePostSelect = async (postId: string) => {
     setActiveSection(`post-${postId}`);
     updateURL(postId);
-    
+
     // Load full content and comments if not already loaded
     await Promise.all([
       loadPostContent(postId),
       loadPostComments(postId)
     ]);
-    
+
     // Scroll to top of main content area smoothly
     setTimeout(() => {
       const mainContent = document.querySelector('main');
       if (mainContent) {
-        mainContent.scrollIntoView({ 
-          behavior: 'smooth', 
+        mainContent.scrollIntoView({
+          behavior: 'smooth',
           block: 'start',
           inline: 'nearest'
         });
       } else {
         // Fallback to window scroll if main element not found
-        window.scrollTo({ 
-          top: 0, 
-          behavior: 'smooth' 
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
         });
       }
     }, 100); // Small delay to ensure content has rendered
-    
+
     // Close mobile menu when post is selected
     setExpandedSections(prev => {
       const newSet = new Set(prev);
@@ -258,7 +258,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
     if (!loading && docsData.length > 0) {
       const postIdFromURL = searchParams.get('post');
       const categoryIdFromURL = searchParams.get('category');
-      
+
       if (postIdFromURL) {
         // If there's a post ID in URL, show that post
         setActiveSection(`post-${postIdFromURL}`);
@@ -379,7 +379,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
 
       // Close all expanded post sections when opening a new category
       setExpandedPostSections(new Set());
-      
+
       // Update URL with category parameter for shareable links
       const params = new URLSearchParams(searchParams.toString());
       if (sectionId !== 'overview') {
@@ -389,7 +389,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
       }
       params.delete('post'); // Remove post parameter when viewing category
       router.replace(`/posts?${params.toString()}`, { scroll: false });
-      
+
       // Don't close mobile sidebar when selecting category - let user choose posts
       // Mobile sidebar will only close when a post is selected
     }
@@ -421,7 +421,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
   const findAdjacentPosts = (currentPostId: string) => {
     const allPosts = Object.values(categoryPosts).flat();
     const currentIndex = allPosts.findIndex(post => post.id === currentPostId);
-    
+
     return {
       previousPost: currentIndex > 0 ? allPosts[currentIndex - 1] : null,
       nextPost: currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null
@@ -476,17 +476,17 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
       {/* Sidebar Navigation - Apple Style */}
       <aside className={`
         flex-shrink-0 transition-all duration-300 ease-in-out
-        ${expandedSections.has('mobile-nav') 
-          ? 'fixed left-0 top-0 bottom-0 w-4/5 z-50 lg:relative lg:z-auto transform translate-x-0' 
+        ${expandedSections.has('mobile-nav')
+          ? 'fixed left-0 top-0 bottom-0 w-4/5 z-50 lg:relative lg:z-auto transform translate-x-0'
           : 'fixed left-0 top-0 bottom-0 w-4/5 z-50 lg:relative lg:z-auto transform -translate-x-full lg:translate-x-0 lg:block'
         }
-        ${sidebarCollapsed 
-          ? 'lg:w-0 lg:opacity-0 lg:pointer-events-none xl:w-0 xl:opacity-0 xl:pointer-events-none' 
+        ${sidebarCollapsed
+          ? 'lg:w-0 lg:opacity-0 lg:pointer-events-none xl:w-0 xl:opacity-0 xl:pointer-events-none'
           : 'lg:w-80 xl:w-96 lg:opacity-100 lg:pointer-events-auto xl:opacity-100 xl:pointer-events-auto'
         }
       `}>
         <div className={`${expandedSections.has('mobile-nav') ? 'h-full' : 'sticky top-16'}`}>
-          <div className={`bg-white/95 dark:bg-black/95 backdrop-blur-xl ${expandedSections.has('mobile-nav') ? 'rounded-none' : 'rounded-2xl'} shadow-xl flex flex-col ${expandedSections.has('mobile-nav') ? 'h-full' : ''}`} style={expandedSections.has('mobile-nav') ? {} : {height: 'calc(100vh - 6rem)'}}>
+          <div className={`bg-white/95 dark:bg-black/95 backdrop-blur-xl ${expandedSections.has('mobile-nav') ? 'rounded-none' : 'rounded-2xl'} shadow-xl flex flex-col ${expandedSections.has('mobile-nav') ? 'h-full' : ''}`} style={expandedSections.has('mobile-nav') ? {} : { height: 'calc(100vh - 6rem)' }}>
             {/* Header with Search - Apple Style */}
             <div className="p-6 flex-shrink-0">
               <div className="flex items-center justify-between mb-6">
@@ -556,8 +556,8 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                       // Don't close mobile sidebar - let user see overview content first
                     }}
                     className={`flex items-center gap-4 w-full px-4 py-3 text-base font-medium rounded-xl transition-all duration-200 ${activeSection === 'overview'
-                        ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 shadow-sm'
-                        : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800'
+                      ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 shadow-sm'
+                      : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800'
                       }`}
                   >
                     <Home className="h-5 w-5" />
@@ -565,9 +565,9 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                   </button>
                 )}
 
-{(() => {
+                {(() => {
                   const sectionsToDisplay = searchQuery ? filteredDocsData : docsData;
-                  
+
                   // Group sections by mainName for display
                   const groupedSections = sectionsToDisplay.reduce((acc, section) => {
                     const mainName = section.category?.mainName || 'Languages';
@@ -577,14 +577,14 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                     acc[mainName].push(section);
                     return acc;
                   }, {} as Record<string, typeof sectionsToDisplay>);
-                  
+
                   // Define the order for mainName groups
                   const mainNameOrder = ['Languages', 'DSA', 'Frameworks', 'Soft Skills'];
-                  
+
                   return mainNameOrder.map((mainName, mainNameIndex) => {
                     const sectionsInGroup = groupedSections[mainName] || [];
                     if (sectionsInGroup.length === 0) return null;
-                    
+
                     return (
                       <div key={mainName}>
                         {/* Add separator between groups (not before the first group) */}
@@ -593,7 +593,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                             <hr className="border-border/40" />
                           </div>
                         )}
-                        
+
                         {sectionsInGroup.map((section) => (
                           <div key={section.id} className="mb-2">
                             {/* Different layout for sections with/without posts */}
@@ -608,8 +608,8 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                                   // Don't close mobile sidebar here - let user select posts first
                                 }}
                                 className={`flex items-center gap-4 w-full px-4 py-3 text-base font-medium rounded-xl transition-all duration-200 justify-between ${activeSection === section.id
-                                    ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 shadow-sm'
-                                    : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800'
+                                  ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 shadow-sm'
+                                  : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800'
                                   }`}
                               >
                                 <div className="flex items-center gap-3 min-w-0 flex-1">
@@ -646,8 +646,8 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                                   // Don't close mobile sidebar - let user see content first
                                 }}
                                 className={`flex items-center gap-4 w-full px-4 py-3 text-base font-medium rounded-xl transition-all duration-200 ${activeSection === section.id
-                                    ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 shadow-sm'
-                                    : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800'
+                                  ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 shadow-sm'
+                                  : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800'
                                   }`}
                               >
                                 <div className="flex items-center gap-3 min-w-0 flex-1">
@@ -666,8 +666,8 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                                     key={post.id}
                                     onClick={() => handlePostSelect(post.id)}
                                     className={`block w-full text-left p-2.5 text-xs rounded-lg transition-all duration-200 ${activeSection === `post-${post.id}`
-                                        ? 'bg-accent/70 text-accent-foreground font-medium shadow-sm'
-                                        : 'text-muted-foreground/80 hover:bg-accent/30 hover:text-foreground'
+                                      ? 'bg-accent/70 text-accent-foreground font-medium shadow-sm'
+                                      : 'text-muted-foreground/80 hover:bg-accent/30 hover:text-foreground'
                                       }`}
                                   >
                                     <div className="truncate pr-2">{post.title}</div>
@@ -685,8 +685,8 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                                         key={post.id}
                                         onClick={() => handlePostSelect(post.id)}
                                         className={`block w-full text-left p-2.5 text-xs rounded-lg transition-all duration-200 ${activeSection === `post-${post.id}`
-                                            ? 'bg-accent/70 text-accent-foreground font-medium shadow-sm'
-                                            : 'text-muted-foreground/80 hover:bg-accent/30 hover:text-foreground'
+                                          ? 'bg-accent/70 text-accent-foreground font-medium shadow-sm'
+                                          : 'text-muted-foreground/80 hover:bg-accent/30 hover:text-foreground'
                                           }`}
                                       >
                                         <div className="truncate pr-2">{post.title}</div>
@@ -734,9 +734,8 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
       </aside>
 
       {/* Sidebar Toggle Button for Large Screens */}
-      <div className={`hidden lg:block fixed top-1/2 z-40 transition-all duration-300 ${
-        sidebarCollapsed ? 'left-4' : 'left-[calc(20rem+1rem)] xl:left-[calc(24rem+1rem)]'
-      }`}>
+      <div className={`hidden lg:block fixed top-1/2 z-40 transition-all duration-300 ${sidebarCollapsed ? 'left-4' : 'left-[calc(20rem+1rem)] xl:left-[calc(24rem+1rem)]'
+        }`}>
         <button
           onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
           className="p-2 bg-white/90 dark:bg-black/90 backdrop-blur-xl border border-gray-200 dark:border-gray-700 rounded-full shadow-lg hover:scale-105 transition-all duration-200"
@@ -751,10 +750,9 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
       </div>
 
       {/* Main Content - Apple Style */}
-      <main 
-        className={`flex-1 min-w-0 transition-all duration-300 ${expandedSections.has('mobile-nav') ? 'lg:block hidden' : 'block'} ${
-          sidebarCollapsed ? 'lg:ml-0' : 'lg:ml-0'
-        }`}
+      <main
+        className={`flex-1 min-w-0 transition-all duration-300 ${expandedSections.has('mobile-nav') ? 'lg:block hidden' : 'block'} ${sidebarCollapsed ? 'lg:ml-0' : 'lg:ml-0'
+          }`}
         onClick={() => {
           // Close mobile sidebar when clicking on main content
           if (expandedSections.has('mobile-nav')) {
@@ -766,9 +764,8 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
           }
         }}
       >
-        <div className={`bg-white/95 dark:bg-black/95 backdrop-blur-xl sm:rounded-2xl sm:shadow-xl transition-all duration-300 ${
-          sidebarCollapsed ? 'lg:max-w-none lg:mx-8' : ''
-        }`}>
+        <div className={`bg-white/95 dark:bg-black/95 backdrop-blur-xl sm:rounded-2xl sm:shadow-xl transition-all duration-300 ${sidebarCollapsed ? 'lg:max-w-none lg:mx-8' : ''
+          }`}>
           {/* Content Header with Breadcrumbs - Apple style */}
           <div className="px-4 sm:px-8 py-6">
             <div className="flex items-center gap-3 text-base text-gray-500 dark:text-gray-400 mb-2">
@@ -802,9 +799,8 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
           </div>
 
           {/* Content Body - Full Height */}
-          <div className={`p-4 sm:p-8 bg-gradient-to-br from-gray-50/50 to-white dark:from-gray-900/50 dark:to-black transition-all duration-300 ${
-            sidebarCollapsed ? 'lg:p-16 xl:p-20' : 'lg:p-12'
-          }`}>
+          <div className={`p-4 sm:p-8 bg-gradient-to-br from-gray-50/50 to-white dark:from-gray-900/50 dark:to-black transition-all duration-300 ${sidebarCollapsed ? 'lg:p-16 xl:p-20' : 'lg:p-12'
+            }`}>
             {activeSection.startsWith('post-') ? (
               // Render individual post content
               (() => {
@@ -879,25 +875,23 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                           <div className="flex border-b border-gray-200 dark:border-gray-700 mb-6">
                             <button
                               onClick={() => setActiveTab(prev => ({ ...prev, [post.id]: 'content' }))}
-                              className={`flex items-center gap-2 px-6 py-3 text-sm font-medium border-b-2 transition-colors ${
-                                currentTab === 'content'
+                              className={`flex items-center gap-2 px-6 py-3 text-sm font-medium border-b-2 transition-colors ${currentTab === 'content'
                                   ? 'border-primary text-primary bg-primary/5'
                                   : 'border-transparent text-muted-foreground hover:text-foreground hover:border-gray-300 dark:hover:border-gray-600'
-                              }`}
+                                }`}
                             >
                               <FileText className="h-4 w-4" />
                               Content
                             </button>
                             <button
                               onClick={() => setActiveTab(prev => ({ ...prev, [post.id]: 'code' }))}
-                              className={`flex items-center gap-2 px-6 py-3 text-sm font-medium border-b-2 transition-colors ${
-                                currentTab === 'code'
+                              className={`flex items-center gap-2 px-6 py-3 text-sm font-medium border-b-2 transition-colors ${currentTab === 'code'
                                   ? 'border-primary text-primary bg-primary/5'
                                   : 'border-transparent text-muted-foreground hover:text-foreground hover:border-gray-300 dark:hover:border-gray-600'
-                              }`}
+                                }`}
                             >
                               <Code className="h-4 w-4" />
-                              Code Editor
+                              Code Demo
                             </button>
                           </div>
 
@@ -918,8 +912,8 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                               </div>
                             ) : (
                               <div className="h-[600px] rounded-lg overflow-hidden">
-                                <JSCodeEditor 
-                                  initialCode={post.code} 
+                                <JSCodeEditor
+                                  initialCode={post.code}
                                   className="h-full p-0"
                                 />
                               </div>
@@ -1053,7 +1047,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                       {(() => {
                         const postId = activeSection.replace('post-', '');
                         const { previousPost, nextPost } = findAdjacentPosts(postId);
-                        
+
                         if (!previousPost && !nextPost) {
                           return (
                             <button
