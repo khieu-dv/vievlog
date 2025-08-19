@@ -78,38 +78,50 @@ export default function JSCodeEditor() {
     }
 
     return (
-        <div className="p-6 max-w-4xl mx-auto">
-            <div style={{ border: '1px solid #e2e8f0', borderRadius: '0.375rem', overflow: 'hidden' }}>
-                <Editor
-                    height="40vh"
-                    defaultLanguage="javascript"
-                    value={code}
-                    onChange={(value) => setCode(value || "")}
-                    onMount={handleEditorDidMount}
-                    theme="vs-light"
-                    options={{
-                        minimap: { enabled: false },
-                        fontSize: 14,
-                        wordWrap: "on",
-                        scrollBeyondLastLine: false,
-                    }}
-                />
+        <div className="p-4 md:p-6 h-screen flex flex-col">
+            <div className="flex-grow flex flex-col lg:flex-row lg:space-x-4 space-y-4 lg:space-y-0">
+                {/* Editor Column */}
+                <div className="w-full lg:w-1/2 flex flex-col h-[50vh] lg:h-full">
+                    <div className="flex-shrink-0 mb-2 flex items-center" style={{ height: '40px' }}>
+                        <h2 className="text-lg font-semibold text-gray-700">Code Editor</h2>
+                    </div>
+                    <div className="flex-grow border rounded-md overflow-hidden">
+                        <Editor
+                            height="100%"
+                            defaultLanguage="javascript"
+                            value={code}
+                            onChange={(value) => setCode(value || "")}
+                            onMount={handleEditorDidMount}
+                            theme="vs-light"
+                            options={{
+                                minimap: { enabled: false },
+                                fontSize: 14,
+                                wordWrap: "on",
+                                scrollBeyondLastLine: false,
+                            }}
+                        />
+                    </div>
+                </div>
+
+                {/* Output Column */}
+                <div className="w-full lg:w-1/2 flex flex-col lg:h-full">
+                    <div className="flex-shrink-0 mb-2 flex items-center space-x-2" style={{ height: '40px' }}>
+                        <button
+                            onClick={runCode}
+                            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                        >
+                            Run
+                        </button>
+                        <button
+                            onClick={formatCodeManual}
+                            className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700"
+                        >
+                            Format Code
+                        </button>
+                    </div>
+                    <pre className="flex-grow p-2 border rounded bg-gray-100 whitespace-pre-wrap overflow-auto">{output}</pre>
+                </div>
             </div>
-            <div className="mt-2 space-x-2">
-                <button
-                    onClick={runCode}
-                    className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-                >
-                    Run
-                </button>
-                <button
-                    onClick={formatCodeManual}
-                    className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700"
-                >
-                    Format Code
-                </button>
-            </div>
-            <pre className="mt-4 p-2 border rounded bg-gray-100 min-h-[4rem] whitespace-pre-wrap">{output}</pre>
         </div>
     );
 }
