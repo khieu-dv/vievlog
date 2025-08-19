@@ -221,38 +221,19 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
     }
   };
 
-  // Handle scroll events to prevent body scroll when hovering over sidebar
+  // Handle scroll events - simplified approach for better performance
   useEffect(() => {
-    const handleWheel = (e: WheelEvent) => {
-      const target = e.target as Element;
-      
-      // Check if the scroll is happening within sidebar
-      const isInSidebar = target.closest('[data-scroll-area="sidebar"]');
-      
-      if (isInSidebar) {
-        // Allow sidebar scrolling, prevent body scroll
-        const sidebarElement = target.closest('[data-scroll-area="sidebar"]') as HTMLElement;
-        if (sidebarElement) {
-          const { scrollTop, scrollHeight, clientHeight } = sidebarElement;
-          const isScrollingUp = e.deltaY < 0;
-          const isScrollingDown = e.deltaY > 0;
-          
-          // Prevent body scroll if we're scrolling within sidebar bounds
-          if ((isScrollingUp && scrollTop > 0) || 
-              (isScrollingDown && scrollTop < scrollHeight - clientHeight)) {
-            e.preventDefault();
-            sidebarElement.scrollTop += e.deltaY;
-          }
-        }
-      }
-      // For main content, allow normal page scrolling (no special handling needed)
-    };
-
-    // Add passive: false to allow preventDefault
-    document.addEventListener('wheel', handleWheel, { passive: false });
+    // Let CSS handle the scroll behavior naturally with overscroll-behavior
+    const sidebarElements = document.querySelectorAll('[data-scroll-area="sidebar"]');
+    sidebarElements.forEach((element) => {
+      (element as HTMLElement).style.overscrollBehavior = 'contain';
+    });
 
     return () => {
-      document.removeEventListener('wheel', handleWheel);
+      // Cleanup
+      sidebarElements.forEach((element) => {
+        (element as HTMLElement).style.overscrollBehavior = '';
+      });
     };
   }, []);
 
@@ -484,10 +465,10 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
           : 'fixed left-0 top-0 bottom-0 w-4/5 z-50 lg:relative lg:w-80 xl:w-96 lg:z-auto transform -translate-x-full lg:translate-x-0 lg:block'
         }
       `}>
-        <div className={`${expandedSections.has('mobile-nav') ? 'h-full' : 'sticky top-20'}`}>
-          <div className={`bg-white/95 dark:bg-black/95 backdrop-blur-xl border border-gray-200 dark:border-gray-700 ${expandedSections.has('mobile-nav') ? 'rounded-none border-l-0 border-t-0 border-b-0' : 'rounded-2xl'} shadow-xl flex flex-col ${expandedSections.has('mobile-nav') ? 'h-full' : ''}`} style={expandedSections.has('mobile-nav') ? {} : {height: 'calc(100vh - 10rem)'}}>
+        <div className={`${expandedSections.has('mobile-nav') ? 'h-full' : 'sticky top-16'}`}>
+          <div className={`bg-white/95 dark:bg-black/95 backdrop-blur-xl ${expandedSections.has('mobile-nav') ? 'rounded-none' : 'rounded-2xl'} shadow-xl flex flex-col ${expandedSections.has('mobile-nav') ? 'h-full' : ''}`} style={expandedSections.has('mobile-nav') ? {} : {height: 'calc(100vh - 6rem)'}}>
             {/* Header with Search - Apple Style */}
-            <div className="p-6 border-b border-gray-200 dark:border-gray-700 flex-shrink-0">
+            <div className="p-6 flex-shrink-0">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-lg font-medium text-gray-900 dark:text-white">
                   Documentation
@@ -537,7 +518,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
             </div>
 
             {/* Navigation Content - Scrollable */}
-            <div className={`p-6 flex-1 overflow-y-auto ${expandedSections.has('mobile-nav') ? 'pb-6' : ''}`} data-scroll-area="sidebar">
+            <div className={`p-6 flex-1 overflow-y-auto overscroll-contain scroll-smooth ${expandedSections.has('mobile-nav') ? 'pb-6' : ''}`} data-scroll-area="sidebar">
 
               <nav className="space-y-3">
                 {/* Home/Overview always visible */}
@@ -746,9 +727,9 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
           }
         }}
       >
-        <div className="bg-white/95 dark:bg-black/95 backdrop-blur-xl sm:border border-gray-200 dark:border-gray-700 sm:rounded-2xl sm:shadow-xl">
+        <div className="bg-white/95 dark:bg-black/95 backdrop-blur-xl sm:rounded-2xl sm:shadow-xl">
           {/* Content Header with Breadcrumbs - Apple style */}
-          <div className="sm:border-b border-gray-200 dark:border-gray-700 px-4 sm:px-8 py-6">
+          <div className="px-4 sm:px-8 py-6">
             <div className="flex items-center gap-3 text-base text-gray-500 dark:text-gray-400 mb-2">
               <Home className="h-5 w-5" />
               <ChevronRight className="h-4 w-4" />
@@ -823,10 +804,6 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                       </div>
 
                       <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground mb-6 leading-tight">{post.title}</h1>
-
-                      {post.excerpt && (
-                        <p className="text-xl text-muted-foreground mb-8 leading-relaxed">{post.excerpt}</p>
-                      )}
                     </div>
 
                     {/* Article Content */}
@@ -845,7 +822,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
 
                     {/* Article Footer */}
                     {post.tags && post.tags.length > 0 && (
-                      <div className="mt-12 pt-8 border-t">
+                      <div className="mt-12 pt-8">
                         <h4 className="text-sm font-medium text-foreground mb-4">Tags</h4>
                         <div className="flex flex-wrap gap-2">
                           {post.tags.map((tag, index) => (
@@ -861,7 +838,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                     )}
 
                     {/* Comments Section */}
-                    <div className="mt-12 pt-8 border-t">
+                    <div className="mt-12 pt-8">
                       {(() => {
                         const postId = activeSection.replace('post-', '');
                         const comments = postComments[postId] || [];
@@ -869,7 +846,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                         const isSubmitting = submittingComment === postId;
 
                         return (
-                          <div className="bg-card rounded-lg border p-6">
+                          <div className="bg-card rounded-lg p-6">
                             <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
                               <MessageCircle className="h-5 w-5" />
                               Discussion ({comments.length})
@@ -897,7 +874,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                                   <div className="flex-1">
                                     <textarea
                                       placeholder="Share your thoughts..."
-                                      className="w-full p-3 sm:border border-border sm:rounded-md bg-background text-sm resize-vertical min-h-[100px] focus:outline-none focus:ring-2 focus:ring-primary/20"
+                                      className="w-full p-3 sm:rounded-md bg-background text-sm resize-vertical min-h-[100px] focus:outline-none focus:ring-2 focus:ring-primary/20"
                                       value={commentInput}
                                       onChange={(e) => setCommentInputs(prev => ({
                                         ...prev,
@@ -922,7 +899,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                             <div className="space-y-4">
                               {comments.length > 0 ? (
                                 comments.map((comment) => (
-                                  <div key={comment.id} className="flex gap-3 p-4 bg-background sm:rounded-lg sm:border border-border/50">
+                                  <div key={comment.id} className="flex gap-3 p-4 bg-background sm:rounded-lg">
                                     <div className="flex-shrink-0">
                                       {comment.userAvatar && comment.userAvatar !== "/default-avatar.png" ? (
                                         <Image
@@ -963,7 +940,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                     </div>
 
                     {/* Previous/Next Post Navigation */}
-                    <div className="mt-12 pt-8 border-t">
+                    <div className="mt-12 pt-8">
                       {(() => {
                         const postId = activeSection.replace('post-', '');
                         const { previousPost, nextPost } = findAdjacentPosts(postId);
@@ -986,7 +963,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                             {previousPost ? (
                               <button
                                 onClick={() => handlePostSelect(previousPost.id)}
-                                className="group flex items-center gap-2 px-3 py-3 rounded-lg bg-card/50 hover:bg-card border border-border/40 hover:border-border transition-all duration-200 hover:shadow-sm w-full md:w-0 md:flex-1 md:min-w-0 md:max-w-[calc(50%-0.5rem)] h-14"
+                                className="group flex items-center gap-2 px-3 py-3 rounded-lg bg-card/50 hover:bg-card transition-all duration-200 hover:shadow-sm w-full md:w-0 md:flex-1 md:min-w-0 md:max-w-[calc(50%-0.5rem)] h-14"
                               >
                                 <ArrowLeft className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
                                 <div className="text-left min-w-0 flex-1 overflow-hidden">
@@ -1013,7 +990,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                             {nextPost && (
                               <button
                                 onClick={() => handlePostSelect(nextPost.id)}
-                                className="group flex items-center gap-2 px-3 py-3 rounded-lg bg-card/50 hover:bg-card border border-border/40 hover:border-border transition-all duration-200 hover:shadow-sm w-full md:w-0 md:flex-1 md:min-w-0 md:max-w-[calc(50%-0.5rem)] h-14"
+                                className="group flex items-center gap-2 px-3 py-3 rounded-lg bg-card/50 hover:bg-card transition-all duration-200 hover:shadow-sm w-full md:w-0 md:flex-1 md:min-w-0 md:max-w-[calc(50%-0.5rem)] h-14"
                               >
                                 <div className="text-left md:text-right min-w-0 flex-1 overflow-hidden md:order-2">
                                   <div className="text-xs text-muted-foreground mb-0.5 font-medium">Bài kế tiếp</div>
@@ -1034,7 +1011,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
             ) : (
               // Render section overview content
               <div className="prose prose-slate dark:prose-invert max-w-none">
-                {activeSection === 'overview' ? (
+                {activeSection === 'overview' && (
                   <MarkdownRenderer content={`# VieVlog Documentation
 
 Welcome to VieVlog - a modern learning platform for IT education. This documentation is dynamically generated from our content database, ensuring you always have access to the latest information.
@@ -1048,13 +1025,11 @@ ${categories.map((cat) => `- **${cat.name}**: ${cat.description || 'Educational 
 ## Getting Started
 
 Choose a category below to explore our comprehensive learning materials, tutorials, and guides. Each section contains real posts and content from our community.`} />
-                ) : (
-                  <MarkdownRenderer content={findActiveContent()} />
                 )}
 
                 {/* Show recent posts for category sections */}
                 {findActivePosts().length > 0 && (
-                  <div className="mt-8 pt-8 border-t not-prose">
+                  <div className={`${activeSection === 'overview' ? 'mt-8 pt-8' : ''} not-prose`}>
                     <div className="flex items-center justify-between mb-6">
                       <h3 className="text-xl font-semibold text-foreground">
                         Articles ({findActivePosts().length})
@@ -1069,7 +1044,7 @@ Choose a category below to explore our comprehensive learning materials, tutoria
                       {(showAllPosts[activeSection] ? findActivePosts() : findActivePosts().slice(0, 6)).map((post) => (
                         <div
                           key={post.id}
-                          className="group p-8 border border-gray-200 dark:border-gray-700 rounded-2xl hover:border-gray-300 dark:hover:border-gray-600 hover:shadow-xl hover:shadow-gray-900/5 dark:hover:shadow-black/20 transition-all duration-300 cursor-pointer bg-white/80 dark:bg-black/80 hover:bg-white dark:hover:bg-black backdrop-blur-sm hover:-translate-y-1"
+                          className="group p-8 rounded-2xl hover:shadow-xl hover:shadow-gray-900/5 dark:hover:shadow-black/20 transition-all duration-300 cursor-pointer bg-white/80 dark:bg-black/80 hover:bg-white dark:hover:bg-black backdrop-blur-sm hover:-translate-y-1"
                           onClick={() => handlePostSelect(post.id)}
                         >
                           <div className="flex items-start gap-8">
@@ -1124,7 +1099,7 @@ Choose a category below to explore our comprehensive learning materials, tutoria
                           </div>
 
                           {/* Read more indicator */}
-                          <div className="flex items-center gap-3 mt-6 pt-6 border-t border-gray-200 dark:border-gray-700 text-base text-blue-600 dark:text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity font-medium">
+                          <div className="flex items-center gap-3 mt-6 pt-6 text-base text-blue-600 dark:text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity font-medium">
                             <span>Read article</span>
                             <ChevronRight className="h-5 w-5" />
                           </div>
