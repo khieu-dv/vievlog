@@ -56,13 +56,13 @@ export const useDocsData = () => {
           ContentMapper.mapCategory(item, getContent)
         );
 
-        // Fetch all posts
+        // Fetch all posts summary (without full content)
         let allPosts: any[] = [];
         let currentPage = 1;
         let hasMorePosts = true;
 
         while (hasMorePosts) {
-          const fetchedPosts = await ApiService.getAllPosts(currentPage, 500);
+          const fetchedPosts = await ApiService.getPostsSummary(currentPage, 500);
           allPosts = [...allPosts, ...fetchedPosts];
           hasMorePosts = fetchedPosts.length === 500;
           currentPage++;

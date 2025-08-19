@@ -313,39 +313,39 @@ const RoadmapPostDetail: React.FC<RoadmapPostDetailProps> = ({
         </article>
 
         {/* Navigation */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-6 mb-8">
+        <div className="flex flex-col gap-3 mb-8 md:flex-row md:items-center md:justify-between md:gap-4">
           {prevPost ? (
             <button
               onClick={() => onNavigate?.('prev')}
-              className="flex items-center gap-2 px-3 py-2 bg-card border rounded-md hover:border-primary/30 hover:bg-primary/5 transition-all group w-full sm:max-w-xs"
+              className="flex items-center gap-2 px-3 py-3 bg-card border rounded-lg hover:border-primary/30 hover:bg-primary/5 transition-all group w-full md:w-0 md:flex-1 md:min-w-0 md:max-w-[calc(50%-0.5rem)] h-14"
             >
               <ChevronLeft className="h-4 w-4 text-muted-foreground group-hover:text-primary flex-shrink-0" />
-              <div className="text-left min-w-0 flex-1">
-                <div className="text-xs text-muted-foreground mb-0.5">{t('roadmap.previous')}</div>
+              <div className="text-left min-w-0 flex-1 overflow-hidden">
+                <div className="text-xs text-muted-foreground mb-0.5 font-medium">{t('roadmap.previous')}</div>
                 <div className="text-sm font-medium text-foreground group-hover:text-primary truncate">
-                  {prevPost.title}
+                  {prevPost.title.length > 30 ? `${prevPost.title.substring(0, 30)}...` : prevPost.title}
                 </div>
               </div>
             </button>
           ) : (
-            <div className="hidden sm:block sm:max-w-xs" />
+            <div className="hidden md:block md:w-0 md:flex-1 md:max-w-[calc(50%-0.5rem)]" />
           )}
 
           {nextPost ? (
             <button
               onClick={() => onNavigate?.('next')}
-              className="flex items-center gap-2 px-3 py-2 bg-card border rounded-md hover:border-primary/30 hover:bg-primary/5 transition-all group w-full sm:max-w-xs"
+              className="flex items-center gap-2 px-3 py-3 bg-card border rounded-lg hover:border-primary/30 hover:bg-primary/5 transition-all group w-full md:w-0 md:flex-1 md:min-w-0 md:max-w-[calc(50%-0.5rem)] h-14"
             >
-              <div className="text-left sm:text-right min-w-0 flex-1 sm:order-2">
-                <div className="text-xs text-muted-foreground mb-0.5">{t('roadmap.next')}</div>
+              <div className="text-left md:text-right min-w-0 flex-1 overflow-hidden md:order-2">
+                <div className="text-xs text-muted-foreground mb-0.5 font-medium">{t('roadmap.next')}</div>
                 <div className="text-sm font-medium text-foreground group-hover:text-primary truncate">
-                  {nextPost.title}
+                  {nextPost.title.length > 30 ? `${nextPost.title.substring(0, 30)}...` : nextPost.title}
                 </div>
               </div>
-              <ChevronRight className="h-4 w-4 text-muted-foreground group-hover:text-primary flex-shrink-0 sm:order-3" />
+              <ChevronRight className="h-4 w-4 text-muted-foreground group-hover:text-primary flex-shrink-0 md:order-3" />
             </button>
           ) : (
-            <div className="hidden sm:block sm:max-w-xs" />
+            <div className="hidden md:block md:w-0 md:flex-1 md:max-w-[calc(50%-0.5rem)]" />
           )}
         </div>
 

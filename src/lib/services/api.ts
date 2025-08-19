@@ -63,6 +63,34 @@ export class ApiService {
     }
   }
 
+  static async getPostsSummary(page = 1, perPage = 500, categoryId?: string): Promise<any[]> {
+    try {
+      const params: any = {
+        page,
+        perPage,
+        sort: '-created',
+        expand: 'categoryId',
+        fields: 'id,title,excerpt,coverImage,publishedAt,created,categoryId,author,likes,commentCount,tags,expand'
+      };
+
+      if (categoryId) {
+        params.filter = `categoryId="${categoryId}"`;
+      }
+
+      const response = await axios.get(
+        `${API_BASE_URL}/collections/posts_tbl/records`,
+        {
+          params,
+          timeout: 15000
+        }
+      );
+      return response.data.items;
+    } catch (error) {
+      console.error("Failed to fetch posts summary:", error);
+      return [];
+    }
+  }
+
   static async getPost(postId: string): Promise<any | null> {
     try {
       const response = await axios.get(

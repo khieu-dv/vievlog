@@ -5,6 +5,8 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { MarkdownRenderer } from '~/components/common/MarkdownRenderer';
 import { useDocsData, DocSection } from '~/lib/hooks/useDocsData';
 import { getIconComponent } from '~/lib/utils/iconMapper';
+import { ApiService } from '~/lib/services/api';
+import { Post } from '~/lib/types';
 
 
 interface DocsViewProps {
@@ -24,6 +26,8 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredDocsData, setFilteredDocsData] = useState<DocSection[]>([]);
   const [showAllPosts, setShowAllPosts] = useState<Record<string, boolean>>({});
+  const [loadedPosts, setLoadedPosts] = useState<Record<string, Post>>({});
+  const [loadingPosts, setLoadingPosts] = useState<Set<string>>(new Set());
 
   // Update URL when viewing posts for shareable links
   const updateURL = (postId: string) => {
@@ -32,10 +36,68 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
     router.replace(`/posts?${params.toString()}`, { scroll: false });
   };
 
+  // Load full post content
+  const loadPostContent = async (postId: string) => {
+    if (loadedPosts[postId] || loadingPosts.has(postId)) {
+      return; // Already loaded or loading
+    }
+
+    setLoadingPosts(prev => new Set(prev).add(postId));
+
+    try {
+      const postData = await ApiService.getPost(postId);
+      if (postData) {
+        // Process the full post data with content
+        const processedPost: Post = {
+          id: postData.id,
+          title: postData.title || '',
+          excerpt: postData.excerpt || '',
+          content: postData.content || '',
+          publishedAt: postData.created || postData.publishedAt || '',
+          coverImage: postData.coverImage || '',
+          author: {
+            name: postData.expand?.author?.name || postData.author?.name || 'Anonymous',
+            avatar: postData.expand?.author?.avatar || postData.author?.avatar || '/default-avatar.png',
+          },
+          likes: postData.likes || 0,
+          commentCount: postData.commentCount || 0,
+          tags: postData.tags || [],
+          comments: [],
+          categoryId: postData.categoryId || '',
+          category: postData.expand?.categoryId ? {
+            id: postData.expand.categoryId.id,
+            name: postData.expand.categoryId.name,
+            slug: postData.expand.categoryId.slug,
+            color: postData.expand.categoryId.color || '#3B82F6'
+          } : undefined,
+          created: postData.created,
+          expand: postData.expand,
+          originalData: postData
+        };
+
+        setLoadedPosts(prev => ({
+          ...prev,
+          [postId]: processedPost
+        }));
+      }
+    } catch (error) {
+      console.error('Failed to load post content:', error);
+    } finally {
+      setLoadingPosts(prev => {
+        const newSet = new Set(prev);
+        newSet.delete(postId);
+        return newSet;
+      });
+    }
+  };
+
   // Handle post selection with URL update and smooth scroll
-  const handlePostSelect = (postId: string) => {
+  const handlePostSelect = async (postId: string) => {
     setActiveSection(`post-${postId}`);
     updateURL(postId);
+    
+    // Load full content if not already loaded
+    await loadPostContent(postId);
     
     // Scroll to top of main content area smoothly
     setTimeout(() => {
@@ -120,6 +182,8 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
             return newSet;
           });
         }
+        // Auto-load the full content for this post
+        loadPostContent(postIdFromURL);
       } else if (categoryIdFromURL) {
         // If there's a category ID in URL, show that category
         const categoryExists = docsData.find(section => section.id === categoryIdFromURL);
@@ -623,11 +687,16 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
               (() => {
                 const postId = activeSection.replace('post-', '');
                 const allPosts = Object.values(categoryPosts).flat();
-                const post = allPosts.find(p => p.id === postId);
+                const summaryPost = allPosts.find(p => p.id === postId);
+                const fullPost = loadedPosts[postId];
+                const isLoading = loadingPosts.has(postId);
 
-                if (!post) {
+                if (!summaryPost) {
                   return <div className="text-muted-foreground">Post not found.</div>;
                 }
+
+                // Use full post data if available, otherwise use summary
+                const post = fullPost || summaryPost;
 
                 return (
                   <div className="max-w-4xl">
@@ -663,7 +732,16 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
 
                     {/* Article Content */}
                     <div className="prose prose-slate dark:prose-invert prose-lg max-w-none prose-headings:font-semibold prose-headings:tracking-tight">
-                      <MarkdownRenderer content={post.content || 'No content available for this post.'} />
+                      {isLoading ? (
+                        <div className="flex items-center justify-center py-12">
+                          <div className="text-center">
+                            <div className="animate-spin rounded-full h-8 w-8 border-2 border-gray-300 border-t-blue-600 mx-auto mb-4"></div>
+                            <p className="text-gray-600 dark:text-gray-300">Loading content...</p>
+                          </div>
+                        </div>
+                      ) : (
+                        <MarkdownRenderer content={post.content || (fullPost ? 'No content available for this post.' : 'Loading content...')} />
+                      )}
                     </div>
 
                     {/* Article Footer */}
@@ -702,26 +780,26 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                         }
 
                         return (
-                          <div className="flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between">
+                          <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between md:gap-4">
                             {/* Previous Post */}
                             {previousPost ? (
                               <button
                                 onClick={() => handlePostSelect(previousPost.id)}
-                                className="group flex items-center gap-3 px-4 py-3 rounded-lg bg-card/50 hover:bg-card border border-border/40 hover:border-border transition-all duration-200 hover:shadow-sm w-full sm:w-auto sm:max-w-xs"
+                                className="group flex items-center gap-2 px-3 py-3 rounded-lg bg-card/50 hover:bg-card border border-border/40 hover:border-border transition-all duration-200 hover:shadow-sm w-full md:w-0 md:flex-1 md:min-w-0 md:max-w-[calc(50%-0.5rem)] h-14"
                               >
                                 <ArrowLeft className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
-                                <div className="text-left min-w-0 flex-1">
-                                  <div className="text-xs text-muted-foreground mb-1">Bài trước</div>
-                                  <div className="text-sm font-medium text-foreground group-hover:text-primary transition-colors line-clamp-2 sm:truncate">
-                                    {previousPost.title}
+                                <div className="text-left min-w-0 flex-1 overflow-hidden">
+                                  <div className="text-xs text-muted-foreground mb-0.5 font-medium">Bài trước</div>
+                                  <div className="text-sm font-medium text-foreground group-hover:text-primary transition-colors truncate">
+                                    {previousPost.title.length > 30 ? `${previousPost.title.substring(0, 30)}...` : previousPost.title}
                                   </div>
                                 </div>
                               </button>
                             ) : (
-                              <div className="w-full sm:w-auto">
+                              <div className="w-full md:w-0 md:flex-1 md:max-w-[calc(50%-0.5rem)]">
                                 <button
                                   onClick={() => setActiveSection(post.categoryId || 'overview')}
-                                  className="flex items-center gap-2 px-3 py-2 text-sm text-muted-foreground hover:text-primary transition-colors rounded-md hover:bg-accent/30"
+                                  className="flex items-center gap-2 px-3 py-3 text-sm text-muted-foreground hover:text-primary transition-colors rounded-lg hover:bg-accent/30 h-14 w-full"
                                 >
                                   <ChevronRight className="h-4 w-4 rotate-180" />
                                   <span className="hidden sm:inline">Back to {post.category?.name || 'Overview'}</span>
@@ -734,15 +812,15 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                             {nextPost && (
                               <button
                                 onClick={() => handlePostSelect(nextPost.id)}
-                                className="group flex items-center gap-3 px-4 py-3 rounded-lg bg-card/50 hover:bg-card border border-border/40 hover:border-border transition-all duration-200 hover:shadow-sm w-full sm:w-auto sm:max-w-xs"
+                                className="group flex items-center gap-2 px-3 py-3 rounded-lg bg-card/50 hover:bg-card border border-border/40 hover:border-border transition-all duration-200 hover:shadow-sm w-full md:w-0 md:flex-1 md:min-w-0 md:max-w-[calc(50%-0.5rem)] h-14"
                               >
-                                <div className="text-left sm:text-right min-w-0 flex-1 sm:order-2">
-                                  <div className="text-xs text-muted-foreground mb-1">Bài kế tiếp</div>
-                                  <div className="text-sm font-medium text-foreground group-hover:text-primary transition-colors line-clamp-2 sm:truncate">
-                                    {nextPost.title}
+                                <div className="text-left md:text-right min-w-0 flex-1 overflow-hidden md:order-2">
+                                  <div className="text-xs text-muted-foreground mb-0.5 font-medium">Bài kế tiếp</div>
+                                  <div className="text-sm font-medium text-foreground group-hover:text-primary transition-colors truncate">
+                                    {nextPost.title.length > 30 ? `${nextPost.title.substring(0, 30)}...` : nextPost.title}
                                   </div>
                                 </div>
-                                <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0 sm:order-3" />
+                                <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0 md:order-3" />
                               </button>
                             )}
                           </div>

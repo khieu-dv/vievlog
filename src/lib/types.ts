@@ -73,6 +73,7 @@ export type Post = {
         name: string;
       };
   };
+  originalData?: any;
 }
 
 

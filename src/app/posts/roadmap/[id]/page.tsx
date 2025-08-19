@@ -89,7 +89,7 @@ export default function RoadmapPostDetailPage() {
       try {
         if (!params.id) return;
 
-        // Fetch all posts first to determine order
+        // Fetch posts summary first to determine order
         const allPostsRes = await axios.get(
           `${process.env.NEXT_PUBLIC_API_URL}/collections/posts_tbl/records`,
           {
@@ -98,7 +98,8 @@ export default function RoadmapPostDetailPage() {
               perPage: 500, // Get a large number to include all posts
               // Sort by created date: oldest first for proper roadmap progression
               sort: 'created',
-              expand: 'author,categoryId'
+              expand: 'categoryId',
+              fields: 'id,title,excerpt,publishedAt,created,categoryId,author,expand'
             }
           }
         );
@@ -113,7 +114,21 @@ export default function RoadmapPostDetailPage() {
           return;
         }
         setCurrentIndex(postIndex);
-        setPost(processedPosts[postIndex]);
+
+        // Fetch full content for the current post only
+        const currentPostRes = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}/collections/posts_tbl/records/${params.id}`,
+          {
+            params: {
+              expand: 'author,categoryId'
+            }
+          }
+        );
+
+        const fullPost = processPostData(currentPostRes.data);
+        if (fullPost) {
+          setPost(fullPost);
+        }
 
         // Fetch comments for this post
         const commentRes = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/collections/comments_tbl/records`, {
