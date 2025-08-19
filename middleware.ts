@@ -9,7 +9,7 @@ export function middleware(request: NextRequest) {
   
   // Redirect các trang đã thay đổi hoặc không tồn tại
   const redirects: Record<string, string> = {
-    '/game': '/godot-game',
+    '/games': '/games',
     '/profile/settings': '/profile',
     '/tutorials': '/posts',
     '/courses': '/posts',

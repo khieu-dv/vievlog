@@ -13,7 +13,7 @@ export default function NotFound() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Header />
-      
+
       <main className="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8">
         <div className="max-w-lg mx-auto text-center">
           {/* 404 Icon */}
@@ -32,7 +32,7 @@ export default function NotFound() {
           <h1 className="text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-50 mb-4">
             {t('notFound.title')}
           </h1>
-          
+
           {/* Description */}
           <p className="text-lg text-slate-600 dark:text-slate-400 mb-8">
             {t('notFound.description')}
@@ -46,16 +46,16 @@ export default function NotFound() {
                 {t('notFound.backToHome')}
               </Button>
             </Link>
-            
+
             <Link href="/posts">
               <Button variant="outline" className="w-full sm:w-auto">
                 <Search className="h-4 w-4 mr-2" />
                 {t('notFound.searchPosts')}
               </Button>
             </Link>
-            
-            <Button 
-              variant="ghost" 
+
+            <Button
+              variant="ghost"
               onClick={() => window.history.back()}
               className="w-full sm:w-auto"
             >
@@ -70,22 +70,22 @@ export default function NotFound() {
               {t('notFound.helpfulLinks')}
             </p>
             <div className="flex flex-wrap gap-2 justify-center">
-              <Link 
-                href="/posts" 
+              <Link
+                href="/posts"
                 className="text-sm text-primary hover:text-primary/80 underline"
               >
                 {t('notFound.programmingPosts')}
               </Link>
               <span className="text-slate-400">•</span>
-              <Link 
-                href="/videos" 
+              <Link
+                href="/videos"
                 className="text-sm text-primary hover:text-primary/80 underline"
               >
                 {t('notFound.videoTutorials')}
               </Link>
               <span className="text-slate-400">•</span>
-              <Link 
-                href="/godot-game" 
+              <Link
+                href="/games"
                 className="text-sm text-primary hover:text-primary/80 underline"
               >
                 {t('notFound.programmingGames')}

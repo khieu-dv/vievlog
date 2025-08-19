@@ -21,7 +21,6 @@
     "axios": "^1.8.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "colyseus.js": "^0.16.17",
     "date-fns": "^4.1.0",
     "fs-extra": "^11.3.0",
     "i18next": "^24.2.3",

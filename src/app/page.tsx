@@ -21,7 +21,7 @@ export default function HomePage() {
 
   const [categories, setCategories] = useState<Category[]>([]);
   const [isLoadingCategories, setIsLoadingCategories] = useState(true);
-  
+
   // Group categories by mainName
   const groupedCategories = categories.reduce((acc, category) => {
     const mainName = category.mainName || 'Languages';
@@ -156,58 +156,58 @@ export default function HomePage() {
                   return order.indexOf(a) - order.indexOf(b);
                 })
                 .map(([mainName, categoryList]) => (
-                <div key={mainName} className="text-center">
-                  {/* Section Header */}
-                  <div className="mb-16">
-                    <h2 className="text-4xl lg:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-6">
-                      {mainName}
-                    </h2>
-                    <p className="text-xl font-light text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                      {mainName === 'Frameworks' 
-                        ? 'Popular frameworks and tools to build amazing applications'
-                        : mainName === 'Languages'
-                        ? 'Programming languages to master your coding skills'
-                        : mainName === 'DSA'
-                        ? 'Data Structures and Algorithms to strengthen your problem-solving skills'
-                        : 'Essential soft skills to advance your career and personal development'
-                      }
-                    </p>
-                  </div>
+                  <div key={mainName} className="text-center">
+                    {/* Section Header */}
+                    <div className="mb-16">
+                      <h2 className="text-4xl lg:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-6">
+                        {mainName}
+                      </h2>
+                      <p className="text-xl font-light text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                        {mainName === 'Frameworks'
+                          ? 'Popular frameworks and tools to build amazing applications'
+                          : mainName === 'Languages'
+                            ? 'Programming languages to master your coding skills'
+                            : mainName === 'DSA'
+                              ? 'Data Structures and Algorithms to strengthen your problem-solving skills'
+                              : 'Essential soft skills to advance your career and personal development'
+                        }
+                      </p>
+                    </div>
 
-                  {/* Categories Grid */}
-                  <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-5xl mx-auto">
-                    {categoryList.map((category) => (
-                      <div
-                        key={category.id}
-                        onClick={() => handleCategorySelect(category.id)}
-                        className="group cursor-pointer bg-white dark:bg-black rounded-xl p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full"
-                      >
-                        <div className="flex flex-col items-center text-center h-full">
-                          <div 
-                            className="h-14 w-14 rounded-full flex items-center justify-center text-white text-xl font-medium mb-4"
-                            style={{ backgroundColor: category.color }}
-                          >
-                            {category.name.charAt(0).toUpperCase()}
-                          </div>
-                          <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-3">
-                            {category.name}
-                          </h3>
-                          {category.description && (
-                            <p className="text-sm text-gray-600 dark:text-gray-400 font-light leading-relaxed mb-4 flex-1">
-                              {category.description}
-                            </p>
-                          )}
-                          <div className="mt-auto">
-                            <p className="text-sm text-gray-500 dark:text-gray-400 font-light">
-                              {category.postCount || 0} tutorials
-                            </p>
+                    {/* Categories Grid */}
+                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-5xl mx-auto">
+                      {categoryList.map((category) => (
+                        <div
+                          key={category.id}
+                          onClick={() => handleCategorySelect(category.id)}
+                          className="group cursor-pointer bg-white dark:bg-black rounded-xl p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full"
+                        >
+                          <div className="flex flex-col items-center text-center h-full">
+                            <div
+                              className="h-14 w-14 rounded-full flex items-center justify-center text-white text-xl font-medium mb-4"
+                              style={{ backgroundColor: category.color }}
+                            >
+                              {category.name.charAt(0).toUpperCase()}
+                            </div>
+                            <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-3">
+                              {category.name}
+                            </h3>
+                            {category.description && (
+                              <p className="text-sm text-gray-600 dark:text-gray-400 font-light leading-relaxed mb-4 flex-1">
+                                {category.description}
+                              </p>
+                            )}
+                            <div className="mt-auto">
+                              <p className="text-sm text-gray-500 dark:text-gray-400 font-light">
+                                {category.postCount || 0} tutorials
+                              </p>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
             </div>
           )}
         </div>
@@ -267,14 +267,14 @@ export default function HomePage() {
       <div className="relative py-20 lg:py-32 overflow-hidden bg-gray-50 dark:bg-gray-900">
         <div className="mx-auto max-w-6xl px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
-            
+
             {/* Content */}
             <div className="text-center lg:text-left">
               <h2 className="text-4xl lg:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-6">
                 Learn Through Play
               </h2>
               <p className="text-xl font-light text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
-                Master programming concepts through interactive games and challenges. 
+                Master programming concepts through interactive games and challenges.
                 Fun, engaging, and surprisingly effective.
               </p>
 
@@ -302,12 +302,12 @@ export default function HomePage() {
 
               {/* CTAs */}
               <div className="flex flex-col sm:flex-row items-center lg:justify-start justify-center gap-4">
-                <Link href="/godot-game">
+                <Link href="/games">
                   <Button className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-8 py-3 rounded-full text-lg">
                     Play Now
                   </Button>
                 </Link>
-                <Link href="/godot-game">
+                <Link href="/games">
                   <Button variant="outline" className="border-gray-300 dark:border-gray-600 text-blue-600 dark:text-blue-400 font-medium px-8 py-3 rounded-full text-lg hover:bg-gray-50 dark:hover:bg-gray-800">
                     Learn More
                   </Button>
