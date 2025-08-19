@@ -6,6 +6,13 @@
   max-width: none;
 }
 
+/* Dark mode body */
+@media (prefers-color-scheme: dark) {
+  .markdown-body {
+    color: #e5e7eb;
+  }
+}
+
 /* Headings with VitePress-style spacing and colors */
 .markdown-body h1 {
   font-size: 2.25rem;
@@ -211,7 +218,7 @@
   font-size: 13px;
 }
 
-/* Tables */
+/* Tables with dark mode support */
 .markdown-body table {
   width: auto;
   max-width: 100%;
@@ -222,6 +229,15 @@
   overflow: hidden;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   table-layout: auto;
+  transition: box-shadow 0.2s ease;
+}
+
+/* Dark mode table styling */
+@media (prefers-color-scheme: dark) {
+  .markdown-body table {
+    background-color: #1f2937;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
 }
 
 /* Mobile responsive tables */
@@ -242,6 +258,13 @@
   background-color: #f8fafc;
 }
 
+/* Dark mode thead */
+@media (prefers-color-scheme: dark) {
+  .markdown-body thead {
+    background-color: #374151;
+  }
+}
+
 .markdown-body th {
   padding: 0.75rem 1rem;
   text-align: left;
@@ -251,11 +274,27 @@
   font-size: 0.875rem;
 }
 
+/* Dark mode th */
+@media (prefers-color-scheme: dark) {
+  .markdown-body th {
+    color: #e5e7eb;
+    border-bottom: 2px solid #4b5563;
+  }
+}
+
 .markdown-body td {
   padding: 0.75rem 1rem;
   color: #4b5563;
   border-bottom: 1px solid #f1f5f9;
   font-size: 0.875rem;
+}
+
+/* Dark mode td */
+@media (prefers-color-scheme: dark) {
+  .markdown-body td {
+    color: #d1d5db;
+    border-bottom: 1px solid #374151;
+  }
 }
 
 /* Mobile table cells */
@@ -269,6 +308,13 @@
 
 .markdown-body tbody tr:hover {
   background-color: #f8fafc;
+}
+
+/* Dark mode hover */
+@media (prefers-color-scheme: dark) {
+  .markdown-body tbody tr:hover {
+    background-color: #374151;
+  }
 }
 
 .markdown-body tbody tr:last-child td {
@@ -316,8 +362,9 @@
 .markdown-body .custom-container {
   margin: 1rem 0;
   padding: 1rem;
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
   border-left: 4px solid;
+  transition: all 0.2s ease;
 }
 
 .markdown-body .custom-container.tip {
@@ -333,4 +380,44 @@
 .markdown-body .custom-container.danger {
   background-color: #fef2f2;
   border-left-color: #ef4444;
+}
+
+/* Dark mode containers */
+@media (prefers-color-scheme: dark) {
+  .markdown-body .custom-container.tip {
+    background-color: #064e3b;
+    color: #d1fae5;
+  }
+  
+  .markdown-body .custom-container.warning {
+    background-color: #78350f;
+    color: #fef3c7;
+  }
+  
+  .markdown-body .custom-container.danger {
+    background-color: #7f1d1d;
+    color: #fecaca;
+  }
+}
+
+/* Smooth scroll behavior for heading anchors */
+.markdown-body h1, 
+.markdown-body h2, 
+.markdown-body h3, 
+.markdown-body h4, 
+.markdown-body h5, 
+.markdown-body h6 {
+  scroll-margin-top: 6rem;
+}
+
+/* Enhanced link styling */
+.markdown-body a {
+  position: relative;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  transition: all 0.2s ease;
+}
+
+.markdown-body a:hover {
+  text-decoration-color: currentColor;
 }
