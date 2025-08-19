@@ -1,12 +1,15 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { ChevronDown, ChevronRight, Search, X, Home, BookOpen, Menu, ArrowLeft, ArrowRight } from 'lucide-react';
+import { ChevronDown, ChevronRight, Search, X, Home, BookOpen, Menu, ArrowLeft, ArrowRight, MessageCircle } from 'lucide-react';
+import Image from 'next/image';
 import { useTranslation } from 'react-i18next';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { MarkdownRenderer } from '~/components/common/MarkdownRenderer';
 import { useDocsData, DocSection } from '~/lib/hooks/useDocsData';
 import { getIconComponent } from '~/lib/utils/iconMapper';
 import { ApiService } from '~/lib/services/api';
-import { Post } from '~/lib/types';
+import { Post, Comment } from '~/lib/types';
+import { useSession } from '~/lib/authClient';
+import PocketBase from 'pocketbase';
 
 
 interface DocsViewProps {
@@ -28,12 +31,49 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
   const [showAllPosts, setShowAllPosts] = useState<Record<string, boolean>>({});
   const [loadedPosts, setLoadedPosts] = useState<Record<string, Post>>({});
   const [loadingPosts, setLoadingPosts] = useState<Set<string>>(new Set());
+  const [postComments, setPostComments] = useState<Record<string, Comment[]>>({});
+  const [commentInputs, setCommentInputs] = useState<Record<string, string>>({});
+  const [submittingComment, setSubmittingComment] = useState<string | null>(null);
+  
+  const { data: session } = useSession();
+  const pb = new PocketBase(process.env.NEXT_PUBLIC_POCKETBASE_URL || 'https://pocketbase.vietopik.com');
 
   // Update URL when viewing posts for shareable links
   const updateURL = (postId: string) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set('post', postId);
     router.replace(`/posts?${params.toString()}`, { scroll: false });
+  };
+
+  // Load comments for a post
+  const loadPostComments = async (postId: string) => {
+    if (postComments[postId]) {
+      return; // Already loaded
+    }
+
+    try {
+      const commentData = await ApiService.getComments(postId);
+      const processedComments = commentData.map((item: any) => ({
+        id: item.id,
+        userName: item.userName || 'Anonymous',
+        content: item.content || '',
+        created: item.created || new Date().toISOString(),
+        userAvatar: item.userAvatar || '/default-avatar.png',
+        userId: item.userId || '',
+        postId: item.postId || ''
+      }));
+
+      setPostComments(prev => ({
+        ...prev,
+        [postId]: processedComments
+      }));
+    } catch (error) {
+      console.error('Failed to load comments:', error);
+      setPostComments(prev => ({
+        ...prev,
+        [postId]: []
+      }));
+    }
   };
 
   // Load full post content
@@ -96,8 +136,11 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
     setActiveSection(`post-${postId}`);
     updateURL(postId);
     
-    // Load full content if not already loaded
-    await loadPostContent(postId);
+    // Load full content and comments if not already loaded
+    await Promise.all([
+      loadPostContent(postId),
+      loadPostComments(postId)
+    ]);
     
     // Scroll to top of main content area smoothly
     setTimeout(() => {
@@ -123,6 +166,59 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
       newSet.delete('mobile-nav');
       return newSet;
     });
+  };
+
+  // Handle comment submission
+  const handleCommentSubmit = async (postId: string) => {
+    const commentText = commentInputs[postId]?.trim();
+    if (!commentText || submittingComment || !session?.user) {
+      if (!session?.user) {
+        alert('Please log in to comment.');
+      }
+      return;
+    }
+
+    setSubmittingComment(postId);
+
+    try {
+      const commentData = {
+        postId: postId,
+        userId: session.user.id,
+        userName: session.user.username || session.user.name || 'User',
+        userAvatar: session.user.image || '/default-avatar.png',
+        content: commentText,
+        lessonId: ''
+      };
+
+      const record = await pb.collection('comments_tbl').create(commentData);
+
+      const newComment: Comment = {
+        id: record.id,
+        postId: commentData.postId,
+        userName: commentData.userName,
+        content: commentData.content,
+        created: new Date().toISOString(),
+        userAvatar: commentData.userAvatar,
+        userId: commentData.userId
+      };
+
+      // Add comment to the list
+      setPostComments(prev => ({
+        ...prev,
+        [postId]: [newComment, ...(prev[postId] || [])]
+      }));
+
+      // Clear input
+      setCommentInputs(prev => ({
+        ...prev,
+        [postId]: ''
+      }));
+    } catch (error) {
+      console.error('Failed to post comment:', error);
+      alert('Failed to post comment. Please try again.');
+    } finally {
+      setSubmittingComment(null);
+    }
   };
 
   // Handle scroll events to prevent body scroll when hovering over sidebar
@@ -182,8 +278,11 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
             return newSet;
           });
         }
-        // Auto-load the full content for this post
-        loadPostContent(postIdFromURL);
+        // Auto-load the full content and comments for this post
+        Promise.all([
+          loadPostContent(postIdFromURL),
+          loadPostComments(postIdFromURL)
+        ]);
       } else if (categoryIdFromURL) {
         // If there's a category ID in URL, show that category
         const categoryExists = docsData.find(section => section.id === categoryIdFromURL);
@@ -760,6 +859,108 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                         </div>
                       </div>
                     )}
+
+                    {/* Comments Section */}
+                    <div className="mt-12 pt-8 border-t">
+                      {(() => {
+                        const postId = activeSection.replace('post-', '');
+                        const comments = postComments[postId] || [];
+                        const commentInput = commentInputs[postId] || '';
+                        const isSubmitting = submittingComment === postId;
+
+                        return (
+                          <div className="bg-card rounded-lg border p-6">
+                            <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
+                              <MessageCircle className="h-5 w-5" />
+                              Discussion ({comments.length})
+                            </h3>
+
+                            {/* Comment Input */}
+                            {session?.user && (
+                              <div className="mb-6 p-4 bg-muted/30 rounded-lg">
+                                <div className="flex gap-3">
+                                  <div className="flex-shrink-0">
+                                    {session.user.image ? (
+                                      <Image
+                                        src={session.user.image}
+                                        alt={session.user.name || 'User'}
+                                        width={40}
+                                        height={40}
+                                        className="w-10 h-10 rounded-full object-cover"
+                                      />
+                                    ) : (
+                                      <div className="w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-semibold">
+                                        {session.user.name?.charAt(0).toUpperCase() || 'U'}
+                                      </div>
+                                    )}
+                                  </div>
+                                  <div className="flex-1">
+                                    <textarea
+                                      placeholder="Share your thoughts..."
+                                      className="w-full p-3 border border-border rounded-md bg-background text-sm resize-vertical min-h-[100px] focus:outline-none focus:ring-2 focus:ring-primary/20"
+                                      value={commentInput}
+                                      onChange={(e) => setCommentInputs(prev => ({
+                                        ...prev,
+                                        [postId]: e.target.value
+                                      }))}
+                                    />
+                                    <div className="flex justify-end mt-3">
+                                      <button
+                                        onClick={() => handleCommentSubmit(postId)}
+                                        disabled={isSubmitting || !commentInput.trim()}
+                                        className="px-4 py-2 bg-primary text-primary-foreground rounded-md text-sm font-medium hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                                      >
+                                        {isSubmitting ? 'Posting...' : 'Add Comment'}
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+
+                            {/* Comments List */}
+                            <div className="space-y-4">
+                              {comments.length > 0 ? (
+                                comments.map((comment) => (
+                                  <div key={comment.id} className="flex gap-3 p-4 bg-background rounded-lg border border-border/50">
+                                    <div className="flex-shrink-0">
+                                      {comment.userAvatar && comment.userAvatar !== "/default-avatar.png" ? (
+                                        <Image
+                                          src={comment.userAvatar}
+                                          alt={comment.userName}
+                                          width={32}
+                                          height={32}
+                                          className="w-8 h-8 rounded-full object-cover"
+                                        />
+                                      ) : (
+                                        <div className="w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-xs font-semibold">
+                                          {comment.userName.charAt(0).toUpperCase()}
+                                        </div>
+                                      )}
+                                    </div>
+                                    <div className="flex-1">
+                                      <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
+                                        <span className="font-medium text-foreground">{comment.userName}</span>
+                                        <span>•</span>
+                                        <span>{new Date(comment.created).toLocaleDateString()}</span>
+                                      </div>
+                                      <p className="text-sm text-foreground">{comment.content}</p>
+                                    </div>
+                                  </div>
+                                ))
+                              ) : (
+                                <div className="text-center py-8">
+                                  <MessageCircle className="h-12 w-12 text-muted-foreground mx-auto mb-3" />
+                                  <p className="text-muted-foreground">
+                                    No comments yet. Be the first to share your thoughts!
+                                  </p>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        );
+                      })()}
+                    </div>
 
                     {/* Previous/Next Post Navigation */}
                     <div className="mt-12 pt-8 border-t">

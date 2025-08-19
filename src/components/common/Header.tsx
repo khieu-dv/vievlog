@@ -1,6 +1,6 @@
 "use client";
 
-import { LogOut, Menu, Settings, User, X, Globe } from "lucide-react";
+import { LogOut, Menu, User, X, Globe } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { signOut, useSession } from "../../lib/authClient";
@@ -34,10 +34,6 @@ export function Header({ showAuth = true }: HeaderProps) {
     i18n.changeLanguage(lng); // Thay đổi ngôn ngữ bằng i18n
   };
 
-  // Get current language info
-  const getCurrentLanguage = () => {
-    return languages.find(lang => lang.code === i18n.language) || languages[0];
-  };
 
   const handleSignOut = () => {
     const auth = localStorage.getItem("pocketbase_auth");
@@ -118,7 +114,6 @@ export function Header({ showAuth = true }: HeaderProps) {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
-            {/* <Cart /> */}
 
             {showAuth && (
               <div className="hidden md:block">
@@ -170,15 +165,6 @@ export function Header({ showAuth = true }: HeaderProps) {
                           Profile
                         </Link>
                       </DropdownMenuItem>
-                      {/* <DropdownMenuItem asChild>
-                        <Link
-                          href="/profile/settings"
-                          className="cursor-pointer"
-                        >
-                          <Settings className="mr-2 h-4 w-4" />
-                          Settings
-                        </Link>
-                      </DropdownMenuItem> */}
                       <DropdownMenuSeparator />
                       <DropdownMenuItem
                         onClick={handleSignOut}

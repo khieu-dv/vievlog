@@ -1,3 +1,5 @@
+import type React from 'react';
+
 // Export common types
 export * from './types/common';
 
@@ -8,8 +10,6 @@ export type Message = {
   roomId: string;
   timestamp: number;
 }
-
-
 
 export type Room = {
   id: string;
@@ -26,7 +26,6 @@ export type Comment = {
   created: string;
 }
 
-
 export type BasicUser = {
   id: string;
   email: string;
@@ -35,8 +34,6 @@ export type BasicUser = {
   created: Date;
   updated: Date;
 };
-
-
 
 export type Category = {
   id: string;
@@ -47,7 +44,6 @@ export type Category = {
   postCount?: number;
   mainName?: string; // "Frameworks" or "Languages"
 }
-
 
 export type Post = {
   id: string;
@@ -76,16 +72,13 @@ export type Post = {
   originalData?: any;
 }
 
-
 export type PopularTopic = {
   id?: string; 
   icon: React.ReactNode;
   title: string;
   count: number;
   color: string;
-    
 }
-
 
 export type Resource = {
   icon: React.ReactNode;
