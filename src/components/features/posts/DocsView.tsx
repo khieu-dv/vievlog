@@ -578,7 +578,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                   }, {} as Record<string, typeof sectionsToDisplay>);
                   
                   // Define the order for mainName groups
-                  const mainNameOrder = ['Languages', 'Frameworks', 'Soft Skills'];
+                  const mainNameOrder = ['Languages', 'DSA', 'Frameworks', 'Soft Skills'];
                   
                   return mainNameOrder.map((mainName, mainNameIndex) => {
                     const sectionsInGroup = groupedSections[mainName] || [];
@@ -746,9 +746,9 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
           }
         }}
       >
-        <div className="bg-white/95 dark:bg-black/95 backdrop-blur-xl border border-gray-200 dark:border-gray-700 rounded-2xl shadow-xl">
+        <div className="bg-white/95 dark:bg-black/95 backdrop-blur-xl sm:border border-gray-200 dark:border-gray-700 sm:rounded-2xl sm:shadow-xl">
           {/* Content Header with Breadcrumbs - Apple style */}
-          <div className="border-b border-gray-200 dark:border-gray-700 px-8 py-6">
+          <div className="sm:border-b border-gray-200 dark:border-gray-700 px-4 sm:px-8 py-6">
             <div className="flex items-center gap-3 text-base text-gray-500 dark:text-gray-400 mb-2">
               <Home className="h-5 w-5" />
               <ChevronRight className="h-4 w-4" />
@@ -780,7 +780,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
           </div>
 
           {/* Content Body - Full Height */}
-          <div className="p-8 lg:p-12 bg-gradient-to-br from-gray-50/50 to-white dark:from-gray-900/50 dark:to-black">
+          <div className="p-4 sm:p-8 lg:p-12 bg-gradient-to-br from-gray-50/50 to-white dark:from-gray-900/50 dark:to-black">
             {activeSection.startsWith('post-') ? (
               // Render individual post content
               (() => {
@@ -897,7 +897,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                                   <div className="flex-1">
                                     <textarea
                                       placeholder="Share your thoughts..."
-                                      className="w-full p-3 border border-border rounded-md bg-background text-sm resize-vertical min-h-[100px] focus:outline-none focus:ring-2 focus:ring-primary/20"
+                                      className="w-full p-3 sm:border border-border sm:rounded-md bg-background text-sm resize-vertical min-h-[100px] focus:outline-none focus:ring-2 focus:ring-primary/20"
                                       value={commentInput}
                                       onChange={(e) => setCommentInputs(prev => ({
                                         ...prev,
@@ -922,7 +922,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                             <div className="space-y-4">
                               {comments.length > 0 ? (
                                 comments.map((comment) => (
-                                  <div key={comment.id} className="flex gap-3 p-4 bg-background rounded-lg border border-border/50">
+                                  <div key={comment.id} className="flex gap-3 p-4 bg-background sm:rounded-lg sm:border border-border/50">
                                     <div className="flex-shrink-0">
                                       {comment.userAvatar && comment.userAvatar !== "/default-avatar.png" ? (
                                         <Image

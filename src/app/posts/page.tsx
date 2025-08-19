@@ -12,10 +12,10 @@ export default function PostsPage() {
       <VieShareBanner />
 
       {/* Main Layout - Apple Style */}
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto sm:px-6">
         <div className="flex flex-col">
           {/* Header Section - Apple minimal style */}
-          <div className="pt-16 pb-12 text-center">
+          <div className="pt-16 pb-12 text-center px-4 sm:px-0">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-gray-900 dark:text-white mb-6">
               Documentation
             </h1>

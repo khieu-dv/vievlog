@@ -179,9 +179,9 @@ const RoadmapPostDetail: React.FC<RoadmapPostDetailProps> = ({
         </div>
       </div>
 
-      <main className="max-w-4xl mx-auto px-4 py-8">
+      <main className="max-w-4xl mx-auto sm:px-4 py-8">
         {/* Post Header Card */}
-        <div className="bg-gradient-to-br from-primary/5 via-primary/3 to-transparent rounded-xl p-6 mb-8 border border-primary/10">
+        <div className="bg-gradient-to-br from-primary/5 via-primary/3 to-transparent sm:rounded-xl p-4 sm:p-6 mb-8 sm:border border-primary/10">
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-4 gap-4">
             <div className="flex-1 min-w-0">
               {/* Category Badge */}
@@ -292,7 +292,7 @@ const RoadmapPostDetail: React.FC<RoadmapPostDetailProps> = ({
         </div>
 
         {/* Post Content */}
-        <article className="bg-card rounded-lg border p-8 mb-8">
+        <article className="bg-card sm:rounded-lg sm:border p-4 sm:p-8 mb-8">
           <div className="max-w-none prose prose-slate dark:prose-invert">
             <MarkdownRenderer content={post.content || ''} />
           </div>
@@ -350,7 +350,7 @@ const RoadmapPostDetail: React.FC<RoadmapPostDetailProps> = ({
         </div>
 
         {/* Comments Section */}
-        <div className="bg-card rounded-lg border p-6">
+        <div className="bg-card sm:rounded-lg sm:border p-4 sm:p-6">
           <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
             <MessageCircle className="h-5 w-5" />
             {t('roadmap.discussion')} ({comments.length})

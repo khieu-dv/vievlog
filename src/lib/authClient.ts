@@ -16,12 +16,18 @@ export async function signUp({
   password: string;
   passwordConfirm: string;
 }) {
-  return await pb.collection("users_tbl").create({
-    username,
-    email,
-    password,
-    passwordConfirm,
-  });
+  try {
+    return await pb.collection("users_tbl").create({
+      username,
+      email,
+      password,
+      passwordConfirm,
+    });
+  } catch (error: any) {
+    console.error("SignUp error details:", error);
+    console.error("Error data:", error.data);
+    throw error;
+  }
 }
 
 // Đăng nhập

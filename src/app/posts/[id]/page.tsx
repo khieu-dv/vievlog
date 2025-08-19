@@ -307,13 +307,13 @@ export default function PostDetailPage() {
     <div className="min-h-screen bg-background">
       <Header />
       <main className="pt-4 pb-10">
-        <div className="max-w-4xl mx-auto px-2 sm:px-4">
-          <Link href="/posts" className="mb-4 flex items-center text-sm font-medium text-primary hover:underline">
+        <div className="max-w-4xl mx-auto sm:px-4">
+          <Link href="/posts" className="mb-4 flex items-center text-sm font-medium text-primary hover:underline px-4 sm:px-0">
             <ChevronLeft className="mr-1 h-4 w-4" /> {t("Back to Posts")}
           </Link>
 
           {/* Reddit-style Post Layout */}
-          <div className="bg-card rounded-md border hover:border-muted-foreground/20 transition-colors">
+          <div className="bg-card sm:rounded-md sm:border hover:border-muted-foreground/20 transition-colors">
             <div className="flex flex-col sm:flex-row">
               {/* Left Voting Panel - Desktop Only */}
               <div className="hidden sm:flex flex-col items-center p-3 w-12 bg-muted/30 rounded-l-md">
@@ -406,7 +406,7 @@ export default function PostDetailPage() {
                 )}
 
                 {/* Mobile Voting Controls */}
-                <div className="flex sm:hidden items-center justify-center gap-4 py-3 border-y border-border mb-4">
+                <div className="flex sm:hidden items-center justify-center gap-4 py-3 mb-4">
                   <button
                     onClick={() => handleVote('up')}
                     className={`flex items-center gap-1 px-3 py-2 rounded-full transition-colors ${userVote === 'up' ? 'bg-orange-100 text-orange-600' : 'hover:bg-muted'
@@ -432,7 +432,7 @@ export default function PostDetailPage() {
                 </div>
 
                 {/* Actions Bar - Reddit Style */}
-                <div className="flex items-center gap-2 sm:gap-4 text-xs text-muted-foreground pt-2 border-t border-border">
+                <div className="flex items-center gap-2 sm:gap-4 text-xs text-muted-foreground pt-2 sm:border-t border-border">
                   <button
                     onClick={focusCommentInput}
                     className="flex items-center gap-1 hover:bg-muted px-2 py-1 rounded transition-colors"
@@ -457,9 +457,9 @@ export default function PostDetailPage() {
             </div>
 
             {/* Comments Section - Reddit Style */}
-            <div className="border-t border-border bg-muted/20">
+            <div className="sm:border-t border-border bg-muted/20">
               {/* Comment Input */}
-              <div className="p-3 sm:p-4 border-b border-border bg-background">
+              <div className="p-3 sm:p-4 sm:border-b border-border bg-background">
                 <div className="flex items-start gap-2 sm:gap-3">
                   <div className="h-8 w-8 flex-shrink-0 overflow-hidden rounded-full bg-muted">
                     {session?.user?.image ? (
@@ -480,7 +480,7 @@ export default function PostDetailPage() {
                     <textarea
                       ref={commentInputRef}
                       placeholder={t("What are your thoughts?")}
-                      className="w-full p-3 border border-border rounded-md bg-background text-sm resize-vertical min-h-[80px] focus:outline-none focus:ring-2 focus:ring-primary/20"
+                      className="w-full p-3 sm:border border-border sm:rounded-md bg-background text-sm resize-vertical min-h-[80px] focus:outline-none focus:ring-2 focus:ring-primary/20"
                       value={commentInput}
                       onChange={(e) => setCommentInput(e.target.value)}
                     />
