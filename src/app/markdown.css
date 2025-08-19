@@ -213,7 +213,8 @@
 
 /* Tables */
 .markdown-body table {
-  width: 100%;
+  width: auto;
+  max-width: 100%;
   border-collapse: collapse;
   margin: 1.5rem 0;
   background-color: #ffffff;
@@ -226,14 +227,14 @@
 /* Mobile responsive tables */
 @media (max-width: 640px) {
   .markdown-body table {
-    display: block;
-    overflow-x: auto;
+    display: table;
+    overflow: hidden;
     white-space: nowrap;
     margin: 1rem 0;
     border-radius: 0.5rem;
     table-layout: auto;
-    width: max-content;
-    min-width: 100%;
+    width: auto;
+    max-width: 100%;
   }
 }
 

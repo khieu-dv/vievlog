@@ -34,7 +34,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) =
                     ),
                     table: ({ node, ...props }) => (
                         <div className="overflow-x-auto my-4">
-                            <table className="min-w-full bg-white border border-gray-300" {...props} />
+                            <table className="bg-white border border-gray-300" {...props} />
                         </div>
                     ),
                     thead: ({ node, ...props }) => <thead className="bg-gray-100" {...props} />,
