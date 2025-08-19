@@ -1,13 +1,16 @@
 "use client";
+
 import { useState, useRef } from "react";
 import Editor, { OnMount } from "@monaco-editor/react";
 import prettier from "prettier/standalone";
 import babel from "prettier/plugins/babel";
 import estree from "prettier/plugins/estree";
+import Prism from "prismjs";
+import "prismjs/themes/prism.css";
 
 export default function JSCodeEditor() {
     const [code, setCode] = useState(
-        `// Type or paste your code here...\nconsole.log(\"Hello, Monaco!\");\n\nfunction add(a, b) {\nreturn a + b;\n}`
+        `// Type or paste your code here...\nconsole.log("Hello, Monaco!");\n\nfunction add(a, b) {\n  return a + b;\n}`
     );
     const [output, setOutput] = useState("Output will appear here...");
     const editorRef = useRef<Parameters<OnMount>[0] | null>(null);
@@ -15,7 +18,6 @@ export default function JSCodeEditor() {
     const handleEditorDidMount: OnMount = (editor, monaco) => {
         editorRef.current = editor;
 
-        // Register a formatting provider for JavaScript
         const formattingProvider = {
             async provideDocumentFormattingEdits(model: any) {
                 const text = model.getValue();
@@ -34,7 +36,6 @@ export default function JSCodeEditor() {
                     ];
                 } catch (error) {
                     console.error("Prettier formatting failed:", error);
-                    // Return null to indicate failure, so the editor doesn't change
                     return null;
                 }
             },
@@ -45,7 +46,6 @@ export default function JSCodeEditor() {
             formattingProvider
         );
 
-        // Enable format on type and format on paste
         editor.updateOptions({
             formatOnType: true,
             formatOnPaste: true,
@@ -59,13 +59,32 @@ export default function JSCodeEditor() {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ code }),
             });
+
             const data = await res.json();
+
             if (data.error) {
                 setOutput("Error: " + data.error);
             } else {
                 const logsOutput = data.logs.length > 0 ? data.logs.join("\n") : "";
-                const resultOutput = data.result !== "undefined" ? data.result : "";
-                setOutput([logsOutput, resultOutput].filter(Boolean).join("\n"));
+                const resultOutput =
+                    data.result !== "undefined" && data.result
+                        ? data.result
+                        : "";
+
+                // Format result nếu là JSON
+                const formattedResult = [logsOutput, resultOutput]
+                    .filter(Boolean)
+                    .map((item) => {
+                        try {
+                            const parsed = JSON.parse(item);
+                            return JSON.stringify(parsed, null, 2);
+                        } catch {
+                            return item;
+                        }
+                    })
+                    .join("\n");
+
+                setOutput(formattedResult);
             }
         } catch (err: any) {
             setOutput("Error: " + err.message);
@@ -74,15 +93,18 @@ export default function JSCodeEditor() {
 
     const formatCodeManual = () => {
         // @ts-ignore
-        editorRef.current?.getAction('editor.action.formatDocument').run();
-    }
+        editorRef.current?.getAction("editor.action.formatDocument").run();
+    };
 
     return (
         <div className="p-4 md:p-6 h-screen flex flex-col">
             <div className="flex-grow flex flex-col lg:flex-row lg:space-x-4 space-y-4 lg:space-y-0">
                 {/* Editor Column */}
                 <div className="w-full lg:w-1/2 flex flex-col h-[50vh] lg:h-full">
-                    <div className="flex-shrink-0 mb-2 flex items-center" style={{ height: '40px' }}>
+                    <div
+                        className="flex-shrink-0 mb-2 flex items-center"
+                        style={{ height: "40px" }}
+                    >
                         <h2 className="text-lg font-semibold text-gray-700">Code Editor</h2>
                     </div>
                     <div className="flex-grow border rounded-md overflow-hidden">
@@ -105,7 +127,10 @@ export default function JSCodeEditor() {
 
                 {/* Output Column */}
                 <div className="w-full lg:w-1/2 flex flex-col lg:h-full">
-                    <div className="flex-shrink-0 mb-2 flex items-center space-x-2" style={{ height: '40px' }}>
+                    <div
+                        className="flex-shrink-0 mb-2 flex items-center space-x-2"
+                        style={{ height: "40px" }}
+                    >
                         <button
                             onClick={runCode}
                             className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
@@ -119,7 +144,12 @@ export default function JSCodeEditor() {
                             Format Code
                         </button>
                     </div>
-                    <pre className="flex-grow p-2 border rounded bg-gray-100 whitespace-pre-wrap overflow-auto">{output}</pre>
+                    <pre
+                        className="flex-grow p-2 border rounded bg-gray-100 overflow-auto whitespace-pre-wrap"
+                        dangerouslySetInnerHTML={{
+                            __html: Prism.highlight(output, Prism.languages.javascript, "javascript"),
+                        }}
+                    ></pre>
                 </div>
             </div>
         </div>
