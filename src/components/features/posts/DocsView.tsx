@@ -272,16 +272,16 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
     return (
       <div className="flex items-center justify-center min-h-96">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-muted-foreground">Loading documentation...</p>
+          <div className="animate-spin rounded-full h-8 w-8 border-2 border-gray-300 border-t-blue-600 mx-auto mb-6"></div>
+          <p className="text-gray-600 dark:text-gray-300 font-light">Loading documentation...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className={`flex flex-col lg:flex-row gap-8 ${className}`}>
-      {/* Mobile Toggle Button - Icon Only */}
+    <div className={`flex flex-col lg:flex-row gap-12 ${className}`}>
+      {/* Mobile Toggle Button - Apple Style */}
       <div className="lg:hidden fixed bottom-6 left-4 z-50">
         <button
           onClick={() => {
@@ -294,10 +294,10 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
             }
             setExpandedSections(newExpanded);
           }}
-          className="p-3 bg-card/90 backdrop-blur-sm border rounded-xl shadow-lg hover:bg-accent/50 transition-all duration-200"
+          className="p-4 bg-white/90 dark:bg-black/90 backdrop-blur-xl border border-gray-200 dark:border-gray-700 rounded-full shadow-xl hover:scale-105 transition-all duration-200"
           aria-label="Toggle Documentation Menu"
         >
-          <Menu className="h-5 w-5 text-foreground" />
+          <Menu className="h-5 w-5 text-gray-900 dark:text-white" />
         </button>
       </div>
 
@@ -313,21 +313,21 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
         />
       )}
 
-      {/* Sidebar Navigation - shadcn style */}
+      {/* Sidebar Navigation - Apple Style */}
       <aside className={`
-        lg:w-72 xl:w-80 flex-shrink-0 transition-all duration-300 ease-in-out
+        lg:w-80 xl:w-96 flex-shrink-0 transition-all duration-300 ease-in-out
         ${expandedSections.has('mobile-nav') 
-          ? 'fixed left-0 top-0 bottom-0 w-3/4 z-50 lg:relative lg:w-72 xl:w-80 lg:z-auto transform translate-x-0' 
-          : 'fixed left-0 top-0 bottom-0 w-3/4 z-50 lg:relative lg:w-72 xl:w-80 lg:z-auto transform -translate-x-full lg:translate-x-0 lg:block'
+          ? 'fixed left-0 top-0 bottom-0 w-4/5 z-50 lg:relative lg:w-80 xl:w-96 lg:z-auto transform translate-x-0' 
+          : 'fixed left-0 top-0 bottom-0 w-4/5 z-50 lg:relative lg:w-80 xl:w-96 lg:z-auto transform -translate-x-full lg:translate-x-0 lg:block'
         }
       `}>
         <div className={`${expandedSections.has('mobile-nav') ? 'h-full' : 'sticky top-20'}`}>
-          <div className={`bg-card/95 backdrop-blur-sm border ${expandedSections.has('mobile-nav') ? 'rounded-none border-l-0 border-t-0 border-b-0' : 'rounded-xl'} shadow-sm flex flex-col ${expandedSections.has('mobile-nav') ? 'h-full' : ''}`} style={expandedSections.has('mobile-nav') ? {} : {height: 'calc(100vh - 6rem)'}}>
-            {/* Header with Search - shadcn style */}
-            <div className="p-4 border-b border-border/40 flex-shrink-0">
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-sm font-medium text-foreground/80 tracking-wide uppercase">
-                  {expandedSections.has('mobile-nav') ? 'Documentation' : 'Documentation'}
+          <div className={`bg-white/95 dark:bg-black/95 backdrop-blur-xl border border-gray-200 dark:border-gray-700 ${expandedSections.has('mobile-nav') ? 'rounded-none border-l-0 border-t-0 border-b-0' : 'rounded-2xl'} shadow-xl flex flex-col ${expandedSections.has('mobile-nav') ? 'h-full' : ''}`} style={expandedSections.has('mobile-nav') ? {} : {height: 'calc(100vh - 6rem)'}}>
+            {/* Header with Search - Apple Style */}
+            <div className="p-6 border-b border-gray-200 dark:border-gray-700 flex-shrink-0">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-lg font-medium text-gray-900 dark:text-white">
+                  Documentation
                 </h2>
                 {/* Close button for mobile */}
                 {expandedSections.has('mobile-nav') && (
@@ -337,46 +337,46 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                       newSet.delete('mobile-nav');
                       return newSet;
                     })}
-                    className="lg:hidden p-1 rounded-md hover:bg-accent/50 transition-colors"
+                    className="lg:hidden p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                     aria-label="Close Documentation Menu"
                   >
-                    <X className="h-4 w-4" />
+                    <X className="h-5 w-5 text-gray-600 dark:text-gray-400" />
                   </button>
                 )}
               </div>
 
-              {/* Search Bar - shadcn style */}
+              {/* Search Bar - Apple Style */}
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                 <input
                   type="text"
                   placeholder="Search documentation..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-10 pr-10 py-2.5 bg-background border border-border/60 rounded-lg text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-border transition-colors"
+                  className="w-full pl-12 pr-12 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all font-light"
                 />
                 {searchQuery && (
                   <button
                     onClick={() => setSearchQuery('')}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
                   >
-                    <X className="h-4 w-4" />
+                    <X className="h-5 w-5" />
                   </button>
                 )}
               </div>
 
               {/* Search Results Count */}
               {searchQuery && (
-                <p className="text-xs text-muted-foreground mt-3">
+                <p className="text-sm text-gray-500 dark:text-gray-400 mt-4 font-light">
                   {filteredDocsData.length} section{filteredDocsData.length !== 1 ? 's' : ''} found
                 </p>
               )}
             </div>
 
             {/* Navigation Content - Scrollable */}
-            <div className={`p-4 flex-1 overflow-y-auto ${expandedSections.has('mobile-nav') ? 'pb-6' : ''}`} data-scroll-area="sidebar">
+            <div className={`p-6 flex-1 overflow-y-auto ${expandedSections.has('mobile-nav') ? 'pb-6' : ''}`} data-scroll-area="sidebar">
 
-              <nav className="space-y-2">
+              <nav className="space-y-3">
                 {/* Home/Overview always visible */}
                 {!searchQuery && (
                   <button
@@ -391,12 +391,12 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                       router.replace(`/posts?${params.toString()}`, { scroll: false });
                       // Don't close mobile sidebar - let user see overview content first
                     }}
-                    className={`flex items-center gap-3 w-full p-2.5 text-sm font-medium rounded-lg transition-all duration-200 ${activeSection === 'overview'
-                        ? 'bg-accent text-accent-foreground shadow-sm'
-                        : 'text-muted-foreground hover:text-foreground hover:bg-accent/50'
+                    className={`flex items-center gap-4 w-full p-4 text-base font-medium rounded-xl transition-all duration-200 ${activeSection === 'overview'
+                        ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 shadow-sm'
+                        : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800'
                       }`}
                   >
-                    <Home className="h-4 w-4" />
+                    <Home className="h-5 w-5" />
                     <span>Overview</span>
                   </button>
                 )}
@@ -443,23 +443,23 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                                   toggleSection(section.id);
                                   // Don't close mobile sidebar here - let user select posts first
                                 }}
-                                className={`flex items-center gap-3 w-full p-2.5 text-sm font-medium rounded-lg transition-all duration-200 justify-between ${activeSection === section.id
-                                    ? 'bg-accent text-accent-foreground shadow-sm'
-                                    : 'text-muted-foreground hover:text-foreground hover:bg-accent/50'
+                                className={`flex items-center gap-4 w-full p-4 text-base font-medium rounded-xl transition-all duration-200 justify-between ${activeSection === section.id
+                                    ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 shadow-sm'
+                                    : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800'
                                   }`}
                               >
-                                <div className="flex items-center gap-2 min-w-0 flex-1">
+                                <div className="flex items-center gap-3 min-w-0 flex-1">
                                   {section.iconName && getIconComponent(section.iconName)}
-                                  <span className="truncate">{section.title}</span>
+                                  <span className="truncate font-medium">{section.title}</span>
                                 </div>
-                                <div className="flex items-center gap-1 flex-shrink-0">
-                                  <span className="text-xs font-medium">
+                                <div className="flex items-center gap-2 flex-shrink-0">
+                                  <span className="text-sm font-medium bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-1 rounded-full">
                                     {section.posts.length}
                                   </span>
                                   {expandedSections.has(section.id) ? (
-                                    <ChevronDown className="h-3 w-3" />
+                                    <ChevronDown className="h-4 w-4" />
                                   ) : (
-                                    <ChevronRight className="h-3 w-3" />
+                                    <ChevronRight className="h-4 w-4" />
                                   )}
                                 </div>
                               </button>
@@ -481,14 +481,14 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                                   router.replace(`/posts?${params.toString()}`, { scroll: false });
                                   // Don't close mobile sidebar - let user see content first
                                 }}
-                                className={`flex items-center gap-3 w-full p-2.5 text-sm font-medium rounded-lg transition-all duration-200 ${activeSection === section.id
-                                    ? 'bg-accent text-accent-foreground shadow-sm'
-                                    : 'text-muted-foreground hover:text-foreground hover:bg-accent/50'
+                                className={`flex items-center gap-4 w-full p-4 text-base font-medium rounded-xl transition-all duration-200 ${activeSection === section.id
+                                    ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 shadow-sm'
+                                    : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800'
                                   }`}
                               >
-                                <div className="flex items-center gap-2 min-w-0 flex-1">
+                                <div className="flex items-center gap-3 min-w-0 flex-1">
                                   {section.iconName && getIconComponent(section.iconName)}
-                                  <span className="truncate">{section.title}</span>
+                                  <span className="truncate font-medium">{section.title}</span>
                                 </div>
                               </button>
                             )}
@@ -557,10 +557,10 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
 
                 {/* No results message */}
                 {searchQuery && filteredDocsData.length === 0 && (
-                  <div className="text-center py-8 text-muted-foreground">
-                    <Search className="h-8 w-8 mx-auto mb-2 opacity-50" />
-                    <p className="text-sm">No results found for "{searchQuery}"</p>
-                    <p className="text-xs mt-1">Try different keywords or browse all sections</p>
+                  <div className="text-center py-12 text-gray-500 dark:text-gray-400">
+                    <Search className="h-12 w-12 mx-auto mb-6 opacity-30" />
+                    <p className="text-lg font-medium text-gray-900 dark:text-white mb-2">No results found</p>
+                    <p className="text-base font-light">Try different keywords or browse all sections</p>
                   </div>
                 )}
               </nav>
@@ -569,7 +569,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
         </div>
       </aside>
 
-      {/* Main Content - shadcn style */}
+      {/* Main Content - Apple Style */}
       <main 
         className={`flex-1 min-w-0 ${expandedSections.has('mobile-nav') ? 'lg:block hidden' : 'block'}`}
         onClick={() => {
@@ -583,13 +583,13 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
           }
         }}
       >
-        <div className="bg-card/50 backdrop-blur-sm border rounded-xl shadow-sm">
-          {/* Content Header with Breadcrumbs - shadcn style */}
-          <div className="border-b border-border/40 px-6 py-4">
-            <div className="flex items-center gap-2 text-sm text-muted-foreground/80 mb-2">
-              <Home className="h-4 w-4" />
-              <ChevronRight className="h-3 w-3 text-muted-foreground/60" />
-              <span className="text-foreground font-medium">
+        <div className="bg-white/95 dark:bg-black/95 backdrop-blur-xl border border-gray-200 dark:border-gray-700 rounded-2xl shadow-xl">
+          {/* Content Header with Breadcrumbs - Apple style */}
+          <div className="border-b border-gray-200 dark:border-gray-700 px-8 py-6">
+            <div className="flex items-center gap-3 text-base text-gray-500 dark:text-gray-400 mb-2">
+              <Home className="h-5 w-5" />
+              <ChevronRight className="h-4 w-4" />
+              <span className="text-gray-900 dark:text-white font-medium">
                 {activeSection.startsWith('post-')
                   ? (() => {
                     const postId = activeSection.replace('post-', '');
@@ -602,8 +602,8 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
               </span>
               {activeSection.startsWith('post-') && (
                 <>
-                  <ChevronRight className="h-3 w-3" />
-                  <span className="text-foreground">
+                  <ChevronRight className="h-4 w-4" />
+                  <span className="text-gray-900 dark:text-white font-medium">
                     {(() => {
                       const postId = activeSection.replace('post-', '');
                       const allPosts = Object.values(categoryPosts).flat();
@@ -617,7 +617,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
           </div>
 
           {/* Content Body - Full Height */}
-          <div className="p-6 lg:p-8 bg-gradient-to-br from-background/50 to-background">
+          <div className="p-8 lg:p-12 bg-gradient-to-br from-gray-50/50 to-white dark:from-gray-900/50 dark:to-black">
             {activeSection.startsWith('post-') ? (
               // Render individual post content
               (() => {
@@ -790,16 +790,16 @@ Choose a category below to explore our comprehensive learning materials, tutoria
                       {(showAllPosts[activeSection] ? findActivePosts() : findActivePosts().slice(0, 6)).map((post) => (
                         <div
                           key={post.id}
-                          className="group p-6 border border-border/60 rounded-xl hover:border-border hover:shadow-md hover:shadow-black/5 transition-all duration-300 cursor-pointer bg-card/50 hover:bg-card/80 backdrop-blur-sm"
+                          className="group p-8 border border-gray-200 dark:border-gray-700 rounded-2xl hover:border-gray-300 dark:hover:border-gray-600 hover:shadow-xl hover:shadow-gray-900/5 dark:hover:shadow-black/20 transition-all duration-300 cursor-pointer bg-white/80 dark:bg-black/80 hover:bg-white dark:hover:bg-black backdrop-blur-sm hover:-translate-y-1"
                           onClick={() => handlePostSelect(post.id)}
                         >
-                          <div className="flex items-start gap-6">
+                          <div className="flex items-start gap-8">
                             <div className="flex-1 min-w-0">
                               {/* Category badge */}
                               {post.category && (
-                                <div className="flex items-center gap-2 mb-3">
+                                <div className="flex items-center gap-2 mb-4">
                                   <span
-                                    className="text-xs font-medium px-2 py-1 rounded-full"
+                                    className="text-sm font-medium px-3 py-1.5 rounded-full"
                                     style={{
                                       backgroundColor: `${post.category.color}15`,
                                       color: post.category.color
@@ -810,24 +810,24 @@ Choose a category below to explore our comprehensive learning materials, tutoria
                                 </div>
                               )}
 
-                              <h4 className="font-semibold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                              <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2 leading-tight">
                                 {post.title}
                               </h4>
                               {post.excerpt && (
-                                <p className="text-sm text-muted-foreground line-clamp-2 mb-4">
+                                <p className="text-base text-gray-600 dark:text-gray-400 line-clamp-2 mb-6 leading-relaxed font-light">
                                   {post.excerpt}
                                 </p>
                               )}
-                              <div className="flex items-center gap-6 text-xs text-muted-foreground">
-                                <div className="flex items-center gap-1">
+                              <div className="flex items-center gap-8 text-sm text-gray-500 dark:text-gray-400 font-light">
+                                <div className="flex items-center gap-2">
                                   <span>📅</span>
                                   <span>{new Date(post.publishedAt).toLocaleDateString()}</span>
                                 </div>
-                                <div className="flex items-center gap-1">
+                                <div className="flex items-center gap-2">
                                   <span>❤️</span>
                                   <span>{post.likes}</span>
                                 </div>
-                                <div className="flex items-center gap-1">
+                                <div className="flex items-center gap-2">
                                   <span>💬</span>
                                   <span>{post.commentCount}</span>
                                 </div>
@@ -838,16 +838,16 @@ Choose a category below to explore our comprehensive learning materials, tutoria
                                 <img
                                   src={post.coverImage}
                                   alt={post.title}
-                                  className="w-20 h-20 object-cover rounded-lg group-hover:scale-105 transition-transform duration-300"
+                                  className="w-24 h-24 object-cover rounded-xl group-hover:scale-105 transition-transform duration-300 shadow-md"
                                 />
                               </div>
                             )}
                           </div>
 
                           {/* Read more indicator */}
-                          <div className="flex items-center gap-2 mt-4 pt-4 border-t border-muted/50 text-sm text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                          <div className="flex items-center gap-3 mt-6 pt-6 border-t border-gray-200 dark:border-gray-700 text-base text-blue-600 dark:text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity font-medium">
                             <span>Read article</span>
-                            <ChevronRight className="h-4 w-4" />
+                            <ChevronRight className="h-5 w-5" />
                           </div>
                         </div>
                       ))}
@@ -855,13 +855,13 @@ Choose a category below to explore our comprehensive learning materials, tutoria
 
                     {/* Show All / Show Less button */}
                     {findActivePosts().length > 6 && (
-                      <div className="mt-6 text-center">
+                      <div className="mt-12 text-center">
                         <button
                           onClick={() => setShowAllPosts(prev => ({
                             ...prev,
                             [activeSection]: !prev[activeSection]
                           }))}
-                          className="px-6 py-3 bg-primary/10 text-primary hover:bg-primary/20 rounded-lg transition-colors font-medium"
+                          className="px-8 py-4 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/50 rounded-xl transition-all duration-200 font-medium hover:scale-105"
                         >
                           {showAllPosts[activeSection]
                             ? 'Show Less'

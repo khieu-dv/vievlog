@@ -173,26 +173,33 @@ export default function HomePage() {
                   </div>
 
                   {/* Categories Grid */}
-                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-5xl mx-auto">
+                  <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-5xl mx-auto">
                     {categoryList.map((category) => (
                       <div
                         key={category.id}
                         onClick={() => handleCategorySelect(category.id)}
-                        className="group cursor-pointer bg-white dark:bg-black rounded-xl p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                        className="group cursor-pointer bg-white dark:bg-black rounded-xl p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full"
                       >
-                        <div className="flex flex-col items-center text-center">
+                        <div className="flex flex-col items-center text-center h-full">
                           <div 
                             className="h-14 w-14 rounded-full flex items-center justify-center text-white text-xl font-medium mb-4"
                             style={{ backgroundColor: category.color }}
                           >
                             {category.name.charAt(0).toUpperCase()}
                           </div>
-                          <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
+                          <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-3">
                             {category.name}
                           </h3>
-                          <p className="text-sm text-gray-500 dark:text-gray-400 font-light">
-                            {category.postCount || 0} tutorials
-                          </p>
+                          {category.description && (
+                            <p className="text-sm text-gray-600 dark:text-gray-400 font-light leading-relaxed mb-4 flex-1">
+                              {category.description}
+                            </p>
+                          )}
+                          <div className="mt-auto">
+                            <p className="text-sm text-gray-500 dark:text-gray-400 font-light">
+                              {category.postCount || 0} tutorials
+                            </p>
+                          </div>
                         </div>
                       </div>
                     ))}

@@ -7,27 +7,26 @@ import DocsView from "~/components/features/posts/DocsView";
 
 export default function PostsPage() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white dark:bg-black">
       <Header />
       <VieShareBanner />
 
-      {/* Main Layout - shadcn/ui inspired */}
-      <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Main Layout - Apple Style */}
+      <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col">
-          {/* Header Section - more minimal like shadcn */}
-          <div className="py-6 border-b">
-            <div className="text-center">
-              <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground mb-3">
-                Documentation
-              </h1>
-              <p className="text-base text-muted-foreground max-w-2xl mx-auto leading-7">
-                Comprehensive guides and resources to help you make the most of VieVlog platform.
-              </p>
-            </div>
+          {/* Header Section - Apple minimal style */}
+          <div className="pt-16 pb-12 text-center">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-gray-900 dark:text-white mb-6">
+              Documentation
+            </h1>
+            <p className="text-xl font-light text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              Everything you need to master programming.<br />
+              Beautiful guides, thoughtfully crafted.
+            </p>
           </div>
 
           {/* Documentation Content */}
-          <div className="py-6">
+          <div className="pb-20">
             <DocsView />
           </div>
         </div>
