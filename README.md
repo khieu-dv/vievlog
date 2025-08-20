@@ -1,4 +1,4 @@
-# VieVlog 🧠 - Modern Learning Platform for IT Education
+# VieVlog 🧠 - Interactive Programming Education Platform
 
 <div align="center">
 
@@ -12,7 +12,13 @@
 
 ## 🌟 Overview
 
-VieVlog is a cutting-edge, open-source educational platform built with modern web technologies to revolutionize IT learning experiences. Perfect for educators, students, and tech enthusiasts!
+VieVlog is a comprehensive, multi-modal programming education platform that combines interactive documentation, video learning, live code execution, and educational games into one seamless experience. Built for developers at all levels - from beginners learning their first programming language to professionals expanding their tech stack.
+
+**🎯 What makes VieVlog unique:**
+- **Interactive Learning**: Live code execution with Monaco Editor integration
+- **Multi-Format Content**: Documentation, TikTok-style videos, and educational games
+- **Community-Driven**: Real-time comments and discussions on all content
+- **Global Accessibility**: Multi-language support (EN/VI/KO/ZH) with responsive design
 
 <p align="center">
   <img src="./public/screenshot20.png" width="400" alt="VieVlog Dashboard" />
@@ -30,35 +36,59 @@ VieVlog is a cutting-edge, open-source educational platform built with modern we
 
 
 
+## 🎯 Core Learning Experiences
+
+### 📚 Interactive Documentation System
+- **Structured Learning Paths**: Languages • Frameworks • DSA • Soft Skills
+- **Live Code Examples**: Embedded Monaco Editor with syntax highlighting
+- **Community Engagement**: Real-time comments and discussions
+- **Multi-language Support**: Content available in Vietnamese, English, Korean, Chinese
+
+### 📱 TikTok-Style Video Learning
+- **Short-form Educational Videos**: Mobile-optimized vertical feed
+- **Auto-play on Scroll**: Seamless browsing experience
+- **Progress Tracking**: Continue where you left off
+- **Curated Content**: Programming tutorials and tech insights
+
+### 💻 Live Code Playground
+- **Server-side Execution**: Run JavaScript code safely in sandboxed environment
+- **Professional Editor**: Monaco Editor with IntelliSense and syntax highlighting
+- **Real-time Output**: Instant feedback and error handling
+- **Code Sharing**: Save and share your code snippets
+
+### 🎮 Educational Gaming
+- **Interactive Learning**: VieHero game built with Godot engine
+- **WebAssembly Performance**: Smooth browser-based gaming experience
+- **Gamified Progress**: Learn programming concepts through play
+
 ## ✨ Why Choose VieVlog?
 
-- 🚀 **Production-Ready**: Built with enterprise-grade architecture and best practices
-- 🔧 **Developer-Friendly**: Clean code structure with modern tooling
-- 📱 **Responsive Design**: Perfect experience across all devices
-- 🔌 **Easy Integration**: Minimal setup required to get started
-- 🌐 **Internationalization Ready**: Built with global audiences in mind
-
-## 🎯 Key Features
-
-- ⚡ Generate engaging videos from images and audio
-- 🎨 Create personalized learning materials
-- 🔐 User authentication and profile management
-- 📝 Content creation and management tools
-- 📊 Progress tracking and analytics
-- 💬 Interactive discussion platform
+- 🔥 **Multi-Modal Learning**: Text, video, interactive code, and games in one platform
+- 🚀 **Production-Ready**: Enterprise-grade Next.js architecture with PocketBase backend
+- 📱 **Mobile-First Design**: Optimized for learning on-the-go
+- 🌍 **Global Community**: Multi-language support with active user discussions
+- ⚡ **Live Code Execution**: Practice coding with instant feedback
+- 🎯 **Structured Curriculum**: From beginner basics to advanced topics
 
 ## 🛠️ Technology Stack
 
 <div align="center">
   
-| Technology | Purpose |
-|------------|---------|
-| [Next.js](https://nextjs.org/) | Full-stack React framework with App Router |
-| [PocketBase](https://pocketbase.io/) | Lightweight self-hostable Backend-as-a-Service |
-| [TailwindCSS](https://tailwindcss.com/) | Utility-first CSS framework |
-| [Docker](https://www.docker.com/) | Containerization for easy deployment |
+| Frontend | Backend | Editor & Gaming |
+|----------|---------|-----------------|
+| [Next.js 15](https://nextjs.org/) | [PocketBase](https://pocketbase.io/) | [Monaco Editor](https://microsoft.github.io/monaco-editor/) |
+| [React 19](https://react.dev/) | [Redis](https://redis.io/) | [Godot Engine](https://godotengine.org/) |
+| [TypeScript](https://www.typescriptlang.org/) | [Docker](https://www.docker.com/) | [WebAssembly](https://webassembly.org/) |
+| [TailwindCSS](https://tailwindcss.com/) | RESTful APIs | Phaser.js |
 
 </div>
+
+**🔧 Key Integrations:**
+- **Authentication**: PocketBase user management with social auth
+- **Real-time Features**: Live comments and community interactions  
+- **Code Execution**: Secure server-side JavaScript runtime
+- **Internationalization**: i18n support for 4+ languages
+- **Performance**: Vercel deployment with edge optimization
 
 ## 🚀 Getting Started in 4 Simple Steps
 
@@ -80,21 +110,34 @@ yarn install
 ### 3. Start PocketBase (Backend)
 
 ```bash
-cd ./vievlog/pocketbase-docker
+cd pocketbase-docker
 docker-compose up -d
 ```
 
-Access the PocketBase admin interface at: http://localhost:8090/_/
+**🔗 PocketBase Admin**: http://localhost:8090/_/
+- Set up your admin account and configure collections
+- The database will be automatically seeded with demo content
 
 ### 4. Launch Development Server
 
 ```bash
 npm run dev
-# or
+# or  
 yarn dev
 ```
 
-Visit [http://localhost:3000](http://localhost:3000) to see your app running!
+**🌐 Access the Platform**:
+- **Main App**: http://localhost:3000
+- **Documentation**: http://localhost:3000/posts
+- **Video Feed**: http://localhost:3000/videos  
+- **Code Playground**: http://localhost:3000/run-js
+- **Games**: http://localhost:3000/games
+
+**🎯 Quick Start Features**:
+- Browse programming tutorials by category
+- Watch short-form coding videos
+- Try the interactive JavaScript code editor
+- Play educational games to learn programming concepts
 
 ## 📚 Documentation
 
@@ -102,18 +145,43 @@ Visit [http://localhost:3000](http://localhost:3000) to see your app running!
 
 ```
 vievlog/
-├── app/                  # Next.js App Router components and pages
-│   ├── api/              # API endpoints
-│   ├── auth/             # Authentication flows
-│   ├── chat/             # Real-time communication
-│   ├── components/       # Shared components
-│   ├── posts/            # Content management
-│   ├── profile/          # User profiles
-│   └── videos/           # Video generation tools
-├── lib/                  # Utility functions and services
-├── ui/                   # UI components and primitives
-└── utils/                # Server-side helpers
+├── src/app/                    # Next.js App Router
+│   ├── api/                    # Backend API routes
+│   │   ├── run-code/          # Code execution endpoint
+│   │   ├── messages/          # Real-time messaging
+│   │   └── auth/              # Authentication APIs
+│   ├── posts/                  # Interactive documentation system
+│   │   ├── [id]/              # Individual tutorial pages
+│   │   └── roadmap/           # Structured learning paths
+│   ├── videos/                 # TikTok-style video feed
+│   ├── run-js/                 # Live code playground
+│   ├── games/                  # Educational gaming platform
+│   ├── auth/                   # User authentication flows
+│   └── profile/                # User dashboard
+├── src/components/
+│   ├── features/               # Feature-specific components
+│   │   ├── posts/             # Documentation components
+│   │   └── videos/            # Video player components
+│   ├── common/                 # Shared UI components
+│   └── ui/                     # Design system primitives
+├── src/lib/                    # Core utilities and services
+│   ├── services/              # API clients
+│   ├── hooks/                 # Custom React hooks
+│   └── types/                 # TypeScript definitions
+└── pocketbase-docker/          # Backend infrastructure
 ```
+
+### Learning Content Structure
+
+**📚 Documentation Categories**:
+- **Languages**: Go, Rust, JavaScript, Python, etc.
+- **Frameworks**: React, Next.js, FastAPI, Gin, etc.
+- **DSA**: Data Structures & Algorithms fundamentals
+- **Soft Skills**: Career development and professional skills
+
+**🎥 Video Content**: Short-form educational videos optimized for mobile consumption
+
+**🎮 Interactive Games**: Browser-based educational games using Godot/WebAssembly
 
 
 ## 🤝 Contributing
@@ -128,9 +196,25 @@ We welcome contributions of all sizes! Here's how you can help:
 
 Check out our [Contributing Guidelines](CONTRIBUTING.md) for more details.
 
+## 🎯 Target Audience & Use Cases
+
+**👥 Who Benefits from VieVlog**:
+- **Beginner Programmers**: Learning fundamentals with interactive examples
+- **Students**: Computer science and software engineering curriculum support  
+- **Career Changers**: Transitioning into tech with structured learning paths
+- **Professionals**: Expanding skillset with new technologies and frameworks
+- **Educators**: Teaching programming with engaging, multi-modal content
+
+**💡 Primary Use Cases**:
+- **Self-paced Learning**: Individual study with comprehensive resources
+- **Interview Preparation**: DSA practice and coding challenges  
+- **Technology Exploration**: Hands-on experience with new tools
+- **Community Learning**: Peer discussions and knowledge sharing
+- **Mobile Learning**: Study programming concepts on-the-go
+
 ## 📊 Project Status
 
-VieVlog is under active development. We're working hard to add more features and improvements!
+🚀 **Production Ready** - VieVlog is actively serving learners with a full-featured platform including live code execution, video streaming, and interactive content management.
 
 <div align="center">
 
