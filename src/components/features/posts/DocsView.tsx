@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { ChevronDown, ChevronRight, Search, X, Home, BookOpen, Menu, ArrowLeft, ArrowRight, MessageCircle, Code, FileText, PanelLeftClose, PanelLeftOpen } from 'lucide-react';
 import Image from 'next/image';
 import { useTranslation } from 'react-i18next';
@@ -176,6 +176,43 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
       return newSet;
     });
   };
+
+  // Handle touch feedback for articles with haptic-like effect
+  const handleArticleTouch = useCallback((e: React.TouchEvent) => {
+    // Add gentle vibration on supported devices
+    if (navigator.vibrate) {
+      navigator.vibrate(8);
+    }
+    
+    // Add ripple effect
+    const rect = e.currentTarget.getBoundingClientRect();
+    const ripple = document.createElement('div');
+    const size = Math.max(rect.width, rect.height);
+    const x = e.touches[0].clientX - rect.left - size / 2;
+    const y = e.touches[0].clientY - rect.top - size / 2;
+    
+    ripple.style.cssText = `
+      position: absolute;
+      width: ${size}px;
+      height: ${size}px;
+      left: ${x}px;
+      top: ${y}px;
+      background: rgba(59, 130, 246, 0.2);
+      border-radius: 50%;
+      transform: scale(0);
+      animation: ripple 0.7s linear;
+      pointer-events: none;
+      z-index: 1;
+    `;
+    
+    e.currentTarget.appendChild(ripple);
+    
+    setTimeout(() => {
+      if (ripple.parentNode) {
+        ripple.parentNode.removeChild(ripple);
+      }
+    }, 700);
+  }, []);
 
   // Handle comment submission
   const handleCommentSubmit = async (postId: string) => {
@@ -607,7 +644,12 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                                   toggleSection(section.id);
                                   // Don't close mobile sidebar here - let user select posts first
                                 }}
-                                className={`flex items-center gap-4 w-full px-4 py-3 text-base font-medium rounded-xl transition-all duration-200 justify-between ${activeSection === section.id
+                                onTouchStart={handleArticleTouch}
+                                className={`flex items-center gap-4 w-full px-4 py-3 text-base font-medium rounded-xl 
+                                          transition-all duration-200 justify-between touch-feedback
+                                          touch-manipulation select-none relative overflow-hidden
+                                          active:scale-95
+                                          ${activeSection === section.id
                                   ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 shadow-sm'
                                   : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800'
                                   }`}
@@ -645,7 +687,12 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                                   router.replace(`/posts?${params.toString()}`, { scroll: false });
                                   // Don't close mobile sidebar - let user see content first
                                 }}
-                                className={`flex items-center gap-4 w-full px-4 py-3 text-base font-medium rounded-xl transition-all duration-200 ${activeSection === section.id
+                                onTouchStart={handleArticleTouch}
+                                className={`flex items-center gap-4 w-full px-4 py-3 text-base font-medium rounded-xl 
+                                          transition-all duration-200 touch-feedback
+                                          touch-manipulation select-none relative overflow-hidden
+                                          active:scale-95
+                                          ${activeSection === section.id
                                   ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 shadow-sm'
                                   : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800'
                                   }`}
@@ -665,9 +712,13 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                                   <button
                                     key={post.id}
                                     onClick={() => handlePostSelect(post.id)}
-                                    className={`block w-full text-left p-2.5 text-xs rounded-lg transition-all duration-200 ${activeSection === `post-${post.id}`
-                                      ? 'bg-accent/70 text-accent-foreground font-medium shadow-sm'
-                                      : 'text-muted-foreground/80 hover:bg-accent/30 hover:text-foreground'
+                                    onTouchStart={handleArticleTouch}
+                                    className={`block w-full text-left p-2.5 text-xs rounded-lg transition-all duration-200
+                                              touch-manipulation select-none relative overflow-hidden
+                                              active:scale-95 touch-feedback
+                                              ${activeSection === `post-${post.id}`
+                                        ? 'bg-accent/70 text-accent-foreground font-medium shadow-sm'
+                                        : 'text-muted-foreground/80 hover:bg-accent/30 hover:text-foreground'
                                       }`}
                                   >
                                     <div className="truncate pr-2">{post.title}</div>
@@ -684,9 +735,13 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                                       <button
                                         key={post.id}
                                         onClick={() => handlePostSelect(post.id)}
-                                        className={`block w-full text-left p-2.5 text-xs rounded-lg transition-all duration-200 ${activeSection === `post-${post.id}`
-                                          ? 'bg-accent/70 text-accent-foreground font-medium shadow-sm'
-                                          : 'text-muted-foreground/80 hover:bg-accent/30 hover:text-foreground'
+                                        onTouchStart={handleArticleTouch}
+                                        className={`block w-full text-left p-2.5 text-xs rounded-lg transition-all duration-200
+                                                  touch-manipulation select-none relative overflow-hidden
+                                                  active:scale-95 touch-feedback
+                                                  ${activeSection === `post-${post.id}`
+                                            ? 'bg-accent/70 text-accent-foreground font-medium shadow-sm'
+                                            : 'text-muted-foreground/80 hover:bg-accent/30 hover:text-foreground'
                                           }`}
                                       >
                                         <div className="truncate pr-2">{post.title}</div>
@@ -1147,8 +1202,21 @@ Choose a category below to explore our comprehensive learning materials, tutoria
                       {(showAllPosts[activeSection] ? findActivePosts() : findActivePosts().slice(0, 6)).map((post) => (
                         <div
                           key={post.id}
-                          className="group p-8 rounded-2xl hover:shadow-xl hover:shadow-gray-900/5 dark:hover:shadow-black/20 transition-all duration-300 cursor-pointer bg-white/80 dark:bg-black/80 hover:bg-white dark:hover:bg-black backdrop-blur-sm hover:-translate-y-1"
+                          className="group p-8 rounded-2xl hover:shadow-xl hover:shadow-gray-900/5 dark:hover:shadow-black/20 
+                                   transition-all duration-300 cursor-pointer bg-white/80 dark:bg-black/80 
+                                   hover:bg-white dark:hover:bg-black backdrop-blur-sm hover:-translate-y-1
+                                   active:scale-[0.98] active:shadow-lg touch-feedback article-card
+                                   touch-manipulation select-none relative overflow-hidden
+                                   md:hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
                           onClick={() => handlePostSelect(post.id)}
+                          onTouchStart={handleArticleTouch}
+                          tabIndex={0}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                              e.preventDefault();
+                              handlePostSelect(post.id);
+                            }
+                          }}
                         >
                           <div className="flex items-start gap-8">
                             <div className="flex-1 min-w-0">
@@ -1156,7 +1224,9 @@ Choose a category below to explore our comprehensive learning materials, tutoria
                               {post.category && (
                                 <div className="flex items-center gap-2 mb-4">
                                   <span
-                                    className="text-sm font-medium px-3 py-1.5 rounded-full"
+                                    className="text-sm font-medium px-3 py-1.5 rounded-full
+                                             transition-all duration-300 group-hover:scale-105 group-active:scale-95
+                                             group-hover:shadow-sm"
                                     style={{
                                       backgroundColor: `${post.category.color}15`,
                                       color: post.category.color
@@ -1195,7 +1265,9 @@ Choose a category below to explore our comprehensive learning materials, tutoria
                                 <img
                                   src={post.coverImage}
                                   alt={post.title}
-                                  className="w-24 h-24 object-cover rounded-xl group-hover:scale-105 transition-transform duration-300 shadow-md"
+                                  className="w-24 h-24 object-cover rounded-xl group-hover:scale-105 group-active:scale-95
+                                           transition-all duration-300 shadow-md group-hover:shadow-lg
+                                           group-hover:brightness-110"
                                 />
                               </div>
                             )}

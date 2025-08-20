@@ -251,3 +251,126 @@ a:focus-visible {
 *:not(.video-container) {
   scroll-behavior: smooth;
 }
+
+/* Ripple animation for mobile touch interactions */
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* Enhanced mobile touch interactions */
+.touch-feedback {
+  position: relative;
+  overflow: hidden;
+}
+
+.touch-feedback::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(59, 130, 246, 0.1);
+  border-radius: inherit;
+  transform: scale(0);
+  transition: transform 0.2s ease-out;
+  pointer-events: none;
+}
+
+.touch-feedback:active::before {
+  transform: scale(1);
+}
+
+/* Improve touch targets on mobile */
+@media (max-width: 768px) {
+  .category-card {
+    min-height: 120px;
+    touch-action: manipulation;
+  }
+  
+  .article-card {
+    min-height: 140px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Enhanced touch feedback for mobile */
+  .article-card:active {
+    transform: scale(0.98) !important;
+  }
+  
+  .category-card:active {
+    transform: scale(0.95) !important;
+  }
+}
+
+/* Smooth transitions for all interactive elements */
+.touch-feedback {
+  will-change: transform;
+}
+
+/* Prevent text selection on interactive elements */
+.article-card,
+.category-card,
+.touch-feedback {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* Floating Code Editor Animations */
+.floating-editor-enter {
+  animation: floatingEditorSlideIn 0.5s ease-out forwards;
+}
+
+.floating-editor-exit {
+  animation: floatingEditorSlideOut 0.3s ease-in forwards;
+}
+
+@keyframes floatingEditorSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(100px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes floatingEditorSlideOut {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(100px) scale(0.9);
+  }
+}
+
+/* Floating button pulse animation */
+@keyframes floating-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+  }
+}
+
+.floating-code-button {
+  animation: floating-pulse 2s infinite;
+}
+
+/* Backdrop blur for mobile */
+.floating-backdrop {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}

@@ -100,6 +100,43 @@ export default function HomePage() {
     router.push(`/posts?category=${categoryId}`);
   }, [router]);
 
+  // Handle touch feedback with haptic-like effect
+  const handleCategoryTouch = useCallback((e: React.TouchEvent) => {
+    // Add gentle vibration on supported devices
+    if (navigator.vibrate) {
+      navigator.vibrate(10);
+    }
+    
+    // Add ripple effect
+    const rect = e.currentTarget.getBoundingClientRect();
+    const ripple = document.createElement('div');
+    const size = Math.max(rect.width, rect.height);
+    const x = e.touches[0].clientX - rect.left - size / 2;
+    const y = e.touches[0].clientY - rect.top - size / 2;
+    
+    ripple.style.cssText = `
+      position: absolute;
+      width: ${size}px;
+      height: ${size}px;
+      left: ${x}px;
+      top: ${y}px;
+      background: rgba(59, 130, 246, 0.3);
+      border-radius: 50%;
+      transform: scale(0);
+      animation: ripple 0.6s linear;
+      pointer-events: none;
+      z-index: 1;
+    `;
+    
+    e.currentTarget.appendChild(ripple);
+    
+    setTimeout(() => {
+      if (ripple.parentNode) {
+        ripple.parentNode.removeChild(ripple);
+      }
+    }, 600);
+  }, []);
+
   // Load initial data
   useEffect(() => {
     fetchCategories();
@@ -180,11 +217,26 @@ export default function HomePage() {
                         <div
                           key={category.id}
                           onClick={() => handleCategorySelect(category.id)}
-                          className="group cursor-pointer bg-white dark:bg-black rounded-xl p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full"
+                          onTouchStart={handleCategoryTouch}
+                          className="group cursor-pointer bg-white dark:bg-black rounded-xl p-6 
+                                   hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full
+                                   active:scale-95 active:shadow-lg touch-feedback category-card
+                                   touch-manipulation select-none relative overflow-hidden
+                                   md:hover:scale-[1.02] hover:bg-gray-50 dark:hover:bg-gray-900
+                                   focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                          tabIndex={0}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                              e.preventDefault();
+                              handleCategorySelect(category.id);
+                            }
+                          }}
                         >
                           <div className="flex flex-col items-center text-center h-full">
                             <div
-                              className="h-14 w-14 rounded-full flex items-center justify-center text-white text-xl font-medium mb-4"
+                              className="h-14 w-14 rounded-full flex items-center justify-center text-white text-xl font-medium mb-4
+                                       transition-all duration-300 group-hover:scale-110 group-active:scale-95
+                                       group-hover:shadow-lg group-hover:brightness-110"
                               style={{ backgroundColor: category.color }}
                             >
                               {category.name.charAt(0).toUpperCase()}

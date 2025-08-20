@@ -9,6 +9,9 @@ import "prismjs/themes/prism.css";
 interface JSCodeEditorProps {
     initialCode?: string;
     className?: string;
+    onChange?: (code: string) => void;
+    theme?: 'light' | 'vs-dark';
+    isFloating?: boolean;
 }
 
 interface ApiResponse {
@@ -17,7 +20,7 @@ interface ApiResponse {
     error?: string;
 }
 
-export default function JSCodeEditor({ initialCode, className }: JSCodeEditorProps) {
+export default function JSCodeEditor({ initialCode, className, onChange, theme = 'light', isFloating = false }: JSCodeEditorProps) {
     const [code, setCode] = useState(
         initialCode || `// Type or paste your code here...\nconsole.log("Hello, Monaco!");\n\nfunction add(a, b) {\n  return a + b;\n}`
     );
@@ -127,24 +130,29 @@ export default function JSCodeEditor({ initialCode, className }: JSCodeEditorPro
     useEffect(() => {
         if (initialCode !== undefined && initialCode !== code) {
             setCode(initialCode);
+            onChange?.(initialCode);
         }
-    }, [initialCode]);
+    }, [initialCode, onChange]);
 
     return (
-        <div className={`p-4 md:p-6 flex flex-col ${className?.includes('h-') ? '' : 'h-screen'} ${className || ''}`}>
-            <div className="flex-grow flex flex-col lg:flex-row lg:space-x-4 space-y-4 lg:space-y-0">
+        <div className={`${isFloating ? 'p-2' : 'p-4 md:p-6'} flex flex-col ${className?.includes('h-') ? '' : 'h-screen'} ${className || ''}`}>
+            <div className={`flex-grow flex ${isFloating ? 'flex-col' : 'flex-col lg:flex-row'} ${isFloating ? 'space-y-1' : 'lg:space-x-4 space-y-4 lg:space-y-0'}`}>
                 {/* Editor Column */}
-                <div className="w-full lg:w-3/5 flex flex-col h-[40vh] lg:h-full">
-                    <div className="flex-shrink-0 mb-2 flex items-center justify-between" style={{ height: "40px" }}>
+                <div className={`w-full ${isFloating ? 'flex-1 min-h-0' : 'lg:w-3/5'} flex flex-col ${isFloating ? 'h-[60%]' : 'h-[40vh] lg:h-full'}`}>
+                    <div className={`flex-shrink-0 ${isFloating ? 'mb-1' : 'mb-2'} flex items-center justify-between ${isFloating ? 'h-6' : 'h-10'}`}>
                         <div>
-                            <h2 className="text-lg font-semibold text-gray-700">Code Editor</h2>
-                            <p className="text-xs text-gray-500 mt-0.5">Ctrl+Enter to run • Ctrl+S to format</p>
+                            <h2 className={`font-semibold text-gray-700 ${isFloating ? 'text-sm' : 'text-lg'}`}>
+                                {isFloating ? 'Code' : 'Code Editor'}
+                            </h2>
+                            {!isFloating && (
+                                <p className="text-xs text-gray-500 mt-0.5">Ctrl+Enter to run • Ctrl+S to format</p>
+                            )}
                         </div>
-                        <div className="flex items-center space-x-2">
+                        <div className={`flex items-center ${isFloating ? 'space-x-1' : 'space-x-2'}`}>
                             <button
                                 onClick={runCode}
                                 disabled={isRunning}
-                                className={`px-3 py-1.5 text-white rounded text-sm font-medium transition-all duration-200 ${isRunning ? 'bg-blue-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700 active:bg-blue-800'
+                                className={`${isFloating ? 'px-2 py-1 text-xs' : 'px-3 py-1.5 text-sm'} text-white rounded font-medium transition-all duration-200 ${isRunning ? 'bg-blue-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700 active:bg-blue-800'
                                     } disabled:opacity-50`}
                             >
                                 {isRunning ? (
@@ -161,7 +169,7 @@ export default function JSCodeEditor({ initialCode, className }: JSCodeEditorPro
                             </button>
                             <button
                                 onClick={formatCodeManual}
-                                className="px-3 py-1.5 bg-gray-600 text-white rounded text-sm hover:bg-gray-700"
+                                className={`${isFloating ? 'px-2 py-1 text-xs' : 'px-3 py-1.5 text-sm'} bg-gray-600 text-white rounded hover:bg-gray-700`}
                             >
                                 Format
                             </button>
@@ -172,9 +180,13 @@ export default function JSCodeEditor({ initialCode, className }: JSCodeEditorPro
                             height="100%"
                             defaultLanguage="javascript"
                             value={code}
-                            onChange={(value) => setCode(value || "")}
+                            onChange={(value) => {
+                                const newCode = value || "";
+                                setCode(newCode);
+                                onChange?.(newCode);
+                            }}
                             onMount={handleEditorDidMount}
-                            theme="vs-light"
+                            theme={theme === 'vs-dark' ? 'vs-dark' : 'vs-light'}
                             options={{
                                 minimap: { enabled: false },
                                 fontSize: 14,
@@ -186,12 +198,12 @@ export default function JSCodeEditor({ initialCode, className }: JSCodeEditorPro
                 </div>
 
                 {/* Output Column */}
-                <div className="w-full lg:w-2/5 flex flex-col lg:h-full">
-                    <div className="flex-shrink-0 mb-2 flex items-center" style={{ height: "40px" }}>
-                        <h2 className="text-lg font-semibold text-gray-700">Output</h2>
+                <div className={`w-full ${isFloating ? 'flex-1 min-h-0' : 'lg:w-2/5'} flex flex-col ${isFloating ? 'h-[40%]' : 'lg:h-full'}`}>
+                    <div className={`flex-shrink-0 ${isFloating ? 'mb-1' : 'mb-2'} flex items-center ${isFloating ? 'h-6' : 'h-10'}`}>
+                        <h2 className={`font-semibold text-gray-700 ${isFloating ? 'text-sm' : 'text-lg'}`}>Output</h2>
                     </div>
                     <pre
-                        className="flex-grow p-2 rounded bg-gray-100 overflow-auto whitespace-pre-wrap"
+                        className={`flex-grow p-2 rounded bg-gray-100 overflow-auto whitespace-pre-wrap ${isFloating ? 'text-xs' : ''}`}
                         dangerouslySetInnerHTML={{
                             __html: Prism.highlight(output, Prism.languages.javascript, "javascript"),
                         }}

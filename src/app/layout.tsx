@@ -5,6 +5,7 @@ import "./globals.css";
 import { ThemeProvider } from "../components/common/ThemeProvider";
 import Providers from "../components/common/Providers";
 import I18nProvider from "../components/common/I18nProvider";
+import FloatingCodeEditor from "../components/common/FloatingCodeEditor";
 
 
 const geistSans = Geist({
@@ -88,6 +89,7 @@ export default function RootLayout({
           <I18nProvider>
             <Providers>
               {children}
+              <FloatingCodeEditor />
               {/* <DevToolsDetector /> */}
             </Providers>
           </I18nProvider>
