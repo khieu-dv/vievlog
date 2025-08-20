@@ -4,13 +4,17 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { vscDarkPlus, vs } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { useTheme } from 'next-themes';
 
 type MarkdownRendererProps = {
     content: string;
 }
 
 export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) => {
+    const { theme, resolvedTheme } = useTheme();
+    const isDark = resolvedTheme === 'dark';
+
     return (
         <div className="markdown-body">
             <ReactMarkdown
@@ -193,14 +197,15 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) =
                         return !inline && match ? (
                             <div className="relative">
                                 <SyntaxHighlighter
-                                    style={vscDarkPlus}
+                                    style={isDark ? vscDarkPlus : vs}
                                     language={language}
                                     PreTag="div"
-                                    className="!bg-[#1e1e1e] !text-[#d4d4d4] rounded-lg my-6 text-sm leading-relaxed"
+                                    className={`rounded-lg my-6 text-sm leading-relaxed ${isDark ? '!bg-[#f8f8f8] !text-[#d4d4d4]' : '!bg-[#f8f8f8] !text-[#24292e]'
+                                        }`}
                                     customStyle={{
                                         margin: 0,
                                         padding: '1.5rem',
-                                        backgroundColor: '#1e1e1e',
+                                        backgroundColor: isDark ? '#f8f8f8' : '#f8f8f8',
                                         borderRadius: '8px',
                                         fontSize: '14px',
                                         lineHeight: '1.6'
@@ -210,7 +215,10 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) =
                                     {String(children).replace(/\n$/, '')}
                                 </SyntaxHighlighter>
                                 {language && (
-                                    <div className="absolute top-0 right-0 px-3 py-1 text-xs text-gray-400 bg-gray-800 rounded-bl-md rounded-tr-lg border-l border-b border-gray-600 font-mono">
+                                    <div className={`absolute top-0 right-0 px-3 py-1 text-xs font-mono rounded-bl-md rounded-tr-lg border-l border-b ${isDark
+                                        ? 'text-gray-400 bg-gray-800 border-gray-600'
+                                        : 'text-gray-600 bg-gray-200 border-gray-300'
+                                        }`}>
                                         {language}
                                     </div>
                                 )}
