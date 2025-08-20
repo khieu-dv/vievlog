@@ -29,7 +29,7 @@ export default function JSCodeEditor({ initialCode, className }: JSCodeEditorPro
     const validateCode = useCallback((code: string): string | null => {
         if (!code.trim()) return "Code cannot be empty";
         if (code.length > 10000) return "Code is too long (max 10,000 characters)";
-        
+
         // Basic syntax validation (removed to avoid conflicts with server-side validation)
         // Server-side will handle validation
         return null;
@@ -37,7 +37,7 @@ export default function JSCodeEditor({ initialCode, className }: JSCodeEditorPro
 
     const handleEditorDidMount: OnMount = (editor, monaco) => {
         editorRef.current = editor;
-        
+
         // Monaco has built-in formatting - just enable it
         editor.updateOptions({
             formatOnType: true,
@@ -114,7 +114,7 @@ export default function JSCodeEditor({ initialCode, className }: JSCodeEditorPro
 
     const formatCodeManual = async () => {
         if (!editorRef.current) return;
-        
+
         try {
             // Use Monaco's built-in formatting action
             await editorRef.current.getAction("editor.action.formatDocument")?.run();
@@ -134,11 +134,8 @@ export default function JSCodeEditor({ initialCode, className }: JSCodeEditorPro
         <div className={`p-4 md:p-6 flex flex-col ${className?.includes('h-') ? '' : 'h-screen'} ${className || ''}`}>
             <div className="flex-grow flex flex-col lg:flex-row lg:space-x-4 space-y-4 lg:space-y-0">
                 {/* Editor Column */}
-                <div className="w-full lg:w-1/2 flex flex-col h-[40vh] lg:h-full">
-                    <div
-                        className="flex-shrink-0 mb-2 flex items-center justify-between"
-                        style={{ height: "40px" }}
-                    >
+                <div className="w-full lg:w-3/5 flex flex-col h-[40vh] lg:h-full">
+                    <div className="flex-shrink-0 mb-2 flex items-center justify-between" style={{ height: "40px" }}>
                         <div>
                             <h2 className="text-lg font-semibold text-gray-700">Code Editor</h2>
                             <p className="text-xs text-gray-500 mt-0.5">Ctrl+Enter to run • Ctrl+S to format</p>
@@ -147,11 +144,8 @@ export default function JSCodeEditor({ initialCode, className }: JSCodeEditorPro
                             <button
                                 onClick={runCode}
                                 disabled={isRunning}
-                                className={`px-3 py-1.5 text-white rounded text-sm font-medium transition-all duration-200 ${
-                                    isRunning 
-                                        ? 'bg-blue-400 cursor-not-allowed' 
-                                        : 'bg-blue-600 hover:bg-blue-700 active:bg-blue-800'
-                                } disabled:opacity-50`}
+                                className={`px-3 py-1.5 text-white rounded text-sm font-medium transition-all duration-200 ${isRunning ? 'bg-blue-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700 active:bg-blue-800'
+                                    } disabled:opacity-50`}
                             >
                                 {isRunning ? (
                                     <span className="flex items-center gap-1">
@@ -192,11 +186,8 @@ export default function JSCodeEditor({ initialCode, className }: JSCodeEditorPro
                 </div>
 
                 {/* Output Column */}
-                <div className="w-full lg:w-1/2 flex flex-col lg:h-full">
-                    <div
-                        className="flex-shrink-0 mb-2 flex items-center"
-                        style={{ height: "40px" }}
-                    >
+                <div className="w-full lg:w-2/5 flex flex-col lg:h-full">
+                    <div className="flex-shrink-0 mb-2 flex items-center" style={{ height: "40px" }}>
                         <h2 className="text-lg font-semibold text-gray-700">Output</h2>
                     </div>
                     <pre
@@ -207,6 +198,7 @@ export default function JSCodeEditor({ initialCode, className }: JSCodeEditorPro
                     ></pre>
                 </div>
             </div>
+
         </div>
     );
 }
