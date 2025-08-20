@@ -28,7 +28,7 @@ export default function JSCodeEditor({ initialCode, className }: JSCodeEditorPro
     // Validate JavaScript code
     const validateCode = useCallback((code: string): string | null => {
         if (!code.trim()) return "Code cannot be empty";
-        if (code.length > 10000) return "Code is too long (max 10,000 characters)";
+        if (code.length > 20000) return "Code is too long (max 20,000 characters)";
 
         // Basic syntax validation (removed to avoid conflicts with server-side validation)
         // Server-side will handle validation
