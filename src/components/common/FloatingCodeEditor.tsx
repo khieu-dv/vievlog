@@ -15,17 +15,7 @@ function greetUser(name) {
 }
 
 console.log(greetUser("Developer"));
-
-// Example: Calculate fibonacci
-function fibonacci(n) {
-  if (n <= 1) return n;
-  return fibonacci(n - 1) + fibonacci(n - 2);
-}
-
-console.log("Fibonacci sequence:");
-for(let i = 0; i < 8; i++) {
-  console.log(\`F(\${i}) = \${fibonacci(i)}\`);
-}`);
+`);
 
   // Handle touch feedback with haptic-like effect
   const handleTouch = useCallback((e: React.TouchEvent) => {
@@ -81,26 +71,26 @@ console.log(greetUser("Developer"));`);
         <>
           {/* Backdrop for mobile */}
           {isExpanded && (
-            <div 
+            <div
               className="fixed inset-0 bg-black/40 z-40 lg:hidden floating-backdrop"
               onClick={() => setIsExpanded(false)}
             />
           )}
-          
+
           {/* Editor Panel - Positioned from bottom right */}
-          <div 
+          <div
             className={`fixed z-50 bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 
                        transition-all duration-500 ease-in-out transform floating-editor-enter
-                       ${isExpanded 
-                         ? 'inset-4 lg:inset-8' 
-                         : 'bottom-6 right-6 w-96 h-[520px] sm:h-[600px] lg:w-[600px] lg:h-[500px] xl:w-[720px] xl:h-[600px]'
-                       }
+                       ${isExpanded
+                ? 'inset-4 lg:inset-8'
+                : 'bottom-6 right-6 w-96 h-[520px] sm:h-[600px] lg:w-[600px] lg:h-[500px] xl:w-[720px] xl:h-[600px]'
+              }
                        ${isExpanded ? 'scale-100' : 'scale-100 hover:shadow-3xl'}
                        max-w-[calc(100vw-2rem)] max-h-[calc(100vh-2rem)]`}
             style={{
               backdropFilter: 'blur(20px)',
-              background: isExpanded 
-                ? 'rgba(255, 255, 255, 0.98)' 
+              background: isExpanded
+                ? 'rgba(255, 255, 255, 0.98)'
                 : 'rgba(255, 255, 255, 0.95)',
             }}
           >
@@ -118,7 +108,7 @@ console.log(greetUser("Developer"));`);
                   </h3>
                 </div>
               </div>
-              
+
               <div className="flex items-center gap-1">
                 {/* Reset Button */}
                 <button
@@ -130,7 +120,7 @@ console.log(greetUser("Developer"));`);
                 >
                   <RotateCcw className="h-3 w-3 text-gray-600 dark:text-gray-400" />
                 </button>
-                
+
                 {/* Expand/Minimize Button */}
                 <button
                   onClick={toggleExpanded}
@@ -145,7 +135,7 @@ console.log(greetUser("Developer"));`);
                     <Maximize2 className="h-3 w-3 text-gray-600 dark:text-gray-400" />
                   )}
                 </button>
-                
+
                 {/* Close Button */}
                 <button
                   onClick={toggleOpen}
