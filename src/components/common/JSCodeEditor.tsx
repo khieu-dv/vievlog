@@ -2,10 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import Editor, { OnMount } from "@monaco-editor/react";
-import type * as Monaco from "monaco-editor/esm/vs/editor/editor.api";
-import prettier from "prettier/standalone";
-import babel from "prettier/plugins/babel";
-import estree from "prettier/plugins/estree";
+// No Monaco types import needed - use any for editor ref
 import Prism from "prismjs";
 import "prismjs/themes/prism.css";
 
@@ -26,7 +23,7 @@ export default function JSCodeEditor({ initialCode, className }: JSCodeEditorPro
     );
     const [output, setOutput] = useState("Output will appear here...");
     const [isRunning, setIsRunning] = useState(false);
-    const editorRef = useRef<Monaco.editor.IStandaloneCodeEditor | null>(null);
+    const editorRef = useRef<any>(null);
 
     // Validate JavaScript code
     const validateCode = useCallback((code: string): string | null => {
@@ -40,38 +37,14 @@ export default function JSCodeEditor({ initialCode, className }: JSCodeEditorPro
 
     const handleEditorDidMount: OnMount = (editor, monaco) => {
         editorRef.current = editor;
-
-        const formattingProvider = {
-            async provideDocumentFormattingEdits(model: any) {
-                const text = model.getValue();
-                try {
-                    const formattedText = await prettier.format(text, {
-                        parser: "babel",
-                        plugins: [babel, estree],
-                        semi: true,
-                        singleQuote: false,
-                    });
-                    return [
-                        {
-                            range: model.getFullModelRange(),
-                            text: formattedText,
-                        },
-                    ];
-                } catch (error) {
-                    console.error("Prettier formatting failed:", error);
-                    return null;
-                }
-            },
-        };
-
-        monaco.languages.registerDocumentFormattingEditProvider(
-            "javascript",
-            formattingProvider
-        );
-
+        
+        // Monaco has built-in formatting - just enable it
         editor.updateOptions({
             formatOnType: true,
             formatOnPaste: true,
+            autoIndent: 'full',
+            tabSize: 2,
+            insertSpaces: true,
         });
     };
 
@@ -139,14 +112,12 @@ export default function JSCodeEditor({ initialCode, className }: JSCodeEditorPro
         }
     }, [code, validateCode]);
 
-    const formatCodeManual = () => {
+    const formatCodeManual = async () => {
         if (!editorRef.current) return;
         
         try {
-            const action = editorRef.current.getAction("editor.action.formatDocument");
-            if (action) {
-                action.run();
-            }
+            // Use Monaco's built-in formatting action
+            await editorRef.current.getAction("editor.action.formatDocument")?.run();
         } catch (error) {
             console.error("Format failed:", error);
         }
