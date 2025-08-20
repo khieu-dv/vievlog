@@ -200,12 +200,12 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) =
                                     style={isDark ? vscDarkPlus : vs}
                                     language={language}
                                     PreTag="div"
-                                    className={`rounded-lg my-6 text-sm leading-relaxed ${isDark ? '!bg-[#f8f8f8] !text-[#d4d4d4]' : '!bg-[#f8f8f8] !text-[#24292e]'
+                                    className={`rounded-lg my-6 text-sm leading-relaxed ${isDark ? '!bg-[#F4F2F0] !text-[#d4d4d4]' : '!bg-[#F4F2F0] !text-[#24292e]'
                                         }`}
                                     customStyle={{
                                         margin: 0,
                                         padding: '1.5rem',
-                                        backgroundColor: isDark ? '#f8f8f8' : '#f8f8f8',
+                                        backgroundColor: isDark ? '#F4F2F0' : '#F4F2F0',
                                         borderRadius: '8px',
                                         fontSize: '14px',
                                         lineHeight: '1.6'
