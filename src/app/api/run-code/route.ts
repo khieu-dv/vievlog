@@ -125,6 +125,12 @@ export async function POST(req: Request) {
       parseFloat: parseFloat,
       isNaN: isNaN,
       isFinite: isFinite,
+
+      // ✅ Bổ sung setTimeout và clearTimeout từ Node.js vào sandbox
+      setTimeout,
+      clearTimeout,
+      setInterval,
+      clearInterval,
     };
 
     const context = createContext(sandbox);
