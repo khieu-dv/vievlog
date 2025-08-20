@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import Editor, { OnMount } from "@monaco-editor/react";
-import type { editor as MonacoEditor } from "monaco-editor";
+import type * as Monaco from "monaco-editor/esm/vs/editor/editor.api";
 import prettier from "prettier/standalone";
 import babel from "prettier/plugins/babel";
 import estree from "prettier/plugins/estree";
@@ -26,7 +26,7 @@ export default function JSCodeEditor({ initialCode, className }: JSCodeEditorPro
     );
     const [output, setOutput] = useState("Output will appear here...");
     const [isRunning, setIsRunning] = useState(false);
-    const editorRef = useRef<MonacoEditor.IStandaloneCodeEditor | null>(null);
+    const editorRef = useRef<Monaco.editor.IStandaloneCodeEditor | null>(null);
 
     // Validate JavaScript code
     const validateCode = useCallback((code: string): string | null => {
