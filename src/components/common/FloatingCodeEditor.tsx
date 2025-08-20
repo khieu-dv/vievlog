@@ -50,7 +50,7 @@ console.log(greetUser("Developer"));`);
     <>
       {/* Floating Tab Button - Positioned at bottom right */}
       {!isOpen && (
-        <div className="fixed bottom-6 right-6 z-50">
+        <div className="fixed bottom-6 right-4 sm:right-6 z-50">
           <button
             onClick={toggleOpen}
             onTouchStart={handleTouch}
@@ -83,7 +83,7 @@ console.log(greetUser("Developer"));`);
                        transition-all duration-500 ease-in-out transform floating-editor-enter
                        ${isExpanded
                 ? 'inset-4 lg:inset-8'
-                : 'bottom-6 right-6 w-96 h-[520px] sm:h-[600px] lg:w-[600px] lg:h-[500px] xl:w-[720px] xl:h-[600px]'
+                : 'bottom-6 left-1/2 -translate-x-1/2 w-[calc(100vw-2rem)] sm:left-auto sm:right-6 sm:translate-x-0 sm:w-96 h-[520px] sm:h-[600px] lg:w-[600px] lg:h-[500px] xl:w-[720px] xl:h-[600px]'
               }
                        ${isExpanded ? 'scale-100' : 'scale-100 hover:shadow-3xl'}
                        max-w-[calc(100vw-2rem)] max-h-[calc(100vh-2rem)]`}
