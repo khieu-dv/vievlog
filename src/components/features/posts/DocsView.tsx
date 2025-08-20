@@ -454,6 +454,11 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
     return section?.posts || [];
   };
 
+  const findPostsByCategory = (categoryId: string) => {
+    const section = docsData.find(section => section.id === categoryId);
+    return section?.posts || [];
+  };
+
   // Find previous and next posts for navigation
   const findAdjacentPosts = (currentPostId: string) => {
     const allPosts = Object.values(categoryPosts).flat();
@@ -789,7 +794,10 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
       </aside>
 
       {/* Sidebar Toggle Button for Large Screens */}
-      <div className={`hidden lg:block fixed top-1/2 z-40 transition-all duration-300 ${sidebarCollapsed ? 'left-4' : 'left-[calc(20rem+1rem)] xl:left-[calc(24rem+1rem)]'
+      <div className={`hidden lg:block fixed top-1/2 z-40 transition-all duration-300 ${
+        sidebarCollapsed 
+          ? 'left-4' 
+          : 'left-[calc(50vw-40rem+20rem+1.5rem)] xl:left-[calc(50vw-42rem+24rem+1.5rem)]'
         }`}>
         <button
           onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
@@ -1170,19 +1178,80 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
               // Render section overview content
               <div className="prose prose-slate dark:prose-invert max-w-none">
                 {activeSection === 'overview' && (
-                  <MarkdownRenderer content={`# VieVlog Documentation
+                  <>
+                    <MarkdownRenderer content={`# VieVlog Documentation
 
 Welcome to VieVlog - a modern learning platform for IT education. This documentation is dynamically generated from our content database, ensuring you always have access to the latest information.
 
 ## Available Categories
 
-We currently have ${categories.length} categories with educational content:
+We currently have ${categories.length} categories with educational content:`} />
+                    
+                    {/* Interactive Category List */}
+                    <div className="not-prose mt-6 mb-8">
+                      <ul className="space-y-2">
+                        {(() => {
+                          // Group categories by mainName like in sidebar
+                          const groupedCategories = docsData.reduce((acc, section) => {
+                            const mainName = section.category?.mainName || 'Languages';
+                            if (!acc[mainName]) {
+                              acc[mainName] = [];
+                            }
+                            acc[mainName].push(section);
+                            return acc;
+                          }, {} as Record<string, typeof docsData>);
 
-${categories.map((cat) => `- **${cat.name}**: ${cat.description || 'Educational content and tutorials'}`).join('\n')}
+                          // Use same order as in sidebar
+                          const mainNameOrder = ['Languages', 'DSA', 'Frameworks', 'Soft Skills'];
+                          
+                          return mainNameOrder.flatMap(mainName => 
+                            groupedCategories[mainName] || []
+                          ).map((section) => (
+                          <li key={section.id}>
+                            <button
+                              onClick={() => {
+                                setActiveSection(section.id);
+                                // Update URL
+                                const params = new URLSearchParams(searchParams.toString());
+                                params.set('category', section.id);
+                                params.delete('post');
+                                router.replace(`/posts?${params.toString()}`, { scroll: false });
+                              }}
+                              onTouchStart={handleArticleTouch}
+                              className="group flex items-center gap-3 w-full p-3 rounded-lg 
+                                       hover:bg-blue-50 dark:hover:bg-blue-900/20 
+                                       transition-all duration-200 text-left
+                                       touch-manipulation select-none
+                                       active:scale-[0.98] active:bg-blue-100 dark:active:bg-blue-900/30"
+                            >
+                              <div 
+                                className="w-6 h-6 rounded flex items-center justify-center text-white text-xs font-semibold flex-shrink-0"
+                                style={{ backgroundColor: section.category?.color }}
+                              >
+                                {section.category?.name.charAt(0).toUpperCase()}
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <span className="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                                  {section.category?.name}
+                                </span>
+                                <span className="text-gray-500 dark:text-gray-400 text-sm ml-2">
+                                  ({findPostsByCategory(section.id).length} articles)
+                                </span>
+                              </div>
+                              <div className="text-gray-400 group-hover:text-blue-500 transition-colors">
+                                →
+                              </div>
+                            </button>
+                          </li>
+                        ));
+                        })()}
+                      </ul>
+                    </div>
 
-## Getting Started
+                    <MarkdownRenderer content={`## Getting Started
 
-Choose a category below to explore our comprehensive learning materials, tutorials, and guides. Each section contains real posts and content from our community.`} />
+Choose a category above to explore our comprehensive learning materials, tutorials, and guides. Each section contains real posts and content from our community.`} />
+                  </>
                 )}
 
                 {/* Show recent posts for category sections */}

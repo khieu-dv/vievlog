@@ -374,3 +374,20 @@ a:focus-visible {
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
+
+/* Category cards for posts page */
+.category-card-small {
+  will-change: transform;
+}
+
+/* Improve touch targets for category cards */
+@media (max-width: 768px) {
+  .category-card-small {
+    min-height: 100px;
+    touch-action: manipulation;
+  }
+  
+  .category-card-small:active {
+    transform: scale(0.98) !important;
+  }
+}
