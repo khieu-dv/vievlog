@@ -86,16 +86,21 @@ export async function POST(req: Request) {
       );
     }
 
-    // Submit to Judge0 API
-    const judge0Response = await fetch('https://api.vietopik.com/submissions?base64_encoded=false&wait=true', {
+    // Encode source code to base64 to handle UTF-8 characters
+    const base64Code = Buffer.from(code, 'utf-8').toString('base64');
+    
+    // Submit to Judge0 API with base64 encoding
+    const judge0Response = await fetch('https://api.vietopik.com/submissions?base64_encoded=true&wait=true', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Accept': 'application/json',
       },
       body: JSON.stringify({
         language_id: language_id,
-        source_code: code,
-        stdin: ""
+        source_code: base64Code,
+        stdin: "",
+        expected_output: null
       })
     });
 
@@ -108,25 +113,50 @@ export async function POST(req: Request) {
 
     const judge0Data = await judge0Response.json();
 
+    // Debug log to see what Judge0 returns
+    console.log("Judge0 response:", JSON.stringify(judge0Data, null, 2));
+
     // Format response similar to original format
-    let output = "";
     let logs: string[] = [];
 
-    if (judge0Data.stdout) {
-      logs.push(judge0Data.stdout);
+    // Decode base64 output if needed
+    const decodeBase64 = (data: string) => {
+      try {
+        return Buffer.from(data, 'base64').toString('utf-8');
+      } catch {
+        return data; // Return original if not base64
+      }
+    };
+
+    if (judge0Data.stdout && judge0Data.stdout.trim()) {
+      const decodedStdout = decodeBase64(judge0Data.stdout.trim());
+      logs.push(decodedStdout);
     }
 
-    if (judge0Data.stderr) {
-      logs.push(`ERROR: ${judge0Data.stderr}`);
+    if (judge0Data.stderr && judge0Data.stderr.trim()) {
+      const decodedStderr = decodeBase64(judge0Data.stderr.trim());
+      logs.push(`ERROR: ${decodedStderr}`);
     }
 
-    if (judge0Data.compile_output) {
-      logs.push(`COMPILE ERROR: ${judge0Data.compile_output}`);
+    if (judge0Data.compile_output && judge0Data.compile_output.trim()) {
+      const decodedCompileOutput = decodeBase64(judge0Data.compile_output.trim());
+      logs.push(`COMPILE ERROR: ${decodedCompileOutput}`);
+    }
+
+    // If no output but execution was successful, show status
+    if (logs.length === 0 && judge0Data.status?.id === 3) {
+      logs.push("Program executed successfully (no output)");
     }
 
     return NextResponse.json({ 
       logs,
-      result: judge0Data.status?.description || "Completed"
+      result: judge0Data.status?.description || "Completed",
+      // Include raw data for debugging
+      debug: {
+        status: judge0Data.status,
+        stdout: judge0Data.stdout,
+        stderr: judge0Data.stderr
+      }
     });
 
   } catch (err: any) {
