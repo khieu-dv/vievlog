@@ -1,6 +1,4 @@
 import { NextResponse } from "next/server";
-import { createContext, runInContext } from "vm";
-import { inspect } from "util";
 
 export const runtime = "nodejs";
 
@@ -43,21 +41,6 @@ function validateCode(code: string): string | null {
     return "Code is too long (maximum 50,000 characters)";
   }
 
-  // For now, let's be very lenient and only block the most dangerous patterns
-  const dangerousPatterns = [
-    /require\s*\(/,
-    /process\./,
-    /child_process/,
-    /fs\./,
-    // Removed most patterns to allow educational code
-  ];
-
-  for (const pattern of dangerousPatterns) {
-    if (pattern.test(code)) {
-      return `Potentially unsafe code detected. Please avoid using: ${pattern.source.replace(/\\/g, '')}`;
-    }
-  }
-
   return null;
 }
 
@@ -94,69 +77,51 @@ export async function POST(req: Request) {
       );
     }
 
-    const logs: string[] = [];
-    let logCount = 0;
-    const maxLogs = 100;
-
-    // Create a more secure sandbox
-    const sandbox = {
-      console: {
-        log: (...args: any[]) => {
-          if (logCount >= maxLogs) return;
-          logCount++;
-          logs.push(args.map((arg) => inspect(arg, { depth: 3, maxArrayLength: 50 })).join(" "));
-        },
-        error: (...args: any[]) => {
-          if (logCount >= maxLogs) return;
-          logCount++;
-          logs.push(`ERROR: ${args.map((arg) => inspect(arg, { depth: 3, maxArrayLength: 50 })).join(" ")}`);
-        },
-        warn: (...args: any[]) => {
-          if (logCount >= maxLogs) return;
-          logCount++;
-          logs.push(`WARN: ${args.map((arg) => inspect(arg, { depth: 3, maxArrayLength: 50 })).join(" ")}`);
-        },
+    // Submit to Judge0 API
+    const judge0Response = await fetch('https://api.vietopik.com/submissions?base64_encoded=false&wait=true', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
       },
-      // Add safe Math, JSON, Date objects
-      Math: Math,
-      JSON: JSON,
-      Date: Date,
-      parseInt: parseInt,
-      parseFloat: parseFloat,
-      isNaN: isNaN,
-      isFinite: isFinite,
-
-      // ✅ Bổ sung setTimeout và clearTimeout từ Node.js vào sandbox
-      setTimeout,
-      clearTimeout,
-      setInterval,
-      clearInterval,
-    };
-
-    const context = createContext(sandbox);
-
-    // Run with timeout and memory limits
-    const result = runInContext(code.trim(), context, { 
-      timeout: 5000, // 5 seconds
-      displayErrors: false,
+      body: JSON.stringify({
+        language_id: 63, // JavaScript (Node.js)
+        source_code: code,
+        stdin: ""
+      })
     });
 
+    if (!judge0Response.ok) {
+      return NextResponse.json(
+        { error: `Judge0 API error: ${judge0Response.status}` },
+        { status: 500 }
+      );
+    }
+
+    const judge0Data = await judge0Response.json();
+
+    // Format response similar to original format
+    let output = "";
+    let logs: string[] = [];
+
+    if (judge0Data.stdout) {
+      logs.push(judge0Data.stdout);
+    }
+
+    if (judge0Data.stderr) {
+      logs.push(`ERROR: ${judge0Data.stderr}`);
+    }
+
+    if (judge0Data.compile_output) {
+      logs.push(`COMPILE ERROR: ${judge0Data.compile_output}`);
+    }
+
     return NextResponse.json({ 
-      logs, 
-      result: inspect(result, { depth: 3, maxArrayLength: 50 })
+      logs,
+      result: judge0Data.status?.description || "Completed"
     });
 
   } catch (err: any) {
-    // Handle different types of errors
-    if (err.message?.includes("timeout")) {
-      return NextResponse.json({ error: "Code execution timed out (5 seconds)" });
-    }
-    
-    if (err.message?.includes("memory")) {
-      return NextResponse.json({ error: "Code execution exceeded memory limits" });
-    }
-
-    // Sanitize error messages to avoid information leakage
+    // Handle errors
     const sanitizedError = err.message || "An error occurred during code execution";
     return NextResponse.json({ error: sanitizedError });
   }
