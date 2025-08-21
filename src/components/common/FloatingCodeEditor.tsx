@@ -208,6 +208,7 @@ console.log(greetUser("Developer"));`;
               flex: 1;
               display: flex;
               min-height: 0;
+              height: 100vh;
             }
             .editor-section {
               flex: 3;
@@ -216,29 +217,30 @@ console.log(greetUser("Developer"));`;
               border-right: 1px solid #374151;
             }
             .editor-header {
-              padding: 12px 16px;
+              padding: 4px 12px;
               background: #374151;
               display: flex;
               align-items: center;
               justify-content: between;
-              gap: 12px;
+              gap: 8px;
               border-bottom: 1px solid #4b5563;
+              min-height: 32px;
             }
             .editor-title {
               font-weight: 600;
-              font-size: 14px;
+              font-size: 12px;
               flex: 1;
             }
             .editor-controls {
               display: flex;
               align-items: center;
-              gap: 8px;
+              gap: 6px;
             }
             .control-select, .control-button {
-              padding: 6px 12px;
-              font-size: 12px;
+              padding: 4px 8px;
+              font-size: 11px;
               border: 1px solid #6b7280;
-              border-radius: 4px;
+              border-radius: 3px;
               background: #4b5563;
               color: white;
               cursor: pointer;
@@ -282,13 +284,16 @@ console.log(greetUser("Developer"));`;
               background: #f9fafb;
             }
             .output-header {
-              padding: 12px 16px;
+              padding: 4px 12px;
               background: #f3f4f6;
               border-bottom: 1px solid #e5e7eb;
+              min-height: 32px;
+              display: flex;
+              align-items: center;
             }
             .output-title {
               font-weight: 600;
-              font-size: 14px;
+              font-size: 12px;
               color: #374151;
             }
             .output-content {
@@ -305,13 +310,6 @@ console.log(greetUser("Developer"));`;
           </style>
         </head>
         <body>
-          <div class="header">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="16,18 22,12 16,6"></polyline>
-              <polyline points="8,6 2,12 8,18"></polyline>
-            </svg>
-            <span>Quick Code Editor - VieVlog</span>
-          </div>
           <div class="main-container">
             <div class="editor-section">
               <div class="editor-header">
