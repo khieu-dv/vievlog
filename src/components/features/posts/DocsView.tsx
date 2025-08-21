@@ -37,6 +37,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
   const [commentInputs, setCommentInputs] = useState<Record<string, string>>({});
   const [submittingComment, setSubmittingComment] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<Record<string, 'content' | 'code'>>({});
+  const [isPostLoading, setIsPostLoading] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('sidebarCollapsed') === 'true';
@@ -143,39 +144,47 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
 
   // Handle post selection with URL update and smooth scroll
   const handlePostSelect = async (postId: string) => {
+    // Set loading state immediately
+    setIsPostLoading(true);
+    
     setActiveSection(`post-${postId}`);
     updateURL(postId);
 
-    // Load full content and comments if not already loaded
-    await Promise.all([
-      loadPostContent(postId),
-      loadPostComments(postId)
-    ]);
+    try {
+      // Load full content and comments if not already loaded
+      await Promise.all([
+        loadPostContent(postId),
+        loadPostComments(postId)
+      ]);
 
-    // Scroll to top of main content area smoothly
-    setTimeout(() => {
-      const mainContent = document.querySelector('main');
-      if (mainContent) {
-        mainContent.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
-          inline: 'nearest'
-        });
-      } else {
-        // Fallback to window scroll if main element not found
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-        });
-      }
-    }, 100); // Small delay to ensure content has rendered
+      // Scroll to top of main content area smoothly
+      setTimeout(() => {
+        const mainContent = document.querySelector('main');
+        if (mainContent) {
+          mainContent.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+            inline: 'nearest'
+          });
+        } else {
+          // Fallback to window scroll if main element not found
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        }
+      }, 100); // Small delay to ensure content has rendered
 
-    // Close mobile menu when post is selected
-    setExpandedSections(prev => {
-      const newSet = new Set(prev);
-      newSet.delete('mobile-nav');
-      return newSet;
-    });
+      // Close mobile menu when post is selected
+      setExpandedSections(prev => {
+        const newSet = new Set(prev);
+        newSet.delete('mobile-nav');
+        return newSet;
+      });
+    } finally {
+      // Always clear loading state
+      setIsPostLoading(false);
+    }
   };
 
   // Handle touch feedback for articles with haptic-like effect
@@ -719,15 +728,22 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                                     key={post.id}
                                     onClick={() => handlePostSelect(post.id)}
                                     onTouchStart={handleArticleTouch}
+                                    disabled={isPostLoading}
                                     className={`block w-full text-left p-2.5 text-xs rounded-lg transition-all duration-200
                                               touch-manipulation select-none relative overflow-hidden
                                               active:scale-95 touch-feedback
+                                              disabled:opacity-50 disabled:cursor-not-allowed
                                               ${activeSection === `post-${post.id}`
                                         ? 'bg-accent/70 text-accent-foreground font-medium shadow-sm'
                                         : 'text-muted-foreground/80 hover:bg-accent/30 hover:text-foreground'
                                       }`}
                                   >
-                                    <div className="truncate pr-2">{post.title}</div>
+                                    <div className="flex items-center gap-2">
+                                      <div className="truncate pr-2 flex-1">{post.title}</div>
+                                      {isPostLoading && activeSection === `post-${post.id}` && (
+                                        <div className="animate-spin h-3 w-3 border border-gray-300 border-t-blue-600 rounded-full"></div>
+                                      )}
+                                    </div>
                                     <div className="text-xs text-muted-foreground mt-1 hidden sm:block">
                                       {new Date(post.publishedAt).toLocaleDateString()}
                                     </div>
@@ -742,15 +758,22 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                                         key={post.id}
                                         onClick={() => handlePostSelect(post.id)}
                                         onTouchStart={handleArticleTouch}
+                                        disabled={isPostLoading}
                                         className={`block w-full text-left p-2.5 text-xs rounded-lg transition-all duration-200
                                                   touch-manipulation select-none relative overflow-hidden
                                                   active:scale-95 touch-feedback
+                                                  disabled:opacity-50 disabled:cursor-not-allowed
                                                   ${activeSection === `post-${post.id}`
                                             ? 'bg-accent/70 text-accent-foreground font-medium shadow-sm'
                                             : 'text-muted-foreground/80 hover:bg-accent/30 hover:text-foreground'
                                           }`}
                                       >
-                                        <div className="truncate pr-2">{post.title}</div>
+                                        <div className="flex items-center gap-2">
+                                          <div className="truncate pr-2 flex-1">{post.title}</div>
+                                          {isPostLoading && activeSection === `post-${post.id}` && (
+                                            <div className="animate-spin h-3 w-3 border border-gray-300 border-t-blue-600 rounded-full"></div>
+                                          )}
+                                        </div>
                                         <div className="text-xs text-muted-foreground mt-1 hidden sm:block">
                                           {new Date(post.publishedAt).toLocaleDateString()}
                                         </div>
@@ -900,7 +923,16 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
           {/* Content Body - Full Height */}
           <div className={`p-4 sm:p-8 bg-gradient-to-br from-gray-50/50 to-white dark:from-gray-900/50 dark:to-black transition-all duration-300 ${sidebarCollapsed ? 'lg:p-16 xl:p-20' : 'lg:p-12'
             }`}>
-            {activeSection.startsWith('post-') ? (
+            {isPostLoading ? (
+              // Loading state for post
+              <div className="flex items-center justify-center min-h-96">
+                <div className="text-center">
+                  <div className="animate-spin rounded-full h-12 w-12 border-2 border-gray-300 border-t-blue-600 mx-auto mb-6"></div>
+                  <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">Loading article...</h3>
+                  <p className="text-gray-600 dark:text-gray-400 font-light">Please wait while we fetch the content</p>
+                </div>
+              </div>
+            ) : activeSection.startsWith('post-') ? (
               // Render individual post content
               (() => {
                 const postId = activeSection.replace('post-', '');
@@ -1254,11 +1286,13 @@ We currently have ${categories.length} categories with educational content:`} />
                                   router.replace(`/posts?${params.toString()}`, { scroll: false });
                                 }}
                                 onTouchStart={handleArticleTouch}
-                                className="group flex items-center gap-3 w-full p-3 rounded-lg 
+                                disabled={isPostLoading}
+                                className={`group flex items-center gap-3 w-full p-3 rounded-lg 
                                        hover:bg-blue-50 dark:hover:bg-blue-900/20 
                                        transition-all duration-200 text-left
                                        touch-manipulation select-none
-                                       active:scale-[0.98] active:bg-blue-100 dark:active:bg-blue-900/30"
+                                       active:scale-[0.98] active:bg-blue-100 dark:active:bg-blue-900/30
+                                       disabled:opacity-50 disabled:cursor-not-allowed`}
                               >
                                 <div
                                   className="w-6 h-6 rounded flex items-center justify-center text-white text-xs font-semibold flex-shrink-0"
@@ -1307,19 +1341,20 @@ Choose a category above to explore our comprehensive learning materials, tutoria
                       {(showAllPosts[activeSection] ? findActivePosts() : findActivePosts().slice(0, 6)).map((post) => (
                         <div
                           key={post.id}
-                          className="group p-8 rounded-2xl hover:shadow-xl hover:shadow-gray-900/5 dark:hover:shadow-black/20 
+                          className={`group p-8 rounded-2xl hover:shadow-xl hover:shadow-gray-900/5 dark:hover:shadow-black/20 
                                    transition-all duration-300 cursor-pointer bg-white/80 dark:bg-black/80 
                                    hover:bg-white dark:hover:bg-black backdrop-blur-sm hover:-translate-y-1
                                    active:scale-[0.98] active:shadow-lg touch-feedback article-card
                                    touch-manipulation select-none relative overflow-hidden
-                                   md:hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-                          onClick={() => handlePostSelect(post.id)}
+                                   md:hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50
+                                   ${isPostLoading ? 'pointer-events-none opacity-50' : ''}`}
+                          onClick={() => !isPostLoading && handlePostSelect(post.id)}
                           onTouchStart={handleArticleTouch}
                           tabIndex={0}
                           onKeyDown={(e) => {
                             if (e.key === 'Enter' || e.key === ' ') {
                               e.preventDefault();
-                              handlePostSelect(post.id);
+                              if (!isPostLoading) handlePostSelect(post.id);
                             }
                           }}
                         >
