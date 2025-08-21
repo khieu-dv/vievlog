@@ -45,7 +45,57 @@ for(let i = 0; i < n; i++) {
     const x = parseInt(readline.question('Enter number: '));
     sum += x;
 }
-console.log('Sum:', sum);`
+console.log('Sum:', sum);`,
+    kotlin: `fun main() {
+    val n = readLine()!!.toInt()
+    val numbers = readLine()!!.split(" ").map { it.toInt() }
+    println("Sum: \${numbers.sum()}")
+}`,
+    csharp: `using System;
+using System.Linq;
+
+class Program {
+    static void Main() {
+        int n = int.Parse(Console.ReadLine());
+        var numbers = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
+        Console.WriteLine("Sum: " + numbers.Sum());
+    }
+}`,
+    go: `package main
+
+import (
+    "fmt"
+)
+
+func main() {
+    var n int
+    fmt.Scan(&n)
+    
+    sum := 0
+    for i := 0; i < n; i++ {
+        var x int
+        fmt.Scan(&x)
+        sum += x
+    }
+    
+    fmt.Printf("Sum: %d\\n", sum)
+}`,
+    rust: `use std::io;
+
+fn main() {
+    println!("Nhập số thứ nhất: ");
+    let mut input1 = String::new();
+    io::stdin().read_line(&mut input1).expect("Lỗi khi đọc input");
+    let so1: f64 = input1.trim().parse().expect("Vui lòng nhập một số hợp lệ");
+    
+    println!("Nhập số thứ hai: ");
+    let mut input2 = String::new();
+    io::stdin().read_line(&mut input2).expect("Lỗi khi đọc input");
+    let so2: f64 = input2.trim().parse().expect("Vui lòng nhập một số hợp lệ");
+    
+    let tong = so1 + so2;
+    println!("Tổng hai số là: {}", tong);
+}`
   };
 
   return (
@@ -139,7 +189,7 @@ console.log("This should run directly.");`}
             <li>Skip options</li>
           </ul>
           <ul className="list-disc list-inside space-y-1">
-            <li>Language-specific patterns (C, C++, Python, Java, JS)</li>
+            <li>Language-specific patterns (C, C++, Python, Java, JS, Kotlin, C#, Go, Rust)</li>
             <li>Type detection (int, float, string, arrays)</li>
             <li>Error handling and user feedback</li>
             <li>Direct execution for no-input code</li>

@@ -30,9 +30,9 @@ export const InputPopupSequence: React.FC<InputPopupSequenceProps> = ({
   const [steps, setSteps] = useState<InputStep[]>([]);
   const [isCompleted, setIsCompleted] = useState(false);
 
-  // Initialize steps when requirements change
+  // Initialize steps when requirements change OR when popup opens
   useEffect(() => {
-    if (requirements.length > 0) {
+    if (requirements.length > 0 && isOpen) {
       const initialSteps: InputStep[] = requirements.map(req => ({
         requirement: req,
         value: '',
@@ -43,16 +43,16 @@ export const InputPopupSequence: React.FC<InputPopupSequenceProps> = ({
       setCurrentStep(0);
       setIsCompleted(false);
     }
-  }, [requirements]);
-
-  // Don't render if no requirements or not open
-  if (!isOpen || requirements.length === 0) {
-    return null;
-  }
+  }, [requirements, isOpen]);
 
   const currentInputStep = steps[currentStep];
   const isLastStep = currentStep === steps.length - 1;
   const isFirstStep = currentStep === 0;
+
+  // Don't render if no requirements, not open, or current step is not ready
+  if (!isOpen || requirements.length === 0 || !currentInputStep) {
+    return null;
+  }
 
   const validateInput = (value: string, requirement: InputRequirement): { isValid: boolean; error?: string } => {
     if (!value.trim()) {

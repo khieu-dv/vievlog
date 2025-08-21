@@ -48,6 +48,43 @@ export class CodeInputAnalyzer {
     parseFloat: /parseFloat\s*\(\s*readline\s*\(\s*\)\s*\)/g,
   };
 
+  private static kotlinPatterns = {
+    readLine: /val\s+(\w+)\s*=\s*readLine\s*\(\s*\)/g,
+    readLineInt: /val\s+(\w+)\s*=\s*readLine\s*\(\s*\)!!\s*\.toInt\s*\(\s*\)/g,
+    readLineDouble: /val\s+(\w+)\s*=\s*readLine\s*\(\s*\)!!\s*\.toDouble\s*\(\s*\)/g,
+    readLineSplit: /val\s+(\w+)\s*=\s*readLine\s*\(\s*\)!!\s*\.split\s*\(\s*([^)]*)\s*\)/g,
+    readLineMap: /val\s+(\w+)\s*=\s*readLine\s*\(\s*\)!!\s*\.split\s*\(\s*([^)]*)\s*\)\.map\s*\{\s*it\.to(\w+)\s*\(\s*\)\s*\}/g,
+  };
+
+  private static csharpPatterns = {
+    consoleReadLine: /(\w+)\s*=\s*Console\.ReadLine\s*\(\s*\)/g,
+    intParse: /(\w+)\s*=\s*int\.Parse\s*\(\s*Console\.ReadLine\s*\(\s*\)\s*\)/g,
+    doubleParse: /(\w+)\s*=\s*double\.Parse\s*\(\s*Console\.ReadLine\s*\(\s*\)\s*\)/g,
+    convertToInt: /(\w+)\s*=\s*Convert\.ToInt32\s*\(\s*Console\.ReadLine\s*\(\s*\)\s*\)/g,
+    convertToDouble: /(\w+)\s*=\s*Convert\.ToDouble\s*\(\s*Console\.ReadLine\s*\(\s*\)\s*\)/g,
+    split: /(\w+)\s*=\s*Console\.ReadLine\s*\(\s*\)\.Split\s*\(\s*([^)]*)\s*\)/g,
+  };
+
+  private static goPatterns = {
+    scanf: /fmt\.Scanf\s*\(\s*[\"']([^\"']+)[\"']\s*,\s*([^)]+)\s*\)/g,
+    scanln: /fmt\.Scanln\s*\(\s*([^)]+)\s*\)/g,
+    scan: /fmt\.Scan\s*\(\s*([^)]+)\s*\)/g,
+    scanInt: /var\s+(\w+)\s+int[^;]*fmt\.Scan.*&(\w+)/g,
+    scanFloat: /var\s+(\w+)\s+float[^;]*fmt\.Scan.*&(\w+)/g,
+    scanString: /var\s+(\w+)\s+string[^;]*fmt\.Scan.*&(\w+)/g,
+  };
+
+  private static rustPatterns = {
+    // Match: let mut variable = String::new();
+    stringNew: /let\s+mut\s+(\w+)\s*=\s*String::new\s*\(\s*\)/g,
+    // Match: io::stdin().read_line(&mut variable)
+    readLine: /io::stdin\s*\(\s*\)\.read_line\s*\(\s*&mut\s+(\w+)\s*\)/g,
+    // Match: let variable: type = other_var.trim().parse()
+    parseInput: /let\s+(\w+):\s*(\w+)\s*=\s*(\w+)\.trim\s*\(\s*\)\.parse\s*\(\s*\)/g,
+    // Match split_whitespace patterns
+    splitWhitespace: /let\s+(\w+):\s*Vec<(\w+)>\s*=\s*(\w+)\s*\.split_whitespace\s*\(\s*\)\.map\s*\(\s*\|x\|\s*x\.parse\s*\(\s*\)\.unwrap\s*\(\s*\)\s*\)\.collect\s*\(\s*\)/g,
+  };
+
   static analyzeCode(code: string, language: string): InputFormat {
     const result: InputFormat = {
       requirements: [],
@@ -72,6 +109,15 @@ export class CodeInputAnalyzer {
         case 'javascript':
         case 'js':
           return this.analyzeJavaScriptCode(code);
+        case 'kotlin':
+          return this.analyzeKotlinCode(code);
+        case 'csharp':
+        case 'c#':
+          return this.analyzeCSharpCode(code);
+        case 'go':
+          return this.analyzeGoCode(code);
+        case 'rust':
+          return this.analyzeRustCode(code);
         default:
           result.errors.push(`Language ${language} not supported for input analysis`);
           return result;
@@ -388,6 +434,353 @@ export class CodeInputAnalyzer {
         name: match[1],
         description: `Input value for ${match[1]}`
       });
+    }
+
+    result.totalLines = result.requirements.length > 0 ? result.requirements.length : 1;
+    result.examples = this.generateExamples(result.requirements);
+    
+    return result;
+  }
+
+  private static analyzeKotlinCode(code: string): InputFormat {
+    const result: InputFormat = {
+      requirements: [],
+      totalLines: 0,
+      examples: [],
+      errors: [],
+      confidence: 0.8
+    };
+
+    // Remove comments
+    const cleanCode = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '');
+
+    // Find readLine!!.toInt() patterns
+    const intMatches = [...cleanCode.matchAll(this.kotlinPatterns.readLineInt)];
+    for (const match of intMatches) {
+      result.requirements.push({
+        type: 'int',
+        name: match[1],
+        description: `Input integer value for ${match[1]}`
+      });
+    }
+
+    // Find readLine!!.toDouble() patterns
+    const doubleMatches = [...cleanCode.matchAll(this.kotlinPatterns.readLineDouble)];
+    for (const match of doubleMatches) {
+      result.requirements.push({
+        type: 'float',
+        name: match[1],
+        description: `Input double value for ${match[1]}`
+      });
+    }
+
+    // Find readLine!!.split().map patterns
+    const mapMatches = [...cleanCode.matchAll(this.kotlinPatterns.readLineMap)];
+    for (const match of mapMatches) {
+      const type = match[3].toLowerCase() === 'int' ? 'int' : match[3].toLowerCase() === 'double' ? 'float' : 'string';
+      result.requirements.push({
+        type,
+        name: match[1],
+        isArray: true,
+        description: `Input space-separated ${type} values for ${match[1]}`
+      });
+    }
+
+    // Find simple readLine() patterns
+    const readLineMatches = [...cleanCode.matchAll(this.kotlinPatterns.readLine)];
+    for (const match of readLineMatches) {
+      if (!result.requirements.some(req => req.name === match[1])) {
+        result.requirements.push({
+          type: 'string',
+          name: match[1],
+          description: `Input string value for ${match[1]}`
+        });
+      }
+    }
+
+    result.totalLines = result.requirements.length > 0 ? result.requirements.length : 1;
+    result.examples = this.generateExamples(result.requirements);
+    
+    return result;
+  }
+
+  private static analyzeCSharpCode(code: string): InputFormat {
+    const result: InputFormat = {
+      requirements: [],
+      totalLines: 0,
+      examples: [],
+      errors: [],
+      confidence: 0.8
+    };
+
+    // Remove comments
+    const cleanCode = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '');
+
+    // Find int.Parse(Console.ReadLine()) patterns
+    const intParseMatches = [...cleanCode.matchAll(this.csharpPatterns.intParse)];
+    for (const match of intParseMatches) {
+      result.requirements.push({
+        type: 'int',
+        name: match[1],
+        description: `Input integer value for ${match[1]}`
+      });
+    }
+
+    // Find double.Parse(Console.ReadLine()) patterns
+    const doubleParseMatches = [...cleanCode.matchAll(this.csharpPatterns.doubleParse)];
+    for (const match of doubleParseMatches) {
+      result.requirements.push({
+        type: 'float',
+        name: match[1],
+        description: `Input double value for ${match[1]}`
+      });
+    }
+
+    // Find Convert.ToInt32(Console.ReadLine()) patterns
+    const convertIntMatches = [...cleanCode.matchAll(this.csharpPatterns.convertToInt)];
+    for (const match of convertIntMatches) {
+      if (!result.requirements.some(req => req.name === match[1])) {
+        result.requirements.push({
+          type: 'int',
+          name: match[1],
+          description: `Input integer value for ${match[1]}`
+        });
+      }
+    }
+
+    // Find Console.ReadLine().Split() patterns
+    const splitMatches = [...cleanCode.matchAll(this.csharpPatterns.split)];
+    for (const match of splitMatches) {
+      result.requirements.push({
+        type: 'string',
+        name: match[1],
+        isArray: true,
+        description: `Input space-separated string values for ${match[1]}`
+      });
+    }
+
+    // Find simple Console.ReadLine() patterns
+    const readLineMatches = [...cleanCode.matchAll(this.csharpPatterns.consoleReadLine)];
+    for (const match of readLineMatches) {
+      if (!result.requirements.some(req => req.name === match[1])) {
+        result.requirements.push({
+          type: 'string',
+          name: match[1],
+          description: `Input string value for ${match[1]}`
+        });
+      }
+    }
+
+    result.totalLines = result.requirements.length > 0 ? result.requirements.length : 1;
+    result.examples = this.generateExamples(result.requirements);
+    
+    return result;
+  }
+
+  private static analyzeGoCode(code: string): InputFormat {
+    const result: InputFormat = {
+      requirements: [],
+      totalLines: 0,
+      examples: [],
+      errors: [],
+      confidence: 0.7
+    };
+
+    // Remove comments
+    const cleanCode = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '');
+
+    // Find fmt.Scanf patterns
+    const scanfMatches = [...cleanCode.matchAll(this.goPatterns.scanf)];
+    for (const match of scanfMatches) {
+      const format = match[1];
+      const vars = match[2];
+      
+      // Parse format string
+      const formatSpecs = format.match(/%[diouxXeEfFgGaAcsp]/g) || [];
+      const varNames = vars.split(',').map(v => v.trim().replace(/&/, ''));
+
+      formatSpecs.forEach((spec, index) => {
+        const varName = varNames[index]?.replace(/\[.*\]/, '') || `var${index}`;
+        let type: InputRequirement['type'] = 'string';
+
+        switch (spec) {
+          case '%d':
+          case '%o':
+          case '%x':
+          case '%X':
+            type = 'int';
+            break;
+          case '%f':
+          case '%e':
+          case '%E':
+          case '%g':
+          case '%G':
+            type = 'float';
+            break;
+          case '%c':
+            type = 'char';
+            break;
+          case '%s':
+            type = 'string';
+            break;
+        }
+
+        result.requirements.push({
+          type,
+          name: varName,
+          description: `Input ${type} value for ${varName}`
+        });
+      });
+    }
+
+    // Find fmt.Scan patterns
+    const scanMatches = [...cleanCode.matchAll(this.goPatterns.scan)];
+    for (const match of scanMatches) {
+      const vars = match[1].split(',').map(v => v.trim().replace(/&/, ''));
+      
+      for (const varName of vars) {
+        // Try to infer type from variable declaration
+        const varDeclRegex = new RegExp(`var\\s+${varName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s+(int|float64|string)`, 'i');
+        const typeMatch = cleanCode.match(varDeclRegex);
+        
+        let type: InputRequirement['type'] = 'string';
+        if (typeMatch) {
+          switch (typeMatch[1].toLowerCase()) {
+            case 'int':
+              type = 'int';
+              break;
+            case 'float64':
+              type = 'float';
+              break;
+            case 'string':
+              type = 'string';
+              break;
+          }
+        }
+
+        result.requirements.push({
+          type,
+          name: varName,
+          description: `Input ${type} value for ${varName}`
+        });
+      }
+    }
+
+    result.totalLines = result.requirements.length > 0 ? Math.ceil(result.requirements.length / 2) : 1;
+    result.examples = this.generateExamples(result.requirements);
+    
+    return result;
+  }
+
+  private static analyzeRustCode(code: string): InputFormat {
+    const result: InputFormat = {
+      requirements: [],
+      totalLines: 0,
+      examples: [],
+      errors: [],
+      confidence: 0.8
+    };
+
+    // Remove comments
+    const cleanCode = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '');
+
+    // Find String::new() declarations
+    const stringNewMatches = [...cleanCode.matchAll(this.rustPatterns.stringNew)];
+    const stringVars = new Set(stringNewMatches.map(match => match[1]));
+
+    // Find read_line() calls and match with String variables
+    const readLineMatches = [...cleanCode.matchAll(this.rustPatterns.readLine)];
+    const usedStringVars = new Set<string>();
+
+    for (const match of readLineMatches) {
+      const varName = match[1];
+      if (stringVars.has(varName)) {
+        usedStringVars.add(varName);
+      }
+    }
+
+    // Find .trim().parse() patterns and link to string variables
+    const parseMatches = [...cleanCode.matchAll(this.rustPatterns.parseInput)];
+    const processedVars = new Set<string>();
+
+    for (const match of parseMatches) {
+      const resultVar = match[1];
+      const sourceVar = match[3];
+      const typeStr = match[2];
+
+      // Check if source variable is one of our input string variables
+      if (usedStringVars.has(sourceVar) && !processedVars.has(resultVar)) {
+        let type: InputRequirement['type'] = 'string';
+        switch (typeStr.toLowerCase()) {
+          case 'i32':
+          case 'i64':
+          case 'u32':
+          case 'u64':
+          case 'usize':
+          case 'isize':
+            type = 'int';
+            break;
+          case 'f32':
+          case 'f64':
+            type = 'float';
+            break;
+          case 'char':
+            type = 'char';
+            break;
+          default:
+            type = 'string';
+        }
+
+        result.requirements.push({
+          type,
+          name: resultVar,
+          description: `Input ${type} value for ${resultVar}`
+        });
+        processedVars.add(resultVar);
+      }
+    }
+
+    // If no parse patterns found, treat string inputs as string type
+    if (result.requirements.length === 0 && usedStringVars.size > 0) {
+      usedStringVars.forEach(varName => {
+        result.requirements.push({
+          type: 'string',
+          name: varName,
+          description: `Input string value for ${varName}`
+        });
+      });
+    }
+
+    // Find split_whitespace().map().collect() patterns
+    const splitMatches = [...cleanCode.matchAll(this.rustPatterns.splitWhitespace)];
+    for (const match of splitMatches) {
+      const resultVar = match[1];
+      const sourceVar = match[3];
+      
+      if (usedStringVars.has(sourceVar)) {
+        let type: InputRequirement['type'] = 'string';
+        switch (match[2].toLowerCase()) {
+          case 'i32':
+          case 'i64':
+          case 'u32':
+          case 'u64':
+            type = 'int';
+            break;
+          case 'f32':
+          case 'f64':
+            type = 'float';
+            break;
+          default:
+            type = 'string';
+        }
+
+        result.requirements.push({
+          type,
+          name: resultVar,
+          isArray: true,
+          description: `Input space-separated ${type} values for ${resultVar}`
+        });
+      }
     }
 
     result.totalLines = result.requirements.length > 0 ? result.requirements.length : 1;

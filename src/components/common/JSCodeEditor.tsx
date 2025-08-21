@@ -206,7 +206,15 @@ export default function JSCodeEditor({ initialCode, className, onChange, theme =
                     })
                     .join("\n");
 
-                setOutput(formattedResult || "Code executed successfully (no output)");
+                // If there was input provided, show it in the output for better UX
+                let finalOutput = formattedResult || "Code executed successfully (no output)";
+                if (input && input.trim()) {
+                    const inputLines = input.trim().split('\n');
+                    const inputDisplay = inputLines.map(line => `> ${line}`).join('\n');
+                    finalOutput = `Input provided:\n${inputDisplay}\n\nOutput:\n${finalOutput}`;
+                }
+
+                setOutput(finalOutput);
             }
         } catch (err) {
             if ((err as Error).name === 'AbortError') {
