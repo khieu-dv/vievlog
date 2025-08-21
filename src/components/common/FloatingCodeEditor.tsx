@@ -150,10 +150,10 @@ console.log(greetUser("Developer"));`);
             </div>
 
             {/* Code Editor */}
-            <div className={`${isExpanded ? 'h-[calc(100%-3rem)]' : 'h-[calc(100%-2.5rem)]'}`}>
+            <div className={`${isExpanded ? 'h-[calc(100%-3rem)]' : 'h-[calc(100%-2.5rem)]'} flex flex-col overflow-hidden`}>
               <JSCodeEditor
                 onChange={setCode}
-                className="h-full rounded-none rounded-b-2xl"
+                className="h-full rounded-none rounded-b-2xl overflow-hidden"
                 theme={isExpanded ? 'vs-dark' : 'light'}
                 isFloating={true}
               />
