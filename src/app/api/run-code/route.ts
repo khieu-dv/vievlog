@@ -39,8 +39,8 @@ function validateCode(code: string): string | null {
     return "Code must be a non-empty string";
   }
 
-  if (code.length > 10000) {
-    return "Code is too long (maximum 10,000 characters)";
+  if (code.length > 50000) {
+    return "Code is too long (maximum 50,000 characters)";
   }
 
   // For now, let's be very lenient and only block the most dangerous patterns
