@@ -234,10 +234,33 @@ export default function JSCodeEditor({ initialCode, className, onChange, theme =
             // Save current code before switching
             saveCachedCode(selectedLanguage.id, code);
             
+            const currentCode = code.trim();
+            const cachedCode = loadCachedCode(languageId);
+            
             setSelectedLanguage(language);
             
-            // Load cached code for new language or use default
-            const newCode = loadCachedCode(languageId);
+            let newCode: string;
+            
+            // If there's cached code for the new language, use it
+            if (cachedCode && cachedCode !== language.defaultCode) {
+                newCode = cachedCode;
+            }
+            // If no current code, use default
+            else if (!currentCode) {
+                newCode = language.defaultCode;
+            }
+            // If there's current code, ask user what to do
+            else {
+                const shouldLoadDefault = confirm(`Switch to ${language.name}?\n\nClick OK to load default ${language.name} code.\nClick Cancel to keep current code.`);
+                if (shouldLoadDefault) {
+                    newCode = language.defaultCode;
+                } else {
+                    newCode = currentCode;
+                    // Save the current code for this new language
+                    saveCachedCode(languageId, currentCode);
+                }
+            }
+            
             setCode(newCode);
             onChange?.(newCode);
 

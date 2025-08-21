@@ -2,6 +2,21 @@ import { NextResponse } from "next/server";
 
 export const runtime = "nodejs";
 
+// CORS headers
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With',
+  'Access-Control-Allow-Credentials': 'true',
+};
+
+export async function OPTIONS() {
+  return new Response(null, {
+    status: 200,
+    headers: corsHeaders,
+  });
+}
+
 // Rate limiting simple implementation (in production, use Redis or proper rate limiting)
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
 
@@ -51,7 +66,7 @@ export async function POST(req: Request) {
     if (!checkRateLimit(rateLimitKey)) {
       return NextResponse.json(
         { error: "Rate limit exceeded. Please try again later." },
-        { status: 429 }
+        { status: 429, headers: corsHeaders }
       );
     }
 
@@ -62,7 +77,7 @@ export async function POST(req: Request) {
     } catch {
       return NextResponse.json(
         { error: "Invalid JSON in request body" },
-        { status: 400 }
+        { status: 400, headers: corsHeaders }
       );
     }
 
@@ -73,7 +88,7 @@ export async function POST(req: Request) {
     if (validationError) {
       return NextResponse.json(
         { error: validationError },
-        { status: 400 }
+        { status: 400, headers: corsHeaders }
       );
     }
 
@@ -82,7 +97,7 @@ export async function POST(req: Request) {
     if (!supportedLanguages.includes(language_id)) {
       return NextResponse.json(
         { error: "Unsupported language" },
-        { status: 400 }
+        { status: 400, headers: corsHeaders }
       );
     }
 
@@ -114,7 +129,7 @@ export async function POST(req: Request) {
     if (!judge0Response.ok) {
       return NextResponse.json(
         { error: `Judge0 API error: ${judge0Response.status}` },
-        { status: 500 }
+        { status: 500, headers: corsHeaders }
       );
     }
 
@@ -184,11 +199,11 @@ export async function POST(req: Request) {
         stderr: judge0Data.stderr,
         compile_output: judge0Data.compile_output
       }
-    });
+    }, { headers: corsHeaders });
 
   } catch (err: any) {
     // Handle errors
     const sanitizedError = err.message || "An error occurred during code execution";
-    return NextResponse.json({ error: sanitizedError });
+    return NextResponse.json({ error: sanitizedError }, { headers: corsHeaders });
   }
 }
