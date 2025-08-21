@@ -20,10 +20,92 @@ interface ApiResponse {
     error?: string;
 }
 
+interface Language {
+    id: number;
+    name: string;
+    monacoLanguage: string;
+    defaultCode: string;
+}
+
+const SUPPORTED_LANGUAGES: Language[] = [
+    {
+        id: 63,
+        name: "JavaScript (Node.js)",
+        monacoLanguage: "javascript",
+        defaultCode: `// Type or paste your code here...\nconsole.log("Hello, JavaScript!");\n\nfunction add(a, b) {\n  return a + b;\n}`
+    },
+    {
+        id: 71,
+        name: "Python",
+        monacoLanguage: "python",
+        defaultCode: `# Type or paste your code here...\nprint("Hello, Python!")\n\ndef add(a, b):\n    return a + b\n\nprint(add(2, 3))`
+    },
+    {
+        id: 62,
+        name: "Java",
+        monacoLanguage: "java",
+        defaultCode: `// Type or paste your code here...\npublic class Main {\n    public static void main(String[] args) {\n        System.out.println("Hello, Java!");\n    }\n}`
+    },
+    {
+        id: 54,
+        name: "C++",
+        monacoLanguage: "cpp",
+        defaultCode: `// Type or paste your code here...\n#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << "Hello, C++!" << endl;\n    return 0;\n}`
+    },
+    {
+        id: 50,
+        name: "C",
+        monacoLanguage: "c",
+        defaultCode: `// Type or paste your code here...\n#include <stdio.h>\n\nint main() {\n    printf("Hello, C!\\n");\n    return 0;\n}`
+    },
+    {
+        id: 78,
+        name: "Kotlin",
+        monacoLanguage: "kotlin",
+        defaultCode: `// Type or paste your code here...\nfun main() {\n    println("Hello, Kotlin!")\n}`
+    },
+    {
+        id: 51,
+        name: "C#",
+        monacoLanguage: "csharp",
+        defaultCode: `// Type or paste your code here...\nusing System;\n\nclass Program {\n    static void Main() {\n        Console.WriteLine("Hello, C#!");\n    }\n}`
+    },
+    {
+        id: 60,
+        name: "Go",
+        monacoLanguage: "go",
+        defaultCode: `// Type or paste your code here...\npackage main\n\nimport "fmt"\n\nfunc main() {\n    fmt.Println("Hello, Go!")\n}`
+    },
+    {
+        id: 73,
+        name: "Rust",
+        monacoLanguage: "rust",
+        defaultCode: `// Type or paste your code here...\nfn main() {\n    println!("Hello, Rust!");\n}`
+    }
+];
+
 export default function JSCodeEditor({ initialCode, className, onChange, theme = 'light', isFloating = false }: JSCodeEditorProps) {
-    const [code, setCode] = useState(
-        initialCode || `// Type or paste your code here...\nconsole.log("Hello, Monaco!");\n\nfunction add(a, b) {\n  return a + b;\n}`
-    );
+    // Load saved language from localStorage or default to JavaScript
+    const [selectedLanguage, setSelectedLanguage] = useState<Language>(() => {
+        if (typeof window !== 'undefined') {
+            const savedLanguageId = localStorage.getItem('selectedLanguageId');
+            if (savedLanguageId) {
+                const savedLang = SUPPORTED_LANGUAGES.find(lang => lang.id === parseInt(savedLanguageId));
+                if (savedLang) return savedLang;
+            }
+        }
+        return SUPPORTED_LANGUAGES[0];
+    });
+    
+    const [code, setCode] = useState(() => {
+        if (initialCode) return initialCode;
+        if (typeof window !== 'undefined') {
+            const savedCode = localStorage.getItem('editorCode');
+            if (savedCode) return savedCode;
+        }
+        return selectedLanguage.defaultCode;
+    });
+    
     const [output, setOutput] = useState("Output will appear here...");
     const [isRunning, setIsRunning] = useState(false);
     const editorRef = useRef<any>(null);
@@ -51,6 +133,21 @@ export default function JSCodeEditor({ initialCode, className, onChange, theme =
         });
     };
 
+    const handleLanguageChange = useCallback((languageId: number) => {
+        const language = SUPPORTED_LANGUAGES.find(lang => lang.id === languageId);
+        if (language) {
+            setSelectedLanguage(language);
+            setCode(language.defaultCode);
+            onChange?.(language.defaultCode);
+            
+            // Save to localStorage
+            if (typeof window !== 'undefined') {
+                localStorage.setItem('selectedLanguageId', languageId.toString());
+                localStorage.setItem('editorCode', language.defaultCode);
+            }
+        }
+    }, [onChange]);
+
     const runCode = useCallback(async () => {
         // Validate code before running
         const validationError = validateCode(code);
@@ -71,7 +168,10 @@ export default function JSCodeEditor({ initialCode, className, onChange, theme =
             const res = await fetch("/api/run-code", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ code: code.trim() }),
+                body: JSON.stringify({ 
+                    code: code.trim(),
+                    language_id: selectedLanguage.id
+                }),
                 signal: controller.signal,
             });
 
@@ -134,13 +234,20 @@ export default function JSCodeEditor({ initialCode, className, onChange, theme =
         }
     }, [initialCode, onChange]);
 
+    // Save language and code changes to localStorage
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            localStorage.setItem('selectedLanguageId', selectedLanguage.id.toString());
+        }
+    }, [selectedLanguage]);
+
     return (
         <div className={`${isFloating ? 'p-2' : 'p-4 md:p-6'} flex flex-col ${className?.includes('h-') ? '' : 'h-screen'} ${className || ''}`}>
             <div className={`flex-grow flex ${isFloating ? 'flex-col' : 'flex-col lg:flex-row'} ${isFloating ? 'space-y-1' : 'lg:space-x-4 space-y-4 lg:space-y-0'}`}>
                 {/* Editor Column */}
                 <div className={`w-full ${isFloating ? 'flex-1 min-h-0' : 'lg:w-3/5'} flex flex-col ${isFloating ? 'h-[60%] max-h-[60%]' : 'h-[40vh] lg:h-full'}`}>
                     <div className={`flex-shrink-0 ${isFloating ? 'mb-1' : 'mb-2'} flex items-center justify-between ${isFloating ? 'h-6' : 'h-10'}`}>
-                        <div>
+                        <div className="flex-1">
                             <h2 className={`font-semibold text-gray-700 ${isFloating ? 'text-sm' : 'text-lg'}`}>
                                 {isFloating ? 'Code' : 'Code Editor'}
                             </h2>
@@ -149,6 +256,17 @@ export default function JSCodeEditor({ initialCode, className, onChange, theme =
                             )}
                         </div>
                         <div className={`flex items-center ${isFloating ? 'space-x-1' : 'space-x-2'}`}>
+                            <select
+                                value={selectedLanguage.id}
+                                onChange={(e) => handleLanguageChange(Number(e.target.value))}
+                                className={`${isFloating ? 'px-1 py-0.5 text-xs' : 'px-2 py-1 text-sm'} bg-gray-100 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                            >
+                                {SUPPORTED_LANGUAGES.map((lang) => (
+                                    <option key={lang.id} value={lang.id}>
+                                        {lang.name}
+                                    </option>
+                                ))}
+                            </select>
                             <button
                                 onClick={runCode}
                                 disabled={isRunning}
@@ -178,12 +296,17 @@ export default function JSCodeEditor({ initialCode, className, onChange, theme =
                     <div className="flex-grow rounded-md overflow-hidden">
                         <Editor
                             height="100%"
-                            defaultLanguage="javascript"
+                            language={selectedLanguage.monacoLanguage}
                             value={code}
                             onChange={(value) => {
                                 const newCode = value || "";
                                 setCode(newCode);
                                 onChange?.(newCode);
+                                
+                                // Save code to localStorage
+                                if (typeof window !== 'undefined') {
+                                    localStorage.setItem('editorCode', newCode);
+                                }
                             }}
                             onMount={handleEditorDidMount}
                             theme={theme === 'vs-dark' ? 'vs-dark' : 'vs-light'}

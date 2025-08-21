@@ -66,13 +66,22 @@ export async function POST(req: Request) {
       );
     }
 
-    const { code } = body;
+    const { code, language_id = 63 } = body;
 
     // Validate code
     const validationError = validateCode(code);
     if (validationError) {
       return NextResponse.json(
         { error: validationError },
+        { status: 400 }
+      );
+    }
+
+    // Validate language_id
+    const supportedLanguages = [63, 71, 62, 54, 50, 78, 51, 60, 73]; // JS, Python, Java, C++, C, Kotlin, C#, Go, Rust
+    if (!supportedLanguages.includes(language_id)) {
+      return NextResponse.json(
+        { error: "Unsupported language" },
         { status: 400 }
       );
     }
@@ -84,7 +93,7 @@ export async function POST(req: Request) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        language_id: 63, // JavaScript (Node.js)
+        language_id: language_id,
         source_code: code,
         stdin: ""
       })
