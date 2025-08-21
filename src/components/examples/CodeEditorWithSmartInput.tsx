@@ -28,6 +28,7 @@ int main() {
   language = 'cpp'
 }) => {
   const [code, setCode] = useState(initialCode);
+  const [currentLanguage, setCurrentLanguage] = useState(language);
   const [output, setOutput] = useState('');
   const [isRunning, setIsRunning] = useState(false);
 
@@ -82,8 +83,8 @@ int main() {
             <h3 className="font-medium text-gray-900 dark:text-white">Code Editor</h3>
             <div className="flex items-center gap-3">
               <select 
-                value={language}
-                onChange={(e) => setLanguage(e.target.value)}
+                value={currentLanguage}
+                onChange={(e) => setCurrentLanguage(e.target.value)}
                 className="px-3 py-1 border rounded text-sm bg-white dark:bg-gray-800"
               >
                 <option value="cpp">C++</option>
@@ -96,7 +97,7 @@ int main() {
               {/* Smart Code Runner */}
               <SmartCodeRunner
                 code={code}
-                language={language}
+                language={currentLanguage}
                 onRun={handleRunCode}
                 isRunning={isRunning}
               />
