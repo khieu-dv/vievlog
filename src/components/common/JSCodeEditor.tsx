@@ -166,6 +166,66 @@ export default function JSCodeEditor({ initialCode, className, onChange, theme =
             tabSize: 2,
             insertSpaces: true,
         });
+
+        // Fix suggestion widget positioning for floating mode
+        if (isFloating) {
+            // Add CSS to fix suggestion widget positioning when zoomed
+            const style = document.createElement('style');
+            style.textContent = `
+                .floating-editor-enter .monaco-editor .suggest-widget {
+                    position: absolute !important;
+                    z-index: 999999 !important;
+                    transform: translateZ(0) !important;
+                    will-change: transform !important;
+                }
+                .floating-editor-enter .monaco-editor .parameter-hints-widget {
+                    position: absolute !important;
+                    z-index: 999999 !important;
+                    transform: translateZ(0) !important;
+                    will-change: transform !important;
+                }
+                .floating-editor-enter .monaco-editor .editor-hover {
+                    position: absolute !important;
+                    z-index: 999999 !important;
+                    transform: translateZ(0) !important;
+                    will-change: transform !important;
+                }
+                .floating-editor-enter .monaco-editor .context-menu {
+                    position: absolute !important;
+                    z-index: 999999 !important;
+                    transform: translateZ(0) !important;
+                }
+                .floating-editor-enter .monaco-editor .overflow-guard {
+                    position: relative !important;
+                }
+                .floating-editor-enter .monaco-editor .monaco-scrollable-element {
+                    position: relative !important;
+                }
+            `;
+            document.head.appendChild(style);
+
+            // Store reference to clean up later
+            (editor as any)._floatingStyleElement = style;
+
+            // Force layout recalculation for better positioning
+            const handleLayoutUpdate = () => {
+                requestAnimationFrame(() => {
+                    editor.layout();
+                    // Trigger position recalculation for widgets
+                    const suggestWidget = (editor as any)._contributions?.['editor.contrib.suggestController'];
+                    if (suggestWidget && suggestWidget.widget) {
+                        suggestWidget.widget._onDidSuggestionsChange?.fire();
+                    }
+                });
+            };
+
+            // Listen for various events that might affect positioning
+            window.addEventListener('resize', handleLayoutUpdate);
+            window.addEventListener('scroll', handleLayoutUpdate, true);
+            
+            // Store handler for cleanup
+            (editor as any)._layoutHandler = handleLayoutUpdate;
+        }
     };
 
     const handleLanguageChange = useCallback((languageId: number) => {
@@ -320,6 +380,29 @@ export default function JSCodeEditor({ initialCode, className, onChange, theme =
         }
     }, [initialCode, onChange, code]);
 
+    // Cleanup effect for floating mode
+    useEffect(() => {
+        return () => {
+            // Cleanup when component unmounts or isFloating changes
+            if (editorRef.current) {
+                const editor = editorRef.current;
+                
+                // Remove floating styles
+                if ((editor as any)._floatingStyleElement) {
+                    document.head.removeChild((editor as any)._floatingStyleElement);
+                    (editor as any)._floatingStyleElement = null;
+                }
+                
+                // Remove layout handler
+                if ((editor as any)._layoutHandler) {
+                    window.removeEventListener('resize', (editor as any)._layoutHandler);
+                    window.removeEventListener('scroll', (editor as any)._layoutHandler, true);
+                    (editor as any)._layoutHandler = null;
+                }
+            }
+        };
+    }, [isFloating]);
+
 
 
     return (
@@ -385,13 +468,66 @@ export default function JSCodeEditor({ initialCode, className, onChange, theme =
                                 wordWrap: "on",
                                 scrollBeyondLastLine: false,
                                 automaticLayout: true,
-                                fixedOverflowWidgets: true,
+                                fixedOverflowWidgets: false,
                                 scrollbar: {
                                     vertical: 'visible',
                                     horizontal: 'visible',
                                     verticalScrollbarSize: isFloating ? 8 : 10,
                                     horizontalScrollbarSize: isFloating ? 8 : 10,
                                 },
+                                suggest: {
+                                    showIcons: true,
+                                    showSnippets: true,
+                                    showWords: true,
+                                    showMethods: true,
+                                    showFunctions: true,
+                                    showConstructors: true,
+                                    showClasses: true,
+                                    showEvents: true,
+                                    showFields: true,
+                                    showValues: true,
+                                    showProperties: true,
+                                    showEnums: true,
+                                    showEnumMembers: true,
+                                    showKeywords: true,
+                                    showModules: true,
+                                    showOperators: true,
+                                    showUsers: true,
+                                    showFiles: true,
+                                    showReferences: true,
+                                    showFolders: true,
+                                    showColors: true,
+                                    showTypeParameters: true,
+                                    showConstants: true,
+                                    showVariables: true,
+                                    showInterfaces: true,
+                                    showUnits: true,
+                                    showStructs: true,
+                                    ...(isFloating && {
+                                        insertMode: 'replace' as const,
+                                        filterGraceful: true,
+                                        snippetsPreventQuickSuggestions: false,
+                                    }),
+                                },
+                                quickSuggestions: {
+                                    other: true,
+                                    comments: false,
+                                    strings: false,
+                                },
+                                parameterHints: {
+                                    enabled: true,
+                                    cycle: false,
+                                },
+                                hover: {
+                                    enabled: true,
+                                    delay: 300,
+                                },
+                                ...(isFloating && {
+                                    overviewRulerBorder: false,
+                                    overviewRulerLanes: 0,
+                                    hideCursorInOverviewRuler: true,
+                                    contextmenu: true,
+                                }),
                             }}
                         />
                     </div>
