@@ -7,7 +7,16 @@ import JSCodeEditor from './JSCodeEditor';
 const FloatingCodeEditor: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
-  const [code, setCode] = useState(`// Welcome to Quick Code Editor!
+  
+  // Load cached code for JavaScript (default language) on mount
+  const [code, setCode] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const cachedCode = localStorage.getItem('quickCodeEditor_code_63'); // JavaScript language ID
+      if (cachedCode && cachedCode.trim()) {
+        return cachedCode;
+      }
+    }
+    return `// Welcome to Quick Code Editor!
 // Try some JavaScript code here:
 
 function greetUser(name) {
@@ -15,7 +24,8 @@ function greetUser(name) {
 }
 
 console.log(greetUser("Developer"));
-`);
+`;
+  });
 
   // Handle touch feedback with haptic-like effect
   const handleTouch = useCallback((e: React.TouchEvent) => {
@@ -36,14 +46,28 @@ console.log(greetUser("Developer"));
   };
 
   const resetCode = () => {
-    setCode(`// Welcome to Quick Code Editor!
+    const defaultCode = `// Welcome to Quick Code Editor!
 // Try some JavaScript code here:
 
 function greetUser(name) {
   return \`Hello, \${name}! Welcome to VieVlog.\`;
 }
 
-console.log(greetUser("Developer"));`);
+console.log(greetUser("Developer"));`;
+    
+    setCode(defaultCode);
+    
+    // Clear all cached code for Quick Code Editor
+    if (typeof window !== 'undefined') {
+      const keysToRemove = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key && key.startsWith('quickCodeEditor_code_')) {
+          keysToRemove.push(key);
+        }
+      }
+      keysToRemove.forEach(key => localStorage.removeItem(key));
+    }
   };
 
   return (

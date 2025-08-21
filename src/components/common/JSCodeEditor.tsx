@@ -98,6 +98,43 @@ export default function JSCodeEditor({ initialCode, className, onChange, theme =
         return SUPPORTED_LANGUAGES[0];
     });
 
+    // Helper function to get cache key for code storage
+    const getCacheKey = useCallback((languageId: number) => {
+        return isFloating ? `quickCodeEditor_code_${languageId}` : `codeEditor_code_${languageId}`;
+    }, [isFloating]);
+
+    // Helper function to load cached code for a language
+    const loadCachedCode = useCallback((languageId: number): string => {
+        if (typeof window === 'undefined') return "";
+        
+        const cacheKey = getCacheKey(languageId);
+        const cachedCode = localStorage.getItem(cacheKey);
+        
+        if (cachedCode && cachedCode.trim()) {
+            return cachedCode;
+        }
+        
+        // Return default code if no cache found
+        const language = SUPPORTED_LANGUAGES.find(lang => lang.id === languageId);
+        return language ? language.defaultCode : "";
+    }, [getCacheKey]);
+
+    // Helper function to save code to cache
+    const saveCachedCode = useCallback((languageId: number, codeToSave: string) => {
+        if (typeof window === 'undefined') return;
+        
+        const cacheKey = getCacheKey(languageId);
+        const language = SUPPORTED_LANGUAGES.find(lang => lang.id === languageId);
+        
+        // Only save if code is different from default code
+        if (language && codeToSave.trim() && codeToSave !== language.defaultCode) {
+            localStorage.setItem(cacheKey, codeToSave);
+        } else {
+            // Remove cache if code is empty or same as default
+            localStorage.removeItem(cacheKey);
+        }
+    }, [getCacheKey]);
+
     const [code, setCode] = useState(() => {
         if (initialCode) return initialCode;
         // Start with empty string to avoid SSR/Client mismatch
@@ -134,16 +171,22 @@ export default function JSCodeEditor({ initialCode, className, onChange, theme =
     const handleLanguageChange = useCallback((languageId: number) => {
         const language = SUPPORTED_LANGUAGES.find(lang => lang.id === languageId);
         if (language) {
+            // Save current code before switching
+            saveCachedCode(selectedLanguage.id, code);
+            
             setSelectedLanguage(language);
-            setCode(language.defaultCode);
-            onChange?.(language.defaultCode);
+            
+            // Load cached code for new language or use default
+            const newCode = loadCachedCode(languageId);
+            setCode(newCode);
+            onChange?.(newCode);
 
             // Save selected language to localStorage
             if (typeof window !== 'undefined') {
                 localStorage.setItem('selectedLanguageId', languageId.toString());
             }
         }
-    }, [onChange]);
+    }, [onChange, selectedLanguage.id, code, saveCachedCode, loadCachedCode]);
 
     const runCodeWithInput = useCallback(async (input: string) => {
         // Validate code before running
@@ -254,19 +297,20 @@ export default function JSCodeEditor({ initialCode, className, onChange, theme =
         }
     };
 
-    // Simple effect to sync code with selected language
+    // Load cached code on mount and when language changes
     useEffect(() => {
         // Skip if we have initialCode provided
         if (initialCode) {
             return;
         }
 
-        // Always set the default code for the selected language
-        if (code !== selectedLanguage.defaultCode) {
-            setCode(selectedLanguage.defaultCode);
-            onChange?.(selectedLanguage.defaultCode);
+        // Load cached code for current language
+        const cachedCode = loadCachedCode(selectedLanguage.id);
+        if (cachedCode && cachedCode !== code) {
+            setCode(cachedCode);
+            onChange?.(cachedCode);
         }
-    }, [selectedLanguage, initialCode]); // Remove code and onChange from deps to avoid loops
+    }, [selectedLanguage.id, loadCachedCode, initialCode]); // Removed code to avoid loops
 
     // Update code when initialCode changes
     useEffect(() => {
@@ -329,6 +373,9 @@ export default function JSCodeEditor({ initialCode, className, onChange, theme =
                                 const newCode = value || "";
                                 setCode(newCode);
                                 onChange?.(newCode);
+                                
+                                // Auto-save code to cache when user edits
+                                saveCachedCode(selectedLanguage.id, newCode);
                             }}
                             onMount={handleEditorDidMount}
                             theme={theme === 'vs-dark' ? 'vs-dark' : 'vs-light'}
