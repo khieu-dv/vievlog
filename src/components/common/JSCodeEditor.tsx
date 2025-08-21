@@ -31,7 +31,7 @@ interface Language {
 const SUPPORTED_LANGUAGES: Language[] = [
     {
         id: 63,
-        name: "JavaScript (Node.js)",
+        name: "JavaScript",
         monacoLanguage: "javascript",
         defaultCode: `// Type or paste your code here...\nconsole.log("Hello, JavaScript!");\n\nfunction add(a, b) {\n  return a + b;\n}`
     },
@@ -97,13 +97,13 @@ export default function JSCodeEditor({ initialCode, className, onChange, theme =
         }
         return SUPPORTED_LANGUAGES[0];
     });
-    
+
     const [code, setCode] = useState(() => {
         if (initialCode) return initialCode;
         // Start with empty string to avoid SSR/Client mismatch
         return "";
     });
-    
+
     const [output, setOutput] = useState("Output will appear here...");
     const [isRunning, setIsRunning] = useState(false);
     const editorRef = useRef<any>(null);
@@ -137,7 +137,7 @@ export default function JSCodeEditor({ initialCode, className, onChange, theme =
             setSelectedLanguage(language);
             setCode(language.defaultCode);
             onChange?.(language.defaultCode);
-            
+
             // Save selected language to localStorage
             if (typeof window !== 'undefined') {
                 localStorage.setItem('selectedLanguageId', languageId.toString());
@@ -171,7 +171,7 @@ export default function JSCodeEditor({ initialCode, className, onChange, theme =
             const res = await fetch("/api/run-code", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ 
+                body: JSON.stringify({
                     code: code.trim(),
                     language_id: selectedLanguage.id,
                     stdin: input
