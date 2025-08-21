@@ -138,7 +138,7 @@ export default function JSCodeEditor({ initialCode, className, onChange, theme =
         <div className={`${isFloating ? 'p-2' : 'p-4 md:p-6'} flex flex-col ${className?.includes('h-') ? '' : 'h-screen'} ${className || ''}`}>
             <div className={`flex-grow flex ${isFloating ? 'flex-col' : 'flex-col lg:flex-row'} ${isFloating ? 'space-y-1' : 'lg:space-x-4 space-y-4 lg:space-y-0'}`}>
                 {/* Editor Column */}
-                <div className={`w-full ${isFloating ? 'flex-1 min-h-0' : 'lg:w-3/5'} flex flex-col ${isFloating ? 'h-[60%]' : 'h-[40vh] lg:h-full'}`}>
+                <div className={`w-full ${isFloating ? 'flex-1 min-h-0' : 'lg:w-3/5'} flex flex-col ${isFloating ? 'h-[60%] max-h-[60%]' : 'h-[40vh] lg:h-full'}`}>
                     <div className={`flex-shrink-0 ${isFloating ? 'mb-1' : 'mb-2'} flex items-center justify-between ${isFloating ? 'h-6' : 'h-10'}`}>
                         <div>
                             <h2 className={`font-semibold text-gray-700 ${isFloating ? 'text-sm' : 'text-lg'}`}>
@@ -192,13 +192,15 @@ export default function JSCodeEditor({ initialCode, className, onChange, theme =
                                 fontSize: 14,
                                 wordWrap: "on",
                                 scrollBeyondLastLine: false,
+                                automaticLayout: true,
+                                fixedOverflowWidgets: true,
                             }}
                         />
                     </div>
                 </div>
 
                 {/* Output Column */}
-                <div className={`w-full ${isFloating ? 'flex-1 min-h-0' : 'lg:w-2/5'} flex flex-col ${isFloating ? 'h-[40%]' : 'lg:h-full'}`}>
+                <div className={`w-full ${isFloating ? 'flex-1 min-h-0' : 'lg:w-2/5'} flex flex-col ${isFloating ? 'h-[40%] max-h-[40%]' : 'lg:h-full'}`}>
                     <div className={`flex-shrink-0 ${isFloating ? 'mb-1' : 'mb-2'} flex items-center ${isFloating ? 'h-6' : 'h-10'}`}>
                         <h2 className={`font-semibold text-gray-700 ${isFloating ? 'text-sm' : 'text-lg'}`}>Output</h2>
                     </div>

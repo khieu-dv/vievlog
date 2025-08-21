@@ -183,14 +183,14 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
     if (navigator.vibrate) {
       navigator.vibrate(8);
     }
-    
+
     // Add ripple effect
     const rect = e.currentTarget.getBoundingClientRect();
     const ripple = document.createElement('div');
     const size = Math.max(rect.width, rect.height);
     const x = e.touches[0].clientX - rect.left - size / 2;
     const y = e.touches[0].clientY - rect.top - size / 2;
-    
+
     ripple.style.cssText = `
       position: absolute;
       width: ${size}px;
@@ -204,9 +204,9 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
       pointer-events: none;
       z-index: 1;
     `;
-    
+
     e.currentTarget.appendChild(ripple);
-    
+
     setTimeout(() => {
       if (ripple.parentNode) {
         ripple.parentNode.removeChild(ripple);
@@ -655,8 +655,8 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                                           touch-manipulation select-none relative overflow-hidden
                                           active:scale-95
                                           ${activeSection === section.id
-                                  ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 shadow-sm'
-                                  : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800'
+                                    ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 shadow-sm'
+                                    : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800'
                                   }`}
                               >
                                 <div className="flex items-center gap-3 min-w-0 flex-1">
@@ -698,8 +698,8 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                                           touch-manipulation select-none relative overflow-hidden
                                           active:scale-95
                                           ${activeSection === section.id
-                                  ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 shadow-sm'
-                                  : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800'
+                                    ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 shadow-sm'
+                                    : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800'
                                   }`}
                               >
                                 <div className="flex items-center gap-3 min-w-0 flex-1">
@@ -794,9 +794,8 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
       </aside>
 
       {/* Sidebar Toggle Button for Large Screens */}
-      <div className={`hidden lg:block fixed top-1/2 z-40 transition-all duration-300 ${
-        sidebarCollapsed 
-          ? 'left-4' 
+      <div className={`hidden lg:block fixed top-1/2 z-40 transition-all duration-300 ${sidebarCollapsed
+          ? 'left-4'
           : 'left-[calc(50vw-40rem+20rem+1.5rem)] xl:left-[calc(50vw-42rem+24rem+1.5rem)]'
         }`}>
         <button
@@ -939,8 +938,8 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                             <button
                               onClick={() => setActiveTab(prev => ({ ...prev, [post.id]: 'content' }))}
                               className={`flex items-center gap-2 px-6 py-3 text-sm font-medium border-b-2 transition-colors ${currentTab === 'content'
-                                  ? 'border-primary text-primary bg-primary/5'
-                                  : 'border-transparent text-muted-foreground hover:text-foreground hover:border-gray-300 dark:hover:border-gray-600'
+                                ? 'border-primary text-primary bg-primary/5'
+                                : 'border-transparent text-muted-foreground hover:text-foreground hover:border-gray-300 dark:hover:border-gray-600'
                                 }`}
                             >
                               <FileText className="h-4 w-4" />
@@ -949,8 +948,8 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                             <button
                               onClick={() => setActiveTab(prev => ({ ...prev, [post.id]: 'code' }))}
                               className={`flex items-center gap-2 px-6 py-3 text-sm font-medium border-b-2 transition-colors ${currentTab === 'code'
-                                  ? 'border-primary text-primary bg-primary/5'
-                                  : 'border-transparent text-muted-foreground hover:text-foreground hover:border-gray-300 dark:hover:border-gray-600'
+                                ? 'border-primary text-primary bg-primary/5'
+                                : 'border-transparent text-muted-foreground hover:text-foreground hover:border-gray-300 dark:hover:border-gray-600'
                                 }`}
                             >
                               <Code className="h-4 w-4" />
@@ -1186,7 +1185,7 @@ Welcome to VieVlog - a modern learning platform for IT education. This documenta
 ## Available Categories
 
 We currently have ${categories.length} categories with educational content:`} />
-                    
+
                     {/* Interactive Category List */}
                     <div className="not-prose mt-6 mb-8">
                       <ul className="space-y-2">
@@ -1203,47 +1202,47 @@ We currently have ${categories.length} categories with educational content:`} />
 
                           // Use same order as in sidebar
                           const mainNameOrder = ['Languages', 'DSA', 'Frameworks', 'Soft Skills'];
-                          
-                          return mainNameOrder.flatMap(mainName => 
+
+                          return mainNameOrder.flatMap(mainName =>
                             groupedCategories[mainName] || []
                           ).map((section) => (
-                          <li key={section.id}>
-                            <button
-                              onClick={() => {
-                                setActiveSection(section.id);
-                                // Update URL
-                                const params = new URLSearchParams(searchParams.toString());
-                                params.set('category', section.id);
-                                params.delete('post');
-                                router.replace(`/posts?${params.toString()}`, { scroll: false });
-                              }}
-                              onTouchStart={handleArticleTouch}
-                              className="group flex items-center gap-3 w-full p-3 rounded-lg 
+                            <li key={section.id}>
+                              <button
+                                onClick={() => {
+                                  setActiveSection(section.id);
+                                  // Update URL
+                                  const params = new URLSearchParams(searchParams.toString());
+                                  params.set('category', section.id);
+                                  params.delete('post');
+                                  router.replace(`/posts?${params.toString()}`, { scroll: false });
+                                }}
+                                onTouchStart={handleArticleTouch}
+                                className="group flex items-center gap-3 w-full p-3 rounded-lg 
                                        hover:bg-blue-50 dark:hover:bg-blue-900/20 
                                        transition-all duration-200 text-left
                                        touch-manipulation select-none
                                        active:scale-[0.98] active:bg-blue-100 dark:active:bg-blue-900/30"
-                            >
-                              <div 
-                                className="w-6 h-6 rounded flex items-center justify-center text-white text-xs font-semibold flex-shrink-0"
-                                style={{ backgroundColor: section.category?.color }}
                               >
-                                {section.category?.name.charAt(0).toUpperCase()}
-                              </div>
-                              <div className="flex-1 min-w-0">
-                                <span className="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                                  {section.category?.name}
-                                </span>
-                                <span className="text-gray-500 dark:text-gray-400 text-sm ml-2">
-                                  ({findPostsByCategory(section.id).length} articles)
-                                </span>
-                              </div>
-                              <div className="text-gray-400 group-hover:text-blue-500 transition-colors">
-                                →
-                              </div>
-                            </button>
-                          </li>
-                        ));
+                                <div
+                                  className="w-6 h-6 rounded flex items-center justify-center text-white text-xs font-semibold flex-shrink-0"
+                                  style={{ backgroundColor: section.category?.color }}
+                                >
+                                  {section.category?.name.charAt(0).toUpperCase()}
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                  <span className="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                                    {section.category?.name}
+                                  </span>
+                                  <span className="text-gray-500 dark:text-gray-400 text-sm ml-2">
+                                    ({findPostsByCategory(section.id).length} articles)
+                                  </span>
+                                </div>
+                                <div className="text-gray-400 group-hover:text-blue-500 transition-colors">
+                                  →
+                                </div>
+                              </button>
+                            </li>
+                          ));
                         })()}
                       </ul>
                     </div>
@@ -1263,7 +1262,7 @@ Choose a category above to explore our comprehensive learning materials, tutoria
                       </h3>
                       {findActivePosts().length > 6 && (
                         <span className="text-sm text-muted-foreground">
-                          Showing first 6 of {findActivePosts().length} articles (chronological order)
+                          Showing first 6 of {findActivePosts().length} articles
                         </span>
                       )}
                     </div>
