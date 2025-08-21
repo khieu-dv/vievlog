@@ -5,6 +5,7 @@ import Editor, { OnMount } from "@monaco-editor/react";
 // No Monaco types import needed - use any for editor ref
 import Prism from "prismjs";
 import "prismjs/themes/prism.css";
+import { SmartCodeRunner } from "./SmartCodeRunner";
 
 interface JSCodeEditorProps {
     initialCode?: string;
@@ -80,7 +81,7 @@ const SUPPORTED_LANGUAGES: Language[] = [
         id: 73,
         name: "Rust",
         monacoLanguage: "rust",
-        defaultCode: `// Type or paste your code here...\nfn main() {\n    println!("Hello, Rust!");\n}`
+        defaultCode: `// Type or paste your code here...\nfn main() {\n    println!(\"Hello, Rust!\");\n}`
     }
 ];
 
@@ -99,11 +100,8 @@ export default function JSCodeEditor({ initialCode, className, onChange, theme =
     
     const [code, setCode] = useState(() => {
         if (initialCode) return initialCode;
-        if (typeof window !== 'undefined') {
-            const savedCode = localStorage.getItem('editorCode');
-            if (savedCode) return savedCode;
-        }
-        return selectedLanguage.defaultCode;
+        // Start with empty string to avoid SSR/Client mismatch
+        return "";
     });
     
     const [output, setOutput] = useState("Output will appear here...");
@@ -140,15 +138,14 @@ export default function JSCodeEditor({ initialCode, className, onChange, theme =
             setCode(language.defaultCode);
             onChange?.(language.defaultCode);
             
-            // Save to localStorage
+            // Save selected language to localStorage
             if (typeof window !== 'undefined') {
                 localStorage.setItem('selectedLanguageId', languageId.toString());
-                localStorage.setItem('editorCode', language.defaultCode);
             }
         }
     }, [onChange]);
 
-    const runCode = useCallback(async () => {
+    const runCodeWithInput = useCallback(async (input: string) => {
         // Validate code before running
         const validationError = validateCode(code);
         if (validationError) {
@@ -161,7 +158,13 @@ export default function JSCodeEditor({ initialCode, className, onChange, theme =
 
         try {
             // Debug log
-            console.log("Sending code to API:", code.trim());
+            console.log("Sending to API:", {
+                code: code.trim().substring(0, 100) + "...",
+                language_id: selectedLanguage.id,
+                stdin: input || "(empty)",
+                stdin_length: input.length,
+                stdin_repr: JSON.stringify(input)
+            });
             const controller = new AbortController();
             const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
 
@@ -170,7 +173,8 @@ export default function JSCodeEditor({ initialCode, className, onChange, theme =
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ 
                     code: code.trim(),
-                    language_id: selectedLanguage.id
+                    language_id: selectedLanguage.id,
+                    stdin: input
                 }),
                 signal: controller.signal,
             });
@@ -213,7 +217,23 @@ export default function JSCodeEditor({ initialCode, className, onChange, theme =
         } finally {
             setIsRunning(false);
         }
-    }, [code, validateCode]);
+    }, [code, validateCode, selectedLanguage.id]);
+
+    // Map Monaco language to input analyzer language
+    const getAnalyzerLanguage = useCallback((monacoLanguage: string): string => {
+        const languageMap: Record<string, string> = {
+            'javascript': 'javascript',
+            'python': 'python',
+            'java': 'java',
+            'cpp': 'cpp',
+            'c': 'c',
+            'kotlin': 'kotlin',
+            'csharp': 'csharp',
+            'go': 'go',
+            'rust': 'rust'
+        };
+        return languageMap[monacoLanguage] || monacoLanguage;
+    }, []);
 
     const formatCodeManual = async () => {
         if (!editorRef.current) return;
@@ -226,20 +246,29 @@ export default function JSCodeEditor({ initialCode, className, onChange, theme =
         }
     };
 
+    // Simple effect to sync code with selected language
+    useEffect(() => {
+        // Skip if we have initialCode provided
+        if (initialCode) {
+            return;
+        }
+
+        // Always set the default code for the selected language
+        if (code !== selectedLanguage.defaultCode) {
+            setCode(selectedLanguage.defaultCode);
+            onChange?.(selectedLanguage.defaultCode);
+        }
+    }, [selectedLanguage, initialCode]); // Remove code and onChange from deps to avoid loops
+
     // Update code when initialCode changes
     useEffect(() => {
-        if (initialCode !== undefined && initialCode !== code) {
+        if (initialCode !== undefined && initialCode !== code && code !== "") {
             setCode(initialCode);
             onChange?.(initialCode);
         }
-    }, [initialCode, onChange]);
+    }, [initialCode, onChange, code]);
 
-    // Save language and code changes to localStorage
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
-            localStorage.setItem('selectedLanguageId', selectedLanguage.id.toString());
-        }
-    }, [selectedLanguage]);
+
 
     return (
         <div className={`${isFloating ? 'p-2' : 'p-4 md:p-6'} flex flex-col ${className?.includes('h-') ? '' : 'h-screen'} ${className || ''}`}>
@@ -267,27 +296,17 @@ export default function JSCodeEditor({ initialCode, className, onChange, theme =
                                     </option>
                                 ))}
                             </select>
-                            <button
-                                onClick={runCode}
-                                disabled={isRunning}
-                                className={`${isFloating ? 'px-2 py-1 text-xs' : 'px-3 py-1.5 text-sm'} text-white rounded font-medium transition-all duration-200 ${isRunning ? 'bg-blue-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700 active:bg-blue-800'
-                                    } disabled:opacity-50`}
-                            >
-                                {isRunning ? (
-                                    <span className="flex items-center gap-1">
-                                        <svg className="animate-spin h-3 w-3" viewBox="0 0 24 24">
-                                            <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                                            <path fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                                        </svg>
-                                        Running
-                                    </span>
-                                ) : (
-                                    'Run'
-                                )}
-                            </button>
+                            <SmartCodeRunner
+                                code={code}
+                                language={getAnalyzerLanguage(selectedLanguage.monacoLanguage)}
+                                onRun={runCodeWithInput}
+                                isRunning={isRunning}
+                                className={`${isFloating ? 'px-2 py-1 text-xs' : 'px-2 py-1 text-xs'} bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400`}
+                                buttonText={isRunning ? 'Running...' : 'Run'}
+                            />
                             <button
                                 onClick={formatCodeManual}
-                                className={`${isFloating ? 'px-2 py-1 text-xs' : 'px-3 py-1.5 text-sm'} bg-gray-600 text-white rounded hover:bg-gray-700`}
+                                className={`${isFloating ? 'px-2 py-1 text-xs' : 'px-2 py-1 text-xs'} bg-gray-600 text-white rounded hover:bg-gray-700`}
                             >
                                 Format
                             </button>
@@ -302,11 +321,6 @@ export default function JSCodeEditor({ initialCode, className, onChange, theme =
                                 const newCode = value || "";
                                 setCode(newCode);
                                 onChange?.(newCode);
-                                
-                                // Save code to localStorage
-                                if (typeof window !== 'undefined') {
-                                    localStorage.setItem('editorCode', newCode);
-                                }
                             }}
                             onMount={handleEditorDidMount}
                             theme={theme === 'vs-dark' ? 'vs-dark' : 'vs-light'}
@@ -326,7 +340,11 @@ export default function JSCodeEditor({ initialCode, className, onChange, theme =
                 <div className={`w-full ${isFloating ? 'flex-1 min-h-0' : 'lg:w-2/5'} flex flex-col ${isFloating ? 'h-[40%] max-h-[40%]' : 'lg:h-full'}`}>
                     <div className={`flex-shrink-0 ${isFloating ? 'mb-1' : 'mb-2'} flex items-center ${isFloating ? 'h-6' : 'h-10'}`}>
                         <h2 className={`font-semibold text-gray-700 ${isFloating ? 'text-sm' : 'text-lg'}`}>Output</h2>
+                        <div className={`ml-auto text-xs text-gray-500 ${isFloating ? 'hidden' : ''}`}>
+                            Smart input detection enabled
+                        </div>
                     </div>
+
                     <pre
                         className={`flex-grow p-2 rounded bg-gray-100 overflow-auto whitespace-pre-wrap ${isFloating ? 'text-xs' : ''}`}
                         dangerouslySetInnerHTML={{

@@ -152,7 +152,6 @@ console.log(greetUser("Developer"));`);
             {/* Code Editor */}
             <div className={`${isExpanded ? 'h-[calc(100%-3rem)]' : 'h-[calc(100%-2.5rem)]'}`}>
               <JSCodeEditor
-                initialCode={code}
                 onChange={setCode}
                 className="h-full rounded-none rounded-b-2xl"
                 theme={isExpanded ? 'vs-dark' : 'light'}

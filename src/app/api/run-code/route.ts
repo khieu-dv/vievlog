@@ -66,7 +66,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const { code, language_id = 63 } = body;
+    const { code, language_id = 63, stdin = "" } = body;
 
     // Validate code
     const validationError = validateCode(code);
@@ -86,8 +86,15 @@ export async function POST(req: Request) {
       );
     }
 
-    // Encode source code to base64 to handle UTF-8 characters
+    // Encode source code and stdin to base64 to handle UTF-8 characters
     const base64Code = Buffer.from(code, 'utf-8').toString('base64');
+    
+    // Ensure stdin ends with newline for proper input handling
+    let processedStdin = stdin;
+    if (stdin && !stdin.endsWith('\n')) {
+      processedStdin = stdin + '\n';
+    }
+    const base64Stdin = processedStdin ? Buffer.from(processedStdin, 'utf-8').toString('base64') : "";
     
     // Submit to Judge0 API with base64 encoding
     const judge0Response = await fetch('https://api.vietopik.com/submissions?base64_encoded=true&wait=true', {
@@ -99,7 +106,7 @@ export async function POST(req: Request) {
       body: JSON.stringify({
         language_id: language_id,
         source_code: base64Code,
-        stdin: "",
+        stdin: base64Stdin,
         expected_output: null
       })
     });
@@ -113,7 +120,14 @@ export async function POST(req: Request) {
 
     const judge0Data = await judge0Response.json();
 
-    // Debug log to see what Judge0 returns
+    // Debug log to see what we sent and what Judge0 returns
+    console.log("Sent to Judge0:", {
+      language_id,
+      source_code: code.substring(0, 100) + "...", // Only show first 100 chars
+      original_stdin: stdin || "(empty)",
+      processed_stdin: processedStdin || "(empty)",
+      base64_stdin: base64Stdin || "(empty)"
+    });
     console.log("Judge0 response:", JSON.stringify(judge0Data, null, 2));
 
     // Format response similar to original format
@@ -148,6 +162,18 @@ export async function POST(req: Request) {
       logs.push("Program executed successfully (no output)");
     }
 
+    // Add debug info if no logs were produced
+    if (logs.length === 0) {
+      logs.push(`[DEBUG] Status: ${judge0Data.status?.description || 'Unknown'}`);
+      logs.push(`[DEBUG] Status ID: ${judge0Data.status?.id || 'Unknown'}`);
+      if (judge0Data.stdout === null) {
+        logs.push(`[DEBUG] stdout is null - program may not have produced output`);
+      }
+      if (judge0Data.stderr === null) {
+        logs.push(`[DEBUG] stderr is null - no errors detected`);
+      }
+    }
+
     return NextResponse.json({ 
       logs,
       result: judge0Data.status?.description || "Completed",
@@ -155,7 +181,8 @@ export async function POST(req: Request) {
       debug: {
         status: judge0Data.status,
         stdout: judge0Data.stdout,
-        stderr: judge0Data.stderr
+        stderr: judge0Data.stderr,
+        compile_output: judge0Data.compile_output
       }
     });
 
