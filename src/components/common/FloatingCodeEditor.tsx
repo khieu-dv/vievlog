@@ -8,10 +8,12 @@ const FloatingCodeEditor: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isInitialPositioned, setIsInitialPositioned] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   const [isPopout, setIsPopout] = useState(false);
   const [isNearEdge, setIsNearEdge] = useState(false);
+  const [currentLanguageId, setCurrentLanguageId] = useState(63); // Default to JavaScript
   const editorRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const popoutWindowRef = useRef<Window | null>(null);
@@ -19,10 +21,12 @@ const FloatingCodeEditor: React.FC = () => {
   const screenDimensions = useRef({ width: 0, height: 0 });
   const lastPosition = useRef({ x: 0, y: 0 });
   
-  // Load cached code for JavaScript (default language) on mount
+  // Load cached code for current language on mount
   const [code, setCode] = useState(() => {
     if (typeof window !== 'undefined') {
-      const cachedCode = localStorage.getItem('quickCodeEditor_code_63'); // JavaScript language ID
+      const savedLanguageId = localStorage.getItem('selectedLanguageId');
+      const languageId = savedLanguageId ? parseInt(savedLanguageId) : 63;
+      const cachedCode = localStorage.getItem(`quickCodeEditor_code_${languageId}`);
       if (cachedCode && cachedCode.trim()) {
         return cachedCode;
       }
@@ -38,6 +42,16 @@ console.log(greetUser("Developer"));
 `;
   });
 
+  // Load current language from localStorage on mount
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const savedLanguageId = localStorage.getItem('selectedLanguageId');
+      if (savedLanguageId) {
+        setCurrentLanguageId(parseInt(savedLanguageId));
+      }
+    }
+  }, []);
+
   // Handle touch feedback with haptic-like effect
   const handleTouch = useCallback((e: React.TouchEvent) => {
     if (navigator.vibrate) {
@@ -49,6 +63,10 @@ console.log(greetUser("Developer"));
     setIsOpen(!isOpen);
     if (!isOpen) {
       setIsExpanded(false);
+    } else {
+      // Reset when closing
+      setIsInitialPositioned(false);
+      setPosition({ x: 0, y: 0 });
     }
   };
 
@@ -103,15 +121,27 @@ console.log(greetUser("Developer"));`;
       height: window.innerHeight
     };
     
+    // Ensure we have the current actual position
+    const rect = editorRef.current?.getBoundingClientRect();
+    let currentX = position.x;
+    let currentY = position.y;
+    
+    if (rect && !isInitialPositioned) {
+      // Get actual position from DOM if not yet positioned
+      currentX = rect.left;
+      currentY = rect.top;
+      setPosition({ x: currentX, y: currentY });
+      setIsInitialPositioned(true);
+    }
+    
     // Store initial position for direction calculation
-    lastPosition.current = { x: position.x, y: position.y };
+    lastPosition.current = { x: currentX, y: currentY };
     
     setIsDragging(true);
-    const rect = editorRef.current?.getBoundingClientRect();
     if (rect) {
       setDragStart({
-        x: e.clientX - position.x,
-        y: e.clientY - position.y
+        x: e.clientX - currentX,
+        y: e.clientY - currentY
       });
     }
     
@@ -315,7 +345,7 @@ console.log(greetUser("Developer"));`;
           </div>
           <script>
             let editor;
-            let selectedLanguageId = 63;
+            let selectedLanguageId = ${currentLanguageId};
             let isRunning = false;
             
             const SUPPORTED_LANGUAGES = {
@@ -431,11 +461,16 @@ fn main() {
               }
             };
             
+            // Set the correct language in selector
+            console.log('Setting popout language to:', selectedLanguageId);
+            document.getElementById('languageSelect').value = selectedLanguageId;
+            
             require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs' }});
             require(['vs/editor/editor.main'], function () {
+              const currentLanguage = SUPPORTED_LANGUAGES[selectedLanguageId];
               editor = monaco.editor.create(document.getElementById('editor'), {
                 value: ${JSON.stringify(code)},
-                language: 'javascript',
+                language: currentLanguage ? currentLanguage.monacoLanguage : 'javascript',
                 theme: 'vs-dark',
                 automaticLayout: true,
                 fontSize: 14,
@@ -452,7 +487,7 @@ fn main() {
               editor.onDidChangeModelContent(() => {
                 const newCode = editor.getValue();
                 if (window.opener && !window.opener.closed) {
-                  localStorage.setItem('quickCodeEditor_code_63', newCode);
+                  localStorage.setItem(\`quickCodeEditor_code_\${selectedLanguageId}\`, newCode);
                   window.opener.postMessage({ 
                     type: 'codeChange', 
                     code: newCode 
@@ -460,12 +495,28 @@ fn main() {
                 }
               });
 
-              // Listen for code changes from parent
+              // Listen for messages from parent
               window.addEventListener('message', (event) => {
                 if (event.data.type === 'updateCode') {
                   const currentCode = editor.getValue();
                   if (currentCode !== event.data.code) {
                     editor.setValue(event.data.code);
+                  }
+                } else if (event.data.type === 'updateLanguage') {
+                  const newLanguageId = event.data.languageId;
+                  const language = SUPPORTED_LANGUAGES[newLanguageId];
+                  
+                  if (language && editor && selectedLanguageId !== newLanguageId) {
+                    selectedLanguageId = newLanguageId;
+                    document.getElementById('languageSelect').value = newLanguageId;
+                    monaco.editor.setModelLanguage(editor.getModel(), language.monacoLanguage);
+                    
+                    // Load cached code for new language or use default
+                    const cachedKey = \`quickCodeEditor_code_\${newLanguageId}\`;
+                    const cachedCode = localStorage.getItem(cachedKey);
+                    const codeToUse = cachedCode || language.defaultCode;
+                    
+                    editor.setValue(codeToUse);
                   }
                 }
               });
@@ -476,26 +527,44 @@ fn main() {
               const newLanguageId = parseInt(e.target.value);
               const language = SUPPORTED_LANGUAGES[newLanguageId];
               
-              if (language && editor) {
+              if (language && editor && selectedLanguageId !== newLanguageId) {
                 const currentCode = editor.getValue().trim();
-                const shouldLoadDefault = !currentCode || confirm(
-                  \`Switch to \${language.name}?\\n\\nClick OK to load default \${language.name} code.\\nClick Cancel to keep current code.\`
-                );
+                const cachedKey = \`quickCodeEditor_code_\${newLanguageId}\`;
+                const cachedCode = localStorage.getItem(cachedKey);
+                
+                // Determine what code to show
+                let codeToUse = currentCode;
+                if (cachedCode && cachedCode.trim()) {
+                  // Use cached code for this language
+                  codeToUse = cachedCode;
+                } else if (!currentCode) {
+                  // If no current code, use default
+                  codeToUse = language.defaultCode;
+                } else {
+                  // Ask user what to do with current code
+                  const shouldLoadDefault = confirm(
+                    \`Switch to \${language.name}?\\n\\nClick OK to load default \${language.name} code.\\nClick Cancel to keep current code.\`
+                  );
+                  if (shouldLoadDefault) {
+                    codeToUse = language.defaultCode;
+                  }
+                }
 
                 selectedLanguageId = newLanguageId;
                 monaco.editor.setModelLanguage(editor.getModel(), language.monacoLanguage);
+                editor.setValue(codeToUse);
                 
-                if (shouldLoadDefault) {
-                  editor.setValue(language.defaultCode);
-                  
-                  // Sync the new default code to parent window
-                  if (window.opener && !window.opener.closed) {
-                    localStorage.setItem(\`quickCodeEditor_code_\${selectedLanguageId}\`, language.defaultCode);
-                    window.opener.postMessage({ 
-                      type: 'codeChange', 
-                      code: language.defaultCode 
-                    }, '*');
-                  }
+                // Save selected language
+                localStorage.setItem('selectedLanguageId', selectedLanguageId.toString());
+                localStorage.setItem(\`quickCodeEditor_code_\${selectedLanguageId}\`, codeToUse);
+                
+                // Sync language change back to parent window
+                if (window.opener && !window.opener.closed) {
+                  window.opener.postMessage({ 
+                    type: 'languageChange', 
+                    languageId: selectedLanguageId,
+                    code: codeToUse
+                  }, '*');
                 }
               }
             });
@@ -588,6 +657,9 @@ fn main() {
       const handleMessage = (event: MessageEvent) => {
         if (event.source === newWindow) {
           if (event.data.type === 'codeChange') {
+            setCode(event.data.code);
+          } else if (event.data.type === 'languageChange') {
+            setCurrentLanguageId(event.data.languageId);
             setCode(event.data.code);
           } else if (event.data.type === 'popoutClosed') {
             setIsPopout(false);
@@ -710,10 +782,23 @@ fn main() {
     }
   }, [isDragging, handleMouseMove, handleMouseUp]);
 
+  // Initialize position when popup first opens
+  useEffect(() => {
+    if (isOpen && !isInitialPositioned && editorRef.current) {
+      const rect = editorRef.current.getBoundingClientRect();
+      const initialX = rect.left;
+      const initialY = rect.top;
+      
+      setPosition({ x: initialX, y: initialY });
+      setIsInitialPositioned(true);
+    }
+  }, [isOpen, isInitialPositioned]);
+
   // Reset position when expanded/minimized
   useEffect(() => {
     if (isExpanded) {
       setPosition({ x: 0, y: 0 });
+      setIsInitialPositioned(false);
     }
   }, [isExpanded]);
 
@@ -727,6 +812,16 @@ fn main() {
       }, '*');
     }
   }, [code, isPopout]);
+
+  // Send language updates to popout window
+  useEffect(() => {
+    if (isPopout && popoutWindowRef.current && !popoutWindowRef.current.closed) {
+      popoutWindowRef.current.postMessage({ 
+        type: 'updateLanguage', 
+        languageId: currentLanguageId 
+      }, '*');
+    }
+  }, [currentLanguageId, isPopout]);
 
   // Cleanup popout window and RAF on unmount
   useEffect(() => {
@@ -796,12 +891,17 @@ fn main() {
                 : 'rgba(255, 255, 255, 0.95)',
               ...(isExpanded 
                 ? {} 
-                : {
-                    left: position.x === 0 ? '50%' : position.x,
-                    bottom: position.y === 0 ? '24px' : 'auto',
-                    top: position.y !== 0 ? position.y : 'auto',
-                    transform: position.x === 0 ? 'translateX(-50%)' : 'none'
-                  }
+                : isInitialPositioned
+                  ? {
+                      left: position.x,
+                      top: position.y,
+                      transform: 'none'
+                    }
+                  : {
+                      left: '50%',
+                      bottom: '24px',
+                      transform: 'translateX(-50%)'
+                    }
               )
             }}
           >
@@ -894,6 +994,7 @@ fn main() {
             <div className={`${isExpanded ? 'h-[calc(100%-3rem)]' : 'h-[calc(100%-2.5rem)]'} flex flex-col overflow-hidden`}>
               <JSCodeEditor
                 onChange={setCode}
+                onLanguageChange={setCurrentLanguageId}
                 className="h-full rounded-none rounded-b-2xl overflow-hidden"
                 theme={isExpanded ? 'vs-dark' : 'light'}
                 isFloating={true}

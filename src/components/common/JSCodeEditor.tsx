@@ -11,6 +11,7 @@ interface JSCodeEditorProps {
     initialCode?: string;
     className?: string;
     onChange?: (code: string) => void;
+    onLanguageChange?: (languageId: number) => void;
     theme?: 'light' | 'vs-dark';
     isFloating?: boolean;
 }
@@ -85,7 +86,7 @@ const SUPPORTED_LANGUAGES: Language[] = [
     }
 ];
 
-export default function JSCodeEditor({ initialCode, className, onChange, theme = 'light', isFloating = false }: JSCodeEditorProps) {
+export default function JSCodeEditor({ initialCode, className, onChange, onLanguageChange, theme = 'light', isFloating = false }: JSCodeEditorProps) {
     // Load saved language from localStorage or default to JavaScript
     const [selectedLanguage, setSelectedLanguage] = useState<Language>(() => {
         if (typeof window !== 'undefined') {
@@ -268,8 +269,11 @@ export default function JSCodeEditor({ initialCode, className, onChange, theme =
             if (typeof window !== 'undefined') {
                 localStorage.setItem('selectedLanguageId', languageId.toString());
             }
+            
+            // Notify parent component of language change
+            onLanguageChange?.(languageId);
         }
-    }, [onChange, selectedLanguage.id, code, saveCachedCode, loadCachedCode]);
+    }, [onChange, onLanguageChange, selectedLanguage.id, code, saveCachedCode, loadCachedCode]);
 
     const runCodeWithInput = useCallback(async (input: string) => {
         // Validate code before running
