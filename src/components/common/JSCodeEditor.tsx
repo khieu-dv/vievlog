@@ -79,7 +79,7 @@ export default function JSCodeEditor({ initialCode, className, onChange, theme =
                 const resolveData = await resolveRes.json();
                 codeToRun = resolveData.processedCode;
                 // Update the editor to show the processed code
-                setCode(codeToRun);
+                // setCode(codeToRun); // DISABLED FOR BETTER UX
             }
 
             // Step 2: Run the processed code

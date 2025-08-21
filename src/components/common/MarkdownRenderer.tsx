@@ -1,11 +1,68 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus, vs } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { useTheme } from 'next-themes';
+
+// Custom component for the code block with a copy button
+const CodeBlock = ({ language, code, isDark }: { language: string, code: string, isDark: boolean }) => {
+    const [isCopied, setIsCopied] = useState(false);
+
+    const handleCopy = () => {
+        navigator.clipboard.writeText(code).then(() => {
+            setIsCopied(true);
+            setTimeout(() => setIsCopied(false), 2000); // Reset after 2 seconds
+        });
+    };
+
+    const CopyIcon = () => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+    );
+
+    const CheckIcon = () => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+    );
+
+
+    return (
+        <div className="relative group">
+            <SyntaxHighlighter
+                style={isDark ? vscDarkPlus : vs}
+                language={language}
+                PreTag="div"
+                className={`rounded-lg my-6 text-sm leading-relaxed !bg-[#F4F2F0] ${isDark ? 'text-[#d4d4d4]' : 'text-[#24292e]'}`}
+                customStyle={{
+                    margin: 0,
+                    padding: '1.5rem',
+                    borderRadius: '8px',
+                    fontSize: '14px',
+                    lineHeight: '1.6'
+                }}
+            >
+                {code}
+            </SyntaxHighlighter>
+            <button
+                onClick={handleCopy}
+                className={`absolute top-2 right-2 p-2 rounded-md border transition-all duration-200 ease-in-out 
+                           ${isCopied 
+                               ? 'bg-green-600 text-white border-green-600' 
+                               : `bg-gray-700 text-gray-300 border-gray-600 hover:bg-gray-600 hover:text-white 
+                                  opacity-0 group-hover:opacity-100 focus:opacity-100`}`}
+                aria-label={isCopied ? 'Copied!' : 'Copy code'}
+            >
+                {isCopied ? <CheckIcon /> : <CopyIcon />}
+            </button>
+        </div>
+    );
+};
 
 type MarkdownRendererProps = {
     content: string;
@@ -195,34 +252,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) =
                         language = languageMap[language.toLowerCase()] || language;
 
                         return !inline && match ? (
-                            <div className="relative">
-                                <SyntaxHighlighter
-                                    style={isDark ? vscDarkPlus : vs}
-                                    language={language}
-                                    PreTag="div"
-                                    className={`rounded-lg my-6 text-sm leading-relaxed ${isDark ? '!bg-[#F4F2F0] !text-[#d4d4d4]' : '!bg-[#F4F2F0] !text-[#24292e]'
-                                        }`}
-                                    customStyle={{
-                                        margin: 0,
-                                        padding: '1.5rem',
-                                        backgroundColor: isDark ? '#F4F2F0' : '#F4F2F0',
-                                        borderRadius: '8px',
-                                        fontSize: '14px',
-                                        lineHeight: '1.6'
-                                    }}
-                                    {...props}
-                                >
-                                    {String(children).replace(/\n$/, '')}
-                                </SyntaxHighlighter>
-                                {language && (
-                                    <div className={`absolute top-0 right-0 px-3 py-1 text-xs font-mono rounded-bl-md rounded-tr-lg border-l border-b ${isDark
-                                        ? 'text-gray-400 bg-gray-800 border-gray-600'
-                                        : 'text-gray-600 bg-gray-200 border-gray-300'
-                                        }`}>
-                                        {language}
-                                    </div>
-                                )}
-                            </div>
+                            <CodeBlock language={language} code={String(children).replace(/\n$/, '')} isDark={isDark} />
                         ) : (
                             <code className="bg-gray-100 dark:bg-gray-800 text-red-600 dark:text-red-400 rounded px-1.5 py-0.5 text-sm font-mono border" {...props}>
                                 {children}
