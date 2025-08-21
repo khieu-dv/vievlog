@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { ChevronDown, ChevronRight, Search, X, Home, BookOpen, Menu, ArrowLeft, ArrowRight, MessageCircle, Code, FileText, PanelLeftClose, PanelLeftOpen } from 'lucide-react';
+import Link from 'next/link';
 import Image from 'next/image';
 import { useTranslation } from 'react-i18next';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -831,19 +832,55 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
           {/* Content Header with Breadcrumbs - Apple style */}
           <div className="px-4 sm:px-8 py-6">
             <div className="flex items-center gap-3 text-base text-gray-500 dark:text-gray-400 mb-2">
-              <Home className="h-5 w-5" />
+              <button
+                onClick={() => {
+                  setActiveSection('overview');
+                  const params = new URLSearchParams(searchParams.toString());
+                  params.delete('category');
+                  params.delete('post');
+                  router.replace(`/posts?${params.toString()}`, { scroll: false });
+                }}
+                className="hover:text-primary transition-colors cursor-pointer"
+                aria-label="Go to posts overview"
+              >
+                <Home className="h-5 w-5" />
+              </button>
               <ChevronRight className="h-4 w-4" />
-              <span className="text-gray-900 dark:text-white font-medium">
-                {activeSection.startsWith('post-')
-                  ? (() => {
-                    const postId = activeSection.replace('post-', '');
-                    const allPosts = Object.values(categoryPosts).flat();
-                    const post = allPosts.find(p => p.id === postId);
-                    return post?.category?.name || 'Post';
-                  })()
-                  : activeSection === 'overview' ? 'Overview' : docsData.find(s => s.id === activeSection)?.title || 'Posts'
-                }
-              </span>
+              {activeSection.startsWith('post-') ? (
+                (() => {
+                  const postId = activeSection.replace('post-', '');
+                  const allPosts = Object.values(categoryPosts).flat();
+                  const post = allPosts.find(p => p.id === postId);
+                  
+                  return (
+                    <button
+                      onClick={() => {
+                        if (post?.categoryId) {
+                          setActiveSection(post.categoryId);
+                          setExpandedSections(prev => {
+                            const newSet = new Set([post.categoryId!]);
+                            if (prev.has('mobile-nav')) {
+                              newSet.add('mobile-nav');
+                            }
+                            return newSet;
+                          });
+                          const params = new URLSearchParams(searchParams.toString());
+                          params.set('category', post.categoryId);
+                          params.delete('post');
+                          router.replace(`/posts?${params.toString()}`, { scroll: false });
+                        }
+                      }}
+                      className="text-gray-900 dark:text-white font-medium hover:text-primary transition-colors cursor-pointer"
+                    >
+                      {post?.category?.name || 'Post'}
+                    </button>
+                  );
+                })()
+              ) : (
+                <span className="text-gray-900 dark:text-white font-medium">
+                  {activeSection === 'overview' ? 'Overview' : docsData.find(s => s.id === activeSection)?.title || 'Posts'}
+                </span>
+              )}
               {activeSection.startsWith('post-') && (
                 <>
                   <ChevronRight className="h-4 w-4" />
