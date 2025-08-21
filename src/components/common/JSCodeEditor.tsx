@@ -60,47 +60,28 @@ export default function JSCodeEditor({ initialCode, className, onChange, theme =
         }
 
         setIsRunning(true);
-        setOutput("Resolving imports and running code...");
+        setOutput("Running code...");
 
         try {
-            // Step 1: Resolve imports first
-            let codeToRun = code.trim();
-            if (codeToRun.includes("import")) {
-                const resolveRes = await fetch("/api/resolve-imports", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ code: codeToRun }),
-                });
-
-                if (!resolveRes.ok) {
-                    throw new Error(`Failed to resolve imports: ${resolveRes.statusText}`);
-                }
-
-                const resolveData = await resolveRes.json();
-                codeToRun = resolveData.processedCode;
-                // Update the editor to show the processed code
-                // setCode(codeToRun); // DISABLED FOR BETTER UX
-            }
-
-            // Step 2: Run the processed code
-            setOutput("Running code...");
+            // Debug log
+            console.log("Sending code to API:", code.trim());
             const controller = new AbortController();
             const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
 
-            const runRes = await fetch("/api/run-code", {
+            const res = await fetch("/api/run-code", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ code: codeToRun }),
+                body: JSON.stringify({ code: code.trim() }),
                 signal: controller.signal,
             });
 
             clearTimeout(timeoutId);
 
-            if (!runRes.ok) {
-                throw new Error(`HTTP ${runRes.status}: ${runRes.statusText}`);
+            if (!res.ok) {
+                throw new Error(`HTTP ${res.status}: ${res.statusText}`);
             }
 
-            const data: ApiResponse = await runRes.json();
+            const data: ApiResponse = await res.json();
 
             if (data.error) {
                 setOutput(`Runtime Error: ${data.error}`);
@@ -127,7 +108,7 @@ export default function JSCodeEditor({ initialCode, className, onChange, theme =
             if ((err as Error).name === 'AbortError') {
                 setOutput("Error: Code execution timed out (10 seconds)");
             } else {
-                setOutput(`Error: ${(err as Error).message}`);
+                setOutput(`Network Error: ${(err as Error).message}`);
             }
         } finally {
             setIsRunning(false);
@@ -145,16 +126,13 @@ export default function JSCodeEditor({ initialCode, className, onChange, theme =
         }
     };
 
-    
-
-
     // Update code when initialCode changes
     useEffect(() => {
         if (initialCode !== undefined && initialCode !== code) {
             setCode(initialCode);
             onChange?.(initialCode);
         }
-    }, [initialCode]); // Removed onChange from dependency array to avoid loops
+    }, [initialCode, onChange]);
 
     return (
         <div className={`${isFloating ? 'p-2' : 'p-4 md:p-6'} flex flex-col ${className?.includes('h-') ? '' : 'h-screen'} ${className || ''}`}>
