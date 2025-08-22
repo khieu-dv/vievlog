@@ -18,6 +18,8 @@ export function SaySomethingForm() {
   const [content, setContent] = useState("");
   const [comments, setComments] = useState<Comment[]>([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [countdown, setCountdown] = useState(0);
 
   const fetchComments = async () => {
     try {
@@ -38,10 +40,29 @@ export function SaySomethingForm() {
 
   useEffect(() => {
     fetchComments();
-  }, []);
+
+    let interval: NodeJS.Timeout;
+    if (isSubmitting) {
+      interval = setInterval(() => {
+        setCountdown((prevCountdown) => {
+          if (prevCountdown > 1) {
+            return prevCountdown - 1;
+          } else {
+            clearInterval(interval);
+            setIsSubmitting(false);
+            return 0;
+          }
+        });
+      }, 1000);
+    }
+
+    return () => clearInterval(interval);
+  }, [isSubmitting]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setIsSubmitting(true);
+    setCountdown(10);
     const formData = new FormData(event.currentTarget);
     await addComment(formData);
     setUsername("");
@@ -118,18 +139,21 @@ export function SaySomethingForm() {
         <div className="text-center">
           <Button
             type="submit"
+            disabled={isSubmitting}
             className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-2 rounded-full text-base w-full"
           >
-            Submit
+            {isSubmitting ? `Submitting... (${countdown}s)` : "Submit"}
           </Button>
         </div>
       </form>
-      {isSubmitted && (
-        <div className="mt-4 flex items-center justify-center text-green-600 dark:text-green-400">
-          <CheckCircle className="h-5 w-5 mr-2" />
-          <p className="text-sm font-medium">Comment submitted!</p>
-        </div>
-      )}
+      <div className="h-8"> 
+        {isSubmitted && (
+          <div className="mt-4 flex items-center justify-center text-green-600 dark:text-green-400">
+            <CheckCircle className="h-5 w-5 mr-2" />
+            <p className="text-sm font-medium">Comment submitted!</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
