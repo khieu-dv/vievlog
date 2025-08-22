@@ -91,7 +91,7 @@ export default function PostDetailPage() {
 
         // Fetch post data with expanded relations
         const postRes = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_URL}/collections/posts_tbl/records/${params.id}?expand=author,categoryId`
+          `${process.env.NEXT_PUBLIC_API_URL}/api/collections/posts_tbl/records/${params.id}?expand=author,categoryId`
         );
 
         // Store original post data
@@ -103,7 +103,7 @@ export default function PostDetailPage() {
         setCurrentScore(postRes.data.likes || 0);
 
         // Fetch comments
-        const commentRes = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/collections/comments_tbl/records`, {
+        const commentRes = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/collections/comments_tbl/records`, {
           params: {
             filter: `postId="${params.id}"`,
             sort: 'created',
@@ -325,8 +325,8 @@ export default function PostDetailPage() {
                   <ChevronUp className="h-6 w-6" />
                 </button>
                 <span className={`text-sm font-bold px-1 min-w-[2rem] text-center ${currentScore > 0 ? 'text-orange-500' :
-                    currentScore < 0 ? 'text-blue-500' :
-                      'text-muted-foreground'
+                  currentScore < 0 ? 'text-blue-500' :
+                    'text-muted-foreground'
                   }`}>
                   {currentScore > 0 ? `+${currentScore}` : currentScore}
                 </span>
@@ -416,8 +416,8 @@ export default function PostDetailPage() {
                     <span className="text-sm font-medium">Upvote</span>
                   </button>
                   <span className={`text-lg font-bold px-3 ${currentScore > 0 ? 'text-orange-500' :
-                      currentScore < 0 ? 'text-blue-500' :
-                        'text-muted-foreground'
+                    currentScore < 0 ? 'text-blue-500' :
+                      'text-muted-foreground'
                     }`}>
                     {currentScore > 0 ? `+${currentScore}` : currentScore}
                   </span>

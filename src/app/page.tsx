@@ -12,6 +12,7 @@ import { VieShareBanner } from "~/components/common/VieShareBanner";
 import { Button } from "~/components/ui/Button";
 import { Category } from '~/lib/types';
 import { useLocalizedContent } from "~/lib/multilingual";
+import { SaySomethingForm } from "~/components/features/home/SaySomethingForm";
 
 
 export default function HomePage() {
@@ -37,7 +38,7 @@ export default function HomePage() {
     try {
       setIsLoadingCategories(true);
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/collections/categories_tbl/records`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/collections/categories_tbl/records`,
         {
           params: {
             page: 1,
@@ -63,7 +64,7 @@ export default function HomePage() {
         categoriesData.map(async (category: Category) => {
           try {
             const countResponse = await axios.get(
-              `${process.env.NEXT_PUBLIC_API_URL}/collections/posts_tbl/records`,
+              `${process.env.NEXT_PUBLIC_API_URL}/api/collections/posts_tbl/records`,
               {
                 params: {
                   page: 1,
@@ -106,14 +107,14 @@ export default function HomePage() {
     if (navigator.vibrate) {
       navigator.vibrate(10);
     }
-    
+
     // Add ripple effect
     const rect = e.currentTarget.getBoundingClientRect();
     const ripple = document.createElement('div');
     const size = Math.max(rect.width, rect.height);
     const x = e.touches[0].clientX - rect.left - size / 2;
     const y = e.touches[0].clientY - rect.top - size / 2;
-    
+
     ripple.style.cssText = `
       position: absolute;
       width: ${size}px;
@@ -127,9 +128,9 @@ export default function HomePage() {
       pointer-events: none;
       z-index: 1;
     `;
-    
+
     e.currentTarget.appendChild(ripple);
-    
+
     setTimeout(() => {
       if (ripple.parentNode) {
         ripple.parentNode.removeChild(ripple);
@@ -151,25 +152,30 @@ export default function HomePage() {
       {/* Hero Section - Apple Style */}
       <div className="relative overflow-hidden bg-white dark:bg-black">
         <div className="max-w-6xl mx-auto">
-          <div className="pt-24 pb-20 text-center lg:pt-40 lg:pb-32">
-            <h1 className="mx-auto max-w-4xl font-semibold tracking-tight text-gray-900 dark:text-white text-5xl sm:text-7xl lg:text-8xl leading-none">
-              VieVlog.
-            </h1>
-            <p className="mx-auto mt-8 max-w-3xl text-2xl font-light text-gray-600 dark:text-gray-300 leading-relaxed">
-              The future of programming education.<br />
-              Beautiful. Powerful. Easy to learn.
-            </p>
-            <div className="mt-12 flex justify-center gap-x-4">
-              <Link href="/posts">
-                <Button className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-8 py-3 rounded-full text-lg">
-                  Start Learning
-                </Button>
-              </Link>
-              <Link href="/videos">
-                <Button variant="outline" className="border-gray-300 dark:border-gray-600 text-blue-600 dark:text-blue-400 font-medium px-8 py-3 rounded-full text-lg hover:bg-gray-50 dark:hover:bg-gray-900">
-                  Watch Videos
-                </Button>
-              </Link>
+          <div className="flex flex-col lg:flex-row justify-center lg:justify-center items-center pt-24 pb-20 lg:pt-40 lg:pb-32 lg:gap-x-32">
+            <div className="text-center lg:text-left">
+              <h1 className="mx-auto max-w-4xl font-semibold tracking-tight text-gray-900 dark:text-white text-5xl sm:text-7xl lg:text-8xl leading-none">
+                VieVlog.
+              </h1>
+              <p className="mx-auto mt-8 max-w-3xl text-2xl font-light text-gray-600 dark:text-gray-300 leading-relaxed">
+                The future of programming education.<br />
+                Beautiful. Powerful. Easy to learn.
+              </p>
+              <div className="mt-12 flex justify-center lg:justify-start gap-x-4">
+                <Link href="/posts">
+                  <Button className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-8 py-3 rounded-full text-lg">
+                    Start Learning
+                  </Button>
+                </Link>
+                <Link href="/videos">
+                  <Button variant="outline" className="border-gray-300 dark:border-gray-600 text-blue-600 dark:text-blue-400 font-medium px-8 py-3 rounded-full text-lg hover:bg-gray-50 dark:hover:bg-gray-900">
+                    Watch Videos
+                  </Button>
+                </Link>
+              </div>
+            </div>
+            <div className="hidden lg:block mt-12 lg:mt-0">
+              <SaySomethingForm />
             </div>
           </div>
         </div>
