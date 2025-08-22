@@ -26,7 +26,7 @@ export class ApiService {
   static async getCategoryWithPostCount(categoryId: string): Promise<number> {
     try {
       const response = await axios.get(
-        `${API_BASE_URL}/collections/posts_tbl/records`,
+        `${API_BASE_URL}/api/collections/posts_tbl/records`,
         {
           params: {
             page: 1,
@@ -45,7 +45,7 @@ export class ApiService {
   static async getAllPosts(page = 1, perPage = 500): Promise<any[]> {
     try {
       const response = await axios.get(
-        `${API_BASE_URL}/collections/posts_tbl/records`,
+        `${API_BASE_URL}/api/collections/posts_tbl/records`,
         {
           params: {
             page,
@@ -81,7 +81,7 @@ export class ApiService {
       }
 
       const response = await axios.get(
-        `${API_BASE_URL}/collections/posts_tbl/records`,
+        `${API_BASE_URL}/api/collections/posts_tbl/records`,
         {
           params,
           timeout: 15000
@@ -97,7 +97,7 @@ export class ApiService {
   static async getPost(postId: string): Promise<any | null> {
     try {
       const response = await axios.get(
-        `${API_BASE_URL}/collections/posts_tbl/records/${postId}?expand=author,categoryId`
+        `${API_BASE_URL}/api/collections/posts_tbl/records/${postId}?expand=author,categoryId`
       );
       return response.data;
     } catch (error) {
@@ -109,7 +109,7 @@ export class ApiService {
   static async getComments(postId: string, page = 1, perPage = 20): Promise<any[]> {
     try {
       const response = await axios.get(
-        `${API_BASE_URL}/collections/comments_tbl/records`,
+        `${API_BASE_URL}/api/collections/comments_tbl/records`,
         {
           params: {
             page,
