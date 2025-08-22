@@ -544,13 +544,8 @@ fn main() {
                   // If no current code, use default
                   codeToUse = language.defaultCode;
                 } else {
-                  // Ask user what to do with current code
-                  const shouldLoadDefault = confirm(
-                    \`Switch to \${language.name}?\\n\\nClick OK to load default \${language.name} code.\\nClick Cancel to keep current code.\`
-                  );
-                  if (shouldLoadDefault) {
-                    codeToUse = language.defaultCode;
-                  }
+                  // Use default code for new language
+                  codeToUse = language.defaultCode;
                 }
 
                 selectedLanguageId = newLanguageId;
