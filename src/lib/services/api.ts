@@ -7,7 +7,7 @@ export class ApiService {
   static async getCategories(): Promise<Category[]> {
     try {
       const response = await axios.get(
-        `${API_BASE_URL}/collections/categories_tbl/records`,
+        `${API_BASE_URL}/api/collections/categories_tbl/records`,
         {
           params: {
             page: 1,
