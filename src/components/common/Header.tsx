@@ -22,9 +22,10 @@ import { languages } from "./locales";
 
 type HeaderProps = {
   showAuth?: boolean;
+  className?: string;
 };
 
-export function Header({ showAuth = true }: HeaderProps) {
+export function Header({ showAuth = true, className }: HeaderProps) {
   const pathname = usePathname();
   const { data: session } = useSession();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -50,7 +51,7 @@ export function Header({ showAuth = true }: HeaderProps) {
   ];
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-slate-200 dark:border-border bg-white/95 dark:bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-white/95 dark:supports-[backdrop-filter]:bg-background/95">
+        <header className={cn("sticky top-0 z-40 w-full border-b border-slate-200 dark:border-border bg-white/95 dark:bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-white/95 dark:supports-[backdrop-filter]:bg-background/95", className)}>
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex h-14 items-center justify-between">
           <div className="flex items-center gap-6">
