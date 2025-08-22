@@ -31,7 +31,7 @@ export class ApiService {
           params: {
             page: 1,
             perPage: 1,
-            filter: `categoryId="${categoryId}"`
+            filter: `categoryId="${categoryId}" && status!=0`
           }
         }
       );
@@ -51,7 +51,8 @@ export class ApiService {
             page,
             perPage,
             sort: '-created',
-            expand: 'categoryId'
+            expand: 'categoryId',
+            filter: 'status!=0'
           },
           timeout: 15000
         }
@@ -70,11 +71,13 @@ export class ApiService {
         perPage,
         sort: '-created',
         expand: 'categoryId',
-        fields: 'id,title,excerpt,coverImage,publishedAt,created,categoryId,author,likes,commentCount,tags,expand'
+        fields: 'id,title,excerpt,coverImage,publishedAt,created,categoryId,author,likes,commentCount,tags,expand,status'
       };
 
       if (categoryId) {
-        params.filter = `categoryId="${categoryId}"`;
+        params.filter = `categoryId="${categoryId}" && status!=0`;
+      } else {
+        params.filter = 'status!=0';
       }
 
       const response = await axios.get(

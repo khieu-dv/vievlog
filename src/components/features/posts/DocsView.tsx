@@ -122,6 +122,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
             color: postData.expand.categoryId.color || '#3B82F6'
           } : undefined,
           created: postData.created,
+          status: postData.status,
           expand: postData.expand,
           originalData: postData
         };
@@ -873,7 +874,9 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                 (() => {
                   const postId = activeSection.replace('post-', '');
                   const allPosts = Object.values(categoryPosts).flat();
-                  const post = allPosts.find(p => p.id === postId);
+                  const summaryPost = allPosts.find(p => p.id === postId);
+                  const fullPost = loadedPosts[postId];
+                  const post = fullPost || summaryPost;
                   
                   return (
                     <button
@@ -911,7 +914,9 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                     {(() => {
                       const postId = activeSection.replace('post-', '');
                       const allPosts = Object.values(categoryPosts).flat();
-                      const post = allPosts.find(p => p.id === postId);
+                      const summaryPost = allPosts.find(p => p.id === postId);
+                      const fullPost = loadedPosts[postId];
+                      const post = fullPost || summaryPost;
                       return post?.title || 'Article';
                     })()}
                   </span>
@@ -941,7 +946,8 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                 const fullPost = loadedPosts[postId];
                 const isLoading = loadingPosts.has(postId);
 
-                if (!summaryPost) {
+                // If post not found in categoryPosts (e.g., status=0), but we have full post data
+                if (!summaryPost && !fullPost) {
                   return <div className="text-muted-foreground">Post not found.</div>;
                 }
 

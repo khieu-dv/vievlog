@@ -68,7 +68,7 @@ export default function HomePage() {
                 params: {
                   page: 1,
                   perPage: 1,
-                  filter: `categoryId="${category.id}"`
+                  filter: `categoryId="${category.id}" && status!=0`
                 }
               }
             );

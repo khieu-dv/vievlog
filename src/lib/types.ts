@@ -64,6 +64,7 @@ export type Post = {
   categoryId?: string;
   category?: Category;
   created?: string;
+  status?: number; // 0 = hidden, 1 = published
   expand?: {
       author?: {
         avatar: string;
