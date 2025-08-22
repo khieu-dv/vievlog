@@ -14,6 +14,7 @@ const FloatingCodeEditor: React.FC = () => {
   const [isPopout, setIsPopout] = useState(false);
   const [isNearEdge, setIsNearEdge] = useState(false);
   const [currentLanguageId, setCurrentLanguageId] = useState(63); // Default to JavaScript
+  const [windowWidth, setWindowWidth] = useState(() => typeof window !== 'undefined' ? window.innerWidth : 1024);
   const editorRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const popoutWindowRef = useRef<Window | null>(null);
@@ -63,6 +64,9 @@ console.log(greetUser("Developer"));
     setIsOpen(!isOpen);
     if (!isOpen) {
       setIsExpanded(false);
+      // Reset position state when opening
+      setIsInitialPositioned(false);
+      setPosition({ x: 0, y: 0 });
     } else {
       // Reset when closing
       setIsInitialPositioned(false);
@@ -102,6 +106,7 @@ console.log(greetUser("Developer"));`;
   // Handle drag start
   const handleMouseDown = (e: React.MouseEvent) => {
     if (isExpanded) return; // Don't allow dragging when expanded
+    if (windowWidth < 640) return; // Don't allow dragging on mobile
     
     // Don't drag if clicking on interactive elements
     const target = e.target as HTMLElement;
@@ -681,7 +686,7 @@ fn main() {
 
   // Handle drag move with performance optimization
   const handleMouseMove = useCallback((e: MouseEvent) => {
-    if (!isDragging || isExpanded) return;
+    if (!isDragging || isExpanded || windowWidth < 640) return;
 
     // Cancel previous frame if still pending
     if (rafRef.current) {
@@ -749,7 +754,7 @@ fn main() {
       setPosition({ x: newX, y: newY });
       rafRef.current = null;
     });
-  }, [isDragging, dragStart, isExpanded, isPopout, handlePopout, isNearEdge]);
+  }, [isDragging, dragStart, isExpanded, isPopout, handlePopout, isNearEdge, windowWidth]);
 
   // Handle drag end
   const handleMouseUp = useCallback(() => {
@@ -780,17 +785,11 @@ fn main() {
     }
   }, [isDragging, handleMouseMove, handleMouseUp]);
 
-  // Initialize position when popup first opens
+  // Initialize position when popup first opens (only when dragged on desktop)
   useEffect(() => {
-    if (isOpen && !isInitialPositioned && editorRef.current) {
-      const rect = editorRef.current.getBoundingClientRect();
-      const initialX = rect.left;
-      const initialY = rect.top;
-      
-      setPosition({ x: initialX, y: initialY });
-      setIsInitialPositioned(true);
-    }
-  }, [isOpen, isInitialPositioned]);
+    // Don't auto-position on desktop - let it stay at bottom-right
+    // Position will be set only when user drags the popup
+  }, [isOpen, isInitialPositioned, windowWidth]);
 
   // Reset position when expanded/minimized
   useEffect(() => {
@@ -820,6 +819,23 @@ fn main() {
       }, '*');
     }
   }, [currentLanguageId, isPopout]);
+
+  // Handle window resize
+  useEffect(() => {
+    const handleResize = () => {
+      const newWidth = window.innerWidth;
+      setWindowWidth(newWidth);
+      
+      // Reset position when switching between mobile and desktop
+      if ((windowWidth >= 640 && newWidth < 640) || (windowWidth < 640 && newWidth >= 640)) {
+        setIsInitialPositioned(false);
+        setPosition({ x: 0, y: 0 });
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [windowWidth]);
 
   // Cleanup popout window and RAF on unmount
   useEffect(() => {
@@ -864,7 +880,7 @@ fn main() {
             />
           )}
 
-          {/* Editor Panel - Positioned from bottom right */}
+          {/* Editor Panel - Centered on desktop, full width on mobile */}
           <div
             ref={editorRef}
             onMouseDown={handleMouseDown}
@@ -874,13 +890,15 @@ fn main() {
                        transform floating-editor-enter
                        ${isExpanded
                 ? 'inset-4 lg:inset-8'
-                : 'w-[calc(100vw-2rem)] sm:w-96 h-[520px] sm:h-[600px] lg:w-[600px] lg:h-[500px] xl:w-[720px] xl:h-[600px]'
+                : windowWidth < 640 
+                  ? 'w-auto h-[520px]'
+                  : 'w-96 h-[600px] lg:w-[600px] lg:h-[500px] xl:w-[720px] xl:h-[600px]'
               }
                        ${isDragging ? 'cursor-move shadow-2xl scale-[1.02]' : 
-                         (!isExpanded ? 'cursor-grab hover:shadow-2xl hover:scale-[1.01]' : 'scale-100 hover:shadow-3xl')}
+                         (!isExpanded ? 'sm:cursor-grab hover:shadow-2xl hover:scale-[1.01]' : 'scale-100 hover:shadow-3xl')}
                        ${isNearEdge ? 'shadow-2xl shadow-blue-500/30' : ''}
                        max-w-[calc(100vw-2rem)] max-h-[calc(100vh-2rem)]
-                       ${!isExpanded ? 'select-none' : ''}
+                       ${!isExpanded ? 'sm:select-none' : ''}
                        ${isDragging ? 'will-change-transform' : ''}`}
             style={{
               backdropFilter: 'blur(20px)',
@@ -889,17 +907,24 @@ fn main() {
                 : 'rgba(255, 255, 255, 0.95)',
               ...(isExpanded 
                 ? {} 
-                : isInitialPositioned
+                : windowWidth < 640
                   ? {
-                      left: position.x,
-                      top: position.y,
+                      left: '1rem',
+                      right: '1rem',
+                      bottom: '24px',
                       transform: 'none'
                     }
-                  : {
-                      left: '50%',
-                      bottom: '24px',
-                      transform: 'translateX(-50%)'
-                    }
+                  : isInitialPositioned
+                    ? {
+                        left: position.x,
+                        top: position.y,
+                        transform: 'none'
+                      }
+                    : {
+                        right: '24px',
+                        bottom: '80px',
+                        transform: 'none'
+                      }
               )
             }}
           >
@@ -919,7 +944,7 @@ fn main() {
                   </h3>
                 </div>
                 {!isExpanded && (
-                  <div title="Click and drag anywhere on popup to move - Drag to edge to pop-out" className="flex items-center gap-1">
+                  <div title="Click and drag anywhere on popup to move - Drag to edge to pop-out" className="hidden sm:flex items-center gap-1">
                     <Move 
                       className={`h-3 w-3 transition-colors ${isNearEdge ? 'text-blue-500' : 'text-gray-400 dark:text-gray-500'}`} 
                     />
@@ -942,11 +967,11 @@ fn main() {
                   <RotateCcw className="h-3 w-3 text-gray-600 dark:text-gray-400" />
                 </button>
 
-                {/* Pop-out Button */}
+                {/* Pop-out Button - Hidden on mobile */}
                 <button
                   onClick={handlePopout}
                   onTouchStart={handleTouch}
-                  className="p-1.5 hover:bg-blue-100 dark:hover:bg-blue-900/30 rounded-md 
+                  className="hidden sm:block p-1.5 hover:bg-blue-100 dark:hover:bg-blue-900/30 rounded-md 
                            transition-all duration-200 active:scale-95 touch-manipulation"
                   title={isPopout ? "Close Pop-out" : "Open in New Window"}
                 >
