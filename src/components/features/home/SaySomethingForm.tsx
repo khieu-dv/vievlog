@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Button } from "~/components/ui/Button";
 import { addComment } from "~/lib/actions";
 import axios from "axios";
+import { CheckCircle } from "lucide-react";
 
 interface Comment {
   id: string;
@@ -16,6 +17,7 @@ export function SaySomethingForm() {
   const [username, setUsername] = useState("");
   const [content, setContent] = useState("");
   const [comments, setComments] = useState<Comment[]>([]);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const fetchComments = async () => {
     try {
@@ -45,6 +47,10 @@ export function SaySomethingForm() {
     setUsername("");
     setContent("");
     fetchComments(); // Re-fetch comments after submission
+    setIsSubmitted(true);
+    setTimeout(() => {
+      setIsSubmitted(false);
+    }, 3000); // Hide message after 3 seconds
   };
 
   return (
@@ -118,6 +124,12 @@ export function SaySomethingForm() {
           </Button>
         </div>
       </form>
+      {isSubmitted && (
+        <div className="mt-4 flex items-center justify-center text-green-600 dark:text-green-400">
+          <CheckCircle className="h-5 w-5 mr-2" />
+          <p className="text-sm font-medium">Comment submitted!</p>
+        </div>
+      )}
     </div>
   );
 }
