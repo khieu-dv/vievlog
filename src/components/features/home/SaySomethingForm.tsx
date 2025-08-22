@@ -136,24 +136,24 @@ export function SaySomethingForm() {
             required
           ></textarea>
         </div>
-        <div className="text-center">
+        <div className="flex items-center justify-between">
           <Button
             type="submit"
             disabled={isSubmitting}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-2 rounded-full text-base w-full"
+            className="bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold py-2 px-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 ease-in-out transform hover:scale-105"
           >
             {isSubmitting ? `Submitting... (${countdown}s)` : "Submit"}
           </Button>
+          <div className="h-8">
+            {isSubmitted && (
+              <div className="flex items-center justify-center text-green-600 dark:text-green-400">
+                <CheckCircle className="h-5 w-5 mr-2" />
+                <p className="text-sm font-medium">Comment submitted!</p>
+              </div>
+            )}
+          </div>
         </div>
       </form>
-      <div className="h-8"> 
-        {isSubmitted && (
-          <div className="mt-4 flex items-center justify-center text-green-600 dark:text-green-400">
-            <CheckCircle className="h-5 w-5 mr-2" />
-            <p className="text-sm font-medium">Comment submitted!</p>
-          </div>
-        )}
-      </div>
     </div>
   );
 }
