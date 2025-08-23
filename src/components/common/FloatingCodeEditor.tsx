@@ -246,8 +246,8 @@ console.log(greetUser("Developer"));`;
               font-size: 11px;
               border: 1px solid #6b7280;
               border-radius: 3px;
-              background: #4b5563;
-              color: white;
+              background: #374151;
+              color: #e5e7eb;
               cursor: pointer;
             }
             .control-select:focus, .control-button:focus {
@@ -256,7 +256,7 @@ console.log(greetUser("Developer"));`;
               box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
             }
             .control-button:hover {
-              background: #6b7280;
+              background: #4b5563;
             }
             .control-button.run {
               background: #2563eb;
@@ -286,12 +286,12 @@ console.log(greetUser("Developer"));`;
               flex: 2;
               display: flex;
               flex-direction: column;
-              background: #f9fafb;
+              background: #1f2937;
             }
             .output-header {
               padding: 4px 12px;
-              background: #f3f4f6;
-              border-bottom: 1px solid #e5e7eb;
+              background: #374151;
+              border-bottom: 1px solid #4b5563;
               min-height: 32px;
               display: flex;
               align-items: center;
@@ -299,13 +299,13 @@ console.log(greetUser("Developer"));`;
             .output-title {
               font-weight: 600;
               font-size: 12px;
-              color: #374151;
+              color: #e5e7eb;
             }
             .output-content {
               flex: 1;
               padding: 16px;
-              background: #f9fafb;
-              color: #1f2937;
+              background: #1f2937;
+              color: #e5e7eb;
               font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
               font-size: 12px;
               overflow: auto;

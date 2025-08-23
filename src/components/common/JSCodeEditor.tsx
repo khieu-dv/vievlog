@@ -433,18 +433,30 @@ export default function JSCodeEditor({ initialCode, className, onChange, onLangu
                 <div className={`w-full ${isFloating ? 'min-h-0' : 'lg:w-3/5'} flex flex-col ${isFloating ? 'flex-[3]' : 'h-[40vh] lg:h-full'}`}>
                     <div className={`flex-shrink-0 ${isFloating ? 'mb-1' : 'mb-2'} flex items-center justify-between ${isFloating ? 'h-6' : 'h-10'}`}>
                         <div className="flex-1">
-                            <h2 className={`font-semibold text-gray-700 ${isFloating ? 'text-sm' : 'text-lg'}`}>
+                            <h2 className={`font-semibold ${
+                                theme === 'vs-dark' 
+                                    ? 'text-gray-200' 
+                                    : 'text-gray-700'
+                            } ${isFloating ? 'text-sm' : 'text-lg'}`}>
                                 {isFloating ? 'Code' : 'Code Editor'}
                             </h2>
                             {!isFloating && (
-                                <p className="text-xs text-gray-500 mt-0.5">Ctrl+Enter to run • Ctrl+S to format</p>
+                                <p className={`text-xs ${
+                                    theme === 'vs-dark' 
+                                        ? 'text-gray-400' 
+                                        : 'text-gray-500'
+                                } mt-0.5`}>Ctrl+Enter to run • Ctrl+S to format</p>
                             )}
                         </div>
                         <div className={`flex items-center ${isFloating ? 'space-x-1' : 'space-x-2'}`}>
                             <select
                                 value={selectedLanguage.id}
                                 onChange={(e) => handleLanguageChange(Number(e.target.value))}
-                                className={`${isFloating ? 'px-1 py-0.5 text-xs' : 'px-2 py-1 text-sm'} bg-gray-100 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                                className={`${isFloating ? 'px-1 py-0.5 text-xs' : 'px-2 py-1 text-sm'} ${
+                                    theme === 'vs-dark' 
+                                        ? 'bg-gray-700 border-gray-600 text-gray-100' 
+                                        : 'bg-gray-100 border-gray-300 text-gray-900'
+                                } border rounded focus:outline-none focus:ring-2 focus:ring-blue-500`}
                             >
                                 {SUPPORTED_LANGUAGES.map((lang) => (
                                     <option key={lang.id} value={lang.id}>
@@ -457,12 +469,20 @@ export default function JSCodeEditor({ initialCode, className, onChange, onLangu
                                 language={getAnalyzerLanguage(selectedLanguage.monacoLanguage)}
                                 onRun={runCodeWithInput}
                                 isRunning={isRunning}
-                                className={`${isFloating ? 'px-2 py-1 text-xs' : 'px-2 py-1 text-xs'} bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400`}
+                                className={`${isFloating ? 'px-2 py-1 text-xs' : 'px-2 py-1 text-xs'} ${
+                                    theme === 'vs-dark' 
+                                        ? 'bg-blue-600 hover:bg-blue-500 disabled:bg-blue-700' 
+                                        : 'bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400'
+                                } transition-colors`}
                                 buttonText={isRunning ? 'Running...' : 'Run'}
                             />
                             <button
                                 onClick={formatCodeManual}
-                                className={`${isFloating ? 'px-2 py-1 text-xs' : 'px-2 py-1 text-xs'} bg-gray-600 text-white rounded hover:bg-gray-700`}
+                                className={`${isFloating ? 'px-2 py-1 text-xs' : 'px-2 py-1 text-xs'} ${
+                                    theme === 'vs-dark' 
+                                        ? 'bg-gray-600 hover:bg-gray-500 text-gray-100' 
+                                        : 'bg-gray-600 hover:bg-gray-700 text-white'
+                                } rounded transition-colors`}
                             >
                                 Format
                             </button>
@@ -557,14 +577,26 @@ export default function JSCodeEditor({ initialCode, className, onChange, onLangu
                 {/* Output Column */}
                 <div className={`w-full ${isFloating ? 'min-h-0' : 'lg:w-2/5'} flex flex-col ${isFloating ? 'flex-[2]' : 'lg:h-full'}`}>
                     <div className={`flex-shrink-0 ${isFloating ? 'mb-1' : 'mb-2'} flex items-center ${isFloating ? 'h-6' : 'h-10'}`}>
-                        <h2 className={`font-semibold text-gray-700 ${isFloating ? 'text-sm' : 'text-lg'}`}>Output</h2>
-                        <div className={`ml-auto text-xs text-gray-500 ${isFloating ? 'hidden' : ''}`}>
+                        <h2 className={`font-semibold ${
+                            theme === 'vs-dark' 
+                                ? 'text-gray-200' 
+                                : 'text-gray-700'
+                        } ${isFloating ? 'text-sm' : 'text-lg'}`}>Output</h2>
+                        <div className={`ml-auto text-xs ${
+                            theme === 'vs-dark' 
+                                ? 'text-gray-400' 
+                                : 'text-gray-500'
+                        } ${isFloating ? 'hidden' : ''}`}>
                             Smart input detection enabled
                         </div>
                     </div>
 
                     <pre
-                        className={`flex-grow p-2 rounded bg-gray-100 overflow-auto whitespace-pre-wrap min-h-0 ${isFloating ? 'text-xs' : ''}`}
+                        className={`flex-grow p-2 rounded overflow-auto whitespace-pre-wrap min-h-0 ${
+                            theme === 'vs-dark' 
+                                ? 'bg-gray-800 text-gray-100' 
+                                : 'bg-gray-100 text-gray-900'
+                        } ${isFloating ? 'text-xs' : ''}`}
                         dangerouslySetInnerHTML={{
                             __html: Prism.highlight(output, Prism.languages.javascript, "javascript"),
                         }}
