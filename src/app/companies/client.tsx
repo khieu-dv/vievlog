@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
 import { Search, Filter, Star, Users, MapPin, Building2, MessageSquare } from 'lucide-react';
 import { companyAPI, industryAPI, type Company } from '../../lib/pocketbase';
+import { renderStars } from '../../utils/starUtils';
 
 interface Industry {
   id: string;
@@ -121,17 +122,6 @@ export default function CompaniesClient() {
     setCurrentPage(1);
   };
 
-  const renderStars = (rating: number) => {
-    return Array.from({ length: 5 }).map((_, i) => (
-      <Star
-        key={i}
-        className={`h-4 w-4 ${i < Math.floor(rating)
-            ? 'text-yellow-400 fill-current'
-            : 'text-gray-300'
-          }`}
-      />
-    ));
-  };
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
@@ -301,7 +291,7 @@ export default function CompaniesClient() {
                           <span className="text-lg font-bold text-gray-900 dark:text-white">
                             {company.averageRating?.toFixed(1)}
                           </span>
-                          <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                          {renderStars(company.averageRating || 0, 'sm')}
                         </div>
                         <div className="text-xs text-gray-500 dark:text-gray-400">
                           {company.totalReviews ?? 0} đánh giá
@@ -396,7 +386,7 @@ export default function CompaniesClient() {
                           {company.averageRating?.toFixed(1)}
                         </span>
                         <div className="flex items-center">
-                          {renderStars(company.averageRating || 0)}
+                          {renderStars(company.averageRating || 0, 'sm')}
                         </div>
                       </div>
                       <div className="text-xs text-gray-500 dark:text-gray-400 text-right">

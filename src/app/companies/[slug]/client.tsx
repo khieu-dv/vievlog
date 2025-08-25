@@ -520,20 +520,8 @@ export default function CompanyDetailClient({ slug }: Props) {
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Đánh giá tổng quan
                   </label>
-                  <div className="flex items-center gap-1 justify-center sm:justify-start">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <button
-                        key={star}
-                        onClick={() => updateReviewForm('overallRating', star)}
-                        className={`p-1 transition-colors ${
-                          star <= reviewForm.overallRating
-                            ? 'text-yellow-400'
-                            : 'text-gray-300 hover:text-yellow-300'
-                        }`}
-                      >
-                        <Star className="h-6 w-6 fill-current" />
-                      </button>
-                    ))}
+                  <div className="flex items-center gap-2 justify-center sm:justify-start">
+                    {renderRatingSelector(reviewForm.overallRating, (rating) => updateReviewForm('overallRating', rating), 'md')}
                     <span className="ml-2 text-sm text-gray-600 dark:text-gray-400">
                       ({reviewForm.overallRating}/5)
                     </span>

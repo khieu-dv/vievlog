@@ -63,9 +63,20 @@ export const renderStars = (rating: number, size: 'sm' | 'md' | 'lg' = 'sm'): Re
  * Renders interactive star rating selector
  * @param rating - Current rating value
  * @param onChange - Callback when rating changes
+ * @param size - Size variant for stars
  * @returns JSX elements for interactive stars
  */
-export const renderRatingSelector = (rating: number, onChange: (rating: number) => void): React.JSX.Element => {
+export const renderRatingSelector = (
+  rating: number, 
+  onChange: (rating: number) => void, 
+  size: 'sm' | 'md' | 'lg' = 'lg'
+): React.JSX.Element => {
+  const sizeClass = {
+    sm: 'h-5 w-5',
+    md: 'h-6 w-6',
+    lg: 'h-8 w-8'
+  };
+
   return (
     <div className="flex items-center gap-1">
       {[1, 2, 3, 4, 5].map((star) => (
@@ -79,7 +90,7 @@ export const renderRatingSelector = (rating: number, onChange: (rating: number) 
               : 'text-gray-300 hover:text-yellow-300'
           }`}
         >
-          <Star className="h-8 w-8 fill-current" />
+          <Star className={`${sizeClass[size]} fill-current`} />
         </button>
       ))}
     </div>
