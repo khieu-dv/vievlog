@@ -42,10 +42,9 @@ export default function CompanyDetailClient({ slug }: Props) {
   const [addCommentForms, setAddCommentForms] = useState<Set<string>>(new Set());
   const [addCommentContents, setAddCommentContents] = useState<Record<string, string>>({});
   const [addCommentAuthors, setAddCommentAuthors] = useState<Record<string, string>>({});
-  const [showReviewModal, setShowReviewModal] = useState(false);
+  const [showReviewForm, setShowReviewForm] = useState(false);
   const [reviewForm, setReviewForm] = useState({
     overallRating: 0,
-    reviewTitle: '',
     generalContent: '',
     authorName: 'Ẩn danh',
     isAnonymous: false
@@ -199,21 +198,6 @@ export default function CompanyDetailClient({ slug }: Props) {
     }
   };
 
-  const openReviewModal = () => {
-    setShowReviewModal(true);
-  };
-
-  const closeReviewModal = () => {
-    setShowReviewModal(false);
-    // Reset form
-    setReviewForm({
-      overallRating: 0,
-      reviewTitle: '',
-      generalContent: '',
-      authorName: 'Ẩn danh',
-      isAnonymous: false
-    });
-  };
 
   const updateReviewForm = (field: string, value: any) => {
     setReviewForm(prev => ({
@@ -276,13 +260,18 @@ export default function CompanyDetailClient({ slug }: Props) {
         company: company.id,
         author: reviewForm.authorName,
         overallRating: reviewForm.overallRating,
-        reviewTitle: reviewForm.reviewTitle,
         generalContent: reviewForm.generalContent.replace(/\n/g, '\n'),
         isAnonymous: reviewForm.isAnonymous
       });
 
-      // Success - close modal and reload reviews
-      closeReviewModal();
+      // Success - hide form, reset form and reload reviews
+      setShowReviewForm(false);
+      setReviewForm({
+        overallRating: 0,
+        generalContent: '',
+        authorName: 'Ẩn danh',
+        isAnonymous: false
+      });
       await loadReviews();
 
     } catch (error) {
@@ -453,14 +442,8 @@ export default function CompanyDetailClient({ slug }: Props) {
               )}
             </div>
 
-            {/* Actions */}
+            {/* Actions - Removed Write Review Button */}
             <div className="flex flex-col gap-3">
-              <button
-                onClick={openReviewModal}
-                className="px-6 py-3 bg-green-600 text-white text-sm font-semibold rounded-xl hover:bg-green-700 transition-colors shadow-md hover:shadow-lg"
-              >
-                Viết đánh giá
-              </button>
             </div>
           </div>
 
@@ -484,6 +467,132 @@ export default function CompanyDetailClient({ slug }: Props) {
           </div>
         </div>
       </div>
+
+      {/* Review Form Toggle Button */}
+      <div className="mb-6">
+        <button
+          onClick={() => setShowReviewForm(!showReviewForm)}
+          className="flex items-center gap-2 text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 text-sm font-medium transition-colors"
+        >
+          <MessageSquare className="h-4 w-4" />
+          <span>{showReviewForm ? 'Ẩn form đánh giá' : 'Viết đánh giá'}</span>
+        </button>
+      </div>
+
+      {/* Inline Review Form - Compact Design */}
+      {showReviewForm && (
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 mb-6">
+          <div className="p-6">
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+              <MessageSquare className="h-5 w-5 text-green-600" />
+              Viết đánh giá cho {company?.name}
+            </h2>
+            
+            <div className="space-y-4">
+              {/* Rating and Author in one row */}
+              <div className="flex flex-col sm:flex-row gap-4">
+                {/* Rating */}
+                <div className="flex-1">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Đánh giá tổng quan
+                  </label>
+                  <div className="flex items-center gap-1">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <button
+                        key={star}
+                        onClick={() => updateReviewForm('overallRating', star)}
+                        className={`p-1 transition-colors ${
+                          star <= reviewForm.overallRating
+                            ? 'text-yellow-400'
+                            : 'text-gray-300 hover:text-yellow-300'
+                        }`}
+                      >
+                        <Star className="h-6 w-6 fill-current" />
+                      </button>
+                    ))}
+                    <span className="ml-2 text-sm text-gray-600 dark:text-gray-400">
+                      ({reviewForm.overallRating}/5)
+                    </span>
+                  </div>
+                </div>
+
+                {/* Author Name */}
+                <div className="flex-1">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Tên hiển thị
+                  </label>
+                  <input
+                    type="text"
+                    value={reviewForm.authorName}
+                    onChange={(e) => updateReviewForm('authorName', e.target.value)}
+                    className="w-full px-3 py-2 text-sm bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:text-white transition-colors"
+                    placeholder="Tên của bạn"
+                  />
+                </div>
+              </div>
+
+              {/* Content */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  Nội dung đánh giá
+                </label>
+                <textarea
+                  value={reviewForm.generalContent}
+                  onChange={(e) => updateReviewForm('generalContent', e.target.value)}
+                  rows={4}
+                  className="w-full px-3 py-2 text-sm bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:text-white resize-none transition-colors"
+                  placeholder="Chia sẻ trải nghiệm của bạn về công ty này..."
+                />
+              </div>
+
+              {/* Anonymous option and Submit button */}
+              <div className="flex items-center justify-between pt-2">
+                <label className="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                  <input
+                    type="checkbox"
+                    checked={reviewForm.isAnonymous}
+                    onChange={(e) => updateReviewForm('isAnonymous', e.target.checked)}
+                    className="mr-2 rounded border-gray-300 dark:border-gray-600 text-green-600 focus:ring-green-500"
+                  />
+                  Đánh giá ẩn danh
+                </label>
+
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={() => {
+                      setShowReviewForm(false);
+                      setReviewForm({
+                        overallRating: 0,
+                        generalContent: '',
+                        authorName: 'Ẩn danh',
+                        isAnonymous: false
+                      });
+                    }}
+                    className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 transition-colors"
+                  >
+                    Hủy
+                  </button>
+                  
+                  <button
+                    onClick={submitReview}
+                    disabled={reviewForm.overallRating === 0 || !reviewForm.generalContent.trim() || submittingReview}
+                    className="px-6 py-2 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors shadow-sm hover:shadow-md flex items-center gap-2"
+                  >
+                    {submittingReview ? (
+                      <>
+                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                        Đang gửi...
+                      </>
+                    ) : (
+                      'Gửi đánh giá'
+                    )}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Detailed Ratings */}
       {company.expand?.company_stats && company.expand.company_stats.length > 0 && (
@@ -892,121 +1001,6 @@ export default function CompanyDetailClient({ slug }: Props) {
         </div>
       </div>
 
-      {/* Review Modal - Simplified */}
-      {showReviewModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-lg w-full">
-            {/* Modal Header */}
-            <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
-              <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
-                Đánh giá {company?.name}
-              </h2>
-              <button
-                onClick={closeReviewModal}
-                className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 p-1"
-              >
-                <X className="h-5 w-5" />
-              </button>
-            </div>
-
-            {/* Modal Content */}
-            <div className="p-6 space-y-5">
-              {/* Rating */}
-              <div className="text-center">
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
-                  Đánh giá tổng quan
-                </label>
-                <div className="flex items-center justify-center gap-1 mb-2">
-                  {renderRatingSelector(reviewForm.overallRating, (rating) => updateReviewForm('overallRating', rating))}
-                </div>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
-                  {reviewForm.overallRating === 0 ? 'Chọn số sao' : `${reviewForm.overallRating}/5 sao`}
-                </p>
-              </div>
-
-              {/* Author Name */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Tên hiển thị
-                </label>
-                <input
-                  type="text"
-                  value={reviewForm.authorName}
-                  onChange={(e) => updateReviewForm('authorName', e.target.value)}
-                  placeholder="Tên hiển thị của bạn"
-                  className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
-                />
-              </div>
-
-              {/* Title */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Tiêu đề (không bắt buộc)
-                </label>
-                <input
-                  type="text"
-                  value={reviewForm.reviewTitle}
-                  onChange={(e) => updateReviewForm('reviewTitle', e.target.value)}
-                  placeholder="Tóm tắt ngắn gọn về trải nghiệm của bạn"
-                  className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
-                />
-              </div>
-
-              {/* Content */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Nội dung đánh giá
-                </label>
-                <textarea
-                  value={reviewForm.generalContent}
-                  onChange={(e) => updateReviewForm('generalContent', e.target.value)}
-                  placeholder="Chia sẻ về trải nghiệm làm việc, môi trường, đồng nghiệp, cơ hội phát triển..."
-                  className="w-full px-3 py-3 text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white resize-none"
-                  rows={5}
-                />
-              </div>
-
-              {/* Anonymous Option */}
-              <div className="flex items-center justify-center pt-2">
-                <input
-                  type="checkbox"
-                  id="anonymous"
-                  checked={reviewForm.isAnonymous}
-                  onChange={(e) => updateReviewForm('isAnonymous', e.target.checked)}
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                />
-                <label htmlFor="anonymous" className="ml-2 text-sm text-gray-600 dark:text-gray-400">
-                  Đăng ẩn danh
-                </label>
-              </div>
-            </div>
-
-            {/* Modal Footer */}
-            <div className="flex items-center justify-end gap-3 p-6 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700/50">
-              <button
-                onClick={closeReviewModal}
-                className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
-              >
-                Hủy
-              </button>
-              <button
-                onClick={submitReview}
-                disabled={reviewForm.overallRating === 0 || submittingReview}
-                className="px-6 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors flex items-center gap-2"
-              >
-                {submittingReview ? (
-                  <>
-                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    Đang gửi...
-                  </>
-                ) : (
-                  'Đăng đánh giá'
-                )}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
