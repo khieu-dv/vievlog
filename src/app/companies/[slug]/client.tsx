@@ -52,7 +52,7 @@ export default function CompanyDetailClient({ slug }: Props) {
     overallRating: 0,
     reviewTitle: '',
     generalContent: '',
-    authorName: 'Ẩn Danh',
+    authorName: 'Ẩn danh',
     isAnonymous: false
   });
   const [submittingReview, setSubmittingReview] = useState(false);
@@ -123,7 +123,7 @@ export default function CompanyDetailClient({ slug }: Props) {
       // Set default author name when opening form
       setReplyAuthors(prev => ({
         ...prev,
-        [reviewId]: 'Ẩn Danh'
+        [reviewId]: 'Ẩn danh'
       }));
     }
     setReplyForms(newReplyForms);
@@ -150,21 +150,21 @@ export default function CompanyDetailClient({ slug }: Props) {
     setSubmittingReplies(prev => new Set([...prev, reviewId]));
 
     try {
-      // Create reply using actual API
+      // Create reply using actual API (preserve line breaks)
       await reviewAPI.createReply({
         review: reviewId,
-        author: replyAuthors[reviewId] || 'Ẩn Danh',
-        content: content.trim(),
+        author: replyAuthors[reviewId] || 'Ẩn danh',
+        content: content.trim().replace(/\n/g, '\n'),
         authorType: 'user'
       });
-      
+
       // Success - close form and clear content
       setReplyForms(prev => {
         const newForms = new Set(prev);
         newForms.delete(reviewId);
         return newForms;
       });
-      
+
       setReplyContents(prev => {
         const newContents = { ...prev };
         delete newContents[reviewId];
@@ -179,7 +179,7 @@ export default function CompanyDetailClient({ slug }: Props) {
 
       // Reload reviews to show new reply
       await loadReviews();
-      
+
     } catch (error) {
       console.error('Error submitting reply:', error);
       // TODO: Show error message to user
@@ -225,23 +225,23 @@ export default function CompanyDetailClient({ slug }: Props) {
       // We'll treat this as a regular reply to the main review
       // You may need to find the review ID from the reply ID
       console.log('Nested reply not supported yet. Converting to regular reply.');
-      
+
       // For now, just show a message
       alert('Trả lời lồng nhau chưa được hỗ trợ. Vui lòng trả lời trực tiếp đánh giá.');
-      
+
       // Clear form
       setNestedReplyForms(prev => {
         const newForms = new Set(prev);
         newForms.delete(replyId);
         return newForms;
       });
-      
+
       setNestedReplyContents(prev => {
         const newContents = { ...prev };
         delete newContents[replyId];
         return newContents;
       });
-      
+
     } catch (error) {
       console.error('Error submitting nested reply:', error);
       alert('Có lỗi xảy ra khi gửi bình luận. Vui lòng thử lại.');
@@ -270,7 +270,7 @@ export default function CompanyDetailClient({ slug }: Props) {
       // Set default author name when opening form
       setAddCommentAuthors(prev => ({
         ...prev,
-        [reviewId]: 'Ẩn Danh'
+        [reviewId]: 'Ẩn danh'
       }));
     }
     setAddCommentForms(newAddCommentForms);
@@ -297,21 +297,21 @@ export default function CompanyDetailClient({ slug }: Props) {
     setSubmittingReplies(prev => new Set([...prev, reviewId]));
 
     try {
-      // Create reply using actual API
+      // Create reply using actual API (preserve line breaks)
       await reviewAPI.createReply({
         review: reviewId,
-        author: addCommentAuthors[reviewId] || 'Ẩn Danh',
-        content: content.trim(),
+        author: addCommentAuthors[reviewId] || 'Ẩn danh',
+        content: content.trim().replace(/\n/g, '\n'),
         authorType: 'user'
       });
-      
+
       // Success - close form and clear content
       setAddCommentForms(prev => {
         const newForms = new Set(prev);
         newForms.delete(reviewId);
         return newForms;
       });
-      
+
       setAddCommentContents(prev => {
         const newContents = { ...prev };
         delete newContents[reviewId];
@@ -326,7 +326,7 @@ export default function CompanyDetailClient({ slug }: Props) {
 
       // Reload reviews to show new reply
       await loadReviews();
-      
+
     } catch (error) {
       console.error('Error submitting add comment:', error);
       alert('Có lỗi xảy ra khi gửi bình luận. Vui lòng thử lại.');
@@ -350,7 +350,7 @@ export default function CompanyDetailClient({ slug }: Props) {
       overallRating: 0,
       reviewTitle: '',
       generalContent: '',
-      authorName: 'Ẩn Danh',
+      authorName: 'Ẩn danh',
       isAnonymous: false
     });
   };
@@ -362,6 +362,24 @@ export default function CompanyDetailClient({ slug }: Props) {
     }));
   };
 
+  // Utility function to format text content with line breaks
+  const formatTextContent = (content: string) => {
+    if (!content) return '';
+
+    // Remove HTML tags but preserve line breaks
+    const cleanText = content.replace(/<[^>]*>/g, '');
+
+    // Split by line breaks and preserve empty lines for spacing
+    const lines = cleanText.split(/\r?\n/);
+
+    return lines.map((line, index) => (
+      <span key={index}>
+        {line.trim() === '' ? '\u00A0' : line} {/* Non-breaking space for empty lines */}
+        {index < lines.length - 1 && <br />}
+      </span>
+    ));
+  };
+
   const submitReview = async () => {
     if (reviewForm.overallRating === 0) return;
     if (!company) return;
@@ -369,20 +387,20 @@ export default function CompanyDetailClient({ slug }: Props) {
     setSubmittingReview(true);
 
     try {
-      // Create review using actual API
+      // Create review using actual API (preserve line breaks)
       await reviewAPI.create({
         company: company.id,
         author: reviewForm.authorName,
         overallRating: reviewForm.overallRating,
         reviewTitle: reviewForm.reviewTitle,
-        generalContent: reviewForm.generalContent,
+        generalContent: reviewForm.generalContent.replace(/\n/g, '\n'),
         isAnonymous: reviewForm.isAnonymous
       });
-      
+
       // Success - close modal and reload reviews
       closeReviewModal();
       await loadReviews();
-      
+
     } catch (error) {
       console.error('Error submitting review:', error);
       alert('Có lỗi xảy ra khi đăng đánh giá. Vui lòng thử lại.');
@@ -544,19 +562,16 @@ export default function CompanyDetailClient({ slug }: Props) {
               {/* Company Description */}
               {company.description && (
                 <div className="mb-4">
-                  <div
-                    className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed"
-                    dangerouslySetInnerHTML={{
-                      __html: company.description.substring(0, 300) + (company.description.length > 300 ? '...' : '')
-                    }}
-                  />
+                  <div className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                    {formatTextContent(company.description.substring(0, 300) + (company.description.length > 300 ? '...' : ''))}
+                  </div>
                 </div>
               )}
             </div>
 
             {/* Actions */}
             <div className="flex flex-col gap-3">
-              <button 
+              <button
                 onClick={openReviewModal}
                 className="px-6 py-3 bg-green-600 text-white text-sm font-semibold rounded-xl hover:bg-green-700 transition-colors shadow-md hover:shadow-lg"
               >
@@ -695,8 +710,8 @@ export default function CompanyDetailClient({ slug }: Props) {
                       <div className={`space-y-4 ${!isExpanded && hasLongContent ? 'max-h-48 overflow-hidden relative' : ''}`}>
                         {review.generalContent && (
                           <div>
-                            <p className="text-gray-700 dark:text-gray-300">
-                              {review.generalContent.replace(/<[^>]*>/g, '')}
+                            <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                              {formatTextContent(review.generalContent)}
                             </p>
                           </div>
                         )}
@@ -707,8 +722,8 @@ export default function CompanyDetailClient({ slug }: Props) {
                               <ThumbsUp className="h-4 w-4 mr-2" />
                               Ưu điểm
                             </h4>
-                            <p className="text-gray-700 dark:text-gray-300 pl-6">
-                              {review.pros.replace(/<[^>]*>/g, '')}
+                            <p className="text-gray-700 dark:text-gray-300 pl-6 leading-relaxed">
+                              {formatTextContent(review.pros)}
                             </p>
                           </div>
                         )}
@@ -719,8 +734,8 @@ export default function CompanyDetailClient({ slug }: Props) {
                               <MessageSquare className="h-4 w-4 mr-2" />
                               Nhược điểm
                             </h4>
-                            <p className="text-gray-700 dark:text-gray-300 pl-6">
-                              {review.cons.replace(/<[^>]*>/g, '')}
+                            <p className="text-gray-700 dark:text-gray-300 pl-6 leading-relaxed">
+                              {formatTextContent(review.cons)}
                             </p>
                           </div>
                         )}
@@ -731,8 +746,8 @@ export default function CompanyDetailClient({ slug }: Props) {
                               <Award className="h-4 w-4 mr-2" />
                               Lời khuyên cho ban lãnh đạo
                             </h4>
-                            <p className="text-gray-700 dark:text-gray-300 pl-6">
-                              {review.advice.replace(/<[^>]*>/g, '')}
+                            <p className="text-gray-700 dark:text-gray-300 pl-6 leading-relaxed">
+                              {formatTextContent(review.advice)}
                             </p>
                           </div>
                         )}
@@ -768,7 +783,7 @@ export default function CompanyDetailClient({ slug }: Props) {
                             <span>{review.expand?.['review_reactions(review)']?.reduce((acc, reaction) => acc + reaction.count, 0) || 0}</span>
                           </button>
 
-                          <button 
+                          <button
                             onClick={() => toggleReplyForm(review.id)}
                             className="flex items-center gap-1 text-sm text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors"
                           >
@@ -789,60 +804,71 @@ export default function CompanyDetailClient({ slug }: Props) {
 
                       {/* Reply Form */}
                       {replyForms.has(review.id) && (
-                        <div className="mt-4 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                          <div className="flex gap-3">
-                            {/* User Avatar */}
-                            <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
-                              <span className="text-white text-sm font-medium">B</span>
-                            </div>
-                            
-                            <div className="flex-1">
-                              <input
-                                type="text"
-                                value={replyAuthors[review.id] || ''}
-                                onChange={(e) => handleReplyAuthorChange(review.id, e.target.value)}
-                                placeholder="Tên hiển thị"
-                                className="w-full p-2 mb-3 text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:text-white"
-                              />
-                              <textarea
-                                value={replyContents[review.id] || ''}
-                                onChange={(e) => handleReplyContentChange(review.id, e.target.value)}
-                                onKeyDown={(e) => {
-                                  if (e.key === 'Enter' && e.ctrlKey) {
-                                    e.preventDefault();
-                                    submitReply(review.id);
-                                  }
-                                }}
-                                placeholder="Viết bình luận của bạn..."
-                                className="w-full p-3 text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:text-white resize-none"
-                                rows={3}
-                              />
-                              
-                              <div className="flex items-center justify-between mt-3">
-                                <span className="text-xs text-gray-500 dark:text-gray-400">
-                                  Nhấn Ctrl+Enter để gửi
-                                </span>
-                                <div className="flex gap-2">
-                                  <button
-                                    onClick={() => toggleReplyForm(review.id)}
-                                    className="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 dark:bg-gray-600 dark:text-gray-300 dark:border-gray-500 dark:hover:bg-gray-500 transition-colors"
-                                  >
-                                    Hủy
-                                  </button>
-                                  <button
-                                    onClick={() => submitReply(review.id)}
-                                    disabled={!replyContents[review.id]?.trim() || submittingReplies.has(review.id)}
-                                    className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors flex items-center gap-2"
-                                  >
-                                    {submittingReplies.has(review.id) ? (
-                                      <>
-                                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                                        Đang gửi...
-                                      </>
-                                    ) : (
-                                      'Gửi bình luận'
-                                    )}
-                                  </button>
+                        <div className="mt-4 border-t border-gray-100 dark:border-gray-700 pt-4">
+                          <div className="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4 border border-gray-200 dark:border-gray-600">
+                            <div className="flex gap-3">
+                              {/* User Avatar */}
+                              <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm">
+                                <span className="text-white text-sm font-medium">B</span>
+                              </div>
+
+                              <div className="flex-1 space-y-3">
+                                {/* Author and Content in one row for compact design */}
+                                <div className="grid grid-cols-1 gap-3">
+                                  <div className="flex gap-2">
+                                    <input
+                                      type="text"
+                                      value={replyAuthors[review.id] || ''}
+                                      onChange={(e) => handleReplyAuthorChange(review.id, e.target.value)}
+                                      placeholder="Tên hiển thị"
+                                      className="w-32 px-3 py-2 text-sm bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:text-white transition-colors"
+                                    />
+                                    <div className="flex-1"></div>
+                                  </div>
+
+                                  <textarea
+                                    value={replyContents[review.id] || ''}
+                                    onChange={(e) => handleReplyContentChange(review.id, e.target.value)}
+                                    onKeyDown={(e) => {
+                                      if (e.key === 'Enter' && e.ctrlKey) {
+                                        e.preventDefault();
+                                        submitReply(review.id);
+                                      }
+                                    }}
+                                    placeholder="Viết bình luận của bạn..."
+                                    className="w-full p-3 text-sm bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:text-white resize-none transition-colors"
+                                    rows={3}
+                                  />
+                                </div>
+
+                                {/* Actions */}
+                                <div className="flex items-center justify-between pt-1">
+                                  <span className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1">
+                                    <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
+                                    Ctrl+Enter để gửi nhanh
+                                  </span>
+                                  <div className="flex gap-2">
+                                    <button
+                                      onClick={() => toggleReplyForm(review.id)}
+                                      className="px-3 py-1.5 text-sm font-medium text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 transition-colors"
+                                    >
+                                      Hủy
+                                    </button>
+                                    <button
+                                      onClick={() => submitReply(review.id)}
+                                      disabled={!replyContents[review.id]?.trim() || submittingReplies.has(review.id)}
+                                      className="px-4 py-1.5 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg hover:from-blue-700 hover:to-blue-800 disabled:from-gray-400 disabled:to-gray-400 disabled:cursor-not-allowed transition-all shadow-sm hover:shadow-md flex items-center gap-2"
+                                    >
+                                      {submittingReplies.has(review.id) ? (
+                                        <>
+                                          <div className="w-3 h-3 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                                          Gửi...
+                                        </>
+                                      ) : (
+                                        'Gửi'
+                                      )}
+                                    </button>
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -896,7 +922,7 @@ export default function CompanyDetailClient({ slug }: Props) {
                                     </div>
 
                                     <div className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                                      {reply.content.replace(/<[^>]*>/g, '')}
+                                      {formatTextContent(reply.content)}
                                     </div>
 
                                     {/* Reply Actions */}
@@ -907,7 +933,7 @@ export default function CompanyDetailClient({ slug }: Props) {
                                           <span>{reply.expand['review_reactions(reply)'][0].count}</span>
                                         </button>
                                       )}
-                                      <button 
+                                      <button
                                         onClick={() => toggleNestedReplyForm(reply.id)}
                                         className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors"
                                       >
@@ -924,7 +950,7 @@ export default function CompanyDetailClient({ slug }: Props) {
                                       <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
                                         <span className="text-white text-xs font-medium">B</span>
                                       </div>
-                                      
+
                                       <div className="flex-1">
                                         <textarea
                                           value={nestedReplyContents[reply.id] || ''}
@@ -939,7 +965,7 @@ export default function CompanyDetailClient({ slug }: Props) {
                                           className="w-full p-2 text-sm border border-gray-300 dark:border-gray-500 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white resize-none"
                                           rows={2}
                                         />
-                                        
+
                                         <div className="flex items-center justify-end mt-2 gap-2">
                                           <button
                                             onClick={() => toggleNestedReplyForm(reply.id)}
@@ -971,7 +997,7 @@ export default function CompanyDetailClient({ slug }: Props) {
 
                           {/* Add Reply Button */}
                           <div className="ml-6 mt-3 pt-2 border-l-2 border-gray-200 dark:border-gray-600 pl-4">
-                            <button 
+                            <button
                               onClick={() => toggleAddCommentForm(review.id)}
                               className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium"
                             >
@@ -981,59 +1007,68 @@ export default function CompanyDetailClient({ slug }: Props) {
 
                           {/* Add Comment Form */}
                           {addCommentForms.has(review.id) && (
-                            <div className="ml-6 mt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600">
-                              <div className="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                            <div className="ml-6 mt-3 pl-4 border-l-2 border-blue-200 dark:border-blue-600">
+                              <div className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-4 border border-blue-200 dark:border-blue-700">
                                 <div className="flex gap-3">
                                   {/* User Avatar */}
-                                  <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+                                  <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm">
                                     <span className="text-white text-sm font-medium">B</span>
                                   </div>
-                                  
-                                  <div className="flex-1">
-                                    <input
-                                      type="text"
-                                      value={addCommentAuthors[review.id] || ''}
-                                      onChange={(e) => handleAddCommentAuthorChange(review.id, e.target.value)}
-                                      placeholder="Tên hiển thị"
-                                      className="w-full p-2 mb-3 text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:text-white"
-                                    />
-                                    <textarea
-                                      value={addCommentContents[review.id] || ''}
-                                      onChange={(e) => handleAddCommentContentChange(review.id, e.target.value)}
-                                      onKeyDown={(e) => {
-                                        if (e.key === 'Enter' && e.ctrlKey) {
-                                          e.preventDefault();
-                                          submitAddComment(review.id);
-                                        }
-                                      }}
-                                      placeholder="Viết bình luận của bạn..."
-                                      className="w-full p-3 text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:text-white resize-none"
-                                      rows={3}
-                                    />
-                                    
-                                    <div className="flex items-center justify-between mt-3">
-                                      <span className="text-xs text-gray-500 dark:text-gray-400">
-                                        Nhấn Ctrl+Enter để gửi
+
+                                  <div className="flex-1 space-y-3">
+                                    {/* Author and Content in one row for compact design */}
+                                    <div className="grid grid-cols-1 gap-3">
+                                      <div className="flex gap-2">
+                                        <input
+                                          type="text"
+                                          value={addCommentAuthors[review.id] || ''}
+                                          onChange={(e) => handleAddCommentAuthorChange(review.id, e.target.value)}
+                                          placeholder="Tên hiển thị"
+                                          className="w-32 px-3 py-2 text-sm bg-white dark:bg-gray-800 border border-blue-300 dark:border-blue-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:text-white transition-colors"
+                                        />
+                                        <div className="flex-1"></div>
+                                      </div>
+
+                                      <textarea
+                                        value={addCommentContents[review.id] || ''}
+                                        onChange={(e) => handleAddCommentContentChange(review.id, e.target.value)}
+                                        onKeyDown={(e) => {
+                                          if (e.key === 'Enter' && e.ctrlKey) {
+                                            e.preventDefault();
+                                            submitAddComment(review.id);
+                                          }
+                                        }}
+                                        placeholder="Viết bình luận của bạn..."
+                                        className="w-full p-3 text-sm bg-white dark:bg-gray-800 border border-blue-300 dark:border-blue-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:text-white resize-none transition-colors"
+                                        rows={3}
+                                      />
+                                    </div>
+
+                                    {/* Actions */}
+                                    <div className="flex items-center justify-between pt-1">
+                                      <span className="text-xs text-blue-600 dark:text-blue-400 flex items-center gap-1">
+                                        <span className="w-1 h-1 bg-blue-500 rounded-full"></span>
+                                        Ctrl+Enter để gửi nhanh
                                       </span>
                                       <div className="flex gap-2">
                                         <button
                                           onClick={() => toggleAddCommentForm(review.id)}
-                                          className="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 dark:bg-gray-600 dark:text-gray-300 dark:border-gray-500 dark:hover:bg-gray-500 transition-colors"
+                                          className="px-3 py-1.5 text-sm font-medium text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 transition-colors"
                                         >
                                           Hủy
                                         </button>
                                         <button
                                           onClick={() => submitAddComment(review.id)}
                                           disabled={!addCommentContents[review.id]?.trim() || submittingReplies.has(review.id)}
-                                          className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors flex items-center gap-2"
+                                          className="px-4 py-1.5 text-sm font-medium text-white bg-gradient-to-r from-green-600 to-green-700 rounded-lg hover:from-green-700 hover:to-green-800 disabled:from-gray-400 disabled:to-gray-400 disabled:cursor-not-allowed transition-all shadow-sm hover:shadow-md flex items-center gap-2"
                                         >
                                           {submittingReplies.has(review.id) ? (
                                             <>
-                                              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                                              Đang gửi...
+                                              <div className="w-3 h-3 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                                              Gửi...
                                             </>
                                           ) : (
-                                            'Gửi bình luận'
+                                            'Gửi'
                                           )}
                                         </button>
                                       </div>
