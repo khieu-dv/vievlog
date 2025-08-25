@@ -8,21 +8,18 @@ import {
   Users,
   MapPin,
   Building2,
-  Globe,
-  Calendar,
   ThumbsUp,
   MessageSquare,
-  TrendingUp,
-  DollarSign,
   Award,
   Heart,
   ArrowLeft,
-  Filter,
   ChevronDown,
-  ChevronUp,
-  X
+  ChevronUp
 } from 'lucide-react';
 import { companyAPI, reviewAPI, type Company, type Review } from '../../../lib/pocketbase';
+import { formatTextContent, getAvatarLetter } from '../../../utils/textUtils';
+import { renderStars, renderRatingSelector } from '../../../utils/starUtils';
+import { renderRatingBar } from '../../../utils/ratingUtils';
 
 interface Props {
   slug: string;
@@ -99,6 +96,10 @@ export default function CompanyDetailClient({ slug }: Props) {
     setExpandedReviews(newExpanded);
   };
 
+  /**
+   * Toggles the visibility of replies for a specific review
+   * @param reviewId - The ID of the review to toggle replies for
+   */
   const toggleRepliesVisibility = (reviewId: string) => {
     const newShowReplies = new Set(showReplies);
     if (newShowReplies.has(reviewId)) {
@@ -147,6 +148,10 @@ export default function CompanyDetailClient({ slug }: Props) {
     }));
   };
 
+  /**
+   * Submits a new comment/reply with optimistic UI updates
+   * @param reviewId - The ID of the review to add the comment to
+   */
   const submitAddComment = async (reviewId: string) => {
     const content = addCommentContents[reviewId];
     if (!content || !content.trim()) return;
@@ -260,6 +265,11 @@ export default function CompanyDetailClient({ slug }: Props) {
   };
 
 
+  /**
+   * Updates a specific field in the review form
+   * @param field - The field name to update
+   * @param value - The new value for the field
+   */
   const updateReviewForm = (field: string, value: any) => {
     setReviewForm(prev => ({
       ...prev,
@@ -267,31 +277,10 @@ export default function CompanyDetailClient({ slug }: Props) {
     }));
   };
 
-  // Utility function to format text content with line breaks
-  const formatTextContent = (content: string) => {
-    if (!content) return '';
 
-    // Remove HTML tags but preserve line breaks
-    const cleanText = content.replace(/<[^>]*>/g, '');
-
-    // Split by line breaks and preserve empty lines for spacing
-    const lines = cleanText.split(/\r?\n/);
-
-    return lines.map((line, index) => (
-      <span key={index}>
-        {line.trim() === '' ? '\u00A0' : line} {/* Non-breaking space for empty lines */}
-        {index < lines.length - 1 && <br />}
-      </span>
-    ));
-  };
-
-  // Utility function to get avatar letter
-  const getAvatarLetter = (name: string) => {
-    if (!name || name === 'Ẩn danh') return 'A';
-    return name.charAt(0).toUpperCase();
-  };
-
-  // Utility function to scroll to reviews section smoothly
+  /**
+   * Scrolls to the reviews section smoothly
+   */
   const scrollToReviews = () => {
     // Try to find the reviews section and scroll to it
     const reviewsSection = document.querySelector('[data-reviews-section]');
@@ -309,6 +298,10 @@ export default function CompanyDetailClient({ slug }: Props) {
     }
   };
 
+  /**
+   * Submits a new review with optimistic UI updates
+   * Creates an optimistic review immediately and replaces with real data on success
+   */
   const submitReview = async () => {
     if (reviewForm.overallRating === 0) return;
     if (!company) return;
@@ -365,58 +358,6 @@ export default function CompanyDetailClient({ slug }: Props) {
     }
   };
 
-  const renderStars = (rating: number, size: 'sm' | 'md' | 'lg' = 'sm') => {
-    const sizeClass = {
-      sm: 'h-4 w-4',
-      md: 'h-5 w-5',
-      lg: 'h-6 w-6'
-    }[size];
-
-    return Array.from({ length: 5 }).map((_, i) => (
-      <Star
-        key={i}
-        className={`${sizeClass} ${i < Math.floor(rating)
-          ? 'text-yellow-400 fill-current'
-          : 'text-gray-300'
-          }`}
-      />
-    ));
-  };
-
-  const renderRatingSelector = (currentRating: number, onRatingChange: (rating: number) => void) => {
-    return Array.from({ length: 5 }).map((_, i) => (
-      <button
-        key={i}
-        type="button"
-        onClick={() => onRatingChange(i + 1)}
-        className="p-1 hover:scale-110 transition-transform"
-      >
-        <Star
-          className={`h-6 w-6 ${i < currentRating
-            ? 'text-yellow-400 fill-current'
-            : 'text-gray-300 hover:text-yellow-200'
-            }`}
-        />
-      </button>
-    ));
-  };
-
-  const renderRatingBar = (label: string, rating: number, maxRating: number = 5) => (
-    <div className="flex items-center justify-between mb-2">
-      <span className="text-sm text-gray-600 dark:text-gray-400 w-32">{label}</span>
-      <div className="flex-1 mx-3">
-        <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-          <div
-            className="bg-blue-500 h-2 rounded-full transition-all duration-300"
-            style={{ width: `${(rating / maxRating) * 100}%` }}
-          />
-        </div>
-      </div>
-      <span className="text-sm font-medium text-gray-900 dark:text-white w-8 text-right">
-        {rating.toFixed(1)}
-      </span>
-    </div>
-  );
 
   if (loading) {
     return (
