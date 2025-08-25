@@ -799,9 +799,12 @@ export default function CompanyDetailClient({ slug }: Props) {
 
 
                       {/* Review Replies - congtytui.me style */}
-                      {review.expand?.review_replies && review.expand.review_replies.length > 0 && showReplies.has(review.id) && (
+                      {showReplies.has(review.id) && (
                         <div className="mt-4">
-                          {review.expand.review_replies
+                          {/* Show existing replies if any */}
+                          {review.expand?.review_replies && review.expand.review_replies.length > 0 && (
+                            <>
+                              {review.expand.review_replies
                             .sort((a, b) => {
                               // Sort by replyDate first, then by created date, oldest first (newest at bottom)
                               const dateA = new Date(a.replyDate || a.created);
@@ -861,8 +864,10 @@ export default function CompanyDetailClient({ slug }: Props) {
 
                               </div>
                             ))}
+                            </>
+                          )}
 
-                          {/* Add Reply Button */}
+                          {/* Add Reply Button - Always show when replies section is open */}
                           <div className="ml-6 mt-3 pt-2 border-l-2 border-gray-200 dark:border-gray-600 pl-4">
                             <button
                               onClick={() => toggleAddCommentForm(review.id)}
