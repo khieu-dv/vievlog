@@ -395,7 +395,7 @@ export default function CompanyDetailClient({ slug }: Props) {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-8">
       {/* Back Button */}
       <Link
         href="/companies"
@@ -408,10 +408,10 @@ export default function CompanyDetailClient({ slug }: Props) {
       {/* Company Header - Merged with Description */}
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 mb-6">
         <div className="p-6">
-          {/* Company Info Row */}
-          <div className="flex items-start gap-4 mb-6">
-            {/* Company Logo */}
-            <div className="w-16 h-16 bg-gray-50 dark:bg-gray-700 rounded-lg flex items-center justify-center overflow-hidden flex-shrink-0">
+          {/* Company Info Row - Mobile responsive */}
+          <div className="flex flex-col sm:flex-row items-start gap-4 mb-6">
+            {/* Company Logo - Mobile optimized */}
+            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gray-50 dark:bg-gray-700 rounded-lg flex items-center justify-center overflow-hidden flex-shrink-0 mx-auto sm:mx-0">
               {company.logoUrl ? (
                 <img
                   src={company.logoUrl}
@@ -425,12 +425,12 @@ export default function CompanyDetailClient({ slug }: Props) {
 
             {/* Company Details */}
             <div className="flex-1 min-w-0">
-              <h1 className="text-2xl font-semibold text-gray-900 dark:text-white mb-3 truncate">
+              <h1 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white mb-3 text-center sm:text-left">
                 {company.name}
               </h1>
 
-              {/* Company Attributes */}
-              <div className="space-y-1.5 text-sm text-gray-600 dark:text-gray-400 mb-4">
+              {/* Company Attributes - Mobile centered */}
+              <div className="space-y-1.5 text-sm text-gray-600 dark:text-gray-400 mb-4 text-center sm:text-left">
                 {company.location && (
                   <div className="flex items-center">
                     <MapPin className="h-4 w-4 mr-2 text-gray-400" />
@@ -456,11 +456,11 @@ export default function CompanyDetailClient({ slug }: Props) {
                 )}
               </div>
 
-              {/* Company Description - Hidden on small screens */}
+              {/* Company Description - Responsive */}
               {company.description && (
-                <div className="mb-4 hidden sm:block">
-                  <div className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-                    {formatTextContent(company.description.substring(0, 300) + (company.description.length > 300 ? '...' : ''))}
+                <div className="mb-4">
+                  <div className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed text-center sm:text-left">
+                    {formatTextContent(company.description.substring(0, 200) + (company.description.length > 200 ? '...' : ''))}
                   </div>
                 </div>
               )}
@@ -513,14 +513,14 @@ export default function CompanyDetailClient({ slug }: Props) {
             </h2>
             
             <div className="space-y-4">
-              {/* Rating and Author in one row */}
-              <div className="flex flex-col sm:flex-row gap-4">
+              {/* Rating and Author - Mobile stacked */}
+              <div className="space-y-4">
                 {/* Rating */}
-                <div className="flex-1">
+                <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Đánh giá tổng quan
                   </label>
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-1 justify-center sm:justify-start">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <button
                         key={star}
@@ -541,7 +541,7 @@ export default function CompanyDetailClient({ slug }: Props) {
                 </div>
 
                 {/* Author Name */}
-                <div className="flex-1">
+                <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Tên hiển thị
                   </label>
@@ -569,9 +569,9 @@ export default function CompanyDetailClient({ slug }: Props) {
                 />
               </div>
 
-              {/* Anonymous option and Submit button */}
-              <div className="flex items-center justify-between pt-2">
-                <label className="flex items-center text-sm text-gray-600 dark:text-gray-400">
+              {/* Anonymous option and Submit button - Mobile responsive */}
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-2">
+                <label className="flex items-center text-sm text-gray-600 dark:text-gray-400 justify-center sm:justify-start">
                   <input
                     type="checkbox"
                     checked={reviewForm.isAnonymous}
@@ -581,7 +581,7 @@ export default function CompanyDetailClient({ slug }: Props) {
                   Đánh giá ẩn danh
                 </label>
 
-                <div className="flex items-center gap-3">
+                <div className="flex items-center justify-center sm:justify-end gap-3">
                   <button
                     onClick={() => {
                       setShowReviewForm(false);
@@ -617,13 +617,11 @@ export default function CompanyDetailClient({ slug }: Props) {
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
             Đánh giá chi tiết
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
+          <div className="grid grid-cols-1 gap-4 sm:gap-6">
+            <div className="space-y-3">
               {renderRatingBar('Môi trường', company.expand.company_stats[0].averageWorkEnvironment || 0)}
               {renderRatingBar('Lương thưởng', company.expand.company_stats[0].averageCompensation || 0)}
               {renderRatingBar('Quản lý', company.expand.company_stats[0].averageManagement || 0)}
-            </div>
-            <div>
               {renderRatingBar('Phát triển', company.expand.company_stats[0].averageCareerGrowth || 0)}
               {renderRatingBar('Cân bằng', company.expand.company_stats[0].averageWorkLifeBalance || 0)}
               {renderRatingBar('Khuyến nghị', company.expand.company_stats[0].recommendationPercentage || 0, 100)}
@@ -634,15 +632,15 @@ export default function CompanyDetailClient({ slug }: Props) {
 
       {/* Reviews Section */}
       <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm" data-reviews-section>
-        <div className="border-b border-gray-100 dark:border-gray-700 p-8">
-          <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">
+        <div className="border-b border-gray-100 dark:border-gray-700 p-4 sm:p-8">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white text-center sm:text-left">
               Đánh giá từ nhân viên ({company.totalReviews || 0})
             </h2>
 
             {/* Rating Filter */}
             <select
-              className="px-4 py-2.5 text-sm font-medium border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white bg-white shadow-sm"
+              className="px-4 py-2.5 text-sm font-medium border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white bg-white shadow-sm mx-auto sm:mx-0"
               value={filterRating}
               onChange={(e) => {
                 setFilterRating(Number(e.target.value));
@@ -659,7 +657,7 @@ export default function CompanyDetailClient({ slug }: Props) {
           </div>
         </div>
 
-        <div className="p-8">
+        <div className="p-4 sm:p-8">
           {/* Reviews List */}
           {reviewsLoading ? (
             <div className="space-y-6">
@@ -834,7 +832,7 @@ export default function CompanyDetailClient({ slug }: Props) {
                             .map((reply, replyIndex) => (
                               <div 
                                 key={reply.id} 
-                                className={`ml-6 border-l-2 border-gray-200 dark:border-gray-600 pl-4 pt-3 pb-2 ${(reply as any)?.isOptimistic ? 'opacity-80 bg-green-50/30 dark:bg-green-900/10' : ''}`}
+                                className={`ml-3 sm:ml-6 border-l-2 border-gray-200 dark:border-gray-600 pl-3 sm:pl-4 pt-3 pb-2 ${(reply as any)?.isOptimistic ? 'opacity-80 bg-green-50/30 dark:bg-green-900/10' : ''}`}
                               >
                                 <div className="flex items-start gap-3">
                                   {/* Reply Avatar */}
@@ -893,7 +891,7 @@ export default function CompanyDetailClient({ slug }: Props) {
                           )}
 
                           {/* Add Reply Button - Always show when replies section is open */}
-                          <div className="ml-6 mt-3 pt-2 border-l-2 border-gray-200 dark:border-gray-600 pl-4">
+                          <div className="ml-3 sm:ml-6 mt-3 pt-2 border-l-2 border-gray-200 dark:border-gray-600 pl-3 sm:pl-4">
                             <button
                               onClick={() => toggleAddCommentForm(review.id)}
                               className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium"
@@ -902,68 +900,65 @@ export default function CompanyDetailClient({ slug }: Props) {
                             </button>
                           </div>
 
-                          {/* Add Comment Form */}
+                          {/* Add Comment Form - Mobile optimized */}
                           {addCommentForms.has(review.id) && (
-                            <div className="ml-6 mt-3 pl-4 border-l-2 border-blue-200 dark:border-blue-600">
-                              <div className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-4 border border-blue-200 dark:border-blue-700">
-                                <div className="flex gap-3">
-                                  {/* User Avatar */}
-                                  <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm">
-                                    <span className="text-white text-sm font-medium">
-                                      {getAvatarLetter(addCommentAuthors[review.id] || 'Ẩn danh')}
-                                    </span>
+                            <div className="ml-3 sm:ml-6 mt-3 pl-3 sm:pl-4 border-l-2 border-blue-200 dark:border-blue-600">
+                              <div className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-3 sm:p-4 border border-blue-200 dark:border-blue-700">
+                                <div className="space-y-3">
+                                  {/* Mobile-first layout - Stack everything */}
+                                  <div className="flex items-center gap-2">
+                                    {/* User Avatar - smaller on mobile */}
+                                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm">
+                                      <span className="text-white text-xs sm:text-sm font-medium">
+                                        {getAvatarLetter(addCommentAuthors[review.id] || 'Ẩn danh')}
+                                      </span>
+                                    </div>
+                                    
+                                    {/* Author name input - wider on mobile */}
+                                    <input
+                                      type="text"
+                                      value={addCommentAuthors[review.id] || ''}
+                                      onChange={(e) => handleAddCommentAuthorChange(review.id, e.target.value)}
+                                      placeholder="Tên hiển thị"
+                                      className="flex-1 sm:w-32 sm:flex-none px-3 py-2 text-sm bg-white dark:bg-gray-800 border border-blue-300 dark:border-blue-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:text-white transition-colors"
+                                    />
                                   </div>
 
-                                  <div className="flex-1 space-y-3">
-                                    {/* Author and Content in one row for compact design */}
-                                    <div className="grid grid-cols-1 gap-3">
-                                      <div className="flex gap-2">
-                                        <input
-                                          type="text"
-                                          value={addCommentAuthors[review.id] || ''}
-                                          onChange={(e) => handleAddCommentAuthorChange(review.id, e.target.value)}
-                                          placeholder="Tên hiển thị"
-                                          className="w-32 px-3 py-2 text-sm bg-white dark:bg-gray-800 border border-blue-300 dark:border-blue-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:text-white transition-colors"
-                                        />
-                                        <div className="flex-1"></div>
-                                      </div>
+                                  {/* Content textarea */}
+                                  <textarea
+                                    value={addCommentContents[review.id] || ''}
+                                    onChange={(e) => handleAddCommentContentChange(review.id, e.target.value)}
+                                    onKeyDown={(e) => {
+                                      if (e.key === 'Enter' && e.ctrlKey) {
+                                        e.preventDefault();
+                                        submitAddComment(review.id);
+                                      }
+                                    }}
+                                    placeholder="Viết bình luận của bạn..."
+                                    className="w-full p-3 text-sm bg-white dark:bg-gray-800 border border-blue-300 dark:border-blue-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:text-white resize-none transition-colors"
+                                    rows={3}
+                                  />
 
-                                      <textarea
-                                        value={addCommentContents[review.id] || ''}
-                                        onChange={(e) => handleAddCommentContentChange(review.id, e.target.value)}
-                                        onKeyDown={(e) => {
-                                          if (e.key === 'Enter' && e.ctrlKey) {
-                                            e.preventDefault();
-                                            submitAddComment(review.id);
-                                          }
-                                        }}
-                                        placeholder="Viết bình luận của bạn..."
-                                        className="w-full p-3 text-sm bg-white dark:bg-gray-800 border border-blue-300 dark:border-blue-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:text-white resize-none transition-colors"
-                                        rows={3}
-                                      />
-                                    </div>
-
-                                    {/* Actions */}
-                                    <div className="flex items-center justify-between pt-1">
-                                      <span className="text-xs text-blue-600 dark:text-blue-400 flex items-center gap-1">
-                                        <span className="w-1 h-1 bg-blue-500 rounded-full"></span>
-                                        Ctrl+Enter để gửi nhanh
-                                      </span>
-                                      <div className="flex gap-2">
-                                        <button
-                                          onClick={() => toggleAddCommentForm(review.id)}
-                                          className="px-3 py-1.5 text-sm font-medium text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 transition-colors"
-                                        >
-                                          Hủy
-                                        </button>
-                                        <button
-                                          onClick={() => submitAddComment(review.id)}
-                                          disabled={!addCommentContents[review.id]?.trim()}
-                                          className="px-4 py-1.5 text-sm font-medium text-white bg-gradient-to-r from-green-600 to-green-700 rounded-lg hover:from-green-700 hover:to-green-800 disabled:from-gray-400 disabled:to-gray-400 disabled:cursor-not-allowed transition-all shadow-sm hover:shadow-md flex items-center gap-2"
-                                        >
-                                          Gửi
-                                        </button>
-                                      </div>
+                                  {/* Actions - Mobile responsive */}
+                                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 pt-1">
+                                    <span className="text-xs text-blue-600 dark:text-blue-400 flex items-center justify-center sm:justify-start gap-1">
+                                      <span className="w-1 h-1 bg-blue-500 rounded-full"></span>
+                                      Ctrl+Enter để gửi nhanh
+                                    </span>
+                                    <div className="flex justify-center sm:justify-end gap-2">
+                                      <button
+                                        onClick={() => toggleAddCommentForm(review.id)}
+                                        className="px-3 py-1.5 text-sm font-medium text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 transition-colors"
+                                      >
+                                        Hủy
+                                      </button>
+                                      <button
+                                        onClick={() => submitAddComment(review.id)}
+                                        disabled={!addCommentContents[review.id]?.trim()}
+                                        className="px-4 py-1.5 text-sm font-medium text-white bg-gradient-to-r from-green-600 to-green-700 rounded-lg hover:from-green-700 hover:to-green-800 disabled:from-gray-400 disabled:to-gray-400 disabled:cursor-not-allowed transition-all shadow-sm hover:shadow-md flex items-center gap-2"
+                                      >
+                                        Gửi
+                                      </button>
                                     </div>
                                   </div>
                                 </div>
