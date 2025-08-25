@@ -42,6 +42,8 @@ export default function CompanyDetailClient({ slug }: Props) {
   const [submittingReplies, setSubmittingReplies] = useState<Set<string>>(new Set());
   const [nestedReplyForms, setNestedReplyForms] = useState<Set<string>>(new Set());
   const [nestedReplyContents, setNestedReplyContents] = useState<Record<string, string>>({});
+  const [addCommentForms, setAddCommentForms] = useState<Set<string>>(new Set());
+  const [addCommentContents, setAddCommentContents] = useState<Record<string, string>>({});
   const [showReviewModal, setShowReviewModal] = useState(false);
   const [reviewForm, setReviewForm] = useState({
     overallRating: 0,
@@ -222,6 +224,70 @@ export default function CompanyDetailClient({ slug }: Props) {
       setSubmittingReplies(prev => {
         const newSubmitting = new Set(prev);
         newSubmitting.delete(replyId);
+        return newSubmitting;
+      });
+    }
+  };
+
+  const toggleAddCommentForm = (reviewId: string) => {
+    const newAddCommentForms = new Set(addCommentForms);
+    if (newAddCommentForms.has(reviewId)) {
+      newAddCommentForms.delete(reviewId);
+      // Clear content when closing form
+      const newContents = { ...addCommentContents };
+      delete newContents[reviewId];
+      setAddCommentContents(newContents);
+    } else {
+      newAddCommentForms.add(reviewId);
+    }
+    setAddCommentForms(newAddCommentForms);
+  };
+
+  const handleAddCommentContentChange = (reviewId: string, content: string) => {
+    setAddCommentContents(prev => ({
+      ...prev,
+      [reviewId]: content
+    }));
+  };
+
+  const submitAddComment = async (reviewId: string) => {
+    const content = addCommentContents[reviewId];
+    if (!content || !content.trim()) return;
+
+    setSubmittingReplies(prev => new Set([...prev, reviewId]));
+
+    try {
+      // Create reply using actual API
+      await reviewAPI.createReply({
+        review: reviewId,
+        author: 'Bạn', // You can make this configurable
+        content: content.trim(),
+        authorType: 'user'
+      });
+      
+      // Success - close form and clear content
+      setAddCommentForms(prev => {
+        const newForms = new Set(prev);
+        newForms.delete(reviewId);
+        return newForms;
+      });
+      
+      setAddCommentContents(prev => {
+        const newContents = { ...prev };
+        delete newContents[reviewId];
+        return newContents;
+      });
+
+      // Reload reviews to show new reply
+      await loadReviews();
+      
+    } catch (error) {
+      console.error('Error submitting add comment:', error);
+      alert('Có lỗi xảy ra khi gửi bình luận. Vui lòng thử lại.');
+    } finally {
+      setSubmittingReplies(prev => {
+        const newSubmitting = new Set(prev);
+        newSubmitting.delete(reviewId);
         return newSubmitting;
       });
     }
@@ -662,9 +728,6 @@ export default function CompanyDetailClient({ slug }: Props) {
                             <MessageSquare className="h-4 w-4" />
                             <span>{replyForms.has(review.id) ? 'Hủy' : 'Trả lời'}</span>
                           </button>
-                          <button className="text-sm text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
-                            Chia sẻ
-                          </button>
                         </div>
 
                         <div className="flex items-center gap-2">
@@ -674,9 +737,6 @@ export default function CompanyDetailClient({ slug }: Props) {
                               Xác minh
                             </div>
                           )}
-                          <button className="text-xs text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
-                            Báo cáo
-                          </button>
                         </div>
                       </div>
 
@@ -857,10 +917,71 @@ export default function CompanyDetailClient({ slug }: Props) {
 
                           {/* Add Reply Button */}
                           <div className="ml-6 mt-3 pt-2 border-l-2 border-gray-200 dark:border-gray-600 pl-4">
-                            <button className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium">
-                              + Thêm bình luận
+                            <button 
+                              onClick={() => toggleAddCommentForm(review.id)}
+                              className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium"
+                            >
+                              {addCommentForms.has(review.id) ? 'Hủy' : '+ Thêm bình luận'}
                             </button>
                           </div>
+
+                          {/* Add Comment Form */}
+                          {addCommentForms.has(review.id) && (
+                            <div className="ml-6 mt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600">
+                              <div className="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                                <div className="flex gap-3">
+                                  {/* User Avatar */}
+                                  <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <span className="text-white text-sm font-medium">B</span>
+                                  </div>
+                                  
+                                  <div className="flex-1">
+                                    <textarea
+                                      value={addCommentContents[review.id] || ''}
+                                      onChange={(e) => handleAddCommentContentChange(review.id, e.target.value)}
+                                      onKeyDown={(e) => {
+                                        if (e.key === 'Enter' && e.ctrlKey) {
+                                          e.preventDefault();
+                                          submitAddComment(review.id);
+                                        }
+                                      }}
+                                      placeholder="Viết bình luận của bạn..."
+                                      className="w-full p-3 text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:text-white resize-none"
+                                      rows={3}
+                                    />
+                                    
+                                    <div className="flex items-center justify-between mt-3">
+                                      <span className="text-xs text-gray-500 dark:text-gray-400">
+                                        Nhấn Ctrl+Enter để gửi
+                                      </span>
+                                      <div className="flex gap-2">
+                                        <button
+                                          onClick={() => toggleAddCommentForm(review.id)}
+                                          className="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 dark:bg-gray-600 dark:text-gray-300 dark:border-gray-500 dark:hover:bg-gray-500 transition-colors"
+                                        >
+                                          Hủy
+                                        </button>
+                                        <button
+                                          onClick={() => submitAddComment(review.id)}
+                                          disabled={!addCommentContents[review.id]?.trim() || submittingReplies.has(review.id)}
+                                          className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors flex items-center gap-2"
+                                        >
+                                          {submittingReplies.has(review.id) ? (
+                                            <>
+                                              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                                              Đang gửi...
+                                            </>
+                                          ) : (
+                                            'Gửi bình luận'
+                                          )}
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          )}
                         </div>
                       )}
                     </div>
