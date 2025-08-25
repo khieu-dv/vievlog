@@ -134,7 +134,7 @@ export default function CompaniesClient() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-8">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
       {/* Header Section - Upwork style */}
       <div className="mb-8">
         <div className="flex items-center justify-between mb-4">
@@ -157,68 +157,74 @@ export default function CompaniesClient() {
           />
         </div>
 
-        {/* Filters Row - Clean horizontal layout */}
-        <div className="flex flex-wrap items-center gap-3 mb-2">
-          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Lọc theo:</span>
-          
-          {/* Industry Filter */}
-          <select
-            value={selectedIndustry}
-            onChange={(e) => {
-              setSelectedIndustry(e.target.value);
-              handleFilterChange();
-            }}
-            className="px-3 py-2 text-sm border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-800 dark:text-white bg-white"
-          >
-            <option value="">Tất cả ngành</option>
-            {industries.map((industry) => (
-              <option key={industry.id} value={industry.id}>
-                {industry.name}
-              </option>
-            ))}
-          </select>
+        {/* Filters Row - Mobile responsive layout */}
+        <div className="mb-2">
+          <span className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3 md:hidden">Lọc theo:</span>
+          <div className="flex flex-col md:flex-row md:items-center gap-3">
+            <span className="hidden md:block text-sm font-medium text-gray-700 dark:text-gray-300">Lọc theo:</span>
+            
+            {/* Filters grid for mobile */}
+            <div className="grid grid-cols-2 md:flex md:flex-wrap gap-2 md:gap-3 flex-1">
+              {/* Industry Filter */}
+              <select
+                value={selectedIndustry}
+                onChange={(e) => {
+                  setSelectedIndustry(e.target.value);
+                  handleFilterChange();
+                }}
+                className="px-3 py-2 text-sm border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-800 dark:text-white bg-white min-w-0"
+              >
+                <option value="">Tất cả ngành</option>
+                {industries.map((industry) => (
+                  <option key={industry.id} value={industry.id}>
+                    {industry.name}
+                  </option>
+                ))}
+              </select>
 
-          {/* Company Size Filter */}
-          <select
-            value={selectedSize}
-            onChange={(e) => {
-              setSelectedSize(e.target.value);
-              handleFilterChange();
-            }}
-            className="px-3 py-2 text-sm border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-800 dark:text-white bg-white"
-          >
-            <option value="">Quy mô</option>
-            {companySizes.map((size) => (
-              <option key={size.value} value={size.value}>
-                {size.label}
-              </option>
-            ))}
-          </select>
+              {/* Company Size Filter */}
+              <select
+                value={selectedSize}
+                onChange={(e) => {
+                  setSelectedSize(e.target.value);
+                  handleFilterChange();
+                }}
+                className="px-3 py-2 text-sm border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-800 dark:text-white bg-white min-w-0"
+              >
+                <option value="">Quy mô</option>
+                {companySizes.map((size) => (
+                  <option key={size.value} value={size.value}>
+                    {size.label}
+                  </option>
+                ))}
+              </select>
 
-          {/* Rating Filter */}
-          <select
-            value={minRating}
-            onChange={(e) => {
-              setMinRating(Number(e.target.value));
-              handleFilterChange();
-            }}
-            className="px-3 py-2 text-sm border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-800 dark:text-white bg-white"
-          >
-            <option value={0}>Đánh giá</option>
-            <option value={4}>4+ sao</option>
-            <option value={3}>3+ sao</option>
-            <option value={2}>2+ sao</option>
-          </select>
+              {/* Rating Filter */}
+              <select
+                value={minRating}
+                onChange={(e) => {
+                  setMinRating(Number(e.target.value));
+                  handleFilterChange();
+                }}
+                className="px-3 py-2 text-sm border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-800 dark:text-white bg-white min-w-0"
+              >
+                <option value={0}>Đánh giá</option>
+                <option value={4}>4+ sao</option>
+                <option value={3}>3+ sao</option>
+                <option value={2}>2+ sao</option>
+              </select>
 
-          {/* Clear Filters */}
-          {(selectedIndustry || selectedSize || minRating > 0) && (
-            <button
-              onClick={clearFilters}
-              className="px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-            >
-              Xóa bộ lọc
-            </button>
-          )}
+              {/* Clear Filters */}
+              {(selectedIndustry || selectedSize || minRating > 0) && (
+                <button
+                  onClick={clearFilters}
+                  className="col-span-2 md:col-span-1 px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                >
+                  Xóa bộ lọc
+                </button>
+              )}
+            </div>
+          </div>
         </div>
       </div>
 
@@ -249,11 +255,68 @@ export default function CompaniesClient() {
             <Link
               key={company.id}
               href={`/companies/${company.slug}`}
-              className="block bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 hover:border-green-200 dark:hover:border-green-800 hover:shadow-lg transition-all duration-300 p-6 group"
+              className="block bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 hover:border-green-200 dark:hover:border-green-800 hover:shadow-lg transition-all duration-300 p-4 sm:p-6 group"
             >
-              <div className="flex gap-6">
-                {/* Logo - More refined */}
-                <div className="relative flex-shrink-0">
+              {/* Mobile-first responsive layout */}
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
+                {/* Header row for mobile - Logo, Title and Rating */}
+                <div className="flex items-start justify-between sm:hidden">
+                  {/* Logo + Title on mobile */}
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 bg-gray-50 dark:bg-gray-700 rounded-xl flex items-center justify-center overflow-hidden border border-gray-100 dark:border-gray-600">
+                      {company.logoUrl ? (
+                        <img 
+                          src={company.logoUrl} 
+                          alt={`${company.name} logo`} 
+                          className="w-full h-full object-cover" 
+                        />
+                      ) : (
+                        <Building2 className="h-6 w-6 text-gray-400" />
+                      )}
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-900 dark:text-white text-lg leading-tight group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
+                        {company.name}
+                      </h3>
+                      {/* Industry Tag on mobile */}
+                      {company.expand?.industry && (
+                        <span
+                          className="inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-md mt-1"
+                          style={{
+                            backgroundColor: company.expand.industry.color + '15' || '#F3F4F6',
+                            color: company.expand.industry.color || '#6B7280'
+                          }}
+                        >
+                          {company.expand.industry.name}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Rating on mobile - compact */}
+                  <div className="flex flex-col items-end text-right">
+                    {(company.averageRating ?? 0) > 0 ? (
+                      <>
+                        <div className="flex items-center gap-1 mb-1">
+                          <span className="text-lg font-bold text-gray-900 dark:text-white">
+                            {company.averageRating?.toFixed(1)}
+                          </span>
+                          <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                        </div>
+                        <div className="text-xs text-gray-500 dark:text-gray-400">
+                          {company.totalReviews ?? 0} đánh giá
+                        </div>
+                      </>
+                    ) : (
+                      <div className="text-xs text-gray-400 dark:text-gray-500">
+                        Chưa có đánh giá
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Desktop layout - Logo */}
+                <div className="relative flex-shrink-0 hidden sm:block">
                   <div className="w-14 h-14 bg-gray-50 dark:bg-gray-700 rounded-xl flex items-center justify-center overflow-hidden border border-gray-100 dark:border-gray-600">
                     {company.logoUrl ? (
                       <img 
@@ -269,13 +332,13 @@ export default function CompaniesClient() {
 
                 {/* Main Content */}
                 <div className="flex-1 min-w-0">
-                  {/* Company Header */}
-                  <div className="mb-3">
+                  {/* Desktop Company Header */}
+                  <div className="mb-3 hidden sm:block">
                     <h3 className="font-semibold text-gray-900 dark:text-white text-xl leading-tight mb-2 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
                       {company.name}
                     </h3>
                     
-                    {/* Industry Tag */}
+                    {/* Industry Tag for desktop */}
                     {company.expand?.industry && (
                       <span
                         className="inline-flex items-center px-2.5 py-1 text-xs font-medium rounded-lg"
@@ -299,33 +362,33 @@ export default function CompaniesClient() {
                     </div>
                   )}
 
-                  {/* Company Details - Improved layout */}
-                  <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+                  {/* Company Details - Mobile optimized */}
+                  <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-sm text-gray-500 dark:text-gray-400">
                     {company.location && (
                       <div className="flex items-center gap-1.5">
-                        <MapPin className="h-4 w-4" />
-                        <span>{company.location}</span>
+                        <MapPin className="h-4 w-4 flex-shrink-0" />
+                        <span className="truncate">{company.location}</span>
                       </div>
                     )}
                     
                     {company.companySize && (
                       <div className="flex items-center gap-1.5">
-                        <Users className="h-4 w-4" />
-                        <span>{company.companySize}</span>
+                        <Users className="h-4 w-4 flex-shrink-0" />
+                        <span className="truncate">{company.companySize}</span>
                       </div>
                     )}
 
                     {(company.totalReviews ?? 0) > 0 && (
-                      <div className="flex items-center gap-1.5">
-                        <MessageSquare className="h-4 w-4" />
+                      <div className="flex items-center gap-1.5 sm:hidden">
+                        <MessageSquare className="h-4 w-4 flex-shrink-0" />
                         <span>{company.totalReviews} đánh giá</span>
                       </div>
                     )}
                   </div>
                 </div>
 
-                {/* Rating Section - Enhanced */}
-                <div className="flex flex-col items-end justify-start flex-shrink-0">
+                {/* Desktop Rating Section */}
+                <div className="hidden sm:flex flex-col items-end justify-start flex-shrink-0">
                   {(company.averageRating ?? 0) > 0 ? (
                     <>
                       <div className="flex items-center gap-2 mb-1">
@@ -336,7 +399,7 @@ export default function CompaniesClient() {
                           {renderStars(company.averageRating || 0)}
                         </div>
                       </div>
-                      <div className="text-xs text-gray-500 dark:text-gray-400">
+                      <div className="text-xs text-gray-500 dark:text-gray-400 text-right">
                         Dựa trên {company.totalReviews ?? 0} đánh giá
                       </div>
                     </>
@@ -355,6 +418,11 @@ export default function CompaniesClient() {
                   <div className="mt-3 text-green-600 dark:text-green-400 opacity-0 group-hover:opacity-100 transition-opacity">
                     <span className="text-sm font-medium">Xem chi tiết →</span>
                   </div>
+                </div>
+
+                {/* Mobile action indicator */}
+                <div className="sm:hidden text-center mt-2 text-green-600 dark:text-green-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span className="text-sm font-medium">Xem chi tiết →</span>
                 </div>
               </div>
             </Link>
