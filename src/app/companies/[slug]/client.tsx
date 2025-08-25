@@ -443,9 +443,9 @@ export default function CompanyDetailClient({ slug }: Props) {
                 )}
               </div>
 
-              {/* Company Description */}
+              {/* Company Description - Hidden on small screens */}
               {company.description && (
-                <div className="mb-4">
+                <div className="mb-4 hidden sm:block">
                   <div className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
                     {formatTextContent(company.description.substring(0, 300) + (company.description.length > 300 ? '...' : ''))}
                   </div>
