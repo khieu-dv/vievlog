@@ -38,10 +38,6 @@ export default function CompanyDetailClient({ slug }: Props) {
   const [filterRating, setFilterRating] = useState(0);
   const [expandedReviews, setExpandedReviews] = useState<Set<string>>(new Set());
   const [showReplies, setShowReplies] = useState<Set<string>>(new Set());
-  // Removed old reply form states - now using toggleRepliesVisibility
-  // const [replyForms, setReplyForms] = useState<Set<string>>(new Set());
-  // const [replyContents, setReplyContents] = useState<Record<string, string>>({});
-  // const [replyAuthors, setReplyAuthors] = useState<Record<string, string>>({});
   const [submittingReplies, setSubmittingReplies] = useState<Set<string>>(new Set());
   const [addCommentForms, setAddCommentForms] = useState<Set<string>>(new Set());
   const [addCommentContents, setAddCommentContents] = useState<Record<string, string>>({});
@@ -116,98 +112,6 @@ export default function CompanyDetailClient({ slug }: Props) {
     setShowReplies(newShowReplies);
   };
 
-  // Removed toggleReplyForm - no longer needed since we use toggleRepliesVisibility
-  /*
-  const toggleReplyForm = (reviewId: string) => {
-    const newReplyForms = new Set(replyForms);
-    if (newReplyForms.has(reviewId)) {
-      newReplyForms.delete(reviewId);
-      // Clear content and author when closing form
-      const newContents = { ...replyContents };
-      const newAuthors = { ...replyAuthors };
-      delete newContents[reviewId];
-      delete newAuthors[reviewId];
-      setReplyContents(newContents);
-      setReplyAuthors(newAuthors);
-    } else {
-      newReplyForms.add(reviewId);
-      // Set default author name when opening form
-      setReplyAuthors(prev => ({
-        ...prev,
-        [reviewId]: 'Ẩn danh'
-      }));
-    }
-    setReplyForms(newReplyForms);
-  };
-  */
-
-  /*
-  const handleReplyContentChange = (reviewId: string, content: string) => {
-    setReplyContents(prev => ({
-      ...prev,
-      [reviewId]: content
-    }));
-  };
-
-  const handleReplyAuthorChange = (reviewId: string, author: string) => {
-    setReplyAuthors(prev => ({
-      ...prev,
-      [reviewId]: author
-    }));
-  };
-  */
-
-  /*
-  const submitReply = async (reviewId: string) => {
-    const content = replyContents[reviewId];
-    if (!content || !content.trim()) return;
-
-    setSubmittingReplies(prev => new Set([...prev, reviewId]));
-
-    try {
-      // Create reply using actual API (preserve line breaks)
-      await reviewAPI.createReply({
-        review: reviewId,
-        author: replyAuthors[reviewId] || 'Ẩn danh',
-        content: content.trim().replace(/\n/g, '\n'),
-        authorType: 'user'
-      });
-
-      // Success - close form and clear content
-      setReplyForms(prev => {
-        const newForms = new Set(prev);
-        newForms.delete(reviewId);
-        return newForms;
-      });
-
-      setReplyContents(prev => {
-        const newContents = { ...prev };
-        delete newContents[reviewId];
-        return newContents;
-      });
-
-      setReplyAuthors(prev => {
-        const newAuthors = { ...prev };
-        delete newAuthors[reviewId];
-        return newAuthors;
-      });
-
-      // Reload reviews to show new reply
-      await loadReviews();
-
-    } catch (error) {
-      console.error('Error submitting reply:', error);
-      // TODO: Show error message to user
-      alert('Có lỗi xảy ra khi gửi bình luận. Vui lòng thử lại.');
-    } finally {
-      setSubmittingReplies(prev => {
-        const newSubmitting = new Set(prev);
-        newSubmitting.delete(reviewId);
-        return newSubmitting;
-      });
-    }
-  };
-  */
 
 
   const toggleAddCommentForm = (reviewId: string) => {
@@ -784,80 +688,16 @@ export default function CompanyDetailClient({ slug }: Props) {
                         </div>
                       </div>
 
-                      {/* Reply Form */}
-                      {/* Removed old reply form - now using toggleRepliesVisibility */}
-                      {false && (
-                        <div className="mt-4 border-t border-gray-100 dark:border-gray-700 pt-4">
-                          <div className="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4 border border-gray-200 dark:border-gray-600">
-                            <div className="flex gap-3">
-                              {/* User Avatar */}
-                              <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm">
-                                <span className="text-white text-sm font-medium">
-                                  {getAvatarLetter('Ẩn danh')}
-                                </span>
-                              </div>
-
-                              <div className="flex-1 space-y-3">
-                                {/* Author and Content in one row for compact design */}
-                                <div className="grid grid-cols-1 gap-3">
-                                  <div className="flex gap-2">
-                                    <input
-                                      type="text"
-                                      value={''}
-                                      onChange={() => {}}
-                                      placeholder="Tên hiển thị"
-                                      className="w-32 px-3 py-2 text-sm bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:text-white transition-colors"
-                                    />
-                                    <div className="flex-1"></div>
-                                  </div>
-
-                                  <textarea
-                                    value={''}
-                                    onChange={() => {}}
-                                    onKeyDown={() => {}}
-                                    placeholder="Viết bình luận của bạn..."
-                                    className="w-full p-3 text-sm bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:text-white resize-none transition-colors"
-                                    rows={3}
-                                  />
-                                </div>
-
-                                {/* Actions */}
-                                <div className="flex items-center justify-between pt-1">
-                                  <span className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1">
-                                    <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
-                                    Ctrl+Enter để gửi nhanh
-                                  </span>
-                                  <div className="flex gap-2">
-                                    <button
-                                      onClick={() => {}}
-                                      className="px-3 py-1.5 text-sm font-medium text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 transition-colors"
-                                    >
-                                      Hủy
-                                    </button>
-                                    <button
-                                      onClick={() => {}}
-                                      disabled={true}
-                                      className="px-4 py-1.5 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg hover:from-blue-700 hover:to-blue-800 disabled:from-gray-400 disabled:to-gray-400 disabled:cursor-not-allowed transition-all shadow-sm hover:shadow-md flex items-center gap-2"
-                                    >
-                                      'Gửi'
-                                    </button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      )}
 
                       {/* Review Replies - congtytui.me style */}
                       {review.expand?.review_replies && review.expand.review_replies.length > 0 && showReplies.has(review.id) && (
                         <div className="mt-4">
                           {review.expand.review_replies
                             .sort((a, b) => {
-                              // Sort by replyDate first, then by created date, newest first
+                              // Sort by replyDate first, then by created date, oldest first (newest at bottom)
                               const dateA = new Date(a.replyDate || a.created);
                               const dateB = new Date(b.replyDate || b.created);
-                              return dateB.getTime() - dateA.getTime();
+                              return dateA.getTime() - dateB.getTime();
                             })
                             .map((reply, replyIndex) => (
                               <div key={reply.id} className="ml-6 border-l-2 border-gray-200 dark:border-gray-600 pl-4 pt-3 pb-2">
