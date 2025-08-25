@@ -162,7 +162,7 @@ export default function CompaniesClient() {
                   setSelectedIndustry(e.target.value);
                   handleFilterChange();
                 }}
-                className="px-3 py-2 text-sm border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-800 dark:text-white bg-white min-w-0"
+                className="px-3 py-2 text-sm border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-800 dark:text-white bg-white min-w-0 active:scale-[0.98] transition-transform touch-manipulation"
               >
                 <option value="">Tất cả ngành</option>
                 {industries.map((industry) => (
@@ -179,7 +179,7 @@ export default function CompaniesClient() {
                   setSelectedSize(e.target.value);
                   handleFilterChange();
                 }}
-                className="px-3 py-2 text-sm border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-800 dark:text-white bg-white min-w-0"
+                className="px-3 py-2 text-sm border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-800 dark:text-white bg-white min-w-0 active:scale-[0.98] transition-transform touch-manipulation"
               >
                 <option value="">Quy mô</option>
                 {companySizes.map((size) => (
@@ -196,7 +196,7 @@ export default function CompaniesClient() {
                   setMinRating(Number(e.target.value));
                   handleFilterChange();
                 }}
-                className="px-3 py-2 text-sm border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-800 dark:text-white bg-white min-w-0"
+                className="px-3 py-2 text-sm border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-800 dark:text-white bg-white min-w-0 active:scale-[0.98] transition-transform touch-manipulation"
               >
                 <option value={0}>Đánh giá</option>
                 <option value={4}>4+ sao</option>
@@ -208,7 +208,7 @@ export default function CompaniesClient() {
               {(selectedIndustry || selectedSize || minRating > 0) && (
                 <button
                   onClick={clearFilters}
-                  className="col-span-2 md:col-span-1 px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                  className="col-span-2 md:col-span-1 px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 active:scale-[0.96] active:bg-gray-100 dark:active:bg-gray-600 transition-all touch-manipulation"
                 >
                   Xóa bộ lọc
                 </button>
@@ -245,7 +245,7 @@ export default function CompaniesClient() {
             <Link
               key={company.id}
               href={`/companies/${company.slug}`}
-              className="block bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 hover:border-green-200 dark:hover:border-green-800 hover:shadow-lg transition-all duration-300 p-4 sm:p-6 group"
+              className="block bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 hover:border-green-200 dark:hover:border-green-800 hover:shadow-lg active:scale-[0.98] active:shadow-md active:bg-gray-50 dark:active:bg-gray-700 transition-all duration-200 p-4 sm:p-6 group touch-manipulation"
             >
               {/* Mobile-first responsive layout */}
               <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
@@ -426,7 +426,7 @@ export default function CompaniesClient() {
           <button
             onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
             disabled={currentPage === 1}
-            className="px-4 py-2.5 text-sm font-medium text-gray-600 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 hover:border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 transition-all duration-200"
+            className="px-4 py-2.5 text-sm font-medium text-gray-600 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 hover:border-gray-300 active:scale-[0.96] active:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 dark:active:bg-gray-600 transition-all duration-200 touch-manipulation"
           >
             ← Trang trước
           </button>
@@ -441,10 +441,10 @@ export default function CompaniesClient() {
                 <button
                   key={pageNum}
                   onClick={() => setCurrentPage(pageNum)}
-                  className={`px-3.5 py-2.5 text-sm font-medium rounded-xl transition-all duration-200 ${
+                  className={`px-3.5 py-2.5 text-sm font-medium rounded-xl transition-all duration-200 active:scale-[0.94] touch-manipulation ${
                     currentPage === pageNum
-                      ? 'bg-green-600 text-white shadow-md'
-                      : 'text-gray-600 bg-white border border-gray-200 hover:bg-gray-50 hover:border-gray-300 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700'
+                      ? 'bg-green-600 text-white shadow-md active:bg-green-700'
+                      : 'text-gray-600 bg-white border border-gray-200 hover:bg-gray-50 hover:border-gray-300 active:bg-gray-100 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 dark:active:bg-gray-600'
                   }`}
                 >
                   {pageNum}
@@ -456,7 +456,7 @@ export default function CompaniesClient() {
           <button
             onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
             disabled={currentPage === totalPages}
-            className="px-4 py-2.5 text-sm font-medium text-gray-600 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 hover:border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 transition-all duration-200"
+            className="px-4 py-2.5 text-sm font-medium text-gray-600 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 hover:border-gray-300 active:scale-[0.96] active:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 dark:active:bg-gray-600 transition-all duration-200 touch-manipulation"
           >
             Trang sau →
           </button>
@@ -479,13 +479,13 @@ export default function CompaniesClient() {
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <button
                 onClick={clearFilters}
-                className="px-6 py-3 text-sm font-medium text-white bg-green-600 rounded-xl hover:bg-green-700 transition-colors shadow-md"
+                className="px-6 py-3 text-sm font-medium text-white bg-green-600 rounded-xl hover:bg-green-700 active:scale-[0.96] active:bg-green-800 transition-all shadow-md touch-manipulation"
               >
                 Xóa tất cả bộ lọc
               </button>
               <button
                 onClick={() => setSearchQuery('')}
-                className="px-6 py-3 text-sm font-medium text-gray-600 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 transition-colors"
+                className="px-6 py-3 text-sm font-medium text-gray-600 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 active:scale-[0.96] active:bg-gray-100 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 dark:active:bg-gray-600 transition-all touch-manipulation"
               >
                 Xóa từ khóa tìm kiếm
               </button>
