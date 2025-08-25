@@ -380,6 +380,12 @@ export default function CompanyDetailClient({ slug }: Props) {
     ));
   };
 
+  // Utility function to get avatar letter
+  const getAvatarLetter = (name: string) => {
+    if (!name || name === 'Ẩn danh') return 'A';
+    return name.charAt(0).toUpperCase();
+  };
+
   const submitReview = async () => {
     if (reviewForm.overallRating === 0) return;
     if (!company) return;
@@ -809,7 +815,9 @@ export default function CompanyDetailClient({ slug }: Props) {
                             <div className="flex gap-3">
                               {/* User Avatar */}
                               <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm">
-                                <span className="text-white text-sm font-medium">B</span>
+                                <span className="text-white text-sm font-medium">
+                                  {getAvatarLetter(replyAuthors[review.id] || 'Ẩn danh')}
+                                </span>
                               </div>
 
                               <div className="flex-1 space-y-3">
@@ -948,7 +956,7 @@ export default function CompanyDetailClient({ slug }: Props) {
                                   <div className="mt-3 ml-9 p-3 bg-gray-100 dark:bg-gray-600 rounded-lg">
                                     <div className="flex gap-2">
                                       <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
-                                        <span className="text-white text-xs font-medium">B</span>
+                                        <span className="text-white text-xs font-medium">A</span>
                                       </div>
 
                                       <div className="flex-1">
@@ -1012,7 +1020,9 @@ export default function CompanyDetailClient({ slug }: Props) {
                                 <div className="flex gap-3">
                                   {/* User Avatar */}
                                   <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm">
-                                    <span className="text-white text-sm font-medium">B</span>
+                                    <span className="text-white text-sm font-medium">
+                                      {getAvatarLetter(addCommentAuthors[review.id] || 'Ẩn danh')}
+                                    </span>
                                   </div>
 
                                   <div className="flex-1 space-y-3">
