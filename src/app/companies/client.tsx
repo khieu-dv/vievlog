@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
-import { Search, Filter, Star, Users, MapPin, Building2 } from 'lucide-react';
+import { Search, Filter, Star, Users, MapPin, Building2, MessageSquare } from 'lucide-react';
 import { companyAPI, industryAPI, type Company } from '../../lib/pocketbase';
 
 interface Industry {
@@ -51,9 +51,9 @@ export default function CompaniesClient() {
     if (abortControllerRef.current) {
       abortControllerRef.current.abort();
     }
-    
+
     abortControllerRef.current = new AbortController();
-    
+
     setLoading(true);
     try {
       if (searchQuery || selectedIndustry || selectedSize || minRating > 0) {
@@ -125,260 +125,315 @@ export default function CompaniesClient() {
     return Array.from({ length: 5 }).map((_, i) => (
       <Star
         key={i}
-        className={`h-4 w-4 ${
-          i < Math.floor(rating)
+        className={`h-4 w-4 ${i < Math.floor(rating)
             ? 'text-yellow-400 fill-current'
             : 'text-gray-300'
-        }`}
+          }`}
       />
     ));
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      {/* Header */}
+    <div className="max-w-5xl mx-auto px-4 py-8">
+      {/* Header Section - Upwork style */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-          Đánh giá công ty
-        </h1>
-        <p className="text-gray-600 dark:text-gray-400">
-          Khám phá đánh giá chân thực từ nhân viên về các công ty hàng đầu
-        </p>
-      </div>
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              {companies.length > 0 ? `${companies.length} công ty` : 'Đang tải...'}
+            </p>
+          </div>
+        </div>
 
-      {/* Search and Filters */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
-        {/* Search Bar */}
-        <div className="relative mb-4">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+        {/* Search Bar - Professional style */}
+        <div className="relative mb-6">
+          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
           <input
             type="text"
-            placeholder="Tìm kiếm công ty..."
-            className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+            placeholder="Tìm kiếm công ty theo tên hoặc mô tả..."
+            className="w-full pl-12 pr-4 py-4 text-base border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-800 dark:text-white shadow-sm hover:shadow-md transition-shadow"
             value={searchQuery}
             onChange={(e) => handleSearch(e.target.value)}
           />
         </div>
 
-        {/* Filters */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        {/* Filters Row - Clean horizontal layout */}
+        <div className="flex flex-wrap items-center gap-3 mb-2">
+          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Lọc theo:</span>
+          
           {/* Industry Filter */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              Ngành nghề
-            </label>
-            <select
-              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
-              value={selectedIndustry}
-              onChange={(e) => {
-                setSelectedIndustry(e.target.value);
-                handleFilterChange();
-              }}
-            >
-              <option value="">Tất cả ngành</option>
-              {industries.map((industry) => (
-                <option key={industry.id} value={industry.id}>
-                  {industry.name}
-                </option>
-              ))}
-            </select>
-          </div>
+          <select
+            value={selectedIndustry}
+            onChange={(e) => {
+              setSelectedIndustry(e.target.value);
+              handleFilterChange();
+            }}
+            className="px-3 py-2 text-sm border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-800 dark:text-white bg-white"
+          >
+            <option value="">Tất cả ngành</option>
+            {industries.map((industry) => (
+              <option key={industry.id} value={industry.id}>
+                {industry.name}
+              </option>
+            ))}
+          </select>
 
           {/* Company Size Filter */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              Quy mô
-            </label>
-            <select
-              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
-              value={selectedSize}
-              onChange={(e) => {
-                setSelectedSize(e.target.value);
-                handleFilterChange();
-              }}
-            >
-              <option value="">Tất cả quy mô</option>
-              {companySizes.map((size) => (
-                <option key={size.value} value={size.value}>
-                  {size.label}
-                </option>
-              ))}
-            </select>
-          </div>
+          <select
+            value={selectedSize}
+            onChange={(e) => {
+              setSelectedSize(e.target.value);
+              handleFilterChange();
+            }}
+            className="px-3 py-2 text-sm border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-800 dark:text-white bg-white"
+          >
+            <option value="">Quy mô</option>
+            {companySizes.map((size) => (
+              <option key={size.value} value={size.value}>
+                {size.label}
+              </option>
+            ))}
+          </select>
 
           {/* Rating Filter */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              Đánh giá tối thiểu
-            </label>
-            <select
-              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
-              value={minRating}
-              onChange={(e) => {
-                setMinRating(Number(e.target.value));
-                handleFilterChange();
-              }}
-            >
-              <option value={0}>Tất cả đánh giá</option>
-              <option value={4}>4+ sao</option>
-              <option value={3}>3+ sao</option>
-              <option value={2}>2+ sao</option>
-            </select>
-          </div>
+          <select
+            value={minRating}
+            onChange={(e) => {
+              setMinRating(Number(e.target.value));
+              handleFilterChange();
+            }}
+            className="px-3 py-2 text-sm border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-800 dark:text-white bg-white"
+          >
+            <option value={0}>Đánh giá</option>
+            <option value={4}>4+ sao</option>
+            <option value={3}>3+ sao</option>
+            <option value={2}>2+ sao</option>
+          </select>
 
           {/* Clear Filters */}
-          <div className="flex items-end">
+          {(selectedIndustry || selectedSize || minRating > 0) && (
             <button
               onClick={clearFilters}
-              className="w-full px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+              className="px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
             >
               Xóa bộ lọc
             </button>
-          </div>
+          )}
         </div>
       </div>
 
-      {/* Companies Grid */}
+      {/* Companies List - Upwork Style */}
       {loading ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {Array.from({ length: 6 }).map((_, i) => (
-            <div key={i} className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 animate-pulse">
-              <div className="flex items-center mb-4">
-                <div className="w-16 h-16 bg-gray-200 dark:bg-gray-700 rounded-lg mr-4"></div>
-                <div>
-                  <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-32 mb-2"></div>
-                  <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded w-24"></div>
+        <div className="space-y-6">
+          {Array.from({ length: 8 }).map((_, i) => (
+            <div key={i} className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 p-6 animate-pulse">
+              <div className="flex gap-6">
+                <div className="w-14 h-14 bg-gray-200 dark:bg-gray-700 rounded-xl"></div>
+                <div className="flex-1">
+                  <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded w-2/3 mb-3"></div>
+                  <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/3 mb-3"></div>
+                  <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-full mb-2"></div>
+                  <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4"></div>
+                </div>
+                <div className="flex flex-col items-end">
+                  <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded w-16 mb-2"></div>
+                  <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-20"></div>
                 </div>
               </div>
-              <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded w-full mb-2"></div>
-              <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded w-2/3"></div>
             </div>
           ))}
         </div>
       ) : (
-        <>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {companies.map((company) => (
-              <Link
-                key={company.id}
-                href={`/companies/${company.slug}`}
-                className="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow p-6 block group"
-              >
-                <div className="flex items-center mb-4">
-                  {/* Company Logo */}
-                  <div className="w-16 h-16 bg-gray-100 dark:bg-gray-700 rounded-lg mr-4 flex items-center justify-center overflow-hidden">
+        <div className="space-y-6">
+          {companies.map((company, index) => (
+            <Link
+              key={company.id}
+              href={`/companies/${company.slug}`}
+              className="block bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 hover:border-green-200 dark:hover:border-green-800 hover:shadow-lg transition-all duration-300 p-6 group"
+            >
+              <div className="flex gap-6">
+                {/* Logo - More refined */}
+                <div className="relative flex-shrink-0">
+                  <div className="w-14 h-14 bg-gray-50 dark:bg-gray-700 rounded-xl flex items-center justify-center overflow-hidden border border-gray-100 dark:border-gray-600">
                     {company.logoUrl ? (
-                      <img
-                        src={company.logoUrl}
-                        alt={`${company.name} logo`}
-                        className="w-full h-full object-cover"
+                      <img 
+                        src={company.logoUrl} 
+                        alt={`${company.name} logo`} 
+                        className="w-full h-full object-cover" 
                       />
                     ) : (
-                      <Building2 className="h-8 w-8 text-gray-400" />
+                      <Building2 className="h-7 w-7 text-gray-400" />
                     )}
                   </div>
-                  <div className="flex-1">
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                </div>
+
+                {/* Main Content */}
+                <div className="flex-1 min-w-0">
+                  {/* Company Header */}
+                  <div className="mb-3">
+                    <h3 className="font-semibold text-gray-900 dark:text-white text-xl leading-tight mb-2 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
                       {company.name}
                     </h3>
-                    <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
-                      {company.location && (
-                        <div className="flex items-center mr-3">
-                          <MapPin className="h-3 w-3 mr-1" />
-                          {company.location}
-                        </div>
-                      )}
-                      {company.companySize && (
+                    
+                    {/* Industry Tag */}
+                    {company.expand?.industry && (
+                      <span
+                        className="inline-flex items-center px-2.5 py-1 text-xs font-medium rounded-lg"
+                        style={{
+                          backgroundColor: company.expand.industry.color + '15' || '#F3F4F6',
+                          color: company.expand.industry.color || '#6B7280'
+                        }}
+                      >
+                        {company.expand.industry.name}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Company Description Preview */}
+                  {company.description && (
+                    <div className="mb-4">
+                      <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed line-clamp-2">
+                        {company.description.replace(/<[^>]*>/g, '').substring(0, 200)}
+                        {company.description.length > 200 ? '...' : ''}
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Company Details - Improved layout */}
+                  <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+                    {company.location && (
+                      <div className="flex items-center gap-1.5">
+                        <MapPin className="h-4 w-4" />
+                        <span>{company.location}</span>
+                      </div>
+                    )}
+                    
+                    {company.companySize && (
+                      <div className="flex items-center gap-1.5">
+                        <Users className="h-4 w-4" />
+                        <span>{company.companySize}</span>
+                      </div>
+                    )}
+
+                    {(company.totalReviews ?? 0) > 0 && (
+                      <div className="flex items-center gap-1.5">
+                        <MessageSquare className="h-4 w-4" />
+                        <span>{company.totalReviews} đánh giá</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Rating Section - Enhanced */}
+                <div className="flex flex-col items-end justify-start flex-shrink-0">
+                  {(company.averageRating ?? 0) > 0 ? (
+                    <>
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="text-xl font-bold text-gray-900 dark:text-white">
+                          {company.averageRating?.toFixed(1)}
+                        </span>
                         <div className="flex items-center">
-                          <Users className="h-3 w-3 mr-1" />
-                          {company.companySize} người
+                          {renderStars(company.averageRating || 0)}
                         </div>
-                      )}
+                      </div>
+                      <div className="text-xs text-gray-500 dark:text-gray-400">
+                        Dựa trên {company.totalReviews ?? 0} đánh giá
+                      </div>
+                    </>
+                  ) : (
+                    <div className="text-center">
+                      <div className="text-sm text-gray-400 dark:text-gray-500 mb-1">
+                        Chưa có đánh giá
+                      </div>
+                      <div className="text-xs text-gray-400">
+                        Hãy là người đầu tiên
+                      </div>
                     </div>
+                  )}
+
+                  {/* Action indicator */}
+                  <div className="mt-3 text-green-600 dark:text-green-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span className="text-sm font-medium">Xem chi tiết →</span>
                   </div>
                 </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      )}
 
-                {/* Company Description */}
-                {company.description && (
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">
-                    {company.description.replace(/<[^>]*>/g, '').substring(0, 120)}...
-                  </p>
-                )}
+      {/* Pagination - Professional style */}
+      {totalPages > 1 && (
+        <div className="flex justify-center items-center mt-12 gap-2">
+          <button
+            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+            className="px-4 py-2.5 text-sm font-medium text-gray-600 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 hover:border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 transition-all duration-200"
+          >
+            ← Trang trước
+          </button>
 
-                {/* Rating and Reviews */}
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center">
-                    <div className="flex items-center mr-2">
-                      {renderStars(company.averageRating || 0)}
-                    </div>
-                    <span className="text-sm font-medium text-gray-900 dark:text-white">
-                      {company.averageRating?.toFixed(1) || 'N/A'}
-                    </span>
-                  </div>
-                  <span className="text-sm text-gray-500 dark:text-gray-400">
-                    {company.totalReviews || 0} đánh giá
-                  </span>
-                </div>
-
-                {/* Industry Badge */}
-                {company.expand?.industry && (
-                  <div className="mt-3">
-                    <span 
-                      className="inline-block px-2 py-1 text-xs font-medium rounded-full text-white"
-                      style={{ backgroundColor: company.expand.industry.color || '#6B7280' }}
-                    >
-                      {company.expand.industry.name}
-                    </span>
-                  </div>
-                )}
-              </Link>
-            ))}
+          {/* Page numbers */}
+          <div className="flex gap-1">
+            {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+              const pageNum = Math.max(1, Math.min(currentPage - 2, totalPages - 4)) + i;
+              if (pageNum > totalPages) return null;
+              
+              return (
+                <button
+                  key={pageNum}
+                  onClick={() => setCurrentPage(pageNum)}
+                  className={`px-3.5 py-2.5 text-sm font-medium rounded-xl transition-all duration-200 ${
+                    currentPage === pageNum
+                      ? 'bg-green-600 text-white shadow-md'
+                      : 'text-gray-600 bg-white border border-gray-200 hover:bg-gray-50 hover:border-gray-300 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700'
+                  }`}
+                >
+                  {pageNum}
+                </button>
+              );
+            })}
           </div>
 
-          {/* Pagination */}
-          {totalPages > 1 && (
-            <div className="flex justify-center items-center mt-8 space-x-2">
-              <button
-                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                disabled={currentPage === 1}
-                className="px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400 dark:hover:bg-gray-700"
-              >
-                Trước
-              </button>
-              
-              <span className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300">
-                Trang {currentPage} / {totalPages}
-              </span>
+          <button
+            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+            disabled={currentPage === totalPages}
+            className="px-4 py-2.5 text-sm font-medium text-gray-600 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 hover:border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 transition-all duration-200"
+          >
+            Trang sau →
+          </button>
+        </div>
+      )}
 
-              <button
-                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                disabled={currentPage === totalPages}
-                className="px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400 dark:hover:bg-gray-700"
-              >
-                Sau
-              </button>
+      {/* No Results - Enhanced */}
+      {companies.length === 0 && !loading && (
+        <div className="text-center py-16">
+          <div className="max-w-md mx-auto">
+            <div className="w-20 h-20 mx-auto mb-6 bg-gray-100 dark:bg-gray-700 rounded-2xl flex items-center justify-center">
+              <Building2 className="h-10 w-10 text-gray-400" />
             </div>
-          )}
-
-          {/* No Results */}
-          {companies.length === 0 && !loading && (
-            <div className="text-center py-12">
-              <Building2 className="mx-auto h-16 w-16 text-gray-400 mb-4" />
-              <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
-                Không tìm thấy công ty nào
-              </h3>
-              <p className="text-gray-500 dark:text-gray-400 mb-4">
-                Thử thay đổi bộ lọc tìm kiếm của bạn
-              </p>
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+              Không tìm thấy công ty phù hợp
+            </h3>
+            <p className="text-gray-500 dark:text-gray-400 mb-6 leading-relaxed">
+              Hãy thử điều chỉnh từ khóa tìm kiếm hoặc bỏ bớt các bộ lọc để tìm thấy nhiều kết quả hơn.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <button
                 onClick={clearFilters}
-                className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors"
+                className="px-6 py-3 text-sm font-medium text-white bg-green-600 rounded-xl hover:bg-green-700 transition-colors shadow-md"
               >
                 Xóa tất cả bộ lọc
               </button>
+              <button
+                onClick={() => setSearchQuery('')}
+                className="px-6 py-3 text-sm font-medium text-gray-600 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 transition-colors"
+              >
+                Xóa từ khóa tìm kiếm
+              </button>
             </div>
-          )}
-        </>
+          </div>
+        </div>
       )}
     </div>
   );

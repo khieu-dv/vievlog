@@ -54,6 +54,7 @@ export interface Review {
   expand?: {
     review_ratings?: ReviewRating[];
     review_replies?: ReviewReply[];
+    ['review_reactions(review)']?: ReviewReaction[];
   };
 }
 
@@ -77,7 +78,20 @@ export interface ReviewReply {
   author: string;
   authorType: 'company' | 'user' | 'admin';
   content: string;
+  replyDate?: string;
   isOfficial?: boolean;
+  created: string;
+  updated: string;
+  expand?: {
+    ['review_reactions(reply)']?: ReviewReaction[];
+  };
+}
+
+export interface ReviewReaction {
+  id: string;
+  review?: string;
+  reply?: string;
+  count: number;
   created: string;
   updated: string;
 }
@@ -122,7 +136,7 @@ export const companyAPI = {
           expand: 'industry'
         });
       }
-      throw error;
+      throw error
     }
   },
 
@@ -158,22 +172,64 @@ export const companyAPI = {
   },
 
   // Get company reviews
-  async getReviews(companyId: string, page = 1, limit = 10) {
+  async getReviews(companyId: string, page = 1, limit = 10, filterRating = 0) {
     try {
-      return await pb.collection('reviews').getList(page, limit, {
-        filter: `company="${companyId}"`,
-        sort: '-created',
-        expand: 'review_ratings,review_replies(review)',
-        requestKey: `reviews_${companyId}_${page}_${limit}`
+      // Build filter string
+      let filterString = `company="${companyId}"`;
+      if (filterRating > 0) {
+        filterString += ` && overallRating=${filterRating}`;
+      }
+
+      // First get reviews - sort by reviewDate (newest first), fallback to created date
+      const reviewsResponse = await pb.collection('reviews').getList(page, limit, {
+        filter: filterString,
+        sort: '-reviewDate,-created',
+        expand: 'review_ratings,review_reactions(review)',
+        requestKey: `reviews_${companyId}_${page}_${limit}_${filterRating}`
       });
+
+      // Then get replies for each review manually
+      const reviewsWithReplies = await Promise.all(
+        reviewsResponse.items.map(async (review) => {
+          try {
+            const repliesResponse = await pb.collection('review_replies').getList(1, 100, {
+              filter: `review="${review.id}"`,
+              sort: '-created',
+              expand: 'review_reactions(reply)'
+            });
+            
+            return {
+              ...review,
+              expand: {
+                ...review.expand,
+                review_replies: repliesResponse.items
+              }
+            };
+          } catch (error) {
+            console.warn(`Could not load replies for review ${review.id}:`, error);
+            return review;
+          }
+        })
+      );
+
+      return {
+        ...reviewsResponse,
+        items: reviewsWithReplies
+      };
     } catch (error: any) {
       if (error.status === 0 && error.message.includes('autocancelled')) {
-        // Retry once for auto-cancelled requests
+        // Retry once for auto-cancelled requests - simplified version
         await new Promise(resolve => setTimeout(resolve, 100));
+        
+        let filterString = `company="${companyId}"`;
+        if (filterRating > 0) {
+          filterString += ` && overallRating=${filterRating}`;
+        }
+        
         return await pb.collection('reviews').getList(page, limit, {
-          filter: `company="${companyId}"`,
-          sort: '-created',
-          expand: 'review_ratings,review_replies(review)'
+          filter: filterString,
+          sort: '-reviewDate,-created',
+          expand: 'review_ratings'
         });
       }
       throw error;

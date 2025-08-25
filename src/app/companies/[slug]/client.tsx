@@ -3,12 +3,12 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { 
-  Star, 
-  Users, 
-  MapPin, 
-  Building2, 
-  Globe, 
+import {
+  Star,
+  Users,
+  MapPin,
+  Building2,
+  Globe,
   Calendar,
   ThumbsUp,
   MessageSquare,
@@ -19,7 +19,8 @@ import {
   ArrowLeft,
   Filter,
   ChevronDown,
-  ChevronUp
+  ChevronUp,
+  X
 } from 'lucide-react';
 import { companyAPI, type Company, type Review } from '../../../lib/pocketbase';
 
@@ -36,6 +37,19 @@ export default function CompanyDetailClient({ slug }: Props) {
   const [totalPages, setTotalPages] = useState(1);
   const [filterRating, setFilterRating] = useState(0);
   const [expandedReviews, setExpandedReviews] = useState<Set<string>>(new Set());
+  const [replyForms, setReplyForms] = useState<Set<string>>(new Set());
+  const [replyContents, setReplyContents] = useState<Record<string, string>>({});
+  const [submittingReplies, setSubmittingReplies] = useState<Set<string>>(new Set());
+  const [nestedReplyForms, setNestedReplyForms] = useState<Set<string>>(new Set());
+  const [nestedReplyContents, setNestedReplyContents] = useState<Record<string, string>>({});
+  const [showReviewModal, setShowReviewModal] = useState(false);
+  const [reviewForm, setReviewForm] = useState({
+    overallRating: 0,
+    reviewTitle: '',
+    generalContent: '',
+    isAnonymous: false
+  });
+  const [submittingReview, setSubmittingReview] = useState(false);
 
   useEffect(() => {
     loadCompanyData();
@@ -64,10 +78,10 @@ export default function CompanyDetailClient({ slug }: Props) {
 
   const loadReviews = async () => {
     if (!company) return;
-    
+
     setReviewsLoading(true);
     try {
-      const response = await companyAPI.getReviews(company.id, currentPage, 10);
+      const response = await companyAPI.getReviews(company.id, currentPage, 10, filterRating);
       setReviews(response.items as unknown as Review[]);
       setTotalPages(response.totalPages);
     } catch (error) {
@@ -87,6 +101,176 @@ export default function CompanyDetailClient({ slug }: Props) {
     setExpandedReviews(newExpanded);
   };
 
+  const toggleReplyForm = (reviewId: string) => {
+    const newReplyForms = new Set(replyForms);
+    if (newReplyForms.has(reviewId)) {
+      newReplyForms.delete(reviewId);
+      // Clear content when closing form
+      const newContents = { ...replyContents };
+      delete newContents[reviewId];
+      setReplyContents(newContents);
+    } else {
+      newReplyForms.add(reviewId);
+    }
+    setReplyForms(newReplyForms);
+  };
+
+  const handleReplyContentChange = (reviewId: string, content: string) => {
+    setReplyContents(prev => ({
+      ...prev,
+      [reviewId]: content
+    }));
+  };
+
+  const submitReply = async (reviewId: string) => {
+    const content = replyContents[reviewId];
+    if (!content || !content.trim()) return;
+
+    setSubmittingReplies(prev => new Set([...prev, reviewId]));
+
+    try {
+      // TODO: Replace with actual API call
+      console.log('Submitting reply for review:', reviewId, 'content:', content);
+      
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Success - close form and clear content
+      setReplyForms(prev => {
+        const newForms = new Set(prev);
+        newForms.delete(reviewId);
+        return newForms;
+      });
+      
+      setReplyContents(prev => {
+        const newContents = { ...prev };
+        delete newContents[reviewId];
+        return newContents;
+      });
+
+      // Reload reviews to show new reply
+      loadReviews();
+      
+    } catch (error) {
+      console.error('Error submitting reply:', error);
+      // TODO: Show error message to user
+    } finally {
+      setSubmittingReplies(prev => {
+        const newSubmitting = new Set(prev);
+        newSubmitting.delete(reviewId);
+        return newSubmitting;
+      });
+    }
+  };
+
+  const toggleNestedReplyForm = (replyId: string) => {
+    const newNestedReplyForms = new Set(nestedReplyForms);
+    if (newNestedReplyForms.has(replyId)) {
+      newNestedReplyForms.delete(replyId);
+      // Clear content when closing form
+      const newContents = { ...nestedReplyContents };
+      delete newContents[replyId];
+      setNestedReplyContents(newContents);
+    } else {
+      newNestedReplyForms.add(replyId);
+    }
+    setNestedReplyForms(newNestedReplyForms);
+  };
+
+  const handleNestedReplyContentChange = (replyId: string, content: string) => {
+    setNestedReplyContents(prev => ({
+      ...prev,
+      [replyId]: content
+    }));
+  };
+
+  const submitNestedReply = async (replyId: string) => {
+    const content = nestedReplyContents[replyId];
+    if (!content || !content.trim()) return;
+
+    setSubmittingReplies(prev => new Set([...prev, replyId]));
+
+    try {
+      // TODO: Replace with actual API call
+      console.log('Submitting nested reply for reply:', replyId, 'content:', content);
+      
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Success - close form and clear content
+      setNestedReplyForms(prev => {
+        const newForms = new Set(prev);
+        newForms.delete(replyId);
+        return newForms;
+      });
+      
+      setNestedReplyContents(prev => {
+        const newContents = { ...prev };
+        delete newContents[replyId];
+        return newContents;
+      });
+
+      // Reload reviews to show new reply
+      loadReviews();
+      
+    } catch (error) {
+      console.error('Error submitting nested reply:', error);
+      // TODO: Show error message to user
+    } finally {
+      setSubmittingReplies(prev => {
+        const newSubmitting = new Set(prev);
+        newSubmitting.delete(replyId);
+        return newSubmitting;
+      });
+    }
+  };
+
+  const openReviewModal = () => {
+    setShowReviewModal(true);
+  };
+
+  const closeReviewModal = () => {
+    setShowReviewModal(false);
+    // Reset form
+    setReviewForm({
+      overallRating: 0,
+      reviewTitle: '',
+      generalContent: '',
+      isAnonymous: false
+    });
+  };
+
+  const updateReviewForm = (field: string, value: any) => {
+    setReviewForm(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  const submitReview = async () => {
+    if (reviewForm.overallRating === 0) return;
+
+    setSubmittingReview(true);
+
+    try {
+      // TODO: Replace with actual API call
+      console.log('Submitting new review:', reviewForm);
+      
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      // Success - close modal and reload reviews
+      closeReviewModal();
+      loadReviews();
+      
+    } catch (error) {
+      console.error('Error submitting review:', error);
+      // TODO: Show error message to user
+    } finally {
+      setSubmittingReview(false);
+    }
+  };
+
   const renderStars = (rating: number, size: 'sm' | 'md' | 'lg' = 'sm') => {
     const sizeClass = {
       sm: 'h-4 w-4',
@@ -97,12 +281,29 @@ export default function CompanyDetailClient({ slug }: Props) {
     return Array.from({ length: 5 }).map((_, i) => (
       <Star
         key={i}
-        className={`${sizeClass} ${
-          i < Math.floor(rating)
-            ? 'text-yellow-400 fill-current'
-            : 'text-gray-300'
-        }`}
+        className={`${sizeClass} ${i < Math.floor(rating)
+          ? 'text-yellow-400 fill-current'
+          : 'text-gray-300'
+          }`}
       />
+    ));
+  };
+
+  const renderRatingSelector = (currentRating: number, onRatingChange: (rating: number) => void) => {
+    return Array.from({ length: 5 }).map((_, i) => (
+      <button
+        key={i}
+        type="button"
+        onClick={() => onRatingChange(i + 1)}
+        className="p-1 hover:scale-110 transition-transform"
+      >
+        <Star
+          className={`h-6 w-6 ${i < currentRating
+            ? 'text-yellow-400 fill-current'
+            : 'text-gray-300 hover:text-yellow-200'
+            }`}
+        />
+      </button>
     ));
   };
 
@@ -140,7 +341,7 @@ export default function CompanyDetailClient({ slug }: Props) {
             <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-full mb-2"></div>
             <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4"></div>
           </div>
-          
+
           {/* Reviews Skeleton */}
           {Array.from({ length: 3 }).map((_, i) => (
             <div key={i} className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-4">
@@ -161,7 +362,7 @@ export default function CompanyDetailClient({ slug }: Props) {
   return (
     <div className="container mx-auto px-4 py-8">
       {/* Back Button */}
-      <Link 
+      <Link
         href="/companies"
         className="inline-flex items-center text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 mb-6 transition-colors"
       >
@@ -169,12 +370,13 @@ export default function CompanyDetailClient({ slug }: Props) {
         Về danh sách công ty
       </Link>
 
-      {/* Company Header */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
-        <div className="flex flex-col md:flex-row md:items-center mb-6">
-          {/* Company Logo & Info */}
-          <div className="flex items-center mb-4 md:mb-0 md:mr-8">
-            <div className="w-20 h-20 bg-gray-100 dark:bg-gray-700 rounded-lg mr-6 flex items-center justify-center overflow-hidden">
+      {/* Company Header - congtytui.me style */}
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 mb-6">
+        <div className="p-6">
+          {/* Company Info Row */}
+          <div className="flex items-start gap-4 mb-6">
+            {/* Company Logo */}
+            <div className="w-16 h-16 bg-gray-50 dark:bg-gray-700 rounded-lg flex items-center justify-center overflow-hidden flex-shrink-0">
               {company.logoUrl ? (
                 <img
                   src={company.logoUrl}
@@ -182,89 +384,87 @@ export default function CompanyDetailClient({ slug }: Props) {
                   className="w-full h-full object-cover"
                 />
               ) : (
-                <Building2 className="h-10 w-10 text-gray-400" />
+                <Building2 className="h-8 w-8 text-gray-400" />
               )}
             </div>
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+
+            {/* Company Details */}
+            <div className="flex-1 min-w-0">
+              <h1 className="text-2xl font-semibold text-gray-900 dark:text-white mb-2 truncate">
                 {company.name}
               </h1>
-              <div className="flex flex-wrap items-center text-gray-600 dark:text-gray-400 text-sm gap-4">
+
+              {/* Company Attributes */}
+              <div className="space-y-1.5 text-sm text-gray-600 dark:text-gray-400">
                 {company.location && (
                   <div className="flex items-center">
-                    <MapPin className="h-4 w-4 mr-1" />
-                    {company.location}
+                    <MapPin className="h-4 w-4 mr-2 text-gray-400" />
+                    <span>{company.location}</span>
                   </div>
                 )}
                 {company.companySize && (
                   <div className="flex items-center">
-                    <Users className="h-4 w-4 mr-1" />
-                    {company.companySize} nhân viên
+                    <Users className="h-4 w-4 mr-2 text-gray-400" />
+                    <span>{company.companySize}</span>
                   </div>
-                )}
-                {company.founded && (
-                  <div className="flex items-center">
-                    <Calendar className="h-4 w-4 mr-1" />
-                    Thành lập {company.founded}
-                  </div>
-                )}
-                {company.website && (
-                  <a 
-                    href={company.website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                  >
-                    <Globe className="h-4 w-4 mr-1" />
-                    Website
-                  </a>
                 )}
               </div>
             </div>
+
+            {/* Actions */}
+            <div className="flex flex-col gap-3">
+              <button 
+                onClick={openReviewModal}
+                className="px-6 py-3 bg-green-600 text-white text-sm font-semibold rounded-xl hover:bg-green-700 transition-colors shadow-md hover:shadow-lg"
+              >
+                Viết đánh giá
+              </button>
+            </div>
           </div>
 
-          {/* Rating Summary */}
-          <div className="flex-1 md:max-w-sm">
-            <div className="text-center md:text-right">
-              <div className="flex items-center justify-center md:justify-end mb-2">
-                <span className="text-4xl font-bold text-gray-900 dark:text-white mr-2">
-                  {company.averageRating?.toFixed(1) || 'N/A'}
-                </span>
-                <div className="flex items-center">
-                  {renderStars(company.averageRating || 0, 'lg')}
+          {/* Rating Summary Bar */}
+          <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2">
+                  <span className="text-2xl font-bold text-gray-900 dark:text-white">
+                    {company.averageRating?.toFixed(1) || 'N/A'}
+                  </span>
+                  <div className="flex items-center">
+                    {renderStars(company.averageRating || 0, 'md')}
+                  </div>
                 </div>
+                <span className="text-sm text-gray-500 dark:text-gray-400">
+                  ({company.totalReviews || 0} đánh giá)
+                </span>
               </div>
-              <p className="text-gray-600 dark:text-gray-400 text-sm">
-                Dựa trên {company.totalReviews || 0} đánh giá
-              </p>
             </div>
           </div>
         </div>
-
-        {/* Company Description */}
-        {company.description && (
-          <div className="border-t border-gray-200 dark:border-gray-700 pt-6">
-            <div 
-              className="text-gray-700 dark:text-gray-300 prose prose-sm max-w-none"
-              dangerouslySetInnerHTML={{ 
-                __html: company.description.substring(0, 500) + (company.description.length > 500 ? '...' : '')
-              }}
-            />
-          </div>
-        )}
-
-        {/* Industry Badge */}
-        {company.expand?.industry && (
-          <div className="mt-4">
-            <span 
-              className="inline-block px-3 py-1 text-sm font-medium rounded-full text-white"
-              style={{ backgroundColor: company.expand.industry.color || '#6B7280' }}
-            >
-              {company.expand.industry.name}
-            </span>
-          </div>
-        )}
       </div>
+
+      {/* Company Description */}
+      {company.description && (
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6 mb-6">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Giới thiệu về công ty</h3>
+          <div
+            className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed"
+            dangerouslySetInnerHTML={{
+              __html: company.description.substring(0, 500) + (company.description.length > 500 ? '...' : '')
+            }}
+          />
+          {company.expand?.industry && (
+            <div className="mt-4">
+              <span
+                className="inline-flex items-center px-3 py-1 text-xs font-medium rounded-full text-white"
+                style={{ backgroundColor: company.expand.industry.color || '#6B7280' }}
+              >
+                {company.expand.industry.name}
+              </span>
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Detailed Ratings */}
       {company.expand?.company_stats && company.expand.company_stats.length > 0 && (
@@ -288,280 +488,521 @@ export default function CompanyDetailClient({ slug }: Props) {
       )}
 
       {/* Reviews Section */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
-            Đánh giá từ nhân viên ({company.totalReviews || 0})
-          </h2>
-          
-          {/* Rating Filter */}
-          <select
-            className="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
-            value={filterRating}
-            onChange={(e) => setFilterRating(Number(e.target.value))}
-          >
-            <option value={0}>Tất cả đánh giá</option>
-            <option value={5}>5 sao</option>
-            <option value={4}>4 sao</option>
-            <option value={3}>3 sao</option>
-            <option value={2}>2 sao</option>
-            <option value={1}>1 sao</option>
-          </select>
+      <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm">
+        <div className="border-b border-gray-100 dark:border-gray-700 p-8">
+          <div className="flex items-center justify-between">
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">
+              Đánh giá từ nhân viên ({company.totalReviews || 0})
+            </h2>
+
+            {/* Rating Filter */}
+            <select
+              className="px-4 py-2.5 text-sm font-medium border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:text-white bg-white shadow-sm"
+              value={filterRating}
+              onChange={(e) => {
+                setFilterRating(Number(e.target.value));
+                setCurrentPage(1); // Reset về trang đầu khi thay đổi filter
+              }}
+            >
+              <option value={0}>Tất cả</option>
+              <option value={5}>5 sao</option>
+              <option value={4}>4 sao</option>
+              <option value={3}>3 sao</option>
+              <option value={2}>2 sao</option>
+              <option value={1}>1 sao</option>
+            </select>
+          </div>
         </div>
 
-        {/* Reviews List */}
-        {reviewsLoading ? (
-          <div className="space-y-6">
-            {Array.from({ length: 3 }).map((_, i) => (
-              <div key={i} className="border-b border-gray-200 dark:border-gray-700 pb-6 animate-pulse">
-                <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/4 mb-4"></div>
-                <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-full mb-2"></div>
-                <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-2/3"></div>
-              </div>
-            ))}
-          </div>
-        ) : reviews.length > 0 ? (
-          <>
+        <div className="p-8">
+          {/* Reviews List */}
+          {reviewsLoading ? (
             <div className="space-y-6">
-              {reviews.map((review, index) => {
-                const isExpanded = expandedReviews.has(review.id);
-                const hasLongContent = (review.pros?.length || 0) + (review.cons?.length || 0) + (review.generalContent?.length || 0) > 500;
-                
-                return (
-                  <div 
-                    key={review.id}
-                    className={`border-b border-gray-200 dark:border-gray-700 pb-6 ${
-                      index === reviews.length - 1 ? 'border-b-0 pb-0' : ''
-                    }`}
-                  >
-                    {/* Review Header */}
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="flex items-start">
-                        <div className="flex-1">
-                          <div className="flex items-center mb-2">
-                            <span className="font-medium text-gray-900 dark:text-white mr-3">
+              {Array.from({ length: 3 }).map((_, i) => (
+                <div key={i} className="border-b border-gray-200 dark:border-gray-700 pb-6 animate-pulse">
+                  <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/4 mb-4"></div>
+                  <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-full mb-2"></div>
+                  <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-2/3"></div>
+                </div>
+              ))}
+            </div>
+          ) : reviews.length > 0 ? (
+            <>
+              <div className="space-y-6">
+                {reviews.map((review, index) => {
+                  const isExpanded = expandedReviews.has(review.id);
+                  const hasLongContent = (review.pros?.length || 0) + (review.cons?.length || 0) + (review.generalContent?.length || 0) > 500;
+
+                  return (
+                    <div
+                      key={review.id}
+                      className={`pb-6 mb-6 ${index !== reviews.length - 1 ? 'border-b border-gray-100 dark:border-gray-700' : ''
+                        }`}
+                    >
+                      {/* Review Header - congtytui.me style */}
+                      <div className="flex items-start gap-3 mb-3">
+                        {/* Avatar placeholder */}
+                        <div className="w-8 h-8 bg-gray-300 dark:bg-gray-600 rounded-full flex items-center justify-center flex-shrink-0">
+                          <span className="text-xs font-medium text-white uppercase">
+                            {review.author.charAt(0)}
+                          </span>
+                        </div>
+
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="font-medium text-gray-900 dark:text-white text-sm">
                               {review.author}
                             </span>
-                            <div className="flex items-center mr-3">
-                              {renderStars(review.overallRating)}
+                            <div className="flex items-center">
+                              {renderStars(review.overallRating, 'sm')}
                             </div>
-                            <span className="text-sm text-gray-500 dark:text-gray-400">
-                              {review.overallRating}/5
-                            </span>
                           </div>
-                          
-                          <div className="flex flex-wrap items-center text-sm text-gray-600 dark:text-gray-400 gap-3">
-                            {review.position && (
-                              <span className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded text-xs">
-                                {review.position}
-                              </span>
-                            )}
-                            {review.workDuration && (
-                              <span>Làm việc: {review.workDuration}</span>
-                            )}
-                            {review.employmentStatus && (
-                              <span>
-                                {review.employmentStatus === 'current_employee' ? 'Nhân viên hiện tại' :
-                                 review.employmentStatus === 'former_employee' ? 'Cựu nhân viên' :
-                                 review.employmentStatus}
-                              </span>
-                            )}
+
+                          <div className="text-xs text-gray-500 dark:text-gray-400">
+                            {review.reviewDate && new Date(review.reviewDate).toLocaleDateString('vi-VN')}
                           </div>
                         </div>
                       </div>
-                      
-                      <div className="text-sm text-gray-500 dark:text-gray-400">
-                        {review.reviewDate && new Date(review.reviewDate).toLocaleDateString('vi-VN')}
-                      </div>
-                    </div>
 
-                    {/* Review Title */}
-                    {review.reviewTitle && (
-                      <h3 className="font-semibold text-gray-900 dark:text-white mb-3">
-                        {review.reviewTitle}
-                      </h3>
-                    )}
-
-                    {/* Review Content */}
-                    <div className={`space-y-4 ${!isExpanded && hasLongContent ? 'max-h-48 overflow-hidden relative' : ''}`}>
-                      {review.generalContent && (
-                        <div>
-                          <p className="text-gray-700 dark:text-gray-300">
-                            {review.generalContent.replace(/<[^>]*>/g, '')}
-                          </p>
-                        </div>
+                      {/* Review Title */}
+                      {review.reviewTitle && (
+                        <h3 className="font-semibold text-gray-900 dark:text-white mb-3">
+                          {review.reviewTitle}
+                        </h3>
                       )}
 
-                      {review.pros && (
-                        <div>
-                          <h4 className="font-medium text-green-600 dark:text-green-400 mb-2 flex items-center">
-                            <ThumbsUp className="h-4 w-4 mr-2" />
-                            Ưu điểm
-                          </h4>
-                          <p className="text-gray-700 dark:text-gray-300 pl-6">
-                            {review.pros.replace(/<[^>]*>/g, '')}
-                          </p>
-                        </div>
-                      )}
-
-                      {review.cons && (
-                        <div>
-                          <h4 className="font-medium text-red-600 dark:text-red-400 mb-2 flex items-center">
-                            <MessageSquare className="h-4 w-4 mr-2" />
-                            Nhược điểm
-                          </h4>
-                          <p className="text-gray-700 dark:text-gray-300 pl-6">
-                            {review.cons.replace(/<[^>]*>/g, '')}
-                          </p>
-                        </div>
-                      )}
-
-                      {review.advice && (
-                        <div>
-                          <h4 className="font-medium text-blue-600 dark:text-blue-400 mb-2 flex items-center">
-                            <Award className="h-4 w-4 mr-2" />
-                            Lời khuyên cho ban lãnh đạo
-                          </h4>
-                          <p className="text-gray-700 dark:text-gray-300 pl-6">
-                            {review.advice.replace(/<[^>]*>/g, '')}
-                          </p>
-                        </div>
-                      )}
-
-                      {!isExpanded && hasLongContent && (
-                        <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-white dark:from-gray-800 to-transparent" />
-                      )}
-                    </div>
-
-                    {/* Detailed Ratings */}
-                    {review.expand?.review_ratings && review.expand.review_ratings.length > 0 && (
-                      <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
-                          {review.expand.review_ratings[0].workEnvironment && (
-                            <div className="flex items-center">
-                              <span className="text-gray-600 dark:text-gray-400 mr-2">Môi trường:</span>
-                              <div className="flex items-center">
-                                {renderStars(review.expand.review_ratings[0].workEnvironment, 'sm')}
-                              </div>
-                            </div>
-                          )}
-                          {review.expand.review_ratings[0].compensation && (
-                            <div className="flex items-center">
-                              <span className="text-gray-600 dark:text-gray-400 mr-2">Lương:</span>
-                              <div className="flex items-center">
-                                {renderStars(review.expand.review_ratings[0].compensation, 'sm')}
-                              </div>
-                            </div>
-                          )}
-                          {review.expand.review_ratings[0].management && (
-                            <div className="flex items-center">
-                              <span className="text-gray-600 dark:text-gray-400 mr-2">Quản lý:</span>
-                              <div className="flex items-center">
-                                {renderStars(review.expand.review_ratings[0].management, 'sm')}
-                              </div>
-                            </div>
-                          )}
-                          {review.expand.review_ratings[0].careerGrowth && (
-                            <div className="flex items-center">
-                              <span className="text-gray-600 dark:text-gray-400 mr-2">Phát triển:</span>
-                              <div className="flex items-center">
-                                {renderStars(review.expand.review_ratings[0].careerGrowth, 'sm')}
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Expand/Collapse Button */}
-                    {hasLongContent && (
-                      <button
-                        onClick={() => toggleReviewExpansion(review.id)}
-                        className="mt-4 flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 text-sm font-medium transition-colors"
-                      >
-                        {isExpanded ? (
-                          <>
-                            Thu gọn <ChevronUp className="h-4 w-4 ml-1" />
-                          </>
-                        ) : (
-                          <>
-                            Xem thêm <ChevronDown className="h-4 w-4 ml-1" />
-                          </>
-                        )}
-                      </button>
-                    )}
-
-                    {/* Review Actions */}
-                    <div className="flex items-center justify-between mt-4 pt-3 border-t border-gray-100 dark:border-gray-700">
-                      <div className="flex items-center space-x-4">
-                        {(review.helpfulCount || 0) > 0 && (
-                          <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
-                            <ThumbsUp className="h-4 w-4 mr-1" />
-                            {review.helpfulCount} người thấy hữu ích
+                      {/* Review Content */}
+                      <div className={`space-y-4 ${!isExpanded && hasLongContent ? 'max-h-48 overflow-hidden relative' : ''}`}>
+                        {review.generalContent && (
+                          <div>
+                            <p className="text-gray-700 dark:text-gray-300">
+                              {review.generalContent.replace(/<[^>]*>/g, '')}
+                            </p>
                           </div>
                         )}
-                        {review.isVerified && (
-                          <div className="flex items-center text-sm text-green-600 dark:text-green-400">
-                            <Award className="h-4 w-4 mr-1" />
-                            Đã xác minh
+
+                        {review.pros && (
+                          <div>
+                            <h4 className="font-medium text-green-600 dark:text-green-400 mb-2 flex items-center">
+                              <ThumbsUp className="h-4 w-4 mr-2" />
+                              Ưu điểm
+                            </h4>
+                            <p className="text-gray-700 dark:text-gray-300 pl-6">
+                              {review.pros.replace(/<[^>]*>/g, '')}
+                            </p>
                           </div>
                         )}
-                      </div>
-                    </div>
 
-                    {/* Company Replies */}
-                    {review.expand?.review_replies && review.expand.review_replies.length > 0 && (
-                      <div className="mt-4 ml-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border-l-4 border-blue-500">
-                        <div className="font-medium text-blue-900 dark:text-blue-300 mb-2">
-                          Phản hồi từ {company.name}
+                        {review.cons && (
+                          <div>
+                            <h4 className="font-medium text-red-600 dark:text-red-400 mb-2 flex items-center">
+                              <MessageSquare className="h-4 w-4 mr-2" />
+                              Nhược điểm
+                            </h4>
+                            <p className="text-gray-700 dark:text-gray-300 pl-6">
+                              {review.cons.replace(/<[^>]*>/g, '')}
+                            </p>
+                          </div>
+                        )}
+
+                        {review.advice && (
+                          <div>
+                            <h4 className="font-medium text-blue-600 dark:text-blue-400 mb-2 flex items-center">
+                              <Award className="h-4 w-4 mr-2" />
+                              Lời khuyên cho ban lãnh đạo
+                            </h4>
+                            <p className="text-gray-700 dark:text-gray-300 pl-6">
+                              {review.advice.replace(/<[^>]*>/g, '')}
+                            </p>
+                          </div>
+                        )}
+
+                        {!isExpanded && hasLongContent && (
+                          <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-white dark:from-gray-800 to-transparent" />
+                        )}
+                      </div>
+
+                      {/* Expand/Collapse Button */}
+                      {hasLongContent && (
+                        <button
+                          onClick={() => toggleReviewExpansion(review.id)}
+                          className="mt-4 flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 text-sm font-medium transition-colors"
+                        >
+                          {isExpanded ? (
+                            <>
+                              Thu gọn <ChevronUp className="h-4 w-4 ml-1" />
+                            </>
+                          ) : (
+                            <>
+                              Xem thêm <ChevronDown className="h-4 w-4 ml-1" />
+                            </>
+                          )}
+                        </button>
+                      )}
+
+                      {/* Review Actions - congtytui.me style */}
+                      <div className="flex items-center justify-between mt-3 pt-3 border-t border-gray-100 dark:border-gray-700">
+                        <div className="flex items-center gap-4">
+                          <button className="flex items-center gap-1 text-sm text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400 transition-colors">
+                            <Heart className="h-4 w-4" />
+                            <span>{review.expand?.['review_reactions(review)']?.reduce((acc, reaction) => acc + reaction.count, 0) || 0}</span>
+                          </button>
+
+                          <button 
+                            onClick={() => toggleReplyForm(review.id)}
+                            className="flex items-center gap-1 text-sm text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors"
+                          >
+                            <MessageSquare className="h-4 w-4" />
+                            <span>{replyForms.has(review.id) ? 'Hủy' : 'Trả lời'}</span>
+                          </button>
+                          <button className="text-sm text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                            Chia sẻ
+                          </button>
                         </div>
-                        <div className="text-gray-700 dark:text-gray-300">
-                          {review.expand.review_replies[0].content.replace(/<[^>]*>/g, '')}
+
+                        <div className="flex items-center gap-2">
+                          {review.isVerified && (
+                            <div className="flex items-center text-xs text-green-600 dark:text-green-400">
+                              <Award className="h-3 w-3 mr-1" />
+                              Xác minh
+                            </div>
+                          )}
+                          <button className="text-xs text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+                            Báo cáo
+                          </button>
                         </div>
                       </div>
-                    )}
+
+                      {/* Reply Form */}
+                      {replyForms.has(review.id) && (
+                        <div className="mt-4 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                          <div className="flex gap-3">
+                            {/* User Avatar */}
+                            <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+                              <span className="text-white text-sm font-medium">B</span>
+                            </div>
+                            
+                            <div className="flex-1">
+                              <textarea
+                                value={replyContents[review.id] || ''}
+                                onChange={(e) => handleReplyContentChange(review.id, e.target.value)}
+                                onKeyDown={(e) => {
+                                  if (e.key === 'Enter' && e.ctrlKey) {
+                                    e.preventDefault();
+                                    submitReply(review.id);
+                                  }
+                                }}
+                                placeholder="Viết bình luận của bạn..."
+                                className="w-full p-3 text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:text-white resize-none"
+                                rows={3}
+                              />
+                              
+                              <div className="flex items-center justify-between mt-3">
+                                <span className="text-xs text-gray-500 dark:text-gray-400">
+                                  Nhấn Ctrl+Enter để gửi
+                                </span>
+                                <div className="flex gap-2">
+                                  <button
+                                    onClick={() => toggleReplyForm(review.id)}
+                                    className="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 dark:bg-gray-600 dark:text-gray-300 dark:border-gray-500 dark:hover:bg-gray-500 transition-colors"
+                                  >
+                                    Hủy
+                                  </button>
+                                  <button
+                                    onClick={() => submitReply(review.id)}
+                                    disabled={!replyContents[review.id]?.trim() || submittingReplies.has(review.id)}
+                                    className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors flex items-center gap-2"
+                                  >
+                                    {submittingReplies.has(review.id) ? (
+                                      <>
+                                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                                        Đang gửi...
+                                      </>
+                                    ) : (
+                                      'Gửi bình luận'
+                                    )}
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Review Replies - congtytui.me style */}
+                      {review.expand?.review_replies && review.expand.review_replies.length > 0 && (
+                        <div className="mt-4">
+                          {review.expand.review_replies
+                            .sort((a, b) => {
+                              // Sort by replyDate first, then by created date, newest first
+                              const dateA = new Date(a.replyDate || a.created);
+                              const dateB = new Date(b.replyDate || b.created);
+                              return dateB.getTime() - dateA.getTime();
+                            })
+                            .map((reply, replyIndex) => (
+                              <div key={reply.id} className="ml-6 border-l-2 border-gray-200 dark:border-gray-600 pl-4 pt-3 pb-2">
+                                <div className="flex items-start gap-3">
+                                  {/* Reply Avatar */}
+                                  <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-medium ${reply.isOfficial || reply.authorType === 'company'
+                                    ? 'bg-blue-500 text-white'
+                                    : 'bg-gray-400 text-white'
+                                    }`}>
+                                    {reply.author.charAt(0).toUpperCase()}
+                                  </div>
+
+                                  <div className="flex-1 min-w-0">
+                                    <div className="flex items-center gap-2 mb-1">
+                                      <span className={`text-sm font-medium ${reply.isOfficial || reply.authorType === 'company'
+                                        ? 'text-blue-600 dark:text-blue-400'
+                                        : 'text-gray-900 dark:text-white'
+                                        }`}>
+                                        {reply.isOfficial || reply.authorType === 'company'
+                                          ? `${company.name}`
+                                          : reply.author
+                                        }
+                                      </span>
+                                      {reply.isOfficial && (
+                                        <span className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 text-xs rounded">
+                                          Official
+                                        </span>
+                                      )}
+                                      <span className="text-xs text-gray-500 dark:text-gray-400">
+                                        {reply.replyDate
+                                          ? new Date(reply.replyDate).toLocaleDateString('vi-VN')
+                                          : new Date(reply.created).toLocaleDateString('vi-VN')
+                                        }
+                                      </span>
+                                    </div>
+
+                                    <div className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                                      {reply.content.replace(/<[^>]*>/g, '')}
+                                    </div>
+
+                                    {/* Reply Actions */}
+                                    <div className="flex items-center gap-4 mt-2 text-xs">
+                                      {reply.expand?.['review_reactions(reply)']?.[0]?.count !== undefined && (
+                                        <button className="flex items-center gap-1 text-gray-500 hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400 transition-colors">
+                                          <ThumbsUp className="w-3 h-3" />
+                                          <span>{reply.expand['review_reactions(reply)'][0].count}</span>
+                                        </button>
+                                      )}
+                                      <button 
+                                        onClick={() => toggleNestedReplyForm(reply.id)}
+                                        className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors"
+                                      >
+                                        {nestedReplyForms.has(reply.id) ? 'Hủy' : 'Trả lời'}
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                {/* Nested Reply Form */}
+                                {nestedReplyForms.has(reply.id) && (
+                                  <div className="mt-3 ml-9 p-3 bg-gray-100 dark:bg-gray-600 rounded-lg">
+                                    <div className="flex gap-2">
+                                      <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <span className="text-white text-xs font-medium">B</span>
+                                      </div>
+                                      
+                                      <div className="flex-1">
+                                        <textarea
+                                          value={nestedReplyContents[reply.id] || ''}
+                                          onChange={(e) => handleNestedReplyContentChange(reply.id, e.target.value)}
+                                          onKeyDown={(e) => {
+                                            if (e.key === 'Enter' && e.ctrlKey) {
+                                              e.preventDefault();
+                                              submitNestedReply(reply.id);
+                                            }
+                                          }}
+                                          placeholder={`Trả lời ${reply.author}...`}
+                                          className="w-full p-2 text-sm border border-gray-300 dark:border-gray-500 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white resize-none"
+                                          rows={2}
+                                        />
+                                        
+                                        <div className="flex items-center justify-end mt-2 gap-2">
+                                          <button
+                                            onClick={() => toggleNestedReplyForm(reply.id)}
+                                            className="px-2 py-1 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-50 dark:bg-gray-500 dark:text-gray-300 dark:border-gray-400 dark:hover:bg-gray-400 transition-colors"
+                                          >
+                                            Hủy
+                                          </button>
+                                          <button
+                                            onClick={() => submitNestedReply(reply.id)}
+                                            disabled={!nestedReplyContents[reply.id]?.trim() || submittingReplies.has(reply.id)}
+                                            className="px-3 py-1 text-xs font-medium text-white bg-blue-600 rounded hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors flex items-center gap-1"
+                                          >
+                                            {submittingReplies.has(reply.id) ? (
+                                              <>
+                                                <div className="w-3 h-3 border border-white border-t-transparent rounded-full animate-spin"></div>
+                                                Đang gửi...
+                                              </>
+                                            ) : (
+                                              'Gửi'
+                                            )}
+                                          </button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                )}
+                              </div>
+                            ))}
+
+                          {/* Add Reply Button */}
+                          <div className="ml-6 mt-3 pt-2 border-l-2 border-gray-200 dark:border-gray-600 pl-4">
+                            <button className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium">
+                              + Thêm bình luận
+                            </button>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Pagination */}
+              {totalPages > 1 && (
+                <div className="border-t border-gray-200 dark:border-gray-700 p-6">
+                  <div className="flex justify-center items-center space-x-2">
+                    <button
+                      onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                      disabled={currentPage === 1}
+                      className="px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400 dark:hover:bg-gray-700"
+                    >
+                      Trước
+                    </button>
+
+                    <span className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+                      Trang {currentPage} / {totalPages}
+                    </span>
+
+                    <button
+                      onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                      disabled={currentPage === totalPages}
+                      className="px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400 dark:hover:bg-gray-700"
+                    >
+                      Sau
+                    </button>
                   </div>
-                );
-              })}
+                </div>
+              )}
+            </>
+          ) : (
+            <div className="text-center py-12">
+              <MessageSquare className="mx-auto h-16 w-16 text-gray-400 mb-4" />
+              <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
+                Chưa có đánh giá nào
+              </h3>
+              <p className="text-gray-500 dark:text-gray-400">
+                Hãy là người đầu tiên đánh giá công ty này
+              </p>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Review Modal - Simplified */}
+      {showReviewModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-lg w-full">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+              <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
+                Đánh giá {company?.name}
+              </h2>
+              <button
+                onClick={closeReviewModal}
+                className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 p-1"
+              >
+                <X className="h-5 w-5" />
+              </button>
             </div>
 
-            {/* Pagination */}
-            {totalPages > 1 && (
-              <div className="flex justify-center items-center mt-8 space-x-2">
-                <button
-                  onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                  disabled={currentPage === 1}
-                  className="px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400 dark:hover:bg-gray-700"
-                >
-                  Trước
-                </button>
-                
-                <span className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300">
-                  Trang {currentPage} / {totalPages}
-                </span>
-
-                <button
-                  onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                  disabled={currentPage === totalPages}
-                  className="px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400 dark:hover:bg-gray-700"
-                >
-                  Sau
-                </button>
+            {/* Modal Content */}
+            <div className="p-6 space-y-5">
+              {/* Rating */}
+              <div className="text-center">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                  Đánh giá tổng quan
+                </label>
+                <div className="flex items-center justify-center gap-1 mb-2">
+                  {renderRatingSelector(reviewForm.overallRating, (rating) => updateReviewForm('overallRating', rating))}
+                </div>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  {reviewForm.overallRating === 0 ? 'Chọn số sao' : `${reviewForm.overallRating}/5 sao`}
+                </p>
               </div>
-            )}
-          </>
-        ) : (
-          <div className="text-center py-12">
-            <MessageSquare className="mx-auto h-16 w-16 text-gray-400 mb-4" />
-            <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
-              Chưa có đánh giá nào
-            </h3>
-            <p className="text-gray-500 dark:text-gray-400">
-              Hãy là người đầu tiên đánh giá công ty này
-            </p>
+
+              {/* Title */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  Tiêu đề (không bắt buộc)
+                </label>
+                <input
+                  type="text"
+                  value={reviewForm.reviewTitle}
+                  onChange={(e) => updateReviewForm('reviewTitle', e.target.value)}
+                  placeholder="Tóm tắt ngắn gọn về trải nghiệm của bạn"
+                  className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                />
+              </div>
+
+              {/* Content */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  Nội dung đánh giá
+                </label>
+                <textarea
+                  value={reviewForm.generalContent}
+                  onChange={(e) => updateReviewForm('generalContent', e.target.value)}
+                  placeholder="Chia sẻ về trải nghiệm làm việc, môi trường, đồng nghiệp, cơ hội phát triển..."
+                  className="w-full px-3 py-3 text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white resize-none"
+                  rows={5}
+                />
+              </div>
+
+              {/* Anonymous Option */}
+              <div className="flex items-center justify-center pt-2">
+                <input
+                  type="checkbox"
+                  id="anonymous"
+                  checked={reviewForm.isAnonymous}
+                  onChange={(e) => updateReviewForm('isAnonymous', e.target.checked)}
+                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                />
+                <label htmlFor="anonymous" className="ml-2 text-sm text-gray-600 dark:text-gray-400">
+                  Đăng ẩn danh
+                </label>
+              </div>
+            </div>
+
+            {/* Modal Footer */}
+            <div className="flex items-center justify-end gap-3 p-6 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700/50">
+              <button
+                onClick={closeReviewModal}
+                className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
+              >
+                Hủy
+              </button>
+              <button
+                onClick={submitReview}
+                disabled={reviewForm.overallRating === 0 || submittingReview}
+                className="px-6 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors flex items-center gap-2"
+              >
+                {submittingReview ? (
+                  <>
+                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    Đang gửi...
+                  </>
+                ) : (
+                  'Đăng đánh giá'
+                )}
+              </button>
+            </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }

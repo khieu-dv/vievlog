@@ -1,5 +1,6 @@
 import { Suspense } from 'react';
 import CompaniesClient from './client';
+import CompaniesWrapper from './wrapper';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function CompaniesPage() {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <CompaniesWrapper>
       <Suspense fallback={
         <div className="flex items-center justify-center min-h-screen">
           <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-500"></div>
@@ -18,6 +19,6 @@ export default function CompaniesPage() {
       }>
         <CompaniesClient />
       </Suspense>
-    </div>
+    </CompaniesWrapper>
   );
 }
