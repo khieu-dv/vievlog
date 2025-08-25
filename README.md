@@ -77,16 +77,16 @@ VieVlog is a comprehensive, multi-modal programming education platform that comb
 | Frontend | Backend | Editor & Gaming |
 |----------|---------|-----------------|
 | [Next.js 15](https://nextjs.org/) | [PocketBase](https://pocketbase.io/) | [Monaco Editor](https://microsoft.github.io/monaco-editor/) |
-| [React 19](https://react.dev/) | [Redis](https://redis.io/) | [Godot Engine](https://godotengine.org/) |
-| [TypeScript](https://www.typescriptlang.org/) | [Docker](https://www.docker.com/) | [WebAssembly](https://webassembly.org/) |
-| [TailwindCSS](https://tailwindcss.com/) | RESTful APIs | Phaser.js |
+| [React 19](https://react.dev/) | [Docker](https://www.docker.com/) | [Godot Engine](https://godotengine.org/) |
+| [TypeScript](https://www.typescriptlang.org/) | RESTful APIs | [WebAssembly](https://webassembly.org/) |
+| [TailwindCSS](https://tailwindcss.com/) | Judge0 API | Phaser.js |
 
 </div>
 
 **🔧 Key Integrations:**
 - **Authentication**: PocketBase user management with social auth
-- **Real-time Features**: Live comments and community interactions  
-- **Code Execution**: Secure server-side JavaScript runtime
+- **Community Features**: Comments and user interactions  
+- **Code Execution**: Secure server-side JavaScript runtime via Judge0 API
 - **Internationalization**: i18n support for 4+ languages
 - **Performance**: Vercel deployment with edge optimization
 
@@ -148,7 +148,6 @@ vievlog/
 ├── src/app/                    # Next.js App Router
 │   ├── api/                    # Backend API routes
 │   │   ├── run-code/          # Code execution endpoint
-│   │   ├── messages/          # Real-time messaging
 │   │   └── auth/              # Authentication APIs
 │   ├── posts/                  # Interactive documentation system
 │   │   ├── [id]/              # Individual tutorial pages

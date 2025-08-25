@@ -27,7 +27,6 @@
     "i18next": "^24.2.3",
     "i18next-browser-languagedetector": "^8.0.4",
     "install": "^0.13.0",
-    "ioredis": "^5.6.0",
     "lucide-react": "^0.477.0",
     "next": "15.2.1",
     "next-themes": "^0.4.4",

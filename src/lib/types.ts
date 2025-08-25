@@ -3,18 +3,6 @@ import type React from 'react';
 // Export common types
 export * from './types/common';
 
-export type Message = {
-  id: string;
-  content: string; 
-  sender: string;
-  roomId: string;
-  timestamp: number;
-}
-
-export type Room = {
-  id: string;
-  name: string;
-}
 
 export type Comment = {
   id: string;

@@ -17,7 +17,7 @@ export async function OPTIONS() {
   });
 }
 
-// Rate limiting simple implementation (in production, use Redis or proper rate limiting)
+// Rate limiting simple implementation (in production, use proper rate limiting)
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
 
 function getRateLimitKey(req: Request): string {
