@@ -39,16 +39,20 @@ export default function CompanyDetailClient({ slug }: Props) {
   const [expandedReviews, setExpandedReviews] = useState<Set<string>>(new Set());
   const [replyForms, setReplyForms] = useState<Set<string>>(new Set());
   const [replyContents, setReplyContents] = useState<Record<string, string>>({});
+  const [replyAuthors, setReplyAuthors] = useState<Record<string, string>>({});
   const [submittingReplies, setSubmittingReplies] = useState<Set<string>>(new Set());
   const [nestedReplyForms, setNestedReplyForms] = useState<Set<string>>(new Set());
   const [nestedReplyContents, setNestedReplyContents] = useState<Record<string, string>>({});
+  const [nestedReplyAuthors, setNestedReplyAuthors] = useState<Record<string, string>>({});
   const [addCommentForms, setAddCommentForms] = useState<Set<string>>(new Set());
   const [addCommentContents, setAddCommentContents] = useState<Record<string, string>>({});
+  const [addCommentAuthors, setAddCommentAuthors] = useState<Record<string, string>>({});
   const [showReviewModal, setShowReviewModal] = useState(false);
   const [reviewForm, setReviewForm] = useState({
     overallRating: 0,
     reviewTitle: '',
     generalContent: '',
+    authorName: 'Ẩn Danh',
     isAnonymous: false
   });
   const [submittingReview, setSubmittingReview] = useState(false);
@@ -107,12 +111,20 @@ export default function CompanyDetailClient({ slug }: Props) {
     const newReplyForms = new Set(replyForms);
     if (newReplyForms.has(reviewId)) {
       newReplyForms.delete(reviewId);
-      // Clear content when closing form
+      // Clear content and author when closing form
       const newContents = { ...replyContents };
+      const newAuthors = { ...replyAuthors };
       delete newContents[reviewId];
+      delete newAuthors[reviewId];
       setReplyContents(newContents);
+      setReplyAuthors(newAuthors);
     } else {
       newReplyForms.add(reviewId);
+      // Set default author name when opening form
+      setReplyAuthors(prev => ({
+        ...prev,
+        [reviewId]: 'Ẩn Danh'
+      }));
     }
     setReplyForms(newReplyForms);
   };
@@ -121,6 +133,13 @@ export default function CompanyDetailClient({ slug }: Props) {
     setReplyContents(prev => ({
       ...prev,
       [reviewId]: content
+    }));
+  };
+
+  const handleReplyAuthorChange = (reviewId: string, author: string) => {
+    setReplyAuthors(prev => ({
+      ...prev,
+      [reviewId]: author
     }));
   };
 
@@ -134,7 +153,7 @@ export default function CompanyDetailClient({ slug }: Props) {
       // Create reply using actual API
       await reviewAPI.createReply({
         review: reviewId,
-        author: 'Bạn', // You can make this configurable
+        author: replyAuthors[reviewId] || 'Ẩn Danh',
         content: content.trim(),
         authorType: 'user'
       });
@@ -150,6 +169,12 @@ export default function CompanyDetailClient({ slug }: Props) {
         const newContents = { ...prev };
         delete newContents[reviewId];
         return newContents;
+      });
+
+      setReplyAuthors(prev => {
+        const newAuthors = { ...prev };
+        delete newAuthors[reviewId];
+        return newAuthors;
       });
 
       // Reload reviews to show new reply
@@ -233,12 +258,20 @@ export default function CompanyDetailClient({ slug }: Props) {
     const newAddCommentForms = new Set(addCommentForms);
     if (newAddCommentForms.has(reviewId)) {
       newAddCommentForms.delete(reviewId);
-      // Clear content when closing form
+      // Clear content and author when closing form
       const newContents = { ...addCommentContents };
+      const newAuthors = { ...addCommentAuthors };
       delete newContents[reviewId];
+      delete newAuthors[reviewId];
       setAddCommentContents(newContents);
+      setAddCommentAuthors(newAuthors);
     } else {
       newAddCommentForms.add(reviewId);
+      // Set default author name when opening form
+      setAddCommentAuthors(prev => ({
+        ...prev,
+        [reviewId]: 'Ẩn Danh'
+      }));
     }
     setAddCommentForms(newAddCommentForms);
   };
@@ -247,6 +280,13 @@ export default function CompanyDetailClient({ slug }: Props) {
     setAddCommentContents(prev => ({
       ...prev,
       [reviewId]: content
+    }));
+  };
+
+  const handleAddCommentAuthorChange = (reviewId: string, author: string) => {
+    setAddCommentAuthors(prev => ({
+      ...prev,
+      [reviewId]: author
     }));
   };
 
@@ -260,7 +300,7 @@ export default function CompanyDetailClient({ slug }: Props) {
       // Create reply using actual API
       await reviewAPI.createReply({
         review: reviewId,
-        author: 'Bạn', // You can make this configurable
+        author: addCommentAuthors[reviewId] || 'Ẩn Danh',
         content: content.trim(),
         authorType: 'user'
       });
@@ -276,6 +316,12 @@ export default function CompanyDetailClient({ slug }: Props) {
         const newContents = { ...prev };
         delete newContents[reviewId];
         return newContents;
+      });
+
+      setAddCommentAuthors(prev => {
+        const newAuthors = { ...prev };
+        delete newAuthors[reviewId];
+        return newAuthors;
       });
 
       // Reload reviews to show new reply
@@ -304,6 +350,7 @@ export default function CompanyDetailClient({ slug }: Props) {
       overallRating: 0,
       reviewTitle: '',
       generalContent: '',
+      authorName: 'Ẩn Danh',
       isAnonymous: false
     });
   };
@@ -325,7 +372,7 @@ export default function CompanyDetailClient({ slug }: Props) {
       // Create review using actual API
       await reviewAPI.create({
         company: company.id,
-        author: reviewForm.isAnonymous ? 'Anonymous' : 'Bạn',
+        author: reviewForm.authorName,
         overallRating: reviewForm.overallRating,
         reviewTitle: reviewForm.reviewTitle,
         generalContent: reviewForm.generalContent,
@@ -443,7 +490,7 @@ export default function CompanyDetailClient({ slug }: Props) {
         Về danh sách công ty
       </Link>
 
-      {/* Company Header - congtytui.me style */}
+      {/* Company Header - Merged with Description */}
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 mb-6">
         <div className="p-6">
           {/* Company Info Row */}
@@ -463,12 +510,12 @@ export default function CompanyDetailClient({ slug }: Props) {
 
             {/* Company Details */}
             <div className="flex-1 min-w-0">
-              <h1 className="text-2xl font-semibold text-gray-900 dark:text-white mb-2 truncate">
+              <h1 className="text-2xl font-semibold text-gray-900 dark:text-white mb-3 truncate">
                 {company.name}
               </h1>
 
               {/* Company Attributes */}
-              <div className="space-y-1.5 text-sm text-gray-600 dark:text-gray-400">
+              <div className="space-y-1.5 text-sm text-gray-600 dark:text-gray-400 mb-4">
                 {company.location && (
                   <div className="flex items-center">
                     <MapPin className="h-4 w-4 mr-2 text-gray-400" />
@@ -481,7 +528,30 @@ export default function CompanyDetailClient({ slug }: Props) {
                     <span>{company.companySize}</span>
                   </div>
                 )}
+                {company.expand?.industry && (
+                  <div className="flex items-center">
+                    <Building2 className="h-4 w-4 mr-2 text-gray-400" />
+                    <span
+                      className="inline-flex items-center px-2 py-1 text-xs font-medium rounded-full text-white"
+                      style={{ backgroundColor: company.expand.industry.color || '#6B7280' }}
+                    >
+                      {company.expand.industry.name}
+                    </span>
+                  </div>
+                )}
               </div>
+
+              {/* Company Description */}
+              {company.description && (
+                <div className="mb-4">
+                  <div
+                    className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed"
+                    dangerouslySetInnerHTML={{
+                      __html: company.description.substring(0, 300) + (company.description.length > 300 ? '...' : '')
+                    }}
+                  />
+                </div>
+              )}
             </div>
 
             {/* Actions */}
@@ -515,29 +585,6 @@ export default function CompanyDetailClient({ slug }: Props) {
           </div>
         </div>
       </div>
-
-      {/* Company Description */}
-      {company.description && (
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6 mb-6">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Giới thiệu về công ty</h3>
-          <div
-            className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed"
-            dangerouslySetInnerHTML={{
-              __html: company.description.substring(0, 500) + (company.description.length > 500 ? '...' : '')
-            }}
-          />
-          {company.expand?.industry && (
-            <div className="mt-4">
-              <span
-                className="inline-flex items-center px-3 py-1 text-xs font-medium rounded-full text-white"
-                style={{ backgroundColor: company.expand.industry.color || '#6B7280' }}
-              >
-                {company.expand.industry.name}
-              </span>
-            </div>
-          )}
-        </div>
-      )}
 
       {/* Detailed Ratings */}
       {company.expand?.company_stats && company.expand.company_stats.length > 0 && (
@@ -750,6 +797,13 @@ export default function CompanyDetailClient({ slug }: Props) {
                             </div>
                             
                             <div className="flex-1">
+                              <input
+                                type="text"
+                                value={replyAuthors[review.id] || ''}
+                                onChange={(e) => handleReplyAuthorChange(review.id, e.target.value)}
+                                placeholder="Tên hiển thị"
+                                className="w-full p-2 mb-3 text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:text-white"
+                              />
                               <textarea
                                 value={replyContents[review.id] || ''}
                                 onChange={(e) => handleReplyContentChange(review.id, e.target.value)}
@@ -936,6 +990,13 @@ export default function CompanyDetailClient({ slug }: Props) {
                                   </div>
                                   
                                   <div className="flex-1">
+                                    <input
+                                      type="text"
+                                      value={addCommentAuthors[review.id] || ''}
+                                      onChange={(e) => handleAddCommentAuthorChange(review.id, e.target.value)}
+                                      placeholder="Tên hiển thị"
+                                      className="w-full p-2 mb-3 text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:text-white"
+                                    />
                                     <textarea
                                       value={addCommentContents[review.id] || ''}
                                       onChange={(e) => handleAddCommentContentChange(review.id, e.target.value)}
@@ -1060,6 +1121,20 @@ export default function CompanyDetailClient({ slug }: Props) {
                 <p className="text-sm text-gray-500 dark:text-gray-400">
                   {reviewForm.overallRating === 0 ? 'Chọn số sao' : `${reviewForm.overallRating}/5 sao`}
                 </p>
+              </div>
+
+              {/* Author Name */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  Tên hiển thị
+                </label>
+                <input
+                  type="text"
+                  value={reviewForm.authorName}
+                  onChange={(e) => updateReviewForm('authorName', e.target.value)}
+                  placeholder="Tên hiển thị của bạn"
+                  className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                />
               </div>
 
               {/* Title */}
