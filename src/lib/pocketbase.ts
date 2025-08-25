@@ -195,7 +195,8 @@ export const companyAPI = {
             const repliesResponse = await pb.collection('review_replies').getList(1, 100, {
               filter: `review="${review.id}"`,
               sort: '-created',
-              expand: 'review_reactions(reply)'
+              expand: 'review_reactions(reply)',
+              requestKey: `replies_${review.id}_${page}_${limit}`
             });
             
             return {
@@ -337,6 +338,56 @@ export const reviewAPI = {
           expand: 'company,review_ratings'
         });
       }
+      throw error;
+    }
+  },
+
+  // Create a new review
+  async create(reviewData: {
+    company: string;
+    author: string;
+    overallRating: number;
+    reviewTitle?: string;
+    generalContent?: string;
+    isAnonymous?: boolean;
+  }) {
+    try {
+      const record = {
+        company: reviewData.company,
+        author: reviewData.isAnonymous ? 'Anonymous' : reviewData.author,
+        overallRating: reviewData.overallRating,
+        reviewTitle: reviewData.reviewTitle || '',
+        generalContent: reviewData.generalContent || '',
+        reviewDate: new Date().toISOString().split('T')[0],
+        status: 'published'
+      };
+
+      return await pb.collection('reviews').create(record);
+    } catch (error: any) {
+      console.error('Error creating review:', error);
+      throw error;
+    }
+  },
+
+  // Create a reply to a review
+  async createReply(replyData: {
+    review: string;
+    author: string;
+    content: string;
+    authorType?: 'user' | 'company' | 'admin';
+  }) {
+    try {
+      const record = {
+        review: replyData.review,
+        author: replyData.author,
+        content: replyData.content,
+        authorType: replyData.authorType || 'user',
+        isOfficial: replyData.authorType === 'company'
+      };
+
+      return await pb.collection('review_replies').create(record);
+    } catch (error: any) {
+      console.error('Error creating reply:', error);
       throw error;
     }
   }

@@ -22,7 +22,7 @@ import {
   ChevronUp,
   X
 } from 'lucide-react';
-import { companyAPI, type Company, type Review } from '../../../lib/pocketbase';
+import { companyAPI, reviewAPI, type Company, type Review } from '../../../lib/pocketbase';
 
 interface Props {
   slug: string;
@@ -129,11 +129,13 @@ export default function CompanyDetailClient({ slug }: Props) {
     setSubmittingReplies(prev => new Set([...prev, reviewId]));
 
     try {
-      // TODO: Replace with actual API call
-      console.log('Submitting reply for review:', reviewId, 'content:', content);
-      
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Create reply using actual API
+      await reviewAPI.createReply({
+        review: reviewId,
+        author: 'Bạn', // You can make this configurable
+        content: content.trim(),
+        authorType: 'user'
+      });
       
       // Success - close form and clear content
       setReplyForms(prev => {
@@ -149,11 +151,12 @@ export default function CompanyDetailClient({ slug }: Props) {
       });
 
       // Reload reviews to show new reply
-      loadReviews();
+      await loadReviews();
       
     } catch (error) {
       console.error('Error submitting reply:', error);
       // TODO: Show error message to user
+      alert('Có lỗi xảy ra khi gửi bình luận. Vui lòng thử lại.');
     } finally {
       setSubmittingReplies(prev => {
         const newSubmitting = new Set(prev);
@@ -191,13 +194,15 @@ export default function CompanyDetailClient({ slug }: Props) {
     setSubmittingReplies(prev => new Set([...prev, replyId]));
 
     try {
-      // TODO: Replace with actual API call
-      console.log('Submitting nested reply for reply:', replyId, 'content:', content);
+      // Note: PocketBase doesn't support nested replies directly
+      // We'll treat this as a regular reply to the main review
+      // You may need to find the review ID from the reply ID
+      console.log('Nested reply not supported yet. Converting to regular reply.');
       
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // For now, just show a message
+      alert('Trả lời lồng nhau chưa được hỗ trợ. Vui lòng trả lời trực tiếp đánh giá.');
       
-      // Success - close form and clear content
+      // Clear form
       setNestedReplyForms(prev => {
         const newForms = new Set(prev);
         newForms.delete(replyId);
@@ -209,13 +214,10 @@ export default function CompanyDetailClient({ slug }: Props) {
         delete newContents[replyId];
         return newContents;
       });
-
-      // Reload reviews to show new reply
-      loadReviews();
       
     } catch (error) {
       console.error('Error submitting nested reply:', error);
-      // TODO: Show error message to user
+      alert('Có lỗi xảy ra khi gửi bình luận. Vui lòng thử lại.');
     } finally {
       setSubmittingReplies(prev => {
         const newSubmitting = new Set(prev);
@@ -249,23 +251,28 @@ export default function CompanyDetailClient({ slug }: Props) {
 
   const submitReview = async () => {
     if (reviewForm.overallRating === 0) return;
+    if (!company) return;
 
     setSubmittingReview(true);
 
     try {
-      // TODO: Replace with actual API call
-      console.log('Submitting new review:', reviewForm);
-      
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      // Create review using actual API
+      await reviewAPI.create({
+        company: company.id,
+        author: reviewForm.isAnonymous ? 'Anonymous' : 'Bạn',
+        overallRating: reviewForm.overallRating,
+        reviewTitle: reviewForm.reviewTitle,
+        generalContent: reviewForm.generalContent,
+        isAnonymous: reviewForm.isAnonymous
+      });
       
       // Success - close modal and reload reviews
       closeReviewModal();
-      loadReviews();
+      await loadReviews();
       
     } catch (error) {
       console.error('Error submitting review:', error);
-      // TODO: Show error message to user
+      alert('Có lỗi xảy ra khi đăng đánh giá. Vui lòng thử lại.');
     } finally {
       setSubmittingReview(false);
     }
