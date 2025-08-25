@@ -38,7 +38,6 @@ export default function CompanyDetailClient({ slug }: Props) {
   const [filterRating, setFilterRating] = useState(0);
   const [expandedReviews, setExpandedReviews] = useState<Set<string>>(new Set());
   const [showReplies, setShowReplies] = useState<Set<string>>(new Set());
-  const [submittingReplies, setSubmittingReplies] = useState<Set<string>>(new Set());
   const [addCommentForms, setAddCommentForms] = useState<Set<string>>(new Set());
   const [addCommentContents, setAddCommentContents] = useState<Record<string, string>>({});
   const [addCommentAuthors, setAddCommentAuthors] = useState<Record<string, string>>({});
@@ -49,7 +48,6 @@ export default function CompanyDetailClient({ slug }: Props) {
     authorName: 'Ẩn danh',
     isAnonymous: false
   });
-  const [submittingReview, setSubmittingReview] = useState(false);
 
   useEffect(() => {
     loadCompanyData();
@@ -153,48 +151,111 @@ export default function CompanyDetailClient({ slug }: Props) {
     const content = addCommentContents[reviewId];
     if (!content || !content.trim()) return;
 
-    setSubmittingReplies(prev => new Set([...prev, reviewId]));
+    const tempContent = content;
+    const tempAuthor = addCommentAuthors[reviewId] || 'Ẩn danh';
+    
+    // Create optimistic reply immediately
+    const optimisticReply = {
+      id: `temp_reply_${Date.now()}`,
+      author: tempAuthor,
+      content: tempContent.trim(),
+      created: new Date().toISOString(),
+      updated: new Date().toISOString(),
+      replyDate: new Date().toISOString(),
+      review: reviewId,
+      isOptimistic: true,
+      authorType: 'user',
+      isOfficial: false
+    } as any; // Type assertion for optimistic update
 
+    // Immediately add reply to the review and close form
+    setReviews(prev => prev.map(review => {
+      if (review.id === reviewId) {
+        const currentReplies = review.expand?.review_replies || [];
+        return {
+          ...review,
+          expand: {
+            ...review.expand,
+            review_replies: [...currentReplies, optimisticReply] as any
+          }
+        } as any;
+      }
+      return review;
+    }) as any);
+
+    // Close form and clear content
+    setAddCommentForms(prev => {
+      const newForms = new Set(prev);
+      newForms.delete(reviewId);
+      return newForms;
+    });
+
+    setAddCommentContents(prev => {
+      const newContents = { ...prev };
+      delete newContents[reviewId];
+      return newContents;
+    });
+
+    setAddCommentAuthors(prev => {
+      const newAuthors = { ...prev };
+      delete newAuthors[reviewId];
+      return newAuthors;
+    });
+
+    // API call in background
     try {
-      // Create reply using actual API (preserve line breaks)
-      await reviewAPI.createReply({
+      const realReply = await reviewAPI.createReply({
         review: reviewId,
-        author: addCommentAuthors[reviewId] || 'Ẩn danh',
-        content: content.trim().replace(/\n/g, '\n'),
+        author: tempAuthor,
+        content: tempContent.trim().replace(/\n/g, '\n'),
         authorType: 'user'
       });
 
-      // Success - close form and clear content
-      setAddCommentForms(prev => {
-        const newForms = new Set(prev);
-        newForms.delete(reviewId);
-        return newForms;
-      });
-
-      setAddCommentContents(prev => {
-        const newContents = { ...prev };
-        delete newContents[reviewId];
-        return newContents;
-      });
-
-      setAddCommentAuthors(prev => {
-        const newAuthors = { ...prev };
-        delete newAuthors[reviewId];
-        return newAuthors;
-      });
-
-      // Reload reviews to show new reply
-      await loadReviews();
+      // Replace optimistic reply with real one
+      setReviews(prev => prev.map(review => {
+        if (review.id === reviewId && review.expand?.review_replies) {
+          const updatedReplies = review.expand.review_replies.map(reply => 
+            reply.id === optimisticReply.id ? (realReply as any) : reply
+          );
+          return {
+            ...review,
+            expand: {
+              ...review.expand,
+              review_replies: updatedReplies as any
+            }
+          } as any;
+        }
+        return review;
+      }) as any);
 
     } catch (error) {
       console.error('Error submitting add comment:', error);
+      // Remove optimistic reply and restore form
+      setReviews(prev => prev.map(review => {
+        if (review.id === reviewId && review.expand?.review_replies) {
+          const filteredReplies = review.expand.review_replies.filter(reply => reply.id !== optimisticReply.id);
+          return {
+            ...review,
+            expand: {
+              ...review.expand,
+              review_replies: filteredReplies as any
+            }
+          } as any;
+        }
+        return review;
+      }) as any);
+      
+      // Restore form
+      setAddCommentForms(prev => new Set([...prev, reviewId]));
+      setAddCommentContents(prev => ({
+        ...prev,
+        [reviewId]: tempContent
+      }));
+      setAddCommentAuthors(prev => ({
+        ...prev,
+        [reviewId]: tempAuthor
+      }));
       alert('Có lỗi xảy ra khi gửi bình luận. Vui lòng thử lại.');
-    } finally {
-      setSubmittingReplies(prev => {
-        const newSubmitting = new Set(prev);
-        newSubmitting.delete(reviewId);
-        return newSubmitting;
-      });
     }
   };
 
@@ -252,33 +313,55 @@ export default function CompanyDetailClient({ slug }: Props) {
     if (reviewForm.overallRating === 0) return;
     if (!company) return;
 
-    setSubmittingReview(true);
+    const tempReviewForm = { ...reviewForm };
+    
+    // Create optimistic review immediately
+    const optimisticReview = {
+      id: `temp_${Date.now()}`, // Temporary ID
+      author: tempReviewForm.authorName,
+      overallRating: tempReviewForm.overallRating,
+      generalContent: tempReviewForm.generalContent,
+      isAnonymous: tempReviewForm.isAnonymous,
+      created: new Date().toISOString(),
+      updated: new Date().toISOString(),
+      reviewDate: new Date().toISOString(),
+      company: company?.id || '',
+      isOptimistic: true, // Flag to identify optimistic updates
+      expand: { review_replies: [] }
+    } as any; // Type assertion for optimistic update
 
+    // Immediately add to reviews list and hide form
+    setReviews(prev => [optimisticReview, ...prev] as any);
+    setShowReviewForm(false);
+    setReviewForm({
+      overallRating: 0,
+      generalContent: '',
+      authorName: 'Ẩn danh',
+      isAnonymous: false
+    });
+
+    // API call in background
     try {
-      // Create review using actual API (preserve line breaks)
-      await reviewAPI.create({
+      const realReview = await reviewAPI.create({
         company: company.id,
-        author: reviewForm.authorName,
-        overallRating: reviewForm.overallRating,
-        generalContent: reviewForm.generalContent.replace(/\n/g, '\n'),
-        isAnonymous: reviewForm.isAnonymous
+        author: tempReviewForm.authorName,
+        overallRating: tempReviewForm.overallRating,
+        generalContent: tempReviewForm.generalContent.replace(/\n/g, '\n'),
+        isAnonymous: tempReviewForm.isAnonymous
       });
 
-      // Success - hide form, reset form and reload reviews
-      setShowReviewForm(false);
-      setReviewForm({
-        overallRating: 0,
-        generalContent: '',
-        authorName: 'Ẩn danh',
-        isAnonymous: false
-      });
-      await loadReviews();
+      // Replace optimistic review with real one
+      setReviews(prev => prev.map(review => 
+        review.id === optimisticReview.id ? { ...realReview, expand: { review_replies: [] } } as any : review
+      ) as any);
 
     } catch (error) {
       console.error('Error submitting review:', error);
+      // Remove optimistic review and restore form
+      setReviews(prev => prev.filter(review => review.id !== optimisticReview.id) as any);
+      setShowReviewForm(true);
+      setReviewForm(tempReviewForm);
       alert('Có lỗi xảy ra khi đăng đánh giá. Vui lòng thử lại.');
-    } finally {
-      setSubmittingReview(false);
     }
   };
 
@@ -575,17 +658,10 @@ export default function CompanyDetailClient({ slug }: Props) {
                   
                   <button
                     onClick={submitReview}
-                    disabled={reviewForm.overallRating === 0 || !reviewForm.generalContent.trim() || submittingReview}
+                    disabled={reviewForm.overallRating === 0 || !reviewForm.generalContent.trim()}
                     className="px-6 py-2 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors shadow-sm hover:shadow-md flex items-center gap-2"
                   >
-                    {submittingReview ? (
-                      <>
-                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                        Đang gửi...
-                      </>
-                    ) : (
-                      'Gửi đánh giá'
-                    )}
+                    Gửi đánh giá
                   </button>
                 </div>
               </div>
@@ -665,7 +741,7 @@ export default function CompanyDetailClient({ slug }: Props) {
                     <div
                       key={review.id}
                       className={`pb-6 mb-6 ${index !== reviews.length - 1 ? 'border-b border-gray-100 dark:border-gray-700' : ''
-                        }`}
+                        } ${(review as any)?.isOptimistic ? 'opacity-80 border-l-4 border-blue-400 pl-4 bg-blue-50/30 dark:bg-blue-900/10' : ''}`}
                     >
                       {/* Review Header - congtytui.me style */}
                       <div className="flex items-start gap-3 mb-3">
@@ -687,7 +763,10 @@ export default function CompanyDetailClient({ slug }: Props) {
                           </div>
 
                           <div className="text-xs text-gray-500 dark:text-gray-400">
-                            {review.reviewDate && new Date(review.reviewDate).toLocaleDateString('vi-VN')}
+                            {(review as any)?.isOptimistic 
+                              ? 'Đang đăng...'
+                              : review.reviewDate && new Date(review.reviewDate).toLocaleDateString('vi-VN')
+                            }
                           </div>
                         </div>
                       </div>
@@ -812,7 +891,10 @@ export default function CompanyDetailClient({ slug }: Props) {
                               return dateA.getTime() - dateB.getTime();
                             })
                             .map((reply, replyIndex) => (
-                              <div key={reply.id} className="ml-6 border-l-2 border-gray-200 dark:border-gray-600 pl-4 pt-3 pb-2">
+                              <div 
+                                key={reply.id} 
+                                className={`ml-6 border-l-2 border-gray-200 dark:border-gray-600 pl-4 pt-3 pb-2 ${(reply as any)?.isOptimistic ? 'opacity-80 bg-green-50/30 dark:bg-green-900/10' : ''}`}
+                              >
                                 <div className="flex items-start gap-3">
                                   {/* Reply Avatar */}
                                   <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-medium ${reply.isOfficial || reply.authorType === 'company'
@@ -839,9 +921,11 @@ export default function CompanyDetailClient({ slug }: Props) {
                                         </span>
                                       )}
                                       <span className="text-xs text-gray-500 dark:text-gray-400">
-                                        {reply.replyDate
-                                          ? new Date(reply.replyDate).toLocaleDateString('vi-VN')
-                                          : new Date(reply.created).toLocaleDateString('vi-VN')
+                                        {(reply as any)?.isOptimistic 
+                                          ? 'Đang gửi...'
+                                          : reply.replyDate
+                                            ? new Date(reply.replyDate).toLocaleDateString('vi-VN')
+                                            : new Date(reply.created).toLocaleDateString('vi-VN')
                                         }
                                       </span>
                                     </div>
@@ -933,17 +1017,10 @@ export default function CompanyDetailClient({ slug }: Props) {
                                         </button>
                                         <button
                                           onClick={() => submitAddComment(review.id)}
-                                          disabled={!addCommentContents[review.id]?.trim() || submittingReplies.has(review.id)}
+                                          disabled={!addCommentContents[review.id]?.trim()}
                                           className="px-4 py-1.5 text-sm font-medium text-white bg-gradient-to-r from-green-600 to-green-700 rounded-lg hover:from-green-700 hover:to-green-800 disabled:from-gray-400 disabled:to-gray-400 disabled:cursor-not-allowed transition-all shadow-sm hover:shadow-md flex items-center gap-2"
                                         >
-                                          {submittingReplies.has(review.id) ? (
-                                            <>
-                                              <div className="w-3 h-3 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                                              Gửi...
-                                            </>
-                                          ) : (
-                                            'Gửi'
-                                          )}
+                                          Gửi
                                         </button>
                                       </div>
                                     </div>
