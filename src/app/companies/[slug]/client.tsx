@@ -279,15 +279,19 @@ export default function CompanyDetailClient({ slug }: Props) {
 
 
   /**
-   * Scrolls to the reviews section smoothly
+   * Scrolls to the "Đánh giá từ nhân viên" section header for optimal UX
    */
-  const scrollToReviews = () => {
-    // Try to find the reviews section and scroll to it
+  const scrollToReviewsHeader = () => {
+    // Find the reviews section header specifically
     const reviewsSection = document.querySelector('[data-reviews-section]');
     if (reviewsSection) {
-      reviewsSection.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
+      const rect = reviewsSection.getBoundingClientRect();
+      const isMobile = window.innerWidth < 640;
+      const offset = isMobile ? 80 : 100; // Enough offset to show the header clearly
+      
+      window.scrollTo({
+        top: window.pageYOffset + rect.top - offset,
+        behavior: 'smooth'
       });
     } else {
       // Fallback to top of page
@@ -967,7 +971,10 @@ export default function CompanyDetailClient({ slug }: Props) {
                     <button
                       onClick={() => {
                         setCurrentPage(prev => Math.max(prev - 1, 1));
-                        scrollToReviews();
+                        // Delay scroll to ensure page change happens first
+                        setTimeout(() => {
+                          scrollToReviewsHeader();
+                        }, 100);
                       }}
                       disabled={currentPage === 1}
                       className="px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400 dark:hover:bg-gray-700"
@@ -982,7 +989,10 @@ export default function CompanyDetailClient({ slug }: Props) {
                     <button
                       onClick={() => {
                         setCurrentPage(prev => Math.min(prev + 1, totalPages));
-                        scrollToReviews();
+                        // Delay scroll to ensure page change happens first
+                        setTimeout(() => {
+                          scrollToReviewsHeader();
+                        }, 100);
                       }}
                       disabled={currentPage === totalPages}
                       className="px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400 dark:hover:bg-gray-700"
