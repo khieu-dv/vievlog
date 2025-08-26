@@ -5,7 +5,7 @@ interface IconProps {
   className?: string;
 }
 
-export const getIconComponent = (iconName: string): React.ReactNode => {
+export const getIconComponent = (iconName: string, className: string = "h-4 w-4"): React.ReactNode => {
   const iconMap: Record<string, React.ComponentType<IconProps>> = {
     'book-open': BookOpen,
     'code': Code,
@@ -19,5 +19,5 @@ export const getIconComponent = (iconName: string): React.ReactNode => {
   };
 
   const IconComponent = iconMap[iconName] || BookOpen;
-  return <IconComponent className="h-4 w-4" />;
+  return <IconComponent className={className} />;
 };

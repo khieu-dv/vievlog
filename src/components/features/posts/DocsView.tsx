@@ -1432,20 +1432,16 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
               // Render section overview content
               <div className="prose prose-slate dark:prose-invert max-w-none">
                 {activeSection === 'overview' && (
-                  <>
-                    <MarkdownRenderer content={`# VieVlog Documentation
+                  <div className="max-w-none">
+                    
 
-Welcome to VieVlog - a modern learning platform for IT education. This documentation is dynamically generated from our content database, ensuring you always have access to the latest information.
-
-## Available Categories
-
-We currently have ${categories.length} categories with educational content:`} />
-
-                    {/* Interactive Category List */}
-                    <div className="not-prose mt-6 mb-8">
-                      <ul className="space-y-2">
+                    <div className="mb-16">
+                      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+                        <BookOpen className="inline-block h-6 w-6 mr-2" />
+                        Featured Categories
+                      </h2>
+                      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                         {(() => {
-                          // Group categories by mainName like in sidebar
                           const groupedCategories = docsData.reduce((acc, section) => {
                             const mainName = section.category?.mainName || 'Languages';
                             if (!acc[mainName]) {
@@ -1455,59 +1451,92 @@ We currently have ${categories.length} categories with educational content:`} />
                             return acc;
                           }, {} as Record<string, typeof docsData>);
 
-                          // Use same order as in sidebar
                           const mainNameOrder = ['Languages', 'DSA', 'Frameworks', 'Soft Skills'];
 
-                          return mainNameOrder.flatMap(mainName =>
-                            groupedCategories[mainName] || []
-                          ).map((section) => (
-                            <li key={section.id}>
-                              <button
-                                onClick={() => {
-                                  setActiveSection(section.id);
-                                  // Update URL
-                                  const params = new URLSearchParams(searchParams.toString());
-                                  params.set('category', section.id);
-                                  params.delete('post');
-                                  router.replace(`/posts?${params.toString()}`, { scroll: false });
-                                }}
-                                onTouchStart={handleArticleTouch}
-                                disabled={isPostLoading}
-                                className={`group flex items-center gap-3 w-full p-3 rounded-lg 
-                                       hover:bg-blue-50 dark:hover:bg-blue-900/20 
-                                       transition-all duration-200 text-left
-                                       touch-manipulation select-none
-                                       active:scale-[0.98] active:bg-blue-100 dark:active:bg-blue-900/30
-                                       disabled:opacity-50 disabled:cursor-not-allowed`}
-                              >
+                          return mainNameOrder.flatMap(mainName => groupedCategories[mainName] || []).map((section) => (
+                            <button
+                              key={section.id}
+                              onClick={() => {
+                                setActiveSection(section.id);
+                                const params = new URLSearchParams(searchParams.toString());
+                                params.set('category', section.id);
+                                router.replace(`/posts?${params.toString()}`, { scroll: false });
+                              }}
+                              className="group p-6 bg-white/80 dark:bg-black/80 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 text-left hover:-translate-y-1"
+                            >
+                              <div className="flex items-center gap-4 mb-3">
                                 <div
-                                  className="w-6 h-6 rounded flex items-center justify-center text-white text-xs font-semibold flex-shrink-0"
-                                  style={{ backgroundColor: section.category?.color }}
+                                  className="w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold"
+                                  style={{ backgroundColor: section.category?.color || '#3B82F6' }}
                                 >
-                                  {section.category?.name.charAt(0).toUpperCase()}
+                                  {getIconComponent(section.iconName || '', "h-6 w-6") || section.category?.name.charAt(0)}
                                 </div>
-                                <div className="flex-1 min-w-0">
-                                  <span className="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                                    {section.category?.name}
-                                  </span>
-                                  <span className="text-gray-500 dark:text-gray-400 text-sm ml-2">
-                                    ({findPostsByCategory(section.id).length} articles)
-                                  </span>
-                                </div>
-                                <div className="text-gray-400 group-hover:text-blue-500 transition-colors">
-                                  →
-                                </div>
-                              </button>
-                            </li>
+                                <h3 className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                                  {section.title}
+                                </h3>
+                              </div>
+                              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                                {section.posts?.length || 0} articles
+                              </p>
+                              <p className="text-sm text-gray-500 dark:text-gray-400 line-clamp-2">
+                                Explore tutorials on {section.title}.
+                              </p>
+                            </button>
                           ));
                         })()}
-                      </ul>
+                      </div>
                     </div>
 
-                    <MarkdownRenderer content={`## Getting Started
-
-Choose a category above to explore our comprehensive learning materials, tutorials, and guides. Each section contains real posts and content from our community.`} />
-                  </>
+                    <div>
+                      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+                        <FileText className="inline-block h-6 w-6 mr-2" />
+                        Recent Articles
+                      </h2>
+                      <div className="space-y-6">
+                        {Object.values(categoryPosts).flat().slice(0, 5).map((post) => (
+                          <div
+                            key={post.id}
+                            className="group p-6 bg-white/80 dark:bg-black/80 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+                            onClick={() => handlePostSelect(post.id)}
+                          >
+                            <div className="flex items-center gap-4">
+                              <div className="flex-1">
+                                <div className="flex items-center gap-3 mb-2">
+                                  <span
+                                    className="px-3 py-1 rounded-full text-xs font-medium"
+                                    style={{
+                                      backgroundColor: `${post.category?.color}1A`,
+                                      color: post.category?.color,
+                                    }}
+                                  >
+                                    {post.category?.name}
+                                  </span>
+                                  <span className="text-xs text-gray-500 dark:text-gray-400">
+                                    {new Date(post.publishedAt).toLocaleDateString()}
+                                  </span>
+                                </div>
+                                <h4 className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                                  {post.title}
+                                </h4>
+                                <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">
+                                  {post.excerpt}
+                                </p>
+                              </div>
+                              {post.coverImage && (
+                                <Image
+                                  src={post.coverImage}
+                                  alt={post.title}
+                                  width={80}
+                                  height={80}
+                                  className="w-20 h-20 object-cover rounded-lg"
+                                />
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
                 )}
 
                 {/* Show recent posts for category sections */}
