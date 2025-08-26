@@ -40,7 +40,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
   const [activeTab, setActiveTab] = useState<Record<string, 'content' | 'code' | 'exams'>>({});
   const [postExams, setPostExams] = useState<Record<string, Exam[]>>({});
   const [showExamForm, setShowExamForm] = useState<Record<string, boolean>>({});
-  const [examInputs, setExamInputs] = useState<Record<string, {title: string, code: string}>>({});
+  const [examInputs, setExamInputs] = useState<Record<string, { title: string, code: string }>>({});
   const [submittingExam, setSubmittingExam] = useState<string | null>(null);
   const [isPostLoading, setIsPostLoading] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(() => {
@@ -173,7 +173,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
   const handlePostSelect = async (postId: string) => {
     // Set loading state immediately
     setIsPostLoading(true);
-    
+
     setActiveSection(`post-${postId}`);
     updateURL(postId);
 
@@ -894,8 +894,8 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
 
       {/* Sidebar Toggle Button for Large Screens */}
       <div className={`hidden lg:block fixed top-1/2 z-40 transition-all duration-300 ${sidebarCollapsed
-          ? 'left-4'
-          : 'left-[calc(50vw-40rem+20rem+1.5rem)] xl:left-[calc(50vw-42rem+24rem+1.5rem)]'
+        ? 'left-4'
+        : 'left-[calc(50vw-40rem+20rem+1.5rem)] xl:left-[calc(50vw-42rem+24rem+1.5rem)]'
         }`}>
         <button
           onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
@@ -951,7 +951,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                   const summaryPost = allPosts.find(p => p.id === postId);
                   const fullPost = loadedPosts[postId];
                   const post = fullPost || summaryPost;
-                  
+
                   return (
                     <button
                       onClick={() => {
@@ -1096,7 +1096,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                                 }`}
                             >
                               <FileCode className="h-4 w-4" />
-                              Exams ({(() => {
+                              Submission ({(() => {
                                 const postExamsList = postExams[post.id] || [];
                                 return postExamsList.length;
                               })()})
