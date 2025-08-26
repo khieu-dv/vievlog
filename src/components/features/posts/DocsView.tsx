@@ -1440,7 +1440,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                         <BookOpen className="inline-block h-6 w-6 mr-2" />
                         Featured Categories
                       </h2>
-                      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                      <div className="space-y-4">
                         {(() => {
                           const groupedCategories = docsData.reduce((acc, section) => {
                             const mainName = section.category?.mainName || 'Languages';
@@ -1462,25 +1462,28 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                                 params.set('category', section.id);
                                 router.replace(`/posts?${params.toString()}`, { scroll: false });
                               }}
-                              className="group p-6 bg-white/80 dark:bg-black/80 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 text-left hover:-translate-y-1"
+                              className="group w-full flex items-center gap-4 p-4 bg-card hover:bg-accent/50 rounded-lg shadow-sm transition-all duration-200 text-left"
                             >
-                              <div className="flex items-center gap-4 mb-3">
-                                <div
-                                  className="w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold"
-                                  style={{ backgroundColor: section.category?.color || '#3B82F6' }}
-                                >
-                                  {getIconComponent(section.iconName || '', "h-6 w-6") || section.category?.name.charAt(0)}
-                                </div>
+                              <div
+                                className="w-12 h-12 rounded-lg flex items-center justify-center text-white font-bold flex-shrink-0"
+                                style={{ backgroundColor: section.category?.color || '#3B82F6' }}
+                              >
+                                {getIconComponent(section.iconName || '', "h-6 w-6") || section.category?.name.charAt(0)}
+                              </div>
+                              <div className="flex-1">
                                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                                   {section.title}
                                 </h3>
+                                {section.category?.description && (
+                                  <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">
+                                    {section.category.description}
+                                  </p>
+                                )}
+                                <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
+                                  {section.posts?.length || 0} articles
+                                </p>
                               </div>
-                              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                                {section.posts?.length || 0} articles
-                              </p>
-                              <p className="text-sm text-gray-500 dark:text-gray-400 line-clamp-2">
-                                Explore tutorials on {section.title}.
-                              </p>
+                              <ChevronRight className="h-5 w-5 text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-transform duration-200 group-hover:translate-x-1" />
                             </button>
                           ));
                         })()}
