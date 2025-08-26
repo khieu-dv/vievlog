@@ -158,7 +158,7 @@ export default function CompanyDetailClient({ slug }: Props) {
 
     const tempContent = content;
     const tempAuthor = addCommentAuthors[reviewId] || 'Ẩn danh';
-    
+
     // Create optimistic reply immediately
     const optimisticReply = {
       id: `temp_reply_${Date.now()}`,
@@ -219,7 +219,7 @@ export default function CompanyDetailClient({ slug }: Props) {
       // Replace optimistic reply with real one
       setReviews(prev => prev.map(review => {
         if (review.id === reviewId && review.expand?.review_replies) {
-          const updatedReplies = review.expand.review_replies.map(reply => 
+          const updatedReplies = review.expand.review_replies.map(reply =>
             reply.id === optimisticReply.id ? (realReply as any) : reply
           );
           return {
@@ -249,7 +249,7 @@ export default function CompanyDetailClient({ slug }: Props) {
         }
         return review;
       }) as any);
-      
+
       // Restore form
       setAddCommentForms(prev => new Set([...prev, reviewId]));
       setAddCommentContents(prev => ({
@@ -288,7 +288,7 @@ export default function CompanyDetailClient({ slug }: Props) {
       const rect = reviewsSection.getBoundingClientRect();
       const isMobile = window.innerWidth < 640;
       const offset = isMobile ? 80 : 100; // Enough offset to show the header clearly
-      
+
       window.scrollTo({
         top: window.pageYOffset + rect.top - offset,
         behavior: 'smooth'
@@ -311,7 +311,7 @@ export default function CompanyDetailClient({ slug }: Props) {
     if (!company) return;
 
     const tempReviewForm = { ...reviewForm };
-    
+
     // Create optimistic review immediately
     const optimisticReview = {
       id: `temp_${Date.now()}`, // Temporary ID
@@ -348,7 +348,7 @@ export default function CompanyDetailClient({ slug }: Props) {
       });
 
       // Replace optimistic review with real one
-      setReviews(prev => prev.map(review => 
+      setReviews(prev => prev.map(review =>
         review.id === optimisticReview.id ? { ...realReview, expand: { review_replies: [] } } as any : review
       ) as any);
 
@@ -515,7 +515,7 @@ export default function CompanyDetailClient({ slug }: Props) {
               <MessageSquare className="h-5 w-5 text-green-600" />
               Viết đánh giá cho {company?.name}
             </h2>
-            
+
             <div className="space-y-4">
               {/* Rating and Author - Mobile stacked */}
               <div className="space-y-4">
@@ -588,7 +588,7 @@ export default function CompanyDetailClient({ slug }: Props) {
                   >
                     Hủy
                   </button>
-                  
+
                   <button
                     onClick={submitReview}
                     disabled={reviewForm.overallRating === 0 || !reviewForm.generalContent.trim()}
@@ -674,7 +674,7 @@ export default function CompanyDetailClient({ slug }: Props) {
                       className={`pb-6 mb-6 ${index !== reviews.length - 1 ? 'border-b border-gray-100 dark:border-gray-700' : ''
                         } ${(review as any)?.isOptimistic ? 'opacity-80 border-l-4 border-blue-400 pl-4 bg-blue-50/30 dark:bg-blue-900/10' : ''}`}
                     >
-                      {/* Review Header - congtytui.me style */}
+                      {/* Review Header -  style */}
                       <div className="flex items-start gap-3 mb-3">
                         {/* Avatar placeholder */}
                         <div className="w-8 h-8 bg-gray-300 dark:bg-gray-600 rounded-full flex items-center justify-center flex-shrink-0">
@@ -694,7 +694,7 @@ export default function CompanyDetailClient({ slug }: Props) {
                           </div>
 
                           <div className="text-xs text-gray-500 dark:text-gray-400">
-                            {(review as any)?.isOptimistic 
+                            {(review as any)?.isOptimistic
                               ? 'Đang đăng...'
                               : review.reviewDate && new Date(review.reviewDate).toLocaleDateString('vi-VN')
                             }
@@ -778,7 +778,7 @@ export default function CompanyDetailClient({ slug }: Props) {
                         </button>
                       )}
 
-                      {/* Review Actions - congtytui.me style */}
+                      {/* Review Actions -  style */}
                       <div className="flex items-center justify-between mt-3 pt-3 border-t border-gray-100 dark:border-gray-700">
                         <div className="flex items-center gap-4">
                           <button className="flex items-center gap-1 text-sm text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400 transition-colors">
@@ -808,77 +808,77 @@ export default function CompanyDetailClient({ slug }: Props) {
                       </div>
 
 
-                      {/* Review Replies - congtytui.me style */}
+                      {/* Review Replies -  style */}
                       {showReplies.has(review.id) && (
                         <div className="mt-4">
                           {/* Show existing replies if any */}
                           {review.expand?.review_replies && review.expand.review_replies.length > 0 && (
                             <>
                               {review.expand.review_replies
-                            .sort((a, b) => {
-                              // Sort by replyDate first, then by created date, oldest first (newest at bottom)
-                              const dateA = new Date(a.replyDate || a.created);
-                              const dateB = new Date(b.replyDate || b.created);
-                              return dateA.getTime() - dateB.getTime();
-                            })
-                            .map((reply, replyIndex) => (
-                              <div 
-                                key={reply.id} 
-                                className={`ml-3 sm:ml-6 border-l-2 border-gray-200 dark:border-gray-600 pl-3 sm:pl-4 pt-3 pb-2 ${(reply as any)?.isOptimistic ? 'opacity-80 bg-green-50/30 dark:bg-green-900/10' : ''}`}
-                              >
-                                <div className="flex items-start gap-3">
-                                  {/* Reply Avatar */}
-                                  <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-medium ${reply.isOfficial || reply.authorType === 'company'
-                                    ? 'bg-blue-500 text-white'
-                                    : 'bg-gray-400 text-white'
-                                    }`}>
-                                    {reply.author.charAt(0).toUpperCase()}
-                                  </div>
-
-                                  <div className="flex-1 min-w-0">
-                                    <div className="flex items-center gap-2 mb-1">
-                                      <span className={`text-sm font-medium ${reply.isOfficial || reply.authorType === 'company'
-                                        ? 'text-blue-600 dark:text-blue-400'
-                                        : 'text-gray-900 dark:text-white'
+                                .sort((a, b) => {
+                                  // Sort by replyDate first, then by created date, oldest first (newest at bottom)
+                                  const dateA = new Date(a.replyDate || a.created);
+                                  const dateB = new Date(b.replyDate || b.created);
+                                  return dateA.getTime() - dateB.getTime();
+                                })
+                                .map((reply, replyIndex) => (
+                                  <div
+                                    key={reply.id}
+                                    className={`ml-3 sm:ml-6 border-l-2 border-gray-200 dark:border-gray-600 pl-3 sm:pl-4 pt-3 pb-2 ${(reply as any)?.isOptimistic ? 'opacity-80 bg-green-50/30 dark:bg-green-900/10' : ''}`}
+                                  >
+                                    <div className="flex items-start gap-3">
+                                      {/* Reply Avatar */}
+                                      <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-medium ${reply.isOfficial || reply.authorType === 'company'
+                                        ? 'bg-blue-500 text-white'
+                                        : 'bg-gray-400 text-white'
                                         }`}>
-                                        {reply.isOfficial || reply.authorType === 'company'
-                                          ? `${company.name}`
-                                          : reply.author
-                                        }
-                                      </span>
-                                      {reply.isOfficial && (
-                                        <span className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 text-xs rounded">
-                                          Official
-                                        </span>
-                                      )}
-                                      <span className="text-xs text-gray-500 dark:text-gray-400">
-                                        {(reply as any)?.isOptimistic 
-                                          ? 'Đang gửi...'
-                                          : reply.replyDate
-                                            ? new Date(reply.replyDate).toLocaleDateString('vi-VN')
-                                            : new Date(reply.created).toLocaleDateString('vi-VN')
-                                        }
-                                      </span>
+                                        {reply.author.charAt(0).toUpperCase()}
+                                      </div>
+
+                                      <div className="flex-1 min-w-0">
+                                        <div className="flex items-center gap-2 mb-1">
+                                          <span className={`text-sm font-medium ${reply.isOfficial || reply.authorType === 'company'
+                                            ? 'text-blue-600 dark:text-blue-400'
+                                            : 'text-gray-900 dark:text-white'
+                                            }`}>
+                                            {reply.isOfficial || reply.authorType === 'company'
+                                              ? `${company.name}`
+                                              : reply.author
+                                            }
+                                          </span>
+                                          {reply.isOfficial && (
+                                            <span className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 text-xs rounded">
+                                              Official
+                                            </span>
+                                          )}
+                                          <span className="text-xs text-gray-500 dark:text-gray-400">
+                                            {(reply as any)?.isOptimistic
+                                              ? 'Đang gửi...'
+                                              : reply.replyDate
+                                                ? new Date(reply.replyDate).toLocaleDateString('vi-VN')
+                                                : new Date(reply.created).toLocaleDateString('vi-VN')
+                                            }
+                                          </span>
+                                        </div>
+
+                                        <div className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                                          {formatTextContent(reply.content)}
+                                        </div>
+
+                                        {/* Reply Actions */}
+                                        <div className="flex items-center gap-4 mt-2 text-xs">
+                                          {reply.expand?.['review_reactions(reply)']?.[0]?.count !== undefined && (
+                                            <button className="flex items-center gap-1 text-gray-500 hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400 transition-colors">
+                                              <ThumbsUp className="w-3 h-3" />
+                                              <span>{reply.expand['review_reactions(reply)'][0].count}</span>
+                                            </button>
+                                          )}
+                                        </div>
+                                      </div>
                                     </div>
 
-                                    <div className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                                      {formatTextContent(reply.content)}
-                                    </div>
-
-                                    {/* Reply Actions */}
-                                    <div className="flex items-center gap-4 mt-2 text-xs">
-                                      {reply.expand?.['review_reactions(reply)']?.[0]?.count !== undefined && (
-                                        <button className="flex items-center gap-1 text-gray-500 hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400 transition-colors">
-                                          <ThumbsUp className="w-3 h-3" />
-                                          <span>{reply.expand['review_reactions(reply)'][0].count}</span>
-                                        </button>
-                                      )}
-                                    </div>
                                   </div>
-                                </div>
-
-                              </div>
-                            ))}
+                                ))}
                             </>
                           )}
 
@@ -905,7 +905,7 @@ export default function CompanyDetailClient({ slug }: Props) {
                                         {getAvatarLetter(addCommentAuthors[review.id] || 'Ẩn danh')}
                                       </span>
                                     </div>
-                                    
+
                                     {/* Author name input - wider on mobile */}
                                     <input
                                       type="text"
