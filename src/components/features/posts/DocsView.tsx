@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import { ChevronDown, ChevronRight, Search, X, Home, BookOpen, Menu, ArrowLeft, ArrowRight, MessageCircle, Code, FileText, PanelLeftClose, PanelLeftOpen } from 'lucide-react';
+import { ChevronDown, ChevronRight, Search, X, Home, BookOpen, Menu, ArrowLeft, ArrowRight, MessageCircle, Code, FileText, PanelLeftClose, PanelLeftOpen, FileCode, Plus, Send } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useTranslation } from 'react-i18next';
@@ -9,9 +9,10 @@ import JSCodeEditor from '~/components/common/JSCodeEditor';
 import { useDocsData, DocSection } from '~/lib/hooks/useDocsData';
 import { getIconComponent } from '~/lib/utils/iconMapper';
 import { ApiService } from '~/lib/services/api';
-import { Post, Comment } from '~/lib/types';
+import { Post, Comment, Exam } from '~/lib/types';
 import { useSession } from '~/lib/authClient';
 import PocketBase from 'pocketbase';
+import { examAPI } from '~/lib/pocketbase';
 
 
 interface DocsViewProps {
@@ -36,7 +37,11 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
   const [postComments, setPostComments] = useState<Record<string, Comment[]>>({});
   const [commentInputs, setCommentInputs] = useState<Record<string, string>>({});
   const [submittingComment, setSubmittingComment] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<Record<string, 'content' | 'code'>>({});
+  const [activeTab, setActiveTab] = useState<Record<string, 'content' | 'code' | 'exams'>>({});
+  const [postExams, setPostExams] = useState<Record<string, Exam[]>>({});
+  const [showExamForm, setShowExamForm] = useState<Record<string, boolean>>({});
+  const [examInputs, setExamInputs] = useState<Record<string, {title: string, code: string}>>({});
+  const [submittingExam, setSubmittingExam] = useState<string | null>(null);
   const [isPostLoading, setIsPostLoading] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(() => {
     if (typeof window !== 'undefined') {
@@ -80,6 +85,27 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
     } catch (error) {
       console.error('Failed to load comments:', error);
       setPostComments(prev => ({
+        ...prev,
+        [postId]: []
+      }));
+    }
+  };
+
+  // Load exams for a post
+  const loadPostExams = async (postId: string) => {
+    if (postExams[postId]) {
+      return; // Already loaded
+    }
+
+    try {
+      const response = await examAPI.getByPostId(postId);
+      setPostExams(prev => ({
+        ...prev,
+        [postId]: (response.items || []) as unknown as Exam[]
+      }));
+    } catch (error) {
+      console.error('Failed to load exams:', error);
+      setPostExams(prev => ({
         ...prev,
         [postId]: []
       }));
@@ -152,10 +178,11 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
     updateURL(postId);
 
     try {
-      // Load full content and comments if not already loaded
+      // Load full content, comments, and exams if not already loaded
       await Promise.all([
         loadPostContent(postId),
-        loadPostComments(postId)
+        loadPostComments(postId),
+        loadPostExams(postId)
       ]);
 
       // Scroll to top of main content area smoothly
@@ -278,6 +305,52 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
     }
   };
 
+  // Handle exam submission
+  const handleExamSubmit = async (postId: string) => {
+    const examData = examInputs[postId];
+    if (!examData?.title?.trim() || !examData?.code?.trim() || submittingExam || !session?.user) {
+      if (!session?.user) {
+        alert('Please log in to submit exam.');
+      }
+      return;
+    }
+
+    setSubmittingExam(postId);
+
+    try {
+      await examAPI.create({
+        postId: postId,
+        title: examData.title.trim(),
+        code: examData.code.trim(),
+        userId: session.user.id,
+        userName: session.user.username || session.user.name || 'User',
+        userAvatar: session.user.image || ''
+      });
+
+      // Reload exams
+      const response = await examAPI.getByPostId(postId);
+      setPostExams(prev => ({
+        ...prev,
+        [postId]: (response.items || []) as unknown as Exam[]
+      }));
+
+      // Clear input and close form
+      setExamInputs(prev => ({
+        ...prev,
+        [postId]: { title: '', code: '' }
+      }));
+      setShowExamForm(prev => ({
+        ...prev,
+        [postId]: false
+      }));
+    } catch (error) {
+      console.error('Failed to submit exam:', error);
+      alert('Failed to submit exam. Please try again.');
+    } finally {
+      setSubmittingExam(null);
+    }
+  };
+
   // Handle scroll events - simplified approach for better performance
   useEffect(() => {
     // Let CSS handle the scroll behavior naturally with overscroll-behavior
@@ -323,10 +396,11 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
             return newSet;
           });
         }
-        // Auto-load the full content and comments for this post
+        // Auto-load the full content, comments, and exams for this post
         Promise.all([
           loadPostContent(postIdFromURL),
-          loadPostComments(postIdFromURL)
+          loadPostComments(postIdFromURL),
+          loadPostExams(postIdFromURL)
         ]);
       } else if (categoryIdFromURL) {
         // If there's a category ID in URL, show that category
@@ -987,25 +1061,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                       const hasCode = post.code && post.code.trim().length > 0;
                       const currentTab = activeTab[post.id] || 'content';
 
-                      if (!hasCode) {
-                        // No code - show content only (current behavior)
-                        return (
-                          <div className="prose prose-slate dark:prose-invert prose-lg max-w-none prose-headings:font-semibold prose-headings:tracking-tight">
-                            {isLoading ? (
-                              <div className="flex items-center justify-center py-12">
-                                <div className="text-center">
-                                  <div className="animate-spin rounded-full h-8 w-8 border-2 border-gray-300 border-t-blue-600 mx-auto mb-4"></div>
-                                  <p className="text-gray-600 dark:text-gray-300">Loading content...</p>
-                                </div>
-                              </div>
-                            ) : (
-                              <MarkdownRenderer content={post.content || (fullPost ? 'No content available for this post.' : 'Loading content...')} />
-                            )}
-                          </div>
-                        );
-                      }
-
-                      // Has code - show tab system
+                      // Always show tab system now
                       return (
                         <div>
                           {/* Tab Headers */}
@@ -1020,15 +1076,30 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                               <FileText className="h-4 w-4" />
                               Content
                             </button>
+                            {hasCode && (
+                              <button
+                                onClick={() => setActiveTab(prev => ({ ...prev, [post.id]: 'code' }))}
+                                className={`flex items-center gap-2 px-6 py-3 text-sm font-medium border-b-2 transition-colors ${currentTab === 'code'
+                                  ? 'border-primary text-primary bg-primary/5'
+                                  : 'border-transparent text-muted-foreground hover:text-foreground hover:border-gray-300 dark:hover:border-gray-600'
+                                  }`}
+                              >
+                                <Code className="h-4 w-4" />
+                                Code Demo
+                              </button>
+                            )}
                             <button
-                              onClick={() => setActiveTab(prev => ({ ...prev, [post.id]: 'code' }))}
-                              className={`flex items-center gap-2 px-6 py-3 text-sm font-medium border-b-2 transition-colors ${currentTab === 'code'
+                              onClick={() => setActiveTab(prev => ({ ...prev, [post.id]: 'exams' }))}
+                              className={`flex items-center gap-2 px-6 py-3 text-sm font-medium border-b-2 transition-colors ${currentTab === 'exams'
                                 ? 'border-primary text-primary bg-primary/5'
                                 : 'border-transparent text-muted-foreground hover:text-foreground hover:border-gray-300 dark:hover:border-gray-600'
                                 }`}
                             >
-                              <Code className="h-4 w-4" />
-                              Code Demo
+                              <FileCode className="h-4 w-4" />
+                              Exams ({(() => {
+                                const postExamsList = postExams[post.id] || [];
+                                return postExamsList.length;
+                              })()})
                             </button>
                           </div>
 
@@ -1047,12 +1118,121 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                                   <MarkdownRenderer content={post.content || (fullPost ? 'No content available for this post.' : 'Loading content...')} />
                                 )}
                               </div>
-                            ) : (
+                            ) : currentTab === 'code' ? (
                               <div className="h-[600px] rounded-lg overflow-hidden">
                                 <JSCodeEditor
                                   initialCode={post.code}
                                   className="h-full p-0"
                                 />
+                              </div>
+                            ) : (
+                              // Exams tab content
+                              <div>
+                                {/* Exam Submission Form */}
+                                <div className="mb-6">
+                                  {session?.user ? (
+                                    !showExamForm[post.id] ? (
+                                      <button
+                                        onClick={() => setShowExamForm(prev => ({ ...prev, [post.id]: true }))}
+                                        className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-md text-sm font-medium hover:bg-primary/90 transition-colors"
+                                      >
+                                        <Plus className="h-4 w-4" />
+                                        Submit Your Exam
+                                      </button>
+                                    ) : (
+                                      <div className="p-4 bg-muted/30 rounded-lg">
+                                        <h4 className="font-semibold text-foreground mb-3">Submit Your Exam</h4>
+                                        <div className="space-y-3">
+                                          <input
+                                            type="text"
+                                            placeholder="Exam title..."
+                                            className="w-full p-3 border border-border rounded-md bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary/20"
+                                            value={examInputs[post.id]?.title || ''}
+                                            onChange={(e) => setExamInputs(prev => ({
+                                              ...prev,
+                                              [post.id]: { ...prev[post.id], title: e.target.value }
+                                            }))}
+                                          />
+                                          <textarea
+                                            placeholder="Paste your code here..."
+                                            className="w-full p-3 border border-border rounded-md bg-background text-sm resize-vertical min-h-[200px] font-mono focus:outline-none focus:ring-2 focus:ring-primary/20"
+                                            value={examInputs[post.id]?.code || ''}
+                                            onChange={(e) => setExamInputs(prev => ({
+                                              ...prev,
+                                              [post.id]: { ...prev[post.id], code: e.target.value }
+                                            }))}
+                                          />
+                                          <div className="flex gap-2">
+                                            <button
+                                              onClick={() => handleExamSubmit(post.id)}
+                                              disabled={submittingExam === post.id || !examInputs[post.id]?.title?.trim() || !examInputs[post.id]?.code?.trim()}
+                                              className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-md text-sm font-medium hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                                            >
+                                              <Send className="h-4 w-4" />
+                                              {submittingExam === post.id ? 'Submitting...' : 'Submit Exam'}
+                                            </button>
+                                            <button
+                                              onClick={() => {
+                                                setShowExamForm(prev => ({ ...prev, [post.id]: false }));
+                                                setExamInputs(prev => ({ ...prev, [post.id]: { title: '', code: '' } }));
+                                              }}
+                                              className="px-4 py-2 text-muted-foreground hover:text-foreground border border-border rounded-md text-sm font-medium transition-colors"
+                                            >
+                                              Cancel
+                                            </button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    )
+                                  ) : (
+                                    <div className="p-4 bg-muted/30 rounded-lg text-center">
+                                      <p className="text-muted-foreground mb-3">
+                                        Please log in to submit your exam solution
+                                      </p>
+                                      <p className="text-sm text-muted-foreground">
+                                        You can still view all submitted exams below
+                                      </p>
+                                    </div>
+                                  )}
+                                </div>
+
+                                {/* Exams List */}
+                                <div className="space-y-4">
+                                  <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
+                                    <FileCode className="h-5 w-5" />
+                                    Submitted Exams ({postExams[post.id]?.length || 0})
+                                  </h3>
+
+                                  {postExams[post.id] && postExams[post.id].length > 0 ? (
+                                    postExams[post.id].map((exam) => (
+                                      <div key={exam.id} className="p-4 bg-background rounded-lg border border-border/50">
+                                        <div className="flex items-start justify-between gap-3 mb-3">
+                                          <div className="flex items-center gap-2">
+                                            <div className="w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-xs font-semibold">
+                                              {exam.userName?.charAt(0).toUpperCase() || 'A'}
+                                            </div>
+                                            <div>
+                                              <div className="font-medium text-foreground">{exam.title}</div>
+                                              <div className="text-sm text-muted-foreground">
+                                                by {exam.userName || 'Anonymous'} • {new Date(exam.created).toLocaleDateString()}
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div className="bg-muted/30 p-3 rounded border font-mono text-sm overflow-x-auto">
+                                          <pre className="whitespace-pre-wrap">{exam.code}</pre>
+                                        </div>
+                                      </div>
+                                    ))
+                                  ) : (
+                                    <div className="text-center py-8">
+                                      <FileCode className="h-12 w-12 text-muted-foreground mx-auto mb-3" />
+                                      <p className="text-muted-foreground">
+                                        No exams submitted yet. Be the first to share your solution!
+                                      </p>
+                                    </div>
+                                  )}
+                                </div>
                               </div>
                             )}
                           </div>

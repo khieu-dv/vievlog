@@ -412,3 +412,66 @@ export const industryAPI = {
     }
   }
 };
+
+export const examAPI = {
+  // Get exams by postId
+  async getByPostId(postId: string) {
+    try {
+      return await pb.collection('exams_tbl').getList(1, 50, {
+        filter: `postId="${postId}"`,
+        sort: '-created',
+        requestKey: `exams_post_${postId}`
+      });
+    } catch (error: any) {
+      if (error.status === 0 && error.message.includes('autocancelled')) {
+        await new Promise(resolve => setTimeout(resolve, 100));
+        return await pb.collection('exams_tbl').getList(1, 50, {
+          filter: `postId="${postId}"`,
+          sort: '-created'
+        });
+      }
+      throw error;
+    }
+  },
+
+  // Create a new exam
+  async create(examData: {
+    postId: string;
+    title: string;
+    code: string;
+    userId?: string;
+    userName?: string;
+    userAvatar?: string;
+  }) {
+    try {
+      const record = {
+        postId: examData.postId,
+        title: examData.title,
+        code: examData.code,
+        userId: examData.userId || '',
+        userName: examData.userName || 'Anonymous',
+        userAvatar: examData.userAvatar || ''
+      };
+
+      return await pb.collection('exams_tbl').create(record);
+    } catch (error: any) {
+      console.error('Error creating exam:', error);
+      throw error;
+    }
+  },
+
+  // Get exam by ID
+  async getById(id: string) {
+    try {
+      return await pb.collection('exams_tbl').getOne(id, {
+        requestKey: `exam_${id}`
+      });
+    } catch (error: any) {
+      if (error.status === 0 && error.message.includes('autocancelled')) {
+        await new Promise(resolve => setTimeout(resolve, 100));
+        return await pb.collection('exams_tbl').getOne(id);
+      }
+      throw error;
+    }
+  }
+};

@@ -83,6 +83,18 @@ export type TrendingTech = {
   description: string;
 }
 
+export type Exam = {
+  id: string;
+  postId: string;
+  title: string;
+  code: string;
+  userId?: string;
+  userName?: string;
+  userAvatar?: string;
+  created: string;
+  updated?: string;
+}
+
 
 
 
