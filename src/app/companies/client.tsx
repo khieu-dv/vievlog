@@ -130,7 +130,7 @@ export default function CompaniesClient() {
         <div className="flex items-center justify-between mb-4">
           <div>
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              {companies.length > 0 ? `${companies.length} công ty` : 'Đang tải...'}
+              {companies.length > 0 ? `${companies.length}/2500 công ty` : 'Đang tải...'}
             </p>
           </div>
         </div>
@@ -152,7 +152,7 @@ export default function CompaniesClient() {
           <span className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3 md:hidden">Lọc theo:</span>
           <div className="flex flex-col md:flex-row md:items-center gap-3">
             <span className="hidden md:block text-sm font-medium text-gray-700 dark:text-gray-300">Lọc theo:</span>
-            
+
             {/* Filters grid for mobile */}
             <div className="grid grid-cols-2 md:flex md:flex-wrap gap-2 md:gap-3 flex-1">
               {/* Industry Filter */}
@@ -255,10 +255,10 @@ export default function CompaniesClient() {
                   <div className="flex items-center gap-3">
                     <div className="w-12 h-12 bg-gray-50 dark:bg-gray-700 rounded-xl flex items-center justify-center overflow-hidden border border-gray-100 dark:border-gray-600">
                       {company.logoUrl ? (
-                        <img 
-                          src={company.logoUrl} 
-                          alt={`${company.name} logo`} 
-                          className="w-full h-full object-cover" 
+                        <img
+                          src={company.logoUrl}
+                          alt={`${company.name} logo`}
+                          className="w-full h-full object-cover"
                         />
                       ) : (
                         <Building2 className="h-6 w-6 text-gray-400" />
@@ -309,10 +309,10 @@ export default function CompaniesClient() {
                 <div className="relative flex-shrink-0 hidden sm:block">
                   <div className="w-14 h-14 bg-gray-50 dark:bg-gray-700 rounded-xl flex items-center justify-center overflow-hidden border border-gray-100 dark:border-gray-600">
                     {company.logoUrl ? (
-                      <img 
-                        src={company.logoUrl} 
-                        alt={`${company.name} logo`} 
-                        className="w-full h-full object-cover" 
+                      <img
+                        src={company.logoUrl}
+                        alt={`${company.name} logo`}
+                        className="w-full h-full object-cover"
                       />
                     ) : (
                       <Building2 className="h-7 w-7 text-gray-400" />
@@ -327,7 +327,7 @@ export default function CompaniesClient() {
                     <h3 className="font-semibold text-gray-900 dark:text-white text-xl leading-tight mb-2 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
                       {company.name}
                     </h3>
-                    
+
                     {/* Industry Tag for desktop */}
                     {company.expand?.industry && (
                       <span
@@ -360,7 +360,7 @@ export default function CompaniesClient() {
                         <span className="truncate">{company.location}</span>
                       </div>
                     )}
-                    
+
                     {company.companySize && (
                       <div className="flex items-center gap-1.5">
                         <Users className="h-4 w-4 flex-shrink-0" />
@@ -436,16 +436,15 @@ export default function CompaniesClient() {
             {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
               const pageNum = Math.max(1, Math.min(currentPage - 2, totalPages - 4)) + i;
               if (pageNum > totalPages) return null;
-              
+
               return (
                 <button
                   key={pageNum}
                   onClick={() => setCurrentPage(pageNum)}
-                  className={`px-3.5 py-2.5 text-sm font-medium rounded-xl transition-all duration-200 active:scale-[0.94] touch-manipulation ${
-                    currentPage === pageNum
+                  className={`px-3.5 py-2.5 text-sm font-medium rounded-xl transition-all duration-200 active:scale-[0.94] touch-manipulation ${currentPage === pageNum
                       ? 'bg-green-600 text-white shadow-md active:bg-green-700'
                       : 'text-gray-600 bg-white border border-gray-200 hover:bg-gray-50 hover:border-gray-300 active:bg-gray-100 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 dark:active:bg-gray-600'
-                  }`}
+                    }`}
                 >
                   {pageNum}
                 </button>
