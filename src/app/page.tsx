@@ -167,9 +167,9 @@ export default function HomePage() {
                     Start Learning
                   </Button>
                 </Link>
-                <Link href="/videos">
+                <Link href="/games">
                   <Button variant="outline" className="border-gray-300 dark:border-gray-600 text-blue-600 dark:text-blue-400 font-medium px-8 py-3 rounded-full text-lg hover:bg-gray-50 dark:hover:bg-gray-900">
-                    Watch Videos
+                    Games
                   </Button>
                 </Link>
               </div>

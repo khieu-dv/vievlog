@@ -83,20 +83,6 @@ export type TrendingTech = {
   description: string;
 }
 
-export type Video = {
-  id: string;
-  title: string;
-  description?: string;
-  author?: string;
-  video_url: string;
-  thumbnail_url?: string;
-  thumbnail?: string;
-  tags?: string;
-  views?: number;
-  likes?: number;
-  duration?: string;
-  created: string;
-}
 
 
 

@@ -46,12 +46,11 @@ export function Header({ showAuth = true, className }: HeaderProps) {
   const navigation = [
     { name: t("header.home"), href: "/" },
     { name: "Docs", href: "/posts" },
-    { name: "Videos", href: "/videos" },
     { name: "Games", href: "/games" },
   ];
 
   return (
-        <header className={cn("sticky top-0 z-40 w-full border-b border-slate-200 dark:border-border bg-white/95 dark:bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-white/95 dark:supports-[backdrop-filter]:bg-background/95", className)}>
+    <header className={cn("sticky top-0 z-40 w-full border-b border-slate-200 dark:border-border bg-white/95 dark:bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-white/95 dark:supports-[backdrop-filter]:bg-background/95", className)}>
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex h-14 items-center justify-between">
           <div className="flex items-center gap-6">

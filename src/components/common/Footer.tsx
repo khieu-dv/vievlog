@@ -74,29 +74,6 @@ export function Footer({ className }: { className?: string }) {
             </ul>
           </div>
 
-          {/* Videos Section */}
-          <div>
-            <h3 className="mb-3 text-sm font-medium text-foreground">{t("footer.videos")}</h3>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link
-                  href="/videos"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  {t("footer.allVideos")}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/videos"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  {t("footer.shortVideos")}
-                </Link>
-              </li>
-            </ul>
-          </div>
-
           {/* Community Section */}
           <div>
             <h3 className="mb-3 text-sm font-medium text-foreground">{t("footer.community")}</h3>

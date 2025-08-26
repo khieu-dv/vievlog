@@ -78,13 +78,6 @@ export default function NotFound() {
               </Link>
               <span className="text-slate-400">•</span>
               <Link
-                href="/videos"
-                className="text-sm text-primary hover:text-primary/80 underline"
-              >
-                {t('notFound.videoTutorials')}
-              </Link>
-              <span className="text-slate-400">•</span>
-              <Link
                 href="/games"
                 className="text-sm text-primary hover:text-primary/80 underline"
               >
