@@ -9,7 +9,7 @@ export default function PostsPage() {
   return (
     <div className="min-h-screen bg-white dark:bg-black">
       <Header />
-      <VieShareBanner />
+      {/* <VieShareBanner /> */}
 
       {/* Main Layout - Apple Style */}
       <div className="max-w-7xl mx-auto sm:px-6">

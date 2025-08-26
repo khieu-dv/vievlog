@@ -147,7 +147,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-white dark:bg-black">
       <Header />
-      <VieShareBanner />
+      {/* <VieShareBanner /> */}
 
       {/* Hero Section - Apple Style */}
       <div className="relative overflow-hidden bg-white dark:bg-black">
