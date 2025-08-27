@@ -2,23 +2,23 @@
 
 <div align="center">
 
-[![GitHub stars](https://img.shields.io/github/stars/khieu-dv/vievlog?style=for-the-badge)](https://github.com/khieu-dv/vievlog/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/khieu-dv/vievlog?style=for-the-badge)](https://github.com/khieu-dv/vievlog/network/members)
-[![GitHub issues](https://img.shields.io/github/issues/khieu-dv/vievlog?style=for-the-badge)](https://github.com/khieu-dv/vievlog/issues)
-[![GitHub license](https://img.shields.io/github/license/khieu-dv/vievlog?style=for-the-badge)](https://github.com/khieu-dv/vievlog/blob/main/LICENSE)
-[![YouTube Video Views](https://img.shields.io/youtube/views/bLqeFoANuTg?style=for-the-badge)](https://www.youtube.com/watch?v=bLqeFoANuTg)
+[![Next.js](https://img.shields.io/badge/Next.js-15.2.1-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19.0.0-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.8.2-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![PocketBase](https://img.shields.io/badge/PocketBase-0.25.2-B8DBE4?style=for-the-badge&logo=pocketbase&logoColor=black)](https://pocketbase.io/)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-4.0.9-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 
 </div>
 
 ## 🌟 Overview
 
-VieVlog is a comprehensive, multi-modal programming education platform that combines interactive documentation, video learning, live code execution, and educational games into one seamless experience. Built for developers at all levels - from beginners learning their first programming language to professionals expanding their tech stack.
+VieVlog is a comprehensive programming education platform that combines interactive documentation, company reviews, live code execution, and educational games into one seamless experience. Built for developers at all levels - from beginners learning their first programming language to professionals looking to advance their careers.
 
 **🎯 What makes VieVlog unique:**
 - **Interactive Learning**: Live code execution with Monaco Editor integration
-- **Multi-Format Content**: Documentation, TikTok-style videos, and educational games
-- **Community-Driven**: Real-time comments and discussions on all content
-- **Global Accessibility**: Multi-language support (EN/VI/KO/ZH) with responsive design
+- **Company Reviews**: Comprehensive database of Vietnamese tech companies with employee reviews
+- **Educational Games**: Interactive gaming experiences to learn programming concepts
+- **Multi-language Support**: Available in Vietnamese, English, Korean, and Chinese
 
 <p align="center">
   <img src="./public/screenshot20.png" width="400" alt="VieVlog Dashboard" />
@@ -36,7 +36,7 @@ VieVlog is a comprehensive, multi-modal programming education platform that comb
 
 
 
-## 🎯 Core Learning Experiences
+## 🎯 Core Features
 
 ### 📚 Interactive Documentation System
 - **Structured Learning Paths**: Languages • Frameworks • DSA • Soft Skills
@@ -44,11 +44,11 @@ VieVlog is a comprehensive, multi-modal programming education platform that comb
 - **Community Engagement**: Real-time comments and discussions
 - **Multi-language Support**: Content available in Vietnamese, English, Korean, Chinese
 
-### 📱 TikTok-Style Video Learning
-- **Short-form Educational Videos**: Mobile-optimized vertical feed
-- **Auto-play on Scroll**: Seamless browsing experience
-- **Progress Tracking**: Continue where you left off
-- **Curated Content**: Programming tutorials and tech insights
+### 🏢 Company Review System
+- **Comprehensive Database**: 1000+ Vietnamese tech companies
+- **Employee Reviews**: Real insights about work environment, salary, and culture
+- **Company Profiles**: Detailed information about each company
+- **Rating System**: Standardized ratings for different aspects
 
 ### 💻 Live Code Playground
 - **Server-side Execution**: Run JavaScript code safely in sandboxed environment
@@ -63,12 +63,12 @@ VieVlog is a comprehensive, multi-modal programming education platform that comb
 
 ## ✨ Why Choose VieVlog?
 
-- 🔥 **Multi-Modal Learning**: Text, video, interactive code, and games in one platform
+- 🔥 **Multi-Modal Learning**: Documentation, company reviews, interactive code, and games in one platform
 - 🚀 **Production-Ready**: Enterprise-grade Next.js architecture with PocketBase backend
-- 📱 **Mobile-First Design**: Optimized for learning on-the-go
-- 🌍 **Global Community**: Multi-language support with active user discussions
+- 📱 **Mobile-First Design**: Optimized for learning and browsing on-the-go
+- 🌍 **Multi-language Support**: Available in Vietnamese, English, Korean, and Chinese
 - ⚡ **Live Code Execution**: Practice coding with instant feedback
-- 🎯 **Structured Curriculum**: From beginner basics to advanced topics
+- 🏢 **Career Development**: Comprehensive company insights to help with career decisions
 
 ## 🛠️ Technology Stack
 
@@ -85,10 +85,10 @@ VieVlog is a comprehensive, multi-modal programming education platform that comb
 
 **🔧 Key Integrations:**
 - **Authentication**: PocketBase user management with social auth
-- **Community Features**: Comments and user interactions  
-- **Code Execution**: Secure server-side JavaScript runtime via Judge0 API
+- **Company Data**: Comprehensive database of Vietnamese tech companies
+- **Code Execution**: Secure server-side JavaScript runtime
 - **Internationalization**: i18n support for 4+ languages
-- **Performance**: Vercel deployment with edge optimization
+- **Performance**: Modern deployment with optimization
 
 ## 🚀 Getting Started in 4 Simple Steps
 
@@ -129,13 +129,13 @@ yarn dev
 **🌐 Access the Platform**:
 - **Main App**: http://localhost:3000
 - **Documentation**: http://localhost:3000/posts
-- **Video Feed**: http://localhost:3000/videos  
-- **Code Playground**: http://localhost:3000/run-js
+- **Company Reviews**: http://localhost:3000/companies
+- **Code Playground**: Integrated floating editor
 - **Games**: http://localhost:3000/games
 
 **🎯 Quick Start Features**:
 - Browse programming tutorials by category
-- Watch short-form coding videos
+- Explore company reviews and ratings
 - Try the interactive JavaScript code editor
 - Play educational games to learn programming concepts
 
@@ -147,20 +147,20 @@ yarn dev
 vievlog/
 ├── src/app/                    # Next.js App Router
 │   ├── api/                    # Backend API routes
-│   │   ├── run-code/          # Code execution endpoint
-│   │   └── auth/              # Authentication APIs
+│   │   └── run-code/          # Code execution endpoint
 │   ├── posts/                  # Interactive documentation system
-│   │   ├── [id]/              # Individual tutorial pages
-│   │   └── roadmap/           # Structured learning paths
-│   ├── videos/                 # TikTok-style video feed
-│   ├── run-js/                 # Live code playground
+│   │   └── [id]/              # Individual tutorial pages
+│   ├── companies/              # Company review system
+│   │   ├── [slug]/            # Individual company pages
+│   │   └── page.tsx           # Company listings
 │   ├── games/                  # Educational gaming platform
 │   ├── auth/                   # User authentication flows
 │   └── profile/                # User dashboard
 ├── src/components/
 │   ├── features/               # Feature-specific components
 │   │   ├── posts/             # Documentation components
-│   │   └── videos/            # Video player components
+│   │   ├── companies/         # Company review components
+│   │   └── home/              # Homepage components
 │   ├── common/                 # Shared UI components
 │   └── ui/                     # Design system primitives
 ├── src/lib/                    # Core utilities and services
@@ -178,7 +178,7 @@ vievlog/
 - **DSA**: Data Structures & Algorithms fundamentals
 - **Soft Skills**: Career development and professional skills
 
-**🎥 Video Content**: Short-form educational videos optimized for mobile consumption
+**🏢 Company Reviews**: Comprehensive database of Vietnamese tech companies with ratings and reviews
 
 **🎮 Interactive Games**: Browser-based educational games using Godot/WebAssembly
 
@@ -200,20 +200,21 @@ Check out our [Contributing Guidelines](CONTRIBUTING.md) for more details.
 **👥 Who Benefits from VieVlog**:
 - **Beginner Programmers**: Learning fundamentals with interactive examples
 - **Students**: Computer science and software engineering curriculum support  
-- **Career Changers**: Transitioning into tech with structured learning paths
-- **Professionals**: Expanding skillset with new technologies and frameworks
+- **Career Changers**: Transitioning into tech with structured learning paths and company insights
+- **Job Seekers**: Researching companies and making informed career decisions
+- **Professionals**: Expanding skillset with new technologies and company reviews
 - **Educators**: Teaching programming with engaging, multi-modal content
 
 **💡 Primary Use Cases**:
 - **Self-paced Learning**: Individual study with comprehensive resources
+- **Company Research**: In-depth reviews and insights about Vietnamese tech companies
 - **Interview Preparation**: DSA practice and coding challenges  
 - **Technology Exploration**: Hands-on experience with new tools
-- **Community Learning**: Peer discussions and knowledge sharing
-- **Mobile Learning**: Study programming concepts on-the-go
+- **Career Planning**: Making informed decisions about job opportunities
 
 ## 📊 Project Status
 
-🚀 **Production Ready** - VieVlog is actively serving learners with a full-featured platform including live code execution, video streaming, and interactive content management.
+🚀 **Production Ready** - VieVlog is actively serving learners and job seekers with a full-featured platform including live code execution, company reviews, and interactive content management.
 
 <div align="center">
 
