@@ -114,6 +114,12 @@ export default function CompaniesClient() {
     setCurrentPage(1);
   };
 
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    // Scroll to top smoothly when changing pages
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const clearFilters = () => {
     setSearchQuery('');
     setSelectedIndustry('');
@@ -130,7 +136,12 @@ export default function CompaniesClient() {
         <div className="flex items-center justify-between mb-4">
           <div>
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              {companies.length > 0 ? `${companies.length}/2500 công ty` : 'Đang tải...'}
+              {companies.length > 0 
+                ? totalPages > 1 
+                  ? `Trang ${currentPage}/${totalPages} - Hiển thị ${companies.length} công ty`
+                  : `${companies.length} công ty`
+                : 'Đang tải...'
+              }
             </p>
           </div>
         </div>
@@ -420,45 +431,113 @@ export default function CompaniesClient() {
         </div>
       )}
 
-      {/* Pagination - Professional style */}
+      {/* Pagination - Enhanced style similar to congtytui.me */}
       {totalPages > 1 && (
-        <div className="flex justify-center items-center mt-12 gap-2">
-          <button
-            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-            disabled={currentPage === 1}
-            className="px-4 py-2.5 text-sm font-medium text-gray-600 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 hover:border-gray-300 active:scale-[0.96] active:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 dark:active:bg-gray-600 transition-all duration-200 touch-manipulation"
-          >
-            ← Trang trước
-          </button>
+        <div className="flex flex-col items-center mt-12 mb-8 gap-4">
+          {/* Page info text */}
+          <p className="text-sm text-gray-500 dark:text-gray-400">
+            Trang {currentPage} của {totalPages}
+          </p>
+          
+          {/* Pagination controls */}
+          <div className="flex flex-wrap items-center justify-center gap-1 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-600 p-2 shadow-sm">
+            {/* Previous button */}
+            <button
+              onClick={() => handlePageChange(Math.max(currentPage - 1, 1))}
+              disabled={currentPage === 1}
+              className="flex items-center justify-center w-9 h-9 text-sm font-medium text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-colors disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-gray-500 dark:text-gray-400 dark:hover:text-gray-200 dark:hover:bg-gray-700"
+              title="Trang trước"
+            >
+              ‹
+            </button>
 
-          {/* Page numbers */}
-          <div className="flex gap-1">
-            {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-              const pageNum = Math.max(1, Math.min(currentPage - 2, totalPages - 4)) + i;
-              if (pageNum > totalPages) return null;
+            {/* First page */}
+            {currentPage > 3 && (
+              <>
+                <button
+                  onClick={() => handlePageChange(1)}
+                  className="flex items-center justify-center w-9 h-9 text-sm font-medium text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors dark:text-gray-300 dark:hover:text-green-400 dark:hover:bg-green-900/20"
+                >
+                  1
+                </button>
+                {currentPage > 4 && (
+                  <span className="flex items-center justify-center w-9 h-9 text-sm text-gray-400">
+                    ...
+                  </span>
+                )}
+              </>
+            )}
+
+            {/* Page numbers around current page */}
+            {Array.from({ length: Math.min(7, totalPages) }, (_, i) => {
+              let pageNum;
+              
+              if (totalPages <= 7) {
+                // Show all pages if total pages <= 7
+                pageNum = i + 1;
+              } else if (currentPage <= 4) {
+                // Show first 5 pages + last 2
+                if (i < 5) {
+                  pageNum = i + 1;
+                } else {
+                  return null; // Will show ellipsis and last pages separately
+                }
+              } else if (currentPage >= totalPages - 3) {
+                // Show first 2 + last 5 pages
+                if (i < 2) {
+                  return null; // Will show first pages separately
+                } else {
+                  pageNum = totalPages - 6 + i;
+                }
+              } else {
+                // Show current page ± 2
+                pageNum = currentPage - 3 + i;
+              }
+
+              if (pageNum < 1 || pageNum > totalPages) return null;
 
               return (
                 <button
                   key={pageNum}
-                  onClick={() => setCurrentPage(pageNum)}
-                  className={`px-3.5 py-2.5 text-sm font-medium rounded-xl transition-all duration-200 active:scale-[0.94] touch-manipulation ${currentPage === pageNum
-                      ? 'bg-green-600 text-white shadow-md active:bg-green-700'
-                      : 'text-gray-600 bg-white border border-gray-200 hover:bg-gray-50 hover:border-gray-300 active:bg-gray-100 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 dark:active:bg-gray-600'
-                    }`}
+                  onClick={() => handlePageChange(pageNum)}
+                  className={`flex items-center justify-center w-9 h-9 text-sm font-medium rounded-lg transition-colors ${
+                    currentPage === pageNum
+                      ? 'bg-green-600 text-white shadow-sm'
+                      : 'text-gray-700 hover:text-green-600 hover:bg-green-50 dark:text-gray-300 dark:hover:text-green-400 dark:hover:bg-green-900/20'
+                  }`}
                 >
                   {pageNum}
                 </button>
               );
             })}
-          </div>
 
-          <button
-            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-            disabled={currentPage === totalPages}
-            className="px-4 py-2.5 text-sm font-medium text-gray-600 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 hover:border-gray-300 active:scale-[0.96] active:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 dark:active:bg-gray-600 transition-all duration-200 touch-manipulation"
-          >
-            Trang sau →
-          </button>
+            {/* Last page */}
+            {currentPage < totalPages - 2 && totalPages > 7 && (
+              <>
+                {currentPage < totalPages - 3 && (
+                  <span className="flex items-center justify-center w-9 h-9 text-sm text-gray-400">
+                    ...
+                  </span>
+                )}
+                <button
+                  onClick={() => handlePageChange(totalPages)}
+                  className="flex items-center justify-center w-9 h-9 text-sm font-medium text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg transition-colors dark:text-gray-300 dark:hover:text-green-400 dark:hover:bg-green-900/20"
+                >
+                  {totalPages}
+                </button>
+              </>
+            )}
+
+            {/* Next button */}
+            <button
+              onClick={() => handlePageChange(Math.min(currentPage + 1, totalPages))}
+              disabled={currentPage === totalPages}
+              className="flex items-center justify-center w-9 h-9 text-sm font-medium text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-colors disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-gray-500 dark:text-gray-400 dark:hover:text-gray-200 dark:hover:bg-gray-700"
+              title="Trang sau"
+            >
+              ›
+            </button>
+          </div>
         </div>
       )}
 
