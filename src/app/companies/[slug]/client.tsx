@@ -14,7 +14,10 @@ import {
   Heart,
   ArrowLeft,
   ChevronDown,
-  ChevronUp
+  ChevronUp,
+  Share2,
+  Copy,
+  Check
 } from 'lucide-react';
 import { companyAPI, reviewAPI, type Company, type Review } from '../../../lib/pocketbase';
 import { formatTextContent, getAvatarLetter } from '../../../utils/textUtils';
@@ -39,6 +42,8 @@ export default function CompanyDetailClient({ slug }: Props) {
   const [addCommentContents, setAddCommentContents] = useState<Record<string, string>>({});
   const [addCommentAuthors, setAddCommentAuthors] = useState<Record<string, string>>({});
   const [showReviewForm, setShowReviewForm] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
+  const [canShare, setCanShare] = useState(false);
   const [reviewForm, setReviewForm] = useState({
     overallRating: 0,
     generalContent: '',
@@ -46,8 +51,35 @@ export default function CompanyDetailClient({ slug }: Props) {
     isAnonymous: false
   });
 
+  const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: document.title,
+          url: window.location.href,
+        });
+      } catch (error) {
+        console.error('Error sharing:', error);
+      }
+    } else {
+      try {
+        await navigator.clipboard.writeText(window.location.href);
+        setIsCopied(true);
+        setTimeout(() => setIsCopied(false), 2000);
+      } catch (error) {
+        console.error('Error copying link:', error);
+        alert('Không thể sao chép liên kết.');
+      }
+    }
+  };
+
   useEffect(() => {
     loadCompanyData();
+    if (typeof window !== 'undefined') {
+      if ((navigator as any).share) {
+        setCanShare(true);
+      }
+    }
   }, [slug]);
 
   useEffect(() => {
@@ -472,6 +504,27 @@ export default function CompanyDetailClient({ slug }: Props) {
 
             {/* Actions - Removed Write Review Button */}
             <div className="flex flex-col gap-3">
+              <button
+                onClick={handleShare}
+                className="flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 text-sm font-medium transition-colors"
+              >
+                {canShare ? (
+                  <>
+                    <Share2 className="h-4 w-4" />
+                    <span>Chia sẻ</span>
+                  </>
+                ) : isCopied ? (
+                  <>
+                    <Check className="h-4 w-4 text-green-500" />
+                    <span className="text-green-500">Đã sao chép!</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy className="h-4 w-4" />
+                    <span>Sao chép liên kết</span>
+                  </>
+                )}
+              </button>
             </div>
           </div>
 
