@@ -21,6 +21,7 @@ export default function CompaniesClient() {
   const [selectedIndustry, setSelectedIndustry] = useState('');
   const [selectedSize, setSelectedSize] = useState('');
   const [minRating, setMinRating] = useState(0);
+  const [sortBy, setSortBy] = useState('-totalReviews,-averageRating');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const searchTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -64,12 +65,12 @@ export default function CompaniesClient() {
         if (selectedSize) filters.companySize = selectedSize;
         if (minRating > 0) filters.minRating = minRating;
 
-        const response = await companyAPI.search(searchQuery || '', filters);
+        const response = await companyAPI.search(searchQuery || '', filters, sortBy);
         setCompanies(response.items as unknown as Company[]);
         setTotalPages(response.totalPages);
       } else {
         // Get all companies with pagination
-        const response = await companyAPI.getAll(currentPage, 20);
+        const response = await companyAPI.getAll(currentPage, 20, '', sortBy);
         setCompanies(response.items as unknown as Company[]);
         setTotalPages(response.totalPages);
       }
@@ -80,7 +81,7 @@ export default function CompaniesClient() {
     } finally {
       setLoading(false);
     }
-  }, [searchQuery, selectedIndustry, selectedSize, minRating, currentPage]);
+  }, [searchQuery, selectedIndustry, selectedSize, minRating, currentPage, sortBy]);
 
   useEffect(() => {
     loadIndustries();
@@ -125,6 +126,7 @@ export default function CompaniesClient() {
     setSelectedIndustry('');
     setSelectedSize('');
     setMinRating(0);
+    setSortBy('-totalReviews,-averageRating');
     setCurrentPage(1);
   };
 
@@ -215,8 +217,21 @@ export default function CompaniesClient() {
                 <option value={2}>2+ sao</option>
               </select>
 
+              {/* Sort By Filter */}
+              <select
+                value={sortBy}
+                onChange={(e) => {
+                  setSortBy(e.target.value);
+                  handleFilterChange();
+                }}
+                className="px-3 py-2 text-sm border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:bg-gray-800 dark:text-white bg-white min-w-0 active:scale-[0.98] transition-transform touch-manipulation"
+              >
+                <option value="-totalReviews,-averageRating">Nhiều đánh giá nhất</option>
+                <option value="-created">Mới nhất</option>
+              </select>
+
               {/* Clear Filters */}
-              {(selectedIndustry || selectedSize || minRating > 0) && (
+              {(selectedIndustry || selectedSize || minRating > 0 || sortBy !== '-totalReviews,-averageRating') && (
                 <button
                   onClick={clearFilters}
                   className="col-span-2 md:col-span-1 px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 active:scale-[0.96] active:bg-gray-100 dark:active:bg-gray-600 transition-all touch-manipulation"

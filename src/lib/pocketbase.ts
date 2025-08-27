@@ -115,15 +115,15 @@ export interface CompanyStat {
 // API functions
 export const companyAPI = {
   // Get all companies with pagination
-  async getAll(page = 1, limit = 20, search = '') {
+  async getAll(page = 1, limit = 20, search = '', sortBy = '-totalReviews,-averageRating') {
     try {
       const searchFilter = search ? `name~"${search}" || description~"${search}"` : '';
       
       return await pb.collection('companies').getList(page, limit, {
-        sort: '-averageRating,-totalReviews',
+        sort: sortBy,
         filter: searchFilter,
         expand: 'industry',
-        requestKey: `companies_list_${page}_${limit}_${search}` // Unique key to prevent auto-cancellation
+        requestKey: `companies_list_${page}_${limit}_${search}_${sortBy}` // Unique key to prevent auto-cancellation
       });
     } catch (error: any) {
       if (error.status === 0 && error.message.includes('autocancelled')) {
@@ -131,7 +131,7 @@ export const companyAPI = {
         await new Promise(resolve => setTimeout(resolve, 100));
         const searchFilter = search ? `name~"${search}" || description~"${search}"` : '';
         return await pb.collection('companies').getList(page, limit, {
-          sort: '-averageRating,-totalReviews',
+          sort: sortBy,
           filter: searchFilter,
           expand: 'industry'
         });
@@ -242,7 +242,7 @@ export const companyAPI = {
     industry?: string;
     companySize?: string;
     minRating?: number;
-  }) {
+  }, sortBy = '-totalReviews,-averageRating') {
     try {
       let filterConditions = query ? [`name~"${query}" || description~"${query}"`] : [];
       
@@ -259,11 +259,11 @@ export const companyAPI = {
       }
 
       const filter = filterConditions.length > 0 ? filterConditions.join(' && ') : '';
-      const searchKey = `search_${query}_${JSON.stringify(filters)}`;
+      const searchKey = `search_${query}_${JSON.stringify(filters)}_${sortBy}`;
 
       return await pb.collection('companies').getList(1, 50, {
         filter,
-        sort: '-averageRating,-totalReviews',
+        sort: sortBy,
         expand: 'industry',
         requestKey: searchKey
       });
@@ -290,7 +290,7 @@ export const companyAPI = {
 
         return await pb.collection('companies').getList(1, 50, {
           filter,
-          sort: '-averageRating,-totalReviews',
+          sort: sortBy,
           expand: 'industry'
         });
       }
