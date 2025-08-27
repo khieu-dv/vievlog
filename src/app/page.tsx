@@ -13,6 +13,7 @@ import { Button } from "~/components/ui/Button";
 import { Category } from '~/lib/types';
 import { useLocalizedContent } from "~/lib/multilingual";
 import { SaySomethingForm } from "~/components/features/home/SaySomethingForm";
+import { truncate } from '~/utils/textUtils';
 
 
 export default function HomePage() {
@@ -252,7 +253,7 @@ export default function HomePage() {
                             </h3>
                             {category.description && (
                               <p className="text-sm text-gray-600 dark:text-gray-400 font-light leading-relaxed mb-4 flex-1">
-                                {category.description}
+                                {truncate(category.description, 100)}
                               </p>
                             )}
                             <div className="mt-auto">

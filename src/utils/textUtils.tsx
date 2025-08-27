@@ -35,3 +35,16 @@ export const getAvatarLetter = (name: string): string => {
   
   return name.charAt(0).toUpperCase();
 };
+
+/**
+ * Truncates a string to a specified length and adds an ellipsis.
+ * @param text The string to truncate.
+ * @param maxLength The maximum length of the string.
+ * @returns The truncated string.
+ */
+export const truncate = (text: string, maxLength: number): string => {
+  if (text.length <= maxLength) {
+    return text;
+  }
+  return `${text.substring(0, maxLength)}...`;
+};
