@@ -706,7 +706,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                   }, {} as Record<string, typeof sectionsToDisplay>);
 
                   // Define the order for mainName groups
-                  const mainNameOrder = ['Languages', 'DSA', 'Frameworks', 'Soft Skills'];
+                  const mainNameOrder = ['Languages', 'DSA', 'Frameworks', 'Interview', 'Soft Skills'];
 
                   return mainNameOrder.map((mainName, mainNameIndex) => {
                     const sectionsInGroup = groupedSections[mainName] || [];
@@ -1451,7 +1451,7 @@ const DocsView: React.FC<DocsViewProps> = ({ className }) => {
                             return acc;
                           }, {} as Record<string, typeof docsData>);
 
-                          const mainNameOrder = ['Languages', 'DSA', 'Frameworks', 'Soft Skills'];
+                          const mainNameOrder = ['Languages', 'DSA', 'Frameworks', 'Interview', 'Soft Skills'];
 
                           return mainNameOrder.flatMap(mainName => groupedCategories[mainName] || []).map((section) => (
                             <button

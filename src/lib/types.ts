@@ -30,7 +30,7 @@ export type Category = {
   color: string;
   description?: string;
   postCount?: number;
-  mainName?: string; // "Languages", "DSA", "Frameworks", or "Soft Skills"
+  mainName?: string; // "Languages", "DSA", "Frameworks", "Interview", or "Soft Skills"
 }
 
 export type Post = {

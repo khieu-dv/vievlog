@@ -196,7 +196,7 @@ export default function HomePage() {
             <div className="mx-auto space-y-24">
               {Object.entries(groupedCategories)
                 .sort(([a], [b]) => {
-                  const order = ['Languages', 'DSA', 'Frameworks', 'Soft Skills'];
+                  const order = ['Languages', 'DSA', 'Frameworks', 'Interview', 'Soft Skills'];
                   return order.indexOf(a) - order.indexOf(b);
                 })
                 .map(([mainName, categoryList]) => (
@@ -213,7 +213,9 @@ export default function HomePage() {
                             ? 'Programming languages to master your coding skills'
                             : mainName === 'DSA'
                               ? 'Data Structures and Algorithms to strengthen your problem-solving skills'
-                              : 'Essential soft skills to advance your career and personal development'
+                              : mainName === 'Interview'
+                                ? 'Ace your next technical interview with our comprehensive guides'
+                                : 'Essential soft skills to advance your career and personal development'
                         }
                       </p>
                     </div>
