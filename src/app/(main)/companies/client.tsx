@@ -3,8 +3,8 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
 import { Search, Filter, Star, Users, MapPin, Building2, MessageSquare } from 'lucide-react';
-import { companyAPI, industryAPI, type Company } from '../../lib/pocketbase';
-import { renderStars } from '../../utils/starUtils';
+import { companyAPI, industryAPI, type Company } from '../../../lib/pocketbase';
+import { renderStars } from '../../../utils/starUtils';
 
 interface Industry {
   id: string;

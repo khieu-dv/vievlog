@@ -6,19 +6,19 @@ import { initReactI18next } from 'react-i18next';
 
 const resources = {
   en: {
-    common: require('../../public/locales/en/common.json'),
+    common: require('../../../public/locales/en/common.json'),
   },
   vi: {
-    common: require('../../public/locales/vi/common.json'),
+    common: require('../../../public/locales/vi/common.json'),
   },
   ko: {
-    common: require('../../public/locales/ko/common.json'),
+    common: require('../../../public/locales/ko/common.json'),
   },
   'zh-cn': {
-    common: require('../../public/locales/zh-cn/common.json'),
+    common: require('../../../public/locales/zh-cn/common.json'),
   },
   'zh-tw': {
-    common: require('../../public/locales/zh-tw/common.json'),
+    common: require('../../../public/locales/zh-tw/common.json'),
   }
 };
 

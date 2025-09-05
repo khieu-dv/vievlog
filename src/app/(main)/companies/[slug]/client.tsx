@@ -19,10 +19,10 @@ import {
   Copy,
   Check
 } from 'lucide-react';
-import { companyAPI, reviewAPI, type Company, type Review } from '../../../lib/pocketbase';
-import { formatTextContent, getAvatarLetter } from '../../../utils/textUtils';
-import { renderStars, renderRatingSelector } from '../../../utils/starUtils';
-import { renderRatingBar } from '../../../utils/ratingUtils';
+import { companyAPI, reviewAPI, type Company, type Review } from '../../../../lib/pocketbase';
+import { formatTextContent, getAvatarLetter } from '../../../../utils/textUtils';
+import { renderStars, renderRatingSelector } from '../../../../utils/starUtils';
+import { renderRatingBar } from '../../../../utils/ratingUtils';
 
 interface Props {
   slug: string;

@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import { notFound } from 'next/navigation';
 import CompanyDetailClient from './client';
 import CompanyDetailWrapper from './wrapper';
-import { companyAPI } from '../../../lib/pocketbase';
+import { companyAPI } from '../../../../lib/pocketbase';
 import { Metadata } from 'next';
 
 interface Props {

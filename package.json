@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "build": "next build",
+    "postbuild": "node scripts/build-search.cjs",
     "dev": "next dev --turbopack",
     "db:push": "drizzle-kit push",
     "db:auth": "bun addons/better.ts",
@@ -74,6 +75,7 @@
     "execa": "^9.5.2",
     "knip": "^5.45.0",
     "magic-string": "^0.30.17",
+    "pagefind": "^1.4.0",
     "tailwindcss": "^4.0.11",
     "typescript": "5.9.2",
     "typescript-eslint": "^8.26.0"
