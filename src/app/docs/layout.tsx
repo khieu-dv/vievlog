@@ -33,12 +33,15 @@ export default async function DocsLayout({ children }: DocsLayoutProps) {
     />
   )
 
+  const filteredPageMap = pageMap.filter((item: any) => item.name.toLowerCase() !== 'posts')
+
+
   return (
     <Layout
       navbar={navbar}
       footer={<Footer>MIT {CURRENT_YEAR} © VieVlog.</Footer>}
       sidebar={{ defaultMenuCollapseLevel: 1 }}
-      pageMap={pageMap}
+      pageMap={filteredPageMap}
       feedback={{ content: null }}
       editLink={null}
     >
