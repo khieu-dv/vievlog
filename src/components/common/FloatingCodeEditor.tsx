@@ -131,24 +131,41 @@ console.log(greetUser("Developer"));`;
     let currentX = position.x;
     let currentY = position.y;
     
-    if (rect && !isInitialPositioned) {
-      // Get actual position from DOM if not yet positioned
+    if (rect) {
+      // Always use the actual DOM rect position for most accurate calculation
+      // This accounts for any CSS transforms, scroll, or layout differences
       currentX = rect.left;
       currentY = rect.top;
-      setPosition({ x: currentX, y: currentY });
-      setIsInitialPositioned(true);
+      
+      // Update position state to match reality
+      if (!isInitialPositioned) {
+        setPosition({ x: currentX, y: currentY });
+        setIsInitialPositioned(true);
+      }
     }
     
     // Store initial position for direction calculation
     lastPosition.current = { x: currentX, y: currentY };
     
     setIsDragging(true);
-    if (rect) {
-      setDragStart({
-        x: e.clientX - currentX,
-        y: e.clientY - currentY
-      });
-    }
+    
+    // Debug logging
+    console.log('Drag start - Mouse:', { x: e.clientX, y: e.clientY });
+    console.log('Drag start - Element position:', { x: currentX, y: currentY });
+    console.log('Drag start - Rect:', rect ? { left: rect.left, top: rect.top } : 'No rect');
+    
+    // Calculate relative offset within the element
+    const elementRect = rect || { left: 0, top: 0 };
+    const offsetX = e.clientX - elementRect.left;
+    const offsetY = e.clientY - elementRect.top;
+    
+    console.log('Drag start - Relative offset:', { x: offsetX, y: offsetY });
+    
+    // Store the relative offset
+    setDragStart({
+      x: offsetX,
+      y: offsetY
+    });
     
     // Prevent text selection while dragging
     e.preventDefault();
@@ -692,6 +709,11 @@ fn main() {
     rafRef.current = requestAnimationFrame(() => {
       const newX = e.clientX - dragStart.x;
       const newY = e.clientY - dragStart.y;
+      
+      // Debug logging for drag move
+      console.log('Drag move - Mouse:', { x: e.clientX, y: e.clientY });
+      console.log('Drag move - DragStart:', dragStart);
+      console.log('Drag move - New position:', { x: newX, y: newY });
 
       // Update position using transform for better performance
       if (editorRef.current) {
