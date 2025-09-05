@@ -1,0 +1,39 @@
+# Themes
+
+This documentation uses the Nextra docs theme, which provides a clean and professional look.
+
+## Features
+
+- **Dark/Light Mode**: Automatic theme switching based on user preference
+- **Responsive Design**: Works on all screen sizes
+- **Search**: Built-in search functionality
+- **Navigation**: Sidebar navigation with collapsible sections
+
+## Customization
+
+You can customize the theme by modifying the layout components in your Next.js app.
+
+### Logo
+
+The logo is defined in the `layout.tsx` file:
+
+```tsx
+const navbar = (
+  <Navbar
+    logo={
+      <div className="flex items-center space-x-2">
+        <span className="font-bold text-primary">My App</span>
+        <span className="text-muted-foreground opacity-60">Documentation</span>
+      </div>
+    }
+  />
+)
+```
+
+### Footer
+
+The footer can also be customized:
+
+```tsx
+footer={<Footer>MIT {CURRENT_YEAR} © My Next.js App.</Footer>}
+```

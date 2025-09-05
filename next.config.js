@@ -1,5 +1,16 @@
-import type { NextConfig } from "next";
-import withMDX from '@next/mdx'
+import nextra from 'nextra'
+
+const withNextra = nextra({
+  latex: true,
+  search: {
+    codeblocks: false
+  },
+  contentDirBasePath: '/docs',
+  mdxOptions: {
+    remarkPlugins: [],
+    rehypePlugins: []
+  }
+})
 
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
@@ -23,11 +34,6 @@ const nextConfig = {
       },
     },
   },
-} satisfies NextConfig;
+};
 
-export default withMDX({
-  options: {
-    remarkPlugins: [],
-    rehypePlugins: [],
-  },
-})(nextConfig);
+export default withNextra(nextConfig);

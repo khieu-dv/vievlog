@@ -25,6 +25,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
+    "fast-glob": "^3.3.3",
     "fs-extra": "^11.3.0",
     "glob": "^11.0.3",
     "i18next": "^24.2.3",
@@ -34,6 +35,8 @@
     "next": "15.2.1",
     "next-mdx-remote": "^5.0.0",
     "next-themes": "^0.4.4",
+    "nextra": "^4.4.0",
+    "nextra-theme-docs": "^4.4.0",
     "npm": "^11.5.2",
     "pathe": "^2.0.3",
     "phaser": "^3.90.0",
@@ -67,7 +70,7 @@
     "knip": "^5.45.0",
     "magic-string": "^0.30.17",
     "tailwindcss": "^4.0.11",
-    "typescript": "^5.8.2",
+    "typescript": "5.9.2",
     "typescript-eslint": "^8.26.0"
   },
   "packageManager": "yarn@4.7.0+sha512.5a0afa1d4c1d844b3447ee3319633797bcd6385d9a44be07993ae52ff4facabccafb4af5dcd1c2f9a94ac113e5e9ff56f6130431905884414229e284e37bb7c9"
