@@ -1,5 +1,4 @@
 import { Footer, Layout, Navbar } from 'nextra-theme-docs'
-import { Banner, Head } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
 import type { Metadata } from 'next'
 import './docs.css'
@@ -35,18 +34,13 @@ export default async function DocsLayout({ children }: DocsLayoutProps) {
   )
 
   return (
-    <html lang="en" dir="ltr" suppressHydrationWarning>
-      <Head faviconGlyph="📚" />
-      <body>
-        <Layout
-          navbar={navbar}
-          footer={<Footer>MIT {CURRENT_YEAR} © VieVlog.</Footer>}
-          sidebar={{ defaultMenuCollapseLevel: 1 }}
-          pageMap={pageMap}
-        >
-          {children}
-        </Layout>
-      </body>
-    </html>
+    <Layout
+      navbar={navbar}
+      footer={<Footer>MIT {CURRENT_YEAR} © VieVlog.</Footer>}
+      sidebar={{ defaultMenuCollapseLevel: 1 }}
+      pageMap={pageMap}
+    >
+      {children}
+    </Layout>
   )
 }
