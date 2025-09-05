@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "postbuild": "node scripts/build-search.cjs",
+    "postbuild": "node script-search/build-search.cjs",
     "dev": "next dev --turbopack",
     "db:push": "drizzle-kit push",
     "db:auth": "bun addons/better.ts",
