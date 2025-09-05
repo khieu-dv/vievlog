@@ -7,4 +7,5 @@ next-env.d.ts
 .yarn
 .env
 package-lock.json
+/scripts
 

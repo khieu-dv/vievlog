@@ -1,3 +1,8 @@
 export default {
-  "index": "Introduction"
+  "index": "Introduction",
+  "dsa": "DSA",
+  "languages": "Languages",
+  "frameworks": "Frameworks",
+  "interview": "Interview",
+  "soft-skills": "Soft Skills"
 };

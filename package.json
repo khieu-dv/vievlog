@@ -11,7 +11,12 @@
     "db:studio": "drizzle-kit studio",
     "ui": "bun x --bun shadcn@canary add",
     "latest": "bun update --latest && bun check",
-    "check": "knip && tsc --noEmit && eslint . && biome check --write ."
+    "check": "knip && tsc --noEmit && eslint . && biome check --write .",
+    "generate-meta": "node scripts/generate-meta.js",
+    "generate-posts": "node scripts/generate-posts.js",
+    "generate-posts-demo": "node scripts/generate-posts-demo.js",
+    "generate-all": "npm run generate-meta && npm run generate-posts",
+    "generate-demo": "npm run generate-meta && npm run generate-posts-demo"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",
