@@ -4,7 +4,7 @@ const { execSync } = require('child_process');
 
 // Tạo temporary HTML files từ MDX content
 const contentDir = path.join(process.cwd(), 'src/content');
-const tempDir = path.join(process.cwd(), 'temp-search');
+const tempDir = path.join(process.cwd(), 'temp-search', 'docs');
 
 function createTempHtmlFiles() {
   // Tạo temp directory
@@ -48,17 +48,13 @@ function createTempHtmlFiles() {
           .map(line => line.startsWith('<') ? line : `<p>${line}</p>`)
           .join('\n');
 
-        // Tạo HTML file với metadata cho URL routing
-        const relativePath = path.relative(contentDir, filePath);
-        const urlPath = `/docs/${relativePath.replace(/\.mdx?$/, '').replace(/\\/g, '/')}`;
-        
+        // Tạo HTML file
         const htmlContent = `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${title}</title>
-    <meta name="pagefind-url" content="${urlPath}">
 </head>
 <body data-pagefind-body>
     ${cleanContent}
@@ -77,7 +73,9 @@ function createTempHtmlFiles() {
 
 function runPagefind() {
   try {
-    execSync(`npx pagefind --site ${tempDir} --output-path public/_pagefind --force-language en`, {
+    // Run pagefind on the parent directory (temp-search) which contains docs/
+    const parentTempDir = path.join(process.cwd(), 'temp-search');
+    execSync(`npx pagefind --site ${parentTempDir} --output-path public/_pagefind --force-language en`, {
       stdio: 'inherit'
     });
     console.log('Pagefind indexing completed!');
@@ -87,8 +85,9 @@ function runPagefind() {
 }
 
 function cleanup() {
-  if (fs.existsSync(tempDir)) {
-    fs.rmSync(tempDir, { recursive: true });
+  const parentTempDir = path.join(process.cwd(), 'temp-search');
+  if (fs.existsSync(parentTempDir)) {
+    fs.rmSync(parentTempDir, { recursive: true });
     console.log('Cleaned up temporary files');
   }
 }
