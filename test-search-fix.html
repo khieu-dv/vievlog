@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Search Fix</title>
+    <script src="/_pagefind/pagefind.js"></script>
+</head>
+<body>
+    <div id="search"></div>
+    <script>
+        // Initialize pagefind
+        window.addEventListener('load', async () => {
+            try {
+                const pagefind = await import('/_pagefind/pagefind.js');
+                await pagefind.init();
+                
+                // Test search for a specific term
+                const search = await pagefind.search('dsa');
+                console.log('Search results:', search);
+                
+                // Show results
+                const resultsDiv = document.getElementById('search');
+                for (const result of search.results) {
+                    const data = await result.data();
+                    console.log('Result URL:', data.url);
+                    console.log('Result meta:', data.meta);
+                    
+                    const div = document.createElement('div');
+                    div.innerHTML = `
+                        <h3>${data.meta.title}</h3>
+                        <p>URL: ${data.url}</p>
+                        <a href="${data.url}" target="_blank">Open Link</a>
+                        <hr>
+                    `;
+                    resultsDiv.appendChild(div);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('search').innerHTML = `Error: ${error.message}`;
+            }
+        });
+    </script>
+</body>
+</html>

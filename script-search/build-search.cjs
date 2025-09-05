@@ -48,20 +48,24 @@ function createTempHtmlFiles() {
           .map(line => line.startsWith('<') ? line : `<p>${line}</p>`)
           .join('\n');
 
-        // Tạo HTML file
+        // Tạo HTML file với metadata cho URL routing
+        const relativePath = path.relative(contentDir, filePath);
+        const urlPath = `/docs/${relativePath.replace(/\.mdx?$/, '').replace(/\\/g, '/')}`;
+        
         const htmlContent = `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${title}</title>
+    <meta name="pagefind-url" content="${urlPath}">
 </head>
 <body data-pagefind-body>
     ${cleanContent}
 </body>
 </html>`;
 
-        const outputPath = path.join(tempDir, relativePath, file.replace(/\.mdx?$/, '.html'));
+        const outputPath = path.join(tempDir, path.dirname(relativePath), file.replace(/\.mdx?$/, '.html'));
         fs.writeFileSync(outputPath, htmlContent);
         console.log(`Created: ${outputPath}`);
       }
@@ -73,7 +77,7 @@ function createTempHtmlFiles() {
 
 function runPagefind() {
   try {
-    execSync(`pagefind --site ${tempDir} --output-path public/_pagefind --force-language en`, {
+    execSync(`npx pagefind --site ${tempDir} --output-path public/_pagefind --force-language en`, {
       stdio: 'inherit'
     });
     console.log('Pagefind indexing completed!');
