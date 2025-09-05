@@ -97,9 +97,11 @@ export default function HomePage() {
   };
 
 
-  // Handle category selection - redirect to posts page
-  const handleCategorySelect = useCallback((categoryId: string) => {
-    router.push(`/posts?category=${categoryId}`);
+  // Handle category selection - redirect to docs page
+  const handleCategorySelect = useCallback((category: Category) => {
+    // Create proper URL format: /docs/languages/categoryId or /docs/category-slug/categoryId
+    const mainNameSlug = category.mainName?.toLowerCase() || 'languages';
+    router.push(`/docs/${mainNameSlug}/${category.id}`);
   }, [router]);
 
   // Handle touch feedback with haptic-like effect
@@ -225,7 +227,7 @@ export default function HomePage() {
                       {categoryList.map((category) => (
                         <div
                           key={category.id}
-                          onClick={() => handleCategorySelect(category.id)}
+                          onClick={() => handleCategorySelect(category)}
                           onTouchStart={handleCategoryTouch}
                           className="group cursor-pointer bg-white dark:bg-black rounded-xl p-6 
                                    hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full
@@ -237,7 +239,7 @@ export default function HomePage() {
                           onKeyDown={(e) => {
                             if (e.key === 'Enter' || e.key === ' ') {
                               e.preventDefault();
-                              handleCategorySelect(category.id);
+                              handleCategorySelect(category);
                             }
                           }}
                         >
