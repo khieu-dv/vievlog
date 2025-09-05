@@ -21,7 +21,7 @@ const CURRENT_YEAR = new Date().getFullYear()
 
 export default async function DocsLayout({ children }: DocsLayoutProps) {
   const pageMap = await getPageMap()
-  
+
   const navbar = (
     <Navbar
       logo={
@@ -39,6 +39,8 @@ export default async function DocsLayout({ children }: DocsLayoutProps) {
       footer={<Footer>MIT {CURRENT_YEAR} © VieVlog.</Footer>}
       sidebar={{ defaultMenuCollapseLevel: 1 }}
       pageMap={pageMap}
+      feedback={{ content: null }}
+      editLink={null}
     >
       {children}
     </Layout>
