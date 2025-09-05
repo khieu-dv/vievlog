@@ -61,7 +61,9 @@ function createTempHtmlFiles() {
 </body>
 </html>`;
 
-        const outputPath = path.join(tempDir, path.dirname(relativePath), file.replace(/\.mdx?$/, '.html'));
+        // Tạo đường dẫn đúng với cấu trúc thư mục
+        const relativePath = path.relative(contentDir, filePath);
+        const outputPath = path.join(tempDir, relativePath.replace(/\.mdx?$/, '.html'));
         fs.writeFileSync(outputPath, htmlContent);
         console.log(`Created: ${outputPath}`);
       }
