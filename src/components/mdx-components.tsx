@@ -1,26 +1,27 @@
 import type { MDXComponents } from 'mdx/types'
 import Image, { ImageProps } from 'next/image'
 import Link from 'next/link'
+import { Counter, TodoList, ColorPicker } from './InteractiveComponents'
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     h1: ({ children }) => (
-      <h1 className="text-4xl font-bold tracking-tight text-foreground mb-6 leading-tight">
+      <h1 className="text-4xl font-bold tracking-tight text-foreground mb-4 leading-tight">
         {children}
       </h1>
     ),
     h2: ({ children }) => (
-      <h2 className="text-3xl font-semibold tracking-tight text-foreground mb-5 mt-8 leading-tight">
+      <h2 className="text-3xl font-semibold tracking-tight text-foreground mb-4 leading-tight">
         {children}
       </h2>
     ),
     h3: ({ children }) => (
-      <h3 className="text-2xl font-semibold tracking-tight text-foreground mb-4 mt-6 leading-tight">
+      <h3 className="text-2xl font-semibold tracking-tight text-foreground mb-4 leading-tight">
         {children}
       </h3>
     ),
     h4: ({ children }) => (
-      <h4 className="text-xl font-semibold tracking-tight text-foreground mb-3 mt-5 leading-tight">
+      <h4 className="text-xl font-semibold tracking-tight text-foreground mb-3 leading-tight">
         {children}
       </h4>
     ),
@@ -60,8 +61,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       </pre>
     ),
     a: ({ href, children }) => (
-      <Link 
-        href={href || '#'} 
+      <Link
+        href={href || '#'}
         className="text-primary hover:text-primary/80 underline underline-offset-4 transition-colors"
       >
         {children}
@@ -106,6 +107,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </em>
     ),
+    Counter,
+    TodoList,
+    ColorPicker,
     ...components,
   }
 }
