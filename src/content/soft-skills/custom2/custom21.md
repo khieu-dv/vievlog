@@ -1,381 +1,404 @@
----
-title: "Bài 10: Kỹ năng đàm phán và xử lý xung đột"
-postId: "0umbd2vn1xk791a"
-category: "BRSE"
-created: "2/9/2025"
-updated: "2/9/2025"
----
-
-
-
-
-# Bài 1: Mối quan hệ con người (대인 관계)
-
-## Mục tiêu bài học
-
-**Từ vựng:** Các từ vựng về mối quan hệ con người  
-**Ngữ pháp:**  
-- `-고 해서` (Biểu thị lý do)
-- `-으면 되다` (Biểu thị điều kiện đủ)
-
-**Hoạt động:**  
-- Nói về những khó khăn và lời khuyên trong mối quan hệ con người
-- Viết bài tư vấn về mối quan hệ con người
-
-**Văn hóa và thông tin:** Các hoạt động gắn kết của người Hàn Quốc
+# Giáo trình Tiếng Hàn Trung cấp 1
+## Bài 1: 대인관계 (Quan hệ nhân giao)
 
 ---
 
-## I. TỪ VỰNG (어휘)
+### 🎯 Mục tiêu bài học
 
-### 1. Các khó khăn trong mối quan hệ
+Sau khi hoàn thành bài học này, học viên sẽ có thể:
+- Sử dụng từ vựng liên quan đến các mối quan hệ xã hội
+- Vận dụng ngữ pháp **-고 해서** và **-으면 되다**
+- Thảo luận về những khó khăn trong quan hệ nhân giao
+- Đưa ra lời khuyên cho các vấn đề quan hệ xã hội
+- Viết bài văn tư vấn về quan hệ nhân giao
 
-| Tiếng Hàn | Nghĩa tiếng Việt |
-|-----------|------------------|
-| 공감대가 없다 | không có điểm chung |
-| 사이가 멀어지다 | xa cách nhau |
-| 연락이 끊기다 | mất liên lạc |
-| 선배를 대하기 어렵다 | khó xử với đàn anh/chị |
-| 후배가 나를 어려워하다 | đàn em ngại tôi |
-| 상사의 지시를 거절하기 힘들다 | khó từ chối chỉ thị của cấp trên |
-| 동료에게 도움을 요청하기 어렵다 | khó xin giúp đỡ đồng nghiệp |
-| 일하는 방법을 잘 모르다 | không biết cách làm việc |
+---
 
-### 2. Cách duy trì mối quan hệ tốt
-
-| Tiếng Hàn | Nghĩa tiếng Việt |
-|-----------|------------------|
-| 자주 연락을 주고받다 | thường xuyên liên lạc |
-| 이야기를 잘 들어 주다 | lắng nghe tốt |
-| 의견을 솔직하게 말하다 | nói ý kiến thẳng thắn |
-| 서로 예의를 지키다 | tôn trọng lẫn nhau |
-| 공감을 잘해주다 | đồng cảm tốt |
-| 함께 시간을 보내다 | dành thời gian bên nhau |
+### 📊 Cấu trúc bài học
 
 ```mermaid
 graph TD
-    A[대인 관계<br/>Mối quan hệ con người] --> B[친구/동창<br/>Bạn bè/Bạn cùng trường]
-    A --> C[선배/후배<br/>Đàn anh chị/Đàn em]
-    A --> D[상사/동료/부하직원<br/>Sếp/Đồng nghiệp/Cấp dưới]
+    A[Bài 1: Quan hệ nhân giao] --> B[Từ vựng]
+    A --> C[Ngữ pháp]
+    A --> D[Hoạt động thực hành]
+    A --> E[Kỹ năng giao tiếp]
+    A --> F[Văn hóa Hàn Quốc]
     
-    B --> B1[공감대가 없다<br/>Không có điểm chung]
-    B --> B2[사이가 멀어지다<br/>Xa cách nhau]
-    B --> B3[연락이 끊기다<br/>Mất liên lạc]
+    B --> B1[Các mối quan hệ]
+    B --> B2[Khó khăn giao tiếp]
+    B --> B3[Cách duy trì quan hệ]
     
-    C --> C1[선배를 대하기 어렵다<br/>Khó xử với đàn anh/chị]
-    C --> C2[후배가 나를 어려워하다<br/>Đàn em ngại tôi]
+    C --> C1[-고 해서]
+    C --> C2[-으면 되다]
     
-    D --> D1[상사의 지시를 거절하기 힘들다<br/>Khó từ chối chỉ thị cấp trên]
-    D --> D2[동료에게 도움을 요청하기 어렵다<br/>Khó xin giúp đồng nghiệp]
-    D --> D3[일하는 방법을 잘 모르다<br/>Không biết cách làm việc]
+    D --> D1[Nói]
+    D --> D2[Nghe]
+    D --> D3[Đọc]
+    D --> D4[Viết]
+    
+    E --> E1[Tư vấn]
+    E --> E2[Thảo luận]
+    
+    F --> F1[Hoạt động giao lưu]
 ```
 
 ---
 
-## II. NGỮ PHÁP (문법)
+## 📚 PHẦN 1: TỪ VỰNG
 
-### 1. `-고 해서` - Biểu thị lý do (một trong nhiều lý do)
+### 1.1 Các loại quan hệ xã hội
 
-**Ý nghĩa:** Dùng để chỉ rằng nội dung phía trước là một trong những lý do của nội dung phía sau.
+| Tiếng Hàn | Tiếng Việt | Ví dụ |
+|------------|------------|--------|
+| 친구 | bạn bè | 오랜 친구 (bạn lâu năm) |
+| 동창 | bạn cùng trường | 고등학교 동창 (bạn cùng trường cấp 3) |
+| 선배 | tiền bối, anh/chị khóa trên | 회사 선배 (tiền bối trong công ty) |
+| 후배 | hậu bối, em khóa dưới | 대학교 후배 (em khóa dưới đại học) |
+| 상사 | cấp trên | 직장 상사 (cấp trên tại công ty) |
+| 동료 | đồng nghiệp | 믿을 만한 동료 (đồng nghiệp đáng tin cậy) |
+| 부하직원 | cấp dưới | 유능한 부하직원 (cấp dưới có năng lực) |
 
-**Cấu trúc:**
-- Động từ/Tính từ + `-고 해서`
-- `명이다` → `명이고 해서`
+### 1.2 Các vấn đề trong quan hệ nhân giao
 
-#### Bảng hoạt dụng:
+| Vấn đề | Tiếng Hàn | Giải thích |
+|--------|-----------|-----------|
+| Thiếu điểm chung | 공감대가 없다 | Không có sự đồng cảm, hiểu biết chung |
+| Xa cách | 사이가 멀어지다 | Mối quan hệ trở nên xa cách |
+| Mất liên lạc | 연락이 끊기다 | Không còn liên lạc với nhau |
+| Khó tiếp xúc | 대하기 어렵다 | Khó khăn trong việc giao tiếp |
+| Ngại ngùng | 어려워하다 | Cảm thấy ngại ngùng, không tự nhiên |
+| Khó từ chối | 거절하기 힘들다 | Khó khăn trong việc từ chối yêu cầu |
 
-| Dạng gốc | Cách dùng | Ví dụ |
-|----------|-----------|-------|
-| 먹다 | 먹고 해서 | 점심도 먹고 해서 배불러요 |
-| 바쁘다 | 바쁘고 해서 | 바쁘고 해서 못 갔어요 |
-| 학생이다 | 학생이고 해서 | 학생이고 해서 할인받았어요 |
+### 1.3 Cách duy trì quan hệ tốt
 
-#### Ví dụ minh họa:
+| Tiếng Hàn | Tiếng Việt | Cách thực hiện |
+|------------|------------|----------------|
+| 자주 연락을 주고받다 | Thường xuyên liên lạc | Gọi điện, nhắn tin, gặp mặt |
+| 이야기를 잘 들어 주다 | Lắng nghe tốt | Chú ý, thấu hiểu khi đối phương nói |
+| 의견을 솔직하게 말하다 | Nói thẳng thắn ý kiến | Chia sẻ suy nghĩ một cách chân thành |
+| 서로 예의를 지키다 | Giữ phép lịch sự | Tôn trọng và lịch thiệp với nhau |
+| 공감을 잘해주다 | Thể hiện sự đồng cảm | Hiểu và chia sẻ cảm xúc |
+| 함께 시간을 보내다 | Dành thời gian bên nhau | Tham gia hoạt động chung |
 
-**대화:**
-- 민수: 여보, 새로 사귄 친구하고 친해졌어요?
-- 후엔: 서로 공감대도 없고 바쁘고 해서 친해지기가 어려워요.
+---
 
-**Các ví dụ khác:**
-- 점심시간인데 식사하러 안 가세요? → 조금 전에 샌드위치도 먹고 해서 그냥 사무실에 있으려고요.
-- 초등학교 동창들하고 자주 연락을 주고받고 해서 아직도 만나요.
+## 📝 PHẦN 2: NGỮ PHÁP
+
+### 2.1 Ngữ pháp: **-고 해서**
+
+#### Định nghĩa
+Cấu trúc **-고 해서** được sử dụng để chỉ ra rằng nội dung phía trước là một trong những lý do của tình huống phía sau.
+
+#### Cách chia
 
 ```mermaid
 graph LR
-    A[Lý do 1:<br/>공감대가 없다] --> C[-고 해서]
-    B[Lý do 2:<br/>바쁘다] --> C
-    C --> D[Kết quả:<br/>친해지기가 어렵다]
+    A[Động từ/Tính từ] --> B[+ 고 해서]
+    C[먹다] --> D[먹고 해서]
+    E[바쁘다] --> F[바쁘고 해서]
+    G[명사 + 이다] --> H[명사이고 해서]
 ```
 
-### 2. `-으면 되다` - Biểu thị điều kiện đủ
+| Loại từ | Công thức | Ví dụ |
+|---------|-----------|-------|
+| Động từ | V + 고 해서 | 먹고 해서, 가고 해서 |
+| Tính từ | A + 고 해서 | 바쁘고 해서, 좋고 해서 |
+| Danh từ | N + 이고 해서 | 학생이고 해서, 외국인이고 해서 |
 
-**Ý nghĩa:** Dùng để chỉ rằng nội dung phía trước là điều kiện đủ để thực hiện việc gì đó.
+#### Ví dụ minh họa
 
-**Cấu trúc:**
-- Không có 받침: `-면 되다`
-- Có 받침: `-으면 되다`
-- Đặc biệt: `알다` → `알면 되다`
+**Ví dụ 1:**
+- **한국어:** 서로 공감대도 없고 바쁘고 해서 친해지기가 어려워요.
+- **Tiếng Việt:** Vì không có điểm chung và lại bận rộn nên khó thân thiết được.
 
-#### Bảng hoạt dụng:
+**Ví dụ 2:**
+- **한국어:** 조금 전에 샌드위치도 먹고 해서 그냥 사무실에 있으려고요.
+- **Tiếng Việt:** Vì vừa ăn sandwich rồi nên tôi định ở lại văn phòng thôi.
 
-| Dạng gốc | Cách dùng | Ví dụ |
-|----------|-----------|-------|
-| 찾다 | 찾으면 되다 | 좋은 걸 찾으면 돼요 |
-| 있다 | 있으면 되다 | 시간이 있으면 돼요 |
-| 가다 | 가면 되다 | 일찍 가면 돼요 |
-| 크다 | 크면 되다 | 조금만 크면 돼요 |
+**Ví dụ 3:**
+- **한국어:** 상사 지시를 거절하기도 힘들고 일하는 방법도 잘 모르고 해서 직장 생활이 힘들어요.
+- **Tiếng Việt:** Vì khó từ chối chỉ thị của cấp trên và cũng không biết cách làm việc nên cuộc sống công sở thật khó khăn.
 
-#### Ví dụ minh họa:
+### 2.2 Ngữ pháp: **-으면 되다**
 
-**대화:**
-- 잠시드: 새 직장 동료들하고 가깝게 지내고 싶은데 어떻게 해야 할까요?
-- 안젤라: 웃으면서 먼저 인사하고 서로 예의를 지키면 돼요.
+#### Định nghĩa
+Cấu trúc **-으면 되다** được sử dụng để biểu thị điều kiện đủ để thực hiện một việc gì đó, tương đương với "chỉ cần... là được".
 
-**Các ví dụ khác:**
-- 찾으시는 휴대 전화 있으세요? → 기능이 다양하고 속도가 빠르면 돼요.
-- 이 약은 식사 후에 드시면 됩니다.
-
----
-
-## III. LUYỆN TẬP (연습)
-
-### Bài tập 1: Sử dụng `-고 해서`
-
-**Hoàn thành các câu sau theo mẫu:**
-
-**보기:** 고향 친구와 자주 못 만나다 + 연락을 자주 못하다  
-→ 고향 친구와 자주 못 만나고 연락도 자주 못하고 해서 사이가 멀어졌어요.
-
-1. 새로 사귄 친구와 성격이 다르다 + 공감대가 없다
-2. 학교에서 선배를 대하기 어렵다 + 한국어가 부족하다  
-3. 외국 친구와 언어가 다르다 + 문화가 다르다
-4. 한국 사람과 생각이 다르다 + 말하는 방법을 잘 모르다
-
-### Bài tập 2: Sử dụng `-으면 되다`
-
-**Đưa ra lời khuyên theo mẫu:**
-
-**보기:** 부부가 사이좋게 지내는 방법  
-→ 서로 관심을 갖고 상대방의 이야기를 잘 들어 주면 돼요.
-
-1. 친구를 위로하는 방법 (공감해 주고 같이 고민해 주다)
-2. 선배와 친하게 지내는 방법 (인사를 잘하고 예의를 지키면서 말하다)
-3. 직장 동료와 의견 차이를 줄이는 방법 (의견을 솔직하게 말하고 조금씩 양보하다)
-4. 고향 친구와 사이가 멀어지지 않는 방법 (자주 안부를 묻고 연락을 주고받다)
-
----
-
-## IV. HỘI THOẠI THỰC HÀNH (말하기)
-
-### 상황 1: Tư vấn về khó khăn trong công việc
-
-**반장님:** 잠시드씨, 우리 회사에 온 지 일주일 됐지요? 이제 적응 다 했어요?  
-**잠시드:** 좀 힘들지만 적응하려고 노력 중입니다.  
-**반장님:** 힘든 게 있어요? 힘든 게 있으면 말해 봐요.  
-**잠시드:** 아직 사람들을 대하기가 어렵고 일하는 방법도 잘 모르고 해서 좀 힘듭니다.  
-**반장님:** 여기 온 지 얼마 안 돼서 그래요. 좀 익숙해지고 동료들하고 함께 시간을 보내면 될 거예요.  
-**잠시드:** 네, 반장님. 시간이 지나면 괜찮아지겠지요. 신경 써 주셔서 감사합니다.
-
-### 상황 2: Cho lời khuyên về mối quan hệ
-
-**A:** 친구의 대인 관계 고민을 듣고 조언을 해 보세요.  
-**B:** 여러분의 경험을 바탕으로 이야기해 보세요.
-
-**고민 예시:**
-- 고등학교 친구와 연락이 끊기다
-- 직장 상사를 대하기 어렵다
-
-**조언 예시:**
-- 다시 연락해서 만나 보다
-- 인사를 잘하고 예의를 지키다
-
----
-
-## V. LUYỆN NGHE (듣기)
-
-### 🎧 Audio 1-1: Tự giới thiệu về mối quan hệ
-
-**Câu hỏi:** 여러분은 주변 사람들과의 관계가 어떻습니까?
-
-**Phần nghe:** <audio controls src="https://viedesk.sgp1.cdn.digitaloceanspaces.com/kiip/beginner1/audio_exercise/track26.mp3" title="[Audio 1-1.mp3]"></audio>
-
-### 🎧 Audio 1-2: Cuộc trí chuyện giữa bố và con
-
-**고천 씨가 아들 성민과 이야기합니다. 잘 듣고 질문에 답해 보세요.**
-
-**Phần nghe:** [Audio 1-2.mp3]
-
-#### Bài tập nghe:
-
-1. **들은 내용과 같으면 ○, 다르면 X 하세요.**
-   - 성민은 새 학교에서 친구들을 많이 사귀었다. ( )
-   - 성민은 주변에 앉은 친구들과 내일 약속이 있다. ( )
-   - 성민의 친구들은 중국에 관심이 많아서 질문이 많다. ( )
-
-2. **성민이 엄마에게 들은 이야기가 아닌 것을 고르세요.**
-   - "친구들 이야기를 잘 들어 주면 된다."
-   - "친구들하고 함께 시간을 보내면 된다."
-   - "친구들하고 싸우지 말고 사이좋게 지내야 한다."
-   - "중국에 대해서 친구들에게 많이 이야기해 주면 좋다."
-
----
-
-## VI. ĐỌC HIỂU (읽기)
-
-### Đọc 1: Khó khăn với người Hàn Quốc
-
-**여러분은 한국 사람과의 관계에서 어떤 어려움이 있습니까? 체크해 보세요.**
-
-- [ ] 문화가 다르다
-- [ ] (서로에게) 편견을 갖고 있다  
-- [ ] 생활방식이 다르다
-- [ ] 높임말 사용이 어렵다
-- [ ] 무슨 말을 어떻게 해야 하는지 잘 모르겠다
-- [ ] 내 의도를 정확하게 표현하기 어렵다
-- [ ] 대화를 이어 나가기 힘들다
-- [ ] 한국 사람은 사전과 다른 의미의 말을 많이 한다
-
-### Đọc 2: Diễn đàn tư vấn online
-
-**인터넷 상담 게시판에 올라온 이민자들의 대인 관계에 대한 고민과 댓글입니다.**
-
-#### 글 1: 기숙사 룸메이트 문제
-**제목:** 기숙사 룸메이트가 한국 사람인데 생활 방식이 달라서 자주 말다툼을 해요.  
-**댓글:** 문화가 다르니까 당연히 생활 방식이나 의견에 차이가 있죠. 룸메이트하고 솔직한 대화를 나눠 보는 건 어떨까요?
-
-#### 글 2: 높임말 어려움
-**제목:** 한국에서는 높임말 사용이 중요한데 저는 높임말이 너무 어려워요.  
-**댓글 1:** 맞아요. 높임말을 배웠지만 그것만으로는 부족해요.  
-**댓글 2:** 저도 한국에서 오래 살았지만 아직도 어려워요. 그래서 평소에 한국 사람들이 이야기하는 것을 신경 써서 듣고 많이 연습해요.
+#### Cách chia
 
 ```mermaid
 graph TD
-    A[한국인과의 관계에서 어려움] --> B[언어적 장벽]
-    A --> C[문화적 차이]
-    A --> D[표현의 어려움]
+    A[Phụ âm cuối] --> B[+ 으면 되다]
+    C[Nguyên âm cuối] --> D[+ 면 되다]
+    E[받침 ㄹ] --> F[+ 면 되다]
     
-    B --> B1[높임말 사용]
-    B --> B2[대화 이어가기]
-    
-    C --> C1[생활방식 차이]
-    C --> C2[사고방식 차이]
-    
-    D --> D1[의도 표현]
-    D --> D2[감정 전달]
+    B --> G[찾다 → 찾으면 되다]
+    D --> H[가다 → 가면 되다]
+    F --> I[알다 → 알면 되다]
 ```
+
+| Trường hợp | Công thức | Ví dụ |
+|------------|-----------|-------|
+| Có phụ âm cuối (trừ ㄹ) | + 으면 되다 | 찾으면 되다, 읽으면 되다 |
+| Có nguyên âm cuối | + 면 되다 | 가면 되다, 크면 되다 |
+| Có phụ âm ㄹ | + 면 되다 | 알면 되다, 살면 되다 |
+| Danh từ + 이다 | 명사이면 되다 | 학생이면 되다 |
+
+#### Ví dụ minh họa
+
+**Tình huống hỏi đáp:**
+- **A:** 찾으시는 휴대전화 있으세요? (Có điện thoại di động mà anh/chị cần không?)
+- **B:** 기능이 다양하고 속도가 빠르면 돼요. (Chỉ cần đa chức năng và tốc độ nhanh là được.)
+
+**Lời khuyên:**
+- **한국어:** 웃으면서 먼저 인사하고 서로 예의를 지키면 돼요.
+- **Tiếng Việt:** Chỉ cần mỉm cười chào trước và giữ phép lịch sự với nhau là được.
 
 ---
 
-## VII. VIẾT (쓰기)
+## 🗣️ PHẦN 3: HOẠT ĐỘNG THỰC HÀNH
 
-### Bài viết 1: Chia sẻ khó khăn và cách khắc phục
+### 3.1 Luyện tập ngữ pháp **-고 해서**
 
-**여러분은 한국인과의 관계에서 어려운 점이 있었습니까? 어려운 점을 어떻게 극복했는지 써 보세요.**
+#### Bài tập 1: Diễn tả khó khăn trong quan hệ
+
+**Mô hình:** 대인 관계에서 어려운 점이 있어요?
+
+**Ví dụ mẫu:**
+고향 친구와 자주 못 만나고 연락도 자주 못하고 해서 사이가 멀어졌어요.
+*(Vì không thể gặp bạn quê thường xuyên và cũng không liên lạc nhiều nên quan hệ xa cách.)*
+
+**Thực hành:**
+
+| Tình huống | Câu trả lời mẫu |
+|------------|-----------------|
+| 새로 사귄 친구: 성격이 다르다 + 공감대가 없다 | 새로 사귄 친구와 성격도 다르고 공감대도 없고 해서 친해지기 어려워요. |
+| 학교 선배: 대하기 어렵다 + 한국어가 부족하다 | 학교에서 선배를 대하기도 어렵고 한국어도 부족하고 해서 힘들어요. |
+| 외국 친구: 언어가 다르다 + 문화가 다르다 | 외국 친구와 언어도 다르고 문화도 다르고 해서 소통이 어려워요. |
+
+### 3.2 Luyện tập ngữ pháp **-으면 되다**
+
+#### Bài tập 2: Đưa ra lời khuyên
+
+**Mô델:** 어떻게 하면 좋을까요?
+
+| Vấn đề | Lời khuyên |
+|--------|------------|
+| 부부가 사이좋게 지내려면? | 서로 관심을 갖고 상대방의 이야기를 잘 들어 주면 돼요. |
+| 친구를 위로하는 방법? | 공감해 주고 같이 고민해 주면 돼요. |
+| 선배와 친하게 지내는 방법? | 인사를 잘하고 예의를 지키면서 말하면 돼요. |
+| 직장 동료와 의견 차이를 줄이는 방법? | 의견을 솔직하게 말하고 조금씩 양보하면 돼요. |
+
+---
+
+## 👂 PHẦN 4: LUYỆN NGHE
+
+### 4.1 Bài nghe 1: Đối화giữa bố và con trai
+
+🔊 **[Audio 1-L.mp3]** *(File âm thanh sẽ được bổ sung)*
+
+**Nội dung:** 고천 씨가 아들 성민과 이야기합니다.
+
+#### Câu hỏi 1: Đúng (○) hay Sai (✗)?
+
+1. 성민은 새 학교에서 친구들을 많이 사귀었다. ( )
+2. 성민은 주변에 앉은 친구들과 내일 약속이 있다. ( )
+3. 성민의 친구들은 중국에 관심이 많아서 질문이 많다. ( )
+
+#### Câu hỏi 2: Lời khuyên nào KHÔNG được đề cập?
+
+- ① "친구들 이야기를 잘 들어 주면 된다."
+- ② "친구들하고 함께 시간을 보내면 된다."
+- ③ "친구들하고 싸우지 말고 사이좋게 지내야 한다."
+- ④ "중국에 대해서 친구들에게 많이 이야기해 주면 좋다."
+
+#### Câu hỏi 3: Tại sao bạn bè của 성민 hay hỏi về Trung Quốc?
+
+### 4.2 Luyện phát âm
+
+🔊 **[Audio 1-P.mp3]** *(File âm thanh sẽ được bổ sung)*
+
+**Quy tắc phát âm [ㅇ] + [ㄴ]:**
+- 강릉 [강능]
+- 대통령 [대통녕]
+
+**Thực hành:**
+1. 직장 동료와 사이가 멀어졌어요.
+2. 동호회에서 강릉에 가기로 했어요.
+3. 대통령의 말씀이 있겠습니다.
+
+---
+
+## 👥 PHẦN 5: HOẠT ĐỘNG GIAO TIẾP
+
+### 5.1 Đối thoại mẫu: Tư vấn tại công ty
+
+```mermaid
+sequenceDiagram
+    participant 반장님 as Trưởng nhóm
+    participant 잠시드 as Jamshid (Nhân viên mới)
+    
+    반장님->>잠시드: 우리 회사에 온 지 일주일 됐지요?
+    잠시드->>반장님: 좀 힘들지만 적응하려고 노력 중입니다.
+    반장님->>잠시드: 힘든 게 있으면 말해 봐요.
+    잠시드->>반장님: 사람들을 대하기가 어렵고 일하는 방법도 잘 모르고 해서 힘듭니다.
+    반장님->>잠시드: 좀 익숙해지고 동료들하고 함께 시간을 보내면 될 거예요.
+```
+
+**Từ vựng hỗ trợ:**
+- 적응하다: thích nghi
+- 노력 중이다: đang cố gắng
+- 익숙해지다: trở nên quen thuộc
+
+### 5.2 Tình huống thực hành
+
+**Tình huống 1:** 일하는 방법을 잘 모르다 + 동료들하고 함께 시간을 보내다
+
+**Tình huống 2:** 공감대가 없다 + 서로에게 관심을 갖고 이야기를 잘 들어 주다
+
+---
+
+## 📖 PHẦN 6: LUYỆN ĐỌC
+
+### 6.1 Khó khăn của người nước ngoài tại Hàn Quốc
+
+**Checklist khó khăn:**
+- □ 문화가 다르다 (Văn hóa khác nhau)
+- □ 편견을 갖고 있다 (Có thành kiến)
+- □ 생활방식이 다르다 (Lối sống khác nhau)
+- □ 높임말 사용이 어렵다 (Khó sử dụng kính ngữ)
+- □ 무슨 말을 어떻게 해야 하는지 잘 모르겠다 (Không biết nói gì, nói như thế nào)
+
+### 6.2 Bài đọc: Tư vấn trên diễn đàn
+
+**Đề bài:** 직장 선배들과 잘 지내고 싶어요.
+
+**Nội dung chính:**
+- Người viết: Người Việt Nam, đã ở Hàn 1 năm
+- Vấn đề: Chuyển công ty mới, đồng nghiệp là người Hàn lớn tuổi
+- Khó khăn: Sử dụng kính ngữ, thể hiện ý định chính xác
+
+**Câu hỏi:**
+
+1. **Người này khó khăn về điều gì?**
+
+2. **Đúng (○) hay Sai (✗):**
+   - ① 이 사람은 얼마 전에 회사를 옮겼다. ( )
+   - ② 새 직장 선배들의 나이가 많아서 기분이 나쁘다. ( )
+   - ③ 한국어를 배울 때 높임말을 배우지 못했다. ( )
+
+3. **Nội dung nào KHÔNG đúng với bài văn:**
+   - ① 이 사람은 1년 전에 한국에 왔다.
+   - ② 새로 간 직장에는 한국 사람이 많다.
+   - ③ 이 사람은 요즘 선배들과 대화를 많이 하려고 한다.
+   - ④ 이 사람은 대화할 때 의도를 정확하게 표현하기 힘들어한다.
+
+---
+
+## ✍️ PHẦN 7: LUYỆN VIẾT
+
+### 7.1 Bài viết 1: Chia sẻ kinh nghiệm
+
+**Chủ đề:** 여러분은 한국인과의 관계에서 어려운 점이 있었습니까? 어려운 점을 어떻게 극복했는지 써 보세요.
+
+**Bảng lập dàn ý:**
 
 | 한국인과의 관계에서 어려운 점 | 극복방법 |
-|---------------------------|----------|
-| | |
-| | |
+|---------------------------|---------|
+| (Khó khăn gặp phải) | (Cách giải quyết) |
 | | |
 
-### Bài viết 2: Lời khuyên cho người mới
+### 7.2 Bài viết 2: Tư vấn cho người mới
 
-**한국에 온 지 얼마 안 된 이민자 후배에게 한국인 친구를 잘 사귀는 방법에 대해서 조언하는 글을 써 보세요.**
+**Chủ đề:** 한국에 온 지 얼마 안 된 이민자 후배에게 한국인 친구를 잘 사귀는 방법에 대해서 조언하는 글을 써 보세요.
 
-**Gợi ý cấu trúc:**
-1. Mở bài: Chào hỏi và đặt vấn đề
-2. Thân bài: Đưa ra 3-4 lời khuyên cụ thể
-3. Kết bài: Động viên và chúc tốt đẹp
+**Cấu trúc gợi ý:**
+1. **들어가는 말:** Giới thiệu vấn đề
+2. **본문:** Đưa ra 3-4 lời khuyên cụ thể
+3. **맺는 말:** Động viên, khuyến khích
 
 ---
 
-## VIII. VĂN HÓA VÀ THÔNG TIN (문화와 정보)
+## 🏛️ PHẦN 8: VĂN HÓA VÀ THÔNG TIN
 
-### Các hoạt động gắn kết của người Hàn Quốc
-
-Người Hàn Quốc có hai hình thức gắn kết quan trọng trong đời sống xã hội: **"동창회"** (hội đồng hương/cùng trường) và **"동호회"** (câu lạc bộ sở thích).
-
-#### 동창회 (Hội cựu học sinh)
-- **정의:** Tổ chức của những người cùng tốt nghiệp một trường
-- **활동:** Tổ chức tiệc tất niên, hội thể thao, du lịch tập thể
-- **목적:** Duy trì tình bạn và giữ liên lạc với trường
-
-#### 동호회 (Câu lạc bộ sở thích)  
-- **정의:** Nhóm người có chung sở thích
-- **형성:** Qua trường học, địa phương, công việc, cộng đồng online
-- **활동:** Leo núi, chơi nhạc cụ, thể thao, chia sẻ thông tin
-- **lợi ích:** Học hỏi, thu thập thông tin, kết bạn mới
+### 8.1 Hoạt động giao lưu của người Hàn
 
 ```mermaid
 graph TD
-    A[한국인의 친목활동] --> B[동창회<br/>Hội cựu học sinh]
-    A --> C[동호회<br/>Câu lạc bộ sở thích]
+    A[한국인의 친목활동] --> B[동창회]
+    A --> C[동호회]
     
-    B --> B1[송년회<br/>Tiệc tất niên]
-    B --> B2[체육대회<br/>Hội thể thao]
-    B --> B3[단체여행<br/>Du lịch tập thể]
+    B --> D[같은 학교 졸업생]
+    B --> E[정기 모임]
+    B --> F[송년회, 체육대회]
+    B --> G[단체 여행]
     
-    C --> C1[등산<br/>Leo núi]
-    C --> C2[악기연주<br/>Chơi nhạc cụ]
-    C --> C3[스포츠<br/>Thể thao]
-    C --> C4[정보공유<br/>Chia sẻ thông tin]
+    C --> H[같은 취미]
+    C --> I[등산, 악기연주, 스포츠]
+    C --> J[학교/지역/직장 중심]
+    C --> K[온라인 → 오프라인]
 ```
 
-**Câu hỏi thảo luận:**
-1. 동창회는 어떤 모임입니까?
-2. 동호회에 가입하면 어떤 점이 좋습니까?
-3. 여러분 고향에는 어떤 모임이 있습니까?
+#### 동창회 (Hội đồng môn)
+- **Định nghĩa:** Hội của những người cùng trường
+- **Hoạt động:** 
+  - 송년회 (tiệc cuối năm)
+  - 체육대회 (hội thao)
+  - 단체 여행 (du lịch tập thể)
+
+#### 동호회 (Câu lạc bộ sở thích)
+- **Định nghĩa:** Nhóm người có cùng sở thích
+- **Các loại:** 등산 (leo núi), 악기연주 (chơi nhạc cụ), 스포츠 (thể thao)
+- **Lợi ích:**
+  - 취미 활동 (hoạt động sở thích)
+  - 정보 수집 (thu thập thông tin)
+  - 새로운 사람들과 사귀기 (làm quen người mới)
+
+### 8.2 Câu hỏi thảo luận
+
+1. **동창회는 어떤 모임입니까?**
+2. **동호회에 가입하면 어떤 점이 좋습니까?**
+3. **여러분 고향에는 어떤 모임이 있습니까?**
 
 ---
 
-## IX. TỪ VỰNG TỔNG HỢP
+## 📋 PHẦN 9: KIỂM TRA TỪ VỰNG
 
-### Bảng từ vựng quan trọng
+### Bảng từ vựng tổng hợp
 
-| Tiếng Hàn | Loại từ | Nghĩa tiếng Việt |
-|-----------|---------|------------------|
-| 대인 관계 | N | mối quan hệ con người |
-| 공감대 | N | điểm chung, sự đồng cảm |
-| 사이가 멀어지다 | V | xa cách nhau |
-| 연락이 끊기다 | V | mất liên lạc |
-| 선배 | N | đàn anh/chị |
-| 후배 | N | đàn em |
-| 상사 | N | cấp trên |
-| 동료 | N | đồng nghiệp |
-| 지시 | N | chỉ thị |
-| 거절하다 | V | từ chối |
-| 요청 | N | yêu cầu |
-| 방법 | N | phương pháp |
-| 솔직하다 | Adj | thẳng thắn |
-| 예의 | N | phép lịch sự |
-| 공감 | N | sự đồng cảm |
-| 사귀다 | V | kết bạn |
-| 부족하다 | Adj | thiếu, không đủ |
-| 내성적이다 | Adj | hướng nội |
-| 적응하다 | V | thích nghi |
-| 노력 중이다 | V | đang cố gắng |
+| STT | Tiếng Hàn | Tiếng Việt | Ghi chú |
+|-----|------------|------------|---------|
+| 1 | 공감대가 없다 | không có điểm chung | |
+| 2 | 관심을 갖다 | quan tâm | |
+| 3 | 사이가 멀어지다 | xa cách nhau | |
+| 4 | 사이좋다 | thân thiết, hòa thuận | |
+| 5 | 연락이 끊기다 | mất liên lạc | |
+| 6 | 위로 | an ủi | |
+| 7 | 선배 | tiền bối | |
+| 8 | 대하다 | đối xử, tiếp xúc | |
+| 9 | 후배 | hậu bối | |
+| 10 | 상사 | cấp trên | |
+
+**Cách sử dụng:**
+- ☐ Đánh dấu những từ đã thuộc
+- ☐ Luyện tập những từ chưa thuộc
+- ☐ Tạo câu với từ vựng mới
 
 ---
 
-## X. ĐÁNH GIÁ TỔNG KẾT
+## 📚 TÀI LIỆU THAM KHAO
 
-### Bài kiểm tra tự đánh giá
+### Các cấu trúc ngữ pháp trong bài
 
-1. **Ngữ pháp:** Viết 3 câu sử dụng `-고 해서` và 3 câu sử dụng `-으면 되다`
-2. **Từ vựng:** Giải thích 5 khó khăn thường gặp trong mối quan hệ với người Hàn
-3. **Giao tiếp:** Đóng vai tư vấn cho bạn có khó khăn trong mối quan hệ
-4. **Văn hóa:** So sánh 동창회 và 동호회 ở Hàn Quốc với các tổ chức tương tự ở Việt Nam
+| Ngữ pháp | Chức năng | Ví dụ |
+|----------|-----------|-------|
+| -고 해서 | Nêu lý do (nhiều nguyên nhân) | 바쁘고 해서 못 갔어요. |
+| -으면 되다 | Điều kiện đủ | 열심히 하면 돼요. |
 
-### Mức độ hoàn thành bài học
-
-- [ ] Thuộc lòng từ vựng về mối quan hệ con người
-- [ ] Sử dụng thành thạo `-고 해서` và `-으면 되다`
-- [ ] Có thể tư vấn về các vấn đề mối quan hệ
-- [ ] Hiểu về văn hóa gắn kết của người Hàn Quốc
-- [ ] Viết được bài tư vấn hoàn chỉnh
+### Chủ đề liên quan
+- **다음 과:** 취미와 여가 (Sở thích và giải trí)
+- **관련 주제:** 직장 생활 (Cuộc sống công sở), 한국 문화 (Văn hóa Hàn Quốc)
 
 ---
 
-**📚 Kết thúc Bài 1: 대인 관계 (Mối quan hệ con người)**
-
-*Chúc các bạn học tập hiệu quả và xây dựng được những mối quan hệ tốt đẹp!*
+*Giáo trình được biên soạn dựa trên chương trình KIIP (Korea Immigration & Integration Program) dành cho người nước ngoài sinh sống tại Hàn Quốc, phù hợp với trình độ Trung cấp 1.*
