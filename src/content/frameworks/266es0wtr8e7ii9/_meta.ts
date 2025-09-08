@@ -1,0 +1,21 @@
+export default {
+  "c4vuslx0gx1laci": "Bài 1: Giới thiệu và các khái niệm cơ bản",
+  "voyz4ia27wdsy0x": "Bài 2: Hệ thống định tuyến (Routing)",
+  "tmt9cyigdzd5cxd": "Bài 3: Cấu trúc thư mục định tuyến (App Router vs Pages Router)",
+  "tjfo83j0py9u6od": "Bài 4: Các mẫu định tuyến (Routing Patterns)",
+  "y460tzc6ylyb3rv": "Bài 5: Định tuyến nâng cao",
+  "i3t8314i95db2ve": "Bài 6: Middleware",
+  "ilwkfxrbdal5qa3": "Bài 7: Các chiến lược render trang",
+  "z891nn4ba8q1qdn": "Bài 8: Xử lý dữ liệu (Data Fetching)",
+  "ew6isk5rlqvfcyu": "Bài 9: Server Actions",
+  "762fkll9k53pn2y": "Bài 10: Tối ưu hóa hiệu suất (Caching)",
+  "9d2afssukszim97": "Bài 11: Làm việc với assets tĩnh và tối ưu hóa hình ảnh",
+  "x6fbc1env3k3r5o": "Bài 12: CSS và Styling",
+  "vw1smcwh2ar6yyv": "Bài 13: Cấu hình và Thiết lập",
+  "8ju3tgjnlh2cz9u": "Bài 14: Middleware và API Endpoints",
+  "kz8pii4zs4z5307": "Bài 15: Xử lý lỗi và tải trang",
+  "nfx3bmfc6g76d1z": "Bài 16: Bảo mật và Dữ liệu",
+  "fft8st2ly9sw1fo": "Bài 17: Triển khai (Deployment)",
+  "xv3b20s7qujy3we": "Bài 18: Testing",
+  "rzz0mxrox6vu71v": "Bài 19: SEO và Metadata"
+};
