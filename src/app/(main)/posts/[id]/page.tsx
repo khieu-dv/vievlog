@@ -293,7 +293,7 @@ export default function PostDetailPage() {
           <div className="rounded-lg bg-white p-6 text-center shadow">
             <h2 className="text-xl font-semibold text-gray-800">{t("Post not found")}</h2>
             <p className="mt-2 text-gray-600">{t("The post you're looking for might have been removed or is temporarily unavailable.")}</p>
-            <Link href="/posts" className="mt-4 inline-block rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600">
+            <Link href="/docs" className="mt-4 inline-block rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600">
               {t("Return to Posts")}
             </Link>
           </div>
@@ -308,7 +308,7 @@ export default function PostDetailPage() {
       <Header />
       <main className="pt-4 pb-10">
         <div className="max-w-4xl mx-auto sm:px-4">
-          <Link href="/posts" className="mb-4 flex items-center text-sm font-medium text-primary hover:underline px-4 sm:px-0">
+          <Link href="/docs" className="mb-4 flex items-center text-sm font-medium text-primary hover:underline px-4 sm:px-0">
             <ChevronLeft className="mr-1 h-4 w-4" /> {t("Back to Posts")}
           </Link>
 

@@ -47,7 +47,7 @@ export default function NotFound() {
               </Button>
             </Link>
 
-            <Link href="/posts">
+            <Link href="/docs">
               <Button variant="outline" className="w-full sm:w-auto">
                 <Search className="h-4 w-4 mr-2" />
                 {t('notFound.searchPosts')}
@@ -71,7 +71,7 @@ export default function NotFound() {
             </p>
             <div className="flex flex-wrap gap-2 justify-center">
               <Link
-                href="/posts"
+                href="/docs"
                 className="text-sm text-primary hover:text-primary/80 underline"
               >
                 {t('notFound.programmingPosts')}

@@ -49,7 +49,7 @@ export function Footer({ className }: { className?: string }) {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
-                  href="/posts"
+                  href="/docs"
                   className="text-muted-foreground hover:text-foreground transition-colors"
                 >
                   {t("footer.allPosts")}
@@ -57,7 +57,7 @@ export function Footer({ className }: { className?: string }) {
               </li>
               <li>
                 <Link
-                  href="/posts"
+                  href="/docs"
                   className="text-muted-foreground hover:text-foreground transition-colors"
                 >
                   {t("footer.goCourse")}
@@ -65,7 +65,7 @@ export function Footer({ className }: { className?: string }) {
               </li>
               <li>
                 <Link
-                  href="/posts"
+                  href="/docs"
                   className="text-muted-foreground hover:text-foreground transition-colors"
                 >
                   {t("footer.ginCourse")}
@@ -88,7 +88,7 @@ export function Footer({ className }: { className?: string }) {
               </li>
               <li>
                 <Link
-                  href="/posts"
+                  href="/docs"
                   className="text-muted-foreground hover:text-foreground transition-colors"
                 >
                   {t("footer.discussions")}

@@ -165,7 +165,7 @@ export default function HomePage() {
                 Beautiful. Powerful. Easy to learn.
               </p>
               <div className="mt-12 flex justify-center lg:justify-start gap-x-4">
-                <Link href="/posts">
+                <Link href="/docs">
                   <Button className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-8 py-3 rounded-full text-lg">
                     Start Learning
                   </Button>

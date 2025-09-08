@@ -11,9 +11,9 @@ export function middleware(request: NextRequest) {
   const redirects: Record<string, string> = {
     '/games': '/games',
     '/profile/settings': '/profile',
-    '/tutorials': '/posts',
-    '/courses': '/posts',
-    '/docs': '/posts'
+    '/tutorials': '/docs',
+    '/courses': '/docs',
+    '/docs': '/docs'
   };
 
   if (redirects[pathname]) {
