@@ -41,7 +41,7 @@ export function RoadmapCard(props: RoadmapCardProps) {
         <span className="mb-0.5 block text-lg sm:text-xl font-semibold sm:mb-2">
           {title}
         </span>
-        <span className="text-sm text-gray-500">{description}</span>
+        <p className="text-sm text-gray-500 min-h-[40px]">{description}</p>
 
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-100/70">
           <span className="text-sm bg-black rounded-lg text-white font-semibold py-1 px-2 -rotate-45 transform">
@@ -74,7 +74,7 @@ export function RoadmapCard(props: RoadmapCardProps) {
       <span className="mb-0 block text-lg sm:text-xl font-semibold sm:mb-2">
         {title}
       </span>
-      <span className="text-sm text-gray-500">{description}</span>
+      <p className="text-sm text-gray-500 min-h-[40px]">{description}</p>
     </Link>
   );
 }
