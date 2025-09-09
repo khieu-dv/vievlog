@@ -94,6 +94,29 @@ export class ApiService {
     }
   }
 
+  static async getRecentPosts(perPage = 8): Promise<{ items: any[] }> {
+    try {
+      const response = await axios.get(
+        `${API_BASE_URL}/api/collections/posts_tbl/records`,
+        {
+          params: {
+            page: 1,
+            perPage,
+            sort: '-created',
+            expand: 'categoryId',
+            filter: 'status!=0',
+            fields: 'id,title,excerpt,categoryId,expand.categoryId.name,expand.categoryId.color,expand.categoryId.slug'
+          },
+          timeout: 15000
+        }
+      );
+      return { items: response.data.items };
+    } catch (error) {
+      console.error("Failed to fetch recent posts:", error);
+      return { items: [] };
+    }
+  }
+
   static async getPost(postId: string): Promise<any | null> {
     try {
       const response = await axios.get(

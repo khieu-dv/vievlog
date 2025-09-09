@@ -1,6 +1,32 @@
 "use client";
 
-import { ArrowRight, MessageCircle, ChevronUp, Share2, Gamepad2, Users, TrendingUp } from "lucide-react";
+import {
+  Blocks,
+  Bot,
+  Braces,
+  CheckSquare,
+  Coins,
+  Component,
+  FolderKanban,
+  Gamepad2,
+  GitBranch,
+  Globe2,
+  GraduationCap,
+  Megaphone,
+  MessageCircle,
+  MessageCircleCode,
+  PenSquare,
+  Server,
+  ServerCog,
+  Shield,
+  ShieldHalf,
+  Smartphone,
+  SquareKanban,
+  UsersRound,
+  Waypoints,
+  Workflow,
+  ArrowRight
+} from 'lucide-react';
 import Link from "next/link";
 import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
@@ -8,404 +34,471 @@ import axios from "axios";
 import { useTranslation } from "react-i18next";
 import { Footer } from "~/components/common/Footer";
 import { Header } from "~/components/common/Header";
-import { VieShareBanner } from "~/components/common/VieShareBanner";
 import { Button } from "~/components/ui/Button";
-import { Category } from '~/lib/types';
-import { useLocalizedContent } from "~/lib/multilingual";
-import { SaySomethingForm } from "~/components/features/home/SaySomethingForm";
-import { truncate } from '~/utils/textUtils';
+import { RoadmapCard } from "~/components/ui/RoadmapCard";
+import { RoadmapMultiCard } from "~/components/ui/RoadmapMultiCard";
+import { RoleRoadmaps } from "~/components/ui/RoleRoadmaps";
+import { SectionBadge } from "~/components/ui/SectionBadge";
+import { TipItem } from "~/components/ui/TipItem";
 
 
 export default function HomePage() {
   const { t } = useTranslation();
-  const router = useRouter();
-  const { getContent, currentLanguage } = useLocalizedContent();
-
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [isLoadingCategories, setIsLoadingCategories] = useState(true);
-
-  // Group categories by mainName
-  const groupedCategories = categories.reduce((acc, category) => {
-    const mainName = category.mainName || 'Languages';
-    if (!acc[mainName]) {
-      acc[mainName] = [];
-    }
-    acc[mainName].push(category);
-    return acc;
-  }, {} as Record<string, Category[]>);
-
-  // Fetch categories from database
-  const fetchCategories = async () => {
-    try {
-      setIsLoadingCategories(true);
-      const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/collections/categories_tbl/records`,
-        {
-          params: {
-            page: 1,
-            perPage: 50,
-            sort: 'name'
-          }
-        }
-      );
-
-      const categoriesData = response.data.items.map((item: any) => ({
-        id: item.id,
-        name: getContent(item, 'name'),
-        slug: item.slug,
-        color: item.color || '#3B82F6',
-        description: getContent(item, 'description'),
-        mainName: item.mainName || 'Languages', // Default to Languages if not set
-        postCount: 0, // Will be updated when we get post counts
-        originalData: item
-      }));
-
-      // Get post counts for each category
-      const categoriesWithCounts = await Promise.all(
-        categoriesData.map(async (category: Category) => {
-          try {
-            const countResponse = await axios.get(
-              `${process.env.NEXT_PUBLIC_API_URL}/api/collections/posts_tbl/records`,
-              {
-                params: {
-                  page: 1,
-                  perPage: 1,
-                  filter: `categoryId="${category.id}" && status!=0`
-                }
-              }
-            );
-            return {
-              ...category,
-              postCount: countResponse.data.totalItems || 0
-            };
-          } catch (error) {
-            return {
-              ...category,
-              postCount: 0
-            };
-          }
-        })
-      );
-
-      setCategories(categoriesWithCounts);
-    } catch (error) {
-      console.error("Failed to fetch categories:", error);
-      setCategories([]);
-    } finally {
-      setIsLoadingCategories(false);
-    }
-  };
-
-
-  // Handle category selection - redirect to docs page
-  const handleCategorySelect = useCallback((category: Category) => {
-    // Create proper URL format: /docs/languages/categoryId or /docs/category-slug/categoryId
-    const mainNameSlug = category.mainName?.toLowerCase() || 'languages';
-    router.push(`/docs/${mainNameSlug}/${category.id}`);
-  }, [router]);
-
-  // Handle touch feedback with haptic-like effect
-  const handleCategoryTouch = useCallback((e: React.TouchEvent) => {
-    // Add gentle vibration on supported devices
-    if (navigator.vibrate) {
-      navigator.vibrate(10);
-    }
-
-    // Add ripple effect
-    const rect = e.currentTarget.getBoundingClientRect();
-    const ripple = document.createElement('div');
-    const size = Math.max(rect.width, rect.height);
-    const x = e.touches[0].clientX - rect.left - size / 2;
-    const y = e.touches[0].clientY - rect.top - size / 2;
-
-    ripple.style.cssText = `
-      position: absolute;
-      width: ${size}px;
-      height: ${size}px;
-      left: ${x}px;
-      top: ${y}px;
-      background: rgba(59, 130, 246, 0.3);
-      border-radius: 50%;
-      transform: scale(0);
-      animation: ripple 0.6s linear;
-      pointer-events: none;
-      z-index: 1;
-    `;
-
-    e.currentTarget.appendChild(ripple);
-
-    setTimeout(() => {
-      if (ripple.parentNode) {
-        ripple.parentNode.removeChild(ripple);
-      }
-    }, 600);
-  }, []);
-
-  // Load initial data
-  useEffect(() => {
-    fetchCategories();
-  }, [currentLanguage]);
-
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black">
+    <div className="min-h-screen bg-white">
       <Header />
-      {/* <VieShareBanner /> */}
 
-      {/* Hero Section - Apple Style */}
-      <div className="relative overflow-hidden bg-white dark:bg-black">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col lg:flex-row justify-center lg:justify-center items-center pt-24 pb-20 lg:pt-40 lg:pb-32 lg:gap-x-32">
-            <div className="text-center lg:text-left">
-              <h1 className="mx-auto max-w-4xl font-semibold tracking-tight text-gray-900 dark:text-white text-5xl sm:text-7xl lg:text-8xl leading-none">
-                VieVlog.
-              </h1>
-              <p className="mx-auto mt-8 max-w-3xl text-2xl font-light text-gray-600 dark:text-gray-300 leading-relaxed">
-                The future of programming education.<br />
-                Beautiful. Powerful. Easy to learn.
-              </p>
-              <div className="mt-12 flex justify-center lg:justify-start gap-x-4">
-                <Link href="/docs">
-                  <Button className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-8 py-3 rounded-full text-lg">
-                    Start Learning
-                  </Button>
-                </Link>
-                <Link href="/companies">
-                  <Button variant="outline" className="border-gray-300 dark:border-gray-600 text-blue-600 dark:text-blue-400 font-medium px-8 py-3 rounded-full text-lg hover:bg-gray-50 dark:hover:bg-gray-900">
-                    Review công ty
-                  </Button>
-                </Link>
-              </div>
-            </div>
-            <div className="hidden lg:block mt-12 lg:mt-0">
-              <SaySomethingForm />
-            </div>
+      {/* AI Chat Section */}
+      <div className="border-b bg-gradient-to-b from-gray-200 to-white py-12 sm:py-16">
+        <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl">
+            <Bot className="mb-4 size-8 text-black sm:size-12" />
+            <h2 className="mb-3 text-2xl font-bold text-black sm:text-3xl">
+              Get AI-Powered Learning Guidance
+            </h2>
+            <p className="mb-6 text-sm text-gray-600 sm:text-base">
+              Our AI Tutor analyzes your experience, suggests relevant roadmaps, and
+              provides detailed answers to help you progress in your tech career.
+            </p>
+            <Link
+              href="/ai/chat"
+              className="inline-flex items-center gap-2 rounded-xl bg-black px-4 py-2 text-sm font-medium text-white transition-colors hover:opacity-80 sm:px-6 sm:py-3 sm:text-base"
+            >
+              <MessageCircle className="size-3 fill-current sm:size-5" />
+              Chat with AI Tutor
+            </Link>
           </div>
         </div>
       </div>
 
-      {/* Programming Categories - Apple Style */}
-      <div className="relative py-20 lg:py-32 bg-gray-50 dark:bg-gray-900">
-        <div className="mx-auto max-w-6xl px-6">
-
-          {/* Programming Categories - Grouped by mainName */}
-          {isLoadingCategories ? (
-            <div className="mx-auto text-center">
-              <div className="animate-spin inline-block w-6 h-6 border-2 border-current border-t-transparent text-gray-900 dark:text-white rounded-full mb-4"></div>
-              <p className="text-gray-600 dark:text-gray-400 font-light">Loading categories...</p>
-            </div>
-          ) : (
-            <div className="mx-auto space-y-24">
-              {Object.entries(groupedCategories)
-                .sort(([a], [b]) => {
-                  const order = ['Languages', 'DSA', 'Frameworks', 'Interview', 'Soft Skills'];
-                  return order.indexOf(a) - order.indexOf(b);
-                })
-                .map(([mainName, categoryList]) => (
-                  <div key={mainName} className="text-center">
-                    {/* Section Header */}
-                    <div className="mb-16">
-                      <h2 className="text-4xl lg:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-6">
-                        {mainName}
-                      </h2>
-                      <p className="text-xl font-light text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                        {mainName === 'Frameworks'
-                          ? 'Popular frameworks and tools to build amazing applications'
-                          : mainName === 'Languages'
-                            ? 'Programming languages to master your coding skills'
-                            : mainName === 'DSA'
-                              ? 'Data Structures and Algorithms to strengthen your problem-solving skills'
-                              : mainName === 'Interview'
-                                ? 'Ace your next technical interview with our comprehensive guides'
-                                : 'Essential soft skills to advance your career and personal development'
-                        }
-                      </p>
-                    </div>
-
-                    {/* Categories Grid */}
-                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-5xl mx-auto">
-                      {categoryList.map((category) => (
-                        <div
-                          key={category.id}
-                          onClick={() => handleCategorySelect(category)}
-                          onTouchStart={handleCategoryTouch}
-                          className="group cursor-pointer bg-white dark:bg-black rounded-xl p-6 
-                                   hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full
-                                   active:scale-95 active:shadow-lg touch-feedback category-card
-                                   touch-manipulation select-none relative overflow-hidden
-                                   md:hover:scale-[1.02] hover:bg-gray-50 dark:hover:bg-gray-900
-                                   focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-                          tabIndex={0}
-                          onKeyDown={(e) => {
-                            if (e.key === 'Enter' || e.key === ' ') {
-                              e.preventDefault();
-                              handleCategorySelect(category);
-                            }
-                          }}
-                        >
-                          <div className="flex flex-col items-center text-center h-full">
-                            <div
-                              className="h-14 w-14 rounded-full flex items-center justify-center text-white text-xl font-medium mb-4
-                                       transition-all duration-300 group-hover:scale-110 group-active:scale-95
-                                       group-hover:shadow-lg group-hover:brightness-110"
-                              style={{ backgroundColor: category.color }}
-                            >
-                              {category.name.charAt(0).toUpperCase()}
-                            </div>
-                            <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-3">
-                              {category.name}
-                            </h3>
-                            {category.description && (
-                              <p className="text-sm text-gray-600 dark:text-gray-400 font-light leading-relaxed mb-4 flex-1">
-                                {truncate(category.description, 100)}
-                              </p>
-                            )}
-                            <div className="mt-auto">
-                              <p className="text-sm text-gray-500 dark:text-gray-400 font-light">
-                                {category.postCount || 0} tutorials
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-            </div>
-          )}
-        </div>
-      </div>
-
-
-      {/* Features Section - Apple Style */}
-      <div className="bg-white dark:bg-black py-20 lg:py-32">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl lg:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-6">
-              Why VieVlog?
+      {/* Beginner Roadmaps */}
+      <div className="bg-gradient-to-b from-gray-200 to-white py-4 sm:py-8 md:py-12">
+        <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-left">
+            <SectionBadge title="Beginner Roadmaps" />
+          </div>
+          <div className="my-3 text-left md:my-5">
+            <h2 className="mb-0 text-xl font-semibold sm:mb-1 sm:text-3xl">
+              Are you an Absolute beginner?
             </h2>
-            <p className="text-xl font-light text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Everything you need to master programming. Beautifully designed, thoughtfully crafted.
+            <p className="text-sm text-gray-500 sm:text-base">
+              Here are some beginner friendly roadmaps you should start with.
             </p>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            <div className="text-center">
-              <div className="h-16 w-16 mx-auto mb-6 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center">
-                <MessageCircle className="h-8 w-8 text-blue-600 dark:text-blue-400" />
-              </div>
-              <h3 className="text-xl font-medium text-gray-900 dark:text-white mb-4">
-                Interactive Learning
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300 font-light leading-relaxed">
-                Learn with hands-on examples and interactive code snippets that bring concepts to life.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="h-16 w-16 mx-auto mb-6 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center">
-                <Share2 className="h-8 w-8 text-green-600 dark:text-green-400" />
-              </div>
-              <h3 className="text-xl font-medium text-gray-900 dark:text-white mb-4">
-                Video Tutorials
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300 font-light leading-relaxed">
-                Watch comprehensive video guides designed for visual learners and complex topics.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="h-16 w-16 mx-auto mb-6 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center">
-                <ChevronUp className="h-8 w-8 text-purple-600 dark:text-purple-400" />
-              </div>
-              <h3 className="text-xl font-medium text-gray-900 dark:text-white mb-4">
-                Structured Paths
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300 font-light leading-relaxed">
-                Follow curated roadmaps that take you from beginner to advanced level systematically.
-              </p>
+
+          <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
+            <RoadmapCard
+              icon={Globe2}
+              title="Frontend Developer"
+              link="/posts"
+              description="Develop the part of web apps that users interact with i.e. things rendered in the browser."
+            />
+            <RoadmapCard
+              icon={ServerCog}
+              title="Backend Developer"
+              link="/posts"
+              description="Develop the part hidden from the user e.g. things like APIs, databases, search engines etc."
+            />
+            <RoadmapCard
+              icon={Globe2}
+              icon2={ServerCog}
+              title="Full Stack Developer"
+              link="/posts"
+              description="Develop both the frontend and backend side of the web apps i.e. the whole development stack."
+            />
+          </div>
+
+          <p className="my-4 text-sm sm:my-7 sm:text-base">
+            There is also a{" "}
+            <Link
+              href="/posts"
+              className="font-medium underline underline-offset-2"
+            >
+              beginner DevOps roadmap
+            </Link>{" "}
+            which requires you to have some backend knowledge and entails a lot of
+            operations work i.e. deploying, scaling, monitoring, and maintaining applications.
+          </p>
+
+          <div className="rounded-xl border bg-white p-3 sm:p-4">
+            <h2 className="mb-0 text-lg font-semibold sm:mb-1 sm:text-xl">
+              Tips for Beginners
+            </h2>
+            <p className="text-sm sm:text-base">
+              Learning to code can be overwhelming, here are some tips to help you
+              get started:
+            </p>
+
+            <div className="mt-3 flex flex-col gap-1">
+              <TipItem
+                title="Avoid Tutorial Hell"
+                description="Don't get stuck in tutorial hell. It's easy to get caught up in tutorials and never actually build anything. Tutorials are great for learning, but the best way to learn is by doing. An example of this is to watch a project-based tutorial, code along with the instructor. After finishing the tutorial, try to build the same project from scratch without the tutorial (if you can't, it's okay to go back to the tutorial). Repeat this process until you can build the project without the tutorial. After that, try to add new features to the project or build something similar from scratch."
+              />
+              <TipItem
+                title="Consistent study habits"
+                description="Commit to regular, consistent study sessions. It's better to study for 30 minutes every day than to cram for 10 hours once a week."
+              />
+              <TipItem
+                title="Set a clear goal"
+                description="Establish a clear, significant goal that motivates you. It could be building a company, an app, a website, or anything that personally resonates with you."
+              />
+              <TipItem
+                title="Embrace the marathon mindset"
+                description="You will feel lost in the beginning. Avoid comparing yourself to others; everyone progresses at their own pace. Understand that challenges are part of the journey, and it's okay to take your time."
+              />
+              <TipItem
+                title="Build projects"
+                description="The best way to learn is by doing. Start building projects as soon as possible. It's okay if they're simple at first; the goal is to learn and improve. Build upon code-alongs and tutorials to create your projects and learn through hands-on experience"
+              />
+              <TipItem
+                title="Learn to get unstuck"
+                description="Once you start learning to code, you're going to run into problems that you don't know how to solve. This is normal and part of the process. You don't really learn unless you struggle through it. That said, you won't always be able to move forward without some help. So how do you find that help? First off, forget books. They aren't a great place to start here, because the number and types of errors they can cover is so small. Online is the easiest place to find help. Most devs look for solutions on StackOverflow or just google the error message (if they have one). Other solutions are to find newsgroups or forums dedicated to the language you're using."
+              />
+              <TipItem
+                title="Join a community"
+                description="Join a community of learners, such as a local coding group, a Discord server, or a subreddit. It's a great way to get help, share your progress, and learn from others."
+              />
             </div>
           </div>
         </div>
       </div>
 
-      {/* Game Promotion Section - Apple Style */}
-      <div className="relative py-20 lg:py-32 overflow-hidden bg-gray-50 dark:bg-gray-900">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
+      {/* Self-taught Developer */}
+      <RoleRoadmaps
+        badge="Self-taught Developer"
+        title="Are you a self-taught developer?"
+        description="How about taking a peek at the Computer Science roadmap aimed at self-taught developers?"
+      >
+        <RoadmapCard
+          icon={GraduationCap}
+          title="Computer Science"
+          link="/posts"
+          description="Learn the fundamental concepts of computer science and programming."
+        />
+        <RoadmapCard
+          icon={Blocks}
+          title="Data Structures"
+          link="/posts"
+          description="Learn all about data structures and algorithms."
+        />
+        <RoadmapMultiCard
+          roadmaps={[{ title: "System Design", link: "/posts" }]}
+          description="Learn how to design large scale systems and prepare for system design interviews."
+          secondaryRoadmaps={[{ title: "Design and Architecture", link: "/posts" }]}
+          secondaryDescription="Or learn how to design and architect software systems."
+        />
+      </RoleRoadmaps>
 
-            {/* Content */}
-            <div className="text-center lg:text-left">
-              <h2 className="text-4xl lg:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-6">
-                Learn Through Play
-              </h2>
-              <p className="text-xl font-light text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
-                Master programming concepts through interactive games and challenges.
-                Fun, engaging, and surprisingly effective.
-              </p>
+      {/* Frontend Developer */}
+      <RoleRoadmaps
+        badge="Frontend Developer"
+        title="Are you a Frontend Developer?"
+        description="How about skimming through the frontend or JavaScript roadmaps to see if there is anything you missed? TypeScript is all the rage these days, maybe it is time to learn it?"
+      >
+        <RoadmapCard
+          icon={Globe2}
+          title="Frontend"
+          link="/posts"
+          description="Learn all you need to know to become a frontend developer."
+        />
+        <RoadmapMultiCard
+          roadmaps={[
+            { title: "JavaScript", link: "/posts" },
+            { title: "TypeScript", link: "/posts" },
+          ]}
+          description="How about mastering the language of the web: JavaScript? or maybe TypeScript?"
+          secondaryRoadmaps={[{ title: "Frontend Performance", link: "/posts" }]}
+          secondaryDescription="Or learn how to improve the performance of your web apps?"
+        />
+        <RoadmapMultiCard
+          roadmaps={[
+            { title: "React", link: "/posts" },
+            { title: "Vue", link: "/posts" },
+            { title: "Angular", link: "/posts" },
+            { title: "Next.js", link: "/posts" },
+          ]}
+          description="Or learn a framework?"
+          secondaryRoadmaps={[{ title: "Design Systems", link: "/posts" }]}
+          secondaryDescription="or learn about design systems?"
+        />
+      </RoleRoadmaps>
 
-              {/* Features */}
-              <div className="space-y-4 mb-8">
-                <div className="flex items-center lg:justify-start justify-center gap-x-3">
-                  <div className="h-6 w-6 bg-blue-600 rounded-full flex items-center justify-center">
-                    <Gamepad2 className="h-3 w-3 text-white" />
-                  </div>
-                  <span className="text-gray-700 dark:text-gray-200 font-light">Interactive Learning</span>
-                </div>
-                <div className="flex items-center lg:justify-start justify-center gap-x-3">
-                  <div className="h-6 w-6 bg-green-600 rounded-full flex items-center justify-center">
-                    <Users className="h-3 w-3 text-white" />
-                  </div>
-                  <span className="text-gray-700 dark:text-gray-200 font-light">Multiplayer Challenges</span>
-                </div>
-                <div className="flex items-center lg:justify-start justify-center gap-x-3">
-                  <div className="h-6 w-6 bg-purple-600 rounded-full flex items-center justify-center">
-                    <TrendingUp className="h-3 w-3 text-white" />
-                  </div>
-                  <span className="text-gray-700 dark:text-gray-200 font-light">Progress Tracking</span>
-                </div>
-              </div>
+      {/* Backend Developer */}
+      <RoleRoadmaps
+        badge="Backend Developer"
+        title="Are you a Backend Developer?"
+        description="Explore the general backend roadmap or dive into a specific technology like Node.js, Python, Java etc"
+      >
+        <div className="flex flex-col gap-3">
+          <RoadmapCard
+            icon={ServerCog}
+            title="Backend"
+            link="/posts"
+            description="Learn all you need to know to become a backend developer."
+          />
+          <RoadmapCard
+            icon={Braces}
+            title="API Design"
+            link="/posts"
+            description="Learn all you need to know to design robust APIs."
+          />
+        </div>
+        <RoadmapMultiCard
+          roadmaps={[
+            { title: "Node.js", link: "/posts" },
+            { title: "PHP", link: "/posts" },
+            { title: "Rust", link: "/posts" },
+            { title: "Go", link: "/posts" },
+            { title: "Python", link: "/posts" },
+            { title: "Java", link: "/posts" },
+            { title: "ASP.NET Core", link: "/posts" },
+            { title: "C++", link: "/posts" },
+          ]}
+          description="Or learn a specific technology?"
+        />
+        <RoadmapMultiCard
+          roadmaps={[
+            { title: "System Design", link: "/posts" },
+            { title: "Design and Architecture", link: "/posts" },
+          ]}
+          description="How about improving your System Design skills?"
+          secondaryRoadmaps={[
+            { title: "SQL", link: "/posts" },
+            { title: "PostgreSQL", link: "/posts" },
+            { title: "MongoDB", link: "/posts" },
+            { title: "Redis", link: "/posts" },
+          ]}
+          secondaryDescription="Or perhaps improve your database skills?"
+        />
+      </RoleRoadmaps>
 
-              {/* CTAs */}
-              <div className="flex flex-col sm:flex-row items-center lg:justify-start justify-center gap-4">
-                <Link href="/games">
-                  <Button className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-8 py-3 rounded-full text-lg">
-                    Play Now
-                  </Button>
-                </Link>
-                <Link href="/games">
-                  <Button variant="outline" className="border-gray-300 dark:border-gray-600 text-blue-600 dark:text-blue-400 font-medium px-8 py-3 rounded-full text-lg hover:bg-gray-50 dark:hover:bg-gray-800">
-                    Learn More
-                  </Button>
-                </Link>
-              </div>
-            </div>
+      {/* DevOps Engineer */}
+      <RoleRoadmaps
+        badge="DevOps Engineer"
+        title="DevOps or a Wanna-be DevOps Engineer?"
+        description="Explore the general DevOps roadmap or dive into a specific technology like Docker, Kubernetes etc"
+      >
+        <RoadmapCard
+          icon={Server}
+          title="DevOps"
+          link="/posts"
+          description="Learn all you need to know to become a DevOps Engineer."
+        />
+        <RoadmapMultiCard
+          roadmaps={[
+            { title: "AWS", link: "/posts" },
+            { title: "Cloudflare", link: "/posts" },
+          ]}
+          description="or perhaps you want to learn AWS or Cloudflare?"
+          secondaryRoadmaps={[{ title: "Terraform", link: "/posts" }]}
+          secondaryDescription="Or learn to automate your infrastructure using Terraform?"
+        />
+        <RoadmapMultiCard
+          roadmaps={[
+            { title: "Docker", link: "/posts" },
+            { title: "Kubernetes", link: "/posts" },
+            { title: "Linux", link: "/posts" },
+          ]}
+          description="or perhaps you want to learn Docker, Kubernetes or Linux?"
+          secondaryRoadmaps={[
+            { title: "Python", link: "/posts" },
+            { title: "Go", link: "/posts" },
+            { title: "Rust", link: "/posts" },
+          ]}
+          secondaryDescription="Or maybe improve your automation skills?"
+        />
+      </RoleRoadmaps>
 
-            {/* Screenshots Grid - Simplified */}
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-4">
-                <img
-                  src="/screenshot20.png"
-                  alt="Game Screenshot 1"
-                  className="w-full h-auto rounded-2xl shadow-2xl transition-transform hover:scale-105"
-                />
-                <img
-                  src="/screenshot22.png"
-                  alt="Game Screenshot 3"
-                  className="w-full h-auto rounded-2xl shadow-2xl transition-transform hover:scale-105"
-                />
-              </div>
-              <div className="space-y-4 mt-8">
-                <img
-                  src="/screenshot21.png"
-                  alt="Game Screenshot 2"
-                  className="w-full h-auto rounded-2xl shadow-2xl transition-transform hover:scale-105"
-                />
-                <img
-                  src="/screenshot23.png"
-                  alt="Game Screenshot 4"
-                  className="w-full h-auto rounded-2xl shadow-2xl transition-transform hover:scale-105"
-                />
-              </div>
-            </div>
+      {/* Mobile Developer */}
+      <RoleRoadmaps
+        badge="Mobile Developer"
+        title="Are you a Mobile Developer?"
+        description="How about beefing up your mobile development skills?"
+      >
+        <RoadmapCard
+          icon={Smartphone}
+          title="Android"
+          link="/posts"
+          description="Learn all you need to know to become an Android Developer."
+        />
+        <RoadmapCard
+          icon={Smartphone}
+          title="iOS"
+          link="/posts"
+          description="Learn all you need to know to become an iOS Developer."
+        />
+        <RoadmapMultiCard
+          roadmaps={[
+            { title: "React Native", link: "/posts" },
+            { title: "Flutter", link: "/posts" },
+          ]}
+          description="Or learn a cross-platform framework?"
+        />
+      </RoleRoadmaps>
+
+      {/* AI and Machine Learning */}
+      <RoleRoadmaps
+        badge="AI and Machine Learning"
+        title="Are you an AI or Machine Learning enthusiast?"
+        description="How about diving into the AI or Machine Learning roadmaps?"
+      >
+        <RoadmapCard
+          icon={Bot}
+          title="Machine Learning"
+          link="/posts"
+          description="Learn all you need to know to become an ML Engineer."
+        />
+        <RoadmapCard
+          icon={Bot}
+          title="AI and Data Science"
+          link="/posts"
+          description="Learn all you need to know to become an AI or Data Scientist."
+        />
+        <RoadmapCard
+          icon={Bot}
+          title="AI Engineer"
+          link="/posts"
+          description="Learn all you need to become an AI Engineer."
+        />
+        <RoadmapCard
+          icon={ServerCog}
+          title="AI Agents"
+          link="/posts"
+          description="Learn how to design, build and ship AI agents in 2025."
+        />
+        <RoadmapCard
+          icon={Bot}
+          title="Data Analyst"
+          link="/posts"
+          description="Learn all you need to know to become a Data Analyst."
+        />
+        <RoadmapCard
+          icon={Bot}
+          title="BI Analyst"
+          link="/posts"
+          description="Learn to become a Business Intelligence Analyst in 2025."
+        />
+      </RoleRoadmaps>
+
+      {/* More Roles */}
+      <RoleRoadmaps
+        badge="More Roles"
+        title="Fancy something else?"
+        description="Explore the following roadmaps about UX, Game Development, Software Architect and more"
+      >
+        <div className="flex flex-col justify-start gap-3">
+          <RoadmapCard
+            icon={ShieldHalf}
+            title="Cyber Security"
+            link="/posts"
+            description="Learn to become a Cyber Security Expert."
+          />
+          <RoadmapCard
+            icon={Workflow}
+            title="UX Designer"
+            link="/posts"
+            description="Learn all you need to know to become a UX Designer."
+          />
+          <RoadmapCard
+            icon={Coins}
+            title="Blockchain"
+            link="/posts"
+            description="Learn all you need to know to become a Blockchain Developer."
+          />
+        </div>
+        <div className="flex flex-col justify-start gap-3">
+          <RoadmapCard
+            icon={Gamepad2}
+            title="Game Development"
+            link="/posts"
+            description="Learn all you need to know to become a Game Developer."
+          />
+          <RoadmapCard
+            icon={PenSquare}
+            title="Technical Writer"
+            link="/posts"
+            description="Learn all you need to know to become a Technical Writer."
+          />
+          <RoadmapCard
+            icon={Megaphone}
+            title="DevRel Engineer"
+            link="/posts"
+            description="Learn all you need to know to become a DevRel Engineer."
+          />
+        </div>
+        <div className="flex flex-col justify-start gap-3">
+          <RoadmapCard
+            icon={FolderKanban}
+            title="Product Manager"
+            link="/posts"
+            description="Learn all you need to know to become a Project Manager."
+          />
+          <RoadmapCard
+            icon={Component}
+            title="Software Architect"
+            link="/posts"
+            description="Learn all you need to know to become a Software Architect."
+          />
+          <RoadmapCard
+            icon={GitBranch}
+            title="Git and GitHub"
+            link="/posts"
+            description="Learn all you need to know to become a Git and GitHub expert."
+          />
+        </div>
+      </RoleRoadmaps>
+
+      {/* There is more section */}
+      <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="-mt-5 mb-12 rounded-3xl bg-black p-5">
+          <h2 className="mb-0.5 text-xl font-semibold text-white sm:mb-1 sm:text-2xl">
+            There is more!
+          </h2>
+          <p className="text-sm text-gray-400 sm:text-base">
+            We have a lot more content for you to explore.
+          </p>
+
+          <div className="my-4 grid grid-cols-1 gap-2 sm:my-5 sm:grid-cols-2 sm:gap-3 md:grid-cols-3">
+            <Link
+              href="/posts"
+              className="grow rounded-lg bg-gradient-to-br from-gray-800 to-gray-700 p-4 text-sm text-white transition-all hover:from-gray-700 hover:to-gray-700 sm:text-base"
+            >
+              <Waypoints className="mb-3 h-5 w-5 text-gray-500 sm:mb-2" />
+              Explore all Roadmaps
+            </Link>
+            <Link
+              href="/posts"
+              className="grow rounded-lg bg-gradient-to-br from-gray-800 to-gray-700 p-4 text-sm text-white transition-all hover:from-gray-700 hover:to-gray-700 sm:text-base"
+            >
+              <CheckSquare className="mb-3 h-5 w-5 text-gray-500 sm:mb-2" />
+              Explore Best Practices
+            </Link>
+            <Link
+              href="/posts"
+              className="grow rounded-lg bg-gradient-to-br from-gray-800 to-gray-700 p-4 text-sm text-white transition-all hover:from-gray-700 hover:to-gray-700 sm:text-base"
+            >
+              <CheckSquare className="mb-3 h-5 w-5 text-gray-500 sm:mb-2" />
+              Explore Questions
+            </Link>
           </div>
+          <p className="text-sm text-gray-400 sm:text-base">
+            Or visit our{" "}
+            <Link
+              href="/posts"
+              className="rounded-lg bg-gray-700 px-2 py-1 text-gray-300 transition-colors hover:bg-gray-600 hover:text-white"
+            >
+              guides
+            </Link>{" "}
+            and{" "}
+            <Link
+              href="/posts"
+              className="rounded-lg bg-gray-700 px-2 py-1 text-gray-300 transition-colors hover:bg-gray-600 hover:text-white"
+            >
+              videos
+            </Link>{" "}
+            for long-form content.
+          </p>
         </div>
       </div>
 
