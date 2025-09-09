@@ -91,20 +91,20 @@ export default function HomePage() {
             <RoadmapCard
               icon={Globe2}
               title="Frontend Developer"
-              link="/posts"
+              link="/docs"
               description="Develop the part of web apps that users interact with i.e. things rendered in the browser."
             />
             <RoadmapCard
               icon={ServerCog}
               title="Backend Developer"
-              link="/posts"
+              link="/docs"
               description="Develop the part hidden from the user e.g. things like APIs, databases, search engines etc."
             />
             <RoadmapCard
               icon={Globe2}
               icon2={ServerCog}
               title="Full Stack Developer"
-              link="/posts"
+              link="/docs"
               description="Develop both the frontend and backend side of the web apps i.e. the whole development stack."
             />
           </div>
@@ -112,7 +112,7 @@ export default function HomePage() {
           <p className="my-4 text-sm sm:my-7 sm:text-base">
             There is also a{" "}
             <Link
-              href="/posts"
+              href="/docs"
               className="font-medium underline underline-offset-2"
             >
               beginner DevOps roadmap
@@ -173,19 +173,19 @@ export default function HomePage() {
         <RoadmapCard
           icon={GraduationCap}
           title="Computer Science"
-          link="/posts"
+          link="/docs"
           description="Learn the fundamental concepts of computer science and programming."
         />
         <RoadmapCard
           icon={Blocks}
           title="Data Structures"
-          link="/posts"
+          link="/docs"
           description="Learn all about data structures and algorithms."
         />
         <RoadmapMultiCard
-          roadmaps={[{ title: "System Design", link: "/posts" }]}
+          roadmaps={[{ title: "System Design", link: "/docs" }]}
           description="Learn how to design large scale systems and prepare for system design interviews."
-          secondaryRoadmaps={[{ title: "Design and Architecture", link: "/posts" }]}
+          secondaryRoadmaps={[{ title: "Design and Architecture", link: "/docs" }]}
           secondaryDescription="Or learn how to design and architect software systems."
         />
       </RoleRoadmaps>
@@ -199,27 +199,27 @@ export default function HomePage() {
         <RoadmapCard
           icon={Globe2}
           title="Frontend"
-          link="/posts"
+          link="/docs"
           description="Learn all you need to know to become a frontend developer."
         />
         <RoadmapMultiCard
           roadmaps={[
-            { title: "JavaScript", link: "/posts" },
-            { title: "TypeScript", link: "/posts" },
+            { title: "JavaScript", link: "/docs" },
+            { title: "TypeScript", link: "/docs" },
           ]}
           description="How about mastering the language of the web: JavaScript? or maybe TypeScript?"
-          secondaryRoadmaps={[{ title: "Frontend Performance", link: "/posts" }]}
+          secondaryRoadmaps={[{ title: "Frontend Performance", link: "/docs" }]}
           secondaryDescription="Or learn how to improve the performance of your web apps?"
         />
         <RoadmapMultiCard
           roadmaps={[
-            { title: "React", link: "/posts" },
-            { title: "Vue", link: "/posts" },
-            { title: "Angular", link: "/posts" },
-            { title: "Next.js", link: "/posts" },
+            { title: "React", link: "/docs" },
+            { title: "Vue", link: "/docs" },
+            { title: "Angular", link: "/docs" },
+            { title: "Next.js", link: "/docs" },
           ]}
           description="Or learn a framework?"
-          secondaryRoadmaps={[{ title: "Design Systems", link: "/posts" }]}
+          secondaryRoadmaps={[{ title: "Design Systems", link: "/docs" }]}
           secondaryDescription="or learn about design systems?"
         />
       </RoleRoadmaps>
@@ -234,40 +234,40 @@ export default function HomePage() {
           <RoadmapCard
             icon={ServerCog}
             title="Backend"
-            link="/posts"
+            link="/docs"
             description="Learn all you need to know to become a backend developer."
           />
           <RoadmapCard
             icon={Braces}
             title="API Design"
-            link="/posts"
+            link="/docs"
             description="Learn all you need to know to design robust APIs."
           />
         </div>
         <RoadmapMultiCard
           roadmaps={[
-            { title: "Node.js", link: "/posts" },
-            { title: "PHP", link: "/posts" },
-            { title: "Rust", link: "/posts" },
-            { title: "Go", link: "/posts" },
-            { title: "Python", link: "/posts" },
-            { title: "Java", link: "/posts" },
-            { title: "ASP.NET Core", link: "/posts" },
-            { title: "C++", link: "/posts" },
+            { title: "Node.js", link: "/docs" },
+            { title: "PHP", link: "/docs" },
+            { title: "Rust", link: "/docs" },
+            { title: "Go", link: "/docs" },
+            { title: "Python", link: "/docs" },
+            { title: "Java", link: "/docs" },
+            { title: "ASP.NET Core", link: "/docs" },
+            { title: "C++", link: "/docs" },
           ]}
           description="Or learn a specific technology?"
         />
         <RoadmapMultiCard
           roadmaps={[
-            { title: "System Design", link: "/posts" },
-            { title: "Design and Architecture", link: "/posts" },
+            { title: "System Design", link: "/docs" },
+            { title: "Design and Architecture", link: "/docs" },
           ]}
           description="How about improving your System Design skills?"
           secondaryRoadmaps={[
-            { title: "SQL", link: "/posts" },
-            { title: "PostgreSQL", link: "/posts" },
-            { title: "MongoDB", link: "/posts" },
-            { title: "Redis", link: "/posts" },
+            { title: "SQL", link: "/docs" },
+            { title: "PostgreSQL", link: "/docs" },
+            { title: "MongoDB", link: "/docs" },
+            { title: "Redis", link: "/docs" },
           ]}
           secondaryDescription="Or perhaps improve your database skills?"
         />
@@ -282,29 +282,29 @@ export default function HomePage() {
         <RoadmapCard
           icon={Server}
           title="DevOps"
-          link="/posts"
+          link="/docs"
           description="Learn all you need to know to become a DevOps Engineer."
         />
         <RoadmapMultiCard
           roadmaps={[
-            { title: "AWS", link: "/posts" },
-            { title: "Cloudflare", link: "/posts" },
+            { title: "AWS", link: "/docs" },
+            { title: "Cloudflare", link: "/docs" },
           ]}
           description="or perhaps you want to learn AWS or Cloudflare?"
-          secondaryRoadmaps={[{ title: "Terraform", link: "/posts" }]}
+          secondaryRoadmaps={[{ title: "Terraform", link: "/docs" }]}
           secondaryDescription="Or learn to automate your infrastructure using Terraform?"
         />
         <RoadmapMultiCard
           roadmaps={[
-            { title: "Docker", link: "/posts" },
-            { title: "Kubernetes", link: "/posts" },
-            { title: "Linux", link: "/posts" },
+            { title: "Docker", link: "/docs" },
+            { title: "Kubernetes", link: "/docs" },
+            { title: "Linux", link: "/docs" },
           ]}
           description="or perhaps you want to learn Docker, Kubernetes or Linux?"
           secondaryRoadmaps={[
-            { title: "Python", link: "/posts" },
-            { title: "Go", link: "/posts" },
-            { title: "Rust", link: "/posts" },
+            { title: "Python", link: "/docs" },
+            { title: "Go", link: "/docs" },
+            { title: "Rust", link: "/docs" },
           ]}
           secondaryDescription="Or maybe improve your automation skills?"
         />
@@ -319,19 +319,19 @@ export default function HomePage() {
         <RoadmapCard
           icon={Smartphone}
           title="Android"
-          link="/posts"
+          link="/docs"
           description="Learn all you need to know to become an Android Developer."
         />
         <RoadmapCard
           icon={Smartphone}
           title="iOS"
-          link="/posts"
+          link="/docs"
           description="Learn all you need to know to become an iOS Developer."
         />
         <RoadmapMultiCard
           roadmaps={[
-            { title: "React Native", link: "/posts" },
-            { title: "Flutter", link: "/posts" },
+            { title: "React Native", link: "/docs" },
+            { title: "Flutter", link: "/docs" },
           ]}
           description="Or learn a cross-platform framework?"
         />
@@ -346,37 +346,37 @@ export default function HomePage() {
         <RoadmapCard
           icon={Bot}
           title="Machine Learning"
-          link="/posts"
+          link="/docs"
           description="Learn all you need to know to become an ML Engineer."
         />
         <RoadmapCard
           icon={Bot}
           title="AI and Data Science"
-          link="/posts"
+          link="/docs"
           description="Learn all you need to know to become an AI or Data Scientist."
         />
         <RoadmapCard
           icon={Bot}
           title="AI Engineer"
-          link="/posts"
+          link="/docs"
           description="Learn all you need to become an AI Engineer."
         />
         <RoadmapCard
           icon={ServerCog}
           title="AI Agents"
-          link="/posts"
+          link="/docs"
           description="Learn how to design, build and ship AI agents in 2025."
         />
         <RoadmapCard
           icon={Bot}
           title="Data Analyst"
-          link="/posts"
+          link="/docs"
           description="Learn all you need to know to become a Data Analyst."
         />
         <RoadmapCard
           icon={Bot}
           title="BI Analyst"
-          link="/posts"
+          link="/docs"
           description="Learn to become a Business Intelligence Analyst in 2025."
         />
       </RoleRoadmaps>
@@ -391,19 +391,19 @@ export default function HomePage() {
           <RoadmapCard
             icon={ShieldHalf}
             title="Cyber Security"
-            link="/posts"
+            link="/docs"
             description="Learn to become a Cyber Security Expert."
           />
           <RoadmapCard
             icon={Workflow}
             title="UX Designer"
-            link="/posts"
+            link="/docs"
             description="Learn all you need to know to become a UX Designer."
           />
           <RoadmapCard
             icon={Coins}
             title="Blockchain"
-            link="/posts"
+            link="/docs"
             description="Learn all you need to know to become a Blockchain Developer."
           />
         </div>
@@ -411,19 +411,19 @@ export default function HomePage() {
           <RoadmapCard
             icon={Gamepad2}
             title="Game Development"
-            link="/posts"
+            link="/docs"
             description="Learn all you need to know to become a Game Developer."
           />
           <RoadmapCard
             icon={PenSquare}
             title="Technical Writer"
-            link="/posts"
+            link="/docs"
             description="Learn all you need to know to become a Technical Writer."
           />
           <RoadmapCard
             icon={Megaphone}
             title="DevRel Engineer"
-            link="/posts"
+            link="/docs"
             description="Learn all you need to know to become a DevRel Engineer."
           />
         </div>
@@ -431,19 +431,19 @@ export default function HomePage() {
           <RoadmapCard
             icon={FolderKanban}
             title="Product Manager"
-            link="/posts"
+            link="/docs"
             description="Learn all you need to know to become a Project Manager."
           />
           <RoadmapCard
             icon={Component}
             title="Software Architect"
-            link="/posts"
+            link="/docs"
             description="Learn all you need to know to become a Software Architect."
           />
           <RoadmapCard
             icon={GitBranch}
             title="Git and GitHub"
-            link="/posts"
+            link="/docs"
             description="Learn all you need to know to become a Git and GitHub expert."
           />
         </div>
@@ -461,21 +461,21 @@ export default function HomePage() {
 
           <div className="my-4 grid grid-cols-1 gap-2 sm:my-5 sm:grid-cols-2 sm:gap-3 md:grid-cols-3">
             <Link
-              href="/posts"
+              href="/docs"
               className="grow rounded-lg bg-gradient-to-br from-gray-800 to-gray-700 p-4 text-sm text-white transition-all hover:from-gray-700 hover:to-gray-700 sm:text-base"
             >
               <Waypoints className="mb-3 h-5 w-5 text-gray-500 sm:mb-2" />
               Explore all Roadmaps
             </Link>
             <Link
-              href="/posts"
+              href="/docs"
               className="grow rounded-lg bg-gradient-to-br from-gray-800 to-gray-700 p-4 text-sm text-white transition-all hover:from-gray-700 hover:to-gray-700 sm:text-base"
             >
               <CheckSquare className="mb-3 h-5 w-5 text-gray-500 sm:mb-2" />
               Explore Best Practices
             </Link>
             <Link
-              href="/posts"
+              href="/docs"
               className="grow rounded-lg bg-gradient-to-br from-gray-800 to-gray-700 p-4 text-sm text-white transition-all hover:from-gray-700 hover:to-gray-700 sm:text-base"
             >
               <CheckSquare className="mb-3 h-5 w-5 text-gray-500 sm:mb-2" />
@@ -485,14 +485,14 @@ export default function HomePage() {
           <p className="text-sm text-gray-400 sm:text-base">
             Or visit our{" "}
             <Link
-              href="/posts"
+              href="/docs"
               className="rounded-lg bg-gray-700 px-2 py-1 text-gray-300 transition-colors hover:bg-gray-600 hover:text-white"
             >
               guides
             </Link>{" "}
             and{" "}
             <Link
-              href="/posts"
+              href="/docs"
               className="rounded-lg bg-gray-700 px-2 py-1 text-gray-300 transition-colors hover:bg-gray-600 hover:text-white"
             >
               videos
