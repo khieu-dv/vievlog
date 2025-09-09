@@ -1,5 +1,3 @@
 export default {
-  "index": "Introduction",
-  "soft-skills": "Soft Skills",
-  "frameworks": "Frameworks",
+  "get-started": "Get Started"
 };
