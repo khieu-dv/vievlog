@@ -2,6 +2,7 @@ import { Footer, Layout, Navbar } from 'nextra-theme-docs'
 import { Head } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import './docs.css'
 import ConditionalFloatingCodeEditor from '../../components/common/ConditionalFloatingCodeEditor';
 
@@ -26,16 +27,25 @@ export default async function DocsLayout({ children }: DocsLayoutProps) {
 
   const navbar = (
     <Navbar
-      logo={
-        <div className="flex items-center space-x-2">
-          <span className="font-bold text-primary">VieVlog</span>
-          <span className="text-muted-foreground opacity-60">Documentation</span>
-        </div>
-      }
-    />
+      logo={<span className="font-bold text-primary">VieVlog</span>}
+      logoLink="/docs"
+    >
+      {/* Các link custom trên navbar */}
+      <div className="flex space-x-4 ml-6">
+        <Link href="/docs" className="hover:text-primary">Docs</Link>
+        <Link href="/companies" className="hover:text-primary">Companies</Link>
+        <Link href="/auth/sign-in" className="hover:text-primary">Login</Link>
+      </div>
+    </Navbar>
   )
 
-  const filteredPageMap = pageMap.filter((item: any) => item.name.toLowerCase() !== 'posts')
+
+  const excludePages = ['posts', 'companies', 'auth', 'profile', 'games']
+
+  const filteredPageMap = pageMap.filter(
+    (item: any) => !excludePages.includes(item.name.toLowerCase())
+  )
+
 
 
   return (
