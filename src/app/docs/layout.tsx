@@ -28,7 +28,7 @@ export default async function DocsLayout({ children }: DocsLayoutProps) {
   const navbar = (
     <Navbar
       logo={<span className="font-bold text-primary">VieVlog</span>}
-      logoLink="/docs"
+      logoLink="/"
     >
       {/* Các link custom trên navbar */}
       <div className="flex space-x-4 ml-6">
