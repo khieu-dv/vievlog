@@ -262,7 +262,7 @@ export function MultiChoiceQuiz({ questions, title = "Bài tập trắc nghiệm
       <div className="space-y-6">
         {questions.map((question, index) => (
           <div key={question.id} className="bg-white/80 backdrop-blur-sm border border-purple-100 rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow">
-            <h5 className="font-semibold mb-4 text-indigo-900 text-lg">
+            <h5 className="font-semibold mb-4 text-indigo-900 text-lg whitespace-pre-wrap">
               <span className="bg-gradient-to-r from-purple-500 to-blue-500 text-white w-8 h-8 rounded-full inline-flex items-center justify-center text-sm mr-3">
                 {index + 1}
               </span>
