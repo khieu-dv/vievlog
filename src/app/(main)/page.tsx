@@ -62,7 +62,7 @@ export default function HomePage() {
               provides detailed answers to help you progress in your tech career.
             </p>
             <Link
-              href="/ai/chat"
+              href="/docs"
               className="inline-flex items-center gap-2 rounded-xl bg-black px-4 py-2 text-sm font-medium text-white transition-colors hover:opacity-80 sm:px-6 sm:py-3 sm:text-base"
             >
               <MessageCircle className="size-3 fill-current sm:size-5" />
