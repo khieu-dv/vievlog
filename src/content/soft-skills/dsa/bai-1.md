@@ -1,366 +1,311 @@
-# Bài 1: Programming Fundamentals & Language Selection
+# Programming Fundamentals & Language Selection
 
-<div className="border-l-4 border-blue-500 pl-4 mb-6">
-  <br />
-  <h2 className="text-xl font-bold text-blue-700 mb-2">🎯 Mục tiêu học tập</h2>
-  <ul className="list-disc list-inside text-gray-700">
-    <li>Chọn ngôn ngữ lập trình phù hợp cho việc học DSA</li>
-    <li>Nắm vững cú pháp cơ bản và cấu trúc điều khiển</li>
-    <li>Hiểu về functions và OOP basics</li>
-    <li>Thực hành viết pseudo code</li>
+<div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
+  <h3 className="text-lg font-semibold text-blue-800">Mục tiêu học tập</h3>
+  <ul className="mt-2 text-blue-700">
+    <li>✓ Lựa chọn ngôn ngữ lập trình phù hợp cho DSA</li>
+    <li>✓ Nắm vững các khái niệm cơ bản trong lập trình</li>
+    <li>✓ Thực hành viết pseudocode mô tả thuật toán</li>
+    <li>✓ Hiểu được tầm quan trọng của nền tảng vững chắc</li>
   </ul>
 </div>
 
 ## 1. Lựa chọn ngôn ngữ lập trình
 
-### 1.1 So sánh các ngôn ngữ phổ biến
+Việc chọn ngôn ngữ lập trình phù hợp là bước đầu quan trọng trong hành trình học DSA. Mỗi ngôn ngữ có những ưu thế riêng:
 
-| Ngôn ngữ       | Ưu điểm                             | Nhược điểm         | Phù hợp cho             |
-| -------------- | ----------------------------------- | ------------------ | ----------------------- |
-| **C++**        | Performance cao, Memory control     | Syntax phức tạp    | Competitive Programming |
-| **Python**     | Syntax đơn giản, Thư viện phong phú | Chậm hơn           | Beginners, Prototyping  |
-| **Java**       | Cross-platform, Strong typing       | Verbose syntax     | Enterprise development  |
-| **JavaScript** | Web-friendly, Dynamic               | Type safety issues | Web development         |
+| Ngôn ngữ       | Ưu điểm                                                                | Nhược điểm                                      | Phù hợp cho                                  |
+| -------------- | ---------------------------------------------------------------------- | ----------------------------------------------- | -------------------------------------------- |
+| **C++**        | - Hiệu năng cao<br>- Quản lý bộ nhớ linh hoạt<br>- STL phong phú       | - Syntax phức tạp<br>- Dễ gây lỗi memory        | Competitive Programming, System Programming  |
+| **Java**       | - OOP mạnh mẽ<br>- Platform independent<br>- Collections framework tốt | - Verbose<br>- Chậm hơn C++                     | Enterprise applications, Android development |
+| **Python**     | - Syntax đơn giản<br>- Rapid prototyping<br>- Thư viện phong phú       | - Chậm hơn so với C++/Java<br>- GIL limitations | Data Science, Machine Learning, Prototyping  |
+| **JavaScript** | - Không cần setup<br>- Phổ biến<br>- Async programming                 | - Dynamically typed<br>- Inconsistent behavior  | Web Development, Full-stack                  |
 
-<div className="bg-green-50 border border-green-200 rounded-lg p-4 my-4">
-  <h3 className="font-bold text-green-800 mb-2">💡 Khuyến nghị</h3>
-  <p className="text-green-700">Chúng ta sẽ sử dụng <strong>C++</strong> trong khóa học này vì:</p>
-  <ul className="list-disc list-inside text-green-700 mt-2">
-    <li>Performance cao, phù hợp cho thuật toán phức tạp</li>
-    <li>Memory management tốt</li>
-    <li>Được sử dụng rộng rãi trong competitive programming</li>
-    <li>STL (Standard Template Library) hỗ trợ nhiều data structures</li>
-  </ul>
+<div className="bg-green-50 border-l-4 border-green-500 p-4 my-4">
+  <p className="text-green-800"><strong>Khuyến nghị:</strong> Chúng ta sẽ sử dụng <strong>C++</strong> trong khóa học này để tận dụng hiệu năng cao và sự phổ biến trong competitive programming.</p>
 </div>
 
-### 1.2 Quy trình học tập
+## 2. Ôn tập C++ Cơ bản
 
-```mermaid
-flowchart TD
-    A[Chọn ngôn ngữ] --> B[Ôn tập cú pháp cơ bản]
-    B --> C[Thực hành control structures]
-    C --> D[Học functions & OOP]
-    D --> E[Viết pseudo code]
-    E --> F[Chuẩn bị cho DSA]
-```
-
-## 2. Cú pháp cơ bản C++
-
-### 2.1 Cấu trúc chương trình cơ bản
+### 2.1 Cấu trúc chương trình C++ cơ bản
 
 ```cpp
 #include <iostream>
 #include <vector>
-#include <string>
-
+#include <algorithm>
 using namespace std;
 
 int main() {
-    // Code chính
-    cout << "Hello DSA!" << endl;
+    // Code của bạn ở đây
+    cout << "Hello, DSA World!" << endl;
     return 0;
 }
 ```
 
-### 2.2 Khai báo biến và kiểu dữ liệu
-
-| Kiểu dữ liệu | Kích thước | Phạm vi        | Ví dụ                           |
-| ------------ | ---------- | -------------- | ------------------------------- |
-| `int`        | 4 bytes    | -2³¹ đến 2³¹-1 | `int n = 100;`                  |
-| `long long`  | 8 bytes    | -2⁶³ đến 2⁶³-1 | `long long big = 1000000000LL;` |
-| `double`     | 8 bytes    | ±1.7e±308      | `double pi = 3.14159;`          |
-| `char`       | 1 byte     | -128 đến 127   | `char grade = 'A';`             |
-| `bool`       | 1 byte     | true/false     | `bool isValid = true;`          |
+### 2.2 Các thư viện quan trọng trong DSA
 
 ```cpp
-// Ví dụ khai báo
-int size = 10;
-double average = 85.5;
-string name = "Alice";
-vector<int> numbers = {1, 2, 3, 4, 5};
+// Thư viện cơ bản
+#include <iostream>     // Input/Output
+#include <vector>       // Dynamic arrays
+#include <stack>        // Stack data structure
+#include <queue>        // Queue data structure
+#include <map>          // Hash table/Red-Black tree
+#include <set>          // Sorted set
+#include <algorithm>    // Sorting, searching algorithms
+#include <climits>      // Constants như INT_MAX, INT_MIN
 ```
 
-## 3. Cấu trúc điều khiển
+## 3. Cấu trúc điều khiển trong DSA
 
-### 3.1 Conditional Statements
+### 3.1 Bản đồ tư duy về Control Structures
 
-<div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
-  <div className="border rounded-lg p-4">
-    <h4 className="font-bold mb-2">If-else</h4>
-    <h4 className="font-bold mb-2">If-else</h4>
-    ```cpp
-if (score >= 90) {
-    grade = 'A';
-} else if (score >= 80) {
-    grade = 'B';
-} else {
-    grade = 'C';
+```mermaid
+flowchart TD
+    A[Control Structures] --> B[Conditional]
+    A --> C[Loops]
+    A --> D[Functions]
+
+    B --> B1[if/else]
+    B --> B2[switch/case]
+    B --> B3[Ternary operator]
+
+    C --> C1[for loop]
+    C --> C2[while loop]
+    C --> C3[do-while loop]
+    C --> C4[Range-based for]
+
+    D --> D1[Function definition]
+    D --> D2[Parameters]
+    D --> D3[Return values]
+    D --> D4[Recursion]
+```
+
+### 3.2 Ví dụ thực hành
+
+```cpp
+// 1. Conditional statements
+int findMax(int a, int b, int c) {
+    if (a >= b && a >= c) return a;
+    else if (b >= a && b >= c) return b;
+    else return c;
 }
-    ```
-  </div>
-  <div className="border rounded-lg p-4">
-    <h4 className="font-bold mb-2">Switch</h4>
-    ```cpp
-switch (choice) {
-    case 1:
-        cout << "Option 1";
-        break;
-    case 2:
-        cout << "Option 2";
-        break;
-    default:
-        cout << "Invalid";
+
+// 2. Loops - duyệt mảng
+void printArray(vector<int>& arr) {
+    // Traditional for loop
+    for (int i = 0; i < arr.size(); i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+
+    // Range-based for loop (C++11)
+    for (int element : arr) {
+        cout << element << " ";
+    }
+    cout << endl;
 }
-    ```
-  </div>
+
+// 3. Function với reference parameter
+void swapValues(int& a, int& b) {
+    int temp = a;
+    a = b;
+    b = temp;
+}
+```
+
+## 4. Object-Oriented Programming Basics
+
+### 4.1 Tầm quan trọng của OOP trong DSA
+
+<div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 my-4">
+  <p className="text-yellow-800"><strong>Lưu ý:</strong> Hiểu OOP giúp bạn thiết kế các cấu trúc dữ liệu tùy chỉnh một cách hiệu quả và có tổ chức.</p>
 </div>
 
-### 3.2 Loops
-
-| Loại loop    | Cú pháp                     | Khi nào sử dụng       |
-| ------------ | --------------------------- | --------------------- |
-| **for**      | `for(int i=0; i<n; i++)`    | Biết trước số lần lặp |
-| **while**    | `while(condition)`          | Điều kiện phức tạp    |
-| **do-while** | `do {...} while(condition)` | Chạy ít nhất 1 lần    |
-
 ```cpp
-// For loop - duyệt array
-for (int i = 0; i < arr.size(); i++) {
-    cout << arr[i] << " ";
-}
+// Ví dụ: Class cho một Node trong Linked List
+class ListNode {
+public:
+    int data;
+    ListNode* next;
 
-// Range-based for (C++11)
-for (int element : arr) {
-    cout << element << " ";
-}
+    // Constructor
+    ListNode(int value) : data(value), next(nullptr) {}
 
-// While loop - tìm kiếm
-int target = 5, index = 0;
-while (index < arr.size() && arr[index] != target) {
-    index++;
-}
+    // Destructor
+    ~ListNode() {
+        // Cleanup nếu cần
+    }
+};
+
+// Sử dụng class
+ListNode* head = new ListNode(10);
+head->next = new ListNode(20);
 ```
 
-## 4. Functions
+### 4.2 Các khái niệm OOP cần thiết
 
-### 4.1 Cấu trúc function
+| Khái niệm         | Mô tả                               | Ví dụ trong DSA                            |
+| ----------------- | ----------------------------------- | ------------------------------------------ |
+| **Encapsulation** | Đóng gói dữ liệu và methods         | Private members trong Stack class          |
+| **Inheritance**   | Kế thừa từ class cha                | Binary Tree → Binary Search Tree           |
+| **Polymorphism**  | Một interface, nhiều implementation | Virtual functions cho different sorting    |
+| **Abstraction**   | Ẩn chi tiết implementation          | Interface cho Queue (array vs linked list) |
+
+## 5. Pseudocode - Ngôn ngữ mô tả thuật toán
+
+### 5.1 Tại sao cần Pseudocode?
 
 ```mermaid
 graph LR
-    A[Return Type] --> B[Function Name]
-    B --> C[Parameters]
-    C --> D[Function Body]
-    D --> E[Return Statement]
+    A[Problem Statement] --> B[Pseudocode]
+    B --> C[Implementation]
+    C --> D[Testing]
+    D --> E[Optimization]
+
+    B --> F[Language Independent]
+    B --> G[Easy to understand]
+    B --> H[Focus on logic]
 ```
 
-### 4.2 Các loại functions
+### 5.2 Quy tắc viết Pseudocode
 
 <div className="overflow-x-auto">
-  <table className="min-w-full border-collapse border">
-    <thead>
-      <tr className="bg-gray-50">
-        <th className="border px-4 py-2">Loại</th>
-        <th className="border px-4 py-2">Ví dụ</th>
-        <th className="border px-4 py-2">Mô tả</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td className="border px-4 py-2 font-mono">void function</td>
-        <td className="border px-4 py-2 font-mono">void printArray(vector&lt;int&gt; arr)</td>
-        <td className="border px-4 py-2">Không trả về giá trị</td>
-      </tr>
-      <tr>
-        <td className="border px-4 py-2 font-mono">return function</td>
-        <td className="border px-4 py-2 font-mono">int findMax(vector&lt;int&gt; arr)</td>
-        <td className="border px-4 py-2">Trả về giá trị</td>
-      </tr>
-      <tr>
-        <td className="border px-4 py-2 font-mono">recursive</td>
-        <td className="border px-4 py-2 font-mono">int factorial(int n)</td>
-        <td className="border px-4 py-2">Gọi chính nó</td>
-      </tr>
-    </tbody>
-  </table>
+
+| Cấu trúc      | Pseudocode                                                               | C++ Implementation                                                        |
+| ------------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------------- |
+| **Sequence**  | `BEGIN`<br>`statement1`<br>`statement2`<br>`END`                         | `{`<br>`statement1;`<br>`statement2;`<br>`}`                              |
+| **Selection** | `IF condition THEN`<br>`statement1`<br>`ELSE`<br>`statement2`<br>`ENDIF` | `if (condition) {`<br>`statement1;`<br>`} else {`<br>`statement2;`<br>`}` |
+| **Iteration** | `WHILE condition DO`<br>`statement`<br>`ENDWHILE`                        | `while (condition) {`<br>`statement;`<br>`}`                              |
+
 </div>
 
-```cpp
-// Function tìm phần tử lớn nhất
-int findMax(vector<int>& arr) {
-    if (arr.empty()) return -1;
+### 5.3 Ví dụ thực tế: Tìm kiếm tuyến tính
 
-    int maxVal = arr[0];
-    for (int i = 1; i < arr.size(); i++) {
-        if (arr[i] > maxVal) {
-            maxVal = arr[i];
-        }
-    }
-    return maxVal;
-}
-
-// Function đệ quy tính giai thừa
-int factorial(int n) {
-    if (n <= 1) return 1;
-    return n * factorial(n - 1);
-}
-```
-
-## 5. OOP Basics
-
-### 5.1 Class và Object
-
-```cpp
-class Student {
-private:
-    string name;
-    int age;
-    double gpa;
-
-public:
-    // Constructor
-    Student(string n, int a, double g) : name(n), age(a), gpa(g) {}
-
-    // Getter methods
-    string getName() const { return name; }
-    int getAge() const { return age; }
-    double getGPA() const { return gpa; }
-
-    // Setter methods
-    void setGPA(double newGPA) { gpa = newGPA; }
-
-    // Method
-    void displayInfo() {
-        cout << "Name: " << name << ", Age: " << age << ", GPA: " << gpa << endl;
-    }
-};
-```
-
-### 5.2 Tính chất của OOP
-
-```mermaid
-graph TD
-    A[OOP Principles] --> B[Encapsulation]
-    A --> C[Inheritance]
-    A --> D[Polymorphism]
-    A --> E[Abstraction]
-
-    B --> B1[Private/Public members]
-    C --> C1[class Derived : public Base]
-    D --> D1[Virtual functions]
-    E --> E1[Abstract classes]
-```
-
-## 6. Pseudo Code
-
-### 6.1 Quy tắc viết Pseudo Code
-
-<div className="bg-blue-50 border border-blue-200 rounded-lg p-4 my-4">
-  <h3 className="font-bold text-blue-800 mb-2">📝 Nguyên tắc Pseudo Code</h3>
-  <ul className="list-disc list-inside text-blue-700">
-    <li>Sử dụng ngôn ngữ tự nhiên kết hợp ký hiệu toán học</li>
-    <li>Indentation để thể hiện cấu trúc</li>
-    <li>Tránh chi tiết cú pháp cụ thể</li>
-    <li>Focus vào logic algorithm</li>
-  </ul>
-</div>
-
-### 6.2 Ví dụ Pseudo Code
-
-**Bài toán:** Tìm phần tử lớn nhất trong array
+**Pseudocode:**
 
 ```
-ALGORITHM FindMaximum
-INPUT: array A[1...n]
-OUTPUT: maximum value in A
+ALGORITHM LinearSearch
+INPUT: array A[0..n-1], target value x
+OUTPUT: index of x in A, or -1 if not found
 
 BEGIN
-    max ← A[1]
-    FOR i ← 2 TO n DO
-        IF A[i] > max THEN
-            max ← A[i]
-        END IF
-    END FOR
-    RETURN max
+    FOR i = 0 TO n-1 DO
+        IF A[i] = x THEN
+            RETURN i
+        ENDIF
+    ENDFOR
+    RETURN -1
 END
 ```
 
-**Tương ứng C++ code:**
+**C++ Implementation:**
 
 ```cpp
-int findMaximum(vector<int>& A) {
-    int max = A[0];
-    for (int i = 1; i < A.size(); i++) {
-        if (A[i] > max) {
-            max = A[i];
+int linearSearch(vector<int>& arr, int target) {
+    for (int i = 0; i < arr.size(); i++) {
+        if (arr[i] == target) {
+            return i;
         }
     }
-    return max;
+    return -1; // Not found
 }
 ```
 
-## 7. Bài tập thực hành
+## 6. Thực hành & Bài tập
 
-### Bài tập 1: Kiểm tra số nguyên tố
+### 6.1 Bài tập cơ bản
 
-```cpp
-bool isPrime(int n) {
-    if (n <= 1) return false;
-    if (n <= 3) return true;
-    if (n % 2 == 0 || n % 3 == 0) return false;
-
-    for (int i = 5; i * i <= n; i += 6) {
-        if (n % i == 0 || n % (i + 2) == 0) {
-            return false;
-        }
-    }
-    return true;
-}
-```
-
-### Bài tập 2: Reverse array
-
-```cpp
-void reverseArray(vector<int>& arr) {
-    int left = 0, right = arr.size() - 1;
-    while (left < right) {
-        swap(arr[left], arr[right]);
-        left++;
-        right--;
-    }
-}
-```
-
-<div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 my-4">
-  <h3 className="font-bold text-yellow-800 mb-2">🔧 Thực hành</h3>
-  <p className="text-yellow-700">Hãy thực hiện các bài tập sau:</p>
-  <ol className="list-decimal list-inside text-yellow-700 mt-2">
-    <li>Viết function tính tổng các phần tử trong array</li>
-    <li>Tìm phần tử xuất hiện nhiều nhất</li>
-    <li>Sắp xếp array theo thứ tự tăng dần (bubble sort)</li>
-    <li>Viết class Calculator với các phép toán cơ bản</li>
+<div className="bg-gray-50 border border-gray-300 p-4 rounded-lg my-4">
+  <h4 className="font-semibold mb-3">Bài tập 1: Viết hàm đếm số chẵn trong mảng</h4>
+  
+  <strong>Yêu cầu:</strong>
+  <ol className="ml-4 list-decimal">
+    <li>Viết pseudocode</li>
+    <li>Implement bằng C++</li>
+    <li>Test với ít nhất 3 test cases</li>
   </ol>
 </div>
 
-## 8. Tổng kết
+**Pseudocode:**
 
-### Checklist hoàn thành bài 1:
+```
+ALGORITHM CountEvenNumbers
+INPUT: array A[0..n-1]
+OUTPUT: count of even numbers
 
-- ✅ Hiểu cú pháp cơ bản C++
-- ✅ Thành thạo control structures
-- ✅ Viết được functions cơ bản
-- ✅ Nắm được OOP basics
-- ✅ Có thể viết pseudo code
-- ✅ Hoàn thành các bài tập thực hành
+BEGIN
+    count = 0
+    FOR i = 0 TO n-1 DO
+        IF A[i] MOD 2 = 0 THEN
+            count = count + 1
+        ENDIF
+    ENDFOR
+    RETURN count
+END
+```
 
-### Chuẩn bị cho bài 2:
+**C++ Solution:**
 
-- Đọc trước về Data Structures
-- Ôn lại pointer và memory management
-- Thực hành thêm với STL containers
+```cpp
+int countEvenNumbers(vector<int>& arr) {
+    int count = 0;
+    for (int num : arr) {
+        if (num % 2 == 0) {
+            count++;
+        }
+    }
+    return count;
+}
 
----
+// Test cases
+int main() {
+    vector<int> test1 = {1, 2, 3, 4, 5, 6};    // Expected: 3
+    vector<int> test2 = {1, 3, 5, 7};          // Expected: 0
+    vector<int> test3 = {2, 4, 6, 8};          // Expected: 4
 
-<div className="text-center text-gray-600 text-sm mt-8">
-  <strong>Bài tiếp theo:</strong> Introduction to Data Structures<br />
-  <em>Khóa học Data Structures & Algorithms - 24 Bài học</em>
+    cout << "Test 1: " << countEvenNumbers(test1) << endl;
+    cout << "Test 2: " << countEvenNumbers(test2) << endl;
+    cout << "Test 3: " << countEvenNumbers(test3) << endl;
+
+    return 0;
+}
+```
+
+### 6.2 Checkpoint kiến thức
+
+| Concept            | Bạn đã nắm chắc chưa? | Ghi chú                                   |
+| ------------------ | :-------------------: | ----------------------------------------- |
+| C++ Syntax cơ bản  |           ☐           | Includes, namespaces, main function       |
+| Control structures |           ☐           | if/else, loops, switch                    |
+| Functions          |           ☐           | Parameters, return values, references     |
+| OOP basics         |           ☐           | Classes, objects, constructors            |
+| Pseudocode         |           ☐           | Can translate problem → pseudocode → code |
+
+## 7. Tổng kết và chuẩn bị cho bài tiếp theo
+
+### 7.1 Key Takeaways
+
+<div className="bg-indigo-50 border-l-4 border-indigo-500 p-4 my-4">
+  <ul className="text-indigo-800">
+    <li><strong>Nền tảng vững chắc</strong> về ngôn ngữ lập trình là điều kiện tiên quyết</li>
+    <li><strong>Pseudocode</strong> giúp bạn tư duy thuật toán trước khi code</li>
+    <li><strong>C++</strong> cung cấp hiệu năng và linh hoạt cần thiết cho DSA</li>
+    <li><strong>OOP</strong> giúp thiết kế cấu trúc dữ liệu có tổ chức</li>
+  </ul>
 </div>
+
+### 7.2 Chuẩn bị cho Bài 2
+
+Bài tiếp theo chúng ta sẽ học về **"Introduction to Data Structures"**. Hãy đảm bảo bạn:
+
+- [ ] Cài đặt C++ compiler và IDE
+- [ ] Thực hành viết và chạy chương trình C++ cơ bản
+- [ ] Hoàn thành tất cả bài tập trong bài này
+- [ ] Ôn lại khái niệm về memory và pointers
+
+### 7.3 Tài liệu tham khảo
+
+- **C++ Reference**: https://cppreference.com/
+- **Online C++ Compiler**: https://godbolt.org/
+- **Practice Platform**: https://leetcode.com/ (Easy problems để làm quen)

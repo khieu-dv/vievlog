@@ -1,464 +1,442 @@
-# Bài 3: SPA vs SSR và Giới thiệu Next.js
+# Bài 3: Arrays - Cấu trúc dữ liệu đầu tiên
 
-<div className="p-6 rounded-lg border-2 border-blue-500 mb-8">
-  <h2 className="text-2xl font-bold text-blue-800 mb-4">🎯 Mục tiêu học tập</h2>
-  <ul className="text-blue-700 space-y-2">
-    <li>✅ Hiểu rõ sự khác biệt giữa SPA, SSR, CSR và SSG</li>
-    <li>✅ Nắm vững lợi ích và hạn chế của từng phương pháp</li>
-    <li>✅ Tìm hiểu tại sao Next.js ra đời và giá trị nó mang lại</li>
-    <li>✅ So sánh Next.js với các framework khác</li>
-  </ul>
+## 🎯 Mục tiêu học tập
+
+<div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
+<h3 className="text-lg font-semibold text-blue-800 mb-2">Sau khi hoàn thành bài học này, bạn sẽ có thể:</h3>
+<ul className="text-blue-700 space-y-1">
+<li>✅ Hiểu khái niệm Array và cách lưu trữ trong bộ nhớ</li>
+<li>✅ Thực hiện các thao tác cơ bản trên Array</li>
+<li>✅ Phân tích độ phức tạp của các thuật toán Array</li>
+<li>✅ Cài đặt các thuật toán cơ bản bằng C++</li>
+</ul>
 </div>
 
-## 1. Tổng quan các phương pháp Rendering
+## 📚 1. Khái niệm cơ bản về Array
 
-### 1.1 Sơ đồ tổng quan
+### 1.1 Định nghĩa
 
-```mermaid
-graph TD
-    A[Web Rendering Methods] --> B[Client Side Rendering - CSR]
-    A --> C[Server Side Rendering - SSR]
-    A --> D[Static Site Generation - SSG]
-    A --> E[Incremental Static Regeneration - ISR]
-
-    B --> B1[React SPA]
-    C --> C1[Next.js SSR]
-    D --> D1[Next.js SSG]
-    E --> E1[Next.js ISR]
-```
-
-### 1.2 Bảng so sánh tổng quan
-
-| Phương pháp | Thời gian tải ban đầu | SEO     | UX sau tải | Phức tạp   | Phù hợp với       |
-| ----------- | --------------------- | ------- | ---------- | ---------- | ----------------- |
-| **SPA/CSR** | Chậm                  | Kém     | Tuyệt vời  | Đơn giản   | Dashboard, Admin  |
-| **SSR**     | Nhanh                 | Tốt     | Tốt        | Phức tạp   | E-commerce, Blog  |
-| **SSG**     | Rất nhanh             | Rất tốt | Tốt        | Trung bình | Landing page, Doc |
-| **ISR**     | Rất nhanh             | Rất tốt | Tốt        | Phức tạp   | News, CMS         |
-
-## 2. Single Page Application (SPA) - Client Side Rendering
-
-<div className="border-l-8 border-green-500 pl-6 py-4 rounded-r-lg mb-6 border border-green-400">
-  <h3 className="text-lg font-semibold text-green-800 mb-2">💡 Khái niệm SPA</h3>
-  <p className="text-green-700">SPA là ứng dụng web chỉ tải một trang HTML duy nhất và dinamically cập nhật nội dung khi người dùng tương tác.</p>
-</div>
-
-### 2.1 Quy trình hoạt động của SPA
-
-```mermaid
-sequenceDiagram
-    participant U as User
-    participant B as Browser
-    participant S as Server
-
-    U->>B: Truy cập website
-    B->>S: Request trang chủ
-    S->>B: HTML + CSS + JS bundle lớn
-    B->>U: Hiển thị loading...
-    B->>B: Execute JavaScript
-    B->>B: Render components
-    B->>U: Hiển thị nội dung
-
-    Note over B: Navigation tiếp theo chỉ cần JS
-    U->>B: Click link khác
-    B->>B: Client-side routing
-    B->>S: API request
-    S->>B: Data response
-    B->>U: Update nội dung
-```
-
-### 2.2 Ưu và nhược điểm của SPA
-
-<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-  <div className="p-4 rounded-lg border-2 border-green-400 shadow-md">
-    <h4 className="font-semibold text-green-800 mb-3 text-center">Ưu điểm ✅</h4>
-    <ul className="text-green-700 space-y-2 text-sm">
-      <li>• UX mượt mà sau khi tải</li>
-      <li>• Giảm băng thông server</li>
-      <li>• Dễ cache tài nguyên</li>
-      <li>• Phát triển nhanh</li>
-      <li>• Offline support tốt</li>
-    </ul>
-  </div>
-  
-  <div className="p-4 rounded-lg border-2 border-red-400 shadow-md">
-    <h4 className="font-semibold text-red-800 mb-3 text-center">Nhược điểm ❌</h4>
-    <ul className="text-red-700 space-y-2 text-sm">
-      <li>• Thời gian tải ban đầu chậm</li>
-      <li>• Bundle size lớn</li>
-      <li>• SEO kém</li>
-      <li>• First Contentful Paint chậm</li>
-      <li>• Phụ thuộc JavaScript</li>
-    </ul>
-  </div>
-</div>
-
-### 2.3 Ví dụ kiến trúc React SPA
-
-```typescript
-// App.tsx - SPA Structure
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
-export default function App() {
-  return (
-    <BrowserRouter>
-      <div className="min-h-screen">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/products" element={<ProductsPage />} />
-          <Route path="/about" element={<AboutPage />} />
-        </Routes>
-      </div>
-    </BrowserRouter>
-  );
-}
-
-// Tất cả content được render bởi JavaScript
-```
-
-## 3. Server Side Rendering (SSR)
-
-<div className="border-l-8 border-blue-500 pl-6 py-4 rounded-r-lg mb-6 border border-blue-400">
-  <h3 className="text-lg font-semibold text-blue-800 mb-2">🚀 Khái niệm SSR</h3>
-  <p className="text-blue-700">SSR pre-render HTML trên server cho mỗi request, gửi complete HTML về client, sau đó hydrate bằng JavaScript.</p>
-</div>
-
-### 3.1 Quy trình hoạt động của SSR
-
-```mermaid
-sequenceDiagram
-    participant U as User
-    participant B as Browser
-    participant S as Server
-    participant D as Database
-
-    U->>B: Request trang web
-    B->>S: HTTP Request
-    S->>D: Fetch data
-    D->>S: Return data
-    S->>S: Render HTML với data
-    S->>B: Complete HTML + CSS
-    B->>U: Hiển thị nội dung ngay
-    S->>B: JavaScript bundle
-    B->>B: Hydration process
-    B->>U: Interactive ready
-```
-
-### 3.2 Lợi ích của SSR
-
-<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-  <div className="p-4 rounded-lg shadow-md border-2 border-indigo-400">
-    <h4 className="font-semibold text-indigo-800 mb-2">🎯 SEO Optimization</h4>
-    <p className="text-indigo-700 text-sm">Search engine có thể crawl nội dung hoàn chỉnh ngay lập tức</p>
-  </div>
-  
-  <div className="p-4 rounded-lg shadow-md border-2 border-purple-400">
-    <h4 className="font-semibold text-purple-800 mb-2">⚡ Faster First Paint</h4>
-    <p className="text-purple-700 text-sm">Người dùng thấy nội dung ngay, không cần chờ JavaScript</p>
-  </div>
-  
-  <div className="p-4 rounded-lg shadow-md border-2 border-pink-400">
-    <h4 className="font-semibold text-pink-800 mb-2">📱 Better Mobile Experience</h4>
-    <p className="text-pink-700 text-sm">Hoạt động tốt trên thiết bị yếu, mạng chậm</p>
-  </div>
-  
-  <div className="p-4 rounded-lg shadow-md border-2 border-cyan-400">
-    <h4 className="font-semibold text-cyan-800 mb-2">🔗 Social Sharing</h4>
-    <p className="text-cyan-700 text-sm">Meta tags được render đúng cho social media</p>
-  </div>
-</div>
-
-## 4. Static Site Generation (SSG)
-
-<div className="border-l-8 border-purple-500 pl-6 py-4 rounded-r-lg mb-6 border border-purple-400">
-  <h3 className="text-lg font-semibold text-purple-800 mb-2">🏗️ Khái niệm SSG</h3>
-  <p className="text-purple-700">SSG pre-render tất cả trang thành static HTML tại build time, phục vụ file HTML đã sẵn sàng.</p>
-</div>
-
-### 4.1 Build Process của SSG
+**Array** (mảng) là một cấu trúc dữ liệu tuyến tính lưu trữ các phần tử cùng kiểu dữ liệu trong các vị trí bộ nhớ liên tiếp.
 
 ```mermaid
 graph LR
-    A[Source Code] --> B[Build Process]
-    B --> C[Fetch All Data]
-    B --> D[Generate HTML Files]
-    C --> D
-    D --> E[Static Assets]
-    E --> F[CDN Distribution]
-    F --> G[Lightning Fast Delivery]
+    A[Array Index] --> B[0]
+    A --> C[1]
+    A --> D[2]
+    A --> E[3]
+    A --> F[4]
+
+    B --> G[10]
+    C --> H[25]
+    D --> I[30]
+    E --> J[15]
+    F --> K[40]
+
+    style A fill:#e1f5fe
+    style G fill:#f3e5f5
+    style H fill:#f3e5f5
+    style I fill:#f3e5f5
+    style J fill:#f3e5f5
+    style K fill:#f3e5f5
 ```
 
-### 4.2 So sánh Performance Metrics
+### 1.2 Đặc điểm quan trọng
 
-| Metric                             | SPA    | SSR    | SSG   |
-| ---------------------------------- | ------ | ------ | ----- |
-| **TTFB** (Time to First Byte)      | 200ms  | 400ms  | 50ms  |
-| **FCP** (First Contentful Paint)   | 1500ms | 800ms  | 300ms |
-| **LCP** (Largest Contentful Paint) | 2000ms | 1200ms | 600ms |
-| **CLS** (Cumulative Layout Shift)  | 0.1    | 0.05   | 0.02  |
-| **FID** (First Input Delay)        | 100ms  | 80ms   | 50ms  |
+| Đặc điểm                   | Mô tả                                       | Ví dụ                        |
+| -------------------------- | ------------------------------------------- | ---------------------------- |
+| **Kích thước cố định**     | Số lượng phần tử được xác định khi khởi tạo | `int arr[5]`                 |
+| **Kiểu dữ liệu đồng nhất** | Tất cả phần tử cùng kiểu                    | `int`, `double`, `char`      |
+| **Truy cập ngẫu nhiên**    | Truy cập phần tử qua chỉ số O(1)            | `arr[3]`                     |
+| **Bộ nhớ liên tiếp**       | Các phần tử được lưu kề nhau                | Địa chỉ: 1000, 1004, 1008... |
 
-## 5. Tại sao cần Next.js?
+## 💾 2. Cách lưu trữ Array trong bộ nhớ
 
-### 5.1 Vấn đề với React thuần
-
-<div className="border-2 border-red-400 rounded-lg p-4 mb-6">
-  <h4 className="text-red-800 font-semibold mb-2">🚨 Thách thức với React SPA</h4>
-  <ul className="text-red-700 space-y-1 text-sm">
-    <li>• SEO kém do content render phía client</li>
-    <li>• Bundle size lớn, loading chậm</li>
-    <li>• Cần setup phức tạp cho routing, bundling</li>
-    <li>• Không có built-in performance optimization</li>
-    <li>• Khó optimize cho Core Web Vitals</li>
-  </ul>
-</div>
-
-### 5.2 Next.js giải quyết như thế nào
+<div className="bg-gray-50 p-4 rounded-lg mb-4">
+<h3 className="font-semibold mb-2">Sơ đồ bộ nhớ:</h3>
 
 ```mermaid
-graph TD
-    A[React Challenges] --> B[Next.js Solutions]
+flowchart TD
+    A[Memory Layout] --> B[Base Address: 1000]
+    B --> C[arr[0]: 10]
+    C --> D[arr[1]: 25]
+    D --> E[arr[2]: 30]
+    E --> F[arr[3]: 15]
+    F --> G[arr[4]: 40]
 
-    A1[Poor SEO] --> B1[SSR + SSG]
-    A2[Slow Loading] --> B2[Code Splitting + Optimization]
-    A3[Complex Setup] --> B3[Zero Config]
-    A4[No Routing] --> B4[File-based Routing]
-    A5[Bundle Size] --> B5[Automatic Optimization]
+    H[Address Calculation] --> I[arr[i] = base_address + i × sizeof(datatype)]
 
-    B --> C[Production Ready App]
+    style A fill:#fff3e0
+    style H fill:#fff3e0
 ```
 
-### 5.3 Tính năng chính của Next.js
-
-| Tính năng                | Mô tả                           | Lợi ích                   |
-| ------------------------ | ------------------------------- | ------------------------- |
-| **Hybrid Rendering**     | SSR + SSG + CSR trong một app   | Linh hoạt cho từng trang  |
-| **File-based Routing**   | Routes dựa trên cấu trúc folder | Đơn giản, trực quan       |
-| **API Routes**           | Backend API trong cùng project  | Full-stack trong một repo |
-| **Built-in CSS Support** | CSS Modules, Sass, CSS-in-JS    | Styling linh hoạt         |
-| **Image Optimization**   | Automatic image optimization    | Performance tốt hơn       |
-| **Bundle Optimization**  | Tree shaking, code splitting    | Bundle size nhỏ           |
-
-## 6. So sánh Next.js với các Framework khác
-
-### 6.1 Bảng so sánh chi tiết
-
-| Framework     | Rendering    | Learning Curve | Performance | Ecosystem | Use Cases     |
-| ------------- | ------------ | -------------- | ----------- | --------- | ------------- |
-| **Next.js**   | Hybrid       | Medium         | Excellent   | Mature    | Universal     |
-| **Remix**     | SSR Focus    | Medium         | Excellent   | Growing   | Web Apps      |
-| **Gatsby**    | SSG Focus    | High           | Good        | Good      | Static Sites  |
-| **Nuxt.js**   | Hybrid (Vue) | Medium         | Excellent   | Good      | Vue ecosystem |
-| **SvelteKit** | Hybrid       | Low            | Excellent   | Small     | Modern apps   |
-
-### 6.2 Map phân tích lựa chọn Framework
-
-<div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-  <div className="border-2 border-green-400 rounded-lg p-4">
-    <h4 className="text-green-800 font-semibold mb-2 text-center">✅ Phù hợp Next.js</h4>
-    <ul className="text-green-700 text-sm space-y-1">
-      <li>• E-commerce sites</li>
-      <li>• Corporate websites</li>
-      <li>• Blogs & CMS</li>
-      <li>• Marketing pages</li>
-      <li>• Full-stack apps</li>
-    </ul>
-  </div>
-  
-  <div className="border-2 border-yellow-400 rounded-lg p-4">
-    <h4 className="text-yellow-800 font-semibold mb-2 text-center">⚠️ Cân nhắc</h4>
-    <ul className="text-yellow-700 text-sm space-y-1">
-      <li>• Simple landing pages</li>
-      <li>• Prototype nhanh</li>
-      <li>• Learning projects</li>
-      <li>• Static docs</li>
-    </ul>
-  </div>
-  
-  <div className="border-2 border-red-400 rounded-lg p-4">
-    <h4 className="text-red-800 font-semibold mb-2 text-center">❌ Không phù hợp</h4>
-    <ul className="text-red-700 text-sm space-y-1">
-      <li>• Real-time apps</li>
-      <li>• Games</li>
-      <li>• Desktop apps</li>
-      <li>• Mobile apps</li>
-    </ul>
-  </div>
 </div>
 
-## 7. Phân tích Performance: SPA vs SSR
+### Công thức tính địa chỉ:
 
-### 7.1 Thí nghiệm so sánh
+**Address of arr[i] = Base Address + i × sizeof(data_type)**
 
-Để hiểu rõ sự khác biệt, chúng ta sẽ phân tích một trang web tin tức đơn giản:
+## 🔧 3. Các thao tác cơ bản trên Array
 
-```typescript
-// SPA Approach - React Only
-function NewsPage() {
-  const [articles, setArticles] = useState([]);
-  const [loading, setLoading] = useState(true);
+### 3.1 Khai báo và Khởi tạo
 
-  useEffect(() => {
-    // Client-side data fetching
-    fetchArticles()
-      .then(data => {
-        setArticles(data);
-        setLoading(false);
-      });
-  }, []);
+```cpp
+#include <iostream>
+using namespace std;
 
-  if (loading) return <div className="text-center p-8">Loading...</div>;
+int main() {
+    // Khai báo
+    int arr[5];                    // Mảng 5 phần tử
+    int nums[] = {10, 25, 30, 15, 40};  // Khởi tạo với giá trị
+    int matrix[3][4];              // Mảng 2 chiều
 
-  return (
-    <div className="container mx-auto p-4">
-      {articles.map(article => (
-        <ArticleCard key={article.id} article={article} />
-      ))}
-    </div>
-  );
+    // Khởi tạo với giá trị 0
+    int zeros[10] = {0};
+
+    return 0;
 }
 ```
 
-```typescript
-// SSR Approach - Next.js
-import { GetServerSideProps } from 'next';
+### 3.2 Bảng tóm tắt các thao tác
 
-interface NewsPageProps {
-  articles: Article[];
-}
+| Thao tác   | Độ phức tạp | Mô tả                         | Code mẫu            |
+| ---------- | ----------- | ----------------------------- | ------------------- |
+| **Access** | O(1)        | Truy cập phần tử tại vị trí i | `arr[i]`            |
+| **Search** | O(n)        | Tìm kiếm phần tử              | Linear search       |
+| **Insert** | O(n)        | Chèn phần tử                  | Dịch chuyển phần tử |
+| **Delete** | O(n)        | Xóa phần tử                   | Dịch chuyển phần tử |
+| **Update** | O(1)        | Cập nhật giá trị              | `arr[i] = value`    |
 
-export default function NewsPage({ articles }: NewsPageProps) {
-  return (
-    <div className="container mx-auto p-4">
-      {articles.map(article => (
-        <ArticleCard key={article.id} article={article} />
-      ))}
-    </div>
-  );
-}
+### 3.3 Cài đặt các thao tác cơ bản
 
-// Data được fetch trên server
-export const getServerSideProps: GetServerSideProps = async () => {
-  const articles = await fetchArticles();
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
 
-  return {
-    props: {
-      articles,
-    },
-  };
+class DynamicArray {
+private:
+    vector<int> arr;
+    int size;
+
+public:
+    DynamicArray(int capacity = 10) {
+        arr.resize(capacity);
+        size = 0;
+    }
+
+    // Truy cập phần tử - O(1)
+    int get(int index) {
+        if (index < 0 || index >= size) {
+            throw out_of_range("Index out of bounds");
+        }
+        return arr[index];
+    }
+
+    // Cập nhật phần tử - O(1)
+    void set(int index, int value) {
+        if (index < 0 || index >= size) {
+            throw out_of_range("Index out of bounds");
+        }
+        arr[index] = value;
+    }
+
+    // Chèn phần tử - O(n)
+    void insert(int index, int value) {
+        if (index < 0 || index > size) {
+            throw out_of_range("Index out of bounds");
+        }
+
+        // Dịch chuyển các phần tử về phía sau
+        for (int i = size; i > index; i--) {
+            arr[i] = arr[i-1];
+        }
+
+        arr[index] = value;
+        size++;
+    }
+
+    // Xóa phần tử - O(n)
+    void deleteAt(int index) {
+        if (index < 0 || index >= size) {
+            throw out_of_range("Index out of bounds");
+        }
+
+        // Dịch chuyển các phần tử về phía trước
+        for (int i = index; i < size - 1; i++) {
+            arr[i] = arr[i+1];
+        }
+
+        size--;
+    }
+
+    // Tìm kiếm tuyến tính - O(n)
+    int linearSearch(int target) {
+        for (int i = 0; i < size; i++) {
+            if (arr[i] == target) {
+                return i;
+            }
+        }
+        return -1; // Không tìm thấy
+    }
+
+    // Hiển thị mảng
+    void display() {
+        cout << "Array: [";
+        for (int i = 0; i < size; i++) {
+            cout << arr[i];
+            if (i < size - 1) cout << ", ";
+        }
+        cout << "]" << endl;
+    }
+
+    int getSize() { return size; }
 };
 ```
 
-### 7.2 Kết quả Performance Test
+## 🎨 4. Mảng đa chiều
 
-| Metric                   | SPA (React) | SSR (Next.js) | Cải thiện |
-| ------------------------ | ----------- | ------------- | --------- |
-| Time to First Byte       | 180ms       | 320ms         | -78%      |
-| First Contentful Paint   | 1400ms      | 420ms         | +233%     |
-| Largest Contentful Paint | 1800ms      | 650ms         | +177%     |
-| Cumulative Layout Shift  | 0.15        | 0.03          | +400%     |
-| SEO Score                | 65/100      | 95/100        | +46%      |
-
-### 7.3 Biểu đồ so sánh Performance
+### 4.1 Mảng 2 chiều
 
 ```mermaid
 graph TB
-    A[Performance Comparison] --> B[SPA React]
-    A --> C[SSR Next.js]
+    A[2D Array Matrix 3x4] --> B[Row 0]
+    A --> C[Row 1]
+    A --> D[Row 2]
 
-    B --> B1[FCP: 1400ms]
-    B --> B2[LCP: 1800ms]
-    B --> B3[SEO: 65/100]
+    B --> E[0,0]
+    B --> F[0,1]
+    B --> G[0,2]
+    B --> H[0,3]
 
-    C --> C1[FCP: 420ms]
-    C --> C2[LCP: 650ms]
-    C --> C3[SEO: 95/100]
+    C --> I[1,0]
+    C --> J[1,1]
+    C --> K[1,2]
+    C --> L[1,3]
+
+    D --> M[2,0]
+    D --> N[2,1]
+    D --> O[2,2]
+    D --> P[2,3]
+
+    style A fill:#e8f5e8
+    style B fill:#fff3cd
+    style C fill:#fff3cd
+    style D fill:#fff3cd
 ```
 
-## 8. Workflow Development với Next.js
+### 4.2 Cài đặt ma trận
 
-### 8.1 Development Process
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
 
-| Phase          | React SPA                      | Next.js             |
-| -------------- | ------------------------------ | ------------------- |
-| **Setup**      | Manual config (Webpack, Babel) | Zero config setup   |
-| **Routing**    | React Router setup             | File-based routing  |
-| **API**        | Separate backend               | Built-in API routes |
-| **Deployment** | Manual optimization            | One-click deploy    |
+class Matrix {
+private:
+    vector<vector<int>> data;
+    int rows, cols;
 
-## 9. Kết luận và Roadmap tiếp theo
+public:
+    Matrix(int r, int c) : rows(r), cols(c) {
+        data.resize(rows, vector<int>(cols, 0));
+    }
 
-<div className="p-6 rounded-lg border-2 border-indigo-400 mb-8">
-  <h3 className="text-xl font-bold text-indigo-800 mb-4">🎓 Kiến thức đã học</h3>
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-    <div className="border-l-4 border-indigo-500 pl-4">
-      <h4 className="font-semibold text-indigo-700 mb-2">Rendering Methods</h4>
-      <ul className="text-indigo-600 text-sm space-y-1">
-        <li>• SPA/CSR: Client-side rendering</li>
-        <li>• SSR: Server-side rendering</li>
-        <li>• SSG: Static site generation</li>
-        <li>• ISR: Incremental regeneration</li>
-      </ul>
-    </div>
-    <div className="border-l-4 border-purple-500 pl-4">
-      <h4 className="font-semibold text-purple-700 mb-2">Next.js Benefits</h4>
-      <ul className="text-purple-600 text-sm space-y-1">
-        <li>• Hybrid rendering approach</li>
-        <li>• Built-in optimizations</li>
-        <li>• File-based routing</li>
-        <li>• Full-stack capabilities</li>
-      </ul>
-    </div>
-  </div>
+    // Thiết lập giá trị
+    void setValue(int row, int col, int value) {
+        if (row >= 0 && row < rows && col >= 0 && col < cols) {
+            data[row][col] = value;
+        }
+    }
+
+    // Lấy giá trị
+    int getValue(int row, int col) {
+        if (row >= 0 && row < rows && col >= 0 && col < cols) {
+            return data[row][col];
+        }
+        return -1; // Invalid
+    }
+
+    // Hiển thị ma trận
+    void display() {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                cout << data[i][j] << "\t";
+            }
+            cout << endl;
+        }
+    }
+
+    // Cộng hai ma trận
+    Matrix add(const Matrix& other) {
+        if (rows != other.rows || cols != other.cols) {
+            throw invalid_argument("Matrix dimensions must match");
+        }
+
+        Matrix result(rows, cols);
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                result.data[i][j] = data[i][j] + other.data[i][j];
+            }
+        }
+        return result;
+    }
+};
+```
+
+## 📊 5. Phân tích độ phức tạp
+
+<div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-4">
+<h3 className="font-semibold text-yellow-800 mb-3">Bảng so sánh độ phức tạp</h3>
+
+| Thao tác              | Time Complexity | Space Complexity | Ghi chú                 |
+| --------------------- | --------------- | ---------------- | ----------------------- |
+| **Truy cập**          | O(1)            | O(1)             | Random access           |
+| **Tìm kiếm**          | O(n)            | O(1)             | Linear search           |
+| **Tìm kiếm (sorted)** | O(log n)        | O(1)             | Binary search           |
+| **Chèn đầu**          | O(n)            | O(1)             | Dịch chuyển n phần tử   |
+| **Chèn cuối**         | O(1)            | O(1)             | Nếu còn chỗ trống       |
+| **Chèn giữa**         | O(n)            | O(1)             | Dịch chuyển k phần tử   |
+| **Xóa đầu**           | O(n)            | O(1)             | Dịch chuyển n-1 phần tử |
+| **Xóa cuối**          | O(1)            | O(1)             | Không cần dịch chuyển   |
+| **Xóa giữa**          | O(n)            | O(1)             | Dịch chuyển k phần tử   |
+
 </div>
 
-### 9.1 Bài học tiếp theo
+## 🚀 6. Thuật toán cơ bản trên Array
 
-<div className="border-l-4 border-emerald-500 pl-6 py-4 mb-6">
-  <h4 className="font-semibold text-emerald-800 mb-2">📚 Bài 4: Khởi tạo dự án với create-next-app</h4>
-  <ul className="text-emerald-700 text-sm space-y-1">
-    <li>• Khởi tạo dự án Next.js với create-next-app</li>
-    <li>• Khám phá cấu trúc folder và files</li>
-    <li>• Cấu hình TypeScript, ESLint, Tailwind CSS</li>
-    <li>• Hiểu về development workflow</li>
-  </ul>
+### 6.1 Tìm phần tử lớn nhất
+
+```cpp
+int findMax(vector<int>& arr) {
+    if (arr.empty()) return -1;
+
+    int maxVal = arr[0];
+    for (int i = 1; i < arr.size(); i++) {
+        if (arr[i] > maxVal) {
+            maxVal = arr[i];
+        }
+    }
+    return maxVal;
+}
+```
+
+### 6.2 Đảo ngược mảng
+
+```cpp
+void reverseArray(vector<int>& arr) {
+    int left = 0, right = arr.size() - 1;
+
+    while (left < right) {
+        swap(arr[left], arr[right]);
+        left++;
+        right--;
+    }
+}
+```
+
+### 6.3 Xoay mảng
+
+```cpp
+void rotateRight(vector<int>& arr, int k) {
+    int n = arr.size();
+    k = k % n; // Xử lý trường hợp k > n
+
+    // Đảo ngược toàn bộ mảng
+    reverse(arr.begin(), arr.end());
+
+    // Đảo ngược k phần tử đầu
+    reverse(arr.begin(), arr.begin() + k);
+
+    // Đảo ngược n-k phần tử cuối
+    reverse(arr.begin() + k, arr.end());
+}
+```
+
+## 💡 7. Ứng dụng thực tế
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+<div className="border border-gray-200 rounded-lg p-4">
+<h3 className="font-semibold text-green-700 mb-2">Ưu điểm</h3>
+<ul className="text-sm text-green-600 space-y-1">
+<li>• Truy cập nhanh O(1)</li>
+<li>• Sử dụng bộ nhớ hiệu quả</li>
+<li>• Đơn giản, dễ hiểu</li>
+<li>• Cache-friendly</li>
+</ul>
 </div>
 
-### 9.2 Key Takeaways
-
-<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-  <div className="p-4 border-2 border-blue-400 rounded-lg">
-    <h4 className="font-semibold text-blue-800 mb-2">🔑 Core Concepts</h4>
-    <ul className="text-blue-700 text-sm space-y-1">
-      <li>• Rendering strategies impact performance</li>
-      <li>• SEO requires server-side solutions</li>
-      <li>• Next.js combines best of all worlds</li>
-    </ul>
-  </div>
-  
-  <div className="p-4 border-2 border-green-400 rounded-lg">
-    <h4 className="font-semibold text-green-800 mb-2">🎯 Practical Applications</h4>
-    <ul className="text-green-700 text-sm space-y-1">
-      <li>• Choose rendering based on use case</li>
-      <li>• Next.js for production applications</li>
-      <li>• Performance optimization is crucial</li>
-    </ul>
-  </div>
+<div className="border border-gray-200 rounded-lg p-4">
+<h3 className="font-semibold text-red-700 mb-2">Nhược điểm</h3>
+<ul className="text-sm text-red-600 space-y-1">
+<li>• Kích thước cố định</li>
+<li>• Insert/Delete chậm O(n)</li>
+<li>• Lãng phí bộ nhớ nếu không đầy</li>
+<li>• Không thể mở rộng động</li>
+</ul>
+</div>
 </div>
 
-<div className="mt-8 p-4 rounded-lg border-2 border-orange-400">
-  <h4 className="font-semibold text-orange-800 mb-2">💪 Bài tập thực hành</h4>
-  <p className="text-orange-700 text-sm mb-2">Tạo một comparison table so sánh performance giữa một trang web SPA và SSR sử dụng Chrome DevTools:</p>
-  <ul className="text-orange-600 text-sm space-y-1">
-    <li>• Đo First Paint, First Contentful Paint</li>
-    <li>• Kiểm tra Time to Interactive</li>
-    <li>• Phân tích Bundle size và Loading time</li>
-    <li>• Test SEO với Google Lighthouse</li>
-  </ul>
+## 🏆 8. Bài tập thực hành
+
+### Danh sách bài tập LeetCode liên quan:
+
+| STT | Tên bài                         | Độ khó | Link                                                                           | Kỹ thuật chính     |
+| --- | ------------------------------- | ------ | ------------------------------------------------------------------------------ | ------------------ |
+| 1   | Two Sum                         | Easy   | [LeetCode 1](https://leetcode.com/problems/two-sum/)                           | Hash Map           |
+| 2   | Best Time to Buy and Sell Stock | Easy   | [LeetCode 121](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/) | One Pass           |
+| 3   | Contains Duplicate              | Easy   | [LeetCode 217](https://leetcode.com/problems/contains-duplicate/)              | Hash Set           |
+| 4   | Maximum Subarray                | Medium | [LeetCode 53](https://leetcode.com/problems/maximum-subarray/)                 | Kadane's Algorithm |
+| 5   | Rotate Array                    | Medium | [LeetCode 189](https://leetcode.com/problems/rotate-array/)                    | Reverse Technique  |
+| 6   | 3Sum                            | Medium | [LeetCode 15](https://leetcode.com/problems/3sum/)                             | Two Pointers       |
+| 7   | Container With Most Water       | Medium | [LeetCode 11](https://leetcode.com/problems/container-with-most-water/)        | Two Pointers       |
+| 8   | Product of Array Except Self    | Medium | [LeetCode 238](https://leetcode.com/problems/product-of-array-except-self/)    | Prefix/Suffix      |
+
+### Bài tập tự luyện:
+
+<div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+<h3 className="font-semibold text-blue-800 mb-2">Thực hành ngay:</h3>
+<ol className="text-blue-700 space-y-2 list-decimal list-inside">
+<li>Viết hàm tìm phần tử xuất hiện nhiều nhất trong mảng</li>
+<li>Cài đặt thuật toán merge hai mảng đã sắp xếp</li>
+<li>Tìm cặp số có tổng bằng target cho trước</li>
+<li>Xóa các phần tử trùng lặp trong mảng đã sắp xếp</li>
+<li>Tìm intersection của hai mảng</li>
+</ol>
+</div>
+
+## 📝 9. Tóm tắt
+
+```mermaid
+mindmap
+  root((Arrays))
+    (Khái niệm)
+      Cấu trúc tuyến tính
+      Bộ nhớ liên tiếp
+      Kiểu dữ liệu đồng nhất
+    (Thao tác)
+      Access O(1)
+      Search O(n)
+      Insert/Delete O(n)
+    (Ứng dụng)
+      Ma trận
+      Buffer
+      Database indexing
+    (Thuật toán)
+      Linear Search
+      Binary Search
+      Sorting algorithms
+```
+
+<div className="bg-green-50 border-l-4 border-green-500 p-4 mt-6">
+<h3 className="text-green-800 font-semibold mb-2">🎯 Key Takeaways</h3>
+<ul className="text-green-700 space-y-1">
+<li>• Array là nền tảng của nhiều cấu trúc dữ liệu khác</li>
+<li>• Hiểu rõ trade-offs giữa space và time complexity</li>
+<li>• Luyện tập nhiều với các thuật toán trên array</li>
+<li>• Áp dụng vào các bài toán thực tế</li>
+</ul>
 </div>
 
 ---
 
-<div className="text-center text-sm text-gray-500 mt-8 border-t-2 border-gray-300 pt-4">
-  <p>📚 Tài liệu học Next.js - Bài 3 | Chuẩn bị cho hành trình trở thành Full-stack Developer</p>
-</div>
+**Bài tiếp theo:** Bài 4 - Linked Lists (Danh sách liên kết)

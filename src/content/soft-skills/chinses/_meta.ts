@@ -1,2 +1,20 @@
 export default {
+    "bai-1": "Bài 1: 你好 (Xin Chào)",
+    "bai-2": "Bài 2: 家庭 (Gia Đình)",
+    "bai-3": "Bài 3: 工作 (Công Việc)",
+    "bai-4": "Bài 4: 学校 (Trường Học)",
+    "bai-5": "Bài 5: 日常生活 (Cuộc Sống Hàng Ngày)",
+    "bai-6": "Bài 6: 饮食 (Ăn Uống)",
+    "bai-7": "Bài 7: 购物 (Mua Sắm)",
+    "bai-8": "Bài 8: 旅行 (Du Lịch)",
+    "bai-9": "Bài 9: 健康 (Sức Khỏe)",
+    "bai-10": "Bài 10: 节日与文化 (Lễ Hội và Văn Hóa)",
+    "bai-11": "Bài 11: 天气 (Thời Tiết)",
+    "bai-12": "Bài 12: 爱好 (Sở Thích)",
+    "bai-13": "Bài 13: 交通 (Giao Thông)",
+    "bai-14": "Bài 14: 方向与位置 (Hướng và Vị Trí)",
+    "bai-15": "Bài 15: 时间与日期 (Thời Gian và Ngày Tháng)",
+    "bai-16": "Bài 16: 数字与颜色 (Số và Màu Sắc)",
+    "bai-17": "Bài 17: 家居与家具 (Nhà Cửa và Đồ Nội Thất)",
+    "bai-18": "Bài 18: 职业 (Nghề Nghiệp)"
 };
