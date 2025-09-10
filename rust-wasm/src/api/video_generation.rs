@@ -414,6 +414,43 @@ fn apply_fade_effect(img: &DynamicImage, progress: f32, fade_in: bool) -> Dynami
     DynamicImage::ImageRgba8(rgba_img)
 }
 
+// Helper function to create a sliding effect
+fn slide_frame(img1: &DynamicImage, img2: &DynamicImage, progress: f32, direction: &str) -> DynamicImage {
+    let (width, height) = (img1.width(), img1.height());
+    let mut new_frame = image::ImageBuffer::new(width, height);
+    
+    let offset = (progress * width as f32) as i64;
+
+    match direction {
+        "left" => {
+            image::imageops::overlay(&mut new_frame, img1, offset, 0);
+            image::imageops::overlay(&mut new_frame, img2, offset - width as i64, 0);
+        },
+        "right" => {
+            image::imageops::overlay(&mut new_frame, img1, -offset, 0);
+            image::imageops::overlay(&mut new_frame, img2, width as i64 - offset, 0);
+        },
+        "up" => {
+            let offset = (progress * height as f32) as i64;
+            image::imageops::overlay(&mut new_frame, img1, 0, offset);
+            image::imageops::overlay(&mut new_frame, img2, 0, offset - height as i64);
+        },
+        "down" => {
+            let offset = (progress * height as f32) as i64;
+            image::imageops::overlay(&mut new_frame, img1, 0, -offset);
+            image::imageops::overlay(&mut new_frame, img2, 0, height as i64 - offset);
+        },
+        _ => {}
+    }
+
+    DynamicImage::ImageRgba8(new_frame)
+}
+
+// Apply a slide transition effect
+fn apply_slide_transition(img1: &DynamicImage, img2: &DynamicImage, progress: f32, direction: &str) -> DynamicImage {
+    slide_frame(img1, img2, progress, direction)
+}
+
 #[wasm_bindgen]
 pub fn generate_transition_frames(
     image1_data: &[u8],
@@ -489,6 +526,10 @@ pub fn generate_transition_frames(
                     apply_fade_effect(&img2_resized, (progress - 0.5) * 2.0, true)
                 }
             },
+            "slide_left" => apply_slide_transition(&img1_resized, &img2_resized, progress, "left"),
+            "slide_right" => apply_slide_transition(&img1_resized, &img2_resized, progress, "right"),
+            "slide_up" => apply_slide_transition(&img1_resized, &img2_resized, progress, "up"),
+            "slide_down" => apply_slide_transition(&img1_resized, &img2_resized, progress, "down"),
             _ => {
                 // Default: simple crossfade
                 blend_images(&img1_resized, &img2_resized, progress)

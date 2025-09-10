@@ -11,7 +11,7 @@ import { cn } from '~/lib/utils';
 export interface VideoConfig {
   framesPerImage: number;
   transitionFrames: number;
-  transitionType: 'crossfade' | 'pan_left' | 'pan_right' | 'fade';
+  transitionType: 'crossfade' | 'pan_left' | 'pan_right' | 'fade' | 'slide_left' | 'slide_right' | 'slide_up' | 'slide_down';
   fps: number;
   quality: 'low' | 'medium' | 'high';
 }

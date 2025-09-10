@@ -18,6 +18,10 @@ const TRANSITION_TYPES = [
   { value: 'pan_left', label: 'Pan Left', description: 'Pan and zoom effect moving left' },
   { value: 'pan_right', label: 'Pan Right', description: 'Pan and zoom effect moving right' },
   { value: 'fade', label: 'Fade', description: 'Fade out and fade in effect' },
+  { value: 'slide_left', label: 'Slide Left', description: 'Slide transition to the left' },
+  { value: 'slide_right', label: 'Slide Right', description: 'Slide transition to the right' },
+  { value: 'slide_up', label: 'Slide Up', description: 'Slide transition upwards' },
+  { value: 'slide_down', label: 'Slide Down', description: 'Slide transition downwards' },
 ] as const;
 
 const QUALITY_PRESETS = [
