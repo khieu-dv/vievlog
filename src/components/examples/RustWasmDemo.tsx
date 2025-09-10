@@ -86,7 +86,9 @@ export function RustWasmDemo() {
     const personData: PersonData = {
       name: "John Doe",
       age: 25,
-      email: "JOHN.DOE@EXAMPLE.COM"
+      email: "JOHN.DOE@EXAMPLE.COM",
+      skills: ["Rust", "TypeScript", "Next.js"],
+      is_active: true
     };
 
     const processed = rustWasm.processPersonData(personData);
