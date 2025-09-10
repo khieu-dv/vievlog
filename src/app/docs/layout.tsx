@@ -39,7 +39,7 @@ export default async function DocsLayout({ children }: DocsLayoutProps) {
   )
 
 
-  const excludePages = ['posts', 'auth', 'profile', 'games']
+  const excludePages = ['posts', 'auth', 'profile', 'games', 'image', 'video']
 
   const filteredPageMap = pageMap.filter(
     (item: any) => !excludePages.includes(item.name.toLowerCase())
