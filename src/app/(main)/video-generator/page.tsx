@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { VideoGenerator } from "~/components/features/video-generator";
+import { Header } from "~/components/common/Header";
+import { Footer } from "~/components/common/Footer";
 
 export const metadata: Metadata = {
   title: "Video Generator - Create Beautiful Videos from Images",
@@ -14,8 +16,14 @@ export const metadata: Metadata = {
 
 export default function VideoGeneratorPage() {
   return (
-    <div className="container mx-auto py-8 px-4">
-      <VideoGenerator />
+
+    <div className="min-h-screen bg-background">
+      <Header />
+      <main className="pt-4">
+        <VideoGenerator />
+      </main>
+      <Footer />
     </div>
+
   );
 }
