@@ -410,8 +410,8 @@ export function VideoGenerator() {
       {/* Enhanced Effects Status */}
       {config.useEnhancedEffects && (
         <div className="bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-950/20 dark:to-teal-950/20 rounded-lg p-4 border border-emerald-200 dark:border-emerald-800">
-          <h3 className="font-semibold text-sm mb-2 text-emerald-800 dark:text-emerald-300">🎬 Enhanced Cinematic Effects Active - 25+ Professional Effects:</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-emerald-700 dark:text-emerald-300">
+          <h3 className="font-semibold text-sm mb-2 text-emerald-800 dark:text-emerald-300">🎬 Enhanced Cinematic Effects Active - 47+ Professional Effects:</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm text-emerald-700 dark:text-emerald-300">
             <div>
               <strong>🎯 Cinematic Zoom:</strong>
               <ul className="ml-4 space-y-1 text-xs">
@@ -449,26 +449,78 @@ export function VideoGenerator() {
               </ul>
             </div>
             <div>
-              <strong>⚡ Digital Effects:</strong>
+              <strong>🚀 Flying & Animation Effects:</strong>
               <ul className="ml-4 space-y-1 text-xs">
-                <li>• Digital glitch với channel shifting</li>
-                <li>• Hologram flicker với scan lines</li>
-                <li>• Particle dissolve với noise patterns</li>
-                <li>• Spiral transition với complex math</li>
+                <li>• Float up & disappear với smooth fade</li>
+                <li>• Bounce fly away với physics motion</li>
+                <li>• Rotate scale vanish với spin effects</li>
+                <li>• Magic sparkle fly với brightness burst</li>
+                <li>• Swoosh up fade với motion blur</li>
+                <li>• Spinning tornado với lift motion</li>
+                <li>• Random particle burst explosion</li>
+                <li>• Elastic bounce với damped waves</li>
+                <li>• Floating bubbles với drift motion</li>
+              </ul>
+            </div>
+            <div>
+              <strong>🦋 Nature & Creatures:</strong>
+              <ul className="ml-4 space-y-1 text-xs">
+                <li>• Butterflies flying với figure-8 patterns</li>
+                <li>• Birds flock trong V-formation</li>
+                <li>• Fireflies dancing với glow effects</li>
+                <li>• Falling petals với wind drift</li>
+                <li>• Swimming fish trong schools</li>
+                <li>• Dancing dragonflies với quick darts</li>
+                <li>• Cherry blossoms trong wind</li>
+                <li>• Autumn leaves spiral motion</li>
+                <li>• Snow falling gentle với rotation</li>
+                <li>• Floating dandelion seeds</li>
+                <li>• Swaying grass trong breeze</li>
+                <li>• Floating leaves với spiral motion</li>
               </ul>
             </div>
             <div>
               <strong>✨ Smart Features:</strong>
               <ul className="ml-4 space-y-1 text-xs">
-                <li>• Auto-randomization across categories</li>
+                <li>• Auto-randomization across 6 categories</li>
                 <li>• Intensity control (10%-150%)</li>
                 <li>• Professional easing curves</li>
-                <li>• Color grading & lighting effects</li>
+                <li>• Physics-based animations</li>
+                <li>• Alpha blending & transparency</li>
+                <li>• Motion blur & particle systems</li>
+                <li>• Creature AI movement patterns</li>
+                <li>• Realistic nature simulations</li>
               </ul>
             </div>
           </div>
           <div className="mt-3 text-xs text-emerald-600 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-900/30 rounded px-3 py-2">
-            🎯 <strong>Mỗi hình ảnh tự động chọn hiệu ứng khác nhau từ 5 categories khác nhau để đảm bảo video đa dạng và chuyên nghiệp!</strong>
+            🌈 <strong>OVERLAY ANIMATION SYSTEM: Mỗi hình ảnh có 2 tầng hiệu ứng - Main effect từ 6 categories + Overlay animation từ 20 kiểu khác nhau với màu sắc rực rỡ!</strong>
+          </div>
+          
+          <div className="mt-2 p-3 bg-gradient-to-r from-pink-50 to-purple-50 dark:from-pink-950/20 dark:to-purple-950/20 rounded-lg border border-pink-200 dark:border-pink-800">
+            <h4 className="font-semibold text-xs mb-1 text-pink-800 dark:text-pink-300">🎨 20 Overlay Animations với HSV Color System:</h4>
+            <div className="grid grid-cols-4 gap-1 text-xs text-pink-700 dark:text-pink-300">
+              <div>🌈 Rainbow Butterflies</div>
+              <div>🔶 Golden Birds</div>
+              <div>✨ Magical Fireflies</div>
+              <div>🌸 Sakura Petals</div>
+              <div>🍂 Autumn Leaves Gold</div>
+              <div>❄️ Crystal Snowflakes</div>
+              <div>🐠 Tropical Fish</div>
+              <div>🦋 Emerald Dragonflies</div>
+              <div>⭐ Dancing Stars</div>
+              <div>💖 Floating Hearts</div>
+              <div>🔮 Glowing Orbs</div>
+              <div>✨ Mystic Sparkles</div>
+              <div>🧚 Fairy Dust</div>
+              <div>🌌 Cosmic Particles</div>
+              <div>🌺 Flower Shower</div>
+              <div>🫧 Bubble Stream</div>
+              <div>⚡ Lightning Bugs</div>
+              <div>🔥 Phoenix Feathers</div>
+              <div>💫 Dream Wisps</div>
+              <div>🌈 Rainbow Trails</div>
+            </div>
           </div>
         </div>
       )}

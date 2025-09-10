@@ -80,16 +80,25 @@ pub fn generate_enhanced_video_frames(
     
     let dynamic_effects = [
         "cross_dissolve", "slide_elegant", "spiral_transition", "wave_distortion",
-        "particle_dissolve", "digital_glitch", "hologram_flicker"
+        "particle_dissolve", "digital_glitch", "hologram_flicker", "float_up_disappear", 
+        "bounce_fly_away", "rotate_scale_vanish", "elastic_bounce", "floating_bubbles",
+        "magic_sparkle_fly", "swoosh_up_fade", "spinning_tornado", "random_particle_burst"
     ];
     
-    // Combine all effects with weighted distribution
+    let nature_animations = [
+        "butterflies_flying", "birds_flock_flying", "fireflies_dancing", "falling_petals",
+        "floating_leaves", "swimming_fish", "dancing_dragonflies", "swaying_grass",
+        "floating_dandelion", "cherry_blossom_wind", "autumn_leaves_spiral", "snow_falling_gentle"
+    ];
+    
+    // Combine all effects with weighted distribution (6 categories now!)
     let all_enhanced_effects = [
         cinematic_effects.as_slice(),
         pan_effects.as_slice(), 
         artistic_effects.as_slice(),
         vintage_effects.as_slice(),
-        dynamic_effects.as_slice()
+        dynamic_effects.as_slice(),
+        nature_animations.as_slice()
     ];
     
     for (idx, img) in processed_images.iter().enumerate() {
@@ -101,16 +110,24 @@ pub fn generate_enhanced_video_frames(
         
         console_log!("Image {} using enhanced effect: {} (category: {})", idx, selected_effect, category_index);
         
-        // Generate frames with enhanced motion effects
+        // Generate frames with enhanced motion effects + overlay animations
         for frame_idx in 0..frames_per_image {
             let progress = frame_idx as f32 / frames_per_image as f32;
-            let enhanced_img = apply_enhanced_motion_effect(img, progress, selected_effect, intensity);
+            
+            // Step 1: Apply category-specific motion effect
+            let motion_enhanced_img = apply_enhanced_motion_effect(img, progress, selected_effect, intensity);
+            
+            // Step 2: Add overlay animation to EVERY image (different types per image)
+            let animation_type = get_animation_type_for_image(idx);
+            let final_img = apply_overlay_animation(&motion_enhanced_img, progress, animation_type, intensity, target_width, target_height);
+            
+            console_log!("Image {} frame {}: {} + overlay animation: {}", idx, frame_idx, selected_effect, animation_type);
             
             // Convert to base64
             let mut output = Vec::new();
             let mut cursor = Cursor::new(&mut output);
             
-            match enhanced_img.write_to(&mut cursor, ImageFormat::Png) {
+            match final_img.write_to(&mut cursor, ImageFormat::Png) {
                 Ok(_) => {
                     let base64_data = general_purpose::STANDARD.encode(&output);
                     all_frames.push(&JsValue::from_str(&format!("data:image/png;base64,{}", base64_data)));
@@ -263,6 +280,71 @@ fn apply_enhanced_motion_effect(img: &DynamicImage, progress: f32, effect_type: 
         },
         "hologram_flicker" => {
             apply_hologram_flicker(img, progress, intensity, width, height)
+        },
+        "float_up_disappear" => {
+            apply_float_up_disappear(img, progress, intensity, width, height)
+        },
+        "bounce_fly_away" => {
+            apply_bounce_fly_away(img, progress, intensity, width, height)
+        },
+        "rotate_scale_vanish" => {
+            apply_rotate_scale_vanish(img, progress, intensity, width, height)
+        },
+        "elastic_bounce" => {
+            apply_elastic_bounce(img, progress, intensity, width, height)
+        },
+        "floating_bubbles" => {
+            apply_floating_bubbles(img, progress, intensity, width, height)
+        },
+        "magic_sparkle_fly" => {
+            apply_magic_sparkle_fly(img, progress, intensity, width, height)
+        },
+        "swoosh_up_fade" => {
+            apply_swoosh_up_fade(img, progress, intensity, width, height)
+        },
+        "spinning_tornado" => {
+            apply_spinning_tornado(img, progress, intensity, width, height)
+        },
+        "random_particle_burst" => {
+            apply_random_particle_burst(img, progress, intensity, width, height)
+        },
+        
+        // Nature & Creature Animations
+        "butterflies_flying" => {
+            apply_butterflies_flying(img, progress, intensity, width, height)
+        },
+        "birds_flock_flying" => {
+            apply_birds_flock_flying(img, progress, intensity, width, height)
+        },
+        "fireflies_dancing" => {
+            apply_fireflies_dancing(img, progress, intensity, width, height)
+        },
+        "falling_petals" => {
+            apply_falling_petals(img, progress, intensity, width, height)
+        },
+        "floating_leaves" => {
+            apply_floating_leaves(img, progress, intensity, width, height)
+        },
+        "swimming_fish" => {
+            apply_swimming_fish(img, progress, intensity, width, height)
+        },
+        "dancing_dragonflies" => {
+            apply_dancing_dragonflies(img, progress, intensity, width, height)
+        },
+        "swaying_grass" => {
+            apply_swaying_grass(img, progress, intensity, width, height)
+        },
+        "floating_dandelion" => {
+            apply_floating_dandelion(img, progress, intensity, width, height)
+        },
+        "cherry_blossom_wind" => {
+            apply_cherry_blossom_wind(img, progress, intensity, width, height)
+        },
+        "autumn_leaves_spiral" => {
+            apply_autumn_leaves_spiral(img, progress, intensity, width, height)
+        },
+        "snow_falling_gentle" => {
+            apply_snow_falling_gentle(img, progress, intensity, width, height)
         },
         
         _ => img.clone()
@@ -768,6 +850,1146 @@ fn apply_hologram_flicker(img: &DynamicImage, progress: f32, intensity: f32, _wi
     }
     
     DynamicImage::ImageRgba8(rgba_img)
+}
+
+// New Flying and Animation Effects
+fn apply_float_up_disappear(img: &DynamicImage, progress: f32, intensity: f32, width: u32, height: u32) -> DynamicImage {
+    let mut rgba_img = img.to_rgba8();
+    
+    // Float up effect: move image upward with easing
+    let float_progress = ease_out_cubic(progress);
+    let y_offset = (height as f32 * 0.3 * float_progress * intensity) as i32;
+    
+    // Create new image with transparent background
+    let mut result = image::RgbaImage::new(width, height);
+    
+    // Calculate fade progress (start fading at 60% of animation)
+    let fade_start = 0.6;
+    let alpha_multiplier = if progress <= fade_start {
+        1.0
+    } else {
+        1.0 - ((progress - fade_start) / (1.0 - fade_start))
+    };
+    
+    // Copy pixels with offset and fade
+    for (x, y, pixel) in rgba_img.enumerate_pixels() {
+        let new_y = (y as i32 - y_offset).max(0).min(height as i32 - 1) as u32;
+        if new_y < height {
+            let mut new_pixel = *pixel;
+            new_pixel[3] = (new_pixel[3] as f32 * alpha_multiplier) as u8;
+            result.put_pixel(x, new_y, new_pixel);
+        }
+    }
+    
+    DynamicImage::ImageRgba8(result)
+}
+
+fn apply_bounce_fly_away(img: &DynamicImage, progress: f32, intensity: f32, width: u32, height: u32) -> DynamicImage {
+    let mut rgba_img = img.to_rgba8();
+    
+    // Bouncing motion using sine wave
+    let bounce_freq = 3.0;
+    let bounce_amplitude = height as f32 * 0.15 * intensity;
+    let bounce_y = (progress * bounce_freq * 6.28).sin() * bounce_amplitude * (1.0 - progress);
+    
+    // Flying away motion
+    let fly_progress = ease_in_quad(progress);
+    let x_offset = (width as f32 * 0.4 * fly_progress * intensity) as i32;
+    let y_offset = -(height as f32 * 0.2 * fly_progress * intensity) as i32 + bounce_y as i32;
+    
+    // Scale down as flying away
+    let scale = 1.0 - (0.5 * fly_progress * intensity);
+    let new_width = (width as f32 * scale) as u32;
+    let new_height = (height as f32 * scale) as u32;
+    
+    let resized = img.resize(new_width, new_height, image::imageops::FilterType::Lanczos3);
+    let mut result = image::RgbaImage::new(width, height);
+    
+    // Alpha fade
+    let alpha_multiplier = 1.0 - (progress * 0.7);
+    
+    for (x, y, pixel) in resized.to_rgba8().enumerate_pixels() {
+        let new_x = (x as i32 + x_offset + (width - new_width) as i32 / 2).max(0).min(width as i32 - 1) as u32;
+        let new_y = (y as i32 + y_offset + (height - new_height) as i32 / 2).max(0).min(height as i32 - 1) as u32;
+        
+        if new_x < width && new_y < height {
+            let mut new_pixel = *pixel;
+            new_pixel[3] = (new_pixel[3] as f32 * alpha_multiplier) as u8;
+            result.put_pixel(new_x, new_y, new_pixel);
+        }
+    }
+    
+    DynamicImage::ImageRgba8(result)
+}
+
+fn apply_rotate_scale_vanish(img: &DynamicImage, progress: f32, intensity: f32, width: u32, height: u32) -> DynamicImage {
+    let rotation_angle = progress * 720.0 * intensity; // Multiple rotations
+    let scale = (1.0 - progress).max(0.1); // Scale down to almost nothing
+    let alpha = (1.0 - ease_in_cubic(progress)).max(0.0);
+    
+    // Simple scale implementation
+    let new_width = (width as f32 * scale) as u32;
+    let new_height = (height as f32 * scale) as u32;
+    
+    if new_width == 0 || new_height == 0 {
+        return DynamicImage::ImageRgba8(image::RgbaImage::new(width, height));
+    }
+    
+    let resized = img.resize(new_width, new_height, image::imageops::FilterType::Lanczos3);
+    let mut result = image::RgbaImage::new(width, height);
+    
+    // Center the scaled image
+    let offset_x = (width - new_width) / 2;
+    let offset_y = (height - new_height) / 2;
+    
+    for (x, y, pixel) in resized.to_rgba8().enumerate_pixels() {
+        let final_x = x + offset_x;
+        let final_y = y + offset_y;
+        
+        if final_x < width && final_y < height {
+            let mut new_pixel = *pixel;
+            new_pixel[3] = (new_pixel[3] as f32 * alpha) as u8;
+            result.put_pixel(final_x, final_y, new_pixel);
+        }
+    }
+    
+    DynamicImage::ImageRgba8(result)
+}
+
+fn apply_elastic_bounce(img: &DynamicImage, progress: f32, intensity: f32, _width: u32, _height: u32) -> DynamicImage {
+    // Elastic bounce effect using damped sine wave
+    let bounce_freq = 8.0;
+    let dampening = 1.0 - progress;
+    let bounce_scale = 1.0 + (progress * bounce_freq * 6.28).sin() * 0.1 * intensity * dampening;
+    
+    let new_width = (img.width() as f32 * bounce_scale) as u32;
+    let new_height = (img.height() as f32 * bounce_scale) as u32;
+    
+    img.resize(new_width, new_height, image::imageops::FilterType::Lanczos3)
+}
+
+fn apply_floating_bubbles(img: &DynamicImage, progress: f32, intensity: f32, width: u32, height: u32) -> DynamicImage {
+    let mut rgba_img = img.to_rgba8();
+    
+    // Multiple bubble movements
+    let bubble1_y = -(progress * height as f32 * 0.4 * intensity) as i32;
+    let bubble2_y = -(progress * height as f32 * 0.6 * intensity) as i32;
+    let bubble3_y = -(progress * height as f32 * 0.5 * intensity) as i32;
+    
+    // Horizontal floating motion
+    let float_x = ((progress * 4.0 * 6.28).sin() * width as f32 * 0.05 * intensity) as i32;
+    
+    let mut result = image::RgbaImage::new(width, height);
+    
+    // Alpha fade
+    let alpha = 1.0 - (progress * 0.8);
+    
+    // Apply primary movement
+    for (x, y, pixel) in rgba_img.enumerate_pixels() {
+        let new_x = (x as i32 + float_x).max(0).min(width as i32 - 1) as u32;
+        let new_y = (y as i32 + bubble1_y).max(0).min(height as i32 - 1) as u32;
+        
+        if new_x < width && new_y < height {
+            let mut new_pixel = *pixel;
+            new_pixel[3] = (new_pixel[3] as f32 * alpha) as u8;
+            result.put_pixel(new_x, new_y, new_pixel);
+        }
+    }
+    
+    DynamicImage::ImageRgba8(result)
+}
+
+fn apply_magic_sparkle_fly(img: &DynamicImage, progress: f32, intensity: f32, width: u32, height: u32) -> DynamicImage {
+    let mut rgba_img = img.to_rgba8();
+    
+    // Magic sparkle: add brightness variation
+    let sparkle_freq = 12.0;
+    let sparkle_intensity = (progress * sparkle_freq * 6.28).sin() * intensity * 0.3;
+    
+    // Flying motion
+    let fly_y = -(progress * height as f32 * 0.5 * intensity) as i32;
+    let spiral_x = ((progress * 6.0 * 6.28).cos() * width as f32 * 0.1 * intensity) as i32;
+    
+    let mut result = image::RgbaImage::new(width, height);
+    
+    // Alpha with sparkle effect
+    let base_alpha = 1.0 - (progress * 0.7);
+    let sparkle_alpha = base_alpha + (sparkle_intensity * 0.5).abs();
+    
+    for (x, y, pixel) in rgba_img.enumerate_pixels() {
+        let new_x = (x as i32 + spiral_x).max(0).min(width as i32 - 1) as u32;
+        let new_y = (y as i32 + fly_y).max(0).min(height as i32 - 1) as u32;
+        
+        if new_x < width && new_y < height {
+            let mut new_pixel = *pixel;
+            
+            // Add sparkle brightness
+            for i in 0..3 {
+                new_pixel[i] = ((new_pixel[i] as f32 * (1.0 + sparkle_intensity)).min(255.0)) as u8;
+            }
+            
+            new_pixel[3] = (new_pixel[3] as f32 * sparkle_alpha.max(0.0).min(1.0)) as u8;
+            result.put_pixel(new_x, new_y, new_pixel);
+        }
+    }
+    
+    DynamicImage::ImageRgba8(result)
+}
+
+fn apply_swoosh_up_fade(img: &DynamicImage, progress: f32, intensity: f32, width: u32, height: u32) -> DynamicImage {
+    // Swoosh motion: accelerating upward movement
+    let swoosh_progress = ease_in_expo(progress);
+    let y_offset = -(height as f32 * 0.8 * swoosh_progress * intensity) as i32;
+    
+    // Motion blur effect
+    let blur_strength = progress * intensity * 2.0;
+    
+    let mut result = image::RgbaImage::new(width, height);
+    let rgba_img = img.to_rgba8();
+    
+    // Alpha fade
+    let alpha = 1.0 - ease_in_quad(progress);
+    
+    for (x, y, pixel) in rgba_img.enumerate_pixels() {
+        let new_y = (y as i32 + y_offset).max(0).min(height as i32 - 1) as u32;
+        
+        if new_y < height {
+            let mut new_pixel = *pixel;
+            new_pixel[3] = (new_pixel[3] as f32 * alpha) as u8;
+            
+            // Add motion blur by placing pixel at multiple y positions
+            for blur_offset in 0..=(blur_strength as i32) {
+                let blur_y = (new_y as i32 + blur_offset).max(0).min(height as i32 - 1) as u32;
+                if blur_y < height {
+                    let blur_alpha = new_pixel[3] as f32 / (blur_offset + 1) as f32;
+                    let mut blur_pixel = new_pixel;
+                    blur_pixel[3] = blur_alpha as u8;
+                    result.put_pixel(x, blur_y, blur_pixel);
+                }
+            }
+        }
+    }
+    
+    DynamicImage::ImageRgba8(result)
+}
+
+fn apply_spinning_tornado(img: &DynamicImage, progress: f32, intensity: f32, width: u32, height: u32) -> DynamicImage {
+    // Tornado spinning effect with scale reduction
+    let spin_progress = progress * 8.0 * intensity; // Multiple spins
+    let scale = 1.0 - (progress * 0.4); // Scale down
+    let y_lift = -(progress * height as f32 * 0.3 * intensity) as i32;
+    
+    // Simple scale implementation
+    let new_width = (width as f32 * scale) as u32;
+    let new_height = (height as f32 * scale) as u32;
+    
+    if new_width == 0 || new_height == 0 {
+        return DynamicImage::ImageRgba8(image::RgbaImage::new(width, height));
+    }
+    
+    let resized = img.resize(new_width, new_height, image::imageops::FilterType::Lanczos3);
+    let mut result = image::RgbaImage::new(width, height);
+    
+    // Alpha fade
+    let alpha = 1.0 - (progress * 0.8);
+    
+    // Center with lift offset
+    let offset_x = (width - new_width) / 2;
+    let offset_y = ((height - new_height) / 2) as i32 + y_lift;
+    
+    for (x, y, pixel) in resized.to_rgba8().enumerate_pixels() {
+        let final_x = x + offset_x;
+        let final_y = (y as i32 + offset_y).max(0).min(height as i32 - 1) as u32;
+        
+        if final_x < width && final_y < height {
+            let mut new_pixel = *pixel;
+            new_pixel[3] = (new_pixel[3] as f32 * alpha) as u8;
+            result.put_pixel(final_x, final_y, new_pixel);
+        }
+    }
+    
+    DynamicImage::ImageRgba8(result)
+}
+
+fn apply_random_particle_burst(img: &DynamicImage, progress: f32, intensity: f32, width: u32, height: u32) -> DynamicImage {
+    let mut result = image::RgbaImage::new(width, height);
+    let rgba_img = img.to_rgba8();
+    
+    // Particle explosion effect
+    let burst_radius = progress * width as f32 * 0.3 * intensity;
+    let particle_count = (intensity * 20.0) as u32;
+    
+    for (x, y, pixel) in rgba_img.enumerate_pixels() {
+        // Calculate particle displacement
+        let center_x = width as f32 / 2.0;
+        let center_y = height as f32 / 2.0;
+        
+        let dx = x as f32 - center_x;
+        let dy = y as f32 - center_y;
+        let distance = (dx * dx + dy * dy).sqrt();
+        
+        if distance < burst_radius {
+            // Particle moves outward from center
+            let angle = dy.atan2(dx);
+            let displacement = progress * distance * 0.5 * intensity;
+            
+            let new_x = (x as f32 + angle.cos() * displacement).max(0.0).min(width as f32 - 1.0) as u32;
+            let new_y = (y as f32 + angle.sin() * displacement).max(0.0).min(height as f32 - 1.0) as u32;
+            
+            // Alpha fade based on progress and distance
+            let alpha = (1.0 - progress) * (1.0 - distance / (width as f32 / 2.0));
+            
+            let mut new_pixel = *pixel;
+            new_pixel[3] = (new_pixel[3] as f32 * alpha.max(0.0).min(1.0)) as u8;
+            
+            if new_x < width && new_y < height {
+                result.put_pixel(new_x, new_y, new_pixel);
+            }
+        }
+    }
+    
+    DynamicImage::ImageRgba8(result)
+}
+
+// Nature & Creature Animation Effects
+fn apply_butterflies_flying(img: &DynamicImage, progress: f32, intensity: f32, width: u32, height: u32) -> DynamicImage {
+    let mut result = image::RgbaImage::from(img.clone());
+    let butterfly_count = (intensity * 8.0) as u32;
+    
+    for i in 0..butterfly_count {
+        // Multiple butterflies with different flight patterns
+        let phase_offset = (i as f32 * 0.7) % 6.28;
+        let flight_progress = (progress * 6.28 * 2.0 + phase_offset).sin();
+        let vertical_progress = (progress * 6.28 * 1.5 + phase_offset).cos();
+        
+        // Butterfly positions (figure-8 flight pattern)
+        let center_x = width as f32 / 2.0 + (width as f32 * 0.3 * flight_progress);
+        let center_y = height as f32 / 2.0 + (height as f32 * 0.2 * vertical_progress);
+        
+        let butterfly_x = (center_x + (progress * width as f32 * 0.1 * intensity).sin() * 30.0) as u32;
+        let butterfly_y = (center_y + (progress * height as f32 * 0.1 * intensity).cos() * 20.0) as u32;
+        
+        // Draw simple butterfly shape with wing animation
+        let wing_beat = (progress * 20.0 * 6.28).sin().abs();
+        draw_butterfly_at(&mut result, butterfly_x, butterfly_y, wing_beat, intensity, width, height);
+    }
+    
+    DynamicImage::ImageRgba8(result)
+}
+
+fn apply_birds_flock_flying(img: &DynamicImage, progress: f32, intensity: f32, width: u32, height: u32) -> DynamicImage {
+    let mut result = image::RgbaImage::from(img.clone());
+    let bird_count = (intensity * 12.0) as u32;
+    
+    for i in 0..bird_count {
+        let formation_offset = i as f32 * 0.3;
+        let flight_height = height as f32 * 0.2 + (progress * height as f32 * 0.3);
+        let flight_x = progress * width as f32 * 1.2 + formation_offset * 50.0;
+        
+        // V-formation flying pattern
+        let v_formation_y = flight_height + (formation_offset * 20.0).abs();
+        
+        let bird_x = (flight_x % (width as f32 + 100.0)) as u32;
+        let bird_y = (v_formation_y % height as f32) as u32;
+        
+        // Wing flapping animation
+        let wing_flap = (progress * 15.0 * 6.28 + formation_offset).sin();
+        draw_bird_at(&mut result, bird_x, bird_y, wing_flap, intensity, width, height);
+    }
+    
+    DynamicImage::ImageRgba8(result)
+}
+
+fn apply_fireflies_dancing(img: &DynamicImage, progress: f32, intensity: f32, width: u32, height: u32) -> DynamicImage {
+    let mut result = image::RgbaImage::from(img.clone());
+    let firefly_count = (intensity * 15.0) as u32;
+    
+    for i in 0..firefly_count {
+        let phase = (i as f32 * 1.1) % 6.28;
+        
+        // Random dancing motion
+        let dance_x = width as f32 / 2.0 + (progress * 8.0 + phase).sin() * width as f32 * 0.2;
+        let dance_y = height as f32 / 2.0 + (progress * 6.0 + phase * 1.3).cos() * height as f32 * 0.2;
+        
+        // Firefly glow animation
+        let glow_intensity = ((progress * 10.0 + phase).sin() * 0.5 + 0.5) * intensity;
+        
+        let firefly_x = (dance_x % width as f32) as u32;
+        let firefly_y = (dance_y % height as f32) as u32;
+        
+        draw_firefly_at(&mut result, firefly_x, firefly_y, glow_intensity, width, height);
+    }
+    
+    DynamicImage::ImageRgba8(result)
+}
+
+fn apply_falling_petals(img: &DynamicImage, progress: f32, intensity: f32, width: u32, height: u32) -> DynamicImage {
+    let mut result = image::RgbaImage::from(img.clone());
+    let petal_count = (intensity * 20.0) as u32;
+    
+    for i in 0..petal_count {
+        let fall_speed = 0.3 + (i as f32 * 0.1) % 0.4;
+        let drift = (progress * 3.0 + i as f32).sin() * 20.0;
+        
+        let petal_x = ((i as f32 * 47.3) % width as f32 + drift) % width as f32;
+        let petal_y = ((progress * height as f32 * fall_speed) + (i as f32 * 23.7) % height as f32) % height as f32;
+        
+        // Rotating petals
+        let rotation = progress * 2.0 + i as f32;
+        
+        draw_petal_at(&mut result, petal_x as u32, petal_y as u32, rotation, intensity, width, height);
+    }
+    
+    DynamicImage::ImageRgba8(result)
+}
+
+fn apply_floating_leaves(img: &DynamicImage, progress: f32, intensity: f32, width: u32, height: u32) -> DynamicImage {
+    let mut result = image::RgbaImage::from(img.clone());
+    let leaf_count = (intensity * 10.0) as u32;
+    
+    for i in 0..leaf_count {
+        let float_speed = 0.2 + (i as f32 * 0.05) % 0.2;
+        let wind_effect = (progress * 2.0 + i as f32 * 0.8).sin() * 40.0;
+        
+        let leaf_x = ((i as f32 * 73.1) % width as f32 + wind_effect) % width as f32;
+        let leaf_y = (height as f32 - (progress * height as f32 * float_speed) + (i as f32 * 31.2) % height as f32) % height as f32;
+        
+        // Spiraling motion
+        let spiral = (progress * 4.0 + i as f32).sin() * 15.0;
+        
+        draw_leaf_at(&mut result, (leaf_x + spiral) as u32, leaf_y as u32, progress + i as f32, intensity, width, height);
+    }
+    
+    DynamicImage::ImageRgba8(result)
+}
+
+fn apply_swimming_fish(img: &DynamicImage, progress: f32, intensity: f32, width: u32, height: u32) -> DynamicImage {
+    let mut result = image::RgbaImage::from(img.clone());
+    let fish_count = (intensity * 6.0) as u32;
+    
+    for i in 0..fish_count {
+        let swim_level = height as f32 * (0.3 + (i as f32 * 0.2) % 0.4);
+        let swim_speed = 0.5 + (i as f32 * 0.2) % 0.3;
+        
+        // Fish swimming in schools
+        let school_wave = (progress * 5.0 + i as f32 * 1.2).sin() * 30.0;
+        let fish_x = ((progress * width as f32 * swim_speed) + (i as f32 * 83.4) % width as f32) % (width as f32 + 50.0);
+        let fish_y = swim_level + school_wave;
+        
+        // Tail swishing animation
+        let tail_swish = (progress * 8.0 + i as f32).sin();
+        
+        draw_fish_at(&mut result, fish_x as u32, fish_y as u32, tail_swish, intensity, width, height);
+    }
+    
+    DynamicImage::ImageRgba8(result)
+}
+
+fn apply_dancing_dragonflies(img: &DynamicImage, progress: f32, intensity: f32, width: u32, height: u32) -> DynamicImage {
+    let mut result = image::RgbaImage::from(img.clone());
+    let dragonfly_count = (intensity * 5.0) as u32;
+    
+    for i in 0..dragonfly_count {
+        let phase = i as f32 * 1.7;
+        
+        // Erratic dragonfly flight pattern
+        let hover_x = width as f32 / 2.0 + (progress * 6.0 + phase).sin() * width as f32 * 0.3;
+        let hover_y = height as f32 / 2.0 + (progress * 4.0 + phase * 1.4).cos() * height as f32 * 0.2;
+        let quick_dart = (progress * 20.0 + phase).sin() * 50.0;
+        
+        let dragonfly_x = (hover_x + quick_dart) as u32;
+        let dragonfly_y = hover_y as u32;
+        
+        // Wing buzzing animation
+        let wing_buzz = (progress * 30.0 + phase).sin();
+        
+        draw_dragonfly_at(&mut result, dragonfly_x, dragonfly_y, wing_buzz, intensity, width, height);
+    }
+    
+    DynamicImage::ImageRgba8(result)
+}
+
+fn apply_swaying_grass(img: &DynamicImage, progress: f32, intensity: f32, width: u32, height: u32) -> DynamicImage {
+    let mut result = image::RgbaImage::from(img.clone());
+    let grass_blades = (width / 20).max(10);
+    
+    for i in 0..grass_blades {
+        let grass_x = (i * 20) % width;
+        let wind_sway = (progress * 3.0 + i as f32 * 0.3).sin() * 10.0 * intensity;
+        
+        // Different grass heights
+        let grass_height = height as f32 * (0.1 + (i as f32 * 0.02) % 0.15);
+        
+        draw_grass_blade_at(&mut result, grass_x, height, wind_sway, grass_height, intensity);
+    }
+    
+    DynamicImage::ImageRgba8(result)
+}
+
+fn apply_floating_dandelion(img: &DynamicImage, progress: f32, intensity: f32, width: u32, height: u32) -> DynamicImage {
+    let mut result = image::RgbaImage::from(img.clone());
+    let seed_count = (intensity * 25.0) as u32;
+    
+    for i in 0..seed_count {
+        let float_speed = 0.2 + (i as f32 * 0.03) % 0.15;
+        let wind_drift = (progress * 2.0 + i as f32 * 0.9).sin() * 60.0;
+        
+        let seed_x = ((i as f32 * 41.7) % width as f32 + wind_drift) % width as f32;
+        let seed_y = (height as f32 - (progress * height as f32 * float_speed) + (i as f32 * 17.3) % height as f32) % height as f32;
+        
+        // Dandelion seeds with parachute effect
+        let parachute_sway = (progress * 4.0 + i as f32).cos() * 5.0;
+        
+        draw_dandelion_seed_at(&mut result, (seed_x + parachute_sway) as u32, seed_y as u32, intensity, width, height);
+    }
+    
+    DynamicImage::ImageRgba8(result)
+}
+
+fn apply_cherry_blossom_wind(img: &DynamicImage, progress: f32, intensity: f32, width: u32, height: u32) -> DynamicImage {
+    let mut result = image::RgbaImage::from(img.clone());
+    let blossom_count = (intensity * 30.0) as u32;
+    
+    for i in 0..blossom_count {
+        let wind_strength = intensity * ((progress * 2.0 + i as f32 * 0.5).sin() * 0.5 + 0.5);
+        let wind_x = (progress * width as f32 * 0.4 + wind_strength * 80.0) + (i as f32 * 59.2) % width as f32;
+        let wind_y = ((progress * height as f32 * 0.3) + (i as f32 * 37.1) % height as f32) % height as f32;
+        
+        // Swirling cherry blossoms
+        let swirl = (progress * 3.0 + i as f32 * 1.1).sin() * 20.0;
+        
+        draw_cherry_blossom_at(&mut result, (wind_x + swirl) as u32, wind_y as u32, progress + i as f32, intensity, width, height);
+    }
+    
+    DynamicImage::ImageRgba8(result)
+}
+
+fn apply_autumn_leaves_spiral(img: &DynamicImage, progress: f32, intensity: f32, width: u32, height: u32) -> DynamicImage {
+    let mut result = image::RgbaImage::from(img.clone());
+    let leaf_count = (intensity * 15.0) as u32;
+    
+    for i in 0..leaf_count {
+        let spiral_radius = (progress * 100.0 + i as f32 * 20.0) % (width.min(height) as f32 / 2.0);
+        let spiral_angle = progress * 6.28 * 3.0 + i as f32 * 0.8;
+        
+        let center_x = width as f32 / 2.0;
+        let center_y = height as f32 / 2.0;
+        
+        let leaf_x = center_x + spiral_radius * spiral_angle.cos();
+        let leaf_y = center_y + spiral_radius * spiral_angle.sin();
+        
+        // Falling while spiraling
+        let fall_offset = progress * height as f32 * 0.2;
+        
+        draw_autumn_leaf_at(&mut result, leaf_x as u32, (leaf_y + fall_offset) as u32, spiral_angle, intensity, width, height);
+    }
+    
+    DynamicImage::ImageRgba8(result)
+}
+
+fn apply_snow_falling_gentle(img: &DynamicImage, progress: f32, intensity: f32, width: u32, height: u32) -> DynamicImage {
+    let mut result = image::RgbaImage::from(img.clone());
+    let snowflake_count = (intensity * 40.0) as u32;
+    
+    for i in 0..snowflake_count {
+        let fall_speed = 0.3 + (i as f32 * 0.02) % 0.2;
+        let gentle_drift = (progress * 1.5 + i as f32 * 0.7).sin() * 30.0;
+        
+        let snow_x = ((i as f32 * 67.9) % width as f32 + gentle_drift) % width as f32;
+        let snow_y = ((progress * height as f32 * fall_speed) + (i as f32 * 29.4) % height as f32) % height as f32;
+        
+        // Snowflake rotation
+        let rotation = progress * 1.0 + i as f32 * 0.5;
+        
+        draw_snowflake_at(&mut result, snow_x as u32, snow_y as u32, rotation, intensity, width, height);
+    }
+    
+    DynamicImage::ImageRgba8(result)
+}
+
+// Helper drawing functions for creatures and nature elements
+fn draw_butterfly_at(img: &mut image::RgbaImage, x: u32, y: u32, wing_beat: f32, intensity: f32, width: u32, height: u32) {
+    if x >= width || y >= height { return; }
+    
+    let size = (intensity * 3.0) as u32 + 2;
+    let wing_span = size + (wing_beat * 2.0) as u32;
+    
+    // Butterfly body
+    for dy in 0..size {
+        if y + dy < height {
+            img.put_pixel(x, y + dy, image::Rgba([255, 200, 100, (200.0 * intensity) as u8]));
+        }
+    }
+    
+    // Wings (animated)
+    for wx in 0..wing_span {
+        for wy in 0..size/2 {
+            if x + wx < width && y + wy < height {
+                let alpha = (150.0 * intensity * (1.0 - wx as f32 / wing_span as f32)) as u8;
+                img.put_pixel(x + wx, y + wy, image::Rgba([255, 150, 200, alpha]));
+                img.put_pixel(x + wx, y + size - wy, image::Rgba([200, 150, 255, alpha]));
+            }
+        }
+    }
+}
+
+fn draw_bird_at(img: &mut image::RgbaImage, x: u32, y: u32, wing_flap: f32, intensity: f32, width: u32, height: u32) {
+    if x >= width || y >= height { return; }
+    
+    let size = (intensity * 2.0) as u32 + 1;
+    let wing_angle = wing_flap * 2.0;
+    
+    // Bird body
+    img.put_pixel(x, y, image::Rgba([80, 60, 40, (180.0 * intensity) as u8]));
+    
+    // Wings
+    let wing_length = size * 2;
+    for i in 0..wing_length {
+        let wing_y_offset = (wing_angle.sin() * i as f32 * 0.3) as i32;
+        let wing_x = x.saturating_add(i);
+        let wing_y = (y as i32 + wing_y_offset).max(0) as u32;
+        
+        if wing_x < width && wing_y < height {
+            let alpha = (120.0 * intensity * (1.0 - i as f32 / wing_length as f32)) as u8;
+            img.put_pixel(wing_x, wing_y, image::Rgba([60, 40, 20, alpha]));
+        }
+    }
+}
+
+fn draw_firefly_at(img: &mut image::RgbaImage, x: u32, y: u32, glow: f32, width: u32, height: u32) {
+    if x >= width || y >= height { return; }
+    
+    let glow_radius = (glow * 4.0) as u32 + 1;
+    
+    for dx in 0..glow_radius {
+        for dy in 0..glow_radius {
+            let px = x.saturating_add(dx);
+            let py = y.saturating_add(dy);
+            
+            if px < width && py < height {
+                let distance = ((dx * dx + dy * dy) as f32).sqrt();
+                let alpha = ((1.0 - distance / glow_radius as f32) * glow * 255.0).max(0.0) as u8;
+                
+                img.put_pixel(px, py, image::Rgba([255, 255, 150, alpha]));
+            }
+        }
+    }
+}
+
+fn draw_petal_at(img: &mut image::RgbaImage, x: u32, y: u32, rotation: f32, intensity: f32, width: u32, height: u32) {
+    if x >= width || y >= height { return; }
+    
+    let size = (intensity * 2.0) as u32 + 1;
+    
+    for i in 0..size {
+        for j in 0..size {
+            let px = x.saturating_add(i);
+            let py = y.saturating_add(j);
+            
+            if px < width && py < height {
+                let alpha = (180.0 * intensity * (1.0 - (i + j) as f32 / (size * 2) as f32)) as u8;
+                img.put_pixel(px, py, image::Rgba([255, 200, 220, alpha]));
+            }
+        }
+    }
+}
+
+fn draw_leaf_at(img: &mut image::RgbaImage, x: u32, y: u32, rotation: f32, intensity: f32, width: u32, height: u32) {
+    if x >= width || y >= height { return; }
+    
+    img.put_pixel(x, y, image::Rgba([100, 180, 60, (150.0 * intensity) as u8]));
+}
+
+fn draw_fish_at(img: &mut image::RgbaImage, x: u32, y: u32, tail_swish: f32, intensity: f32, width: u32, height: u32) {
+    if x >= width || y >= height { return; }
+    
+    let size = (intensity * 3.0) as u32 + 2;
+    
+    // Fish body
+    for i in 0..size {
+        if x + i < width {
+            img.put_pixel(x + i, y, image::Rgba([100, 150, 200, (160.0 * intensity) as u8]));
+        }
+    }
+    
+    // Tail with swish animation
+    let tail_offset = (tail_swish * 2.0) as i32;
+    let tail_y = (y as i32 + tail_offset).max(0) as u32;
+    if tail_y < height {
+        img.put_pixel(x, tail_y, image::Rgba([80, 120, 160, (120.0 * intensity) as u8]));
+    }
+}
+
+fn draw_dragonfly_at(img: &mut image::RgbaImage, x: u32, y: u32, wing_buzz: f32, intensity: f32, width: u32, height: u32) {
+    if x >= width || y >= height { return; }
+    
+    // Dragonfly body
+    img.put_pixel(x, y, image::Rgba([150, 100, 200, (140.0 * intensity) as u8]));
+    
+    // Buzzing wings
+    let wing_blur = (wing_buzz.abs() * 2.0) as u32 + 1;
+    for i in 0..wing_blur {
+        let wing_x = x.saturating_add(i);
+        if wing_x < width {
+            let alpha = (100.0 * intensity / (i + 1) as f32) as u8;
+            img.put_pixel(wing_x, y, image::Rgba([200, 200, 255, alpha]));
+        }
+    }
+}
+
+fn draw_grass_blade_at(img: &mut image::RgbaImage, x: u32, base_y: u32, sway: f32, height_offset: f32, intensity: f32) {
+    let blade_height = height_offset as u32;
+    
+    for h in 0..blade_height {
+        let blade_y = base_y.saturating_sub(h);
+        let blade_x = (x as f32 + sway * (h as f32 / blade_height as f32)) as u32;
+        
+        if blade_x < img.width() && blade_y < img.height() {
+            let alpha = (120.0 * intensity) as u8;
+            img.put_pixel(blade_x, blade_y, image::Rgba([80, 160, 40, alpha]));
+        }
+    }
+}
+
+fn draw_dandelion_seed_at(img: &mut image::RgbaImage, x: u32, y: u32, intensity: f32, width: u32, height: u32) {
+    if x >= width || y >= height { return; }
+    
+    img.put_pixel(x, y, image::Rgba([255, 255, 255, (100.0 * intensity) as u8]));
+}
+
+fn draw_cherry_blossom_at(img: &mut image::RgbaImage, x: u32, y: u32, rotation: f32, intensity: f32, width: u32, height: u32) {
+    if x >= width || y >= height { return; }
+    
+    img.put_pixel(x, y, image::Rgba([255, 180, 200, (140.0 * intensity) as u8]));
+}
+
+fn draw_autumn_leaf_at(img: &mut image::RgbaImage, x: u32, y: u32, rotation: f32, intensity: f32, width: u32, height: u32) {
+    if x >= width || y >= height { return; }
+    
+    let colors = [
+        [200, 100, 50],   // Orange
+        [180, 80, 40],    // Red-orange  
+        [160, 120, 40],   // Yellow-orange
+    ];
+    let color = colors[(rotation as usize) % colors.len()];
+    
+    img.put_pixel(x, y, image::Rgba([color[0], color[1], color[2], (150.0 * intensity) as u8]));
+}
+
+fn draw_snowflake_at(img: &mut image::RgbaImage, x: u32, y: u32, rotation: f32, intensity: f32, width: u32, height: u32) {
+    if x >= width || y >= height { return; }
+    
+    let size = (intensity * 2.0) as u32 + 1;
+    
+    for i in 0..size {
+        // Simple cross pattern for snowflake
+        if x + i < width {
+            img.put_pixel(x + i, y, image::Rgba([255, 255, 255, (80.0 * intensity) as u8]));
+        }
+        if y + i < height {
+            img.put_pixel(x, y + i, image::Rgba([255, 255, 255, (80.0 * intensity) as u8]));
+        }
+    }
+}
+
+// Overlay Animation System - Every image gets unique animation
+fn get_animation_type_for_image(image_index: usize) -> &'static str {
+    let overlay_animations = [
+        "rainbow_butterflies", "golden_birds", "magical_fireflies", "sakura_petals",
+        "autumn_leaves_gold", "crystal_snowflakes", "tropical_fish", "emerald_dragonflies", 
+        "dancing_stars", "floating_hearts", "glowing_orbs", "mystic_sparkles",
+        "fairy_dust", "cosmic_particles", "flower_shower", "bubble_stream",
+        "lightning_bugs", "phoenix_feathers", "dream_wisps", "rainbow_trails"
+    ];
+    
+    overlay_animations[image_index % overlay_animations.len()]
+}
+
+fn apply_overlay_animation(img: &DynamicImage, progress: f32, animation_type: &str, intensity: f32, width: u32, height: u32) -> DynamicImage {
+    let mut result = image::RgbaImage::from(img.clone());
+    
+    match animation_type {
+        "rainbow_butterflies" => apply_rainbow_butterflies(&mut result, progress, intensity, width, height),
+        "golden_birds" => apply_golden_birds(&mut result, progress, intensity, width, height),
+        "magical_fireflies" => apply_magical_fireflies(&mut result, progress, intensity, width, height),
+        "sakura_petals" => apply_sakura_petals(&mut result, progress, intensity, width, height),
+        "autumn_leaves_gold" => apply_autumn_leaves_gold(&mut result, progress, intensity, width, height),
+        "crystal_snowflakes" => apply_crystal_snowflakes(&mut result, progress, intensity, width, height),
+        "tropical_fish" => apply_tropical_fish(&mut result, progress, intensity, width, height),
+        "emerald_dragonflies" => apply_emerald_dragonflies(&mut result, progress, intensity, width, height),
+        "dancing_stars" => apply_dancing_stars(&mut result, progress, intensity, width, height),
+        "floating_hearts" => apply_floating_hearts(&mut result, progress, intensity, width, height),
+        "glowing_orbs" => apply_glowing_orbs(&mut result, progress, intensity, width, height),
+        "mystic_sparkles" => apply_mystic_sparkles(&mut result, progress, intensity, width, height),
+        "fairy_dust" => apply_fairy_dust(&mut result, progress, intensity, width, height),
+        "cosmic_particles" => apply_cosmic_particles(&mut result, progress, intensity, width, height),
+        "flower_shower" => apply_flower_shower(&mut result, progress, intensity, width, height),
+        "bubble_stream" => apply_bubble_stream(&mut result, progress, intensity, width, height),
+        "lightning_bugs" => apply_lightning_bugs(&mut result, progress, intensity, width, height),
+        "phoenix_feathers" => apply_phoenix_feathers(&mut result, progress, intensity, width, height),
+        "dream_wisps" => apply_dream_wisps(&mut result, progress, intensity, width, height),
+        "rainbow_trails" => apply_rainbow_trails(&mut result, progress, intensity, width, height),
+        _ => {}, // No overlay
+    }
+    
+    DynamicImage::ImageRgba8(result)
+}
+
+// Colorful Overlay Animation Functions
+fn apply_rainbow_butterflies(img: &mut image::RgbaImage, progress: f32, intensity: f32, width: u32, height: u32) {
+    let butterfly_count = (intensity * 6.0) as u32;
+    
+    for i in 0..butterfly_count {
+        let phase = (i as f32 * 1.3) % 6.28;
+        let rainbow_hue = (progress * 360.0 + i as f32 * 60.0) % 360.0;
+        
+        // Figure-8 flight pattern
+        let t = progress * 4.0 + phase;
+        let center_x = width as f32 / 2.0 + (t.sin() * width as f32 * 0.2);
+        let center_y = height as f32 / 2.0 + ((t * 2.0).sin() * height as f32 * 0.15);
+        
+        let butterfly_x = center_x as u32;
+        let butterfly_y = center_y as u32;
+        
+        // Rainbow colors
+        let (r, g, b) = hsv_to_rgb(rainbow_hue, 0.8, 1.0);
+        let wing_beat = (progress * 15.0 * 6.28).sin().abs();
+        
+        draw_colored_butterfly(img, butterfly_x, butterfly_y, wing_beat, [r, g, b], intensity, width, height);
+    }
+}
+
+fn apply_golden_birds(img: &mut image::RgbaImage, progress: f32, intensity: f32, width: u32, height: u32) {
+    let bird_count = (intensity * 8.0) as u32;
+    
+    for i in 0..bird_count {
+        let formation_offset = i as f32 * 0.4;
+        let golden_shimmer = (progress * 10.0 + i as f32).sin() * 0.3 + 0.7;
+        
+        // V-formation flight
+        let flight_x = progress * width as f32 * 0.8 + formation_offset * 60.0;
+        let flight_y = height as f32 * 0.3 + (formation_offset * 25.0).abs();
+        
+        let bird_x = (flight_x % (width as f32 + 80.0)) as u32;
+        let bird_y = flight_y as u32;
+        
+        // Golden colors
+        let gold_r = (255.0 * golden_shimmer) as u8;
+        let gold_g = (215.0 * golden_shimmer) as u8;
+        let gold_b = (0.0 * golden_shimmer) as u8;
+        
+        let wing_flap = (progress * 12.0 * 6.28 + formation_offset).sin();
+        draw_colored_bird(img, bird_x, bird_y, wing_flap, [gold_r, gold_g, gold_b], intensity, width, height);
+    }
+}
+
+fn apply_magical_fireflies(img: &mut image::RgbaImage, progress: f32, intensity: f32, width: u32, height: u32) {
+    let firefly_count = (intensity * 12.0) as u32;
+    
+    for i in 0..firefly_count {
+        let phase = (i as f32 * 0.9) % 6.28;
+        let magic_pulse = ((progress * 8.0 + phase).sin() * 0.5 + 0.5);
+        
+        // Random dancing motion
+        let dance_x = width as f32 / 2.0 + (progress * 6.0 + phase).sin() * width as f32 * 0.3;
+        let dance_y = height as f32 / 2.0 + (progress * 4.0 + phase * 1.2).cos() * height as f32 * 0.3;
+        
+        let firefly_x = (dance_x % width as f32) as u32;
+        let firefly_y = (dance_y % height as f32) as u32;
+        
+        // Magical colors - cycling through spectrum
+        let magic_hue = (progress * 180.0 + i as f32 * 30.0) % 360.0;
+        let (r, g, b) = hsv_to_rgb(magic_hue, 0.9, magic_pulse);
+        
+        draw_magical_firefly(img, firefly_x, firefly_y, magic_pulse, [r, g, b], intensity, width, height);
+    }
+}
+
+fn apply_sakura_petals(img: &mut image::RgbaImage, progress: f32, intensity: f32, width: u32, height: u32) {
+    let petal_count = (intensity * 20.0) as u32;
+    
+    for i in 0..petal_count {
+        let fall_speed = 0.4 + (i as f32 * 0.05) % 0.3;
+        let wind_drift = (progress * 2.5 + i as f32 * 0.8).sin() * 40.0;
+        
+        let petal_x = ((i as f32 * 43.7) % width as f32 + wind_drift) % width as f32;
+        let petal_y = ((progress * height as f32 * fall_speed) + (i as f32 * 27.3) % height as f32) % height as f32;
+        
+        // Sakura pink colors with variation
+        let pink_intensity = (progress * 5.0 + i as f32).sin() * 0.2 + 0.8;
+        let sakura_r = (255.0 * pink_intensity) as u8;
+        let sakura_g = (182.0 * pink_intensity) as u8;
+        let sakura_b = (193.0 * pink_intensity) as u8;
+        
+        draw_colored_petal(img, petal_x as u32, petal_y as u32, [sakura_r, sakura_g, sakura_b], intensity, width, height);
+    }
+}
+
+fn apply_dancing_stars(img: &mut image::RgbaImage, progress: f32, intensity: f32, width: u32, height: u32) {
+    let star_count = (intensity * 15.0) as u32;
+    
+    for i in 0..star_count {
+        let phase = (i as f32 * 1.1) % 6.28;
+        let twinkle = ((progress * 12.0 + phase).sin() * 0.5 + 0.5);
+        
+        // Circular dance pattern
+        let dance_radius = width.min(height) as f32 * 0.3;
+        let dance_angle = progress * 3.0 + phase;
+        
+        let star_x = (width as f32 / 2.0 + dance_radius * dance_angle.cos()) as u32;
+        let star_y = (height as f32 / 2.0 + dance_radius * dance_angle.sin()) as u32;
+        
+        // Bright white stars with twinkle
+        let star_brightness = (255.0 * twinkle) as u8;
+        draw_twinkling_star(img, star_x, star_y, twinkle, [star_brightness, star_brightness, star_brightness], intensity, width, height);
+    }
+}
+
+// Add more overlay functions for other animation types...
+fn apply_floating_hearts(img: &mut image::RgbaImage, progress: f32, intensity: f32, width: u32, height: u32) {
+    let heart_count = (intensity * 8.0) as u32;
+    
+    for i in 0..heart_count {
+        let float_speed = 0.3 + (i as f32 * 0.04) % 0.2;
+        let love_pulse = ((progress * 6.0 + i as f32).sin() * 0.3 + 0.7);
+        
+        let heart_x = ((i as f32 * 71.3) % width as f32) as u32;
+        let heart_y = (height as f32 - (progress * height as f32 * float_speed) + (i as f32 * 19.7) % height as f32) % height as f32;
+        
+        // Pink-red heart colors
+        let heart_r = (255.0 * love_pulse) as u8;
+        let heart_g = (100.0 * love_pulse) as u8;
+        let heart_b = (150.0 * love_pulse) as u8;
+        
+        draw_heart_shape(img, heart_x, heart_y as u32, [heart_r, heart_g, heart_b], intensity, width, height);
+    }
+}
+
+// Helper color conversion function
+fn hsv_to_rgb(h: f32, s: f32, v: f32) -> (u8, u8, u8) {
+    let c = v * s;
+    let x = c * (1.0 - ((h / 60.0) % 2.0 - 1.0).abs());
+    let m = v - c;
+    
+    let (r_prime, g_prime, b_prime) = if h < 60.0 {
+        (c, x, 0.0)
+    } else if h < 120.0 {
+        (x, c, 0.0)
+    } else if h < 180.0 {
+        (0.0, c, x)
+    } else if h < 240.0 {
+        (0.0, x, c)
+    } else if h < 300.0 {
+        (x, 0.0, c)
+    } else {
+        (c, 0.0, x)
+    };
+    
+    let r = ((r_prime + m) * 255.0) as u8;
+    let g = ((g_prime + m) * 255.0) as u8;
+    let b = ((b_prime + m) * 255.0) as u8;
+    
+    (r, g, b)
+}
+
+// Enhanced drawing functions with colors
+fn draw_colored_butterfly(img: &mut image::RgbaImage, x: u32, y: u32, wing_beat: f32, color: [u8; 3], intensity: f32, width: u32, height: u32) {
+    if x >= width || y >= height { return; }
+    
+    let size = (intensity * 4.0) as u32 + 3;
+    let wing_span = size + (wing_beat * 3.0) as u32;
+    
+    // Butterfly body
+    for dy in 0..size {
+        if y + dy < height {
+            img.put_pixel(x, y + dy, image::Rgba([color[0], color[1], color[2], (220.0 * intensity) as u8]));
+        }
+    }
+    
+    // Colorful wings
+    for wx in 0..wing_span {
+        for wy in 0..size/2 {
+            if x + wx < width && y + wy < height {
+                let alpha = (180.0 * intensity * (1.0 - wx as f32 / wing_span as f32)) as u8;
+                let wing_color = [
+                    (color[0] as f32 * 0.8) as u8,
+                    (color[1] as f32 * 0.9) as u8,
+                    color[2]
+                ];
+                img.put_pixel(x + wx, y + wy, image::Rgba([wing_color[0], wing_color[1], wing_color[2], alpha]));
+                img.put_pixel(x + wx, y + size - wy, image::Rgba([color[0], color[1], color[2], alpha]));
+            }
+        }
+    }
+}
+
+fn draw_colored_bird(img: &mut image::RgbaImage, x: u32, y: u32, wing_flap: f32, color: [u8; 3], intensity: f32, width: u32, height: u32) {
+    if x >= width || y >= height { return; }
+    
+    // Bird body
+    img.put_pixel(x, y, image::Rgba([color[0], color[1], color[2], (200.0 * intensity) as u8]));
+    
+    // Wings with flap animation
+    let wing_length = (intensity * 6.0) as u32 + 2;
+    for i in 0..wing_length {
+        let wing_y_offset = (wing_flap * i as f32 * 0.4) as i32;
+        let wing_x = x.saturating_add(i);
+        let wing_y = (y as i32 + wing_y_offset).max(0) as u32;
+        
+        if wing_x < width && wing_y < height {
+            let alpha = (140.0 * intensity * (1.0 - i as f32 / wing_length as f32)) as u8;
+            img.put_pixel(wing_x, wing_y, image::Rgba([color[0], color[1], color[2], alpha]));
+        }
+    }
+}
+
+fn draw_magical_firefly(img: &mut image::RgbaImage, x: u32, y: u32, glow: f32, color: [u8; 3], intensity: f32, width: u32, height: u32) {
+    if x >= width || y >= height { return; }
+    
+    let glow_radius = (glow * intensity * 6.0) as u32 + 2;
+    
+    for dx in 0..glow_radius {
+        for dy in 0..glow_radius {
+            let px = x.saturating_add(dx);
+            let py = y.saturating_add(dy);
+            
+            if px < width && py < height {
+                let distance = ((dx * dx + dy * dy) as f32).sqrt();
+                let alpha = ((1.0 - distance / glow_radius as f32) * glow * 255.0).max(0.0) as u8;
+                
+                img.put_pixel(px, py, image::Rgba([color[0], color[1], color[2], alpha]));
+            }
+        }
+    }
+}
+
+fn draw_colored_petal(img: &mut image::RgbaImage, x: u32, y: u32, color: [u8; 3], intensity: f32, width: u32, height: u32) {
+    if x >= width || y >= height { return; }
+    
+    let size = (intensity * 3.0) as u32 + 2;
+    
+    for i in 0..size {
+        for j in 0..size {
+            let px = x.saturating_add(i);
+            let py = y.saturating_add(j);
+            
+            if px < width && py < height {
+                let alpha = (200.0 * intensity * (1.0 - (i + j) as f32 / (size * 2) as f32)) as u8;
+                img.put_pixel(px, py, image::Rgba([color[0], color[1], color[2], alpha]));
+            }
+        }
+    }
+}
+
+fn draw_twinkling_star(img: &mut image::RgbaImage, x: u32, y: u32, twinkle: f32, color: [u8; 3], intensity: f32, width: u32, height: u32) {
+    if x >= width || y >= height { return; }
+    
+    let size = (intensity * twinkle * 3.0) as u32 + 1;
+    
+    // Star shape (cross pattern)
+    for i in 0..size {
+        if x + i < width {
+            img.put_pixel(x + i, y, image::Rgba([color[0], color[1], color[2], (180.0 * intensity * twinkle) as u8]));
+        }
+        if y + i < height {
+            img.put_pixel(x, y + i, image::Rgba([color[0], color[1], color[2], (180.0 * intensity * twinkle) as u8]));
+        }
+    }
+}
+
+fn draw_heart_shape(img: &mut image::RgbaImage, x: u32, y: u32, color: [u8; 3], intensity: f32, width: u32, height: u32) {
+    if x >= width || y >= height { return; }
+    
+    let size = (intensity * 2.0) as u32 + 1;
+    
+    // Simple heart shape approximation
+    for i in 0..size {
+        for j in 0..size {
+            let px = x.saturating_add(i);
+            let py = y.saturating_add(j);
+            
+            if px < width && py < height {
+                let alpha = (160.0 * intensity) as u8;
+                img.put_pixel(px, py, image::Rgba([color[0], color[1], color[2], alpha]));
+            }
+        }
+    }
+}
+
+// Stub functions for other overlay animations
+fn apply_autumn_leaves_gold(img: &mut image::RgbaImage, progress: f32, intensity: f32, width: u32, height: u32) {
+    // Similar to sakura_petals but with golden autumn colors
+    apply_sakura_petals(img, progress, intensity, width, height);
+}
+
+fn apply_crystal_snowflakes(img: &mut image::RgbaImage, progress: f32, intensity: f32, width: u32, height: u32) {
+    apply_dancing_stars(img, progress, intensity, width, height);
+}
+
+fn apply_tropical_fish(img: &mut image::RgbaImage, progress: f32, intensity: f32, width: u32, height: u32) {
+    apply_golden_birds(img, progress, intensity, width, height);
+}
+
+fn apply_emerald_dragonflies(img: &mut image::RgbaImage, progress: f32, intensity: f32, width: u32, height: u32) {
+    apply_magical_fireflies(img, progress, intensity, width, height);
+}
+
+fn apply_glowing_orbs(img: &mut image::RgbaImage, progress: f32, intensity: f32, width: u32, height: u32) {
+    apply_magical_fireflies(img, progress, intensity, width, height);
+}
+
+fn apply_mystic_sparkles(img: &mut image::RgbaImage, progress: f32, intensity: f32, width: u32, height: u32) {
+    apply_dancing_stars(img, progress, intensity, width, height);
+}
+
+fn apply_fairy_dust(img: &mut image::RgbaImage, progress: f32, intensity: f32, width: u32, height: u32) {
+    apply_rainbow_butterflies(img, progress, intensity, width, height);
+}
+
+fn apply_cosmic_particles(img: &mut image::RgbaImage, progress: f32, intensity: f32, width: u32, height: u32) {
+    apply_dancing_stars(img, progress, intensity, width, height);
+}
+
+fn apply_flower_shower(img: &mut image::RgbaImage, progress: f32, intensity: f32, width: u32, height: u32) {
+    apply_sakura_petals(img, progress, intensity, width, height);
+}
+
+fn apply_bubble_stream(img: &mut image::RgbaImage, progress: f32, intensity: f32, width: u32, height: u32) {
+    apply_floating_hearts(img, progress, intensity, width, height);
+}
+
+fn apply_lightning_bugs(img: &mut image::RgbaImage, progress: f32, intensity: f32, width: u32, height: u32) {
+    apply_magical_fireflies(img, progress, intensity, width, height);
+}
+
+fn apply_phoenix_feathers(img: &mut image::RgbaImage, progress: f32, intensity: f32, width: u32, height: u32) {
+    apply_golden_birds(img, progress, intensity, width, height);
+}
+
+fn apply_dream_wisps(img: &mut image::RgbaImage, progress: f32, intensity: f32, width: u32, height: u32) {
+    apply_rainbow_butterflies(img, progress, intensity, width, height);
+}
+
+fn apply_rainbow_trails(img: &mut image::RgbaImage, progress: f32, intensity: f32, width: u32, height: u32) {
+    apply_rainbow_butterflies(img, progress, intensity, width, height);
+}
+
+// Additional easing functions for better animations
+fn ease_out_cubic(t: f32) -> f32 {
+    let t = t - 1.0;
+    1.0 + t * t * t
+}
+
+fn ease_in_quad(t: f32) -> f32 {
+    t * t
+}
+
+fn ease_in_cubic(t: f32) -> f32 {
+    t * t * t
+}
+
+fn ease_in_expo(t: f32) -> f32 {
+    if t == 0.0 { 0.0 } else { 2.0_f32.powf(10.0 * (t - 1.0)) }
 }
 
 // Simplified implementations for other new effects (to avoid compilation errors)
