@@ -6,6 +6,7 @@ pub mod api;
 // Re-export all public items
 pub use api::basic::*;
 pub use api::data_processing::*;
+pub use api::image_processing::*;
 pub use api::models::*;
 pub use api::performance::*;
 pub use api::text_analysis::*;
