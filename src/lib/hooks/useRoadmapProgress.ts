@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 
 export const useRoadmapProgress = (userId?: string) => {
-  const [completedPosts, setCompletedPosts] = useState<Set<string>>(() => new Set());
+  const [completedItems, setCompletedItems] = useState<Set<string>>(() => new Set());
 
   const getStorageKey = useCallback(() => {
     return `roadmap_completed_${userId ?? 'anonymous'}`;
@@ -14,26 +14,26 @@ export const useRoadmapProgress = (userId?: string) => {
       const stored = localStorage.getItem(key);
       if (stored) {
         const completedArray = JSON.parse(stored) as string[];
-        setCompletedPosts(new Set(completedArray));
+        setCompletedItems(new Set(completedArray));
       } else {
-        setCompletedPosts(new Set());
+        setCompletedItems(new Set());
       }
     } catch (error) {
       console.error('Error loading completion status:', error);
-      setCompletedPosts(new Set());
+      setCompletedItems(new Set());
     }
   }, [getStorageKey]);
 
   // Save completion status to localStorage
-  const saveCompletionStatus = useCallback((newCompletedPosts: Set<string>) => {
+  const saveCompletionStatus = useCallback((newCompletedItems: Set<string>) => {
     try {
       const key = getStorageKey();
-      const completedArray = Array.from(newCompletedPosts);
+      const completedArray = Array.from(newCompletedItems);
       localStorage.setItem(key, JSON.stringify(completedArray));
       
       // Dispatch a custom event to notify other components
       const event = new CustomEvent('roadmapProgressUpdate', {
-        detail: { userId, completedPosts: completedArray }
+        detail: { userId, completedItems: completedArray }
       });
       window.dispatchEvent(event);
     } catch (error) {
@@ -41,14 +41,14 @@ export const useRoadmapProgress = (userId?: string) => {
     }
   }, [getStorageKey, userId]);
 
-  // Toggle completion status for a post
-  const togglePostCompletion = useCallback((postId: string) => {
-    setCompletedPosts(prev => {
+  // Toggle completion status for an item
+  const toggleItemCompletion = useCallback((itemId: string) => {
+    setCompletedItems(prev => {
       const newSet = new Set(prev);
-      if (newSet.has(postId)) {
-        newSet.delete(postId);
+      if (newSet.has(itemId)) {
+        newSet.delete(itemId);
       } else {
-        newSet.add(postId);
+        newSet.add(itemId);
       }
       
       // Save to localStorage
@@ -58,19 +58,19 @@ export const useRoadmapProgress = (userId?: string) => {
     });
   }, [saveCompletionStatus]);
 
-  // Check if a post is completed
-  const isPostCompleted = useCallback((postId: string) => {
-    return completedPosts.has(postId);
-  }, [completedPosts]);
+  // Check if an item is completed
+  const isItemCompleted = useCallback((itemId: string) => {
+    return completedItems.has(itemId);
+  }, [completedItems]);
 
-  // Get progress statistics for specific posts
-  const getProgressStats = useCallback((posts: { id: string }[]) => {
-    // Count only completed posts that are in the current posts array
-    const completed = posts.filter(post => completedPosts.has(post.id)).length;
-    const total = posts.length;
+  // Get progress statistics for specific items
+  const getProgressStats = useCallback((items: { id: string }[]) => {
+    // Count only completed items that are in the current items array
+    const completed = items.filter(item => completedItems.has(item.id)).length;
+    const total = items.length;
     const progress = total > 0 ? Math.min(Math.round((completed / total) * 100), 100) : 0;
     return { total, completed, progress };
-  }, [completedPosts]);
+  }, [completedItems]);
 
   // Load completion status on mount and user change
   useEffect(() => {
@@ -80,10 +80,10 @@ export const useRoadmapProgress = (userId?: string) => {
   // Listen for custom progress update events
   useEffect(() => {
     const handleProgressUpdate = (event: Event) => {
-      const customEvent = event as CustomEvent<{ userId: string; completedPosts: string[] }>;
-      const { userId: eventUserId, completedPosts: eventCompletedPosts } = customEvent.detail;
+      const customEvent = event as CustomEvent<{ userId: string; completedItems: string[] }>;
+      const { userId: eventUserId, completedItems: eventCompletedItems } = customEvent.detail;
       if (eventUserId === userId) {
-        setCompletedPosts(new Set(eventCompletedPosts));
+        setCompletedItems(new Set(eventCompletedItems));
       }
     };
 
@@ -114,9 +114,9 @@ export const useRoadmapProgress = (userId?: string) => {
   }, [loadCompletionStatus]);
 
   return {
-    completedPosts,
-    togglePostCompletion,
-    isPostCompleted,
+    completedItems,
+    toggleItemCompletion,
+    isItemCompleted,
     getProgressStats,
     loadCompletionStatus
   };

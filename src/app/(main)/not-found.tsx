@@ -50,7 +50,7 @@ export default function NotFound() {
             <Link href="/docs">
               <Button variant="outline" className="w-full sm:w-auto">
                 <Search className="h-4 w-4 mr-2" />
-                {t('notFound.searchPosts')}
+                {t('notFound.searchDocs')}
               </Button>
             </Link>
 
@@ -74,7 +74,7 @@ export default function NotFound() {
                 href="/docs"
                 className="text-sm text-primary hover:text-primary/80 underline"
               >
-                {t('notFound.programmingPosts')}
+                {t('notFound.programmingDocs')}
               </Link>
               <span className="text-slate-400">•</span>
               <Link
