@@ -1,6 +1,6 @@
 # Programming Fundamentals & Language Selection
 
-<div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
+<div className="border-l-4 border-blue-500 p-4 mb-6">
   <h3 className="text-lg font-semibold text-blue-800">Mục tiêu học tập</h3>
   <ul className="mt-2 text-blue-700">
     <li>✓ Lựa chọn ngôn ngữ lập trình phù hợp cho DSA</li>
@@ -21,7 +21,7 @@ Việc chọn ngôn ngữ lập trình phù hợp là bước đầu quan trọn
 | **Python**     | - Syntax đơn giản<br>- Rapid prototyping<br>- Thư viện phong phú       | - Chậm hơn so với C++/Java<br>- GIL limitations | Data Science, Machine Learning, Prototyping  |
 | **JavaScript** | - Không cần setup<br>- Phổ biến<br>- Async programming                 | - Dynamically typed<br>- Inconsistent behavior  | Web Development, Full-stack                  |
 
-<div className="bg-green-50 border-l-4 border-green-500 p-4 my-4">
+<div className="border-l-4 border-green-500 p-4 my-4">
   <p className="text-green-800"><strong>Khuyến nghị:</strong> Chúng ta sẽ sử dụng <strong>C++</strong> trong khóa học này để tận dụng hiệu năng cao và sự phổ biến trong competitive programming.</p>
 </div>
 
