@@ -515,20 +515,7 @@ ListNode* reverse(ListNode* head) {
         <li>• <strong>234</strong> - Palindrome Linked List</li>
       </ul>
     </div>
-    
-    <div>
-      <h4 className="font-semibold text-indigo-700 mb-2">🟡 Medium Level</h4>
-      <ul className="text-indigo-600 space-y-1">
-        <li>• <strong>2</strong> - Add Two Numbers</li>
-        <li>• <strong>19</strong> - Remove Nth Node From End</li>
-        <li>• <strong>24</strong> - Swap Nodes in Pairs</li>
-        <li>• <strong>61</strong> - Rotate List</li>
-        <li>• <strong>82</strong> - Remove Duplicates from Sorted List II</li>
-        <li>• <strong>92</strong> - Reverse Linked List II</li>
-        <li>• <strong>142</strong> - Linked List Cycle II</li>
-        <li>• <strong>143</strong> - Reorder List</li>
-      </ul>
-    </div>
+
   </div>
 </div>
 
