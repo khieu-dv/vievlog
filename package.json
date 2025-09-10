@@ -4,7 +4,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "next build",
+    "build": "npm run build:rust && next build",
+    "build:rust": "cd rust-wasm && wasm-pack build --target bundler --out-dir ../src/wasm",
     "postbuild": "node script-search/build-search.cjs",
     "dev": "next dev --turbopack",
     "db:push": "drizzle-kit push",

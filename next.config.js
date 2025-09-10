@@ -34,6 +34,45 @@ const nextConfig = {
       },
     },
   },
+  // Support for WebAssembly
+  webpack: (config, { isServer }) => {
+    // Add WASM support
+    config.experiments = {
+      ...config.experiments,
+      asyncWebAssembly: true,
+    };
+
+    // Handle .wasm files
+    config.module.rules.push({
+      test: /\.wasm$/,
+      type: 'webassembly/async',
+    });
+
+    // Ensure WASM files are handled properly in production
+    if (!isServer) {
+      config.output.publicPath = `${config.output.publicPath || ''}`;
+    }
+
+    return config;
+  },
+  // Add headers for WASM files
+  async headers() {
+    return [
+      {
+        source: '/wasm/:path*',
+        headers: [
+          {
+            key: 'Cross-Origin-Embedder-Policy',
+            value: 'require-corp',
+          },
+          {
+            key: 'Cross-Origin-Opener-Policy',
+            value: 'same-origin',
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default withNextra(nextConfig);
