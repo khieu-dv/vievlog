@@ -314,7 +314,7 @@ void clear() {
 
 ```mermaid
 graph LR
-    A[NULL | 10 | next] <--> B[prev | 20 | next] <--> C[prev | 30 | NULL]
+    A["NULL | 10 | next"] <--> B["prev | 20 | next"] <--> C["prev | 30 | NULL"]
 
     style A fill:#f3e5f5
     style B fill:#f3e5f5
