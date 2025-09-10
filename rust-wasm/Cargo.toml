@@ -28,6 +28,14 @@ pollster = "0.3"
 futures = "0.3"
 wasm-bindgen-futures = "0.4"
 
+# Lyon for beautiful vector graphics and animations
+lyon = "1.0"
+kurbo = "0.11" # Advanced curves and paths
+palette = "0.7" # Advanced color manipulation
+rand = "0.8"
+euclid = "0.22" # 2D/3D math for graphics
+getrandom = { version = "0.2", features = ["js"] }
+
 # Optional: for console logging from Rust
 console_error_panic_hook = { version = "0.1", optional = true }
 

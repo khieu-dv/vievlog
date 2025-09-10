@@ -2,6 +2,7 @@ use wasm_bindgen::prelude::*;
 use image::{DynamicImage, ImageFormat, Rgba};
 use std::io::Cursor;
 use base64::{Engine as _, engine::general_purpose};
+use crate::graphics::lyon_animations::LyonAnimator;
 
 #[derive(Debug, Clone)]
 #[wasm_bindgen]
@@ -143,6 +144,9 @@ fn apply_motion_effect(img: &DynamicImage, progress: f32, effect_type: &str) -> 
         "tilt_shift" => {
             // Tilt shift với selective focus
             apply_tilt_shift_effect(img, progress, width, height)
+        },
+        "lyon_animation" => {
+            apply_lyon_animation(img, progress, width, height)
         },
         _ => img.clone()
     }
@@ -391,6 +395,19 @@ fn apply_tilt_shift_effect(img: &DynamicImage, progress: f32, width: u32, height
     apply_zoom_with_ease(&result, zoom_factor, width, height)
 }
 
+// Apply Lyon animation
+fn apply_lyon_animation(img: &DynamicImage, progress: f32, width: u32, height: u32) -> DynamicImage {
+    let mut rgba_img = img.to_rgba8();
+    let mut animator = LyonAnimator::new(width, height, 0);
+    
+    // Example: Draw a butterfly
+    let x = width as f32 / 2.0;
+    let y = height as f32 / 2.0;
+    animator.draw_vector_butterfly(&mut rgba_img, x, y, progress, 1.0);
+    
+    DynamicImage::ImageRgba8(rgba_img)
+}
+
 // Helper function for brightness adjustment
 fn apply_brightness_adjustment(img: &mut DynamicImage, factor: f32) -> DynamicImage {
     let mut rgba_img = img.to_rgba8();
@@ -605,7 +622,7 @@ pub fn generate_video_from_images(
         "cinematic_zoom_in", "dramatic_zoom_out", "epic_pan_left", "epic_pan_right",
         "pan_up_mystical", "pan_down_cinematic", "parallax_zoom", "lens_distortion",
         "vignette_fade", "film_grain_vintage", "light_leak_golden", "bokeh_blur",
-        "cross_dissolve", "slide_elegant", "tilt_shift"
+        "cross_dissolve", "slide_elegant", "tilt_shift", "lyon_animation"
     ];
 
     for (idx, img) in processed_images.iter().enumerate() {

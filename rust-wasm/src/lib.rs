@@ -2,6 +2,7 @@ use wasm_bindgen::prelude::*;
 
 // Declare modules
 pub mod api;
+pub mod graphics;
 
 // Re-export image processing and video generation functions
 pub use api::image_processing::*;

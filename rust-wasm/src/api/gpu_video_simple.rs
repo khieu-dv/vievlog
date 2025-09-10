@@ -2,6 +2,7 @@ use wasm_bindgen::prelude::*;
 use base64::{Engine as _, engine::general_purpose};
 use image::{ImageFormat, DynamicImage};
 use std::io::Cursor;
+use crate::graphics::LyonAnimator;
 
 #[wasm_bindgen]
 extern "C" {
@@ -1635,51 +1636,48 @@ fn apply_overlay_animation(img: &DynamicImage, progress: f32, animation_type: &s
     DynamicImage::ImageRgba8(result)
 }
 
-// Colorful Overlay Animation Functions
+// Colorful Overlay Animation Functions using Lyon
 fn apply_rainbow_butterflies(img: &mut image::RgbaImage, progress: f32, intensity: f32, width: u32, height: u32) {
+    let mut animator = LyonAnimator::new(width, height, (progress * 1000.0) as u64);
     let butterfly_count = (intensity * 6.0) as u32;
     
     for i in 0..butterfly_count {
         let phase = (i as f32 * 1.3) % 6.28;
-        let rainbow_hue = (progress * 360.0 + i as f32 * 60.0) % 360.0;
         
-        // Figure-8 flight pattern
+        // Beautiful Figure-8 flight pattern using bezier curves
         let t = progress * 4.0 + phase;
-        let center_x = width as f32 / 2.0 + (t.sin() * width as f32 * 0.2);
-        let center_y = height as f32 / 2.0 + ((t * 2.0).sin() * height as f32 * 0.15);
+        let center_x = width as f32 / 2.0 + (t.sin() * width as f32 * 0.25);
+        let center_y = height as f32 / 2.0 + ((t * 2.0).sin() * height as f32 * 0.18);
         
-        let butterfly_x = center_x as u32;
-        let butterfly_y = center_y as u32;
-        
-        // Rainbow colors
-        let (r, g, b) = hsv_to_rgb(rainbow_hue, 0.8, 1.0);
-        let wing_beat = (progress * 15.0 * 6.28).sin().abs();
-        
-        draw_colored_butterfly(img, butterfly_x, butterfly_y, wing_beat, [r, g, b], intensity, width, height);
+        // Use Lyon for beautiful vector butterfly with curved wings
+        animator.draw_vector_butterfly(img, center_x, center_y, progress + phase, intensity);
     }
 }
 
 fn apply_golden_birds(img: &mut image::RgbaImage, progress: f32, intensity: f32, width: u32, height: u32) {
+    let mut animator = LyonAnimator::new(width, height, (progress * 1234.0) as u64);
     let bird_count = (intensity * 8.0) as u32;
     
     for i in 0..bird_count {
         let formation_offset = i as f32 * 0.4;
+        
+        // Smooth V-formation flight with realistic bird physics
+        let flight_x = progress * width as f32 * 0.9 + formation_offset * 70.0;
+        let flight_y = height as f32 * 0.25 + (formation_offset * 30.0).abs();
+        
+        let bird_x = flight_x % (width as f32 + 100.0);
+        let bird_y = flight_y % height as f32;
+        
+        // Golden shimmer colors
         let golden_shimmer = (progress * 10.0 + i as f32).sin() * 0.3 + 0.7;
+        let gold_color = [
+            (255.0 * golden_shimmer) as u8,
+            (215.0 * golden_shimmer) as u8,
+            (50.0 * golden_shimmer) as u8,
+        ];
         
-        // V-formation flight
-        let flight_x = progress * width as f32 * 0.8 + formation_offset * 60.0;
-        let flight_y = height as f32 * 0.3 + (formation_offset * 25.0).abs();
-        
-        let bird_x = (flight_x % (width as f32 + 80.0)) as u32;
-        let bird_y = flight_y as u32;
-        
-        // Golden colors
-        let gold_r = (255.0 * golden_shimmer) as u8;
-        let gold_g = (215.0 * golden_shimmer) as u8;
-        let gold_b = (0.0 * golden_shimmer) as u8;
-        
-        let wing_flap = (progress * 12.0 * 6.28 + formation_offset).sin();
-        draw_colored_bird(img, bird_x, bird_y, wing_flap, [gold_r, gold_g, gold_b], intensity, width, height);
+        // Use Lyon for beautiful vector bird with smooth wing curves
+        animator.draw_vector_bird(img, bird_x, bird_y, progress + formation_offset, intensity, gold_color);
     }
 }
 
