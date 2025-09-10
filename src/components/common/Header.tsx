@@ -46,8 +46,7 @@ export function Header({ showAuth = true, className }: HeaderProps) {
   const navigation = [
     { name: t("header.home"), href: "/" },
     { name: "Docs", href: "/docs" },
-    { name: "Rust Demo", href: "/rust-demo" },
-    { name: "Data I/O", href: "/data-io" },
+    { name: "🖼️ Image Editor", href: "/image-editor" },
     { name: "Games", href: "/games" },
   ];
 

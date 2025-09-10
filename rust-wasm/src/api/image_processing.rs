@@ -1,6 +1,6 @@
 use wasm_bindgen::prelude::*;
-use image::{ImageBuffer, ImageFormat, RgbaImage, DynamicImage, Rgba};
-use imageproc::filter::{gaussian_blur_f32, box_filter};
+use image::{ImageFormat, DynamicImage, Rgba};
+use imageproc::filter::gaussian_blur_f32;
 use std::io::Cursor;
 
 #[derive(Debug, Clone)]

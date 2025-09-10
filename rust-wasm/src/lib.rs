@@ -3,14 +3,8 @@ use wasm_bindgen::prelude::*;
 // Declare modules
 pub mod api;
 
-// Re-export all public items
-pub use api::basic::*;
-pub use api::data_processing::*;
+// Re-export image processing functions only
 pub use api::image_processing::*;
-pub use api::models::*;
-pub use api::performance::*;
-pub use api::text_analysis::*;
-pub use api::utils::*;
 
 #[wasm_bindgen]
 extern "C" {
