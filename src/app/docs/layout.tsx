@@ -33,14 +33,13 @@ export default async function DocsLayout({ children }: DocsLayoutProps) {
       {/* Các link custom trên navbar */}
       <div className="flex space-x-4 ml-6">
         <Link href="/docs" className="hover:text-primary">Docs</Link>
-        <Link href="/companies" className="hover:text-primary">Companies</Link>
         <Link href="/auth/sign-in" className="hover:text-primary">Login</Link>
       </div>
     </Navbar>
   )
 
 
-  const excludePages = ['posts', 'companies', 'auth', 'profile', 'games']
+  const excludePages = ['posts', 'auth', 'profile', 'games']
 
   const filteredPageMap = pageMap.filter(
     (item: any) => !excludePages.includes(item.name.toLowerCase())
