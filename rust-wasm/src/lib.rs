@@ -3,8 +3,9 @@ use wasm_bindgen::prelude::*;
 // Declare modules
 pub mod api;
 
-// Re-export image processing functions only
+// Re-export image processing and video generation functions
 pub use api::image_processing::*;
+pub use api::video_generation::*;
 
 #[wasm_bindgen]
 extern "C" {
