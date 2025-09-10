@@ -21,6 +21,13 @@ imageproc = "0.25"
 # Video generation dependencies
 base64 = "0.22"
 
+# WGPU for advanced GPU-accelerated effects
+wgpu = "0.19"
+bytemuck = { version = "1.14", features = ["derive"] }
+pollster = "0.3"
+futures = "0.3"
+wasm-bindgen-futures = "0.4"
+
 # Optional: for console logging from Rust
 console_error_panic_hook = { version = "0.1", optional = true }
 

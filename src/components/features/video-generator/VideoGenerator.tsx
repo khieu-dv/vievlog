@@ -11,17 +11,21 @@ import { cn } from '~/lib/utils';
 export interface VideoConfig {
   framesPerImage: number;
   transitionFrames: number;
-  transitionType: 'crossfade' | 'pan_left' | 'pan_right' | 'fade' | 'slide_left' | 'slide_right' | 'slide_up' | 'slide_down';
+  transitionType: 'enhanced_crossfade' | 'cinematic_dissolve' | 'crossfade' | 'pan_left' | 'pan_right' | 'fade';
   fps: number;
   quality: 'low' | 'medium' | 'high';
+  intensity: number;
+  useEnhancedEffects: boolean;
 }
 
 const DEFAULT_CONFIG: VideoConfig = {
   framesPerImage: 120, // 4 giây mỗi hình (120 frames ÷ 30 fps = 4s)
   transitionFrames: 30, // 1 giây transition (30 frames ÷ 30 fps = 1s)
-  transitionType: 'crossfade',
+  transitionType: 'enhanced_crossfade',
   fps: 30,
-  quality: 'medium'
+  quality: 'medium',
+  intensity: 0.8,
+  useEnhancedEffects: true
 };
 
 export function VideoGenerator() {
@@ -85,26 +89,47 @@ export function VideoGenerator() {
     try {
       console.log('Starting video generation with config:', config);
       
-      // Convert all images to Uint8Array
-      const imageDataArray = [];
+      // Convert all images to Uint8Array and create JS Array for WASM
+      const jsArray = new Array();
       for (let i = 0; i < images.length; i++) {
         setProgress((i / images.length) * 30); // 30% for image processing
         const imageData = await convertFileToUint8Array(images[i]);
-        imageDataArray.push(imageData);
+        jsArray.push(imageData);
       }
-
-      // Create JavaScript array for WASM
-      const jsArray = imageDataArray;
       
       setProgress(40); // 40% for starting WASM processing
       
-      // Generate video frames using WASM
-      const frames = wasmModule.generate_video_from_images(
-        jsArray,
-        config.framesPerImage,
-        config.transitionFrames,
-        config.transitionType
-      );
+      // Generate video frames using enhanced WASM functions
+      console.log('Enhanced effects enabled:', config.useEnhancedEffects);
+      console.log('Available WASM functions:', Object.keys(wasmModule));
+      console.log('Config:', config);
+      
+      const frames = config.useEnhancedEffects 
+        ? (() => {
+            console.log('Using enhanced effects with params:', {
+              images: jsArray.length,
+              framesPerImage: config.framesPerImage,
+              transitionFrames: config.transitionFrames,
+              transitionType: config.transitionType,
+              intensity: config.intensity
+            });
+            return wasmModule.generate_enhanced_video_frames(
+              jsArray,
+              config.framesPerImage,
+              config.transitionFrames,
+              config.transitionType,
+              config.intensity
+            );
+          })()
+        : (() => {
+            console.log('Using standard effects');
+            return wasmModule.generate_video_from_images(
+              jsArray,
+              config.framesPerImage,
+              config.transitionFrames,
+              config.transitionType
+            );
+          })();
 
       setProgress(90); // 90% for WASM processing complete
       
@@ -129,17 +154,33 @@ export function VideoGenerator() {
     try {
       console.log('Generating preview...');
       
-      const imageDataArray = [];
+      const imageDataArray = new Array();
       for (const image of images.slice(0, 3)) { // Only use first 3 images for preview
         const imageData = await convertFileToUint8Array(image);
         imageDataArray.push(imageData);
       }
 
-      const frames = wasmModule.create_video_preview(
-        imageDataArray,
-        20, // Preview with fewer frames
-        config.transitionType
-      );
+      // Use enhanced effects for preview too
+      const frames = config.useEnhancedEffects && wasmModule.generate_enhanced_video_frames
+        ? wasmModule.generate_enhanced_video_frames(
+            imageDataArray,
+            15, // Fewer frames per image for preview
+            10, // Fewer transition frames for preview
+            config.transitionType,
+            config.intensity
+          )
+        : wasmModule.create_video_preview
+        ? wasmModule.create_video_preview(
+            imageDataArray,
+            20, // Preview with fewer frames
+            config.transitionType
+          )
+        : wasmModule.generate_video_from_images(
+            imageDataArray,
+            15,
+            10,
+            config.transitionType
+          );
 
       // frames is already a JavaScript Array, no need to convert
       const frameArray = Array.from(frames) as string[];
@@ -285,16 +326,31 @@ export function VideoGenerator() {
         </div>
       )}
 
+      {/* Enhanced Effects Status */}
+      {config.useEnhancedEffects && (
+        <div className="bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-950/20 dark:to-teal-950/20 rounded-lg p-4 border border-emerald-200 dark:border-emerald-800">
+          <h3 className="font-semibold text-sm mb-2 text-emerald-800 dark:text-emerald-300">🎬 Enhanced Cinematic Effects Active:</h3>
+          <ul className="text-sm space-y-1 text-emerald-700 dark:text-emerald-300">
+            <li>• <strong>GPU-Accelerated Processing:</strong> Powered by WGPU shaders for ultimate quality</li>
+            <li>• <strong>15 Professional Effects:</strong> Cinematic zoom, dramatic pan, light leaks, film grain</li>
+            <li>• <strong>Vintage Filters:</strong> VHS grain, golden light leaks, vignette fading</li>
+            <li>• <strong>Artistic Effects:</strong> Bokeh blur, tilt-shift, lens distortion, parallax</li>
+            <li>• <strong>Smart Randomization:</strong> Each image gets a unique effect automatically</li>
+            <li>• <strong>Chromatic Aberration:</strong> Realistic lens effects for cinematic feel</li>
+            <li>• 🎯 Best with high-resolution images (1080p+) for maximum impact</li>
+          </ul>
+        </div>
+      )}
+
       {/* Tips */}
       <div className="bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-950/20 dark:to-blue-950/20 rounded-lg p-4 border border-purple-200 dark:border-purple-800">
-        <h3 className="font-semibold text-sm mb-2 text-purple-800 dark:text-purple-300">🎬 Hollywood-Style Effects Included:</h3>
+        <h3 className="font-semibold text-sm mb-2 text-purple-800 dark:text-purple-300">📖 Usage Tips:</h3>
         <ul className="text-sm space-y-1 text-purple-700 dark:text-purple-300">
-          <li>• <strong>15 Professional Effects:</strong> Cinematic zoom, dramatic pan, light leaks, film grain</li>
-          <li>• <strong>Vintage Filters:</strong> VHS grain, golden light leaks, vignette fading</li>
-          <li>• <strong>Artistic Effects:</strong> Bokeh blur, tilt-shift, lens distortion, parallax</li>
-          <li>• <strong>Smart Randomization:</strong> Each image gets a unique effect automatically</li>
-          <li>• <strong>Cinematic Timing:</strong> 3-5 second display with smooth easing curves</li>
-          <li>• 🎯 Best with high-resolution images (1080p+) for maximum impact</li>
+          <li>• Upload 3-8 images for best results</li>
+          <li>• Use high-quality images (1080p+ recommended)</li>
+          <li>• Enable Enhanced Effects for professional quality</li>
+          <li>• Adjust intensity to control effect strength</li>
+          <li>• Try different transition types for various styles</li>
         </ul>
       </div>
     </div>

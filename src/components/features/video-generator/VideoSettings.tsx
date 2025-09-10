@@ -14,14 +14,12 @@ interface VideoSettingsProps {
 }
 
 const TRANSITION_TYPES = [
-  { value: 'crossfade', label: 'Crossfade', description: 'Smooth blend between images' },
+  { value: 'enhanced_crossfade', label: 'Enhanced Crossfade', description: 'GPU-accelerated smooth blend with lighting' },
+  { value: 'cinematic_dissolve', label: 'Cinematic Dissolve', description: 'Professional dissolve with noise patterns' },
+  { value: 'crossfade', label: 'Classic Crossfade', description: 'Simple smooth blend between images' },
   { value: 'pan_left', label: 'Pan Left', description: 'Pan and zoom effect moving left' },
   { value: 'pan_right', label: 'Pan Right', description: 'Pan and zoom effect moving right' },
   { value: 'fade', label: 'Fade', description: 'Fade out and fade in effect' },
-  { value: 'slide_left', label: 'Slide Left', description: 'Slide transition to the left' },
-  { value: 'slide_right', label: 'Slide Right', description: 'Slide transition to the right' },
-  { value: 'slide_up', label: 'Slide Up', description: 'Slide transition upwards' },
-  { value: 'slide_down', label: 'Slide Down', description: 'Slide transition downwards' },
 ] as const;
 
 const QUALITY_PRESETS = [
@@ -93,6 +91,54 @@ export function VideoSettings({ config, onConfigChange, videoDuration, className
           ))}
         </div>
       </div>
+
+      {/* Enhanced Effects Toggle */}
+      <div className="space-y-3">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-2">
+            <Zap className="w-4 h-4" />
+            <label className="text-sm font-medium">Enhanced Cinematic Effects</label>
+          </div>
+          <Button
+            variant={config.useEnhancedEffects ? "default" : "outline"}
+            size="sm"
+            onClick={() => updateConfig({ useEnhancedEffects: !config.useEnhancedEffects })}
+          >
+            {config.useEnhancedEffects ? 'ON' : 'OFF'}
+          </Button>
+        </div>
+        <p className="text-xs text-muted-foreground">
+          {config.useEnhancedEffects 
+            ? "GPU-accelerated processing with 15+ professional effects including film grain, light leaks, parallax, and chromatic aberration"
+            : "Standard CPU processing with basic transitions"
+          }
+        </p>
+      </div>
+
+      {/* Effect Intensity */}
+      {config.useEnhancedEffects && (
+        <div className="space-y-2">
+          <label className="text-sm font-medium">
+            Effect Intensity: {(config.intensity * 100).toFixed(0)}%
+          </label>
+          <div className="space-y-2">
+            <input
+              type="range"
+              min="0.1"
+              max="1.5"
+              step="0.1"
+              value={config.intensity}
+              onChange={(e) => updateConfig({ intensity: parseFloat(e.target.value) })}
+              className="w-full"
+            />
+            <div className="flex justify-between text-xs text-muted-foreground">
+              <span>Subtle (10%)</span>
+              <span>Normal (80%)</span>
+              <span>Dramatic (150%)</span>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Advanced Settings */}
       <div className="space-y-4">
@@ -210,25 +256,29 @@ export function VideoSettings({ config, onConfigChange, videoDuration, className
             onClick={() => updateConfig({
               framesPerImage: 120, // 4 giây
               transitionFrames: 30, // 1 giây
-              transitionType: 'crossfade',
+              transitionType: 'enhanced_crossfade',
               quality: 'medium',
-              fps: 30
+              fps: 30,
+              useEnhancedEffects: true,
+              intensity: 0.8
             })}
           >
-            Cinematic (4s per image)
+            🎬 Professional Cinematic
           </Button>
           <Button
             variant="outline"
             size="sm"
             onClick={() => updateConfig({
               framesPerImage: 90, // 3 giây
-              transitionFrames: 30, // 1 giây
-              transitionType: 'pan_right',
+              transitionFrames: 20, // 0.7 giây
+              transitionType: 'cinematic_dissolve',
               quality: 'high',
-              fps: 30
+              fps: 30,
+              useEnhancedEffects: true,
+              intensity: 1.2
             })}
           >
-            Fast Paced (3s per image)
+            ⚡ Fast & Dramatic
           </Button>
           <Button
             variant="outline"
@@ -236,12 +286,14 @@ export function VideoSettings({ config, onConfigChange, videoDuration, className
             onClick={() => updateConfig({
               framesPerImage: 150, // 5 giây
               transitionFrames: 45, // 1.5 giây
-              transitionType: 'fade',
+              transitionType: 'enhanced_crossfade',
               quality: 'medium',
-              fps: 30
+              fps: 30,
+              useEnhancedEffects: true,
+              intensity: 0.6
             })}
           >
-            Slow & Smooth (5s per image)
+            🌅 Slow & Artistic
           </Button>
         </div>
       </div>

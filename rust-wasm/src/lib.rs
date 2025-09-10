@@ -6,6 +6,8 @@ pub mod api;
 // Re-export image processing and video generation functions
 pub use api::image_processing::*;
 pub use api::video_generation::*;
+pub use api::gpu_video_simple::*;
+pub use api::gpu_video_generation_fixed::*;
 
 #[wasm_bindgen]
 extern "C" {
