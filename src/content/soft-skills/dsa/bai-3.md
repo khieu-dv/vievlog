@@ -57,13 +57,13 @@ graph LR
 ```mermaid
 flowchart TD
     A[Memory Layout] --> B[Base Address: 1000]
-    B --> C[arr[0]: 10]
-    C --> D[arr[1]: 25]
-    D --> E[arr[2]: 30]
-    E --> F[arr[3]: 15]
-    F --> G[arr[4]: 40]
+    B --> C("arr[0]: 10")
+    C --> D("arr[1]: 25")
+    D --> E("arr[2]: 30")
+    E --> F("arr[3]: 15")
+    F --> G("arr[4]: 40")
 
-    H[Address Calculation] --> I[arr[i] = base_address + i × sizeof(datatype)]
+    H[Address Calculation] --> I("arr[i] = base_address + i × sizeof(datatype)")
 
     style A fill:#fff3e0
     style H fill:#fff3e0
