@@ -1,4 +1,4 @@
-# Programming Fundamentals & Language Selection
+# Bài 1: Programming Fundamentals & Language Selection
 
 <div className="border-l-4 border-blue-500 p-4 mb-6">
   <h3 className="text-lg font-semibold text-blue-800">Mục tiêu học tập</h3>

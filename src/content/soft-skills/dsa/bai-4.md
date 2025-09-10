@@ -1,424 +1,512 @@
 # Bài 4: Linked Lists - Danh sách liên kết
 
-## 1. Giới thiệu về Linked Lists
+## 📚 Mục tiêu học tập
 
-<div className="bg-blue-50 border-l-4 border-blue-400 p-4 mb-6">
-  <h3 className="text-lg font-semibold text-blue-800 mb-2">💡 Định nghĩa</h3>
-  <p className="text-blue-700">Linked List là một cấu trúc dữ liệu tuyến tính trong đó các phần tử được lưu trữ trong các node, mỗi node chứa dữ liệu và một con trỏ (pointer) trỏ đến node tiếp theo.</p>
+<div className="border-l-4 border-blue-400 p-4 mb-6">
+  <div className="flex">
+    <div className="ml-3">
+      <p className="text-blue-700 font-medium">Sau khi hoàn thành bài học này, bạn sẽ:</p>
+      <ul className="mt-2 text-blue-600">
+        <li>✅ Hiểu khái niệm Node và con trỏ trong Linked List</li>
+        <li>✅ Cài đặt và sử dụng Singly Linked List</li>
+        <li>✅ Thực hiện các thao tác chèn, xóa trên Linked List</li>
+        <li>✅ Phân biệt Singly, Doubly và Circular Linked List</li>
+        <li>✅ So sánh hiệu suất Array vs Linked List</li>
+      </ul>
+    </div>
+  </div>
 </div>
 
-### Đặc điểm chính:
+## 1. Khái niệm cơ bản
 
-- **Bộ nhớ không liền kề**: Các node có thể nằm ở bất kỳ vị trí nào trong bộ nhớ
-- **Kích thước linh hoạt**: Có thể thay đổi kích thước trong quá trình chạy
-- **Truy cập tuần tự**: Phải duyệt từ node đầu đến node cần truy cập
+### 1.1 Linked List là gì?
 
-## 2. Cấu trúc Node
+**Linked List** là một cấu trúc dữ liệu tuyến tính trong đó các phần tử không được lưu trữ ở các vị trí bộ nhớ liền kề. Thay vào đó, mỗi phần tử chứa dữ liệu và một con trỏ (pointer) đến phần tử tiếp theo.
+
+### 1.2 Cấu trúc Node
 
 ```mermaid
 graph LR
-    A[data | next] --> B[data | next] --> C[data | NULL]
+    A[Data | Next] --> B[Data | Next]
+    B --> C[Data | NULL]
+
     style A fill:#e1f5fe
     style B fill:#e1f5fe
     style C fill:#e1f5fe
 ```
 
-### Cài đặt Node trong C++:
-
 ```cpp
-struct Node {
-    int data;      // Dữ liệu của node
-    Node* next;    // Con trỏ trỏ đến node tiếp theo
+// Định nghĩa Node cơ bản
+struct ListNode {
+    int data;           // Dữ liệu
+    ListNode* next;     // Con trỏ đến node tiếp theo
 
     // Constructor
-    Node(int value) : data(value), next(nullptr) {}
+    ListNode(int val) : data(val), next(nullptr) {}
 };
 ```
 
-## 3. So sánh Array vs Linked List
+## 2. So sánh Array vs Linked List
 
-| Tiêu chí                | Array        | Linked List    |
-| ----------------------- | ------------ | -------------- |
-| **Bộ nhớ**              | Liền kề      | Rải rác        |
-| **Truy cập ngẫu nhiên** | O(1)         | O(n)           |
-| **Chèn/Xóa đầu**        | O(n)         | O(1)           |
-| **Chèn/Xóa cuối**       | O(1)         | O(n)           |
-| **Sử dụng bộ nhớ**      | Chỉ lưu data | Data + pointer |
-| **Cache performance**   | Tốt          | Kém            |
+| Đặc điểm       | Array                   | Linked List                     |
+| -------------- | ----------------------- | ------------------------------- |
+| **Truy cập**   | O(1) - Random access    | O(n) - Sequential access        |
+| **Chèn đầu**   | O(n) - Cần dịch chuyển  | O(1) - Chỉ thay đổi con trỏ     |
+| **Chèn cuối**  | O(1) - Nếu có chỗ trống | O(n) - Cần duyệt đến cuối       |
+| **Xóa đầu**    | O(n) - Cần dịch chuyển  | O(1) - Chỉ thay đổi con trỏ     |
+| **Bộ nhớ**     | Liền kề, cache-friendly | Không liền kề, overhead pointer |
+| **Kích thước** | Cố định                 | Động                            |
 
-## 4. Singly Linked List
-
-<div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
-  <h3 className="text-green-800 font-semibold mb-3">🔗 Singly Linked List</h3>
-  <p className="text-green-700">Mỗi node chỉ có một con trỏ next trỏ đến node tiếp theo. Node cuối cùng có next = nullptr.</p>
+<div className="border-l-4 border-yellow-400 p-4 my-4">
+  <div className="flex">
+    <div className="ml-3">
+      <p className="text-yellow-700 font-medium">💡 Lưu ý:</p>
+      <p className="text-yellow-600 mt-1">Linked List phù hợp khi cần thêm/xóa thường xuyên ở đầu danh sách. Array phù hợp khi cần truy cập ngẫu nhiên thường xuyên.</p>
+    </div>
+  </div>
 </div>
 
-```mermaid
-graph LR
-    head[HEAD] --> A[10 | •] --> B[20 | •] --> C[30 | •] --> D[NULL]
-    style head fill:#ffcdd2
-    style A fill:#c8e6c9
-    style B fill:#c8e6c9
-    style C fill:#c8e6c9
-```
+## 3. Singly Linked List
 
-### Cài đặt Singly Linked List:
+### 3.1 Cài đặt cơ bản
 
 ```cpp
 class SinglyLinkedList {
 private:
-    Node* head;
+    ListNode* head;
     int size;
 
 public:
-    // Constructor
     SinglyLinkedList() : head(nullptr), size(0) {}
 
-    // Destructor
+    // Destructor để giải phóng bộ nhớ
     ~SinglyLinkedList() {
         clear();
     }
 
-    // Chèn node vào đầu danh sách - O(1)
-    void insertAtHead(int value) {
-        Node* newNode = new Node(value);
-        newNode->next = head;
+    // Kiểm tra danh sách rỗng
+    bool isEmpty() const {
+        return head == nullptr;
+    }
+
+    // Lấy kích thước
+    int getSize() const {
+        return size;
+    }
+};
+```
+
+### 3.2 Các thao tác cơ bản
+
+#### Chèn tại đầu (Insert at Head)
+
+```mermaid
+graph LR
+    subgraph "Trước khi chèn"
+        A[10] --> B[20] --> C[30] --> D["NULL"]
+    end
+
+    subgraph "Sau khi chèn 5"
+        E[5] --> F[10] --> G[20] --> H[30] --> I["NULL"]
+    end
+```
+
+```cpp
+void insertAtHead(int data) {
+    ListNode* newNode = new ListNode(data);
+    newNode->next = head;
+    head = newNode;
+    size++;
+}
+```
+
+#### Chèn tại cuối (Insert at Tail)
+
+```cpp
+void insertAtTail(int data) {
+    ListNode* newNode = new ListNode(data);
+
+    if (isEmpty()) {
         head = newNode;
-        size++;
+    } else {
+        ListNode* current = head;
+        while (current->next != nullptr) {
+            current = current->next;
+        }
+        current->next = newNode;
+    }
+    size++;
+}
+```
+
+#### Chèn tại vị trí bất kỳ
+
+```cpp
+void insertAtPosition(int data, int position) {
+    if (position < 0 || position > size) {
+        throw std::out_of_range("Invalid position");
     }
 
-    // Chèn node vào cuối danh sách - O(n)
-    void insertAtTail(int value) {
-        Node* newNode = new Node(value);
-
-        if (head == nullptr) {
-            head = newNode;
-        } else {
-            Node* temp = head;
-            while (temp->next != nullptr) {
-                temp = temp->next;
-            }
-            temp->next = newNode;
-        }
-        size++;
+    if (position == 0) {
+        insertAtHead(data);
+        return;
     }
 
-    // Chèn node tại vị trí index - O(n)
-    bool insertAt(int index, int value) {
-        if (index < 0 || index > size) return false;
+    ListNode* newNode = new ListNode(data);
+    ListNode* current = head;
 
-        if (index == 0) {
-            insertAtHead(value);
-            return true;
-        }
+    for (int i = 0; i < position - 1; i++) {
+        current = current->next;
+    }
 
-        Node* newNode = new Node(value);
-        Node* temp = head;
+    newNode->next = current->next;
+    current->next = newNode;
+    size++;
+}
+```
 
-        for (int i = 0; i < index - 1; i++) {
-            temp = temp->next;
-        }
+### 3.3 Thao tác xóa
 
-        newNode->next = temp->next;
-        temp->next = newNode;
-        size++;
+#### Xóa tại đầu
+
+```cpp
+void deleteAtHead() {
+    if (isEmpty()) {
+        throw std::runtime_error("Cannot delete from empty list");
+    }
+
+    ListNode* temp = head;
+    head = head->next;
+    delete temp;
+    size--;
+}
+```
+
+#### Xóa theo giá trị
+
+```cpp
+bool deleteByValue(int data) {
+    if (isEmpty()) return false;
+
+    if (head->data == data) {
+        deleteAtHead();
         return true;
     }
 
-    // Xóa node đầu danh sách - O(1)
-    bool deleteHead() {
-        if (head == nullptr) return false;
+    ListNode* current = head;
+    while (current->next != nullptr && current->next->data != data) {
+        current = current->next;
+    }
 
-        Node* temp = head;
-        head = head->next;
+    if (current->next != nullptr) {
+        ListNode* temp = current->next;
+        current->next = temp->next;
         delete temp;
         size--;
         return true;
     }
 
-    // Xóa node có giá trị value - O(n)
-    bool deleteValue(int value) {
-        if (head == nullptr) return false;
-
-        // Nếu node đầu chứa giá trị cần xóa
-        if (head->data == value) {
-            return deleteHead();
-        }
-
-        Node* current = head;
-        while (current->next != nullptr) {
-            if (current->next->data == value) {
-                Node* temp = current->next;
-                current->next = temp->next;
-                delete temp;
-                size--;
-                return true;
-            }
-            current = current->next;
-        }
-        return false;
-    }
-
-    // Tìm kiếm giá trị - O(n)
-    int search(int value) {
-        Node* temp = head;
-        int index = 0;
-
-        while (temp != nullptr) {
-            if (temp->data == value) {
-                return index;
-            }
-            temp = temp->next;
-            index++;
-        }
-        return -1; // Không tìm thấy
-    }
-
-    // In danh sách
-    void display() {
-        Node* temp = head;
-        while (temp != nullptr) {
-            cout << temp->data << " -> ";
-            temp = temp->next;
-        }
-        cout << "NULL" << endl;
-    }
-
-    // Lấy kích thước
-    int getSize() const { return size; }
-
-    // Kiểm tra rỗng
-    bool isEmpty() const { return head == nullptr; }
-
-    // Xóa toàn bộ danh sách
-    void clear() {
-        while (head != nullptr) {
-            deleteHead();
-        }
-    }
-};
+    return false; // Không tìm thấy
+}
 ```
 
-## 5. Doubly Linked List
+### 3.4 Các thao tác khác
 
-<div className="bg-purple-50 border border-purple-200 rounded-lg p-4 mb-6">
-  <h3 className="text-purple-800 font-semibold mb-3">🔗 Doubly Linked List</h3>
-  <p className="text-purple-700">Mỗi node có hai con trỏ: prev trỏ về node trước và next trỏ đến node sau. Cho phép duyệt theo cả hai hướng.</p>
+```cpp
+// Tìm kiếm
+bool search(int data) const {
+    ListNode* current = head;
+    while (current != nullptr) {
+        if (current->data == data) {
+            return true;
+        }
+        current = current->next;
+    }
+    return false;
+}
+
+// In danh sách
+void display() const {
+    ListNode* current = head;
+    while (current != nullptr) {
+        std::cout << current->data;
+        if (current->next != nullptr) {
+            std::cout << " -> ";
+        }
+        current = current->next;
+    }
+    std::cout << " -> NULL" << std::endl;
+}
+
+// Xóa toàn bộ danh sách
+void clear() {
+    while (!isEmpty()) {
+        deleteAtHead();
+    }
+}
+```
+
+## 4. Doubly Linked List
+
+<div className="border border-green-200 rounded-lg p-4 mb-6">
+  <h3 className="text-green-800 font-semibold mb-2">🔗 Doubly Linked List</h3>
+  <p className="text-green-700">Mỗi node có hai con trỏ: một trỏ đến node trước và một trỏ đến node sau.</p>
 </div>
 
 ```mermaid
 graph LR
-    head[HEAD] -.-> A
-    A[• | 10 | •] <--> B[• | 20 | •] <--> C[• | 30 | •]
-    C -.-> tail[TAIL]
-    style head fill:#ffcdd2
-    style tail fill:#ffcdd2
-    style A fill:#e1bee7
-    style B fill:#e1bee7
-    style C fill:#e1bee7
+    A[NULL | 10 | next] <--> B[prev | 20 | next] <--> C[prev | 30 | NULL]
+
+    style A fill:#f3e5f5
+    style B fill:#f3e5f5
+    style C fill:#f3e5f5
 ```
 
-### Cài đặt Node cho Doubly Linked List:
+### 4.1 Cấu trúc Node
 
 ```cpp
-struct DoublyNode {
+struct DoublyListNode {
     int data;
-    DoublyNode* prev;
-    DoublyNode* next;
+    DoublyListNode* next;
+    DoublyListNode* prev;
 
-    DoublyNode(int value) : data(value), prev(nullptr), next(nullptr) {}
+    DoublyListNode(int val) : data(val), next(nullptr), prev(nullptr) {}
 };
-```
 
-### Cài đặt Doubly Linked List:
-
-```cpp
 class DoublyLinkedList {
 private:
-    DoublyNode* head;
-    DoublyNode* tail;
+    DoublyListNode* head;
+    DoublyListNode* tail;
     int size;
 
 public:
     DoublyLinkedList() : head(nullptr), tail(nullptr), size(0) {}
-
-    // Chèn vào đầu - O(1)
-    void insertAtHead(int value) {
-        DoublyNode* newNode = new DoublyNode(value);
-
-        if (head == nullptr) {
-            head = tail = newNode;
-        } else {
-            newNode->next = head;
-            head->prev = newNode;
-            head = newNode;
-        }
-        size++;
-    }
-
-    // Chèn vào cuối - O(1)
-    void insertAtTail(int value) {
-        DoublyNode* newNode = new DoublyNode(value);
-
-        if (tail == nullptr) {
-            head = tail = newNode;
-        } else {
-            tail->next = newNode;
-            newNode->prev = tail;
-            tail = newNode;
-        }
-        size++;
-    }
-
-    // Xóa node đầu - O(1)
-    bool deleteHead() {
-        if (head == nullptr) return false;
-
-        if (head == tail) {
-            delete head;
-            head = tail = nullptr;
-        } else {
-            DoublyNode* temp = head;
-            head = head->next;
-            head->prev = nullptr;
-            delete temp;
-        }
-        size--;
-        return true;
-    }
-
-    // Xóa node cuối - O(1)
-    bool deleteTail() {
-        if (tail == nullptr) return false;
-
-        if (head == tail) {
-            delete tail;
-            head = tail = nullptr;
-        } else {
-            DoublyNode* temp = tail;
-            tail = tail->prev;
-            tail->next = nullptr;
-            delete temp;
-        }
-        size--;
-        return true;
-    }
-
-    // Duyệt từ đầu đến cuối
-    void displayForward() {
-        DoublyNode* temp = head;
-        while (temp != nullptr) {
-            cout << temp->data << " <-> ";
-            temp = temp->next;
-        }
-        cout << "NULL" << endl;
-    }
-
-    // Duyệt từ cuối về đầu
-    void displayBackward() {
-        DoublyNode* temp = tail;
-        while (temp != nullptr) {
-            cout << temp->data << " <-> ";
-            temp = temp->prev;
-        }
-        cout << "NULL" << endl;
-    }
 };
 ```
 
-## 6. Circular Linked List
+### 4.2 Ưu điểm của Doubly Linked List
 
-<div className="bg-orange-50 border border-orange-200 rounded-lg p-4 mb-6">
-  <h3 className="text-orange-800 font-semibold mb-3">🔄 Circular Linked List</h3>
-  <p className="text-orange-700">Node cuối cùng trỏ về node đầu tiên, tạo thành một vòng tròn. Không có node nào có next = nullptr.</p>
-</div>
+| Thao tác              | Singly              | Doubly                 |
+| --------------------- | ------------------- | ---------------------- |
+| **Duyệt ngược**       | Không thể           | O(n) từ tail           |
+| **Xóa node hiện tại** | O(n) - cần tìm prev | O(1) - có prev         |
+| **Chèn trước node**   | O(n)                | O(1)                   |
+| **Bộ nhớ**            | Ít hơn              | Nhiều hơn (2 pointers) |
+
+### 4.3 Chèn vào Doubly Linked List
+
+```cpp
+void insertAtHead(int data) {
+    DoublyListNode* newNode = new DoublyListNode(data);
+
+    if (isEmpty()) {
+        head = tail = newNode;
+    } else {
+        newNode->next = head;
+        head->prev = newNode;
+        head = newNode;
+    }
+    size++;
+}
+
+void insertAtTail(int data) {
+    DoublyListNode* newNode = new DoublyListNode(data);
+
+    if (isEmpty()) {
+        head = tail = newNode;
+    } else {
+        tail->next = newNode;
+        newNode->prev = tail;
+        tail = newNode;
+    }
+    size++;
+}
+```
+
+## 5. Circular Linked List
 
 ```mermaid
 graph LR
-    A[10 | •] --> B[20 | •] --> C[30 | •] --> A
+    A[10] --> B[20]
+    B --> C[30]
+    C --> A
+
     style A fill:#ffe0b2
     style B fill:#ffe0b2
     style C fill:#ffe0b2
 ```
 
-## 7. Bảng tóm tắt độ phức tạp
-
-| Thao tác             | Singly LL | Doubly LL | Array |
-| -------------------- | --------- | --------- | ----- |
-| **Truy cập phần tử** | O(n)      | O(n)      | O(1)  |
-| **Tìm kiếm**         | O(n)      | O(n)      | O(n)  |
-| **Chèn đầu**         | O(1)      | O(1)      | O(n)  |
-| **Chèn cuối**        | O(n)      | O(1)      | O(1)  |
-| **Chèn giữa**        | O(n)      | O(n)      | O(n)  |
-| **Xóa đầu**          | O(1)      | O(1)      | O(n)  |
-| **Xóa cuối**         | O(n)      | O(1)      | O(1)  |
-| **Xóa giữa**         | O(n)      | O(1)\*    | O(n)  |
-
-\*Với điều kiện đã có con trỏ đến node cần xóa
-
-## 8. Ứng dụng thực tế
-
-### Music Playlist (Doubly Linked List)
-
-```cpp
-struct Song {
-    string title;
-    string artist;
-    Song* prev;
-    Song* next;
-
-    Song(string t, string a) : title(t), artist(a), prev(nullptr), next(nullptr) {}
-};
-
-class MusicPlaylist {
-    Song* current;
-    // Các method: play(), next(), previous(), addSong(), removeSong()
-};
-```
-
-### Undo/Redo Functionality (Doubly Linked List)
-
-```cpp
-class UndoRedoSystem {
-    DoublyNode* currentState;
-    // Methods: performAction(), undo(), redo()
-};
-```
-
-## 9. Bài tập LeetCode liên quan
-
-<div className="bg-red-50 border border-red-200 rounded-lg p-4">
-  <h3 className="text-red-800 font-semibold mb-3">🎯 Bài tập thực hành</h3>
-  
-| Độ khó | Problem | Link |
-|--------|---------|------|
-| Easy | 21. Merge Two Sorted Lists | https://leetcode.com/problems/merge-two-sorted-lists/ |
-| Easy | 206. Reverse Linked List | https://leetcode.com/problems/reverse-linked-list/ |
-| Easy | 83. Remove Duplicates from Sorted List | https://leetcode.com/problems/remove-duplicates-from-sorted-list/ |
-| Medium | 2. Add Two Numbers | https://leetcode.com/problems/add-two-numbers/ |
-| Medium | 19. Remove Nth Node From End of List | https://leetcode.com/problems/remove-nth-node-from-end-of-list/ |
-| Medium | 143. Reorder List | https://leetcode.com/problems/reorder-list/ |
-| Medium | 24. Swap Nodes in Pairs | https://leetcode.com/problems/swap-nodes-in-pairs/ |
-| Hard | 25. Reverse Nodes in k-Group | https://leetcode.com/problems/reverse-nodes-in-k-group/ |
-
+<div className="border border-orange-200 rounded-lg p-4 mb-6">
+  <h3 className="text-orange-800 font-semibold mb-2">🔄 Circular Linked List</h3>
+  <p className="text-orange-700">Node cuối cùng trỏ về node đầu tiên, tạo thành vòng tròn.</p>
 </div>
 
-## 10. Kết luận
+### 5.1 Ứng dụng thực tế
 
-### Khi nào sử dụng Linked List:
+- **Round-robin scheduling** trong hệ điều hành
+- **Music playlist** lặp lại
+- **Game turn management**
 
-- **Kích thước dữ liệu không biết trước** và thay đổi thường xuyên
-- **Thao tác chèn/xóa ở đầu danh sách** nhiều
-- **Không cần truy cập ngẫu nhiên** đến các phần tử
-- **Cần tiết kiệm bộ nhớ** (không cần cấp phát trước)
+## 6. Phân tích độ phức tạp
 
-### Khi nào không nên sử dụng:
+### 6.1 Time Complexity
 
-- Cần **truy cập ngẫu nhiên** thường xuyên
-- **Cache performance** quan trọng
+| Thao tác          | Singly LL | Doubly LL | Array  |
+| ----------------- | --------- | --------- | ------ |
+| **Access**        | O(n)      | O(n)      | O(1)   |
+| **Search**        | O(n)      | O(n)      | O(n)   |
+| **Insert Head**   | O(1)      | O(1)      | O(n)   |
+| **Insert Tail**   | O(n)\*    | O(1)      | O(1)\* |
+| **Insert Middle** | O(n)      | O(n)      | O(n)   |
+| **Delete Head**   | O(1)      | O(1)      | O(n)   |
+| **Delete Tail**   | O(n)      | O(1)      | O(1)   |
+
+_\* Giả sử biết tail pointer cho LL và có chỗ trống cho Array_
+
+### 6.2 Space Complexity
+
+```cpp
+// Singly Linked List: O(1) extra space per node
+struct ListNode {
+    int data;        // 4 bytes
+    ListNode* next;  // 8 bytes (64-bit)
+};  // Total: 12-16 bytes per node
+
+// Doubly Linked List: O(1) extra space per node
+struct DoublyListNode {
+    int data;               // 4 bytes
+    DoublyListNode* next;   // 8 bytes
+    DoublyListNode* prev;   // 8 bytes
+};  // Total: 20-24 bytes per node
+```
+
+## 7. Các kỹ thuật quan trọng
+
+### 7.1 Two Pointers Technique
+
+```cpp
+// Tìm node giữa danh sách
+ListNode* findMiddle(ListNode* head) {
+    if (!head) return nullptr;
+
+    ListNode* slow = head;
+    ListNode* fast = head;
+
+    while (fast && fast->next) {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+
+    return slow;
+}
+
+// Phát hiện cycle trong linked list
+bool hasCycle(ListNode* head) {
+    if (!head || !head->next) return false;
+
+    ListNode* slow = head;
+    ListNode* fast = head;
+
+    while (fast && fast->next) {
+        slow = slow->next;
+        fast = fast->next->next;
+
+        if (slow == fast) {
+            return true;
+        }
+    }
+
+    return false;
+}
+```
+
+### 7.2 Reverse Linked List
+
+```cpp
+ListNode* reverse(ListNode* head) {
+    ListNode* prev = nullptr;
+    ListNode* current = head;
+
+    while (current != nullptr) {
+        ListNode* nextTemp = current->next;
+        current->next = prev;
+        prev = current;
+        current = nextTemp;
+    }
+
+    return prev; // prev trở thành head mới
+}
+```
+
+## 8. Bài tập LeetCode liên quan
+
+<div className="border border-indigo-200 rounded-lg p-4">
+  <h3 className="text-indigo-800 font-semibold mb-3">📝 Danh sách bài tập thực hành</h3>
+  
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div>
+      <h4 className="font-semibold text-indigo-700 mb-2">🟢 Easy Level</h4>
+      <ul className="text-indigo-600 space-y-1">
+        <li>• <strong>21</strong> - Merge Two Sorted Lists</li>
+        <li>• <strong>83</strong> - Remove Duplicates from Sorted List</li>
+        <li>• <strong>141</strong> - Linked List Cycle</li>
+        <li>• <strong>160</strong> - Intersection of Two Linked Lists</li>
+        <li>• <strong>203</strong> - Remove Linked List Elements</li>
+        <li>• <strong>206</strong> - Reverse Linked List</li>
+        <li>• <strong>234</strong> - Palindrome Linked List</li>
+      </ul>
+    </div>
+    
+    <div>
+      <h4 className="font-semibold text-indigo-700 mb-2">🟡 Medium Level</h4>
+      <ul className="text-indigo-600 space-y-1">
+        <li>• <strong>2</strong> - Add Two Numbers</li>
+        <li>• <strong>19</strong> - Remove Nth Node From End</li>
+        <li>• <strong>24</strong> - Swap Nodes in Pairs</li>
+        <li>• <strong>61</strong> - Rotate List</li>
+        <li>• <strong>82</strong> - Remove Duplicates from Sorted List II</li>
+        <li>• <strong>92</strong> - Reverse Linked List II</li>
+        <li>• <strong>142</strong> - Linked List Cycle II</li>
+        <li>• <strong>143</strong> - Reorder List</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+## 9. Tóm tắt
+
+### 9.1 Khi nào sử dụng Linked List?
+
+✅ **Sử dụng khi:**
+
+- Cần chèn/xóa thường xuyên ở đầu danh sách
+- Không biết trước kích thước dữ liệu
+- Cần cấu trúc động
+- Ít cần truy cập ngẫu nhiên
+
+❌ **Không nên sử dụng khi:**
+
+- Cần truy cập ngẫu nhiên thường xuyên
 - Bộ nhớ hạn chế (overhead của pointer)
-- Cần **binary search** trên dữ liệu đã sắp xếp
+- Cần cache locality cao
+- Làm việc với dữ liệu số học phức tạp
 
-<div className="bg-gray-100 border-l-4 border-gray-400 p-4 mt-6">
-  <p className="text-gray-700 italic">💡 <strong>Tip:</strong> Trong thực tế, hãy cân nhắc sử dụng std::list (doubly linked) hoặc std::forward_list (singly linked) của C++ STL thay vì tự cài đặt, trừ khi cần customization đặc biệt.</p>
+### 9.2 Key Takeaways
+
+<div className="border border-gray-200 rounded-lg p-4">
+  <ul className="space-y-2 text-gray-700">
+    <li><strong>🎯 Node Structure:</strong> Data + Pointer(s)</li>
+    <li><strong>🎯 Dynamic Size:</strong> Thêm/xóa linh hoạt</li>
+    <li><strong>🎯 Sequential Access:</strong> Chỉ có thể duyệt tuần tự</li>
+    <li><strong>🎯 Memory Overhead:</strong> Cần thêm bộ nhớ cho pointer</li>
+    <li><strong>🎯 Cache Performance:</strong> Kém hơn Array do không liền kề</li>
+  </ul>
+</div>
+
+---
+
+<div className="text-center mt-8 p-4 border-t border-gray-200">
+  <p className="text-gray-600 italic">
+    💡 "Linked Lists are fundamental building blocks for many advanced data structures like Trees and Graphs"
+  </p>
 </div>
