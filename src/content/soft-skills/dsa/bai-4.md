@@ -102,13 +102,42 @@ public:
 
 ```mermaid
 graph LR
-    subgraph "Trước khi chèn"
-        A[10] --> B[20] --> C[30] --> D["NULL"]
+    subgraph " "
+        direction LR
+        A[head]
+        A --> B(( ))
     end
 
-    subgraph "Sau khi chèn 5"
-        E[5] --> F[10] --> G[20] --> H[30] --> I["NULL"]
+    subgraph "Trước khi chèn 5"
+        B --> C[10] --> D[20] --> E[30] --> F["NULL"]
     end
+
+    subgraph "Quá trình"
+        G[newNode: 5]
+        G --> H["next = head"]
+        H --> J
+        H -.-> C
+        I["head = newNode"]
+        I -.-> G
+    end
+
+    style A fill:#fff, stroke-width:0px, color:#000
+    style B fill:#fff, stroke-width:0px, color:#000
+    style G fill:#b3e5fc, stroke:#039be5
+    style C fill:#e1f5fe
+    style D fill:#e1f5fe
+    style E fill:#e1f5fe
+    style H fill:#fff, stroke-width:0px, color:#000
+    style I fill:#fff, stroke-width:0px, color:#000
+
+    linkStyle 0 stroke-width:2px,fill:none,stroke:black;
+    linkStyle 1 stroke-width:2px,fill:none,stroke:black;
+    linkStyle 2 stroke-width:2px,fill:none,stroke:black;
+    linkStyle 3 stroke-width:2px,fill:none,stroke:black;
+    linkStyle 4 stroke-width:2px,fill:none,stroke:black;
+    linkStyle 5 stroke-width:2px,fill:none,stroke:black,stroke-dasharray: 5 5;
+    linkStyle 6 stroke-width:2px,fill:none,stroke:black;
+    linkStyle 7 stroke-width:2px,fill:none,stroke:black,stroke-dasharray: 5 5;
 ```
 
 ```cpp
