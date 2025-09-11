@@ -79,7 +79,8 @@ Dự án NextJS Rust WASM này đã được cập nhật để **tự động g
 - **Video Stream**: Canvas.captureStream() từ rendered frames
 - **Audio Stream**: Audio element + AudioContext
 - **Combined Stream**: Merge video + audio tracks
-- **Output**: WebM container với VP8/Opus codecs
+- **Output**: MP4 container với H.264/AAC codecs (preferred)
+- **Fallback**: WebM container với VP9/Opus codecs (if MP4 not supported)
 
 ### Quality Settings
 - **Low**: 1 Mbps video + 128 kbps audio
@@ -87,9 +88,11 @@ Dự án NextJS Rust WASM này đã được cập nhật để **tự động g
 - **High**: 5 Mbps video + 128 kbps audio
 
 ### Browser Compatibility
-- Chrome/Edge: Full support
-- Firefox: Full support
-- Safari: Limited (WebM playback issues)
+- **Chrome/Edge**: Full MP4 support ✅
+- **Firefox**: Full MP4 support ✅  
+- **Safari**: Full MP4 support ✅
+- **Mobile browsers**: MP4 support ✅
+- **Legacy browsers**: WebM fallback ⚠️
 
 ## 🚀 Usage Instructions
 
@@ -162,9 +165,10 @@ hasAutoCreated: false            // Prevent duplicate creation
 - Error handling
 
 ✅ **File Outputs**:
-- `video-with-music-[timestamp].webm`
+- `video-with-music-[timestamp].mp4` (preferred format)
+- `video-with-music-[timestamp].webm` (fallback if MP4 not supported)
 - Estimated sizes: 2-10MB depending on length/quality
-- Compatible với most modern browsers
+- MP4 compatible với all modern browsers và mobile devices
 
 ## 🔮 Future Enhancements
 

@@ -72,12 +72,26 @@ export async function createVideoWithAudio(
     ...audioDestination.stream.getAudioTracks()
   ]);
 
-  const mimeType = format === 'webm' 
-    ? 'video/webm;codecs=vp8,opus' 
-    : 'video/mp4;codecs=h264,aac';
+  // Try MP4 first, fallback to WebM if not supported
+  let mimeType: string;
+  let finalFormat: string;
+  
+  if (format === 'mp4' && MediaRecorder.isTypeSupported('video/mp4;codecs=h264,aac')) {
+    mimeType = 'video/mp4;codecs=h264,aac';
+    finalFormat = 'mp4';
+  } else if (MediaRecorder.isTypeSupported('video/webm;codecs=vp9,opus')) {
+    mimeType = 'video/webm;codecs=vp9,opus';
+    finalFormat = 'webm';
+  } else if (MediaRecorder.isTypeSupported('video/webm;codecs=vp8,opus')) {
+    mimeType = 'video/webm;codecs=vp8,opus';
+    finalFormat = 'webm';
+  } else {
+    mimeType = 'video/webm';
+    finalFormat = 'webm';
+  }
     
   const mediaRecorder = new MediaRecorder(combinedStream, {
-    mimeType: MediaRecorder.isTypeSupported(mimeType) ? mimeType : 'video/webm',
+    mimeType,
     videoBitsPerSecond: getVideoBitrate(quality),
     audioBitsPerSecond: 128000
   });
@@ -93,7 +107,7 @@ export async function createVideoWithAudio(
 
     mediaRecorder.onstop = () => {
       const blob = new Blob(recordedChunks, { 
-        type: format === 'webm' ? 'video/webm' : 'video/mp4' 
+        type: finalFormat === 'mp4' ? 'video/mp4' : 'video/webm'
       });
       resolve(blob);
     };
@@ -195,7 +209,7 @@ export async function createVideoFromFrames(
   frames: string[],
   fps: number,
   quality: 'low' | 'medium' | 'high' = 'medium',
-  format: 'webm' | 'mp4' = 'webm',
+  format: 'webm' | 'mp4' = 'mp4',
   onProgress?: (progress: VideoCreationProgress) => void
 ): Promise<Blob> {
   const canvas = document.createElement('canvas');
@@ -213,10 +227,27 @@ export async function createVideoFromFrames(
   canvas.height = firstFrameImg.height;
   
   const stream = canvas.captureStream(fps);
-  const mimeType = format === 'webm' ? 'video/webm' : 'video/mp4';
+  
+  // Try MP4 first, fallback to WebM
+  let mimeType: string;
+  let finalFormat: string;
+  
+  if (format === 'mp4' && MediaRecorder.isTypeSupported('video/mp4;codecs=h264')) {
+    mimeType = 'video/mp4;codecs=h264';
+    finalFormat = 'mp4';
+  } else if (MediaRecorder.isTypeSupported('video/webm;codecs=vp9')) {
+    mimeType = 'video/webm;codecs=vp9';
+    finalFormat = 'webm';
+  } else if (MediaRecorder.isTypeSupported('video/webm;codecs=vp8')) {
+    mimeType = 'video/webm;codecs=vp8';
+    finalFormat = 'webm';
+  } else {
+    mimeType = 'video/webm';
+    finalFormat = 'webm';
+  }
   
   const mediaRecorder = new MediaRecorder(stream, {
-    mimeType: MediaRecorder.isTypeSupported(mimeType) ? mimeType : 'video/webm',
+    mimeType,
     videoBitsPerSecond: getVideoBitrate(quality)
   });
 
@@ -230,7 +261,9 @@ export async function createVideoFromFrames(
     };
 
     mediaRecorder.onstop = () => {
-      const blob = new Blob(recordedChunks, { type: mimeType });
+      const blob = new Blob(recordedChunks, { 
+        type: finalFormat === 'mp4' ? 'video/mp4' : 'video/webm'
+      });
       resolve(blob);
     };
 

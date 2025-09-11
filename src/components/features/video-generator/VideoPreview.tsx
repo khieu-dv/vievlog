@@ -115,10 +115,10 @@ export function VideoPreview({ frames, fps, onDownload, className, quality = 'me
             audioUrl,
             fps,
             quality,
-            format: 'webm'
+            format: 'mp4'
           }, setVideoProgress);
           
-          const filename = `video-with-music-${Date.now()}.webm`;
+          const filename = `video-with-music-${Date.now()}.mp4`;
           downloadBlob(blob, filename);
           
           if (onDownload) {
@@ -215,10 +215,10 @@ export function VideoPreview({ frames, fps, onDownload, className, quality = 'me
         audioUrl,
         fps,
         quality,
-        format: 'webm'
+        format: 'mp4'
       }, setVideoProgress);
       
-      const filename = `video-with-music-${Date.now()}.webm`;
+      const filename = `video-with-music-${Date.now()}.mp4`;
       downloadBlob(blob, filename);
       
       if (onDownload) {
@@ -240,8 +240,8 @@ export function VideoPreview({ frames, fps, onDownload, className, quality = 'me
     setVideoProgress(null);
     
     try {
-      const blob = await createVideoFromFrames(frames, fps, quality, 'webm', setVideoProgress);
-      const filename = `video-${Date.now()}.webm`;
+      const blob = await createVideoFromFrames(frames, fps, quality, 'mp4', setVideoProgress);
+      const filename = `video-${Date.now()}.mp4`;
       downloadBlob(blob, filename);
       
       if (onDownload) {
@@ -438,10 +438,16 @@ export function VideoPreview({ frames, fps, onDownload, className, quality = 'me
           </Button>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
           <div>
             <span className="text-purple-600 dark:text-purple-400">Audio File:</span>
             <span className="ml-2 font-mono">music.mp3</span>
+          </div>
+          <div>
+            <span className="text-purple-600 dark:text-purple-400">Video Format:</span>
+            <span className="ml-2 font-mono">
+              {MediaRecorder.isTypeSupported('video/mp4;codecs=h264,aac') ? 'MP4' : 'WebM (fallback)'}
+            </span>
           </div>
           <div>
             <span className="text-purple-600 dark:text-purple-400">Estimated Size:</span>
@@ -454,6 +460,12 @@ export function VideoPreview({ frames, fps, onDownload, className, quality = 'me
         {isPreviewingAudio && (
           <div className="mt-3 text-xs text-purple-600 dark:text-purple-400 bg-purple-100 dark:bg-purple-900/30 rounded px-3 py-2">
             🎵 Playing 10-second preview of background music...
+          </div>
+        )}
+        
+        {!MediaRecorder.isTypeSupported('video/mp4;codecs=h264,aac') && (
+          <div className="mt-3 text-xs text-amber-600 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/30 rounded px-3 py-2">
+            ⚠️ Browser không hỗ trợ MP4. Video sẽ được tạo dưới định dạng WebM.
           </div>
         )}
       </div>

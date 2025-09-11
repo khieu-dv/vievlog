@@ -385,7 +385,7 @@ export function VideoGenerator() {
               <div className="flex items-center text-emerald-700 dark:text-emerald-300 text-sm">
                 <Music className="w-4 h-4 mr-2 flex-shrink-0" />
                 <span>
-                  <strong>Tự động ghép nhạc nền:</strong> Video sẽ được tạo kèm với file music.mp3 và tự động tải xuống khi hoàn thành.
+                  <strong>Tự động ghép nhạc nền:</strong> Video sẽ được tạo dưới định dạng MP4 kèm với file music.mp3 và tự động tải xuống khi hoàn thành.
                 </span>
               </div>
             </div>
