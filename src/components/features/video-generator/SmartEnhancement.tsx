@@ -134,34 +134,36 @@ export function SmartEnhancement({ config, onConfigChange, className }: SmartEnh
   }, [config, onConfigChange]);
 
   return (
-    <div className={cn("space-y-4", className)}>
+    <div className={cn("space-y-3", className)}>
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center">
-          <Sparkles className="w-5 h-5 mr-2 text-purple-600" />
+        <h3 className="text-base font-semibold text-gray-900 dark:text-white flex items-center">
+          <Sparkles className="w-4 h-4 mr-2 text-purple-600" />
           Smart Enhancement
         </h3>
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-1">
           <Button
             onClick={() => setShowAdvanced(!showAdvanced)}
             variant="outline"
             size="sm"
+            className="text-xs px-2 py-1 h-7"
           >
-            <Settings className="w-4 h-4 mr-1" />
+            <Settings className="w-3 h-3 mr-1" />
             {showAdvanced ? 'Simple' : 'Advanced'}
           </Button>
           <Button
             onClick={handleReset}
             variant="outline"
             size="sm"
+            className="text-xs px-2 py-1 h-7"
           >
-            <RotateCcw className="w-4 h-4" />
+            <RotateCcw className="w-3 h-3" />
           </Button>
         </div>
       </div>
 
       {/* Preset Selection */}
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-1">
         {Object.keys(PRESETS).map((preset) => (
           <Button
             key={preset}
@@ -169,11 +171,11 @@ export function SmartEnhancement({ config, onConfigChange, className }: SmartEnh
             variant={config.preset === preset ? "default" : "outline"}
             size="sm"
             className={cn(
-              "capitalize",
+              "capitalize text-xs px-2 py-1 h-7",
               config.preset === preset && "bg-purple-600 hover:bg-purple-700"
             )}
           >
-            <Wand2 className="w-3 h-3 mr-1" />
+            <Wand2 className="w-2 h-2 mr-1" />
             {preset}
           </Button>
         ))}
@@ -181,57 +183,58 @@ export function SmartEnhancement({ config, onConfigChange, className }: SmartEnh
 
       {!showAdvanced ? (
         /* Simple Mode */
-        <div className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <label className="flex items-center space-x-2 p-3 border rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800">
+        <div className="space-y-3">
+          <div className="grid grid-cols-1 gap-2">
+            <label className="flex items-center space-x-2 p-2 border rounded cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800">
               <input
                 type="checkbox"
                 checked={config.autoExposure}
                 onChange={(e) => updateConfig({ autoExposure: e.target.checked })}
-                className="w-4 h-4 text-purple-600"
+                className="w-3 h-3 text-purple-600"
               />
-              <span className="text-sm font-medium">Auto Exposure</span>
+              <span className="text-xs font-medium">Auto Exposure</span>
             </label>
             
-            <label className="flex items-center space-x-2 p-3 border rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800">
+            <label className="flex items-center space-x-2 p-2 border rounded cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800">
               <input
                 type="checkbox"
                 checked={config.autoContrast}
                 onChange={(e) => updateConfig({ autoContrast: e.target.checked })}
-                className="w-4 h-4 text-purple-600"
+                className="w-3 h-3 text-purple-600"
               />
-              <span className="text-sm font-medium">Auto Contrast</span>
+              <span className="text-xs font-medium">Auto Contrast</span>
             </label>
             
-            <label className="flex items-center space-x-2 p-3 border rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800">
+            <label className="flex items-center space-x-2 p-2 border rounded cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800">
               <input
                 type="checkbox"
                 checked={config.autoSaturation}
                 onChange={(e) => updateConfig({ autoSaturation: e.target.checked })}
-                className="w-4 h-4 text-purple-600"
+                className="w-3 h-3 text-purple-600"
               />
-              <span className="text-sm font-medium">Smart Colors</span>
+              <span className="text-xs font-medium">Smart Colors</span>
             </label>
           </div>
 
-          <ProfessionalSlider
-            label="Sharpening"
-            value={['none', 'subtle', 'medium', 'strong'].indexOf(config.sharpening)}
-            onChange={(value) => updateConfig({ 
-              sharpening: ['none', 'subtle', 'medium', 'strong'][value] as any 
-            })}
-            min={0}
-            max={3}
-            step={1}
-            defaultValue={1}
-            color="purple"
-          />
+          <div className="space-y-1">
+            <label className="block text-xs font-medium">Sharpening</label>
+            <select
+              value={config.sharpening}
+              onChange={(e) => updateConfig({ sharpening: e.target.value as any })}
+              className="w-full px-2 py-1 text-xs border rounded focus:outline-none focus:ring-1 focus:ring-purple-500"
+            >
+              <option value="none">None</option>
+              <option value="subtle">Subtle</option>
+              <option value="medium">Medium</option>
+              <option value="strong">Strong</option>
+            </select>
+          </div>
         </div>
       ) : (
         /* Advanced Mode */
-        <div className="space-y-4">
+        <div className="space-y-3">
           {/* Tab Navigation */}
-          <div className="flex space-x-1 bg-gray-100 dark:bg-gray-800 p-1 rounded-lg">
+          <div className="flex space-x-1 bg-gray-100 dark:bg-gray-800 p-1 rounded">
             {[
               { id: 'auto', label: 'Auto', icon: Wand2 },
               { id: 'manual', label: 'Manual', icon: Settings },
@@ -242,48 +245,48 @@ export function SmartEnhancement({ config, onConfigChange, className }: SmartEnh
                 key={id}
                 onClick={() => setActiveTab(id as any)}
                 className={cn(
-                  "flex items-center px-3 py-2 text-sm font-medium rounded-md transition-colors",
+                  "flex items-center px-2 py-1 text-xs font-medium rounded transition-colors flex-1 justify-center",
                   activeTab === id
                     ? "bg-white dark:bg-gray-700 text-purple-600 shadow-sm"
                     : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
                 )}
               >
-                <Icon className="w-4 h-4 mr-1" />
+                <Icon className="w-3 h-3 mr-1" />
                 {label}
               </button>
             ))}
           </div>
 
           {/* Tab Content */}
-          <div className="min-h-[300px]">
+          <div className="max-h-64 overflow-y-auto">
             {activeTab === 'auto' && (
-              <div className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-3 p-2">
+                <div className="grid grid-cols-1 gap-2">
                   {[
                     { key: 'autoExposure', label: 'Auto Exposure' },
                     { key: 'autoContrast', label: 'Auto Contrast' },
                     { key: 'autoSaturation', label: 'Smart Colors' },
                     { key: 'noiseReduction', label: 'Noise Reduction' }
                   ].map(({ key, label }) => (
-                    <label key={key} className="flex items-center space-x-2 p-3 border rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800">
+                    <label key={key} className="flex items-center space-x-2 p-2 border rounded cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800">
                       <input
                         type="checkbox"
                         checked={config[key as keyof SmartEnhancementConfig] as boolean}
                         onChange={(e) => updateConfig({ [key]: e.target.checked })}
-                        className="w-4 h-4 text-purple-600"
+                        className="w-3 h-3 text-purple-600"
                       />
-                      <span className="text-sm font-medium">{label}</span>
+                      <span className="text-xs font-medium">{label}</span>
                     </label>
                   ))}
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
-                    <label className="block text-sm font-medium mb-2">Sharpening</label>
+                    <label className="block text-xs font-medium mb-1">Sharpening</label>
                     <select
                       value={config.sharpening}
                       onChange={(e) => updateConfig({ sharpening: e.target.value as any })}
-                      className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      className="w-full px-2 py-1 text-xs border rounded focus:outline-none focus:ring-1 focus:ring-purple-500"
                     >
                       <option value="none">None</option>
                       <option value="subtle">Subtle</option>
@@ -293,11 +296,11 @@ export function SmartEnhancement({ config, onConfigChange, className }: SmartEnh
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2">White Balance</label>
+                    <label className="block text-xs font-medium mb-1">White Balance</label>
                     <select
                       value={config.whiteBalance}
                       onChange={(e) => updateConfig({ whiteBalance: e.target.value as any })}
-                      className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      className="w-full px-2 py-1 text-xs border rounded focus:outline-none focus:ring-1 focus:ring-purple-500"
                     >
                       <option value="auto">Auto</option>
                       <option value="manual">Manual</option>
@@ -308,129 +311,153 @@ export function SmartEnhancement({ config, onConfigChange, className }: SmartEnh
             )}
 
             {activeTab === 'manual' && (
-              <div className="space-y-4">
-                <ProfessionalSlider
-                  label="Exposure"
-                  value={config.exposure}
-                  onChange={(value) => updateConfig({ exposure: value })}
-                  min={-2}
-                  max={2}
-                  step={0.1}
-                  defaultValue={0}
-                  unit="EV"
-                  color="orange"
-                />
+              <div className="space-y-3 p-2">
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-xs font-medium mb-1">Exposure</label>
+                    <input
+                      type="range"
+                      min="-2"
+                      max="2"
+                      step="0.1"
+                      value={config.exposure}
+                      onChange={(e) => updateConfig({ exposure: parseFloat(e.target.value) })}
+                      className="w-full h-1"
+                    />
+                    <div className="text-xs text-gray-500 text-center">{config.exposure.toFixed(1)} EV</div>
+                  </div>
 
-                <ProfessionalSlider
-                  label="Contrast"
-                  value={config.contrast}
-                  onChange={(value) => updateConfig({ contrast: value })}
-                  min={-1}
-                  max={1}
-                  step={0.05}
-                  defaultValue={0}
-                  color="blue"
-                />
+                  <div>
+                    <label className="block text-xs font-medium mb-1">Contrast</label>
+                    <input
+                      type="range"
+                      min="-1"
+                      max="1"
+                      step="0.05"
+                      value={config.contrast}
+                      onChange={(e) => updateConfig({ contrast: parseFloat(e.target.value) })}
+                      className="w-full h-1"
+                    />
+                    <div className="text-xs text-gray-500 text-center">{config.contrast.toFixed(2)}</div>
+                  </div>
 
-                <ProfessionalSlider
-                  label="Vibrance"
-                  value={config.vibrance}
-                  onChange={(value) => updateConfig({ vibrance: value })}
-                  min={-1}
-                  max={1}
-                  step={0.05}
-                  defaultValue={0}
-                  color="purple"
-                />
+                  <div>
+                    <label className="block text-xs font-medium mb-1">Vibrance</label>
+                    <input
+                      type="range"
+                      min="-1"
+                      max="1"
+                      step="0.05"
+                      value={config.vibrance}
+                      onChange={(e) => updateConfig({ vibrance: parseFloat(e.target.value) })}
+                      className="w-full h-1"
+                    />
+                    <div className="text-xs text-gray-500 text-center">{config.vibrance.toFixed(2)}</div>
+                  </div>
 
-                <ProfessionalSlider
-                  label="Saturation"
-                  value={config.saturation}
-                  onChange={(value) => updateConfig({ saturation: value })}
-                  min={-1}
-                  max={1}
-                  step={0.05}
-                  defaultValue={0}
-                  color="red"
-                />
+                  <div>
+                    <label className="block text-xs font-medium mb-1">Saturation</label>
+                    <input
+                      type="range"
+                      min="-1"
+                      max="1"
+                      step="0.05"
+                      value={config.saturation}
+                      onChange={(e) => updateConfig({ saturation: parseFloat(e.target.value) })}
+                      className="w-full h-1"
+                    />
+                    <div className="text-xs text-gray-500 text-center">{config.saturation.toFixed(2)}</div>
+                  </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <ProfessionalSlider
-                    label="Temperature"
-                    value={config.temperature}
-                    onChange={(value) => updateConfig({ temperature: value })}
-                    min={-1000}
-                    max={1000}
-                    step={50}
-                    defaultValue={0}
-                    unit="K"
-                    color="orange"
-                  />
+                  <div>
+                    <label className="block text-xs font-medium mb-1">Temperature</label>
+                    <input
+                      type="range"
+                      min="-1000"
+                      max="1000"
+                      step="50"
+                      value={config.temperature}
+                      onChange={(e) => updateConfig({ temperature: parseInt(e.target.value) })}
+                      className="w-full h-1"
+                    />
+                    <div className="text-xs text-gray-500 text-center">{config.temperature}K</div>
+                  </div>
 
-                  <ProfessionalSlider
-                    label="Tint"
-                    value={config.tint}
-                    onChange={(value) => updateConfig({ tint: value })}
-                    min={-100}
-                    max={100}
-                    step={5}
-                    defaultValue={0}
-                    color="green"
-                  />
+                  <div>
+                    <label className="block text-xs font-medium mb-1">Tint</label>
+                    <input
+                      type="range"
+                      min="-100"
+                      max="100"
+                      step="5"
+                      value={config.tint}
+                      onChange={(e) => updateConfig({ tint: parseInt(e.target.value) })}
+                      className="w-full h-1"
+                    />
+                    <div className="text-xs text-gray-500 text-center">{config.tint}</div>
+                  </div>
                 </div>
               </div>
             )}
 
             {activeTab === 'color' && (
-              <div className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="space-y-3 p-2">
+                <div className="grid grid-cols-3 gap-2">
                   <ColorWheel
                     label="Shadows"
                     value={config.shadows}
                     onChange={(value) => updateConfig({ shadows: value })}
-                    size={100}
+                    size={60}
                   />
                   
                   <ColorWheel
                     label="Midtones"
                     value={config.midtones}
                     onChange={(value) => updateConfig({ midtones: value })}
-                    size={100}
+                    size={60}
                   />
                   
                   <ColorWheel
                     label="Highlights"
                     value={config.highlights}
                     onChange={(value) => updateConfig({ highlights: value })}
-                    size={100}
+                    size={60}
                   />
                 </div>
               </div>
             )}
 
             {activeTab === 'effects' && (
-              <div className="space-y-4">
-                <ProfessionalSlider
-                  label="Film Grain"
-                  value={config.filmGrain}
-                  onChange={(value) => updateConfig({ filmGrain: value })}
-                  min={0}
-                  max={1}
-                  step={0.05}
-                  defaultValue={0}
-                  color="purple"
-                />
+              <div className="space-y-3 p-2">
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-xs font-medium mb-1">Film Grain</label>
+                    <input
+                      type="range"
+                      min="0"
+                      max="1"
+                      step="0.05"
+                      value={config.filmGrain}
+                      onChange={(e) => updateConfig({ filmGrain: parseFloat(e.target.value) })}
+                      className="w-full h-1"
+                    />
+                    <div className="text-xs text-gray-500 text-center">{(config.filmGrain * 100).toFixed(0)}%</div>
+                  </div>
 
-                <ProfessionalSlider
-                  label="Vignette"
-                  value={config.vignette}
-                  onChange={(value) => updateConfig({ vignette: value })}
-                  min={0}
-                  max={1}
-                  step={0.05}
-                  defaultValue={0}
-                  color="blue"
-                />
+                  <div>
+                    <label className="block text-xs font-medium mb-1">Vignette</label>
+                    <input
+                      type="range"
+                      min="0"
+                      max="1"
+                      step="0.05"
+                      value={config.vignette}
+                      onChange={(e) => updateConfig({ vignette: parseFloat(e.target.value) })}
+                      className="w-full h-1"
+                    />
+                    <div className="text-xs text-gray-500 text-center">{(config.vignette * 100).toFixed(0)}%</div>
+                  </div>
+                </div>
               </div>
             )}
           </div>
@@ -438,13 +465,13 @@ export function SmartEnhancement({ config, onConfigChange, className }: SmartEnh
       )}
 
       {/* Preview Info */}
-      <div className="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-950/20 dark:to-pink-950/20 rounded-lg p-3 border border-purple-200 dark:border-purple-800">
-        <div className="flex items-center text-purple-700 dark:text-purple-300 text-sm">
-          <Eye className="w-4 h-4 mr-2" />
+      <div className="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-950/20 dark:to-pink-950/20 rounded p-2 border border-purple-200 dark:border-purple-800">
+        <div className="flex items-center text-purple-700 dark:text-purple-300 text-xs">
+          <Eye className="w-3 h-3 mr-1" />
           <span>
             {config.preset !== 'custom' 
-              ? `Using ${config.preset} preset with smart enhancements` 
-              : 'Custom enhancement settings applied'
+              ? `${config.preset} preset active` 
+              : 'Custom settings'
             }
           </span>
         </div>
