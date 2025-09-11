@@ -14,18 +14,18 @@ interface VideoSettingsProps {
 }
 
 const TRANSITION_TYPES = [
-  { value: 'enhanced_crossfade', label: 'Enhanced Crossfade', description: 'GPU-accelerated smooth blend with lighting' },
-  { value: 'cinematic_dissolve', label: 'Cinematic Dissolve', description: 'Professional dissolve with noise patterns' },
-  { value: 'crossfade', label: 'Classic Crossfade', description: 'Simple smooth blend between images' },
-  { value: 'pan_left', label: 'Pan Left', description: 'Pan and zoom effect moving left' },
-  { value: 'pan_right', label: 'Pan Right', description: 'Pan and zoom effect moving right' },
-  { value: 'fade', label: 'Fade', description: 'Fade out and fade in effect' },
+  { value: 'enhanced_crossfade', label: 'Enhanced Crossfade' },
+  { value: 'cinematic_dissolve', label: 'Cinematic Dissolve' },
+  { value: 'crossfade', label: 'Classic Crossfade' },
+  { value: 'pan_left', label: 'Pan Left' },
+  { value: 'pan_right', label: 'Pan Right' },
+  { value: 'fade', label: 'Fade' },
 ] as const;
 
 const QUALITY_PRESETS = [
-  { value: 'low', label: 'Low', fps: 24, description: 'Faster processing, smaller file' },
-  { value: 'medium', label: 'Medium', fps: 30, description: 'Balanced quality and speed' },
-  { value: 'high', label: 'High', fps: 60, description: 'Best quality, slower processing' },
+  { value: 'low', label: 'Low', fps: 24 },
+  { value: 'medium', label: 'Medium', fps: 30 },
+  { value: 'high', label: 'High', fps: 60 },
 ] as const;
 
 export function VideoSettings({ config, onConfigChange, videoDuration, className }: VideoSettingsProps) {
@@ -46,22 +46,21 @@ export function VideoSettings({ config, onConfigChange, videoDuration, className
           <Zap className="w-4 h-4" />
           <label className="text-sm font-medium">Quality Preset</label>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div className="grid grid-cols-3 gap-2">
           {QUALITY_PRESETS.map((preset) => (
             <Button
               key={preset.value}
               variant={config.quality === preset.value ? "default" : "outline"}
               size="sm"
-              className="h-auto p-3 text-left"
+              className="h-auto p-2 text-left text-xs"
               onClick={() => updateConfig({ 
                 quality: preset.value, 
                 fps: preset.fps 
               })}
             >
-              <div>
+              <div className="truncate">
                 <div className="font-medium">{preset.label}</div>
                 <div className="text-xs opacity-70">{preset.fps} FPS</div>
-                <div className="text-xs opacity-70">{preset.description}</div>
               </div>
             </Button>
           ))}
@@ -74,19 +73,16 @@ export function VideoSettings({ config, onConfigChange, videoDuration, className
           <ImageIcon className="w-4 h-4" />
           <label className="text-sm font-medium">Transition Effect</label>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
           {TRANSITION_TYPES.map((transition) => (
             <Button
               key={transition.value}
               variant={config.transitionType === transition.value ? "default" : "outline"}
               size="sm"
-              className="h-auto p-3 text-left"
+              className="p-2 text-xs"
               onClick={() => updateConfig({ transitionType: transition.value })}
             >
-              <div>
-                <div className="font-medium">{transition.label}</div>
-                <div className="text-xs opacity-70">{transition.description}</div>
-              </div>
+              <div className="truncate font-medium">{transition.label}</div>
             </Button>
           ))}
         </div>
@@ -109,7 +105,7 @@ export function VideoSettings({ config, onConfigChange, videoDuration, className
         </div>
         <p className="text-xs text-muted-foreground">
           {config.useEnhancedEffects 
-            ? "GPU-accelerated processing with 15+ professional effects including film grain, light leaks, parallax, and chromatic aberration"
+            ? "GPU-accelerated with 15+ professional effects"
             : "Standard CPU processing with basic transitions"
           }
         </p>
