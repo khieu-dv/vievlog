@@ -400,42 +400,21 @@ export function VideoPreview({ frames, fps, onDownload, className, quality = 'me
         </div>
 
         <div className="flex items-center space-x-2">
-          <Button onClick={downloadFramesAsZip} variant="outline" size="sm">
-            <Download className="w-4 h-4 mr-1" />
-            Frames
-          </Button>
-          
           {!autoCreateVideoWithAudio && (
-            <>
-              <Button 
-                onClick={downloadVideoOnly}
-                variant="outline" 
-                size="sm"
-                disabled={isCreatingVideo}
-              >
-                {isCreatingVideo && !audioEnabled ? (
-                  <Loader2 className="w-4 h-4 mr-1 animate-spin" />
-                ) : (
-                  <Download className="w-4 h-4 mr-1" />
-                )}
-                Video
-              </Button>
-
-              <Button 
-                onClick={downloadVideoWithAudio}
-                variant="default" 
-                size="sm"
-                disabled={isCreatingVideo}
-                className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
-              >
-                {isCreatingVideo && audioEnabled ? (
-                  <Loader2 className="w-4 h-4 mr-1 animate-spin" />
-                ) : (
-                  <Music className="w-4 h-4 mr-1" />
-                )}
-                Video + MP3
-              </Button>
-            </>
+            <Button 
+              onClick={downloadVideoWithAudio}
+              variant="default" 
+              size="sm"
+              disabled={isCreatingVideo}
+              className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
+            >
+              {isCreatingVideo ? (
+                <Loader2 className="w-4 h-4 mr-1 animate-spin" />
+              ) : (
+                <Download className="w-4 h-4 mr-1" />
+              )}
+              Tải Video
+            </Button>
           )}
           
           {autoCreateVideoWithAudio && hasAutoCreated && (
