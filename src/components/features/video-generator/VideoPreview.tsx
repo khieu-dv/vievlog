@@ -46,6 +46,10 @@ export function VideoPreview({ frames, fps, onDownload, className, quality = 'me
         setCurrentFrame((prev) => {
           if (prev >= frames.length - 1) {
             setIsPlaying(false);
+            // Stop audio when animation ends
+            if (audioRef.current) {
+              audioRef.current.pause();
+            }
             return 0;
           }
           return prev + 1;
@@ -55,6 +59,10 @@ export function VideoPreview({ frames, fps, onDownload, className, quality = 'me
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
         intervalRef.current = null;
+      }
+      // Pause audio when not playing
+      if (audioRef.current && !isPlaying) {
+        audioRef.current.pause();
       }
     }
 
@@ -87,11 +95,17 @@ export function VideoPreview({ frames, fps, onDownload, className, quality = 'me
           e.preventDefault();
           setCurrentFrame(prev => Math.max(0, prev - 1));
           setIsPlaying(false);
+          if (audioRef.current) {
+            audioRef.current.pause();
+          }
           break;
         case 'ArrowRight':
           e.preventDefault();
           setCurrentFrame(prev => Math.min(frames.length - 1, prev + 1));
           setIsPlaying(false);
+          if (audioRef.current) {
+            audioRef.current.pause();
+          }
           break;
       }
     };
@@ -155,12 +169,49 @@ export function VideoPreview({ frames, fps, onDownload, className, quality = 'me
     if (currentFrame >= frames.length - 1) {
       setCurrentFrame(0);
     }
-    setIsPlaying(!isPlaying);
+    
+    const newPlayingState = !isPlaying;
+    setIsPlaying(newPlayingState);
+    
+    // Play or pause audio along with video frames
+    if (audioRef.current) {
+      if (newPlayingState) {
+        // Calculate audio start time based on current frame
+        const audioStartTime = (currentFrame / fps);
+        if (audioRef.current.duration && isFinite(audioRef.current.duration)) {
+          audioRef.current.currentTime = audioStartTime % audioRef.current.duration;
+        }
+        audioRef.current.play().catch(console.error);
+      } else {
+        audioRef.current.pause();
+      }
+    } else if (newPlayingState) {
+      // Create and play audio if it doesn't exist
+      audioRef.current = new Audio(audioUrl);
+      
+      // Wait for audio metadata to load before setting currentTime
+      audioRef.current.addEventListener('loadedmetadata', () => {
+        if (audioRef.current) {
+          const audioStartTime = (currentFrame / fps);
+          if (audioRef.current.duration && isFinite(audioRef.current.duration)) {
+            audioRef.current.currentTime = audioStartTime % audioRef.current.duration;
+          }
+        }
+      }, { once: true });
+      
+      audioRef.current.play().catch(console.error);
+    }
   };
 
   const handleReset = () => {
     setIsPlaying(false);
     setCurrentFrame(0);
+    
+    // Reset audio as well
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    }
   };
 
   const handleFullscreen = async () => {
@@ -319,6 +370,10 @@ export function VideoPreview({ frames, fps, onDownload, className, quality = 'me
           onChange={(e) => {
             setCurrentFrame(parseInt(e.target.value));
             setIsPlaying(false);
+            // Pause audio when scrubbing
+            if (audioRef.current) {
+              audioRef.current.pause();
+            }
           }}
           className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
         />
@@ -446,7 +501,10 @@ export function VideoPreview({ frames, fps, onDownload, className, quality = 'me
           <div>
             <span className="text-purple-600 dark:text-purple-400">Video Format:</span>
             <span className="ml-2 font-mono">
-              {MediaRecorder.isTypeSupported('video/mp4;codecs=h264,aac') ? 'MP4' : 'WebM (fallback)'}
+              {MediaRecorder.isTypeSupported('video/mp4') || 
+               MediaRecorder.isTypeSupported('video/mp4;codecs=h264') ||
+               MediaRecorder.isTypeSupported('video/mp4;codecs=avc1') ||
+               MediaRecorder.isTypeSupported('video/mp4;codecs=h264,aac') ? 'MP4' : 'WebM (fallback)'}
             </span>
           </div>
           <div>
@@ -463,7 +521,10 @@ export function VideoPreview({ frames, fps, onDownload, className, quality = 'me
           </div>
         )}
         
-        {!MediaRecorder.isTypeSupported('video/mp4;codecs=h264,aac') && (
+        {!(MediaRecorder.isTypeSupported('video/mp4') || 
+           MediaRecorder.isTypeSupported('video/mp4;codecs=h264') ||
+           MediaRecorder.isTypeSupported('video/mp4;codecs=avc1') ||
+           MediaRecorder.isTypeSupported('video/mp4;codecs=h264,aac')) && (
           <div className="mt-3 text-xs text-amber-600 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/30 rounded px-3 py-2">
             ⚠️ Browser không hỗ trợ MP4. Video sẽ được tạo dưới định dạng WebM.
           </div>

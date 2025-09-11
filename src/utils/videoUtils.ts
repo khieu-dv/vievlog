@@ -76,8 +76,25 @@ export async function createVideoWithAudio(
   let mimeType: string;
   let finalFormat: string;
   
-  if (format === 'mp4' && MediaRecorder.isTypeSupported('video/mp4;codecs=h264,aac')) {
-    mimeType = 'video/mp4;codecs=h264,aac';
+  if (format === 'mp4' && (
+    MediaRecorder.isTypeSupported('video/mp4;codecs=h264,aac') ||
+    MediaRecorder.isTypeSupported('video/mp4;codecs=avc1.42E01E,mp4a.40.2') ||
+    MediaRecorder.isTypeSupported('video/mp4;codecs=h264') ||
+    MediaRecorder.isTypeSupported('video/mp4;codecs=avc1') ||
+    MediaRecorder.isTypeSupported('video/mp4')
+  )) {
+    // Try different MP4 codec combinations
+    if (MediaRecorder.isTypeSupported('video/mp4;codecs=h264,aac')) {
+      mimeType = 'video/mp4;codecs=h264,aac';
+    } else if (MediaRecorder.isTypeSupported('video/mp4;codecs=avc1.42E01E,mp4a.40.2')) {
+      mimeType = 'video/mp4;codecs=avc1.42E01E,mp4a.40.2';
+    } else if (MediaRecorder.isTypeSupported('video/mp4;codecs=h264')) {
+      mimeType = 'video/mp4;codecs=h264';
+    } else if (MediaRecorder.isTypeSupported('video/mp4;codecs=avc1')) {
+      mimeType = 'video/mp4;codecs=avc1';
+    } else {
+      mimeType = 'video/mp4';
+    }
     finalFormat = 'mp4';
   } else if (MediaRecorder.isTypeSupported('video/webm;codecs=vp9,opus')) {
     mimeType = 'video/webm;codecs=vp9,opus';
@@ -232,8 +249,19 @@ export async function createVideoFromFrames(
   let mimeType: string;
   let finalFormat: string;
   
-  if (format === 'mp4' && MediaRecorder.isTypeSupported('video/mp4;codecs=h264')) {
-    mimeType = 'video/mp4;codecs=h264';
+  if (format === 'mp4' && (
+    MediaRecorder.isTypeSupported('video/mp4;codecs=h264') ||
+    MediaRecorder.isTypeSupported('video/mp4;codecs=avc1') ||
+    MediaRecorder.isTypeSupported('video/mp4')
+  )) {
+    // Try different MP4 codec combinations for video-only
+    if (MediaRecorder.isTypeSupported('video/mp4;codecs=h264')) {
+      mimeType = 'video/mp4;codecs=h264';
+    } else if (MediaRecorder.isTypeSupported('video/mp4;codecs=avc1')) {
+      mimeType = 'video/mp4;codecs=avc1';
+    } else {
+      mimeType = 'video/mp4';
+    }
     finalFormat = 'mp4';
   } else if (MediaRecorder.isTypeSupported('video/webm;codecs=vp9')) {
     mimeType = 'video/webm;codecs=vp9';

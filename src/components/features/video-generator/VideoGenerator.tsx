@@ -231,7 +231,7 @@ export function VideoGenerator() {
                     frames={generatedFrames}
                     fps={config.fps}
                     quality={config.quality}
-                    autoCreateVideoWithAudio={true}
+                    autoCreateVideoWithAudio={false}
                     onDownload={() => {
                       console.log('Download requested');
                     }}
