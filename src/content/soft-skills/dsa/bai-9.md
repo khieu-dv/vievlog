@@ -2,8 +2,6 @@
 
 ## Thuật toán sắp xếp cơ bản
 
----
-
 <div className="bg-blue-50 border-l-4 border-blue-400 p-4 mb-6">
   <h3 className="text-blue-800 font-semibold mb-2">🎯 Mục tiêu học tập</h3>
   <p className="text-blue-700">

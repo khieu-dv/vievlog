@@ -1,9 +1,5 @@
 # Bài 7: Phân Tích Độ Phức Tạp Thuật Toán
 
-## **Data Structures & Algorithms - Khóa học cho người mới bắt đầu**
-
----
-
 ## 🎯 **Mục tiêu bài học**
 
 <div className="bg-blue-50 border-l-4 border-blue-400 p-4 mb-6">
