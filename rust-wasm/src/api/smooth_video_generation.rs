@@ -7,6 +7,9 @@ use fast_image_resize::images::Image as FirImage;
 use interpolation::{Ease, EaseFunction};
 // use colorgrad::Gradient; // Unused for now
 use crate::api::color_grading::{apply_cinematic_look, apply_warm_look, apply_cool_look};
+use crate::api::ultra_smooth_transitions::{
+    ease_in_out_quartic, ease_in_out_sine, ease_in_out_expo, ease_in_out_elastic
+};
 
 #[wasm_bindgen]
 extern "C" {
@@ -77,9 +80,9 @@ pub fn generate_smooth_video_from_images(
             all_frames.push(&JsValue::from_str(&base64_frame));
         }
         
-        // Tạo transition mượt mà đến hình tiếp theo
+        // Tạo ultra smooth transition đến hình tiếp theo
         if idx < high_quality_images.len() - 1 {
-            let transition_frames_vec = create_smooth_transition(
+            let transition_frames_vec = create_ultra_smooth_transition_internal(
                 img,
                 &high_quality_images[idx + 1],
                 transition_frames,
@@ -247,7 +250,8 @@ fn apply_smooth_pan(img: &DynamicImage, progress: f32, direction: &str, amount: 
 }
 
 // Tạo transition mượt mà giữa 2 hình
-fn create_smooth_transition(
+/// Ultra smooth transition với advanced algorithms
+fn create_ultra_smooth_transition_internal(
     img1: &DynamicImage,
     img2: &DynamicImage,
     frame_count: u32,
@@ -255,26 +259,286 @@ fn create_smooth_transition(
 ) -> Vec<DynamicImage> {
     let mut frames = Vec::new();
     
-    // Chọn transition type
-    let transitions = ["crossfade", "gradient_wipe", "luminance_fade"];
+    // Advanced transition types với ultra smooth algorithms
+    let transitions = [
+        "ultra_crossfade", "morph_blend", "optical_flow", 
+        "luminance_morph", "gradient_dissolve", "wave_transition", "spiral_morph"
+    ];
     let transition_type = transitions[transition_index % transitions.len()];
     
+    console_log!("🌟 Creating ultra smooth {} transition", transition_type);
+    
     for frame_idx in 0..frame_count {
-        let progress = frame_idx as f32 / (frame_count - 1) as f32;
-        
-        // Sử dụng easing curve mượt mà cho transition
-        let eased_progress = ease_in_out_cubic(progress);
+        let raw_progress = frame_idx as f32 / (frame_count - 1) as f32;
         
         let frame = match transition_type {
-            "gradient_wipe" => create_gradient_wipe(img1, img2, eased_progress),
-            "luminance_fade" => create_luminance_fade(img1, img2, eased_progress),
-            _ => create_smooth_crossfade(img1, img2, eased_progress),
+            "ultra_crossfade" => create_ultra_crossfade_internal(img1, img2, raw_progress),
+            "morph_blend" => create_morph_blend_internal(img1, img2, raw_progress),
+            "optical_flow" => create_optical_flow_internal(img1, img2, raw_progress),
+            "luminance_morph" => create_luminance_morph_internal(img1, img2, raw_progress),
+            "gradient_dissolve" => create_gradient_dissolve_internal(img1, img2, raw_progress),
+            "wave_transition" => create_wave_transition_internal(img1, img2, raw_progress),
+            "spiral_morph" => create_spiral_morph_internal(img1, img2, raw_progress),
+            _ => create_ultra_crossfade_internal(img1, img2, raw_progress),
         };
         
         frames.push(frame);
     }
     
     frames
+}
+
+/// Ultra crossfade with advanced blending
+fn create_ultra_crossfade_internal(img1: &DynamicImage, img2: &DynamicImage, raw_progress: f32) -> DynamicImage {
+    let progress = ease_in_out_quartic(raw_progress);
+    
+    let rgba1 = img1.to_rgba8();
+    let rgba2 = img2.to_rgba8();
+    let (width, height) = rgba1.dimensions();
+    let mut result = image::ImageBuffer::new(width, height);
+    
+    for (x, y, pixel) in result.enumerate_pixels_mut() {
+        let p1 = rgba1.get_pixel(x, y);
+        let p2 = rgba2.get_pixel(x, y);
+        
+        // Advanced perceptual blending with gamma correction
+        let blend_perceptual = |a: u8, b: u8, t: f32| -> u8 {
+            let a_linear = (a as f32 / 255.0).powf(2.2);
+            let b_linear = (b as f32 / 255.0).powf(2.2);
+            let blended_linear = a_linear * (1.0 - t) + b_linear * t;
+            (blended_linear.powf(1.0 / 2.2) * 255.0).clamp(0.0, 255.0) as u8
+        };
+        
+        *pixel = Rgba([
+            blend_perceptual(p1[0], p2[0], progress),
+            blend_perceptual(p1[1], p2[1], progress),
+            blend_perceptual(p1[2], p2[2], progress),
+            ((p1[3] as f32 * (1.0 - progress) + p2[3] as f32 * progress)) as u8,
+        ]);
+    }
+    
+    DynamicImage::ImageRgba8(result)
+}
+
+/// Morph blend with spatial variation
+fn create_morph_blend_internal(img1: &DynamicImage, img2: &DynamicImage, raw_progress: f32) -> DynamicImage {
+    let progress = ease_in_out_sine(raw_progress);
+    
+    let rgba1 = img1.to_rgba8();
+    let rgba2 = img2.to_rgba8();
+    let (width, height) = rgba1.dimensions();
+    let mut result = image::ImageBuffer::new(width, height);
+    
+    let center_x = width as f32 / 2.0;
+    let center_y = height as f32 / 2.0;
+    
+    for (x, y, pixel) in result.enumerate_pixels_mut() {
+        let dx = x as f32 - center_x;
+        let dy = y as f32 - center_y;
+        let distance = (dx * dx + dy * dy).sqrt();
+        let max_distance = (center_x * center_x + center_y * center_y).sqrt();
+        let normalized_distance = (distance / max_distance).min(1.0);
+        
+        // Wave effect timing
+        let time_offset = normalized_distance * 0.3;
+        let local_progress = (progress + time_offset).min(1.0);
+        
+        let p1 = rgba1.get_pixel(x, y);
+        let p2 = rgba2.get_pixel(x, y);
+        
+        *pixel = Rgba([
+            (p1[0] as f32 * (1.0 - local_progress) + p2[0] as f32 * local_progress) as u8,
+            (p1[1] as f32 * (1.0 - local_progress) + p2[1] as f32 * local_progress) as u8,
+            (p1[2] as f32 * (1.0 - local_progress) + p2[2] as f32 * local_progress) as u8,
+            (p1[3] as f32 * (1.0 - local_progress) + p2[3] as f32 * local_progress) as u8,
+        ]);
+    }
+    
+    DynamicImage::ImageRgba8(result)
+}
+
+/// Optical flow-inspired transition
+fn create_optical_flow_internal(img1: &DynamicImage, img2: &DynamicImage, raw_progress: f32) -> DynamicImage {
+    let progress = ease_in_out_expo(raw_progress);
+    
+    let rgba1 = img1.to_rgba8();
+    let rgba2 = img2.to_rgba8();
+    let (width, height) = rgba1.dimensions();
+    let mut result = image::ImageBuffer::new(width, height);
+    
+    for (x, y, pixel) in result.enumerate_pixels_mut() {
+        let flow_x = (progress * 8.0 * ((y as f32 / height as f32) * std::f32::consts::PI).sin()) as i32;
+        let flow_y = (progress * 4.0 * ((x as f32 / width as f32) * std::f32::consts::PI * 2.0).cos()) as i32;
+        
+        let src_x1 = (x as i32 - flow_x).max(0).min(width as i32 - 1) as u32;
+        let src_y1 = (y as i32 - flow_y).max(0).min(height as i32 - 1) as u32;
+        let src_x2 = (x as i32 + flow_x).max(0).min(width as i32 - 1) as u32;
+        let src_y2 = (y as i32 + flow_y).max(0).min(height as i32 - 1) as u32;
+        
+        let p1 = rgba1.get_pixel(src_x1, src_y1);
+        let p2 = rgba2.get_pixel(src_x2, src_y2);
+        
+        let flow_strength = (flow_x.abs() + flow_y.abs()) as f32 / 12.0;
+        let blend_factor = progress + flow_strength * 0.05;
+        let clamped_blend = blend_factor.clamp(0.0, 1.0);
+        
+        *pixel = Rgba([
+            (p1[0] as f32 * (1.0 - clamped_blend) + p2[0] as f32 * clamped_blend) as u8,
+            (p1[1] as f32 * (1.0 - clamped_blend) + p2[1] as f32 * clamped_blend) as u8,
+            (p1[2] as f32 * (1.0 - clamped_blend) + p2[2] as f32 * clamped_blend) as u8,
+            (p1[3] as f32 * (1.0 - clamped_blend) + p2[3] as f32 * clamped_blend) as u8,
+        ]);
+    }
+    
+    DynamicImage::ImageRgba8(result)
+}
+
+/// Luminance-based morphing
+fn create_luminance_morph_internal(img1: &DynamicImage, img2: &DynamicImage, raw_progress: f32) -> DynamicImage {
+    let progress = ease_in_out_elastic(raw_progress);
+    
+    let rgba1 = img1.to_rgba8();
+    let rgba2 = img2.to_rgba8();
+    let (width, height) = rgba1.dimensions();
+    let mut result = image::ImageBuffer::new(width, height);
+    
+    for (x, y, pixel) in result.enumerate_pixels_mut() {
+        let p1 = rgba1.get_pixel(x, y);
+        let p2 = rgba2.get_pixel(x, y);
+        
+        let lum1 = (0.299 * p1[0] as f32 + 0.587 * p1[1] as f32 + 0.114 * p1[2] as f32) / 255.0;
+        let lum2 = (0.299 * p2[0] as f32 + 0.587 * p2[1] as f32 + 0.114 * p2[2] as f32) / 255.0;
+        
+        let lum_diff = (lum1 - lum2).abs();
+        let adapted_progress = progress + (lum_diff * 0.2 - 0.1);
+        let clamped_progress = adapted_progress.clamp(0.0, 1.0);
+        
+        *pixel = Rgba([
+            (p1[0] as f32 * (1.0 - clamped_progress) + p2[0] as f32 * clamped_progress) as u8,
+            (p1[1] as f32 * (1.0 - clamped_progress) + p2[1] as f32 * clamped_progress) as u8,
+            (p1[2] as f32 * (1.0 - clamped_progress) + p2[2] as f32 * clamped_progress) as u8,
+            (p1[3] as f32 * (1.0 - clamped_progress) + p2[3] as f32 * clamped_progress) as u8,
+        ]);
+    }
+    
+    DynamicImage::ImageRgba8(result)
+}
+
+/// Gradient dissolve
+fn create_gradient_dissolve_internal(img1: &DynamicImage, img2: &DynamicImage, raw_progress: f32) -> DynamicImage {
+    let progress = ease_in_out_sine(raw_progress);
+    
+    let rgba1 = img1.to_rgba8();
+    let rgba2 = img2.to_rgba8();
+    let (width, height) = rgba1.dimensions();
+    let mut result = image::ImageBuffer::new(width, height);
+    
+    for (x, y, pixel) in result.enumerate_pixels_mut() {
+        let grad_x = x as f32 / width as f32;
+        let grad_y = y as f32 / height as f32;
+        let combined_grad = (grad_x + grad_y) / 2.0;
+        let dissolve_threshold = progress + (combined_grad - 0.5) * 0.4;
+        
+        let p1 = rgba1.get_pixel(x, y);
+        let p2 = rgba2.get_pixel(x, y);
+        
+        if dissolve_threshold < 0.3 {
+            *pixel = *p1;
+        } else if dissolve_threshold > 0.7 {
+            *pixel = *p2;
+        } else {
+            let local_progress = (dissolve_threshold - 0.3) / 0.4;
+            *pixel = Rgba([
+                (p1[0] as f32 * (1.0 - local_progress) + p2[0] as f32 * local_progress) as u8,
+                (p1[1] as f32 * (1.0 - local_progress) + p2[1] as f32 * local_progress) as u8,
+                (p1[2] as f32 * (1.0 - local_progress) + p2[2] as f32 * local_progress) as u8,
+                (p1[3] as f32 * (1.0 - local_progress) + p2[3] as f32 * local_progress) as u8,
+            ]);
+        }
+    }
+    
+    DynamicImage::ImageRgba8(result)
+}
+
+/// Wave transition
+fn create_wave_transition_internal(img1: &DynamicImage, img2: &DynamicImage, raw_progress: f32) -> DynamicImage {
+    let progress = ease_in_out_quartic(raw_progress);
+    
+    let rgba1 = img1.to_rgba8();
+    let rgba2 = img2.to_rgba8();
+    let (width, height) = rgba1.dimensions();
+    let mut result = image::ImageBuffer::new(width, height);
+    
+    for (x, y, pixel) in result.enumerate_pixels_mut() {
+        let wave1 = ((x as f32 / width as f32 * std::f32::consts::PI * 3.0) + (progress * std::f32::consts::PI * 2.0)).sin();
+        let wave2 = ((y as f32 / height as f32 * std::f32::consts::PI * 2.0) + (progress * std::f32::consts::PI * 1.5)).cos();
+        let wave_combined = (wave1 + wave2) / 2.0;
+        
+        let wave_progress = progress + wave_combined * 0.15;
+        let clamped_progress = wave_progress.clamp(0.0, 1.0);
+        
+        let p1 = rgba1.get_pixel(x, y);
+        let p2 = rgba2.get_pixel(x, y);
+        
+        *pixel = Rgba([
+            (p1[0] as f32 * (1.0 - clamped_progress) + p2[0] as f32 * clamped_progress) as u8,
+            (p1[1] as f32 * (1.0 - clamped_progress) + p2[1] as f32 * clamped_progress) as u8,
+            (p1[2] as f32 * (1.0 - clamped_progress) + p2[2] as f32 * clamped_progress) as u8,
+            (p1[3] as f32 * (1.0 - clamped_progress) + p2[3] as f32 * clamped_progress) as u8,
+        ]);
+    }
+    
+    DynamicImage::ImageRgba8(result)
+}
+
+/// Spiral morph
+fn create_spiral_morph_internal(img1: &DynamicImage, img2: &DynamicImage, raw_progress: f32) -> DynamicImage {
+    let progress = ease_in_out_expo(raw_progress);
+    
+    let rgba1 = img1.to_rgba8();
+    let rgba2 = img2.to_rgba8();
+    let (width, height) = rgba1.dimensions();
+    let mut result = image::ImageBuffer::new(width, height);
+    
+    let center_x = width as f32 / 2.0;
+    let center_y = height as f32 / 2.0;
+    
+    for (x, y, pixel) in result.enumerate_pixels_mut() {
+        let dx = x as f32 - center_x;
+        let dy = y as f32 - center_y;
+        
+        let radius = (dx * dx + dy * dy).sqrt();
+        let angle = dy.atan2(dx);
+        
+        let max_radius = (width as f32 + height as f32) / 4.0;
+        let normalized_radius = (radius / max_radius).min(1.0);
+        
+        let spiral_offset = normalized_radius * 2.0 * std::f32::consts::PI + angle;
+        let spiral_progress = progress + (spiral_offset / (4.0 * std::f32::consts::PI)) * 0.3;
+        let clamped_progress = spiral_progress.clamp(0.0, 1.0);
+        
+        let p1 = rgba1.get_pixel(x, y);
+        let p2 = rgba2.get_pixel(x, y);
+        
+        *pixel = Rgba([
+            (p1[0] as f32 * (1.0 - clamped_progress) + p2[0] as f32 * clamped_progress) as u8,
+            (p1[1] as f32 * (1.0 - clamped_progress) + p2[1] as f32 * clamped_progress) as u8,
+            (p1[2] as f32 * (1.0 - clamped_progress) + p2[2] as f32 * clamped_progress) as u8,
+            (p1[3] as f32 * (1.0 - clamped_progress) + p2[3] as f32 * clamped_progress) as u8,
+        ]);
+    }
+    
+    DynamicImage::ImageRgba8(result)
+}
+
+fn create_smooth_transition(
+    img1: &DynamicImage,
+    img2: &DynamicImage,
+    frame_count: u32,
+    transition_index: usize,
+) -> Vec<DynamicImage> {
+    // Deprecated: Use ultra smooth transition instead
+    create_ultra_smooth_transition_internal(img1, img2, frame_count, transition_index)
 }
 
 // Crossfade mượt mà với alpha blending chính xác

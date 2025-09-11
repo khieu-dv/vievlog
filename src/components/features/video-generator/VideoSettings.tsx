@@ -1,9 +1,10 @@
 "use client";
 
-import React from 'react';
-import { Sliders, Clock, Zap, Image as ImageIcon } from 'lucide-react';
+import React, { useState } from 'react';
+import { Sliders, Clock, Zap, Image as ImageIcon, Sparkles } from 'lucide-react';
 import { Button } from '~/components/ui/Button';
 import { VideoConfig } from './VideoGenerator';
+import { SmartEnhancement, SmartEnhancementConfig } from './SmartEnhancement';
 import { cn } from '~/lib/utils';
 
 interface VideoSettingsProps {
@@ -29,17 +30,80 @@ const QUALITY_PRESETS = [
 ] as const;
 
 export function VideoSettings({ config, onConfigChange, videoDuration, className }: VideoSettingsProps) {
+  const [activeTab, setActiveTab] = useState<'video' | 'enhancement'>('video');
+
   const updateConfig = (updates: Partial<VideoConfig>) => {
     onConfigChange({ ...config, ...updates });
   };
 
+  const handleEnhancementChange = (enhancementConfig: SmartEnhancementConfig) => {
+    onConfigChange({
+      ...config,
+      smartEnhancement: {
+        ...enhancementConfig,
+        enabled: true
+      }
+    });
+  };
+
   return (
-    <div className={cn("space-y-6 p-6 bg-muted/30 rounded-lg border", className)}>
-      <div className="flex items-center space-x-2">
-        <Sliders className="w-5 h-5 text-primary" />
-        <h3 className="font-semibold">Video Settings</h3>
+    <div className={cn("space-y-4 bg-muted/30 rounded-lg border", className)}>
+      {/* Tab Navigation */}
+      <div className="flex space-x-1 bg-gray-100 dark:bg-gray-800 p-1 m-4 rounded-lg">
+        <button
+          onClick={() => setActiveTab('video')}
+          className={cn(
+            "flex items-center px-4 py-2 text-sm font-medium rounded-md transition-colors",
+            activeTab === 'video'
+              ? "bg-white dark:bg-gray-700 text-blue-600 shadow-sm"
+              : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+          )}
+        >
+          <Sliders className="w-4 h-4 mr-2" />
+          Video Settings
+        </button>
+        <button
+          onClick={() => setActiveTab('enhancement')}
+          className={cn(
+            "flex items-center px-4 py-2 text-sm font-medium rounded-md transition-colors",
+            activeTab === 'enhancement'
+              ? "bg-white dark:bg-gray-700 text-purple-600 shadow-sm"
+              : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+          )}
+        >
+          <Sparkles className="w-4 h-4 mr-2" />
+          Smart Enhancement
+        </button>
       </div>
 
+      {/* Tab Content */}
+      <div className="p-4 pt-0">
+        {activeTab === 'video' && (
+          <VideoSettingsContent 
+            config={config} 
+            updateConfig={updateConfig} 
+            videoDuration={videoDuration} 
+          />
+        )}
+        
+        {activeTab === 'enhancement' && (
+          <SmartEnhancement
+            config={config.smartEnhancement}
+            onConfigChange={handleEnhancementChange}
+          />
+        )}
+      </div>
+    </div>
+  );
+}
+
+function VideoSettingsContent({ config, updateConfig, videoDuration }: {
+  config: VideoConfig;
+  updateConfig: (updates: Partial<VideoConfig>) => void;
+  videoDuration: number;
+}) {
+  return (
+    <div className="space-y-6">
       {/* Quality Preset */}
       <div className="space-y-3">
         <div className="flex items-center space-x-2">

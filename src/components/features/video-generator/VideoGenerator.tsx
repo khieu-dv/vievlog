@@ -16,6 +16,27 @@ export interface VideoConfig {
   quality: 'low' | 'medium' | 'high';
   intensity: number;
   useEnhancedEffects: boolean;
+  smartEnhancement: {
+    enabled: boolean;
+    autoExposure: boolean;
+    autoContrast: boolean;
+    autoSaturation: boolean;
+    noiseReduction: boolean;
+    sharpening: 'none' | 'subtle' | 'medium' | 'strong';
+    whiteBalance: 'auto' | 'manual';
+    exposure: number;
+    contrast: number;
+    vibrance: number;
+    saturation: number;
+    temperature: number;
+    tint: number;
+    shadows: { hue: number; saturation: number; lightness: number };
+    midtones: { hue: number; saturation: number; lightness: number };
+    highlights: { hue: number; saturation: number; lightness: number };
+    filmGrain: number;
+    vignette: number;
+    preset: 'auto' | 'cinematic' | 'vintage' | 'modern' | 'warm' | 'cool' | 'custom';
+  };
 }
 
 const DEFAULT_CONFIG: VideoConfig = {
@@ -25,7 +46,28 @@ const DEFAULT_CONFIG: VideoConfig = {
   fps: 30,
   quality: 'medium',
   intensity: 0.8,
-  useEnhancedEffects: true
+  useEnhancedEffects: true,
+  smartEnhancement: {
+    enabled: true,
+    autoExposure: true,
+    autoContrast: true,
+    autoSaturation: true,
+    noiseReduction: false,
+    sharpening: 'subtle',
+    whiteBalance: 'auto',
+    exposure: 0,
+    contrast: 0,
+    vibrance: 0,
+    saturation: 0,
+    temperature: 0,
+    tint: 0,
+    shadows: { hue: 220, saturation: 15, lightness: 25 },
+    midtones: { hue: 30, saturation: 20, lightness: 50 },
+    highlights: { hue: 45, saturation: 10, lightness: 75 },
+    filmGrain: 0,
+    vignette: 0,
+    preset: 'auto'
+  }
 };
 
 export function VideoGenerator() {
@@ -86,8 +128,24 @@ export function VideoGenerator() {
     try {
       const jsArray = new Array();
       for (let i = 0; i < images.length; i++) {
-        setProgress((i / images.length) * 30);
-        const imageData = await convertFileToUint8Array(images[i]);
+        setProgress((i / images.length) * 20);
+        let imageData = await convertFileToUint8Array(images[i]);
+        
+        // Apply smart enhancement if enabled
+        if (config.smartEnhancement.enabled && wasmModule.apply_smart_enhancement_simple) {
+          console.log(`🎯 Applying smart enhancement to image ${i + 1}...`);
+          
+          imageData = wasmModule.apply_smart_enhancement_simple(
+            imageData,
+            config.smartEnhancement.autoExposure,
+            config.smartEnhancement.autoContrast,
+            config.smartEnhancement.autoSaturation,
+            config.smartEnhancement.noiseReduction,
+            config.smartEnhancement.sharpening,
+            config.smartEnhancement.whiteBalance
+          );
+        }
+        
         jsArray.push(imageData);
       }
       
@@ -142,7 +200,21 @@ export function VideoGenerator() {
     try {
       const imageDataArray = new Array();
       for (const image of images.slice(0, 3)) {
-        const imageData = await convertFileToUint8Array(image);
+        let imageData = await convertFileToUint8Array(image);
+        
+        // Apply smart enhancement if enabled
+        if (config.smartEnhancement.enabled && wasmModule.apply_smart_enhancement_simple) {
+          imageData = wasmModule.apply_smart_enhancement_simple(
+            imageData,
+            config.smartEnhancement.autoExposure,
+            config.smartEnhancement.autoContrast,
+            config.smartEnhancement.autoSaturation,
+            config.smartEnhancement.noiseReduction,
+            config.smartEnhancement.sharpening,
+            config.smartEnhancement.whiteBalance
+          );
+        }
+        
         imageDataArray.push(imageData);
       }
 
