@@ -20,6 +20,9 @@ imageproc = "0.25"
 
 # Video generation dependencies
 base64 = "0.22"
+fast_image_resize = "4.0"
+interpolation = "0.3"
+colorgrad = "0.7"
 
 # WGPU for advanced GPU-accelerated effects
 wgpu = "0.19"

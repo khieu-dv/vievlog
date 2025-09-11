@@ -11,7 +11,7 @@ import { cn } from '~/lib/utils';
 export interface VideoConfig {
   framesPerImage: number;
   transitionFrames: number;
-  transitionType: 'enhanced_crossfade' | 'cinematic_dissolve' | 'crossfade' | 'pan_left' | 'pan_right' | 'fade';
+  transitionType: 'smooth_crossfade' | 'gradient_wipe' | 'luminance_fade' | 'enhanced_crossfade' | 'cinematic_dissolve' | 'crossfade' | 'pan_left' | 'pan_right' | 'fade';
   fps: number;
   quality: 'low' | 'medium' | 'high';
   intensity: number;
@@ -21,7 +21,7 @@ export interface VideoConfig {
 const DEFAULT_CONFIG: VideoConfig = {
   framesPerImage: 120, // 4 giây mỗi hình (120 frames ÷ 30 fps = 4s)
   transitionFrames: 30, // 1 giây transition (30 frames ÷ 30 fps = 1s)
-  transitionType: 'enhanced_crossfade',
+  transitionType: 'smooth_crossfade',
   fps: 30,
   quality: 'medium',
   intensity: 0.8,
@@ -107,74 +107,85 @@ export function VideoGenerator() {
       setProgress(40); // 40% for starting WASM processing
       console.log('📦 Prepared JS Array with', jsArray.length, 'images for WASM');
       
-      // Generate video frames using enhanced WASM functions
-      console.log('🎨 Enhanced effects enabled:', config.useEnhancedEffects);
+      // Generate video frames using smooth video generation
+      console.log('🎨 Smooth video generation enabled, quality:', config.quality);
       
-      const frames = config.useEnhancedEffects 
-        ? (() => {
-            console.log('✨ === USING ENHANCED EFFECTS ===');
-            console.log('📊 Enhanced effects parameters:', {
-              images: jsArray.length,
-              framesPerImage: config.framesPerImage,
-              transitionFrames: config.transitionFrames,
-              transitionType: config.transitionType,
-              intensity: config.intensity
-            });
-            console.log('🔮 Calling wasmModule.generate_enhanced_video_frames...');
-            
-            const startTime = Date.now();
-            const result = wasmModule.generate_enhanced_video_frames(
-              jsArray,
-              config.framesPerImage,
-              config.transitionFrames,
-              config.transitionType,
-              config.intensity
-            );
-            const endTime = Date.now();
-            
-            console.log('⚡ Enhanced generation completed in', endTime - startTime, 'ms');
-            console.log('🎞️ Enhanced result type:', typeof result);
-            console.log('📊 Enhanced result length:', result?.length || 0);
-            console.log('🔍 Enhanced result sample (first 3 frames):', Array.from(result).slice(0, 3).map(frame => ({
-              type: typeof frame,
-              isString: typeof frame === 'string',
-              startsWithData: typeof frame === 'string' && frame.startsWith('data:'),
-              length: typeof frame === 'string' ? frame.length : 0
-            })));
-            
-            return result;
-          })()
-        : (() => {
-            console.log('🎭 === USING STANDARD EFFECTS ===');
-            console.log('📊 Standard effects parameters:', {
-              images: jsArray.length,
-              framesPerImage: config.framesPerImage,
-              transitionFrames: config.transitionFrames,
-              transitionType: config.transitionType
-            });
-            console.log('🔮 Calling wasmModule.generate_video_from_images...');
-            
-            const startTime = Date.now();
-            const result = wasmModule.generate_video_from_images(
-              jsArray,
-              config.framesPerImage,
-              config.transitionFrames,
-              config.transitionType
-            );
-            const endTime = Date.now();
-            
-            console.log('⚡ Standard generation completed in', endTime - startTime, 'ms');
-            console.log('🎞️ Standard result type:', typeof result);
-            console.log('📊 Standard result length:', result?.length || 0);
-            console.log('🔍 Standard result sample (first 3 frames):', Array.from(result).slice(0, 3).map(frame => ({
-              type: typeof frame,
-              isString: typeof frame === 'string',
-              startsWithData: typeof frame === 'string' && frame.startsWith('data:'),
-              length: typeof frame === 'string' ? frame.length : 0
-            })));
-            
-            return result;
-          })();
+      const frames = (() => {
+        // First try the new smooth video generation
+        if (wasmModule.generate_smooth_video_from_images) {
+          console.log('✨ === USING SMOOTH VIDEO GENERATION ===');
+          console.log('📊 Smooth video parameters:', {
+            images: jsArray.length,
+            framesPerImage: config.framesPerImage,
+            transitionFrames: config.transitionFrames,
+            quality: config.quality
+          });
+          console.log('🔮 Calling wasmModule.generate_smooth_video_from_images...');
+          
+          const startTime = Date.now();
+          const result = wasmModule.generate_smooth_video_from_images(
+            jsArray,
+            config.framesPerImage,
+            config.transitionFrames,
+            config.quality
+          );
+          const endTime = Date.now();
+          
+          console.log('⚡ Smooth generation completed in', endTime - startTime, 'ms');
+          console.log('🎞️ Smooth result type:', typeof result);
+          console.log('📊 Smooth result length:', result?.length || 0);
+          
+          return result;
+        }
+        
+        // Fallback to enhanced effects if available
+        else if (config.useEnhancedEffects && wasmModule.generate_enhanced_video_frames) {
+          console.log('🎭 === FALLBACK TO ENHANCED EFFECTS ===');
+          console.log('📊 Enhanced effects parameters:', {
+            images: jsArray.length,
+            framesPerImage: config.framesPerImage,
+            transitionFrames: config.transitionFrames,
+            transitionType: config.transitionType,
+            intensity: config.intensity
+          });
+          
+          const startTime = Date.now();
+          const result = wasmModule.generate_enhanced_video_frames(
+            jsArray,
+            config.framesPerImage,
+            config.transitionFrames,
+            config.transitionType,
+            config.intensity
+          );
+          const endTime = Date.now();
+          
+          console.log('⚡ Enhanced generation completed in', endTime - startTime, 'ms');
+          return result;
+        }
+        
+        // Final fallback to standard generation
+        else {
+          console.log('🎭 === FALLBACK TO STANDARD EFFECTS ===');
+          console.log('📊 Standard effects parameters:', {
+            images: jsArray.length,
+            framesPerImage: config.framesPerImage,
+            transitionFrames: config.transitionFrames,
+            transitionType: config.transitionType
+          });
+          
+          const startTime = Date.now();
+          const result = wasmModule.generate_video_from_images(
+            jsArray,
+            config.framesPerImage,
+            config.transitionFrames,
+            config.transitionType
+          );
+          const endTime = Date.now();
+          
+          console.log('⚡ Standard generation completed in', endTime - startTime, 'ms');
+          return result;
+        }
+      })();
 
       setProgress(90); // 90% for WASM processing complete
       
@@ -230,36 +241,51 @@ export function VideoGenerator() {
         imageDataArray.push(imageData);
       }
 
-      // Use enhanced effects for preview too
-      const frames = config.useEnhancedEffects && wasmModule.generate_enhanced_video_frames
-        ? (() => {
-            console.log('✨ Using enhanced effects for preview');
-            return wasmModule.generate_enhanced_video_frames(
-              imageDataArray,
-              15, // Fewer frames per image for preview
-              10, // Fewer transition frames for preview
-              config.transitionType,
-              config.intensity
-            );
-          })()
-        : wasmModule.create_video_preview
-        ? (() => {
-            console.log('🎭 Using create_video_preview');
-            return wasmModule.create_video_preview(
-              imageDataArray,
-              20, // Preview with fewer frames
-              config.transitionType
-            );
-          })()
-        : (() => {
-            console.log('🎭 Using generate_video_from_images for preview');
-            return wasmModule.generate_video_from_images(
-              imageDataArray,
-              15,
-              10,
-              config.transitionType
-            );
-          })();
+      // Use smooth video generation for preview
+      const frames = (() => {
+        // First try smooth video preview
+        if (wasmModule.create_smooth_video_preview) {
+          console.log('✨ Using create_smooth_video_preview');
+          return wasmModule.create_smooth_video_preview(
+            imageDataArray,
+            5.0 // 5 second preview
+          );
+        }
+        
+        // Fallback to smooth video generation with fewer frames
+        else if (wasmModule.generate_smooth_video_from_images) {
+          console.log('✨ Using generate_smooth_video_from_images for preview');
+          return wasmModule.generate_smooth_video_from_images(
+            imageDataArray,
+            15, // Fewer frames per image for preview
+            10, // Fewer transition frames for preview
+            "medium" // Medium quality for preview
+          );
+        }
+        
+        // Fallback to enhanced effects if available
+        else if (config.useEnhancedEffects && wasmModule.generate_enhanced_video_frames) {
+          console.log('🎭 Using enhanced effects for preview');
+          return wasmModule.generate_enhanced_video_frames(
+            imageDataArray,
+            15,
+            10,
+            config.transitionType,
+            config.intensity
+          );
+        }
+        
+        // Final fallback
+        else {
+          console.log('🎭 Using standard generation for preview');
+          return wasmModule.generate_video_from_images(
+            imageDataArray,
+            15,
+            10,
+            config.transitionType
+          );
+        }
+      })();
 
       // frames is already a JavaScript Array, no need to convert
       const frameArray = Array.from(frames) as string[];
@@ -419,10 +445,47 @@ export function VideoGenerator() {
         </div>
       )}
 
-      {/* Enhanced Effects Status */}
+      {/* Smooth Video Generation Status */}
+      <div className="bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-950/20 dark:to-teal-950/20 rounded-lg p-4 border border-emerald-200 dark:border-emerald-800">
+        <h3 className="font-semibold text-sm mb-2 text-emerald-800 dark:text-emerald-300">🎬 Smooth Video Generation Active - Professional Quality:</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm text-emerald-700 dark:text-emerald-300">
+          <div>
+            <strong>🚀 3D Flying Effects:</strong>
+            <ul className="ml-4 space-y-1 text-xs">
+              <li>• Fly up 3D với perspective transform</li>
+              <li>• Bounce fly 3D với physics motion</li>
+              <li>• Spiral fly 3D với xoắn ốc bay lên</li>
+              <li>• Perspective zoom 3D dramatic</li>
+            </ul>
+          </div>
+          <div>
+            <strong>🌪️ 3D Rotation Effects:</strong>
+            <ul className="ml-4 space-y-1 text-xs">
+              <li>• Rotate circle 3D với orbit motion</li>
+              <li>• Flip rotate 3D multi-axis</li>
+              <li>• Orbit 3D quanh tâm perspective</li>
+              <li>• Wave rotate 3D với sine motion</li>
+            </ul>
+          </div>
+          <div>
+            <strong>✨ Professional Quality:</strong>
+            <ul className="ml-4 space-y-1 text-xs">
+              <li>• 3D perspective transformations</li>
+              <li>• Bilinear interpolation smooth</li>
+              <li>• Professional easing curves</li>
+              <li>• Automatic color grading</li>
+            </ul>
+          </div>
+        </div>
+        <div className="mt-3 text-xs text-emerald-600 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-900/30 rounded px-3 py-2">
+          🎯 <strong>3D DYNAMIC FRAMES: Mỗi hình ảnh sẽ bay lên và quay vòng tròn với hiệu ứng 3D chuyên nghiệp!</strong>
+        </div>
+      </div>
+
+      {/* Enhanced Effects Status - Optional fallback */}
       {config.useEnhancedEffects && (
-        <div className="bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-950/20 dark:to-teal-950/20 rounded-lg p-4 border border-emerald-200 dark:border-emerald-800">
-          <h3 className="font-semibold text-sm mb-2 text-emerald-800 dark:text-emerald-300">🎬 Enhanced Cinematic Effects Active - 47+ Professional Effects:</h3>
+        <div className="bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-950/20 dark:to-blue-950/20 rounded-lg p-4 border border-purple-200 dark:border-purple-800">
+          <h3 className="font-semibold text-sm mb-2 text-purple-800 dark:text-purple-300">🎭 Enhanced Effects Fallback Available:</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm text-emerald-700 dark:text-emerald-300">
             <div>
               <strong>🎯 Cinematic Zoom:</strong>
