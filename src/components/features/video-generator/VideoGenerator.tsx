@@ -178,12 +178,13 @@ export function VideoGenerator() {
     : 0;
 
   return (
-    <div className="w-full max-w-6xl mx-auto space-y-8">
-      {/* Header */}
-      <div className="text-center space-y-2">
-        <h1 className="text-3xl font-bold tracking-tight">Video Generator</h1>
-        <p className="text-muted-foreground">
-          Upload 2-10 images to create a beautiful video with smooth transitions
+    <div className="p-6 max-w-6xl mx-auto space-y-6">
+      <div className="text-center">
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          Video Generator
+        </h1>
+        <p className="text-gray-600 dark:text-gray-400">
+          Upload 2-30 images to create a video with smooth transitions
         </p>
       </div>
 
@@ -194,124 +195,161 @@ export function VideoGenerator() {
         </div>
       )}
 
-      {/* Image Upload */}
-      <div className="space-y-4">
-        <h2 className="text-xl font-semibold">1. Upload Images</h2>
+      {/* Upload Section */}
+      <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+        <h2 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">
+          Upload Images
+        </h2>
         <ImageUpload
           onImagesChange={setImages}
-          maxImages={10}
+          maxImages={30}
           className="w-full"
         />
       </div>
 
-      {/* Video Settings */}
+      {/* Main Editor Area */}
       {images.length >= 2 && (
-        <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <h2 className="text-xl font-semibold">2. Configure Video</h2>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setShowSettings(!showSettings)}
-            >
-              <Settings className="w-4 h-4 mr-2" />
-              {showSettings ? 'Hide Settings' : 'Show Settings'}
-            </Button>
-          </div>
-
-          {showSettings && (
-            <VideoSettings
-              config={config}
-              onConfigChange={setConfig}
-              videoDuration={videoDuration}
-            />
-          )}
-
-          {/* Quick Info */}
-          <div className="bg-muted/50 rounded-lg p-4 space-y-2">
-            <div className="flex items-center space-x-4 text-sm">
-              <span>
-                <strong>Images:</strong> {images.length}
-              </span>
-              <span>
-                <strong>Duration:</strong> ~{videoDuration.toFixed(1)}s
-              </span>
-              <span>
-                <strong>Transition:</strong> {config.transitionType.replace('_', ' ')}
-              </span>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Generation Controls */}
-      {images.length >= 2 && (
-        <div className="space-y-4">
-          <h2 className="text-xl font-semibold">3. Generate Video</h2>
-          
-          <div className="space-y-3">
-            <div className="flex flex-wrap gap-3">
-              <Button
-                onClick={generatePreview}
-                disabled={!canGenerate}
-                variant="outline"
-              >
-                <Play className="w-4 h-4 mr-2" />
-                Quick Preview
-              </Button>
-              
-              <Button
-                onClick={generateVideo}
-                disabled={!canGenerate}
-                className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
-              >
-                {isGenerating ? (
-                  <>
-                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                    Generating... {Math.round(progress)}%
-                  </>
-                ) : (
-                  <>
-                    <Music className="w-4 h-4 mr-2" />
-                    Generate Video + MP3
-                  </>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Video Preview */}
+          <div className="lg:col-span-2">
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+                  Preview
+                </h2>
+                {isGenerating && (
+                  <div className="flex items-center text-blue-600">
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600 mr-2"></div>
+                    <span className="text-sm">Generating... {Math.round(progress)}%</span>
+                  </div>
                 )}
-              </Button>
-            </div>
-            
-            <div className="bg-emerald-50 dark:bg-emerald-950/20 rounded-lg p-3">
-              <div className="flex items-center text-emerald-700 dark:text-emerald-300 text-sm">
-                <Music className="w-4 h-4 mr-2" />
-                <span>Video với nhạc nền sẽ tự động tải xuống</span>
+              </div>
+              
+              <div className="flex justify-center bg-gray-100 dark:bg-gray-700 rounded-lg p-4 min-h-96">
+                {generatedFrames.length > 0 ? (
+                  <VideoPreview
+                    frames={generatedFrames}
+                    fps={config.fps}
+                    quality={config.quality}
+                    autoCreateVideoWithAudio={true}
+                    onDownload={() => {
+                      console.log('Download requested');
+                    }}
+                  />
+                ) : (
+                  <div className="flex flex-col items-center justify-center text-center">
+                    <Video className="w-16 h-16 mb-4 text-gray-400" />
+                    <p className="text-gray-500 dark:text-gray-400">
+                      Generated video will appear here
+                    </p>
+                  </div>
+                )}
+              </div>
+              
+              {/* Video Info */}
+              <div className="mt-4 grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
+                <div className="bg-gray-50 dark:bg-gray-700 p-3 rounded">
+                  <div className="font-semibold text-gray-900 dark:text-white">Images</div>
+                  <div className="text-gray-600 dark:text-gray-400">{images.length}</div>
+                </div>
+                <div className="bg-gray-50 dark:bg-gray-700 p-3 rounded">
+                  <div className="font-semibold text-gray-900 dark:text-white">Duration</div>
+                  <div className="text-gray-600 dark:text-gray-400">~{videoDuration.toFixed(1)}s</div>
+                </div>
+                <div className="bg-gray-50 dark:bg-gray-700 p-3 rounded">
+                  <div className="font-semibold text-gray-900 dark:text-white">Transition</div>
+                  <div className="text-gray-600 dark:text-gray-400">{config.transitionType.replace('_', ' ')}</div>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Progress Bar */}
-          {isGenerating && (
-            <div className="w-full bg-muted rounded-full h-2">
-              <div 
-                className="bg-primary h-2 rounded-full transition-all duration-300"
-                style={{ width: `${progress}%` }}
-              />
-            </div>
-          )}
-        </div>
-      )}
+          {/* Controls Panel */}
+          <div className="space-y-6">
+            {/* Video Settings */}
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                  Settings
+                </h3>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setShowSettings(!showSettings)}
+                >
+                  <Settings className="w-4 h-4 mr-2" />
+                  {showSettings ? 'Hide' : 'Show'}
+                </Button>
+              </div>
 
-      {/* Video Preview */}
-      {generatedFrames.length > 0 && (
-        <div className="space-y-4">
-          <h2 className="text-xl font-semibold">4. Preview & Download</h2>
-          <VideoPreview
-            frames={generatedFrames}
-            fps={config.fps}
-            quality={config.quality}
-            autoCreateVideoWithAudio={true}
-            onDownload={() => {
-              console.log('Download requested');
-            }}
-          />
+              {showSettings && (
+                <VideoSettings
+                  config={config}
+                  onConfigChange={setConfig}
+                  videoDuration={videoDuration}
+                />
+              )}
+            </div>
+
+            {/* Generation Controls */}
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+              <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white">
+                Generate
+              </h3>
+              
+              <div className="space-y-3">
+                <Button
+                  onClick={generatePreview}
+                  disabled={!canGenerate}
+                  variant="outline"
+                  className="w-full"
+                >
+                  <Play className="w-4 h-4 mr-2" />
+                  Quick Preview
+                </Button>
+                
+                <Button
+                  onClick={generateVideo}
+                  disabled={!canGenerate}
+                  className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
+                >
+                  {isGenerating ? (
+                    <>
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      {Math.round(progress)}%
+                    </>
+                  ) : (
+                    <>
+                      <Music className="w-4 h-4 mr-2" />
+                      Generate Video
+                    </>
+                  )}
+                </Button>
+                
+                <div className="bg-emerald-50 dark:bg-emerald-950/20 rounded-lg p-3">
+                  <div className="flex items-center text-emerald-700 dark:text-emerald-300 text-sm">
+                    <Music className="w-4 h-4 mr-2" />
+                    <span>With background music</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Progress */}
+            {isGenerating && (
+              <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+                <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white">
+                  Progress
+                </h3>
+                <div className="w-full bg-muted rounded-full h-2">
+                  <div 
+                    className="bg-primary h-2 rounded-full transition-all duration-300"
+                    style={{ width: `${progress}%` }}
+                  />
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       )}
 
