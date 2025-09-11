@@ -1,452 +1,388 @@
-# Bài 6: 주거 환경 (Môi trường sống)
+# Bài 5: 소비와 절약 (Tiêu dùng và tiết kiệm)
 
-## Mục tiêu học tập
-
-<div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
-  <h3 className="text-lg font-semibold text-blue-800 mb-2">📚 Mục tiêu bài học</h3>
-  <ul className="space-y-2 text-blue-700">
-    <li><strong>Từ vựng:</strong> Môi trường địa lý của khu dân cư</li>
-    <li><strong>Ngữ pháp:</strong> Thể bị động, 동-자고 하다</li>
-    <li><strong>Hoạt động:</strong> Giới thiệu cơ sở vật chất xung quanh khu phố, so sánh khu phố hiện tại và quê hương</li>
-    <li><strong>Văn hóa:</strong> Địa thế tốt trong quá khứ và hiện đại</li>
-  </ul>
+<div className="p-6 border-l-4 border-blue-500 bg-blue-50 mb-6">
+<h2 className="text-xl font-bold text-blue-800 mb-2">📋 Mục tiêu bài học</h2>
+<ul className="list-disc list-inside text-blue-700 space-y-1">
+<li><strong>Từ vựng:</strong> Học các từ về tiêu dùng, phương pháp tiết kiệm</li>
+<li><strong>Ngữ pháp:</strong> 명/이나/밖에, -는다고 하다</li>
+<li><strong>Hoạt động:</strong> Tư vấn về tiết kiệm, viết bài giới thiệu phương pháp tiết kiệm chi phí sinh hoạt</li>
+<li><strong>Văn hóa:</strong> Tìm hiểu về việc gửi tiền tiết kiệm tại Hàn Quốc</li>
+</ul>
 </div>
 
-## I. Từ vựng (어휘)
+## 📊 Biểu đồ cấu trúc bài học
 
-### 1. Đặc điểm của thành phố
+```mermaid
+graph TD
+    A[Bài 5: 소비와 절약] --> B[어휘 - Từ vựng]
+    A --> C[문법 - Ngữ pháp]
+    A --> D[말하기 - Nói]
+    A --> E[듣기 - Nghe]
+    A --> F[읽기 - Đọc]
+    A --> G[쓰기 - Viết]
 
-<div className="grid grid-cols-2 gap-4 mb-6">
-  <div className="bg-gray-50 p-4 rounded-lg">
-    <h4 className="font-semibold text-gray-800 mb-3">🏙️ Thành phố (도시)</h4>
-    <ul className="space-y-2 text-sm">
-      <li>• 거리가 깨끗하다 - đường phố sạch sẽ</li>
-      <li>• 공기가 탁하다 - không khí ô nhiễm</li>
-      <li>• 문화 시설이 많다 - nhiều cơ sở văn hóa</li>
-      <li>• 소음이 심하다 - tiếng ồn lớn</li>
-      <li>• 빌딩숲 - rừng tòa nhà</li>
-      <li>• 산업 단지 - khu công nghiệp</li>
-      <li>• 안전하다 - an toàn</li>
-    </ul>
-  </div>
-  
-  <div className="bg-green-50 p-4 rounded-lg">
-    <h4 className="font-semibold text-green-800 mb-3">🌾 Nông thôn (농촌)</h4>
-    <ul className="space-y-2 text-sm">
-      <li>• 자연환경이 좋다 - môi trường tự nhiên tốt</li>
-      <li>• 한적하다 - yên tĩnh</li>
-      <li>• 공기가 맑다 - không khí trong lành</li>
-      <li>• 직접 농사를 짓다 - trồng trọt trực tiếp</li>
-      <li>• 경치가 좋다 - phong cảnh đẹp</li>
-      <li>• 하천이 흐르다 - có sông suối chảy</li>
-    </ul>
-  </div>
+    B --> B1[Chi phí sinh hoạt]
+    B --> B2[Phương pháp tiết kiệm]
+
+    C --> C1[명/이나/밖에]
+    C --> C2[-는다고 하다]
+
+    D --> D1[Tư vấn tiết kiệm]
+    E --> E1[Tin tức về tiêu dùng]
+    F --> F1[Bài báo về mua đồ cũ]
+    G --> G1[Viết về phương pháp tiết kiệm]
+```
+
+## 💰 PHẦN I: TỪ VỰNG (어휘)
+
+### 1. Các loại chi phí sinh hoạt có gì? Hãy thảo luận.
+
+<div className="overflow-x-auto mb-6">
+
+| **지출항목** (Khoản chi tiêu) | **예시** (Ví dụ)      | **설명** (Giải thích) |
+| ----------------------------- | --------------------- | --------------------- |
+| 식비                          | 점심값, 커피          | Chi phí ăn uống       |
+| 교통비                        | 택시비, 교통카드 충전 | Chi phí đi lại        |
+| 통신비                        | 휴대전화요금          | Chi phí viễn thông    |
+| 교육비                        | 영어학원              | Chi phí giáo dục      |
+| 의료비                        | 두통약                | Chi phí y tế          |
+| 공과금                        | 전기요금              | Tiền điện, nước, gas  |
+| 경조사비                      | 축의금                | Chi phí lễ nghi       |
+| 문화생활비                    | 영화관람              | Chi phí giải trí      |
+
 </div>
 
-### 2. Bảng từ vựng theo chủ đề
+### 2. Để tiết kiệm chi phí sinh hoạt thì phải làm thế nào?
 
-| Từ vựng    | Nghĩa           | Ví dụ                          |
-| ---------- | --------------- | ------------------------------ |
-| 논         | ruộng lúa       | 논에서 벼를 기른다             |
-| 밭         | ruộng khô       | 밭에서 채소를 키운다           |
-| 과수원     | vườn cây ăn quả | 사과 과수원이 있다             |
-| 비닐하우스 | nhà kính        | 비닐하우스에서 토마토를 기른다 |
-| 산책로     | đường dạo bộ    | 산책로에서 운동한다            |
-| 놀이터     | sân chơi        | 아이들이 놀이터에서 논다       |
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+<div className="p-4 border rounded-lg">
+<h4 className="font-bold text-green-600 mb-2">🛒 Mua sắm thông minh</h4>
+<ul className="space-y-2 text-sm">
+<li>• 살 것을 미리 메모하다 - Ghi chép trước những gì cần mua</li>
+<li>• 할인카드로 결제하다 - Thanh toán bằng thẻ giảm giá</li>
+<li>• 포인트를/쿠폰을 적립하다 - Tích lũy điểm/coupon</li>
+</ul>
+</div>
+<div className="p-4 border rounded-lg">
+<h4 className="font-bold text-red-600 mb-2">⚠️ Tránh tiêu dùng bừa bãi</h4>
+<ul className="space-y-2 text-sm">
+<li>• 충동구매를 하지 않다 - Không mua hàng bốc đồng</li>
+<li>• 가계부를 쓰다 - Ghi sổ thu chi</li>
+</ul>
+</div>
+</div>
 
-## II. Ngữ pháp (문법)
+### Từ vựng bổ sung
 
-### 1. Thể bị động (피동)
+| **한국어** | **Tiếng Việt**          | **한국어** | **Tiếng Việt** |
+| ---------- | ----------------------- | ---------- | -------------- |
+| 생활비     | Chi phí sinh hoạt       | 절약       | Tiết kiệm      |
+| 지출       | Chi tiêu                | 할인       | Giảm giá       |
+| 난방비     | Tiền sưởi ấm            | 보일러     | Lò sưởi        |
+| 수리하다   | Sửa chữa                | 중고차     | Xe cũ          |
+| 물려받다   | Được thừa hưởng         | 온도       | Nhiệt độ       |
+| 통신사     | Nhà cung cấp viễn thông | 장을 보다  | Đi chợ         |
+| 공유       | Chia sẻ                 | 틀다       | Bật (máy)      |
 
-<div className="bg-yellow-50 border border-yellow-200 p-4 mb-4">
-  <h4 className="font-semibold text-yellow-800 mb-2">📝 Công thức</h4>
-  <p className="text-yellow-700">Diễn tả việc được thực hiện bởi tác động từ bên ngoài</p>
+## 📚 PHẦN II: NGỮ PHÁP (문법)
+
+### 1. 명/이나/밖에
+
+<div className="p-4 bg-gray-50 rounded-lg mb-4">
+<h4 className="font-bold mb-2">📌 Ý nghĩa và cách dùng</h4>
+<p>Biểu hiện số lượng <strong>lớn hơn dự kiến</strong> hoặc <strong>nhỏ hơn dự kiến</strong></p>
 </div>
 
 ```mermaid
 graph LR
-    A[동사 + 이/히/리/기] --> B[피동형]
-    A --> C[보다 → 보이다]
-    A --> D[놓다 → 놓이다]
-    A --> E[잡다 → 잡히다]
-    A --> F[막다 → 막히다]
+    A[수량 - Số lượng] --> B{Nhiều hay ít?}
+    B --> C[이나/나 - Nhiều hơn dự kiến]
+    B --> D[밖에 - Ít hơn dự kiến]
+
+    C --> E[놀라움 - Ngạc nhiên về số lượng nhiều]
+    D --> F[아쉬움 - Tiếc nuối về số lượng ít]
 ```
 
-#### Quy tắc chuyển đổi:
+#### Quy tắc sử dụng:
 
-| Nguyên tắc | Ví dụ         | Nghĩa     |
-| ---------- | ------------- | --------- |
-| -이-       | 보다 → 보이다 | được thấy |
-| -히-       | 잡다 → 잡히다 | bị bắt    |
-| -리-       | 열다 → 열리다 | được mở   |
-| -기-       | 끊다 → 끊기다 | bị đứt    |
+| **Cách dùng**          | **Ví dụ**                | **Ý nghĩa**                |
+| ---------------------- | ------------------------ | -------------------------- |
+| **이나** (sau phụ âm)  | 16만원이나, 다섯 명이나  | Số lượng nhiều hơn dự kiến |
+| **나** (sau nguyên âm) | 10개나, 두 대나          | Số lượng nhiều hơn dự kiến |
+| **밖에** + phủ định    | 27,000원밖에 안 나왔어요 | Số lượng ít hơn dự kiến    |
 
-#### Ví dụ:
+#### Ví dụ minh họa:
 
-- **가:** 왜 이렇게 늦었어요? 무슨 일이 있었어요?
-- **나:** 퇴근 시간이라서 길이 많이 **막혔어요**.
+<div className="p-4 border-l-4 border-green-400 bg-green-50 mb-4">
+<h5 className="font-bold text-green-700">✅ Ví dụ với 이나/나</h5>
+<ul className="space-y-2 text-green-800">
+<li>• 저는 하루에 커피를 <strong>다섯 잔이나</strong> 마셔요. (Tôi uống tới 5 cốc cà phê một ngày.)</li>
+<li>• 12만 원<strong>이나</strong> 썼어요? 왜 그렇게 많이 썼어요? (Bạn đã tiêu tới 120,000 won? Sao lại tiêu nhiều thế?)</li>
+</ul>
+</div>
 
-- 자는 동안 모기한테 팔을 **물려서** 너무 가렵다.
-- 친구와 전화를 하는 중에 갑자기 전화가 **끊겼다**.
+<div className="p-4 border-l-4 border-blue-400 bg-blue-50 mb-4">
+<h5 className="font-bold text-blue-700">✅ Ví dụ với 밖에</h5>
+<ul className="space-y-2 text-blue-800">
+<li>• 산지 1년<strong>밖에</strong> 안 됐는데 벌써 고장 난 거예요? (Mới mua có 1 năm thôi mà đã hỏng rồi sao?)</li>
+<li>• 이번 달에는 통신비가 27,000원<strong>밖에</strong> 안 나왔어요. (Tháng này tiền điện thoại chỉ có 27,000 won thôi.)</li>
+</ul>
+</div>
 
-### 2. 동-자고 하다
+### 2. -는다고 하다
 
-<div className="bg-blue-50 border border-blue-200 p-4 mb-4">
-  <h4 className="font-semibold text-blue-800 mb-2">📝 Công thức</h4>
-  <p className="text-blue-700">Truyền đạt lời đề nghị hoặc gợi ý từ người khác</p>
+<div className="p-4 bg-gray-50 rounded-lg mb-4">
+<h4 className="font-bold mb-2">📌 Ý nghĩa và cách dùng</h4>
+<p>Chủ yếu dùng để <strong>truyền đạt nội dung nghe được từ người khác</strong></p>
 </div>
 
 ```mermaid
 flowchart TD
-    A[동사 어간] --> B[+ 자고 하다]
-    B --> C[먹다 → 먹자고 하다]
-    B --> D[가다 → 가자고 하다]
-    B --> E[하다 → 하자고 하다]
-    F[부정형] --> G[지 말자고 하다]
+    A[정보 출처 - Nguồn thông tin] --> B[다른 사람 - Người khác]
+    B --> C[-는다고 하다]
+    C --> D[전달 - Truyền đạt thông tin]
+
+    E[동사 - Động từ] --> F[-는다고 하다]
+    G[형용사 - Tính từ] --> H[-다고 하다]
+    I[명사 - Danh từ] --> J[-라고 하다]
 ```
 
-#### Ví dụ:
+#### Quy tắc chia:
 
-- **가:** 아까 과장님이 뭐라고 하셨어요?
-- **나:** 내일 다시 **회의하자고 하셨어요**.
+| **Loại từ**        | **Cách chia** | **Ví dụ**                    |
+| ------------------ | ------------- | ---------------------------- |
+| **Động từ**        | -는다고 하다  | 물려받다 → 물려받는다고 하다 |
+| **Tính từ**        | -다고 하다    | 싸다 → 싸다고 하다           |
+| **Danh từ + 이다** | -라고 하다    | 가계부 → 가계부라고 하다     |
 
-- 친구가 **만나자고 해서** 약속 장소에 나갔다.
-- 아내가 같이 저녁을 **먹자고 해서** 기다리는 중이다.
+#### Ví dụ minh họa:
 
-<div className="bg-red-50 border border-red-200 p-3 mb-4">
-  <p className="text-red-700"><strong>💡 Lưu ý:</strong> Thể phủ định sử dụng '-지 말자고 하다'</p>
+<div className="space-y-3 mb-4">
+<div className="p-3 bg-yellow-50 border-l-4 border-yellow-400">
+<p><strong>라민:</strong> 오늘부터 항공권 할인 행사가 <strong>시작된다고 해요</strong>.</p>
+<p><strong>친구:</strong> 그래요? 빨리 예약해야겠네요.</p>
+<p className="text-sm text-gray-600 mt-2"><em>Ramin: Nghe nói từ hôm nay bắt đầu có chương trình giảm giá vé máy bay.</em></p>
 </div>
 
-## III. Hoạt động thực hành
-
-### 1. 🎯 [Tệp âm thanh 6-1] Luyện tập thể bị động
-
-<div className="bg-gray-100 p-4 rounded-lg mb-4">
-  <h4 className="font-semibold mb-2">Tình huống 1:</h4>
-  <p><strong>왜 그래요? 무슨 일이에요?</strong></p>
-  <p>→ 갑자기 엘리베이터가 흔들렸어요.</p>
+<div className="p-3 bg-green-50 border-l-4 border-green-400">
+<p>• 중고 매장에 가면 필요한 물건을 <strong>싸게 살 수 있다고 해요</strong>.</p>
+<p className="text-sm text-gray-600 mt-1"><em>Nghe nói đến cửa hàng đồ cũ thì có thể mua được những thứ cần thiết với giá rẻ.</em></p>
+</div>
 </div>
 
-#### Bài tập:
+## 🗣️ PHẦN III: THỰC HÀNH NÓI (말하기)
 
-1. 기숙사 문이 잠기다 → 기숙사 문이 **잠겼어요**.
-2. 저쪽에서 비명 소리가 들리다 → 저쪽에서 비명 소리가 **들렸어요**.
-3. 아무도 없는데 문이 닫히다 → 아무도 없는데 문이 **닫혔어요**.
+### Bài tập 1: Thảo luận về chi tiêu
 
-### 2. 말하기 - Giới thiệu cơ sở vật chất xung quanh
+**Tình huống:** Hậu Ân đang nói chuyện với hàng xóm về chi phí sinh hoạt.
 
-<div className="bg-green-50 p-4 rounded-lg mb-4">
-  <h4 className="font-semibold text-green-800 mb-2">🗣️ Mẫu đối thoại</h4>
-  <div className="space-y-2 text-sm">
-    <p><strong>이웃:</strong> 안녕하세요? 저, 어제 이 동네로 이사 왔는데요.</p>
-    <p><strong>후엔:</strong> 아, 그러세요? 반가워요.</p>
-    <p><strong>이웃:</strong> 아이가 놀러 가자고 해서 그러는데 혹시 동네에 아이가 놀 만한 곳이 있나요?</p>
-    <p><strong>후엔:</strong> 105동 앞에 놀이터가 있어요. 그리고 아이가 자전거 타는 것을 좋아하면 산책로에 가는 것도 좋아요.</p>
-  </div>
+<div className="p-4 border rounded-lg bg-blue-50 mb-4">
+<h5 className="font-bold mb-2">🎭 Mẫu hội thoại</h5>
+<div className="space-y-2">
+<p><strong>아주머니:</strong> 후엔 씨 뭘 그렇게 보고 있어요?</p>
+<p><strong>후엔:</strong> 이번 달 난방비가 29만 원이나 나왔어요. 생각보다 너무 많이 나와서 어떻게 해야 할지 모르겠어요.</p>
+<p><strong>아주머니:</strong> 어떻게 그렇게 많이 나왔어요?</p>
+<p><strong>후엔:</strong> 한국 겨울 날씨가 너무 추워서 계속 보일러를 틀었거든요.</p>
+<p><strong>아주머니:</strong> 그렇게 하면 안 돼요. 그럴 때는 온도를 조금 내리고 옷을 따뜻하게 입는 게 난방비를 절약할 수 있는 방법이라고 해요.</p>
+</div>
 </div>
 
-## IV. 듣기 (청취)
+### Bài tập 2: Tình huống tư vấn tiết kiệm
 
-### 🎧 [Tệp âm thanh 6-2] Đối thoại giữa Angela và trưởng phòng
+```mermaid
+graph TB
+    A[생활비 지출 문제 - Vấn đề chi tiêu] --> B[원인 파악 - Tìm nguyên nhân]
+    B --> C[해결 방법 제시 - Đưa ra giải pháp]
+    C --> D[조언하기 - Tư vấn]
+
+    E[통신비 과다 - Tiền điện thoại cao] --> F[가족 통화 많음 - Gọi gia đình nhiều]
+    F --> G[같은 통신사 이용 - Cùng nhà mạng]
+
+    H[교통비 과다 - Tiền xe cao] --> I[택시 자주 이용 - Đi taxi thường xuyên]
+    I --> J[공유자전거 이용 - Dùng xe đạp công cộng]
+```
+
+## 👂 PHẦN IV: LUYỆN NGHE (듣기)
+
+### 🎵 **[Audio 5-P.mp3]** - File nghe bài tập
+
+### Bài tập nghe: Tin tức về đời sống tiêu dùng
+
+**Hướng dẫn:** Nghe tin tức và trả lời các câu hỏi
 
 #### Câu hỏi:
 
-1. 과장님은 주말에 무엇을 할 겁니까?
-2. 과장님의 부모님은 어떤 일을 하십니까?
-   - ① 농사를 지으신다
-   - ② 공장에서 일하신다
-   - ③ 회사에 다니신다
-   - ④ 비닐하우스를 만드신다
+1. **주부 김미진 씨는 어떻게 가구를 저렴하게 샀다고 합니까?**
+   (Bà nội trợ Kim Mi Jin đã mua đồ nội thất giá rẻ bằng cách nào?)
 
-### 발음 연습
+2. **20대 남자는 왜 인터넷에서 가격을 비교해 봅니까?**
+   (Tại sao nam thanh niên 20 tuổi lại so sánh giá trên internet?)
 
-<div className="bg-purple-50 p-4 rounded-lg mb-4">
-  <h4 className="font-semibold text-purple-800 mb-2">🔊 [Tệp âm thanh 6-3] Phát âm</h4>
-  <ul className="space-y-1 text-sm">
-    <li>막히네요 [마키네요]</li>
-    <li>잡혔어요 [자펴써요]</li>
-    <li>좋다고 하세요 [조타고 하세요]</li>
-  </ul>
+3. **들은 내용과 같으면 ○, 다르면 × 하세요:**
+   - ① 전시 상품은 새 상품보다 가격이 싸다. ( )
+   - ② 계절과 반대되는 이월 상품은 저렴하게 살 수 있다. ( )
+   - ③ 많은 사람들이 물건을 살 때 실제 매장에 가서 산다. ( )
+
+### 🔊 Luyện phát âm
+
+**Quy tắc phát âm khi gặp ㄱ,ㄷ,ㅂ,ㅅ,ㅈ + ㄱ,ㄷ,ㅂ:**
+
+| **Từ gốc** | **Phát âm**  | **Ví dụ trong câu**                  |
+| ---------- | ------------ | ------------------------------------ |
+| 있었다고   | [이썸따고]   | 저렴하게 살 수 있었다고 합니다       |
+| 있습니다   | [임씀니다]   | 할인된 가격에 구입할 수 있습니다     |
+| 틀었거든요 | [트럴꺼든요] | 너무 추워서 계속 보일러를 틀었거든요 |
+
+## 📖 PHẦN V: LUYỆN ĐỌC (읽기)
+
+### Bài đọc: "좋은 물건 싸게 사는 법" (Cách mua đồ tốt giá rẻ)
+
+<div className="p-4 bg-green-50 border rounded-lg mb-4">
+<h4 className="font-bold text-green-700 mb-2">✅ CHECK LIST - Danh sách kiểm tra</h4>
+<ul className="space-y-2 text-green-800">
+<li>☐ 인터넷에서 가격 비교를 한다 - So sánh giá trên internet</li>
+<li>☐ 공동 구매를 이용한다 - Sử dụng mua chung</li>
+<li>☐ 새 상품이 아닌 중고 용품을 이용한다 - Sử dụng đồ cũ thay vì đồ mới</li>
+<li>☐ 집 주변의 벼룩시장에서 자신에게 필요한 물건을 고른다 - Chọn đồ cần thiết tại chợ trời gần nhà</li>
+<li>☐ 주변 사람에게 필요한 물건을 물려받는다 - Nhận đồ từ người xung quanh</li>
+<li>☐ 정반대 계절의 이월 상품을 이용한다 - Mua hàng tồn kho mùa ngược lại</li>
+<li>☐ 가구나 가전제품은 전시 상품이나 흠집이 난 상품을 구입한다 - Mua đồ nội thất, gia dụng trưng bày hoặc có trầy xước</li>
+<li>☐ 마트나 편의점에서 2+1 행사 상품을 산다 - Mua hàng khuyến mãi 2+1 tại siêu thị</li>
+</ul>
 </div>
 
-## V. 읽기 (đọc hiểu)
+### Bài báo: "육아용품, 중고도 괜찮아"
 
-### Bài đọc: 역사를 간직한 곳 사마르칸트
+**📰 ○○신문 | 20XX년 10월 20일**
 
-저는 재작년에 우즈베키스탄에서 한국에 왔고 한 이삿짐센터에서 일하고 있습니다. 제 친한 친구가 한국에서 같이 일하자고 해서 한국에 왔습니다.
+<div className="p-4 border-l-4 border-blue-500 mb-4">
+<h5 className="font-bold text-blue-700">📊 Kết quả khảo sát về đồ dùng trẻ em cũ</h5>
 
-제 고향은 사마르칸트입니다. 실크 로드의 역사를 간직하고 있어서 유명합니다. 사마르칸트는 넓은 평지 위에 펼쳐진 도시입니다. 도시 곳곳에는 옛날 건축물이 많습니다. 그리고 주변에 낮은 언덕이 있습니다. 건조한 날씨 때문에 언덕에 나무는 많지 않습니다.
+**Đối tượng khảo sát:** 1,000 phụ huynh có con dưới 9 tuổi
 
-#### Câu hỏi hiểu bài:
+**Kết quả chính:**
 
-1. 이 사람의 고향에는 왜 나무가 많지 않습니까?
-2. 이 사람의 고향에 대한 설명으로 맞는 것은?
-   - ① 옛날 건축물이 많다
-   - ② 주변에 높은 산이 있다
-   - ③ 바다를 볼 수 있다
-   - ④ 계절마다 산의 경관이 바뀐다
+- **80%** đã từng mua đồ dùng trẻ em cũ
+- **64.2%** hài lòng với sản phẩm đã mua
+- **23.8%** cảm thấy bình thường
+- **12%** không hài lòng
 
-## VI. 쓰기 (viết)
+**Lý do mua đồ cũ:**
 
-### Bảng so sánh môi trường sống
-
-<div className="overflow-x-auto mb-6">
-<table className="min-w-full border border-gray-300">
-<thead className="bg-gray-50">
-<tr>
-<th className="border border-gray-300 px-4 py-2"></th>
-<th className="border border-gray-300 px-4 py-2 text-blue-600">한국에서 사는 동네</th>
-<th className="border border-gray-300 px-4 py-2 text-red-600">고향의 동네</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td className="border border-gray-300 px-4 py-2 font-semibold">지역 이름</td>
-<td className="border border-gray-300 px-4 py-2"></td>
-<td className="border border-gray-300 px-4 py-2"></td>
-</tr>
-<tr>
-<td className="border border-gray-300 px-4 py-2 font-semibold">날씨나 계절</td>
-<td className="border border-gray-300 px-4 py-2"></td>
-<td className="border border-gray-300 px-4 py-2"></td>
-</tr>
-<tr>
-<td className="border border-gray-300 px-4 py-2 font-semibold">주변 환경</td>
-<td className="border border-gray-300 px-4 py-2"></td>
-<td className="border border-gray-300 px-4 py-2"></td>
-</tr>
-</tbody>
-</table>
+- Tiết kiệm chi phí: **52.1%**
+- Đồ mới quá đắt: **33.4%**
+- Thời gian sử dụng ngắn: **14.5%**
 </div>
 
-## VII. 문화와 정보: 과거와 현대의 명당
+#### Câu hỏi đọc hiểu:
 
-### Quan niệm về địa thế tốt của người Hàn
+1. **이 글은 무엇에 대해 설문 조사한 내용입니까?**
+
+2. **설문 조사에서 한 질문으로 맞지 않은 것을 고르세요:**
+   - ① "중고 육아용품을 왜 구입했습니까?"
+   - ② "중고 육아용품을 구입한 적이 있습니까?"
+   - ③ "중고 육아용품을 구입해 보니까 어땠습니까?"
+   - ④ "중고 육아용품을 다른 사람에게 준 적이 있습니까?"
+
+## ✍️ PHẦN VI: LUYỆN VIẾT (쓰기)
+
+### Bài tập 1: Phân tích chi tiêu cá nhân
+
+<div className="overflow-x-auto mb-4">
+
+| **순위** (Thứ hạng) | **지출항목** (Khoản chi) | **금액** (Số tiền) | **절약방법** (Cách tiết kiệm) |
+| :-----------------: | ------------------------ | ------------------ | ----------------------------- |
+|          1          | 식비                     |                    |                               |
+|          2          | 교통비                   |                    |                               |
+|          3          | 통신비                   |                    |                               |
+|          4          | 교육비                   |                    |                               |
+|          5          | 의료비                   |                    |                               |
+|          6          | 공과금                   |                    |                               |
+|          7          | 문화생활비               |                    |                               |
+
+</div>
+
+### Bài tập 2: Viết bài giới thiệu phương pháp tiết kiệm
+
+<div className="p-4 bg-yellow-50 border border-yellow-300 rounded-lg">
+<h5 className="font-bold text-yellow-700 mb-2">📝 Hướng dẫn viết</h5>
+<p className="text-yellow-800">Chọn 1-2 khoản chi phí từ bảng trên và viết một bài văn giới thiệu phương pháp tiết kiệm riêng của bạn.</p>
+
+**Cấu trúc gợi ý:**
+
+1. **Mở bài:** Giới thiệu vấn đề chi tiêu
+2. **Thân bài:** Nêu các phương pháp cụ thể
+3. **Kết bài:** Khuyên khích áp dụng
+</div>
+
+## 🏦 PHẦN VII: VĂN HÓA VÀ THÔNG TIN
+
+### Tìm hiểu về việc gửi tiền tiết kiệm tại Hàn Quốc
+
+<div className="p-4 bg-indigo-50 border border-indigo-200 rounded-lg">
+<h4 className="font-bold text-indigo-700 mb-3">🏪 적금 가입하기 (Tham gia gửi tiết kiệm)</h4>
+
+**Các loại hình tiết kiệm phổ biến:**
+
+- **정기적금** - Tiết kiệm định kỳ
+- **자유적금** - Tiết kiệm tự do
+- **청약적금** - Tiết kiệm mua nhà
+
+**Lợi ích:**
+
+- Lãi suất ổn định
+- Hình thành thói quen tiết kiệm
+- Hỗ trợ mua nhà, ô tô
+
+**Thủ tục cần thiết:**
+
+- Thẻ căn cước/hộ chiếu
+- Thẻ cư trú (외국인등록증)
+- Số tiền gửi tối thiểu
+</div>
+
+## 📋 TÓM TẮT BÀI HỌC
 
 ```mermaid
-graph TD
-    A[명당의 조건] --> B[과거]
-    A --> C[현대]
-    B --> D[집 뒤에 산이 있다]
-    B --> E[집 앞에 물이 흐른다]
-    B --> F[남향집]
-    C --> G[좋은 학교가 가깝다]
-    C --> H[교통이 편리하다]
-    C --> I[지하철역이 있다]
+mindmap
+  root)소비와 절약(
+    (어휘)
+      생활비 항목
+      절약 방법
+    (문법)
+      명/이나/밖에
+      -는다고 하다
+    (기능)
+      조언하기
+      정보 전달하기
+    (문화)
+      적금 가입
+      중고품 문화
 ```
 
-<div className="bg-indigo-50 border-l-4 border-indigo-500 p-4 mb-4">
-  <h4 className="font-semibold text-indigo-800 mb-2">🏠 Quan niệm truyền thống</h4>
-  <p className="text-indigo-700">Người Hàn xưa tin rằng vị trí và hướng nhà quyết định hạnh phúc của gia đình. Nhà tốt phải có núi ở phía sau, nước chảy ở phía trước, và hướng nam.</p>
+### Điểm quan trọng cần nhớ:
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div className="p-4 border-l-4 border-green-500 bg-green-50">
+<h5 className="font-bold text-green-700">✅ Ngữ pháp</h5>
+<ul className="text-green-800 space-y-1">
+<li>• 이나/나: Số lượng nhiều hơn dự kiến</li>
+<li>• 밖에: Số lượng ít hơn dự kiến (+ phủ định)</li>
+<li>• -는다고 하다: Truyền đạt thông tin nghe được</li>
+</ul>
 </div>
-
-<div className="bg-green-50 border-l-4 border-green-500 p-4">
-  <h4 className="font-semibold text-green-800 mb-2">🚇 Tiêu chí hiện đại</h4>
-  <p className="text-green-700">Ngày nay, ngoài các yếu tố truyền thống, người ta còn chú trọng đến chất lượng trường học gần nhà và giao thông thuận tiện.</p>
+<div className="p-4 border-l-4 border-blue-500 bg-blue-50">
+<h5 className="font-bold text-blue-700">💡 Kỹ năng sống</h5>
+<ul className="text-blue-800 space-y-1">
+<li>• Lập kế hoạch chi tiêu hợp lý</li>
+<li>• Tư vấn phương pháp tiết kiệm</li>
+<li>• Sử dụng các dịch vụ tài chính</li>
+</ul>
 </div>
-
-## VIII. Tổng kết từ vựng
-
-### Danh sách từ vựng quan trọng
-
-<div className="grid grid-cols-3 gap-4 text-sm">
-  <div>
-    <h5 className="font-semibold mb-2">Thành phố</h5>
-    <ul className="space-y-1">
-      <li>빌딩숲</li>
-      <li>산업단지</li>
-      <li>안전하다</li>
-      <li>소음이 심하다</li>
-      <li>공기가 탁하다</li>
-    </ul>
-  </div>
-  
-  <div>
-    <h5 className="font-semibold mb-2">Nông thôn</h5>
-    <ul className="space-y-1">
-      <li>논, 밭</li>
-      <li>과수원</li>
-      <li>비닐하우스</li>
-      <li>한적하다</li>
-      <li>공기가 맑다</li>
-    </ul>
-  </div>
-  
-  <div>
-    <h5 className="font-semibold mb-2">Cơ sở vật chất</h5>
-    <ul className="space-y-1">
-      <li>놀이터</li>
-      <li>체육센터</li>
-      <li>산책로</li>
-      <li>문화시설</li>
-      <li>교통</li>
-    </ul>
-  </div>
 </div>
 
 ---
 
-## 🎯 Bài tập trắc nghiệm tương tác
-
-<MultiChoiceQuiz
-title="Bài tập Môi trường sống - Bài 6"
-questions={[
-{
-id: 1,
-question: "'길이 많이 막혔어요.' 여기서 '막히다'는 어떤 형태입니까?",
-options: [
-"능동형 (chủ động)",
-"피동형 (bị động)",
-"사동형 (sai khiến)",
-"존경형 (tôn kính)"
-],
-correctAnswer: 1,
-explanation: "'막히다' là dạng bị động của '막다' (chặn). Đường bị tắc nghẽn do tác động từ bên ngoài."
-},
-{
-id: 2,
-question: "'친구가 만나자고 해서 약속 장소에 나갔다.' 구조 '-자고 하다'의 의미는?",
-options: [
-"Truyền đạt mệnh lệnh",
-"Truyền đạt câu hỏi",
-"Truyền đạt lời đề nghị",
-"Truyền đạt ý kiến"
-],
-correctAnswer: 2,
-explanation: "'-자고 하다' được dùng để truyền đạt lời đề nghị hoặc gợi ý từ người khác."
-},
-{
-id: 3,
-question: "'공기가 탁하다'는 주로 어디를 설명합니까?",
-options: [
-"농촌 (nông thôn)",
-"도시 (thành phố)",
-"산 (núi)",
-"바다 (biển)"
-],
-correctAnswer: 1,
-explanation: "'공기가 탁하다' (không khí ô nhiễm) là đặc điểm thường gặp ở thành phố do khói bụi, xe cộ."
-},
-{
-id: 4,
-question: "'한적하다'의 의미는?",
-options: [
-"Ồn ào, náo nhiệt",
-"Yên tĩnh, vắng người",
-"Bẩn thỉu",
-"Nguy hiểm"
-],
-correctAnswer: 1,
-explanation: "'한적하다' có nghĩa là yên tĩnh, vắng người, thường dùng để miêu tả nông thôn."
-},
-{
-id: 5,
-question: "'비닐하우스'는 무엇을 위해 사용합니까?",
-options: [
-"사람이 거주하기 위해",
-"물건을 보관하기 위해",
-"식물을 기르기 위해",
-"동물을 기르기 위해"
-],
-correctAnswer: 2,
-explanation: "'비닐하우스' (nhà kính) được sử dụng để trồng trọt, nuôi cấy thực vật trong môi trường được kiểm soát."
-},
-{
-id: 6,
-question: "'모기한테 팔을 물렸어요.' 동사 '물리다'의 능동형은?",
-options: [
-"물다",
-"물어보다",
-"물러가다",
-"물어뜯다"
-],
-correctAnswer: 0,
-explanation: "'물리다' (bị cắn) là dạng bị động của '물다' (cắn)."
-},
-{
-id: 7,
-question: "과거 한국인이 생각하는 명당의 조건이 아닌 것은?",
-options: [
-"집 뒤에 산이 있다",
-"집 앞에 물이 흐른다",
-"남향집이다",
-"지하철역이 가깝다"
-],
-correctAnswer: 3,
-explanation: "지하철역이 가깝다 (gần ga tàu điện ngầm) là tiêu chí hiện đại, không phải của quá khứ."
-},
-{
-id: 8,
-question: "'직접 농사를 짓다'의 의미는?",
-options: [
-"Mua nông sản",
-"Trồng trọt trực tiếp",
-"Bán nông sản",
-"Thuê người trồng trọt"
-],
-correctAnswer: 1,
-explanation: "'농사를 짓다' có nghĩa là trồng trọt, '직접' có nghĩa là trực tiếp, tự mình làm."
-},
-{
-id: 9,
-question: "'전화가 끊겼다'에서 '끊기다'는 어떤 상황을 나타냅니까?",
-options: [
-"전화를 고의로 끊었다",
-"전화가 저절로 끊어졌다",
-"전화를 받지 않았다",
-"전화기가 고장났다"
-],
-correctAnswer: 1,
-explanation: "'끊기다' là dạng bị động, nghĩa là điện thoại tự nhiên bị ngắt, không phải do ý muốn."
-},
-{
-id: 10,
-question: "'빌딩숲'은 무엇을 비유적으로 표현한 말입니까?",
-options: [
-"공원이 많은 도시",
-"나무가 많은 도시",
-"높은 건물이 많은 도시",
-"공장이 많은 도시"
-],
-correctAnswer: 2,
-explanation: "'빌딩숲' (rừng tòa nhà) là cách nói ẩn유 để chỉ khu vực có nhiều tòa nhà cao tầng."
-},
-{
-id: 11,
-question: "'아이가 놀러 가자고 해서'에서 부정형은?",
-options: [
-"놀러 가지 않자고 해서",
-"놀러 가지 말자고 해서",
-"안 놀러 가자고 해서",
-"놀러 못 가자고 해서"
-],
-correctAnswer: 1,
-explanation: "'-자고 하다'의 부정형은 '-지 말자고 하다'입니다."
-},
-{
-id: 12,
-question: "'건조한 날씨 때문에 나무가 많지 않다'에서 '건조한'의 의미는?",
-options: [
-"춥다 (lạnh)",
-"덥다 (nóng)",
-"습하다 (ẩm ướt)",
-"메마르다 (khô hanh)"
-],
-correctAnswer: 3,
-explanation: "'건조하다' có nghĩa là khô hanh, thiếu độ ẩm, trái nghĩa với '습하다' (ẩm ướt)."
-}
-]}
-/>
-
----
-
-<div className="bg-blue-100 p-4 rounded-lg mt-6">
-  <h3 className="font-semibold text-blue-800 mb-2">🎯 Mục tiêu đạt được sau bài học</h3>
-  <ul className="text-blue-700 space-y-1">
-    <li>✅ Mô tả được đặc điểm môi trường sống ở thành phố và nông thôn</li>
-    <li>✅ Sử dụng thành thạo thể bị động trong giao tiếp</li>
-    <li>✅ Truyền đạt lời đề nghị của người khác bằng 동-자고 하다</li>
-    <li>✅ Giới thiệu được cơ sở vật chất xung quanh khu phố</li>
-    <li>✅ Hiểu được quan niệm về địa thế tốt của người Hàn</li>
-  </ul>
+<div className="text-center p-4 bg-gray-100 rounded-lg mt-8">
+<p className="text-gray-600 font-medium">🎯 Chúc các bạn học tập hiệu quả và áp dụng tốt các kiến thức về tiết kiệm trong cuộc sống!</p>
 </div>
