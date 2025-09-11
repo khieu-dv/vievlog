@@ -1,23 +1,42 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from 'react';
-import { Play, Pause, RotateCcw, Download, Maximize2 } from 'lucide-react';
+import { Play, Pause, RotateCcw, Download, Maximize2, Music, Volume2, VolumeX, Loader2 } from 'lucide-react';
 import { Button } from '~/components/ui/Button';
 import { cn } from '~/lib/utils';
+import { 
+  createVideoWithAudio, 
+  createVideoFromFrames, 
+  downloadBlob, 
+  getAvailableAudioFiles,
+  formatFileSize,
+  estimateVideoSize,
+  type VideoCreationProgress 
+} from '~/utils/videoUtils';
 
 interface VideoPreviewProps {
   frames: string[];
   fps: number;
   onDownload?: () => void;
   className?: string;
+  quality?: 'low' | 'medium' | 'high';
+  autoCreateVideoWithAudio?: boolean;
 }
 
-export function VideoPreview({ frames, fps, onDownload, className }: VideoPreviewProps) {
+export function VideoPreview({ frames, fps, onDownload, className, quality = 'medium', autoCreateVideoWithAudio = true }: VideoPreviewProps) {
   const [currentFrame, setCurrentFrame] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isCreatingVideo, setIsCreatingVideo] = useState(false);
+  const [videoProgress, setVideoProgress] = useState<VideoCreationProgress | null>(null);
+  const [audioEnabled, setAudioEnabled] = useState(true);
+  const [audioUrl, setAudioUrl] = useState<string>('/mp3/music.mp3');
+  const [isPreviewingAudio, setIsPreviewingAudio] = useState(false);
+  const [hasAutoCreated, setHasAutoCreated] = useState(false);
+  
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const frameInterval = 1000 / fps;
 
@@ -45,6 +64,92 @@ export function VideoPreview({ frames, fps, onDownload, className }: VideoPrevie
       }
     };
   }, [isPlaying, frames.length, frameInterval]);
+
+  // Keyboard shortcuts
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (frames.length === 0) return;
+      
+      switch (e.code) {
+        case 'Space':
+          e.preventDefault();
+          handlePlay();
+          break;
+        case 'KeyR':
+          e.preventDefault();
+          handleReset();
+          break;
+        case 'KeyF':
+          e.preventDefault();
+          handleFullscreen();
+          break;
+        case 'ArrowLeft':
+          e.preventDefault();
+          setCurrentFrame(prev => Math.max(0, prev - 1));
+          setIsPlaying(false);
+          break;
+        case 'ArrowRight':
+          e.preventDefault();
+          setCurrentFrame(prev => Math.min(frames.length - 1, prev + 1));
+          setIsPlaying(false);
+          break;
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [frames.length]);
+
+  // Auto create video with audio when frames are ready
+  useEffect(() => {
+    if (autoCreateVideoWithAudio && frames.length > 0 && !isCreatingVideo && !hasAutoCreated) {
+      // Auto generate video with audio after a short delay
+      const timer = setTimeout(async () => {
+        try {
+          setIsCreatingVideo(true);
+          setVideoProgress(null);
+          setHasAutoCreated(true);
+          
+          const blob = await createVideoWithAudio({
+            frames,
+            audioUrl,
+            fps,
+            quality,
+            format: 'webm'
+          }, setVideoProgress);
+          
+          const filename = `video-with-music-${Date.now()}.webm`;
+          downloadBlob(blob, filename);
+          
+          if (onDownload) {
+            onDownload();
+          }
+        } catch (error) {
+          console.error('Failed to auto-create video with audio:', error);
+        } finally {
+          setIsCreatingVideo(false);
+          setVideoProgress(null);
+        }
+      }, 1000);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [frames.length, autoCreateVideoWithAudio, isCreatingVideo, hasAutoCreated, audioUrl, fps, quality, onDownload]);
+
+  // Reset hasAutoCreated when frames change
+  useEffect(() => {
+    setHasAutoCreated(false);
+  }, [frames]);
+
+  // Cleanup audio on unmount
+  useEffect(() => {
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+    };
+  }, []);
 
   const handlePlay = () => {
     if (currentFrame >= frames.length - 1) {
@@ -74,11 +179,80 @@ export function VideoPreview({ frames, fps, onDownload, className }: VideoPrevie
     }
   };
 
-  const downloadFramesAsGif = () => {
-    // This would require additional GIF encoding library
-    console.log('GIF download would be implemented here');
-    if (onDownload) {
-      onDownload();
+  const handleAudioPreview = () => {
+    if (!audioRef.current) {
+      audioRef.current = new Audio(audioUrl);
+    }
+    
+    if (isPreviewingAudio) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+      setIsPreviewingAudio(false);
+    } else {
+      audioRef.current.play();
+      setIsPreviewingAudio(true);
+      
+      // Auto stop after 10 seconds preview
+      setTimeout(() => {
+        if (audioRef.current) {
+          audioRef.current.pause();
+          audioRef.current.currentTime = 0;
+        }
+        setIsPreviewingAudio(false);
+      }, 10000);
+    }
+  };
+
+  const downloadVideoWithAudio = async () => {
+    if (frames.length === 0) return;
+    
+    setIsCreatingVideo(true);
+    setVideoProgress(null);
+    
+    try {
+      const blob = await createVideoWithAudio({
+        frames,
+        audioUrl,
+        fps,
+        quality,
+        format: 'webm'
+      }, setVideoProgress);
+      
+      const filename = `video-with-music-${Date.now()}.webm`;
+      downloadBlob(blob, filename);
+      
+      if (onDownload) {
+        onDownload();
+      }
+    } catch (error) {
+      console.error('Failed to create video with audio:', error);
+      alert('Không thể tạo video với âm thanh. Vui lòng thử lại.');
+    } finally {
+      setIsCreatingVideo(false);
+      setVideoProgress(null);
+    }
+  };
+
+  const downloadVideoOnly = async () => {
+    if (frames.length === 0) return;
+    
+    setIsCreatingVideo(true);
+    setVideoProgress(null);
+    
+    try {
+      const blob = await createVideoFromFrames(frames, fps, quality, 'webm', setVideoProgress);
+      const filename = `video-${Date.now()}.webm`;
+      downloadBlob(blob, filename);
+      
+      if (onDownload) {
+        onDownload();
+      }
+    } catch (error) {
+      console.error('Failed to create video:', error);
+      alert('Không thể tạo video. Vui lòng thử lại.');
+    } finally {
+      setIsCreatingVideo(false);
+      setVideoProgress(null);
     }
   };
 
@@ -176,19 +350,147 @@ export function VideoPreview({ frames, fps, onDownload, className }: VideoPrevie
             Frames
           </Button>
           
-          {/* Future: GIF download */}
-          <Button 
-            onClick={downloadFramesAsGif} 
-            variant="outline" 
-            size="sm"
-            disabled
-            title="Coming soon"
-          >
-            <Download className="w-4 h-4 mr-1" />
-            GIF
-          </Button>
+          {!autoCreateVideoWithAudio && (
+            <>
+              <Button 
+                onClick={downloadVideoOnly}
+                variant="outline" 
+                size="sm"
+                disabled={isCreatingVideo}
+              >
+                {isCreatingVideo && !audioEnabled ? (
+                  <Loader2 className="w-4 h-4 mr-1 animate-spin" />
+                ) : (
+                  <Download className="w-4 h-4 mr-1" />
+                )}
+                Video
+              </Button>
+
+              <Button 
+                onClick={downloadVideoWithAudio}
+                variant="default" 
+                size="sm"
+                disabled={isCreatingVideo}
+                className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
+              >
+                {isCreatingVideo && audioEnabled ? (
+                  <Loader2 className="w-4 h-4 mr-1 animate-spin" />
+                ) : (
+                  <Music className="w-4 h-4 mr-1" />
+                )}
+                Video + MP3
+              </Button>
+            </>
+          )}
+          
+          {autoCreateVideoWithAudio && hasAutoCreated && (
+            <Button 
+              onClick={downloadVideoWithAudio}
+              variant="default" 
+              size="sm"
+              disabled={isCreatingVideo}
+              className="bg-green-600 hover:bg-green-700"
+            >
+              <Download className="w-4 h-4 mr-1" />
+              Tải lại Video + MP3
+            </Button>
+          )}
         </div>
       </div>
+
+      {/* Auto Video Creation Status */}
+      {autoCreateVideoWithAudio && !hasAutoCreated && !isCreatingVideo && (
+        <div className="bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-950/20 dark:to-cyan-950/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
+          <div className="flex items-center justify-center text-blue-700 dark:text-blue-300">
+            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+            <span className="font-medium">Đang tự động tạo video với nhạc nền...</span>
+          </div>
+          <div className="text-center text-sm text-blue-600 dark:text-blue-400 mt-2">
+            Video sẽ được tải xuống tự động sau khi hoàn thành
+          </div>
+        </div>
+      )}
+
+      {/* Audio Preview Section */}
+      <div className="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-950/20 dark:to-pink-950/20 rounded-lg p-4 border border-purple-200 dark:border-purple-800">
+        <div className="flex items-center justify-between mb-3">
+          <h3 className="font-semibold text-purple-800 dark:text-purple-300 flex items-center">
+            <Music className="w-4 h-4 mr-2" />
+            Background Music
+          </h3>
+          <Button
+            onClick={handleAudioPreview}
+            variant="outline"
+            size="sm"
+            className="border-purple-300 text-purple-700 hover:bg-purple-100 dark:border-purple-600 dark:text-purple-300"
+          >
+            {isPreviewingAudio ? (
+              <>
+                <VolumeX className="w-4 h-4 mr-1" />
+                Stop Preview
+              </>
+            ) : (
+              <>
+                <Volume2 className="w-4 h-4 mr-1" />
+                Preview Audio
+              </>
+            )}
+          </Button>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+          <div>
+            <span className="text-purple-600 dark:text-purple-400">Audio File:</span>
+            <span className="ml-2 font-mono">music.mp3</span>
+          </div>
+          <div>
+            <span className="text-purple-600 dark:text-purple-400">Estimated Size:</span>
+            <span className="ml-2 font-mono">
+              {formatFileSize(estimateVideoSize(frames.length, fps, quality, true))}
+            </span>
+          </div>
+        </div>
+        
+        {isPreviewingAudio && (
+          <div className="mt-3 text-xs text-purple-600 dark:text-purple-400 bg-purple-100 dark:bg-purple-900/30 rounded px-3 py-2">
+            🎵 Playing 10-second preview of background music...
+          </div>
+        )}
+      </div>
+
+      {/* Video Creation Progress */}
+      {isCreatingVideo && videoProgress && (
+        <div className="bg-blue-50 dark:bg-blue-950/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
+          <div className="flex items-center justify-between mb-2">
+            <h3 className="font-semibold text-blue-800 dark:text-blue-300 flex items-center">
+              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+              Creating Video...
+            </h3>
+            <span className="text-sm text-blue-600 dark:text-blue-400">
+              {Math.round(videoProgress.progress)}%
+            </span>
+          </div>
+          
+          <div className="w-full bg-blue-200 dark:bg-blue-900 rounded-full h-2 mb-2">
+            <div
+              className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+              style={{ width: `${videoProgress.progress}%` }}
+            />
+          </div>
+          
+          <div className="text-sm text-blue-700 dark:text-blue-300">
+            <div className="font-medium">{videoProgress.stage.charAt(0).toUpperCase() + videoProgress.stage.slice(1)}</div>
+            {videoProgress.message && (
+              <div className="text-xs mt-1">{videoProgress.message}</div>
+            )}
+            {videoProgress.currentFrame && videoProgress.totalFrames && (
+              <div className="text-xs mt-1">
+                Frame {videoProgress.currentFrame} of {videoProgress.totalFrames}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* Video Info */}
       <div className="bg-muted/50 rounded-lg p-4 text-sm space-y-2">

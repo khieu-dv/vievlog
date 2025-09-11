@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useCallback, useEffect } from 'react';
-import { Play, Download, Settings, Loader2, Video } from 'lucide-react';
+import { Play, Download, Settings, Loader2, Video, Music } from 'lucide-react';
 import { Button } from '~/components/ui/Button';
 import { ImageUpload } from './ImageUpload';
 import { VideoPreview } from './VideoPreview';
@@ -351,33 +351,44 @@ export function VideoGenerator() {
         <div className="space-y-4">
           <h2 className="text-xl font-semibold">3. Generate Video</h2>
           
-          <div className="flex flex-wrap gap-3">
-            <Button
-              onClick={generatePreview}
-              disabled={!canGenerate}
-              variant="outline"
-            >
-              <Play className="w-4 h-4 mr-2" />
-              Quick Preview
-            </Button>
+          <div className="space-y-3">
+            <div className="flex flex-wrap gap-3">
+              <Button
+                onClick={generatePreview}
+                disabled={!canGenerate}
+                variant="outline"
+              >
+                <Play className="w-4 h-4 mr-2" />
+                Quick Preview
+              </Button>
+              
+              <Button
+                onClick={generateVideo}
+                disabled={!canGenerate}
+                className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
+              >
+                {isGenerating ? (
+                  <>
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    Generating... {Math.round(progress)}%
+                  </>
+                ) : (
+                  <>
+                    <Music className="w-4 h-4 mr-2" />
+                    Generate Video + MP3
+                  </>
+                )}
+              </Button>
+            </div>
             
-            <Button
-              onClick={generateVideo}
-              disabled={!canGenerate}
-              className="bg-primary hover:bg-primary/90"
-            >
-              {isGenerating ? (
-                <>
-                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                  Generating... {Math.round(progress)}%
-                </>
-              ) : (
-                <>
-                  <Video className="w-4 h-4 mr-2" />
-                  Generate Full Video
-                </>
-              )}
-            </Button>
+            <div className="bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-950/20 dark:to-teal-950/20 rounded-lg p-3 border border-emerald-200 dark:border-emerald-800">
+              <div className="flex items-center text-emerald-700 dark:text-emerald-300 text-sm">
+                <Music className="w-4 h-4 mr-2 flex-shrink-0" />
+                <span>
+                  <strong>Tự động ghép nhạc nền:</strong> Video sẽ được tạo kèm với file music.mp3 và tự động tải xuống khi hoàn thành.
+                </span>
+              </div>
+            </div>
           </div>
 
           {/* Progress Bar */}
@@ -399,8 +410,9 @@ export function VideoGenerator() {
           <VideoPreview
             frames={generatedFrames}
             fps={config.fps}
+            quality={config.quality}
+            autoCreateVideoWithAudio={true}
             onDownload={() => {
-              // Download functionality will be implemented
               console.log('Download requested');
             }}
           />
