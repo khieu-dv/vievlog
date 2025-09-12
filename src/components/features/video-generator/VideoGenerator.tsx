@@ -11,7 +11,7 @@ import { cn } from '~/lib/utils';
 export interface VideoConfig {
   framesPerImage: number;
   transitionFrames: number;
-  transitionType: 'smooth_crossfade' | 'gradient_wipe' | 'luminance_fade' | 'enhanced_crossfade' | 'cinematic_dissolve' | 'crossfade' | 'pan_left' | 'pan_right' | 'fade';
+  transitionType: 'crossfade' | 'slide_left' | 'slide_right' | 'slide_up' | 'slide_down' | 'zoom_in' | 'zoom_out' | 'dissolve' | 'wipe' | 'iris' | 'enhanced_crossfade' | 'cinematic_dissolve' | 'pan_left' | 'pan_right' | 'fade';
   fps: number;
   quality: 'low' | 'medium' | 'high';
   intensity: number;
@@ -42,7 +42,7 @@ export interface VideoConfig {
 const DEFAULT_CONFIG: VideoConfig = {
   framesPerImage: 120, // 4 giây mỗi hình (120 frames ÷ 30 fps = 4s)
   transitionFrames: 30, // 1 giây transition (30 frames ÷ 30 fps = 1s)
-  transitionType: 'smooth_crossfade',
+  transitionType: 'crossfade',
   fps: 30,
   quality: 'medium',
   intensity: 0.8,
@@ -87,9 +87,10 @@ export function VideoGenerator() {
       try {
         const wasmModule = await import('~/wasm/vievlog_rust');
         
+        // Bundler target auto-initializes
         if (isMounted) {
           setWasmModule(wasmModule);
-          console.log('WASM module loaded successfully');
+          console.log('WASM module loaded and initialized successfully');
         }
       } catch (error) {
         console.error('Failed to load WASM module:', error);
@@ -126,65 +127,61 @@ export function VideoGenerator() {
     setGeneratedFrames([]);
 
     try {
-      const jsArray = new Array();
+      // Convert images to proper format for Bevy slideshow generation
+      const imagesData = new Array();
       for (let i = 0; i < images.length; i++) {
         setProgress((i / images.length) * 20);
         let imageData = await convertFileToUint8Array(images[i]);
         
-        // Apply smart enhancement if enabled
-        if (config.smartEnhancement.enabled && wasmModule.apply_smart_enhancement_simple) {
-          console.log(`🎯 Applying smart enhancement to image ${i + 1}...`);
+        // Apply smart enhancement using Bevy presets if enabled
+        if (config.smartEnhancement.enabled && wasmModule.bevy_apply_cinematic_preset) {
+          console.log(`🎯 Applying Bevy enhancement to image ${i + 1}...`);
           
-          imageData = wasmModule.apply_smart_enhancement_simple(
+          // Choose appropriate preset based on enhancement settings
+          let presetName = 'cinematic_dark';
+          if (config.smartEnhancement.preset !== 'auto') {
+            switch (config.smartEnhancement.preset) {
+              case 'cinematic': presetName = 'cinematic_dark'; break;
+              case 'vintage': presetName = 'vintage_film'; break;
+              case 'modern': presetName = 'cyberpunk'; break;
+              case 'warm': presetName = 'golden_hour'; break;
+              case 'cool': presetName = 'arctic_cold'; break;
+              default: presetName = 'cinematic_dark';
+            }
+          }
+          
+          imageData = wasmModule.bevy_apply_cinematic_preset(
             imageData,
-            config.smartEnhancement.autoExposure,
-            config.smartEnhancement.autoContrast,
-            config.smartEnhancement.autoSaturation,
-            config.smartEnhancement.noiseReduction,
-            config.smartEnhancement.sharpening,
-            config.smartEnhancement.whiteBalance
-          );
-        }
-        
-        jsArray.push(imageData);
-      }
-      
-      setProgress(40);
-      
-      const frames = (() => {
-        if (wasmModule.generate_smooth_video_from_images) {
-          return wasmModule.generate_smooth_video_from_images(
-            jsArray,
-            config.framesPerImage,
-            config.transitionFrames,
-            config.quality
-          );
-        }
-        
-        else if (config.useEnhancedEffects && wasmModule.generate_enhanced_video_frames) {
-          return wasmModule.generate_enhanced_video_frames(
-            jsArray,
-            config.framesPerImage,
-            config.transitionFrames,
-            config.transitionType,
+            presetName,
             config.intensity
           );
         }
         
-        else {
-          return wasmModule.generate_video_from_images(
-            jsArray,
-            config.framesPerImage,
-            config.transitionFrames,
-            config.transitionType
-          );
-        }
-      })();
+        // Create image object with metadata for Bevy slideshow
+        imagesData.push({
+          data: imageData,
+          width: 1920, // Default width - Bevy will handle resizing
+          height: 1080 // Default height - Bevy will handle resizing
+        });
+      }
+      
+      setProgress(40);
+      
+      // Use new Bevy slideshow generation function
+      console.log('🎬 Generating video with Bevy slideshow...');
+      const frames = wasmModule.bevy_generate_slideshow(
+        imagesData,
+        config.framesPerImage,
+        config.transitionFrames,
+        config.transitionType
+      );
 
       setProgress(90);
       const frameArray = Array.from(frames) as string[];
       setGeneratedFrames(frameArray);
       setProgress(100);
+      
+      console.log(`✅ Generated ${frameArray.length} frames successfully`);
       
     } catch (error) {
       console.error('Video generation failed:', error);
@@ -198,51 +195,56 @@ export function VideoGenerator() {
     if (!wasmModule || images.length < 2) return;
 
     try {
-      const imageDataArray = new Array();
+      // Use first 3 images for quick preview
+      const imagesData = new Array();
       for (const image of images.slice(0, 3)) {
         let imageData = await convertFileToUint8Array(image);
         
-        // Apply smart enhancement if enabled
-        if (config.smartEnhancement.enabled && wasmModule.apply_smart_enhancement_simple) {
-          imageData = wasmModule.apply_smart_enhancement_simple(
+        // Apply Bevy preset if enhancement is enabled
+        if (config.smartEnhancement.enabled && wasmModule.bevy_apply_cinematic_preset) {
+          let presetName = 'cinematic_dark';
+          if (config.smartEnhancement.preset !== 'auto') {
+            switch (config.smartEnhancement.preset) {
+              case 'cinematic': presetName = 'cinematic_dark'; break;
+              case 'vintage': presetName = 'vintage_film'; break;
+              case 'modern': presetName = 'cyberpunk'; break;
+              case 'warm': presetName = 'golden_hour'; break;
+              case 'cool': presetName = 'arctic_cold'; break;
+              default: presetName = 'cinematic_dark';
+            }
+          }
+          
+          imageData = wasmModule.bevy_apply_cinematic_preset(
             imageData,
-            config.smartEnhancement.autoExposure,
-            config.smartEnhancement.autoContrast,
-            config.smartEnhancement.autoSaturation,
-            config.smartEnhancement.noiseReduction,
-            config.smartEnhancement.sharpening,
-            config.smartEnhancement.whiteBalance
+            presetName,
+            config.intensity * 0.8 // Slightly less intense for preview
           );
         }
         
-        imageDataArray.push(imageData);
+        imagesData.push({
+          data: imageData,
+          width: 1280, // Smaller size for preview
+          height: 720
+        });
       }
 
-      const frames = (() => {
-        if (wasmModule.create_smooth_video_preview) {
-          return wasmModule.create_smooth_video_preview(imageDataArray, 5.0);
-        }
-        
-        else if (wasmModule.generate_smooth_video_from_images) {
-          return wasmModule.generate_smooth_video_from_images(imageDataArray, 15, 10, "medium");
-        }
-        
-        else if (config.useEnhancedEffects && wasmModule.generate_enhanced_video_frames) {
-          return wasmModule.generate_enhanced_video_frames(imageDataArray, 15, 10, config.transitionType, config.intensity);
-        }
-        
-        else {
-          return wasmModule.generate_video_from_images(imageDataArray, 15, 10, config.transitionType);
-        }
-      })();
+      // Generate quick preview with shorter frames
+      console.log('🎬 Generating Bevy preview...');
+      const frames = wasmModule.bevy_generate_slideshow(
+        imagesData,
+        15, // Shorter duration for preview
+        10, // Shorter transition
+        config.transitionType
+      );
 
       const frameArray = Array.from(frames) as string[];
       setGeneratedFrames(frameArray);
+      console.log(`✅ Generated ${frameArray.length} preview frames`);
       
     } catch (error) {
       console.error('Preview generation failed:', error);
     }
-  }, [wasmModule, images, config.transitionType, convertFileToUint8Array]);
+  }, [wasmModule, images, config.smartEnhancement, config.transitionType, config.intensity, convertFileToUint8Array]);
 
   const canGenerate = images.length >= 2 && !isGenerating && wasmModule;
   const videoDuration = images.length > 0 

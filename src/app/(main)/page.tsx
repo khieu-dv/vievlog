@@ -46,24 +46,24 @@ export default function HomePage() {
   const { t } = useTranslation();
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white dark:bg-slate-900">
       <Header />
 
       {/* AI Chat Section */}
-      <div className="border-b bg-gradient-to-b from-gray-200 to-white py-12 sm:py-16">
+      <div className="border-b bg-gradient-to-b from-gray-200 to-white py-12 dark:border-b-gray-800 dark:from-gray-900 dark:to-slate-900 sm:py-16">
         <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <Bot className="mb-4 size-8 text-black sm:size-12" />
-            <h2 className="mb-3 text-2xl font-bold text-black sm:text-3xl">
+            <Bot className="mb-4 size-8 text-black dark:text-white sm:size-12" />
+            <h2 className="mb-3 text-2xl font-bold text-black dark:text-white sm:text-3xl">
               Get AI-Powered Learning Guidance
             </h2>
-            <p className="mb-6 text-sm text-gray-600 sm:text-base">
+            <p className="mb-6 text-sm text-gray-600 dark:text-gray-400 sm:text-base">
               Our AI Tutor analyzes your experience, suggests relevant roadmaps, and
               provides detailed answers to help you progress in your tech career.
             </p>
             <Link
               href="/docs"
-              className="inline-flex items-center gap-2 rounded-xl bg-black px-4 py-2 text-sm font-medium text-white transition-colors hover:opacity-80 sm:px-6 sm:py-3 sm:text-base"
+              className="inline-flex items-center gap-2 rounded-xl bg-black px-4 py-2 text-sm font-medium text-white transition-colors hover:opacity-80 dark:bg-white dark:text-black sm:px-6 sm:py-3 sm:text-base"
             >
               <MessageCircle className="size-3 fill-current sm:size-5" />
               Chat with AI Tutor
@@ -73,7 +73,7 @@ export default function HomePage() {
       </div>
 
       {/* Beginner Roadmaps */}
-      <div className="bg-gradient-to-b from-gray-200 to-white py-4 sm:py-8 md:py-12">
+      <div className="bg-gradient-to-b from-gray-200 to-white py-4 dark:from-gray-900 dark:to-slate-900 sm:py-8 md:py-12">
         <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-left">
             <SectionBadge title="Beginner Roadmaps" />
@@ -82,7 +82,7 @@ export default function HomePage() {
             <h2 className="mb-0 text-xl font-semibold sm:mb-1 sm:text-3xl">
               Are you an Absolute beginner?
             </h2>
-            <p className="text-sm text-gray-500 sm:text-base">
+            <p className="text-sm text-gray-500 dark:text-gray-400 sm:text-base">
               Here are some beginner friendly roadmaps you should start with.
             </p>
           </div>
@@ -109,7 +109,7 @@ export default function HomePage() {
             />
           </div>
 
-          <p className="my-4 text-sm sm:my-7 sm:text-base">
+          <p className="my-4 text-sm text-gray-500 dark:text-gray-400 sm:my-7 sm:text-base">
             There is also a{" "}
             <Link
               href="/docs"
@@ -121,11 +121,11 @@ export default function HomePage() {
             operations work i.e. deploying, scaling, monitoring, and maintaining applications.
           </p>
 
-          <div className="rounded-xl border bg-white p-3 sm:p-4">
+          <div className="rounded-xl border bg-white p-3 dark:border-gray-800 dark:bg-slate-950 sm:p-4">
             <h2 className="mb-0 text-lg font-semibold sm:mb-1 sm:text-xl">
               Tips for Beginners
             </h2>
-            <p className="text-sm sm:text-base">
+            <p className="text-sm text-gray-500 dark:text-gray-400 sm:text-base">
               Learning to code can be overwhelming, here are some tips to help you
               get started:
             </p>
@@ -451,7 +451,7 @@ export default function HomePage() {
 
       {/* There is more section */}
       <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="-mt-5 mb-12 rounded-3xl bg-black p-5">
+        <div className="-mt-5 mb-12 rounded-3xl bg-black p-5 dark:bg-gray-950">
           <h2 className="mb-0.5 text-xl font-semibold text-white sm:mb-1 sm:text-2xl">
             There is more!
           </h2>

@@ -17,6 +17,34 @@ export function ImageEditor({ onImageProcessed }: ImageEditorProps) {
   const [imageInfo, setImageInfo] = useState<ImageInfo | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string>('');
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Helper function to convert file to RGBA data
+  const fileToRGBAData = async (file: File): Promise<{data: Uint8Array, width: number, height: number}> => {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        if (!ctx) {
+          reject(new Error('Cannot get canvas context'));
+          return;
+        }
+
+        canvas.width = img.width;
+        canvas.height = img.height;
+        ctx.drawImage(img, 0, 0);
+
+        const imageData = ctx.getImageData(0, 0, img.width, img.height);
+        resolve({
+          data: new Uint8Array(imageData.data),
+          width: img.width,
+          height: img.height
+        });
+      };
+      img.onerror = () => reject(new Error('Failed to load image'));
+      img.src = URL.createObjectURL(file);
+    });
+  };
   
   // Controls state
   const [brightness, setBrightness] = useState(1.0);
@@ -30,7 +58,14 @@ export function ImageEditor({ onImageProcessed }: ImageEditorProps) {
       try {
         setLoading(true);
         await rustWasm.init();
-        setIsLoaded(true);
+        
+        // Additional check to ensure functions are available
+        if (window.rustWasm && window.rustWasm.bevy_process_image) {
+          setIsLoaded(true);
+          console.log('✅ WASM fully loaded and ready');
+        } else {
+          throw new Error('WASM functions not available');
+        }
       } catch (error) {
         console.error('Failed to initialize WASM:', error);
       } finally {
@@ -57,20 +92,22 @@ export function ImageEditor({ onImageProcessed }: ImageEditorProps) {
     try {
       setProcessing(true);
       
-      // Convert file to Uint8Array
-      const arrayBuffer = await file.arrayBuffer();
-      const imageData = new Uint8Array(arrayBuffer);
+      // Convert file to RGBA data using Canvas
+      const rgbaData = await fileToRGBAData(file);
       
-      setOriginalImage(imageData);
-      setCurrentImage(imageData);
+      setOriginalImage(rgbaData.data);
+      setCurrentImage(rgbaData.data);
       
-      // Get image info
-      const info = rustWasm.getImageInfo(imageData);
-      setImageInfo(info);
+      // Set image info from canvas
+      setImageInfo({
+        width: rgbaData.width,
+        height: rgbaData.height,
+        color: 'RGBA',
+        format: 'Canvas'
+      });
       
-      // Create preview URL
-      const blob = new Blob([new Uint8Array(imageData)], { type: file.type });
-      const url = URL.createObjectURL(blob);
+      // Create preview URL from original file
+      const url = URL.createObjectURL(file);
       setPreviewUrl(url);
       
       // Reset controls
@@ -81,68 +118,121 @@ export function ImageEditor({ onImageProcessed }: ImageEditorProps) {
       
     } catch (error) {
       console.error('Error processing uploaded image:', error);
+      alert('Không thể xử lý file ảnh này. Vui lòng thử file khác.');
     } finally {
       setProcessing(false);
     }
   };
 
   const applyEffect = async (effectFunction: () => Uint8Array) => {
-    if (!currentImage || !isLoaded || processing) return;
+    if (!currentImage || !isLoaded || processing || !imageInfo) return;
     
     try {
       setProcessing(true);
+      
+      // Double check WASM is initialized
+      if (!window.rustWasm) {
+        console.error('WASM module not available');
+        return;
+      }
       
       const result = effectFunction();
       if (result && result.length > 0) {
         setCurrentImage(result);
         
-        // Update preview
-        const blob = new Blob([new Uint8Array(result)], { type: 'image/png' });
-        const url = URL.createObjectURL(blob);
-        if (previewUrl) {
-          URL.revokeObjectURL(previewUrl);
+        // Convert RGBA data back to image for preview
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        if (ctx) {
+          canvas.width = imageInfo.width;
+          canvas.height = imageInfo.height;
+          
+          const imageData = new ImageData(
+            new Uint8ClampedArray(result),
+            imageInfo.width,
+            imageInfo.height
+          );
+          ctx.putImageData(imageData, 0, 0);
+          
+          canvas.toBlob((blob) => {
+            if (blob) {
+              const url = URL.createObjectURL(blob);
+              if (previewUrl && previewUrl.startsWith('blob:')) {
+                URL.revokeObjectURL(previewUrl);
+              }
+              setPreviewUrl(url);
+            }
+          }, 'image/png');
         }
-        setPreviewUrl(url);
-        
-        // Update image info
-        const info = rustWasm.getImageInfo(result);
-        setImageInfo(info);
         
         onImageProcessed?.(result);
       }
     } catch (error) {
       console.error('Error applying effect:', error);
+      alert('Có lỗi khi xử lý ảnh. Vui lòng thử lại.');
     } finally {
       setProcessing(false);
     }
   };
 
+  const applyPresetEffects = (baseImage: Uint8Array, info: ImageInfo, presetName: string): Uint8Array => {
+    let processedImage = baseImage;
+    const { width, height } = info;
+
+    switch (presetName) {
+      case 'cinematic_dark':
+        processedImage = rustWasm.adjustContrast(processedImage, width, height, 1.2);
+        processedImage = rustWasm.applyVignette(processedImage, width, height, 0.3);
+        processedImage = rustWasm.applyFilmGrain(processedImage, width, height, 0.1);
+        break;
+      case 'golden_hour':
+        processedImage = rustWasm.adjustBrightness(processedImage, width, height, 1.1);
+        processedImage = rustWasm.adjustSaturation(processedImage, width, height, 1.2);
+        processedImage = rustWasm.applyLightLeak(processedImage, width, height, 0.2);
+        break;
+      case 'vintage_film':
+        processedImage = rustWasm.applySepia(processedImage, width, height);
+        processedImage = rustWasm.applyVignette(processedImage, width, height, 0.4);
+        processedImage = rustWasm.applyFilmGrain(processedImage, width, height, 0.3);
+        break;
+      case 'dreamy_soft':
+        processedImage = rustWasm.applyBlur(processedImage, width, height, 0.3);
+        processedImage = rustWasm.adjustBrightness(processedImage, width, height, 1.15);
+        processedImage = rustWasm.adjustSaturation(processedImage, width, height, 1.2);
+        break;
+      default:
+        break;
+    }
+    return processedImage;
+  };
+
   const applyAllEffects = useCallback((newBrightness?: number, newContrast?: number, newBlur?: number) => {
-    if (!originalImage) return;
+    if (!originalImage || !imageInfo) return;
     
     const finalBrightness = newBrightness !== undefined ? newBrightness : brightness;
     const finalContrast = newContrast !== undefined ? newContrast : contrast;
     const finalBlur = newBlur !== undefined ? newBlur : blur;
     
     let processedImage = originalImage;
+    const { width, height } = imageInfo;
     
     // Apply brightness if different from default
     if (finalBrightness !== 1.0) {
-      processedImage = rustWasm.adjustBrightness(processedImage, finalBrightness);
+      processedImage = rustWasm.adjustBrightness(processedImage, width, height, finalBrightness);
     }
     
     // Apply contrast if different from default
     if (finalContrast !== 1.0) {
-      processedImage = rustWasm.adjustContrast(processedImage, finalContrast);
+      processedImage = rustWasm.adjustContrast(processedImage, width, height, finalContrast);
     }
     
     // Apply blur if different from default
     if (finalBlur !== 0) {
-      processedImage = rustWasm.applyBlur(processedImage, finalBlur);
+      processedImage = rustWasm.applyBlur(processedImage, width, height, finalBlur);
     }
     
     return processedImage;
-  }, [originalImage, brightness, contrast, blur]);
+  }, [originalImage, imageInfo, brightness, contrast, blur]);
 
   const debouncedApplyEffects = useCallback((newBrightness?: number, newContrast?: number, newBlur?: number) => {
     if (debounceTimer) {
@@ -185,41 +275,75 @@ export function ImageEditor({ onImageProcessed }: ImageEditorProps) {
   };
 
   const resetImage = () => {
-    if (originalImage) {
+    if (originalImage && imageInfo) {
       setCurrentImage(originalImage);
-      const blob = new Blob([new Uint8Array(originalImage)], { type: 'image/png' });
-      const url = URL.createObjectURL(blob);
-      if (previewUrl) {
-        URL.revokeObjectURL(previewUrl);
+      
+      // Convert RGBA data back to image for preview
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      if (ctx) {
+        canvas.width = imageInfo.width;
+        canvas.height = imageInfo.height;
+        
+        const imageData = new ImageData(
+          new Uint8ClampedArray(originalImage),
+          imageInfo.width,
+          imageInfo.height
+        );
+        ctx.putImageData(imageData, 0, 0);
+        
+        canvas.toBlob((blob) => {
+          if (blob) {
+            const url = URL.createObjectURL(blob);
+            if (previewUrl && previewUrl.startsWith('blob:')) {
+              URL.revokeObjectURL(previewUrl);
+            }
+            setPreviewUrl(url);
+          }
+        }, 'image/png');
       }
-      setPreviewUrl(url);
       
       // Reset controls
       setBrightness(1.0);
       setContrast(1.0);
       setBlur(0);
       setRotation(0);
-      
-      const info = rustWasm.getImageInfo(originalImage);
-      setImageInfo(info);
     }
   };
 
   const downloadImage = () => {
-    if (!currentImage) return;
+    if (!currentImage || !imageInfo) return;
     
-    const blob = new Blob([new Uint8Array(currentImage)], { type: 'image/png' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `edited-image-${Date.now()}.png`;
-    a.click();
-    URL.revokeObjectURL(url);
+    // Convert RGBA data to canvas and download as PNG
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    if (ctx) {
+      canvas.width = imageInfo.width;
+      canvas.height = imageInfo.height;
+      
+      const imageData = new ImageData(
+        new Uint8ClampedArray(currentImage),
+        imageInfo.width,
+        imageInfo.height
+      );
+      ctx.putImageData(imageData, 0, 0);
+      
+      canvas.toBlob((blob) => {
+        if (blob) {
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `edited-image-${Date.now()}.png`;
+          a.click();
+          URL.revokeObjectURL(url);
+        }
+      }, 'image/png');
+    }
   };
 
   const resizeImage = (width: number, height: number) => {
-    if (currentImage) {
-      applyEffect(() => rustWasm.resizeImage(currentImage, width, height));
+    if (currentImage && imageInfo) {
+      applyEffect(() => rustWasm.resizeImage(currentImage, imageInfo.width, imageInfo.height, width, height));
     }
   };
 
@@ -440,20 +564,78 @@ export function ImageEditor({ onImageProcessed }: ImageEditorProps) {
               </div>
             </div>
 
-            {/* Filters */}
+            {/* Basic Filters */}
             <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
               <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white">
-                🎨 Bộ lọc
+                🎨 Bộ lọc cơ bản
               </h3>
               
               <div className="space-y-3">
                 <Button 
-                  onClick={() => currentImage && applyEffect(() => rustWasm.applyGrayscale(currentImage))}
+                  onClick={() => currentImage && imageInfo && applyEffect(() => rustWasm.applyGrayscale(currentImage, imageInfo.width, imageInfo.height))}
                   variant="outline"
                   className="w-full"
                   disabled={processing}
                 >
                   🖤 Đen trắng
+                </Button>
+                <Button 
+                  onClick={() => currentImage && imageInfo && applyEffect(() => rustWasm.applySepia(currentImage, imageInfo.width, imageInfo.height))}
+                  variant="outline"
+                  className="w-full"
+                  disabled={processing}
+                >
+                  🟤 Sepia
+                </Button>
+                <Button 
+                  onClick={() => currentImage && imageInfo && applyEffect(() => rustWasm.applyVignette(currentImage, imageInfo.width, imageInfo.height, 0.4))}
+                  variant="outline"
+                  className="w-full"
+                  disabled={processing}
+                >
+                  🌑 Vignette
+                </Button>
+              </div>
+            </div>
+
+            {/* Cinematic Presets */}
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+              <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white">
+                🎬 Preset điện ảnh
+              </h3>
+              
+              <div className="space-y-3">
+                <Button 
+                  onClick={() => currentImage && imageInfo && applyEffect(() => applyPresetEffects(currentImage, imageInfo, "cinematic_dark"))}
+                  variant="outline"
+                  className="w-full text-xs"
+                  disabled={processing}
+                >
+                  🌃 Cinematic Dark
+                </Button>
+                <Button 
+                  onClick={() => currentImage && imageInfo && applyEffect(() => applyPresetEffects(currentImage, imageInfo, "golden_hour"))}
+                  variant="outline"
+                  className="w-full text-xs"
+                  disabled={processing}
+                >
+                  🌅 Golden Hour
+                </Button>
+                <Button 
+                  onClick={() => currentImage && imageInfo && applyEffect(() => applyPresetEffects(currentImage, imageInfo, "vintage_film"))}
+                  variant="outline"
+                  className="w-full text-xs"
+                  disabled={processing}
+                >
+                  📼 Vintage Film
+                </Button>
+                <Button 
+                  onClick={() => currentImage && imageInfo && applyEffect(() => applyPresetEffects(currentImage, imageInfo, "dreamy_soft"))}
+                  variant="outline"
+                  className="w-full text-xs"
+                  disabled={processing}
+                >
+                  ☁️ Dreamy Soft
                 </Button>
               </div>
             </div>
