@@ -1,6 +1,6 @@
 # Bài 5: Stacks & Queues - Ngăn xếp và Hàng đợi
 
-<div className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-6">
+<div className="border-l-4 border-blue-500 p-6 mb-6">
   <h2 className="text-2xl font-bold text-blue-800 mb-2">🎯 Mục tiêu bài học</h2>
   <ul className="text-blue-700 space-y-2">
     <li>✅ Hiểu khái niệm và nguyên lý hoạt động của Stack và Queue</li>
@@ -14,7 +14,7 @@
 
 ### 1.1 Định nghĩa và Khái niệm
 
-<div className="bg-gray-100 p-4 rounded-lg mb-4">
+<div className="p-4 rounded-lg mb-4">
   <p className="text-lg"><strong>Stack</strong> là cấu trúc dữ liệu tuyến tính hoạt động theo nguyên lý <span className="text-red-600 font-bold">LIFO (Last In, First Out)</span> - phần tử được thêm vào cuối cùng sẽ được lấy ra đầu tiên.</p>
 </div>
 
@@ -178,7 +178,7 @@ public:
 
 ### 2.1 Định nghĩa và Khái niệm
 
-<div className="bg-green-100 p-4 rounded-lg mb-4">
+<div className="p-4 rounded-lg mb-4">
   <p className="text-lg"><strong>Queue</strong> là cấu trúc dữ liệu tuyến tính hoạt động theo nguyên lý <span className="text-green-600 font-bold">FIFO (First In, First Out)</span> - phần tử được thêm vào trước sẽ được lấy ra trước.</p>
 </div>
 
@@ -405,19 +405,19 @@ public:
 ### 4.1 Ứng dụng của Stack
 
 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-  <div className="bg-blue-50 p-4 rounded-lg">
+  <div className="p-4 rounded-lg">
     <h4 className="font-bold text-blue-800 mb-2">🔧 Expression Evaluation</h4>
     <p className="text-sm">Tính toán biểu thức trung tố, hậu tố</p>
   </div>
-  <div className="bg-purple-50 p-4 rounded-lg">
+  <div className="p-4 rounded-lg">
     <h4 className="font-bold text-purple-800 mb-2">📞 Function Calls</h4>
     <p className="text-sm">Quản lý call stack trong chương trình</p>
   </div>
-  <div className="bg-green-50 p-4 rounded-lg">
+  <div className="p-4 rounded-lg">
     <h4 className="font-bold text-green-800 mb-2">↩️ Undo Operations</h4>
     <p className="text-sm">Tính năng Undo trong text editors</p>
   </div>
-  <div className="bg-orange-50 p-4 rounded-lg">
+  <div className="p-4 rounded-lg">
     <h4 className="font-bold text-orange-800 mb-2">🌐 Browser History</h4>
     <p className="text-sm">Lịch sử back/forward trong trình duyệt</p>
   </div>
@@ -426,7 +426,7 @@ public:
 ### 4.2 Ứng dụng của Queue
 
 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-  <div className="bg-red-50 p-4 rounded-lg">
+  <div className="p-4 rounded-lg">
     <h4 className="font-bold text-red-800 mb-2">⚙️ Task Scheduling</h4>
     <p className="text-sm">Lập lịch CPU, process management</p>
   </div>
@@ -434,11 +434,11 @@ public:
     <h4 className="font-bold text-teal-800 mb-2">🔍 BFS Algorithm</h4>
     <p className="text-sm">Breadth-First Search trong graphs</p>
   </div>
-  <div className="bg-yellow-50 p-4 rounded-lg">
+  <div className="p-4 rounded-lg">
     <h4 className="font-bold text-yellow-800 mb-2">🖨️ Print Queue</h4>
     <p className="text-sm">Hàng đợi in ấn, buffer management</p>
   </div>
-  <div className="bg-indigo-50 p-4 rounded-lg">
+  <div className="p-4 rounded-lg">
     <h4 className="font-bold text-indigo-800 mb-2">🌊 Stream Processing</h4>
     <p className="text-sm">Xử lý dữ liệu streaming, IO buffer</p>
   </div>

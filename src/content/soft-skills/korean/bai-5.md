@@ -1,6 +1,6 @@
 # Bài 5: 소비와 절약 (Tiêu dùng và tiết kiệm)
 
-<div className="p-6 border-l-4 border-blue-500 bg-blue-50 mb-6">
+<div className="p-6 border-l-4 border-blue-500 mb-6">
 <h2 className="text-xl font-bold text-blue-800 mb-2">📋 Mục tiêu bài học</h2>
 <ul className="list-disc list-inside text-blue-700 space-y-1">
 <li><strong>Từ vựng:</strong> Học các từ về tiêu dùng, phương pháp tiết kiệm</li>
@@ -88,7 +88,7 @@ graph TD
 
 ### 1. 명/이나/밖에
 
-<div className="p-4 bg-gray-50 rounded-lg mb-4">
+<div className="p-4 rounded-lg mb-4">
 <h4 className="font-bold mb-2">📌 Ý nghĩa và cách dùng</h4>
 <p>Biểu hiện số lượng <strong>lớn hơn dự kiến</strong> hoặc <strong>nhỏ hơn dự kiến</strong></p>
 </div>
@@ -113,7 +113,7 @@ graph LR
 
 #### Ví dụ minh họa:
 
-<div className="p-4 border-l-4 border-green-400 bg-green-50 mb-4">
+<div className="p-4 border-l-4 border-green-400 mb-4">
 <h5 className="font-bold text-green-700">✅ Ví dụ với 이나/나</h5>
 <ul className="space-y-2 text-green-800">
 <li>• 저는 하루에 커피를 <strong>다섯 잔이나</strong> 마셔요. (Tôi uống tới 5 cốc cà phê một ngày.)</li>
@@ -121,7 +121,7 @@ graph LR
 </ul>
 </div>
 
-<div className="p-4 border-l-4 border-blue-400 bg-blue-50 mb-4">
+<div className="p-4 border-l-4 border-blue-400 mb-4">
 <h5 className="font-bold text-blue-700">✅ Ví dụ với 밖에</h5>
 <ul className="space-y-2 text-blue-800">
 <li>• 산지 1년<strong>밖에</strong> 안 됐는데 벌써 고장 난 거예요? (Mới mua có 1 năm thôi mà đã hỏng rồi sao?)</li>
@@ -131,7 +131,7 @@ graph LR
 
 ### 2. -는다고 하다
 
-<div className="p-4 bg-gray-50 rounded-lg mb-4">
+<div className="p-4 rounded-lg mb-4">
 <h4 className="font-bold mb-2">📌 Ý nghĩa và cách dùng</h4>
 <p>Chủ yếu dùng để <strong>truyền đạt nội dung nghe được từ người khác</strong></p>
 </div>
@@ -158,13 +158,13 @@ flowchart TD
 #### Ví dụ minh họa:
 
 <div className="space-y-3 mb-4">
-<div className="p-3 bg-yellow-50 border-l-4 border-yellow-400">
+<div className="p-3 border-l-4 border-yellow-400">
 <p><strong>라민:</strong> 오늘부터 항공권 할인 행사가 <strong>시작된다고 해요</strong>.</p>
 <p><strong>친구:</strong> 그래요? 빨리 예약해야겠네요.</p>
 <p className="text-sm text-gray-600 mt-2"><em>Ramin: Nghe nói từ hôm nay bắt đầu có chương trình giảm giá vé máy bay.</em></p>
 </div>
 
-<div className="p-3 bg-green-50 border-l-4 border-green-400">
+<div className="p-3 border-l-4 border-green-400">
 <p>• 중고 매장에 가면 필요한 물건을 <strong>싸게 살 수 있다고 해요</strong>.</p>
 <p className="text-sm text-gray-600 mt-1"><em>Nghe nói đến cửa hàng đồ cũ thì có thể mua được những thứ cần thiết với giá rẻ.</em></p>
 </div>
@@ -176,7 +176,7 @@ flowchart TD
 
 **Tình huống:** Hậu Ân đang nói chuyện với hàng xóm về chi phí sinh hoạt.
 
-<div className="p-4 border rounded-lg bg-blue-50 mb-4">
+<div className="p-4 border rounded-lg mb-4">
 <h5 className="font-bold mb-2">🎭 Mẫu hội thoại</h5>
 <div className="space-y-2">
 <p><strong>아주머니:</strong> 후엔 씨 뭘 그렇게 보고 있어요?</p>
@@ -237,7 +237,7 @@ graph TB
 
 ### Bài đọc: "좋은 물건 싸게 사는 법" (Cách mua đồ tốt giá rẻ)
 
-<div className="p-4 bg-green-50 border rounded-lg mb-4">
+<div className="p-4 border rounded-lg mb-4">
 <h4 className="font-bold text-green-700 mb-2">✅ CHECK LIST - Danh sách kiểm tra</h4>
 <ul className="space-y-2 text-green-800">
 <li>☐ 인터넷에서 가격 비교를 한다 - So sánh giá trên internet</li>
@@ -304,7 +304,7 @@ graph TB
 
 ### Bài tập 2: Viết bài giới thiệu phương pháp tiết kiệm
 
-<div className="p-4 bg-yellow-50 border border-yellow-300 rounded-lg">
+<div className="p-4 border border-yellow-300 rounded-lg">
 <h5 className="font-bold text-yellow-700 mb-2">📝 Hướng dẫn viết</h5>
 <p className="text-yellow-800">Chọn 1-2 khoản chi phí từ bảng trên và viết một bài văn giới thiệu phương pháp tiết kiệm riêng của bạn.</p>
 
@@ -319,7 +319,7 @@ graph TB
 
 ### Tìm hiểu về việc gửi tiền tiết kiệm tại Hàn Quốc
 
-<div className="p-4 bg-indigo-50 border border-indigo-200 rounded-lg">
+<div className="p-4 border border-indigo-200 rounded-lg">
 <h4 className="font-bold text-indigo-700 mb-3">🏪 적금 가입하기 (Tham gia gửi tiết kiệm)</h4>
 
 **Các loại hình tiết kiệm phổ biến:**
@@ -383,6 +383,6 @@ mindmap
 
 ---
 
-<div className="text-center p-4 bg-gray-100 rounded-lg mt-8">
+<div className="text-center p-4 rounded-lg mt-8">
 <p className="text-gray-600 font-medium">🎯 Chúc các bạn học tập hiệu quả và áp dụng tốt các kiến thức về tiết kiệm trong cuộc sống!</p>
 </div>

@@ -2,7 +2,7 @@
 
 ## Mục tiêu học tập
 
-<div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
+<div className="border-l-4 border-blue-500 p-4 mb-6">
   <h3 className="text-lg font-semibold text-blue-800 mb-2">📚 Mục tiêu bài học</h3>
   <ul className="space-y-2 text-blue-700">
     <li><strong>Từ vựng:</strong> Môi trường địa lý của khu dân cư</li>
@@ -17,7 +17,7 @@
 ### 1. Đặc điểm của thành phố
 
 <div className="grid grid-cols-2 gap-4 mb-6">
-  <div className="bg-gray-50 p-4 rounded-lg">
+  <div className="p-4 rounded-lg">
     <h4 className="font-semibold text-gray-800 mb-3">🏙️ Thành phố (도시)</h4>
     <ul className="space-y-2 text-sm">
       <li>• 거리가 깨끗하다 - đường phố sạch sẽ</li>
@@ -30,7 +30,7 @@
     </ul>
   </div>
   
-  <div className="bg-green-50 p-4 rounded-lg">
+  <div className="p-4 rounded-lg">
     <h4 className="font-semibold text-green-800 mb-3">🌾 Nông thôn (농촌)</h4>
     <ul className="space-y-2 text-sm">
       <li>• 자연환경이 좋다 - môi trường tự nhiên tốt</li>
@@ -58,7 +58,7 @@
 
 ### 1. Thể bị động (피동)
 
-<div className="bg-yellow-50 border border-yellow-200 p-4 mb-4">
+<div className="border border-yellow-200 p-4 mb-4">
   <h4 className="font-semibold text-yellow-800 mb-2">📝 Công thức</h4>
   <p className="text-yellow-700">Diễn tả việc được thực hiện bởi tác động từ bên ngoài</p>
 </div>
@@ -91,7 +91,7 @@ graph LR
 
 ### 2. 동-자고 하다
 
-<div className="bg-blue-50 border border-blue-200 p-4 mb-4">
+<div className="border border-blue-200 p-4 mb-4">
   <h4 className="font-semibold text-blue-800 mb-2">📝 Công thức</h4>
   <p className="text-blue-700">Truyền đạt lời đề nghị hoặc gợi ý từ người khác</p>
 </div>
@@ -113,7 +113,7 @@ flowchart TD
 - 친구가 **만나자고 해서** 약속 장소에 나갔다.
 - 아내가 같이 저녁을 **먹자고 해서** 기다리는 중이다.
 
-<div className="bg-red-50 border border-red-200 p-3 mb-4">
+<div className="border border-red-200 p-3 mb-4">
   <p className="text-red-700"><strong>💡 Lưu ý:</strong> Thể phủ định sử dụng '-지 말자고 하다'</p>
 </div>
 
@@ -121,7 +121,7 @@ flowchart TD
 
 ### 1. 🎯 [Tệp âm thanh 6-1] Luyện tập thể bị động
 
-<div className="bg-gray-100 p-4 rounded-lg mb-4">
+<div className="p-4 rounded-lg mb-4">
   <h4 className="font-semibold mb-2">Tình huống 1:</h4>
   <p><strong>왜 그래요? 무슨 일이에요?</strong></p>
   <p>→ 갑자기 엘리베이터가 흔들렸어요.</p>
@@ -135,7 +135,7 @@ flowchart TD
 
 ### 2. 말하기 - Giới thiệu cơ sở vật chất xung quanh
 
-<div className="bg-green-50 p-4 rounded-lg mb-4">
+<div className="p-4 rounded-lg mb-4">
   <h4 className="font-semibold text-green-800 mb-2">🗣️ Mẫu đối thoại</h4>
   <div className="space-y-2 text-sm">
     <p><strong>이웃:</strong> 안녕하세요? 저, 어제 이 동네로 이사 왔는데요.</p>
@@ -160,7 +160,7 @@ flowchart TD
 
 ### 발음 연습
 
-<div className="bg-purple-50 p-4 rounded-lg mb-4">
+<div className="p-4 rounded-lg mb-4">
   <h4 className="font-semibold text-purple-800 mb-2">🔊 [Tệp âm thanh 6-3] Phát âm</h4>
   <ul className="space-y-1 text-sm">
     <li>막히네요 [마키네요]</li>
@@ -235,12 +235,12 @@ graph TD
     C --> I[지하철역이 있다]
 ```
 
-<div className="bg-indigo-50 border-l-4 border-indigo-500 p-4 mb-4">
+<div className="border-l-4 border-indigo-500 p-4 mb-4">
   <h4 className="font-semibold text-indigo-800 mb-2">🏠 Quan niệm truyền thống</h4>
   <p className="text-indigo-700">Người Hàn xưa tin rằng vị trí và hướng nhà quyết định hạnh phúc của gia đình. Nhà tốt phải có núi ở phía sau, nước chảy ở phía trước, và hướng nam.</p>
 </div>
 
-<div className="bg-green-50 border-l-4 border-green-500 p-4">
+<div className="border-l-4 border-green-500 p-4">
   <h4 className="font-semibold text-green-800 mb-2">🚇 Tiêu chí hiện đại</h4>
   <p className="text-green-700">Ngày nay, ngoài các yếu tố truyền thống, người ta còn chú trọng đến chất lượng trường học gần nhà và giao thông thuận tiện.</p>
 </div>
@@ -440,7 +440,7 @@ explanation: "'건조하다' có nghĩa là khô hanh, thiếu độ ẩm, trái
 
 ---
 
-<div className="bg-blue-100 p-4 rounded-lg mt-6">
+<div className="p-4 rounded-lg mt-6">
   <h3 className="font-semibold text-blue-800 mb-2">🎯 Mục tiêu đạt được sau bài học</h3>
   <ul className="text-blue-700 space-y-1">
     <li>✅ Mô tả được đặc điểm môi trường sống ở thành phố và nông thôn</li>

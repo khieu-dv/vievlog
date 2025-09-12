@@ -2,7 +2,7 @@
 
 ## Thuật toán sắp xếp cơ bản
 
-<div className="bg-blue-50 border-l-4 border-blue-400 p-4 mb-6">
+<div className="border-l-4 border-blue-400 p-4 mb-6">
   <h3 className="text-blue-800 font-semibold mb-2">🎯 Mục tiêu học tập</h3>
   <p className="text-blue-700">
     Nắm vững 3 thuật toán sắp xếp cơ bản (Bubble Sort, Selection Sort, Insertion Sort), 
@@ -27,7 +27,7 @@
 
 ## 2. Bubble Sort - Thuật toán nổi bọt
 
-<div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-4">
+<div className="border border-green-200 rounded-lg p-4 mb-4">
   <h4 className="text-green-800 font-semibold mb-2">💡 Ý tưởng chính</h4>
   <p className="text-green-700">
     So sánh từng cặp phần tử liền kề và hoán đổi nếu chúng sai thứ tự. 
@@ -117,7 +117,7 @@ int main() {
 
 ## 3. Selection Sort - Thuật toán chọn
 
-<div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-4">
+<div className="border border-yellow-200 rounded-lg p-4 mb-4">
   <h4 className="text-yellow-800 font-semibold mb-2">💡 Ý tưởng chính</h4>
   <p className="text-yellow-700">
     Tìm phần tử nhỏ nhất trong phần chưa sắp xếp và đặt vào vị trí đúng của nó. 
@@ -174,7 +174,7 @@ void selectionSort(vector<int>& arr) {
 
 ## 4. Insertion Sort - Thuật toán chèn
 
-<div className="bg-purple-50 border border-purple-200 rounded-lg p-4 mb-4">
+<div className="border border-purple-200 rounded-lg p-4 mb-4">
   <h4 className="text-purple-800 font-semibold mb-2">💡 Ý tưởng chính</h4>
   <p className="text-purple-700">
     Xây dựng dãy sắp xếp từng phần tử một, giống như cách sắp xếp bài trong tay. 
@@ -442,7 +442,7 @@ private:
 
 ---
 
-<div className="bg-gray-50 border border-gray-200 rounded-lg p-4 mt-6">
+<div className="border border-gray-200 rounded-lg p-4 mt-6">
   <h4 className="text-gray-800 font-semibold mb-2">🎯 Tổng kết</h4>
   <p className="text-gray-700 mb-2">
     Ba thuật toán sắp xếp cơ bản này là nền tảng quan trọng để hiểu về sorting. 

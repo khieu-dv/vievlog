@@ -370,7 +370,7 @@ graph LR
 </div>
 </div>
 
-<div className="mt-4 p-3 bg-gray-100 rounded">
+<div className="mt-4 p-3 rounded">
 <h5 className="font-semibold">※ 안내 및 유의 사항</h5>
 <p className="text-sm">티켓의 환불은 하루 전까지 인터넷으로 가능하며 당일에는 변경이나 취소가 되지 않습니다. 또한 무료 및 할인 티켓의 환불은 불가능합니다.</p>
 </div>
@@ -409,7 +409,7 @@ graph LR
 
 **Mẫu viết:**
 
-<div className="bg-gray-100 p-3 rounded mt-3">
+<div className="p-3 rounded mt-3">
 <p>저는 지난주에 [공연 이름]을/를 봤습니다. [공연 장소]에서 열린 이 공연은 정말 [감상]했습니다.</p>
 <p>특히 [인상적인 장면]이/가 가장 기억에 남습니다. 배우들의 [특징]도 [평가]했습니다.</p>
 <p>이번 공연을 보면서 [느낀 점]을/를 느꼈습니다. 다음에도 이런 좋은 공연을 보고 싶습니다.</p>
@@ -538,17 +538,17 @@ mindmap
 <div className="border rounded p-4 mb-6">
 <h5 className="font-semibold text-green-600 mb-3">Mẫu câu thường dùng</h5>
 <div className="grid grid-cols-1 gap-3">
-<div className="bg-gray-50 p-3 rounded">
+<div className="p-3 rounded">
 <p className="font-semibold">Hỏi về công diễn:</p>
 <p className="text-sm">• 어떤 공연을 보고 싶어요? (Muốn xem công diễn nào?)</p>
 <p className="text-sm">• 몇 시에 시작해요? (Bắt đầu lúc mấy giờ?)</p>
 </div>
-<div className="bg-gray-50 p-3 rounded">
+<div className="p-3 rounded">
 <p className="font-semibold">Diễn tả cảm nhận:</p>
 <p className="text-sm">• 정말 감동적이었어요 (Thật sự cảm động)</p>
 <p className="text-sm">• 인상적인 장면이었어요 (Là cảnh ấn tượng)</p>
 </div>
-<div className="bg-gray-50 p-3 rounded">
+<div className="p-3 rounded">
 <p className="font-semibold">So sánh:</p>
 <p className="text-sm">• 영화만큼 재미있어요 (Thú vị như phim)</p>
 <p className="text-sm">• 기대했던 만큼 좋았어요 (Tốt như mong đợi)</p>
@@ -723,16 +723,16 @@ explanation: "사물놀이는 꽹과리, 징, 장구, 북 등 한국 전통 타�
 <p><strong>예시:</strong> "휴대전화를 꺼 주세요." → 휴대전화를 끄라고 했어요.</p>
 
 <div className="grid grid-cols-1 gap-3">
-<div className="bg-gray-50 p-3 rounded">
+<div className="p-3 rounded">
 <p>1. "내일 회의에 참석하세요." → ________________________</p>
 </div>
-<div className="bg-gray-50 p-3 rounded">
+<div className="p-3 rounded">
 <p>2. "주말에 무엇을 해요?" → ________________________</p>
 </div>
-<div className="bg-gray-50 p-3 rounded">
+<div className="p-3 rounded">
 <p>3. "표를 미리 예매하세요." → ________________________</p>
 </div>
-<div className="bg-gray-50 p-3 rounded">
+<div className="p-3 rounded">
 <p>4. "어느 좌석을 원해요?" → ________________________</p>
 </div>
 </div>
@@ -746,16 +746,16 @@ explanation: "사물놀이는 꽹과리, 징, 장구, 북 등 한국 전통 타�
 
 <div className="space-y-3 mt-3">
 <div className="grid grid-cols-1 gap-3">
-<div className="bg-gray-50 p-3 rounded">
+<div className="p-3 rounded">
 <p>1. 이 뮤지컬은 영화_______ 재미있어요.</p>
 </div>
-<div className="bg-gray-50 p-3 rounded">
+<div className="p-3 rounded">
 <p>2. 학생 공연도 프로_______ 훌륭했어요.</p>
 </div>
-<div className="bg-gray-50 p-3 rounded">
+<div className="p-3 rounded">
 <p>3. 오늘은 어제_______ 춥지 않아요.</p>
 </div>
-<div className="bg-gray-50 p-3 rounded">
+<div className="p-3 rounded">
 <p>4. 한국 음식을 한국사람_______ 잘 만들어요.</p>
 </div>
 </div>
@@ -771,7 +771,7 @@ explanation: "사물놀이는 꽹과리, 징, 장구, 북 등 한국 전통 타�
 <div className="border-l-4 border-green-500 pl-4 py-2">
 <p><strong>상황:</strong> 친구와 함께 이번 주말에 볼 공연을 정하는 대화를 나누어 보세요.</p>
 
-<div className="mt-3 p-3 bg-green-50 rounded">
+<div className="mt-3 p-3 rounded">
 <h6 className="font-semibold">사용할 표현들:</h6>
 <ul className="list-disc list-inside text-sm space-y-1">
 <li>뭘 보고 싶어요?</li>
@@ -787,7 +787,7 @@ explanation: "사물놀이는 꽹과리, 징, 장구, 북 등 한국 전통 타�
 <div className="border-l-4 border-blue-500 pl-4 py-2">
 <p><strong>상황:</strong> 어제 본 공연에 대해 동료들과 이야기해 보세요.</p>
 
-<div className="mt-3 p-3 bg-blue-50 rounded">
+<div className="mt-3 p-3 rounded">
 <h6 className="font-semibold">사용할 표현들:</h6>
 <ul className="list-disc list-inside text-sm space-y-1">
 <li>어떤 장면이 인상적이었어요?</li>

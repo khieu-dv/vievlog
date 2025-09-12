@@ -2,7 +2,7 @@
 
 ## 🎯 **Mục tiêu bài học**
 
-<div className="p-6 border-l-4 border-blue-500 bg-blue-50 mb-6">
+<div className="p-6 border-l-4 border-blue-500 mb-6">
   <h3 className="text-lg font-semibold text-blue-800 mb-3">Sau khi hoàn thành bài học này, bạn sẽ:</h3>
   <ul className="text-blue-700 space-y-2">
     <li>✅ Hiểu rõ khái niệm và vai trò của Data Structures</li>
@@ -16,7 +16,7 @@
 
 ## 📚 **1. Data Structure là gì?**
 
-<div className="bg-gray-50 p-5 rounded-lg border mb-6">
+<div className="p-5 rounded-lg border mb-6">
   <p className="text-lg font-medium text-gray-800 mb-3">
     <strong>Data Structure (Cấu trúc dữ liệu)</strong> là cách tổ chức, lưu trữ và quản lý dữ liệu trong máy tính để có thể truy cập và sử dụng hiệu quả.
   </p>
@@ -116,7 +116,7 @@ graph TD
 | **Hash Table**     | N/A        | O(1) avg   | O(1) avg   | O(1) avg   | Cao        |
 | **Binary Tree**    | O(log n)   | O(log n)   | O(log n)   | O(log n)   | Trung bình |
 
-<div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
+<div className="border-l-4 border-yellow-400 p-4 mb-6">
   <p className="text-yellow-800">
     <strong>Lưu ý:</strong> Các độ phức tạp trên là cho trường hợp trung bình. Worst-case có thể khác biệt đáng kể.
   </p>
@@ -250,7 +250,7 @@ graph LR
     L1 -.-> CACHE
 ```
 
-<div className="bg-blue-50 border rounded-lg p-4 mb-6">
+<div className="border rounded-lg p-4 mb-6">
   <h4 className="text-blue-800 font-semibold mb-2">💡 Memory Access Patterns</h4>
   <div className="text-blue-700 text-sm">
     <p><strong>Sequential Access (Array):</strong> Tận dụng được CPU cache, performance cao</p>
@@ -340,7 +340,7 @@ public:
 
 ## 📋 **Tóm tắt bài học**
 
-<div className="bg-green-50 border-l-4 border-green-400 p-4">
+<div className="border-l-4 border-green-400 p-4">
   <h4 className="text-green-800 font-semibold mb-3">🎯 Những điều cần nhớ:</h4>
   <div className="text-green-700 space-y-2 text-sm">
     <p><strong>1.</strong> Data Structure là cách tổ chức dữ liệu để sử dụng hiệu quả</p>

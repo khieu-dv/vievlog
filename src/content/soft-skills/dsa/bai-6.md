@@ -35,7 +35,7 @@ graph LR
 | Insert   | O(1)  | O(1)        | O(1) avg   |
 | Delete   | O(n)  | O(n)        | O(1) avg   |
 
-<div className="bg-yellow-50 p-4 rounded-lg border border-yellow-200 my-6">
+<div className="p-4 rounded-lg border border-yellow-200 my-6">
   <h3 className="text-lg font-semibold text-yellow-800 mb-2">⚡ Ưu điểm chính</h3>
   <p className="text-yellow-700">Hash Tables cung cấp thời gian truy xuất gần như tức thì, làm chúng trở thành lựa chọn lý tưởng cho dictionaries, caches, và database indexing.</p>
 </div>
@@ -300,7 +300,7 @@ graph LR
     E[Load Factor = 1.0] --> F[Performance Issues]
 ```
 
-<div className="bg-red-50 p-4 rounded-lg border border-red-200 my-6">
+<div className="p-4 rounded-lg border border-red-200 my-6">
   <h3 className="text-lg font-semibold text-red-800 mb-2">⚠️ Lưu ý quan trọng</h3>
   <p className="text-red-700">Khi Load Factor > 0.7, nên thực hiện <strong>Rehashing</strong> để duy trì hiệu suất O(1).</p>
 </div>
@@ -423,7 +423,7 @@ mindmap
 
 ### 7.1 Bài tập LeetCode liên quan:
 
-<div className="bg-green-50 p-4 rounded-lg border border-green-200 my-6">
+<div className="p-4 rounded-lg border border-green-200 my-6">
   <h3 className="text-lg font-semibold text-green-800 mb-3">🎯 Danh sách bài tập LeetCode</h3>
   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
     <div>
@@ -456,7 +456,7 @@ mindmap
 
 ## 8. Tổng kết
 
-<div className="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-500">
+<div className="p-6 rounded-lg border-l-4 border-blue-500">
   <h3 className="text-xl font-bold text-blue-800 mb-3">📝 Điểm nhấn quan trọng</h3>
   <div className="text-blue-700 space-y-2">
     <p><strong>Hash Tables</strong> là công cụ mạnh mẽ cho việc lưu trữ và truy xuất dữ liệu với thời gian O(1) trung bình.</p>

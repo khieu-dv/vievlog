@@ -1,6 +1,6 @@
 # Bài 8: Big-O, Big-θ, Big-Ω Notation - Ký hiệu tiệm cận
 
-<div className="bg-blue-50 border-l-4 border-blue-400 p-4 mb-6">
+<div className="border-l-4 border-blue-400 p-4 mb-6">
 <h2 className="text-xl font-bold text-blue-800 mb-2">🎯 Mục tiêu học tập</h2>
 <ul className="text-blue-700">
 <li>Hiểu sâu về các ký hiệu tiệm cận Big-O, Big-θ, Big-Ω</li>
@@ -26,7 +26,7 @@ graph LR
 
 ### 1.2 Tại sao cần Asymptotic Analysis?
 
-<div className="bg-yellow-50 border border-yellow-200 p-4 rounded mb-4">
+<div className="border border-yellow-200 p-4 rounded mb-4">
 <p className="font-semibold text-yellow-800">💡 Lý do quan trọng:</p>
 <ul className="text-yellow-700 mt-2">
 <li>Độc lập với phần cứng và ngôn ngữ lập trình</li>
@@ -108,7 +108,7 @@ int linearSearch(int arr[], int n, int target) {
 }
 ```
 
-<div className="bg-green-50 border border-green-200 p-4 rounded">
+<div className="border border-green-200 p-4 rounded">
 <h4 className="font-bold text-green-800">📊 Case Analysis:</h4>
 <ul className="text-green-700 mt-2">
 <li><strong>Best Case (Ω(1)):</strong> Element ở vị trí đầu tiên</li>
@@ -218,7 +218,7 @@ void matrixMultiply(int A[][100], int B[][100], int C[][100], int n) {
 
 ### 7.1 Little-o và little-ω notation
 
-<div className="bg-purple-50 border border-purple-200 p-4 rounded">
+<div className="border border-purple-200 p-4 rounded">
 <h4 className="font-bold text-purple-800">🔬 Advanced Notations:</h4>
 <ul className="text-purple-700 mt-2">
 <li><strong>o(g(n)):</strong> Strictly smaller than - lim[n→∞] f(n)/g(n) = 0</li>
@@ -258,7 +258,7 @@ public:
 
 ### 8.1 Bài tập phân tích Complexity
 
-<div className="bg-gray-50 border border-gray-200 p-4 rounded">
+<div className="border border-gray-200 p-4 rounded">
 <h4 className="font-bold text-gray-800">📝 Thực hành:</h4>
 <ol className="text-gray-700 mt-2">
 <li>Phân tích complexity của Binary Search Tree insertion</li>
@@ -280,7 +280,7 @@ public:
 
 ## 9. Tóm tắt và Checklist
 
-<div className="bg-indigo-50 border-l-4 border-indigo-400 p-4">
+<div className="border-l-4 border-indigo-400 p-4">
 <h4 className="font-bold text-indigo-800">✅ Key Takeaways:</h4>
 <ul className="text-indigo-700 mt-2">
 <li>Big-O (O): Upper bound - worst case scenario</li>

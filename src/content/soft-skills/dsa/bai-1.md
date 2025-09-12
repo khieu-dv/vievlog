@@ -118,7 +118,7 @@ void swapValues(int& a, int& b) {
 
 ### 4.1 Tầm quan trọng của OOP trong DSA
 
-<div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 my-4">
+<div className="border-l-4 border-yellow-500 p-4 my-4">
   <p className="text-yellow-800"><strong>Lưu ý:</strong> Hiểu OOP giúp bạn thiết kế các cấu trúc dữ liệu tùy chỉnh một cách hiệu quả và có tổ chức.</p>
 </div>
 
@@ -216,7 +216,7 @@ int linearSearch(vector<int>& arr, int target) {
 
 ### 6.1 Bài tập cơ bản
 
-<div className="bg-gray-50 border border-gray-300 p-4 rounded-lg my-4">
+<div className="border border-gray-300 p-4 rounded-lg my-4">
   <h4 className="font-semibold mb-3">Bài tập 1: Viết hàm đếm số chẵn trong mảng</h4>
   
   <strong>Yêu cầu:</strong>
@@ -286,7 +286,7 @@ int main() {
 
 ### 7.1 Key Takeaways
 
-<div className="bg-indigo-50 border-l-4 border-indigo-500 p-4 my-4">
+<div className="border-l-4 border-indigo-500 p-4 my-4">
   <ul className="text-indigo-800">
     <li><strong>Nền tảng vững chắc</strong> về ngôn ngữ lập trình là điều kiện tiên quyết</li>
     <li><strong>Pseudocode</strong> giúp bạn tư duy thuật toán trước khi code</li>

@@ -2,7 +2,7 @@
 
 ## 🎯 Mục tiêu học tập
 
-<div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
+<div className="border-l-4 border-blue-500 p-4 mb-6">
 <h3 className="text-lg font-semibold text-blue-800 mb-2">Sau khi hoàn thành bài học này, bạn sẽ có thể:</h3>
 <ul className="text-blue-700 space-y-1">
 <li>✅ Hiểu khái niệm Array và cách lưu trữ trong bộ nhớ</li>
@@ -51,7 +51,7 @@ graph LR
 
 ## 💾 2. Cách lưu trữ Array trong bộ nhớ
 
-<div className="bg-gray-50 p-4 rounded-lg mb-4">
+<div className="p-4 rounded-lg mb-4">
 <h3 className="font-semibold mb-2">Sơ đồ bộ nhớ:</h3>
 
 ```mermaid
@@ -285,7 +285,7 @@ public:
 
 ## 📊 5. Phân tích độ phức tạp
 
-<div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-4">
+<div className="border border-yellow-200 rounded-lg p-4 mb-4">
 <h3 className="font-semibold text-yellow-800 mb-3">Bảng so sánh độ phức tạp</h3>
 
 | Thao tác              | Time Complexity | Space Complexity | Ghi chú                 |
@@ -393,7 +393,7 @@ void rotateRight(vector<int>& arr, int k) {
 
 ### Bài tập tự luyện:
 
-<div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+<div className="border border-blue-200 rounded-lg p-4">
 <h3 className="font-semibold text-blue-800 mb-2">Thực hành ngay:</h3>
 <ol className="text-blue-700 space-y-2 list-decimal list-inside">
 <li>Viết hàm tìm phần tử xuất hiện nhiều nhất trong mảng</li>
@@ -427,7 +427,7 @@ mindmap
       Sorting algorithms
 ```
 
-<div className="bg-green-50 border-l-4 border-green-500 p-4 mt-6">
+<div className="border-l-4 border-green-500 p-4 mt-6">
 <h3 className="text-green-800 font-semibold mb-2">🎯 Key Takeaways</h3>
 <ul className="text-green-700 space-y-1">
 <li>• Array là nền tảng của nhiều cấu trúc dữ liệu khác</li>

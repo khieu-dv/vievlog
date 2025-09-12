@@ -73,7 +73,7 @@ graph TD
 | 수리 비용을 내다       | Trả chi phí sửa chữa      | 보증 기간이 지나서 수리 비용을 내야 해요       |
 | 무상 수리를 받다       | Được sửa chữa miễn phí    | 보증 기간 내라서 무상 수리를 받을 수 있어요    |
 
-<div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 my-4">
+<div className="border-l-4 border-yellow-400 p-4 my-4">
 <h4 className="font-semibold text-yellow-800">💡 Lưu ý quan trọng:</h4>
 <p className="text-yellow-700">Khi gọi điện tới trung tâm dịch vụ, hãy chuẩn bị sẵn thông tin về sản phẩm (tên, model, ngày mua) và mô tả rõ ràng tình trạng hỏng hóc.</p>
 </div>
@@ -108,7 +108,7 @@ graph LR
     A2[더운 나라에서 오다] --> B2[-어서 그런지] --> C2[한국 겨울이 추워요]
 ```
 
-<div className="bg-blue-50 border border-blue-200 rounded-lg p-4 my-4">
+<div className="border border-blue-200 rounded-lg p-4 my-4">
 <h4 className="font-semibold text-blue-800 mb-2">💬 Ví dụ hội thoại:</h4>
 <div className="space-y-2">
 <p><span className="font-semibold">후엔:</span> 휴대 전화에 무슨 문제 있어요?</p>
@@ -151,7 +151,7 @@ graph LR
 | 얼마예요?             | 얼마인가요?      | Khi hỏi người lạ hoặc trong dịch vụ |
 | 어려워요?             | 어려운가요?      | Khi quan tâm, thể hiện sự chia sẻ   |
 
-<div className="bg-green-50 border border-green-200 rounded-lg p-4 my-4">
+<div className="border border-green-200 rounded-lg p-4 my-4">
 <h4 className="font-semibold text-green-800 mb-2">💬 Ví dụ thực tế:</h4>
 <div className="space-y-2">
 <p><span className="font-semibold">이링:</span> 노트북이 고장 나서 서비스 센터에 방문하려고 하는데 예약을 해야 되나요?</p>
@@ -251,7 +251,7 @@ _[🔊 Audio: 9-2.mp3 - Thời lượng: 2 phút]_
 
 ### 1. Cách xử lý sự cố ban đầu
 
-<div className="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-4">
+<div className="border border-gray-200 rounded-lg p-4 mb-4">
 <h4 className="font-semibold text-gray-800 mb-2">🔧 Các thao tác cơ bản trước khi gọi dịch vụ</h4>
 
 | Thao tác           | Tiếng Hàn            | Khi nào sử dụng                 |
@@ -278,7 +278,7 @@ _[🔊 Audio: 9-2.mp3 - Thời lượng: 2 phút]_
 
 ### 3. Đọc hiểu: Bài viết trên diễn đàn
 
-<div className="bg-blue-50 border-l-4 border-blue-400 p-4 my-4">
+<div className="border-l-4 border-blue-400 p-4 my-4">
 <h4 className="font-semibold text-blue-800">📝 Bài viết mẫu trên diễn đàn Q&A</h4>
 
 **Câu hỏi (Q):** 저희 집 변기가 자주 막혀요. 저희 집은 변기를 많이 사용하지도 않는데 너무 자주 막힙니다. 사용할 때마다 조심하는데 물이 잘 내려가지 않습니다. 일주일에 서너 번 이상 막히는 것 같습니다. 막힐 때마다 펌프질을 하고 변기 뚫는 세제를 사용해서 뚫는데 그때뿐이고 며칠 지나면 다시 막힙니다. 어떻게 하면 좋을까요?
@@ -306,7 +306,7 @@ _[🔊 Audio: 9-2.mp3 - Thời lượng: 2 phút]_
 
 ### Viết đơn yêu cầu sửa chữa
 
-<div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-4">
+<div className="border border-yellow-200 rounded-lg p-4 mb-4">
 <h4 className="font-semibold text-yellow-800 mb-2">📋 Cấu trúc email yêu cầu sửa chữa</h4>
 
 **Thông tin cần chuẩn bị:**
@@ -378,7 +378,7 @@ graph LR
     D --> D2[소형 제품만]
 ```
 
-<div className="bg-red-50 border border-red-200 rounded-lg p-4 my-4">
+<div className="border border-red-200 rounded-lg p-4 my-4">
 <h4 className="font-semibold text-red-800 mb-2">⚠️ Lưu ý quan trọng</h4>
 <ul className="list-disc list-inside space-y-1 text-red-700">
 <li>보증 기간이 지나면 수리 비용이 발생합니다</li>
@@ -442,7 +442,7 @@ graph LR
 
 #### 2. 상황별 대화 완성
 
-<div className="bg-purple-50 border border-purple-200 rounded-lg p-4 mb-4">
+<div className="border border-purple-200 rounded-lg p-4 mb-4">
 <h4 className="font-semibold text-purple-800 mb-2">💬 상황 1: 서비스센터 전화</h4>
 
 **직원:** 안녕하세요. 삼성 서비스센터입니다.
@@ -467,7 +467,7 @@ graph LR
 
 </div>
 
-<div className="bg-orange-50 border border-orange-200 rounded-lg p-4 mb-4">
+<div className="border border-orange-200 rounded-lg p-4 mb-4">
 <h4 className="font-semibold text-orange-800 mb-2">💬 상황 2: 집 수리 요청</h4>
 
 **관리사무소:** 네, 관리사무소입니다.
@@ -529,7 +529,7 @@ graph LR
 
 다음 상황에 맞는 이메일을 작성해보세요:
 
-<div className="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-4">
+<div className="border border-gray-200 rounded-lg p-4 mb-4">
 <h4 className="font-semibold text-gray-800 mb-2">📧 상황:</h4>
 <p>당신은 원룸에 살고 있습니다. 어제부터 온수가 나오지 않고 있습니다. 샤워를 할 수 없어서 매우 불편합니다. 집주인에게 빨리 고쳐달라고 이메일을 보내려고 합니다.</p>
 </div>
@@ -575,7 +575,7 @@ ________________
 
 #### 연습 문장:
 
-<div className="bg-blue-50 border-l-4 border-blue-400 p-4 my-4">
+<div className="border-l-4 border-blue-400 p-4 my-4">
 <h4 className="font-semibold text-blue-800">🗣️ 발음 연습</h4>
 <ul className="space-y-2 text-blue-700">
 <li>1) 고객의 무리한 요구 때문에 갈등이 자주 생겨요. [갈똥]</li>
@@ -683,7 +683,7 @@ graph TD
 
 ### 학습 성취도 확인
 
-<div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-4">
+<div className="border border-green-200 rounded-lg p-4 mb-4">
 <h4 className="font-semibold text-green-800 mb-2">🏆 이 단원을 완료한 후 당신은:</h4>
 
 **할 수 있게 된 것들:**

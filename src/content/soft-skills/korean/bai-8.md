@@ -221,7 +221,7 @@ graph LR
 
 _[Audio: 8-P.mp3]_
 
-<div className="border rounded-lg p-4 bg-yellow-50 mb-4">
+<div className="border rounded-lg p-4 mb-4">
   <h4 className="font-semibold text-yellow-800 mb-2">Luyện phát âm</h4>
   <p>Chú ý cách phát âm các từ sau:</p>
   <ul className="mt-2 space-y-1">
@@ -429,7 +429,7 @@ graph TD
 
 ---
 
-<div className="text-center mt-8 p-4 bg-gray-100 rounded-lg">
+<div className="text-center mt-8 p-4 rounded-lg">
   <p className="text-lg font-semibold text-gray-700">🍳 요리를 즐겁게 하세요! 🍳</p>
   <p className="text-sm text-gray-600 mt-1">Hãy thưởng thức việc nấu ăn!</p>
 </div>

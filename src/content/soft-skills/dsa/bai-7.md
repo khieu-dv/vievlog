@@ -2,7 +2,7 @@
 
 ## 🎯 **Mục tiêu bài học**
 
-<div className="bg-blue-50 border-l-4 border-blue-400 p-4 mb-6">
+<div className="border-l-4 border-blue-400 p-4 mb-6">
   <h3 className="text-lg font-semibold text-blue-800 mb-2">Sau bài học này, bạn sẽ:</h3>
   <ul className="text-blue-700 space-y-1">
     <li>✓ Hiểu rõ khái niệm Time Complexity và Space Complexity</li>
@@ -18,7 +18,7 @@
 
 ### 1.1 Độ phức tạp thuật toán là gì?
 
-<div className="bg-gray-50 p-4 rounded-lg mb-4">
+<div className="p-4 rounded-lg mb-4">
   <p className="text-gray-800 leading-relaxed">
     <strong>Độ phức tạp thuật toán</strong> là thước đo hiệu suất của một thuật toán, bao gồm:
   </p>
@@ -84,7 +84,7 @@ graph LR
     style F fill:#9c27b0
 ```
 
-<div className="bg-green-50 border border-green-200 p-4 rounded-lg mt-4">
+<div className="border border-green-200 p-4 rounded-lg mt-4">
   <h4 className="text-green-800 font-semibold mb-2">💡 Quy tắc vàng:</h4>
   <p className="text-green-700">Luôn ưu tiên thuật toán có độ phức tạp thấp hơn khi xử lý dữ liệu lớn!</p>
 </div>
@@ -228,7 +228,7 @@ int factorial(int n) {
 
 ### 5.1 Bài tập phân tích
 
-<div className="bg-yellow-50 border border-yellow-200 p-4 rounded-lg">
+<div className="border border-yellow-200 p-4 rounded-lg">
   <h4 className="text-yellow-800 font-semibold mb-3">🏋️ Thử thách:</h4>
   <p className="text-yellow-700 mb-2">Phân tích Time và Space Complexity của đoạn code sau:</p>
 </div>
@@ -286,7 +286,7 @@ flowchart TD
 
 ### 6.2 Trade-offs giữa Time và Space
 
-<div className="bg-blue-50 p-4 rounded-lg">
+<div className="p-4 rounded-lg">
   <h4 className="text-blue-800 font-semibold mb-2">⚖️ Time-Space Trade-off:</h4>
   <ul className="text-blue-700 space-y-1">
     <li>• <strong>More Space → Less Time:</strong> Hash tables, lookup tables</li>
@@ -326,7 +326,7 @@ flowchart TD
 
 ## 🎉 **Tổng kết**
 
-<div className="bg-green-50 border-l-4 border-green-400 p-4">
+<div className="border-l-4 border-green-400 p-4">
   <h3 className="text-green-800 font-semibold mb-2">✅ Kiến thức đã học:</h3>
   <ul className="text-green-700 space-y-1">
     <li>1. Hiểu rõ Time Complexity và Space Complexity</li>
@@ -337,7 +337,7 @@ flowchart TD
   </ul>
 </div>
 
-<div className="bg-orange-50 border border-orange-200 p-4 rounded-lg mt-4">
+<div className="border border-orange-200 p-4 rounded-lg mt-4">
   <h4 className="text-orange-800 font-semibold mb-2">📚 Bài học tiếp theo:</h4>
   <p className="text-orange-700"><strong>Bài 8: Big-O, Big-θ, Big-Ω Notation</strong> - Tìm hiểu sâu hơn về Asymptotic Analysis</p>
 </div>
