@@ -134,9 +134,46 @@ export class RustWasm {
     return wasm.bevy_apply_preset(imageData, presetName);
   }
 
-  applyCinematicPreset(imageData: Uint8Array, presetName: string, intensity: number): Uint8Array {
+  applyCinematicPreset(imageData: Uint8Array, presetName: string, intensity: number, width?: number, height?: number): Uint8Array {
     const wasm = this.ensureInitialized();
-    return wasm.bevy_apply_cinematic_preset(imageData, presetName, intensity);
+    
+    // If width/height provided, use RGBA-based approach (safe)
+    if (width && height) {
+      console.log('Applying cinematic preset with RGBA approach:', presetName, 'intensity:', intensity);
+      
+      // Get preset effects and apply them sequentially using RGBA functions
+      const presetEffects = this.getCinematicPresetEffects(presetName, intensity);
+      let processedData = new Uint8Array(imageData);
+      
+      for (const [effectType, effectIntensity] of presetEffects) {
+        processedData = wasm.bevy_process_rgba_image(processedData, width, height, effectType, effectIntensity);
+      }
+      
+      return processedData;
+    } else {
+      // Fallback: disable preset processing
+      console.warn('applyCinematicPreset: width/height not provided, skipping preset');
+      return imageData;
+    }
+  }
+
+  // Helper method to get preset effects
+  private getCinematicPresetEffects(presetName: string, intensity: number): [string, number][] {
+    const baseEffects: Record<string, [string, number][]> = {
+      'cinematic_dark': [['contrast', 1.3], ['brightness', 0.85], ['vignette', 0.4], ['film_grain', 0.15]],
+      'golden_hour': [['brightness', 1.2], ['saturation', 1.3], ['light_leak', 0.25]],
+      'cyberpunk': [['contrast', 1.4], ['saturation', 1.6], ['film_grain', 0.1]],
+      'vintage_film': [['sepia', 1.0], ['vignette', 0.5], ['film_grain', 0.4], ['contrast', 0.9]],
+      'dreamy_soft': [['blur', 0.4], ['brightness', 1.15], ['saturation', 1.25], ['light_leak', 0.15]],
+      'horror_dark': [['grayscale', 1.0], ['contrast', 1.6], ['brightness', 0.6], ['vignette', 0.7]],
+      'neon_glow': [['contrast', 1.5], ['saturation', 1.8], ['brightness', 1.1]],
+      'arctic_cold': [['brightness', 1.05], ['contrast', 1.15], ['saturation', 0.8]],
+      'warm_sunset': [['brightness', 1.1], ['saturation', 1.4], ['light_leak', 0.3]],
+      'black_white_dramatic': [['grayscale', 1.0], ['contrast', 1.8], ['vignette', 0.3]]
+    };
+    
+    const effects = baseEffects[presetName] || [];
+    return effects.map(([effect, baseIntensity]) => [effect, baseIntensity * intensity]);
   }
 
   // Effect suggestions based on image analysis

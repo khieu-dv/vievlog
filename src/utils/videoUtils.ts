@@ -2,6 +2,47 @@
  * Video utility functions for combining frames with audio
  */
 
+// Helper function to convert RGBA data URL to Canvas data URL
+const convertRgbaToCanvasUrl = (rgbaUrl: string): string => {
+  if (!rgbaUrl.startsWith('rgba:')) return rgbaUrl; // Already a valid data URL
+  
+  try {
+    // Parse format: "rgba:WxH:base64data"
+    const parts = rgbaUrl.split(':');
+    if (parts.length !== 3) return rgbaUrl;
+    
+    const [, dimensions, base64Data] = parts;
+    const [widthStr, heightStr] = dimensions.split('x');
+    const width = parseInt(widthStr);
+    const height = parseInt(heightStr);
+    
+    if (!width || !height) return rgbaUrl;
+    
+    // Decode base64 RGBA data
+    const binaryString = atob(base64Data);
+    const rgba = new Uint8Array(binaryString.length);
+    for (let i = 0; i < binaryString.length; i++) {
+      rgba[i] = binaryString.charCodeAt(i);
+    }
+    
+    // Create canvas and put ImageData
+    const canvas = document.createElement('canvas');
+    canvas.width = width;
+    canvas.height = height;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return rgbaUrl;
+    
+    const imageData = new ImageData(new Uint8ClampedArray(rgba), width, height);
+    ctx.putImageData(imageData, 0, 0);
+    
+    // Return canvas data URL
+    return canvas.toDataURL('image/png');
+  } catch (error) {
+    console.error('Failed to convert RGBA URL:', error);
+    return rgbaUrl;
+  }
+};
+
 export interface VideoCreationOptions {
   frames: string[];
   audioUrl: string;
@@ -27,6 +68,9 @@ export async function createVideoWithAudio(
 ): Promise<Blob> {
   const { frames, audioUrl, fps, quality, format } = options;
   
+  // Convert RGBA format to canvas data URLs if needed
+  const convertedFrames = frames.map(frame => convertRgbaToCanvasUrl(frame));
+  
   onProgress?.({
     stage: 'preparing',
     progress: 0,
@@ -42,7 +86,7 @@ export async function createVideoWithAudio(
   await new Promise((resolve, reject) => {
     firstFrameImg.onload = resolve;
     firstFrameImg.onerror = reject;
-    firstFrameImg.src = frames[0];
+    firstFrameImg.src = convertedFrames[0];
   });
   
   canvas.width = firstFrameImg.width;
@@ -202,7 +246,7 @@ async function renderFramesSequentially(
       };
       
       img.onerror = reject;
-      img.src = frames[i];
+      img.src = convertRgbaToCanvasUrl(frames[i]);
     });
   }
 }
@@ -229,6 +273,9 @@ export async function createVideoFromFrames(
   format: 'webm' | 'mp4' = 'mp4',
   onProgress?: (progress: VideoCreationProgress) => void
 ): Promise<Blob> {
+  // Convert RGBA format to canvas data URLs if needed
+  const convertedFrames = frames.map(frame => convertRgbaToCanvasUrl(frame));
+  
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d')!;
   
@@ -237,7 +284,7 @@ export async function createVideoFromFrames(
   await new Promise((resolve, reject) => {
     firstFrameImg.onload = resolve;
     firstFrameImg.onerror = reject;
-    firstFrameImg.src = frames[0];
+    firstFrameImg.src = convertedFrames[0];
   });
   
   canvas.width = firstFrameImg.width;

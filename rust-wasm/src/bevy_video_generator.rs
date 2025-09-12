@@ -44,9 +44,9 @@ pub fn bevy_generate_ken_burns(
             pan_y,
         );
         
-        // Convert to base64
-        let base64_data = general_purpose::STANDARD.encode(&frame_data);
-        let data_url = format!("data:image/png;base64,{}", base64_data);
+        // Create Canvas-compatible format with dimensions
+        let rgba_base64 = general_purpose::STANDARD.encode(&frame_data);
+        let data_url = format!("rgba:{}x{}:{}", width, height, rgba_base64);
         frames_array.push(&JsValue::from_str(&data_url));
     }
     
@@ -95,9 +95,9 @@ pub fn bevy_generate_transition(
             &transition,
         );
         
-        // Convert to base64
-        let base64_data = general_purpose::STANDARD.encode(&frame_data);
-        let data_url = format!("data:image/png;base64,{}", base64_data);
+        // Create Canvas-compatible format with dimensions
+        let rgba_base64 = general_purpose::STANDARD.encode(&frame_data);
+        let data_url = format!("rgba:{}x{}:{}", width, height, rgba_base64);
         frames_array.push(&JsValue::from_str(&data_url));
     }
     
@@ -226,8 +226,9 @@ pub fn bevy_generate_parallax(
             scroll_speed,
         );
         
-        let base64_data = general_purpose::STANDARD.encode(&frame_data);
-        let data_url = format!("data:image/png;base64,{}", base64_data);
+        // Create Canvas-compatible format with dimensions
+        let rgba_base64 = general_purpose::STANDARD.encode(&frame_data);
+        let data_url = format!("rgba:{}x{}:{}", width, height, rgba_base64);
         frames_array.push(&JsValue::from_str(&data_url));
     }
     
@@ -385,8 +386,10 @@ fn generate_motion_effect_frames(
             _ => rgba_data.to_vec(),
         };
         
-        let base64_data = general_purpose::STANDARD.encode(&frame_data);
-        let data_url = format!("data:image/png;base64,{}", base64_data);
+        // Create a simple Canvas-compatible ImageData structure
+        // Format: "rgba:{width}x{height}:{base64_rgba_data}"
+        let rgba_base64 = general_purpose::STANDARD.encode(&frame_data);
+        let data_url = format!("rgba:{}x{}:{}", width, height, rgba_base64);
         motion_frames.push(JsValue::from_str(&data_url));
     }
     

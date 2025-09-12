@@ -6,6 +6,7 @@ import { Button } from '~/components/ui/Button';
 import { ImageUpload } from './ImageUpload';
 import { VideoPreview } from './VideoPreview';
 import { VideoSettings } from './VideoSettings';
+import { rustWasm } from '~/lib/wasm-loader';
 import { cn } from '~/lib/utils';
 
 export interface VideoConfig {
@@ -77,64 +78,86 @@ export function VideoGenerator() {
   const [generatedFrames, setGeneratedFrames] = useState<string[]>([]);
   const [showSettings, setShowSettings] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [wasmModule, setWasmModule] = useState<any>(null);
+  const [isWasmLoaded, setIsWasmLoaded] = useState(false);
+  const [wasmLoading, setWasmLoading] = useState(false);
 
-  // Load WASM module
+  // Load WASM module using wasm-loader
   useEffect(() => {
-    let isMounted = true;
-
-    const loadWasm = async () => {
+    const initWasm = async () => {
+      if (isWasmLoaded) return;
+      
       try {
-        const wasmModule = await import('~/wasm/vievlog_rust');
+        setWasmLoading(true);
+        await rustWasm.init();
         
-        // Bundler target auto-initializes
-        if (isMounted) {
-          setWasmModule(wasmModule);
-          console.log('WASM module loaded and initialized successfully');
+        // Additional check to ensure functions are available
+        if (window.rustWasm && window.rustWasm.bevy_generate_slideshow) {
+          setIsWasmLoaded(true);
+          console.log('✅ WASM fully loaded and ready for video generation');
+        } else {
+          throw new Error('WASM slideshow functions not available');
         }
       } catch (error) {
-        console.error('Failed to load WASM module:', error);
+        console.error('Failed to initialize WASM:', error);
+      } finally {
+        setWasmLoading(false);
       }
     };
 
-    loadWasm();
-    
-    return () => {
-      isMounted = false;
-    };
-  }, []);
+    initWasm();
+  }, [isWasmLoaded]);
 
-  const convertFileToUint8Array = useCallback(async (file: File): Promise<Uint8Array> => {
+  const convertFileToImageData = useCallback(async (file: File): Promise<{data: Uint8Array, width: number, height: number}> => {
     return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => {
-        if (reader.result instanceof ArrayBuffer) {
-          resolve(new Uint8Array(reader.result));
-        } else {
-          reject(new Error('Failed to read file as ArrayBuffer'));
+      const img = new Image();
+      img.onload = () => {
+        // Create canvas to extract RGBA data
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        if (!ctx) {
+          reject(new Error('Failed to get canvas context'));
+          return;
         }
+
+        canvas.width = img.width;
+        canvas.height = img.height;
+        
+        // Draw image to canvas
+        ctx.drawImage(img, 0, 0);
+        
+        // Get RGBA pixel data
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        
+        resolve({
+          data: new Uint8Array(imageData.data),
+          width: canvas.width,
+          height: canvas.height
+        });
       };
-      reader.onerror = () => reject(reader.error);
-      reader.readAsArrayBuffer(file);
+      
+      img.onerror = () => reject(new Error('Failed to load image'));
+      img.src = URL.createObjectURL(file);
     });
   }, []);
 
   const generateVideo = useCallback(async () => {
-    if (!wasmModule || images.length < 2) return;
+    if (!isWasmLoaded || images.length < 2) return;
 
     setIsGenerating(true);
     setProgress(0);
     setGeneratedFrames([]);
 
     try {
-      // Convert images to proper format for Bevy slideshow generation
+      // Convert images to RGBA format for Bevy slideshow generation
       const imagesData = new Array();
       for (let i = 0; i < images.length; i++) {
         setProgress((i / images.length) * 20);
-        let imageData = await convertFileToUint8Array(images[i]);
+        console.log(`🖼️ Converting image ${i + 1} to RGBA data...`);
+        
+        let imageResult = await convertFileToImageData(images[i]);
         
         // Apply smart enhancement using Bevy presets if enabled
-        if (config.smartEnhancement.enabled && wasmModule.bevy_apply_cinematic_preset) {
+        if (config.smartEnhancement.enabled) {
           console.log(`🎯 Applying Bevy enhancement to image ${i + 1}...`);
           
           // Choose appropriate preset based on enhancement settings
@@ -150,26 +173,36 @@ export function VideoGenerator() {
             }
           }
           
-          imageData = wasmModule.bevy_apply_cinematic_preset(
-            imageData,
-            presetName,
-            config.intensity
-          );
+          try {
+            imageResult.data = rustWasm.applyCinematicPreset(
+              imageResult.data,
+              presetName,
+              config.intensity,
+              imageResult.width,
+              imageResult.height
+            );
+          } catch (error) {
+            console.warn('Enhancement failed:', error);
+          }
         }
         
-        // Create image object with metadata for Bevy slideshow
+        // Add image data in correct format for Bevy
         imagesData.push({
-          data: imageData,
-          width: 1920, // Default width - Bevy will handle resizing
-          height: 1080 // Default height - Bevy will handle resizing
+          data: imageResult.data,
+          width: imageResult.width,
+          height: imageResult.height
         });
+        
+        console.log(`✅ Image ${i + 1}: ${imageResult.width}x${imageResult.height} pixels`);
       }
       
       setProgress(40);
       
-      // Use new Bevy slideshow generation function
+      // Use Bevy slideshow generation function via wasm-loader
       console.log('🎬 Generating video with Bevy slideshow...');
-      const frames = wasmModule.bevy_generate_slideshow(
+      console.log('📋 Images data prepared:', imagesData.length, 'images');
+      
+      const frames = rustWasm.generateSlideshow(
         imagesData,
         config.framesPerImage,
         config.transitionFrames,
@@ -177,11 +210,13 @@ export function VideoGenerator() {
       );
 
       setProgress(90);
-      const frameArray = Array.from(frames) as string[];
-      setGeneratedFrames(frameArray);
+      console.log('📊 Generated frames:', frames.length, 'frames');
+      console.log('🎯 First frame preview:', frames[0]?.substring(0, 50) + '...');
+      
+      setGeneratedFrames(frames);
       setProgress(100);
       
-      console.log(`✅ Generated ${frameArray.length} frames successfully`);
+      console.log(`✅ Generated ${frames.length} frames successfully`);
       
     } catch (error) {
       console.error('Video generation failed:', error);
@@ -189,19 +224,20 @@ export function VideoGenerator() {
       setIsGenerating(false);
       setTimeout(() => setProgress(0), 2000);
     }
-  }, [wasmModule, images, config, convertFileToUint8Array]);
+  }, [isWasmLoaded, images, config, convertFileToImageData]);
 
   const generatePreview = useCallback(async () => {
-    if (!wasmModule || images.length < 2) return;
+    if (!isWasmLoaded || images.length < 2) return;
 
     try {
       // Use first 3 images for quick preview
       const imagesData = new Array();
       for (const image of images.slice(0, 3)) {
-        let imageData = await convertFileToUint8Array(image);
+        console.log('🖼️ Converting preview image to RGBA data...');
+        let imageResult = await convertFileToImageData(image);
         
         // Apply Bevy preset if enhancement is enabled
-        if (config.smartEnhancement.enabled && wasmModule.bevy_apply_cinematic_preset) {
+        if (config.smartEnhancement.enabled) {
           let presetName = 'cinematic_dark';
           if (config.smartEnhancement.preset !== 'auto') {
             switch (config.smartEnhancement.preset) {
@@ -214,39 +250,46 @@ export function VideoGenerator() {
             }
           }
           
-          imageData = wasmModule.bevy_apply_cinematic_preset(
-            imageData,
-            presetName,
-            config.intensity * 0.8 // Slightly less intense for preview
-          );
+          try {
+            imageResult.data = rustWasm.applyCinematicPreset(
+              imageResult.data,
+              presetName,
+              config.intensity * 0.8, // Slightly less intense for preview
+              imageResult.width,
+              imageResult.height
+            );
+          } catch (error) {
+            console.warn('Preview enhancement failed:', error);
+          }
         }
         
         imagesData.push({
-          data: imageData,
-          width: 1280, // Smaller size for preview
-          height: 720
+          data: imageResult.data,
+          width: imageResult.width,
+          height: imageResult.height
         });
+        
+        console.log(`✅ Preview image: ${imageResult.width}x${imageResult.height} pixels`);
       }
 
       // Generate quick preview with shorter frames
       console.log('🎬 Generating Bevy preview...');
-      const frames = wasmModule.bevy_generate_slideshow(
+      const frames = rustWasm.generateSlideshow(
         imagesData,
         15, // Shorter duration for preview
         10, // Shorter transition
         config.transitionType
       );
 
-      const frameArray = Array.from(frames) as string[];
-      setGeneratedFrames(frameArray);
-      console.log(`✅ Generated ${frameArray.length} preview frames`);
+      setGeneratedFrames(frames);
+      console.log(`✅ Generated ${frames.length} preview frames`);
       
     } catch (error) {
       console.error('Preview generation failed:', error);
     }
-  }, [wasmModule, images, config.smartEnhancement, config.transitionType, config.intensity, convertFileToUint8Array]);
+  }, [isWasmLoaded, images, config.smartEnhancement, config.transitionType, config.intensity, convertFileToImageData]);
 
-  const canGenerate = images.length >= 2 && !isGenerating && wasmModule;
+  const canGenerate = images.length >= 2 && !isGenerating && isWasmLoaded;
   const videoDuration = images.length > 0 
     ? ((config.framesPerImage * images.length) + (config.transitionFrames * (images.length - 1))) / config.fps
     : 0;
@@ -262,12 +305,34 @@ export function VideoGenerator() {
         </p>
       </div>
 
-      {!wasmModule && (
+      {!isWasmLoaded && (
         <div className="flex items-center justify-center p-4 bg-yellow-50 dark:bg-yellow-950/20 rounded-lg">
           <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-          <span className="text-sm">Loading...</span>
+          <span className="text-sm">
+            {wasmLoading ? 'Loading WASM module...' : 'Initializing...'}
+          </span>
         </div>
       )}
+
+      {/* Debug Panel */}
+      <div className="bg-gray-50 dark:bg-gray-900 p-4 rounded-lg text-xs text-gray-600 dark:text-gray-400">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div>
+            <strong>WASM Status:</strong> {isWasmLoaded ? '✅ Ready' : wasmLoading ? '🔄 Loading' : '❌ Not loaded'}
+          </div>
+          <div>
+            <strong>Images:</strong> {images.length} uploaded
+          </div>
+          <div>
+            <strong>Generated Frames:</strong> {generatedFrames.length} frames
+          </div>
+        </div>
+        {isWasmLoaded && (
+          <div className="mt-2">
+            <strong>Using:</strong> wasm-loader.ts wrapper for stable integration
+          </div>
+        )}
+      </div>
 
       {/* Upload Section */}
       <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">

@@ -4,6 +4,47 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Play, Pause, RotateCcw, Download, Maximize2, Music, Volume2, VolumeX, Loader2 } from 'lucide-react';
 import { Button } from '~/components/ui/Button';
 import { cn } from '~/lib/utils';
+
+// Helper function to convert RGBA data URL to Canvas data URL
+const convertRgbaToCanvasUrl = (rgbaUrl: string): string => {
+  if (!rgbaUrl.startsWith('rgba:')) return rgbaUrl; // Already a valid data URL
+  
+  try {
+    // Parse format: "rgba:WxH:base64data"
+    const parts = rgbaUrl.split(':');
+    if (parts.length !== 3) return rgbaUrl;
+    
+    const [, dimensions, base64Data] = parts;
+    const [widthStr, heightStr] = dimensions.split('x');
+    const width = parseInt(widthStr);
+    const height = parseInt(heightStr);
+    
+    if (!width || !height) return rgbaUrl;
+    
+    // Decode base64 RGBA data
+    const binaryString = atob(base64Data);
+    const rgba = new Uint8Array(binaryString.length);
+    for (let i = 0; i < binaryString.length; i++) {
+      rgba[i] = binaryString.charCodeAt(i);
+    }
+    
+    // Create canvas and put ImageData
+    const canvas = document.createElement('canvas');
+    canvas.width = width;
+    canvas.height = height;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return rgbaUrl;
+    
+    const imageData = new ImageData(new Uint8ClampedArray(rgba), width, height);
+    ctx.putImageData(imageData, 0, 0);
+    
+    // Return canvas data URL
+    return canvas.toDataURL('image/png');
+  } catch (error) {
+    console.error('Failed to convert RGBA URL:', error);
+    return rgbaUrl;
+  }
+};
 import { 
   createVideoWithAudio, 
   createVideoFromFrames, 
@@ -330,7 +371,7 @@ export function VideoPreview({ frames, fps, onDownload, className, quality = 'me
       <div className="relative bg-black rounded-lg overflow-hidden">
         <div className="aspect-video flex items-center justify-center">
           <img
-            src={frames[currentFrame]}
+            src={convertRgbaToCanvasUrl(frames[currentFrame])}
             alt={`Frame ${currentFrame + 1}`}
             className="max-w-full max-h-full object-contain"
             style={{ 
