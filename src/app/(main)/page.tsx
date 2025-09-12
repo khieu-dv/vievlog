@@ -4,6 +4,7 @@ import {
   Blocks,
   Bot,
   Braces,
+  Camera,
   CheckSquare,
   Coins,
   Component,
@@ -23,6 +24,7 @@ import {
   Smartphone,
   SquareKanban,
   UsersRound,
+  Video,
   Waypoints,
   Workflow,
   ArrowRight
@@ -49,25 +51,32 @@ export default function HomePage() {
     <div className="min-h-screen bg-white dark:bg-slate-900">
       <Header />
 
-      {/* AI Chat Section */}
+      {/* AI Tools Section */}
       <div className="border-b bg-gradient-to-b from-gray-200 to-white py-12 dark:border-b-gray-800 dark:from-gray-900 dark:to-slate-900 sm:py-16">
         <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <Bot className="mb-4 size-8 text-black dark:text-white sm:size-12" />
             <h2 className="mb-3 text-2xl font-bold text-black dark:text-white sm:text-3xl">
-              Get AI-Powered Learning Guidance
+              Explore Our AI Tools
             </h2>
             <p className="mb-6 text-sm text-gray-600 dark:text-gray-400 sm:text-base">
-              Our AI Tutor analyzes your experience, suggests relevant roadmaps, and
-              provides detailed answers to help you progress in your tech career.
+              Unleash your creativity with our new AI-powered image and video generators.
             </p>
-            <Link
-              href="/docs"
-              className="inline-flex items-center gap-2 rounded-xl bg-black px-4 py-2 text-sm font-medium text-white transition-colors hover:opacity-80 dark:bg-white dark:text-black sm:px-6 sm:py-3 sm:text-base"
-            >
-              <MessageCircle className="size-3 fill-current sm:size-5" />
-              Chat with AI Tutor
-            </Link>
+            <div className="flex gap-4">
+              <Link
+                href="/image-editor"
+                className="inline-flex items-center gap-2 rounded-xl bg-black px-4 py-2 text-sm font-medium text-white transition-colors hover:opacity-80 dark:bg-white dark:text-black sm:px-6 sm:py-3 sm:text-base"
+              >
+                <Camera className="size-3 fill-current sm:size-5" />
+                Image Editor
+              </Link>
+              <Link
+                href="/video-generator"
+                className="inline-flex items-center gap-2 rounded-xl bg-black px-4 py-2 text-sm font-medium text-white transition-colors hover:opacity-80 dark:bg-white dark:text-black sm:px-6 sm:py-3 sm:text-base"
+              >
+                <Video className="size-3 fill-current sm:size-5" />
+                Video Generator
+              </Link>
+            </div>
           </div>
         </div>
       </div>
