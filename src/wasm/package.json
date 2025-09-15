@@ -1,0 +1,17 @@
+{
+  "name": "vievlog-rust",
+  "type": "module",
+  "version": "0.2.0",
+  "files": [
+    "vievlog_rust_bg.wasm",
+    "vievlog_rust.js",
+    "vievlog_rust_bg.js",
+    "vievlog_rust.d.ts"
+  ],
+  "main": "vievlog_rust.js",
+  "types": "vievlog_rust.d.ts",
+  "sideEffects": [
+    "./vievlog_rust.js",
+    "./snippets/*"
+  ]
+}

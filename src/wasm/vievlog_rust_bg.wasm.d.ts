@@ -1,0 +1,32 @@
+/* tslint:disable */
+/* eslint-disable */
+export const memory: WebAssembly.Memory;
+export const main: () => void;
+export const bevy_process_image: (a: number, b: number, c: number, d: number, e: number) => [number, number];
+export const bevy_process_image_multi: (a: number, b: number, c: number, d: number) => [number, number];
+export const bevy_create_animated_effect: (a: number, b: number, c: number, d: number, e: number, f: number) => any;
+export const bevy_get_effect_presets: () => any;
+export const bevy_apply_preset: (a: number, b: number, c: number, d: number) => [number, number];
+export const bevy_process_rgba_image: (a: number, b: number, c: number, d: number, e: number, f: number, g: number) => [number, number];
+export const bevy_resize_image: (a: number, b: number, c: number, d: number, e: number, f: number) => [number, number];
+export const bevy_get_all_presets: () => any;
+export const bevy_get_preset_config: (a: number, b: number) => [number, number];
+export const bevy_apply_cinematic_preset: (a: number, b: number, c: number, d: number, e: number) => [number, number];
+export const bevy_suggest_effects: (a: number, b: number, c: number, d: number) => any;
+export const bevy_create_preset_previews: (a: number, b: number, c: number, d: number) => any;
+export const bevy_batch_process_preset: (a: any, b: number, c: number, d: number) => any;
+export const bevy_animate_preset: (a: number, b: number, c: number, d: number, e: number, f: number) => any;
+export const bevy_get_performance_metrics: () => any;
+export const bevy_generate_ken_burns: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number) => any;
+export const bevy_generate_transition: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number) => any;
+export const bevy_generate_slideshow: (a: any, b: number, c: number, d: number, e: number) => any;
+export const bevy_generate_parallax: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number) => any;
+export const __wbindgen_exn_store: (a: number) => void;
+export const __externref_table_alloc: () => number;
+export const __wbindgen_export_2: WebAssembly.Table;
+export const __wbindgen_free: (a: number, b: number, c: number) => void;
+export const __wbindgen_malloc: (a: number, b: number) => number;
+export const __wbindgen_realloc: (a: number, b: number, c: number, d: number) => number;
+export const __wbindgen_export_6: WebAssembly.Table;
+export const wasm_bindgen__convert__closures_____invoke__h357b077c0154e0d6: (a: number, b: number) => void;
+export const __wbindgen_start: () => void;
