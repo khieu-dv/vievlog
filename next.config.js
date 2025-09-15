@@ -55,12 +55,29 @@ const nextConfig = {
 
     return config;
   },
-  // Add headers for WASM files
+  // Add headers for WASM files and static files
   async headers() {
     return [
       {
         source: '/wasm/:path*',
         headers: [
+          {
+            key: 'Cross-Origin-Embedder-Policy',
+            value: 'require-corp',
+          },
+          {
+            key: 'Cross-Origin-Opener-Policy',
+            value: 'same-origin',
+          },
+        ],
+      },
+      {
+        source: '/games/unhaunter/pkg/:path*',
+        headers: [
+          {
+            key: 'Content-Type',
+            value: 'application/javascript',
+          },
           {
             key: 'Cross-Origin-Embedder-Policy',
             value: 'require-corp',
