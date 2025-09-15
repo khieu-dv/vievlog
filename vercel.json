@@ -1,0 +1,28 @@
+{
+  "routes": [
+    {
+      "src": "/games/unhaunter/(.*)",
+      "dest": "/games/unhaunter/$1"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/games/unhaunter/pkg/(.*)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/javascript"
+        }
+      ]
+    },
+    {
+      "source": "/games/unhaunter/pkg/.*\\.wasm$",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/wasm"
+        }
+      ]
+    }
+  ]
+}
