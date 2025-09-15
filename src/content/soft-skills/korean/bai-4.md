@@ -311,6 +311,9 @@ graph TD
     D --> E
     E --> F[Hỗ trợ giải quyết tranh chấp]
     F --> G[Bảo vệ quyền lợi người tiêu dùng]
+
+    %% Gắn link cho node D
+    click D "https://www.ccn.go.kr" "Trang web Trung tâm Tư vấn"
 ```
 
 #### Chức năng chính:
