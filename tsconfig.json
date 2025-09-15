@@ -31,5 +31,5 @@
     ".next/types/**/*.ts",
     "eslint.config.js"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "public/games/unhaunter/assets"]
 }
