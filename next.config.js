@@ -27,6 +27,14 @@ const nextConfig = {
     ],
   },
   eslint: { ignoreDuringBuilds: true },
+  async rewrites() {
+    return [
+      {
+        source: '/games/unhaunter/pkg/:path*',
+        destination: '/games/unhaunter/pkg/:path*',
+      },
+    ];
+  },
   experimental: {
     turbo: {
       resolveAlias: {

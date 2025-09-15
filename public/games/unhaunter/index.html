@@ -120,8 +120,19 @@
 
     </script>
     <script type="module">
-        import init from './pkg/unhaunter.js';
-        init();
+        // Get the base URL dynamically
+        const baseUrl = window.location.origin + window.location.pathname.replace('/games/unhaunter', '');
+        const scriptPath = baseUrl + 'games/unhaunter/pkg/unhaunter.js';
+        
+        import(scriptPath).then(module => {
+            module.default();
+        }).catch(error => {
+            console.error('Failed to load unhaunter.js:', error);
+            // Fallback to relative path
+            import('./pkg/unhaunter.js').then(module => {
+                module.default();
+            });
+        });
     </script>
 </body>
 
