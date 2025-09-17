@@ -25,19 +25,6 @@ const CURRENT_YEAR = new Date().getFullYear()
 export default async function DocsLayout({ children }: DocsLayoutProps) {
   const pageMap = await getPageMap()
 
-  const navbar = (
-    <Navbar
-      logo={<span className="font-bold text-primary">VieVlog</span>}
-      logoLink="/"
-    >
-      {/* Các link custom trên navbar */}
-      <div className="flex space-x-4 ml-6">
-        <Link href="/docs" className="hover:text-primary">Docs</Link>
-        <Link href="/auth/sign-in" className="hover:text-primary">Login</Link>
-      </div>
-    </Navbar>
-  )
-
 
   const excludePages = ['posts', 'auth', 'profile', 'games', 'image-editor', 'video-generator', 'korean']
 
@@ -52,18 +39,21 @@ export default async function DocsLayout({ children }: DocsLayoutProps) {
       <Head faviconGlyph="📚" />
       <body>
         <Layout
-          navbar={navbar}
-          footer={<Footer>MIT {CURRENT_YEAR} © VieVlog.</Footer>}
+          navbar={null}
+          footer={null}
           sidebar={{ autoCollapse: true, defaultOpen: false, toggleButton: false }}
           pageMap={filteredPageMap}
           feedback={{ content: null }}
           editLink={null}
+          navigation={{
+            prev: false,
+            next: false
+          }}
         >
           <div data-pagefind-body>
             {children}
           </div>
         </Layout>
-        <ConditionalFloatingCodeEditor />
       </body>
     </html>
   )
