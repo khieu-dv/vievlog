@@ -1,4 +1,5 @@
 export default {
+    "bai-0": "Bài 0: Giới thiệu Khóa học Tiếng Hàn Quốc - Trung cấp 1",
     "bai-1": "Bài 1: 대인관계 (Quan hệ nhân giao)",
     "bai-2": "Bài 2: 성격 (Tính cách)",
     "bai-3": "Bài 3: 지역 복지 서비스 (Dịch vụ phúc lợi địa phương)",
