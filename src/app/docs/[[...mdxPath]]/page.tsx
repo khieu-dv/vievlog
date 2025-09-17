@@ -1,5 +1,6 @@
 import { generateStaticParamsFor, importPage } from 'nextra/pages'
 import { useMDXComponents as getMDXComponents } from '../../../../mdx-components'
+import CommentSection from '../../../components/docs/CommentSection'
 import type { Metadata } from 'next'
 
 export const generateStaticParams = generateStaticParamsFor('mdxPath')
@@ -24,9 +25,14 @@ export default async function Page(props: Props) {
     metadata,
     sourceCode
   } = await importPage(params.mdxPath)
+
+  // Create doc path from mdxPath params
+  const docPath = params.mdxPath?.join('/') || 'index'
+
   return (
     <Wrapper toc={toc} metadata={metadata} sourceCode={sourceCode}>
       <MDXContent {...props} params={params} />
+      <CommentSection docPath={docPath} />
     </Wrapper>
   )
 }
