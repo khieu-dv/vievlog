@@ -200,11 +200,11 @@ export default function KoreanLearningPage() {
       </div>
 
       {/* KIIP Program */}
+      <div id="kiip-program">
       <RoleRoadmaps
         badge="Chương Trình KIIP"
         title="Chương Trình Tiếng Hàn Hội Nhập Xã Hội Hàn Quốc (KIIP)"
         description="Korea Immigration & Integration Program - Chương trình chính thức của Chính phủ Hàn Quốc"
-        id="kiip-program"
       >
         <div className="flex flex-col gap-3">
           <RoadmapCard
@@ -235,13 +235,14 @@ export default function KoreanLearningPage() {
           description="Tìm hiểu toàn diện về đất nước và con người Hàn Quốc"
         />
       </RoleRoadmaps>
+      </div>
 
       {/* TOPIK Test */}
+      <div id="topik-test">
       <RoleRoadmaps
         badge="Thi TOPIK"
         title="Luyện Thi TOPIK (Test of Proficiency in Korean)"
         description="Kỳ thi tiếng Hàn quan trọng nhất cho du học, làm việc và định cư tại Hàn Quốc"
-        id="topik-test"
       >
         <div className="flex flex-col gap-3">
           <RoadmapCard
@@ -271,13 +272,14 @@ export default function KoreanLearningPage() {
           secondaryDescription="Luyện tập chuyên sâu từng kỹ năng"
         />
       </RoleRoadmaps>
+      </div>
 
       {/* KIIP Test */}
+      <div id="kiip-test">
       <RoleRoadmaps
         badge="Thi KIIP"
         title="Luyện Thi Tốt Nghiệp KIIP"
         description="Kỳ thi tốt nghiệp chương trình KIIP để nhận chứng chỉ hoàn thành"
-        id="kiip-test"
       >
         <RoadmapCard
           icon={FileText}
@@ -298,13 +300,14 @@ export default function KoreanLearningPage() {
           secondaryDescription="Hướng dẫn thủ tục và lịch trình thi"
         />
       </RoleRoadmaps>
+      </div>
 
       {/* ESP Test */}
+      <div id="esp-test">
       <RoleRoadmaps
         badge="Thi ESP"
         title="Luyện Thi ESP (Employment Permit System)"
         description="Kỳ thi tiếng Hàn cho lao động nước ngoài muốn làm việc tại Hàn Quốc"
-        id="esp-test"
       >
         <RoadmapCard
           icon={Star}
@@ -325,6 +328,7 @@ export default function KoreanLearningPage() {
           secondaryDescription="Hướng dẫn toàn diện về EPS"
         />
       </RoleRoadmaps>
+      </div>
 
       {/* Korean Learning Resources */}
       <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
