@@ -37,4 +37,9 @@
   .text-balance {
     text-wrap: balance;
   }
+
+  /* Hide CopyPage component in mobile-docs */
+  .nextra-border {
+    display: none !important;
+  }
 }
