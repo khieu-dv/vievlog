@@ -32,7 +32,7 @@ graph TD
   <p className="text-blue-700">Named structs là loại phổ biến nhất, cho phép đặt tên cho từng trường dữ liệu</p>
 </div>
 
-```rust
+```rust copy
 // Định nghĩa struct Employee
 struct Employee {
     id: u32,
@@ -59,7 +59,7 @@ fn main() {
 
 ### 2. Tuple Structs
 
-```rust
+```rust copy
 // Định nghĩa tuple structs
 struct Point(f64, f64, f64);  // 3D Point
 struct Color(u8, u8, u8);     // RGB Color
@@ -76,7 +76,7 @@ fn main() {
 
 ### 3. Unit Structs
 
-```rust
+```rust copy
 // Unit structs - không có dữ liệu
 struct DatabaseConnection;
 struct NetworkError;
@@ -96,7 +96,7 @@ impl DatabaseConnection {
   <p className="text-green-700">Sử dụng <code>..other_struct</code> để copy các trường từ struct khác</p>
 </div>
 
-```rust
+```rust copy
 let emp1 = Employee {
     id: 1,
     name: String::from("Nguyen Van A"),
@@ -125,7 +125,7 @@ let emp2 = Employee {
 
 ### Impl Blocks - Định nghĩa Methods
 
-```rust
+```rust copy
 struct Rectangle {
     width: u32,
     height: u32,
@@ -172,7 +172,7 @@ fn main() {
 
 ### Định nghĩa Enum Cơ bản
 
-```rust
+```rust copy
 enum Status {
     Active,
     Inactive,
@@ -195,7 +195,7 @@ enum Message {
 
 ### Enum Methods
 
-```rust
+```rust copy
 impl Status {
     fn is_active(&self) -> bool {
         matches!(self, Status::Active)
@@ -219,7 +219,7 @@ impl Status {
   <p className="text-purple-700">Match expressions phải xử lý tất cả các trường hợp có thể (exhaustive)</p>
 </div>
 
-```rust
+```rust copy
 fn process_message(msg: Message) {
     match msg {
         Message::Quit => println!("Quit message received"),
@@ -247,7 +247,7 @@ fn process_ip(ip: IpAddr) {
 
 ### If Let - Pattern Matching Ngắn gọn
 
-```rust
+```rust copy
 let status = Status::Active;
 
 // Thay vì dùng match đầy đủ
@@ -264,7 +264,7 @@ if let Message::Write(text) = msg {
 
 ### While Let - Lặp với Pattern
 
-```rust
+```rust copy
 let mut stack = vec![1, 2, 3, 4, 5];
 
 while let Some(value) = stack.pop() {
@@ -295,7 +295,7 @@ flowchart TD
 
 ## 💼 Thực Hành: Employee Management System
 
-```rust
+```rust copy
 #[derive(Debug)]
 enum EmployeeType {
     FullTime { salary: f64 },

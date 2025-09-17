@@ -37,7 +37,7 @@ flowchart TD
 | If-else | `if condition { } else { }` | `if x > 0 { 1 } else { -1 }` |
 | If-else if | `if cond1 { } else if cond2 { } else { }` | Xem ví dụ bên dưới |
 
-```rust
+```rust copy
 fn main() {
     let number = 6;
 
@@ -82,7 +82,7 @@ Rust cung cấp ba loại vòng lặp chính:
 
 ### 2.1 Loop - Vòng lặp vô hạn
 
-```rust
+```rust copy
 fn main() {
     let mut count = 0;
     
@@ -101,7 +101,7 @@ fn main() {
 
 ### 2.2 While Loop
 
-```rust
+```rust copy
 fn main() {
     let mut number = 3;
 
@@ -116,7 +116,7 @@ fn main() {
 
 ### 2.3 For Loop
 
-```rust
+```rust copy
 fn main() {
     // Lặp qua range
     for number in 1..=5 {
@@ -148,7 +148,7 @@ graph TD
     C -->|continue| G[Tiếp tục inner loop]
 ```
 
-```rust
+```rust copy
 fn main() {
     'outer: loop {
         println!("Outer loop");
@@ -169,7 +169,7 @@ fn main() {
 
 ### Cú pháp định nghĩa hàm
 
-```rust
+```rust copy
 fn function_name(parameter1: Type1, parameter2: Type2) -> ReturnType {
     // function body
     expression_or_return_statement
@@ -187,7 +187,7 @@ fn function_name(parameter1: Type1, parameter2: Type2) -> ReturnType {
 
 ### 3.1 Functions với Parameters và Return Values
 
-```rust
+```rust copy
 // Function với parameters
 fn add(x: i32, y: i32) -> i32 {
     x + y  // Expression, không cần return keyword
@@ -239,7 +239,7 @@ fn main() {
 | Expression | `x + 1` | Mathematical operation |
 | Expression | `{ let x = 3; x + 1 }` | Block expression |
 
-```rust
+```rust copy
 fn main() {
     // Block expression
     let y = {
@@ -253,7 +253,7 @@ fn main() {
 
 ## 4. Function Scope và Nested Functions
 
-```rust
+```rust copy
 fn outer_function() {
     println!("Outer function");
     
@@ -277,7 +277,7 @@ Hãy implement các functions sau:
 
 ### 4.1 Factorial Function
 
-```rust
+```rust copy
 fn factorial(n: u32) -> u32 {
     if n <= 1 {
         1
@@ -298,7 +298,7 @@ fn factorial_iterative(n: u32) -> u32 {
 
 ### 4.2 Fibonacci Function
 
-```rust
+```rust copy
 fn fibonacci(n: u32) -> u32 {
     match n {
         0 => 0,
@@ -328,7 +328,7 @@ fn fibonacci_iterative(n: u32) -> u32 {
 
 ### 4.3 Prime Number Checker
 
-```rust
+```rust copy
 fn is_prime(n: u32) -> bool {
     if n <= 1 {
         return false;
@@ -366,7 +366,7 @@ fn find_primes(limit: u32) -> Vec<u32> {
 
 ### 4.4 Complete Example Program
 
-```rust
+```rust copy
 fn main() {
     // Test factorial
     for i in 0..=10 {

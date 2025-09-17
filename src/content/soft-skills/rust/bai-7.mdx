@@ -26,7 +26,7 @@ graph TD
 
 ### Cú pháp cơ bản
 
-```rust
+```rust copy
 match value {
     pattern1 => expression1,
     pattern2 => expression2,
@@ -36,7 +36,7 @@ match value {
 
 ### Ví dụ thực tế với enum
 
-```rust
+```rust copy
 #[derive(Debug)]
 enum TrafficLight {
     Red,
@@ -75,7 +75,7 @@ fn get_action(light: TrafficLight) -> &'static str {
 | Boolean | `true`, `false` | Khớp với giá trị boolean |
 | Character | `'a'`, `'x'` | Khớp với ký tự cụ thể |
 
-```rust
+```rust copy
 fn classify_number(n: i32) -> &'static str {
     match n {
         0 => "zero",
@@ -88,7 +88,7 @@ fn classify_number(n: i32) -> &'static str {
 
 ### 2. Range Patterns
 
-```rust
+```rust copy
 fn classify_score(score: u32) -> &'static str {
     match score {
         0..=59 => "Fail",
@@ -103,7 +103,7 @@ fn classify_score(score: u32) -> &'static str {
 
 ### 3. Multiple Patterns với OR (|)
 
-```rust
+```rust copy
 fn is_weekend(day: &str) -> bool {
     match day {
         "Saturday" | "Sunday" => true,
@@ -118,7 +118,7 @@ Destructuring cho phép bạn "tách" các thành phần của compound types.
 
 ### Destructuring Tuples
 
-```rust
+```rust copy
 fn process_point(point: (i32, i32)) -> String {
     match point {
         (0, 0) => "Origin".to_string(),
@@ -131,7 +131,7 @@ fn process_point(point: (i32, i32)) -> String {
 
 ### Destructuring Structs
 
-```rust
+```rust copy
 #[derive(Debug)]
 struct Person {
     name: String,
@@ -156,7 +156,7 @@ fn describe_person(person: Person) -> String {
 
 ### Destructuring Enums
 
-```rust
+```rust copy
 #[derive(Debug)]
 enum Message {
     Quit,
@@ -183,7 +183,7 @@ fn process_message(msg: Message) {
 
 Guards cho phép thêm điều kiện bổ sung vào patterns:
 
-```rust
+```rust copy
 fn categorize_number(x: i32) -> &'static str {
     match x {
         n if n < 0 => "negative",
@@ -198,7 +198,7 @@ fn categorize_number(x: i32) -> &'static str {
 
 Operator `@` cho phép bind giá trị vào biến trong khi vẫn pattern matching:
 
-```rust
+```rust copy
 #[derive(Debug)]
 enum Status {
     Active(u32),
@@ -236,7 +236,7 @@ So sánh giữa `match` và `if let`:
 | **match** | `match option { Some(x) => { ... }, None => {} }` | Khi cần xử lý tất cả cases |
 | **if let** | `if let Some(x) = option { ... }` | Chỉ quan tâm đến 1 pattern cụ thể |
 
-```rust
+```rust copy
 fn handle_option(opt: Option<i32>) {
     // Cách 1: Sử dụng match
     match opt {
@@ -253,7 +253,7 @@ fn handle_option(opt: Option<i32>) {
 
 ### While Let - Lặp với pattern matching
 
-```rust
+```rust copy
 fn process_stack() {
     let mut stack = vec![1, 2, 3, 4, 5];
     
@@ -268,7 +268,7 @@ fn process_stack() {
 
 Hãy xây dựng một máy tính đơn giản sử dụng pattern matching:
 
-```rust
+```rust copy
 #[derive(Debug)]
 enum Operation {
     Add(f64, f64),
@@ -383,7 +383,7 @@ flowchart TD
 ### Bài tập 1: JSON Parser
 Tạo một JSON parser đơn giản sử dụng enums và pattern matching:
 
-```rust
+```rust copy
 #[derive(Debug)]
 enum JsonValue {
     Null,
@@ -421,7 +421,7 @@ fn stringify_json(value: JsonValue) -> String {
 ### Bài tập 2: State Machine
 Implement một state machine cho traffic light:
 
-```rust
+```rust copy
 #[derive(Debug, Clone)]
 enum TrafficState {
     Red { remaining_time: u32 },

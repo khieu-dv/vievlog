@@ -62,7 +62,7 @@ graph TD
 
 **Ví dụ:**
 
-```rust
+```rust copy
 fn main() {
     let x = 5; // Statement
     let y = {  // Expression block
@@ -104,7 +104,7 @@ flowchart LR
 <p>Trong Rust, biến mặc định là <strong>immutable</strong> (bất biến). Đây là tính năng bảo mật giúp tránh bugs.</p>
 </div>
 
-```rust
+```rust copy
 fn main() {
     let x = 5;
     println!("Giá trị x: {}", x);
@@ -116,7 +116,7 @@ fn main() {
 
 Để tạo biến có thể thay đổi, sử dụng từ khóa `mut`:
 
-```rust
+```rust copy
 fn main() {
     let mut x = 5;
     println!("Giá trị x ban đầu: {}", x);
@@ -147,7 +147,7 @@ graph TD
 
 **Shadowing** cho phép tái sử dụng tên biến với giá trị hoặc kiểu mới:
 
-```rust
+```rust copy
 fn main() {
     let x = 5;           // x = 5 (i32)
     let x = x + 1;       // x = 6 (i32) - shadowing
@@ -200,7 +200,7 @@ fn main() {
 
 **Ví dụ shadowing với thay đổi kiểu:**
 
-```rust
+```rust copy
 let spaces = "   ";      // &str type
 let spaces = spaces.len(); // usize type - OK với shadowing!
 
@@ -230,7 +230,7 @@ graph LR
 | Kiểu dữ liệu      | Bắt buộc chỉ định | Có thể infer |
 | Naming convention | UPPER_SNAKE_CASE  | snake_case   |
 
-```rust
+```rust copy
 const MAX_POINTS: u32 = 100_000;
 const PI: f64 = 3.14159;
 
@@ -242,7 +242,7 @@ fn main() {
 
 ### 4.2 Static Variables
 
-```rust
+```rust copy
 static HELLO_WORLD: &str = "Hello, world!";
 static mut COUNTER: usize = 0; // Unsafe để modify
 
@@ -267,7 +267,7 @@ graph TD
     F --> G[Truy cập được từ inner]
 ```
 
-```rust
+```rust copy
 fn main() {
     let x = 5; // x có scope trong main function
 
@@ -296,7 +296,7 @@ fn main() {
 
 ## 6. THỰC HÀNH: CHƯƠNG TRÌNH TÍNH TOÁN
 
-```rust
+```rust copy
 fn main() {
     // Constants
     const TAX_RATE: f64 = 0.1;
