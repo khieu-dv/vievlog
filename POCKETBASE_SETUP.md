@@ -9,7 +9,7 @@ Truy cập PocketBase Admin Panel tại: `https://pocketbase.vietopik.com/_/`
 ```sql
 CREATE TABLE doc_comments_tbl (
   id TEXT PRIMARY KEY,
-  doc_path TEXT NOT NULL,      -- Đường dẫn docs (vd: "soft-skills/rust/bai-1")
+  doc_path TEXT NOT NULL,      -- Đường dẫn docs (vd: "soft-skills/rust/bai-0/bai-1")
   content TEXT NOT NULL,       -- Nội dung comment
   author_id TEXT NOT NULL,     -- ID người dùng từ users_tbl
   author_name TEXT NOT NULL,   -- Tên hiển thị
@@ -31,30 +31,35 @@ CREATE TABLE doc_comments_tbl (
 ### API Rules:
 
 #### List/Search Rule:
+
 ```javascript
 // Cho phép mọi người xem comments
 @request.auth.id != ""
 ```
 
 #### View Rule:
+
 ```javascript
 // Cho phép mọi người xem comment detail
 @request.auth.id != ""
 ```
 
 #### Create Rule:
+
 ```javascript
 // Chỉ user đăng nhập mới tạo được comment
 @request.auth.id != "" && @request.auth.id = @request.data.author_id
 ```
 
 #### Update Rule:
+
 ```javascript
 // Chỉ author mới sửa được comment của mình
 @request.auth.id != "" && @request.auth.id = author_id
 ```
 
 #### Delete Rule:
+
 ```javascript
 // Chỉ author mới xóa được comment của mình
 @request.auth.id != "" && @request.auth.id = author_id

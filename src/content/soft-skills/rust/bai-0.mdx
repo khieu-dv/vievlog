@@ -1,0 +1,359 @@
+# Bài 0: Giới thiệu khóa học
+
+<div className="bg-gradient-to-r from-orange-500 to-red-600 text-white p-6 rounded-lg shadow-lg mb-8">
+  <h2 className="text-3xl font-bold mb-4">🦀 Chào mừng đến với thế giới Rust!</h2>
+  <p className="text-lg">Hành trình khám phá ngôn ngữ lập trình an toàn, nhanh chóng và hiện đại nhất hiện nay</p>
+</div>
+
+---
+
+## 1. Tổng quan về khóa học
+
+### 🎯 Mục tiêu khóa học
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+  <div className="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+    <h4 className="font-semibold text-blue-800 mb-2">Kiến thức cơ bản</h4>
+    <p className="text-blue-700">Nắm vững syntax, ownership system và type system của Rust</p>
+  </div>
+  <div className="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+    <h4 className="font-semibold text-green-800 mb-2">Ứng dụng thực tế</h4>
+    <p className="text-green-700">Xây dựng ứng dụng web, CLI tools và hiểu ecosystem Rust</p>
+  </div>
+  <div className="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-500">
+    <h4 className="font-semibold text-purple-800 mb-2">Tư duy lập trình</h4>
+    <p className="text-purple-700">Phát triển mindset về memory safety và zero-cost abstractions</p>
+  </div>
+  <div className="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-500">
+    <h4 className="font-semibold text-yellow-800 mb-2">Kỹ năng chuyên sâu</h4>
+    <p className="text-yellow-700">Async programming, concurrency và advanced patterns</p>
+  </div>
+</div>
+
+---
+
+## 2. Cấu trúc khóa học
+
+```mermaid
+graph TD
+    A[Bài 0: Giới thiệu] --> B[Foundation Phase]
+    B --> C[Bài 1-4: Cú pháp cơ bản]
+    C --> D[Bài 5-7: Data structures]
+    D --> E[Core Phase]
+    E --> F[Bài 8-10: Ownership System]
+    F --> G[Bài 11-13: Modules & Traits]
+    G --> H[Advanced Phase]
+    H --> I[Bài 14-16: Lifetimes & Concurrency]
+    I --> J[Bài 17-18: Macros & Web Dev]
+    J --> K[Project Phase]
+```
+
+### 📚 Phân chia giai đoạn học tập
+
+| Giai đoạn | Bài học | Trọng tâm | Thời gian ước tính |
+|-----------|---------|-----------|-------------------|
+| **Foundation** | 1-4 | Cú pháp cơ bản, biến, functions | 2-3 tuần |
+| **Data & Control** | 5-7 | Collections, structs, enums, pattern matching | 2 tuần |
+| **Core Rust** | 8-10 | Ownership, borrowing, error handling | 3-4 tuần |
+| **Organization** | 11-13 | Modules, traits, generics | 2-3 tuần |
+| **Advanced** | 14-16 | Lifetimes, collections, concurrency | 3-4 tuần |
+| **Practical** | 17-18 | Macros, testing, web development | 2-3 tuần |
+
+---
+
+## 3. Lộ trình học tập chi tiết
+
+```mermaid
+timeline
+    title Lộ trình 18 bài học Rust
+    
+    section Foundation
+        Bài 1-2    : Cài đặt môi trường
+                   : Cú pháp cơ bản & biến
+        Bài 3-4    : Kiểu dữ liệu
+                   : Control flow & functions
+    
+    section Data Structures  
+        Bài 5-6    : Strings & collections
+                   : Structs & enums
+        Bài 7      : Pattern matching
+    
+    section Core Concepts
+        Bài 8-9    : Ownership system
+                   : Borrowing & references
+        Bài 10     : Error handling
+    
+    section Organization
+        Bài 11-12  : Modules & crates
+                   : Traits
+        Bài 13     : Generics
+    
+    section Advanced
+        Bài 14-15  : Lifetimes
+                   : Advanced collections
+        Bài 16     : Async programming
+    
+    section Practical
+        Bài 17-18  : Macros & testing
+                   : Web development
+```
+
+---
+
+## 4. Tại sao học Rust?
+
+### 🚀 Ưu điểm nổi bật của Rust
+
+<div className="bg-gray-50 p-6 rounded-lg my-6">
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div className="text-center">
+      <div className="text-4xl mb-2">🛡️</div>
+      <h4 className="font-semibold mb-2">Memory Safety</h4>
+      <p className="text-sm text-gray-600">Ngăn ngừa buffer overflow, null pointer dereference</p>
+    </div>
+    <div className="text-center">
+      <div className="text-4xl mb-2">⚡</div>
+      <h4 className="font-semibold mb-2">Zero-cost Abstractions</h4>
+      <p className="text-sm text-gray-600">Performance cao như C/C++ với code dễ đọc</p>
+    </div>
+    <div className="text-center">
+      <div className="text-4xl mb-2">🔧</div>
+      <h4 className="font-semibold mb-2">Modern Tooling</h4>
+      <p className="text-sm text-gray-600">Cargo package manager, rustfmt, clippy</p>
+    </div>
+  </div>
+</div>
+
+### 📊 So sánh Rust với các ngôn ngữ khác
+
+| Đặc điểm | Rust | C++ | Go | Python |
+|----------|------|-----|----|----|
+| **Memory Safety** | ✅ Compile-time | ❌ Manual | ✅ GC | ✅ GC |
+| **Performance** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐ |
+| **Concurrency** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ |
+| **Learning Curve** | ⭐⭐ | ⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
+| **Ecosystem** | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
+
+---
+
+## 5. Yêu cầu và chuẩn bị
+
+### 💻 Yêu cầu hệ thống
+
+| Thành phần | Yêu cầu tối thiểu | Khuyến nghị |
+|------------|-------------------|-------------|
+| **OS** | Windows 7+, macOS 10.7+, Linux | Latest stable |
+| **RAM** | 2GB | 4GB+ |
+| **Storage** | 2GB free space | 5GB+ |
+| **Internet** | Để download crates | Stable connection |
+
+### 🎓 Kiến thức nền tảng
+
+<div className="bg-blue-50 p-4 rounded-lg border border-blue-200 mb-6">
+  <h4 className="font-semibold text-blue-800 mb-3">Cần có:</h4>
+  <ul className="list-disc list-inside text-blue-700 space-y-1">
+    <li>Hiểu biết cơ bản về lập trình (variables, functions, loops)</li>
+    <li>Kinh nghiệm với ít nhất một ngôn ngữ lập trình</li>
+    <li>Quen thuộc với command line/terminal</li>
+  </ul>
+</div>
+
+<div className="bg-green-50 p-4 rounded-lg border border-green-200">
+  <h4 className="font-semibold text-green-800 mb-3">Có thì tốt:</h4>
+  <ul className="list-disc list-inside text-green-700 space-y-1">
+    <li>Kinh nghiệm với C/C++ (để hiểu memory management)</li>
+    <li>Biết về functional programming concepts</li>
+    <li>Hiểu về version control (Git)</li>
+  </ul>
+</div>
+
+---
+
+## 6. Phương pháp học tập
+
+### 🎯 Chiến lược học hiệu quả
+
+```mermaid
+graph LR
+    A[Đọc lý thuyết] --> B[Xem ví dụ]
+    B --> C[Thực hành code]
+    C --> D[Làm bài tập]
+    D --> E[Debug & Fix errors]
+    E --> F[Review & Refactor]
+    F --> G[Ứng dụng vào project]
+```
+
+### 📝 Cấu trúc mỗi bài học
+
+<div className="space-y-4">
+  <div className="flex items-center space-x-3 p-3 bg-yellow-50 rounded-lg">
+    <span className="bg-yellow-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">1</span>
+    <span className="font-medium">Mục tiêu bài học (5 phút)</span>
+  </div>
+  <div className="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
+    <span className="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">2</span>
+    <span className="font-medium">Lý thuyết & concepts (15-20 phút)</span>
+  </div>
+  <div className="flex items-center space-x-3 p-3 bg-green-50 rounded-lg">
+    <span className="bg-green-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">3</span>
+    <span className="font-medium">Ví dụ thực tế (10-15 phút)</span>
+  </div>
+  <div className="flex items-center space-x-3 p-3 bg-purple-50 rounded-lg">
+    <span className="bg-purple-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">4</span>
+    <span className="font-medium">Hands-on practice (20-30 phút)</span>
+  </div>
+  <div className="flex items-center space-x-3 p-3 bg-red-50 rounded-lg">
+    <span className="bg-red-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">5</span>
+    <span className="font-medium">Tổng kết & homework (5 phút)</span>
+  </div>
+</div>
+
+---
+
+## 7. Dự án thực tế trong khóa học
+
+### 🏗️ Roadmap các project
+
+```mermaid
+gantt
+    title Các dự án thực hành trong khóa học
+    dateFormat  X
+    axisFormat %d
+    
+    section Foundation Projects
+    Hello World & Calculator    :done, p1, 0, 2
+    Text Processing Tools       :done, p2, 2, 4
+    
+    section Core Projects  
+    Employee Management         :active, p3, 4, 7
+    File I/O & Error Handling   :p4, 7, 10
+    
+    section Advanced Projects
+    Multi-threaded Processor    :p5, 10, 15
+    Async Web Client           :p6, 15, 17
+    
+    section Final Project
+    REST API + Database        :crit, p7, 17, 18
+```
+
+### 💼 Mô tả các project chính
+
+| Project | Bài học | Công nghệ sử dụng | Kỹ năng đạt được |
+|---------|---------|-------------------|-------------------|
+| **Calculator** | 1-4 | Basic syntax, functions | Control flow, error handling cơ bản |
+| **Text Processor** | 5-7 | Strings, collections, pattern matching | Data manipulation |
+| **Employee System** | 8-10 | Structs, enums, ownership | Object modeling, memory management |
+| **File Manager** | 11-13 | Modules, traits, generics | Code organization |
+| **Concurrent Processor** | 14-16 | Lifetimes, threading, async | Advanced concurrency |
+| **REST API** | 17-18 | Web frameworks, databases | Full-stack development |
+
+---
+
+## 8. Tài nguyên học tập
+
+### 📖 Tài liệu tham khảo chính
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+  <div className="bg-white p-4 rounded-lg shadow border">
+    <h4 className="font-semibold mb-2">📚 Documentation</h4>
+    <ul className="text-sm space-y-1">
+      <li>• The Rust Programming Language Book</li>
+      <li>• Rust by Example</li>
+      <li>• Standard Library Documentation</li>
+    </ul>
+  </div>
+  <div className="bg-white p-4 rounded-lg shadow border">
+    <h4 className="font-semibold mb-2">🛠️ Tools & Playground</h4>
+    <ul className="text-sm space-y-1">
+      <li>• Rust Playground (online)</li>
+      <li>• VS Code + rust-analyzer</li>
+      <li>• Cargo package manager</li>
+    </ul>
+  </div>
+  <div className="bg-white p-4 rounded-lg shadow border">
+    <h4 className="font-semibold mb-2">🎯 Practice Platforms</h4>
+    <ul className="text-sm space-y-1">
+      <li>• Rustlings exercises</li>
+      <li>• Exercism Rust track</li>
+      <li>• LeetCode Rust solutions</li>
+    </ul>
+  </div>
+  <div className="bg-white p-4 rounded-lg shadow border">
+    <h4 className="font-semibold mb-2">👥 Community</h4>
+    <ul className="text-sm space-y-1">
+      <li>• Rust Users Forum</li>
+      <li>• r/rust subreddit</li>
+      <li>• Rust Discord server</li>
+    </ul>
+  </div>
+</div>
+
+---
+
+## 9. Lời khuyên cho người mới bắt đầu
+
+<div className="bg-amber-50 border-l-4 border-amber-400 p-6 my-6">
+  <h3 className="text-lg font-semibold text-amber-800 mb-4">🎓 Tips để thành công với Rust</h3>
+  
+  <div className="space-y-4">
+    <div className="flex items-start space-x-3">
+      <span className="text-2xl">🧠</span>
+      <div>
+        <h4 className="font-semibold">Đừng nản lòng với Borrow Checker</h4>
+        <p className="text-sm text-gray-700">Compiler errors là bạn, không phải kẻ thù. Rust compiler rất tốt trong việc giải thích lỗi.</p>
+      </div>
+    </div>
+    
+    <div className="flex items-start space-x-3">
+      <span className="text-2xl">⏰</span>
+      <div>
+        <h4 className="font-semibold">Học từ từ, thực hành nhiều</h4>
+        <p className="text-sm text-gray-700">Dành thời gian hiểu ownership system thay vì rush qua các concepts.</p>
+      </div>
+    </div>
+    
+    <div className="flex items-start space-x-3">
+      <span className="text-2xl">💡</span>
+      <div>
+        <h4 className="font-semibold">Đọc và viết nhiều code</h4>
+        <p className="text-sm text-gray-700">Xem source code của các crates phổ biến để học best practices.</p>
+      </div>
+    </div>
+    
+    <div className="flex items-start space-x-3">
+      <span className="text-2xl">🤝</span>
+      <div>
+        <h4 className="font-semibold">Tham gia cộng đồng</h4>
+        <p className="text-sm text-gray-700">Rust community rất thân thiện và sẵn sàng giúp đỡ newcomers.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+---
+
+## 10. Chuẩn bị cho bài học tiếp theo
+
+### ✅ Checklist chuẩn bị
+
+- [ ] Đọc kỹ overview khóa học
+- [ ] Chuẩn bị mindset học một ngôn ngữ có learning curve cao
+- [ ] Bookmark các tài liệu tham khảo
+- [ ] Chuẩn bị môi trường: terminal, text editor
+- [ ] Tham gia Rust community channels
+
+### 🚀 Bài học tiếp theo: **Bài 1 - Giới thiệu về Rust và cài đặt môi trường**
+
+Trong bài học tiếp theo, chúng ta sẽ:
+- Cài đặt Rust toolchain qua rustup
+- Thiết lập development environment 
+- Viết chương trình "Hello, World!" đầu tiên
+- Làm quen với Cargo package manager
+- Hiểu cấu trúc project Rust cơ bản
+
+---
+
+<div className="bg-gradient-to-r from-green-500 to-blue-600 text-white p-6 rounded-lg text-center">
+  <h3 className="text-2xl font-bold mb-2">🎉 Sẵn sàng bắt đầu hành trình Rust!</h3>
+  <p className="text-lg">Rust sẽ thay đổi cách bạn nghĩ về lập trình. Hãy kiên nhẫn và tận hưởng quá trình học!</p>
+</div>

@@ -51,83 +51,101 @@ export default function HomePage() {
     <div className="min-h-screen bg-white dark:bg-slate-900">
       <Header />
 
-      {/* AI Tools Section */}
+      {/* Core Technologies Section */}
       <div className="border-b bg-gradient-to-b from-gray-200 to-white py-12 dark:border-b-gray-800 dark:from-gray-900 dark:to-slate-900 sm:py-16">
         <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <h2 className="mb-3 text-2xl font-bold text-black dark:text-white sm:text-3xl">
-              Explore Our AI Tools
+              Master Modern Development
             </h2>
             <p className="mb-6 text-sm text-gray-600 dark:text-gray-400 sm:text-base">
-              Unleash your creativity with our new AI-powered image and video generators.
+              Focus on four powerful technologies that will define the future of software development.
             </p>
-            <div className="flex gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               <Link
-                href="/image-editor"
-                className="inline-flex items-center gap-2 rounded-xl bg-black px-4 py-2 text-sm font-medium text-white transition-colors hover:opacity-80 dark:bg-white dark:text-black sm:px-6 sm:py-3 sm:text-base"
+                href="/docs/soft-skills/rust/bai-0"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-orange-600 px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-orange-700"
               >
-                <Camera className="size-3 fill-current sm:size-5" />
-                Image Editor
+                <Braces className="size-4" />
+                🦀 Rust
               </Link>
               <Link
-                href="/video-generator"
-                className="inline-flex items-center gap-2 rounded-xl bg-black px-4 py-2 text-sm font-medium text-white transition-colors hover:opacity-80 dark:bg-white dark:text-black sm:px-6 sm:py-3 sm:text-base"
+                href="/docs/soft-skills/golang/bai-0"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-600 px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-cyan-700"
               >
-                <Video className="size-3 fill-current sm:size-5" />
-                Video Generator
+                <Server className="size-4" />
+                🐹 Go
+              </Link>
+              <Link
+                href="/docs/soft-skills/nextjs/bai-0"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-black px-4 py-3 text-sm font-medium text-white transition-colors hover:opacity-80 dark:bg-white dark:text-black"
+              >
+                <Globe2 className="size-4" />
+                ⚡ Next.js
+              </Link>
+              <Link
+                href="/docs/soft-skills/flutter/bai-0"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-700"
+              >
+                <Smartphone className="size-4" />
+                💙 Flutter
               </Link>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Beginner Roadmaps */}
+      {/* Core Technologies Learning Paths */}
       <div className="bg-gradient-to-b from-gray-200 to-white py-4 dark:from-gray-900 dark:to-slate-900 sm:py-8 md:py-12">
         <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-left">
-            <SectionBadge title="Beginner Roadmaps" />
+            <SectionBadge title="Learning Paths" />
           </div>
           <div className="my-3 text-left md:my-5">
             <h2 className="mb-0 text-xl font-semibold sm:mb-1 sm:text-3xl">
-              Are you an Absolute beginner?
+              Choose Your Development Path
             </h2>
             <p className="text-sm text-gray-500 dark:text-gray-400 sm:text-base">
-              Here are some beginner friendly roadmaps you should start with.
+              Master these modern technologies for different domains of software development.
             </p>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
+          <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-4">
             <RoadmapCard
-              icon={Globe2}
-              title="Frontend Developer"
-              link="/docs"
-              description="Develop the part of web apps that users interact with i.e. things rendered in the browser."
+              icon={Braces}
+              title="Systems Programming"
+              link="/docs/soft-skills/rust/bai-0"
+              description="Build fast, safe system software with Rust. Perfect for performance-critical applications."
             />
             <RoadmapCard
-              icon={ServerCog}
-              title="Backend Developer"
-              link="/docs"
-              description="Develop the part hidden from the user e.g. things like APIs, databases, search engines etc."
+              icon={Server}
+              title="Backend & Cloud"
+              link="/docs/soft-skills/golang/bai-0"
+              description="Create scalable backends and cloud services with Go's simplicity and concurrency."
             />
             <RoadmapCard
               icon={Globe2}
-              icon2={ServerCog}
-              title="Full Stack Developer"
-              link="/docs"
-              description="Develop both the frontend and backend side of the web apps i.e. the whole development stack."
+              title="Modern Web Apps"
+              link="/docs/soft-skills/nextjs/bai-0"
+              description="Build full-stack web applications with Next.js and React ecosystem."
+            />
+            <RoadmapCard
+              icon={Smartphone}
+              title="Cross-Platform Mobile"
+              link="/docs/soft-skills/flutter/bai-0"
+              description="Develop beautiful native mobile apps for iOS and Android with Flutter."
             />
           </div>
 
           <p className="my-4 text-sm text-gray-500 dark:text-gray-400 sm:my-7 sm:text-base">
-            There is also a{" "}
+            Each path includes related tools and frameworks. For example, Rust ecosystem includes{" "}
             <Link
-              href="/docs"
+              href="/docs/soft-skills/rust/bai-0"
               className="font-medium underline underline-offset-2"
             >
-              beginner DevOps roadmap
+              Actix, Tokio, Serde
             </Link>{" "}
-            which requires you to have some backend knowledge and entails a lot of
-            operations work i.e. deploying, scaling, monitoring, and maintaining applications.
+            while Next.js covers React, TypeScript, and modern web development practices.
           </p>
 
           <div className="rounded-xl border bg-white p-3 dark:border-gray-800 dark:bg-slate-950 sm:p-4">
@@ -173,340 +191,201 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Self-taught Developer */}
+      {/* Rust Ecosystem */}
       <RoleRoadmaps
-        badge="Self-taught Developer"
-        title="Are you a self-taught developer?"
-        description="How about taking a peek at the Computer Science roadmap aimed at self-taught developers?"
+        badge="Rust Ecosystem"
+        title="Building with Rust?"
+        description="Explore the powerful Rust ecosystem and related technologies for systems programming."
       >
         <RoadmapCard
-          icon={GraduationCap}
-          title="Computer Science"
-          link="/docs"
-          description="Learn the fundamental concepts of computer science and programming."
+          icon={Braces}
+          title="Rust Fundamentals"
+          link="/docs/soft-skills/rust/bai-0"
+          description="Master ownership, borrowing, lifetimes, and Rust's unique memory safety features."
         />
         <RoadmapCard
-          icon={Blocks}
-          title="Data Structures"
-          link="/docs"
-          description="Learn all about data structures and algorithms."
+          icon={Server}
+          title="Web Development"
+          link="/docs/soft-skills/rust/bai-0"
+          description="Build web services with Actix-web, Warp, or Rocket frameworks."
         />
         <RoadmapMultiCard
-          roadmaps={[{ title: "System Design", link: "/docs" }]}
-          description="Learn how to design large scale systems and prepare for system design interviews."
-          secondaryRoadmaps={[{ title: "Design and Architecture", link: "/docs" }]}
-          secondaryDescription="Or learn how to design and architect software systems."
+          roadmaps={[{ title: "Async Programming", link: "/docs/soft-skills/rust/bai-0" }]}
+          description="Learn async/await with Tokio, async-std for concurrent applications."
+          secondaryRoadmaps={[{ title: "WebAssembly", link: "/docs/soft-skills/rust/bai-0" }]}
+          secondaryDescription="Compile Rust to WebAssembly for high-performance web apps."
         />
       </RoleRoadmaps>
 
-      {/* Frontend Developer */}
+      {/* Go Ecosystem */}
       <RoleRoadmaps
-        badge="Frontend Developer"
-        title="Are you a Frontend Developer?"
-        description="How about skimming through the frontend or JavaScript roadmaps to see if there is anything you missed? TypeScript is all the rage these days, maybe it is time to learn it?"
-      >
-        <RoadmapCard
-          icon={Globe2}
-          title="Frontend"
-          link="/docs"
-          description="Learn all you need to know to become a frontend developer."
-        />
-        <RoadmapMultiCard
-          roadmaps={[
-            { title: "JavaScript", link: "/docs" },
-            { title: "TypeScript", link: "/docs" },
-          ]}
-          description="How about mastering the language of the web: JavaScript? or maybe TypeScript?"
-          secondaryRoadmaps={[{ title: "Frontend Performance", link: "/docs" }]}
-          secondaryDescription="Or learn how to improve the performance of your web apps?"
-        />
-        <RoadmapMultiCard
-          roadmaps={[
-            { title: "React", link: "/docs" },
-            { title: "Vue", link: "/docs" },
-            { title: "Angular", link: "/docs" },
-            { title: "Next.js", link: "/docs" },
-          ]}
-          description="Or learn a framework?"
-          secondaryRoadmaps={[{ title: "Design Systems", link: "/docs" }]}
-          secondaryDescription="or learn about design systems?"
-        />
-      </RoleRoadmaps>
-
-      {/* Backend Developer */}
-      <RoleRoadmaps
-        badge="Backend Developer"
-        title="Are you a Backend Developer?"
-        description="Explore the general backend roadmap or dive into a specific technology like Node.js, Python, Java etc"
-      >
-        <div className="flex flex-col gap-3">
-          <RoadmapCard
-            icon={ServerCog}
-            title="Backend"
-            link="/docs"
-            description="Learn all you need to know to become a backend developer."
-          />
-          <RoadmapCard
-            icon={Braces}
-            title="API Design"
-            link="/docs"
-            description="Learn all you need to know to design robust APIs."
-          />
-        </div>
-        <RoadmapMultiCard
-          roadmaps={[
-            { title: "Node.js", link: "/docs" },
-            { title: "PHP", link: "/docs" },
-            { title: "Rust", link: "/docs" },
-            { title: "Go", link: "/docs" },
-            { title: "Python", link: "/docs" },
-            { title: "Java", link: "/docs" },
-            { title: "ASP.NET Core", link: "/docs" },
-            { title: "C++", link: "/docs" },
-          ]}
-          description="Or learn a specific technology?"
-        />
-        <RoadmapMultiCard
-          roadmaps={[
-            { title: "System Design", link: "/docs" },
-            { title: "Design and Architecture", link: "/docs" },
-          ]}
-          description="How about improving your System Design skills?"
-          secondaryRoadmaps={[
-            { title: "SQL", link: "/docs" },
-            { title: "PostgreSQL", link: "/docs" },
-            { title: "MongoDB", link: "/docs" },
-            { title: "Redis", link: "/docs" },
-          ]}
-          secondaryDescription="Or perhaps improve your database skills?"
-        />
-      </RoleRoadmaps>
-
-      {/* DevOps Engineer */}
-      <RoleRoadmaps
-        badge="DevOps Engineer"
-        title="DevOps or a Wanna-be DevOps Engineer?"
-        description="Explore the general DevOps roadmap or dive into a specific technology like Docker, Kubernetes etc"
+        badge="Go Ecosystem"
+        title="Building with Go?"
+        description="Explore Go's ecosystem for backend development, microservices, and cloud-native applications."
       >
         <RoadmapCard
           icon={Server}
-          title="DevOps"
-          link="/docs"
-          description="Learn all you need to know to become a DevOps Engineer."
+          title="Go Fundamentals"
+          link="/docs/soft-skills/golang/bai-0"
+          description="Master goroutines, channels, interfaces, and Go's simplicity philosophy."
         />
         <RoadmapMultiCard
           roadmaps={[
-            { title: "AWS", link: "/docs" },
-            { title: "Cloudflare", link: "/docs" },
+            { title: "Web Frameworks", link: "/docs/soft-skills/golang/bai-0" },
+            { title: "Gin & Fiber", link: "/docs/soft-skills/golang/bai-0" },
           ]}
-          description="or perhaps you want to learn AWS or Cloudflare?"
-          secondaryRoadmaps={[{ title: "Terraform", link: "/docs" }]}
-          secondaryDescription="Or learn to automate your infrastructure using Terraform?"
+          description="Build REST APIs with Gin, Fiber, or Echo frameworks."
+          secondaryRoadmaps={[{ title: "gRPC & Microservices", link: "/docs/soft-skills/golang/bai-0" }]}
+          secondaryDescription="Learn gRPC for high-performance microservices communication."
         />
         <RoadmapMultiCard
           roadmaps={[
-            { title: "Docker", link: "/docs" },
-            { title: "Kubernetes", link: "/docs" },
-            { title: "Linux", link: "/docs" },
+            { title: "Docker & K8s", link: "/docs/soft-skills/golang/bai-0" },
+            { title: "Database Integration", link: "/docs/soft-skills/golang/bai-0" },
+            { title: "Testing", link: "/docs/soft-skills/golang/bai-0" },
+            { title: "CLI Tools", link: "/docs/soft-skills/golang/bai-0" },
           ]}
-          description="or perhaps you want to learn Docker, Kubernetes or Linux?"
+          description="Go excels in DevOps tooling and cloud infrastructure."
+          secondaryRoadmaps={[{ title: "Concurrency Patterns", link: "/docs/soft-skills/golang/bai-0" }]}
+          secondaryDescription="Master Go's concurrency with practical patterns."
+        />
+      </RoleRoadmaps>
+
+      {/* Next.js Ecosystem */}
+      <RoleRoadmaps
+        badge="Next.js Ecosystem"
+        title="Building with Next.js?"
+        description="Master modern full-stack web development with Next.js and the React ecosystem."
+      >
+        <div className="flex flex-col gap-3">
+          <RoadmapCard
+            icon={Globe2}
+            title="Next.js Fundamentals"
+            link="/docs/soft-skills/nextjs/bai-0"
+            description="Learn App Router, Server Components, and modern Next.js patterns."
+          />
+          <RoadmapCard
+            icon={Braces}
+            title="React & TypeScript"
+            link="/docs/soft-skills/nextjs/bai-0"
+            description="Master React 18+ features with TypeScript for type-safe development."
+          />
+        </div>
+        <RoadmapMultiCard
+          roadmaps={[
+            { title: "Styling Solutions", link: "/docs/soft-skills/nextjs/bai-0" },
+            { title: "Tailwind CSS", link: "/docs/soft-skills/nextjs/bai-0" },
+            { title: "shadcn/ui", link: "/docs/soft-skills/nextjs/bai-0" },
+            { title: "State Management", link: "/docs/soft-skills/nextjs/bai-0" },
+          ]}
+          description="Build beautiful UIs with modern styling and state management."
+        />
+        <RoadmapMultiCard
+          roadmaps={[
+            { title: "Database Integration", link: "/docs/soft-skills/nextjs/bai-0" },
+            { title: "Authentication", link: "/docs/soft-skills/nextjs/bai-0" },
+          ]}
+          description="Full-stack features with Prisma, NextAuth, and more."
           secondaryRoadmaps={[
-            { title: "Python", link: "/docs" },
-            { title: "Go", link: "/docs" },
-            { title: "Rust", link: "/docs" },
+            { title: "Deployment", link: "/docs/soft-skills/nextjs/bai-0" },
+            { title: "Vercel", link: "/docs/soft-skills/nextjs/bai-0" },
+            { title: "Performance", link: "/docs/soft-skills/nextjs/bai-0" },
           ]}
-          secondaryDescription="Or maybe improve your automation skills?"
+          secondaryDescription="Deploy and optimize your Next.js applications."
         />
       </RoleRoadmaps>
 
-      {/* Mobile Developer */}
+      {/* Flutter Ecosystem */}
       <RoleRoadmaps
-        badge="Mobile Developer"
-        title="Are you a Mobile Developer?"
-        description="How about beefing up your mobile development skills?"
+        badge="Flutter Ecosystem"
+        title="Building with Flutter?"
+        description="Master cross-platform mobile development with Flutter and Dart ecosystem."
       >
         <RoadmapCard
           icon={Smartphone}
-          title="Android"
-          link="/docs"
-          description="Learn all you need to know to become an Android Developer."
+          title="Flutter Fundamentals"
+          link="/docs/soft-skills/flutter/bai-0"
+          description="Learn widgets, state management, and Dart programming language."
         />
         <RoadmapCard
           icon={Smartphone}
-          title="iOS"
-          link="/docs"
-          description="Learn all you need to know to become an iOS Developer."
+          title="Advanced Flutter"
+          link="/docs/soft-skills/flutter/bai-0"
+          description="Master animations, custom widgets, and platform-specific features."
         />
         <RoadmapMultiCard
           roadmaps={[
-            { title: "React Native", link: "/docs" },
-            { title: "Flutter", link: "/docs" },
+            { title: "State Management", link: "/docs/soft-skills/flutter/bai-0" },
+            { title: "BLoC & Riverpod", link: "/docs/soft-skills/flutter/bai-0" },
+            { title: "GetX & Provider", link: "/docs/soft-skills/flutter/bai-0" },
           ]}
-          description="Or learn a cross-platform framework?"
+          description="Choose the right state management solution for your app."
+          secondaryRoadmaps={[
+            { title: "Firebase Integration", link: "/docs/soft-skills/flutter/bai-0" },
+            { title: "Native Features", link: "/docs/soft-skills/flutter/bai-0" },
+            { title: "App Store Deployment", link: "/docs/soft-skills/flutter/bai-0" },
+          ]}
+          secondaryDescription="Integrate backend services and deploy to app stores."
         />
       </RoleRoadmaps>
 
-      {/* AI and Machine Learning */}
-      <RoleRoadmaps
-        badge="AI and Machine Learning"
-        title="Are you an AI or Machine Learning enthusiast?"
-        description="How about diving into the AI or Machine Learning roadmaps?"
-      >
-        <RoadmapCard
-          icon={Bot}
-          title="Machine Learning"
-          link="/docs"
-          description="Learn all you need to know to become an ML Engineer."
-        />
-        <RoadmapCard
-          icon={Bot}
-          title="AI and Data Science"
-          link="/docs"
-          description="Learn all you need to know to become an AI or Data Scientist."
-        />
-        <RoadmapCard
-          icon={Bot}
-          title="AI Engineer"
-          link="/docs"
-          description="Learn all you need to become an AI Engineer."
-        />
-        <RoadmapCard
-          icon={ServerCog}
-          title="AI Agents"
-          link="/docs"
-          description="Learn how to design, build and ship AI agents in 2025."
-        />
-        <RoadmapCard
-          icon={Bot}
-          title="Data Analyst"
-          link="/docs"
-          description="Learn all you need to know to become a Data Analyst."
-        />
-        <RoadmapCard
-          icon={Bot}
-          title="BI Analyst"
-          link="/docs"
-          description="Learn to become a Business Intelligence Analyst in 2025."
-        />
-      </RoleRoadmaps>
 
-      {/* More Roles */}
-      <RoleRoadmaps
-        badge="More Roles"
-        title="Fancy something else?"
-        description="Explore the following roadmaps about UX, Game Development, Software Architect and more"
-      >
-        <div className="flex flex-col justify-start gap-3">
-          <RoadmapCard
-            icon={ShieldHalf}
-            title="Cyber Security"
-            link="/docs"
-            description="Learn to become a Cyber Security Expert."
-          />
-          <RoadmapCard
-            icon={Workflow}
-            title="UX Designer"
-            link="/docs"
-            description="Learn all you need to know to become a UX Designer."
-          />
-          <RoadmapCard
-            icon={Coins}
-            title="Blockchain"
-            link="/docs"
-            description="Learn all you need to know to become a Blockchain Developer."
-          />
-        </div>
-        <div className="flex flex-col justify-start gap-3">
-          <RoadmapCard
-            icon={Gamepad2}
-            title="Game Development"
-            link="/docs"
-            description="Learn all you need to know to become a Game Developer."
-          />
-          <RoadmapCard
-            icon={PenSquare}
-            title="Technical Writer"
-            link="/docs"
-            description="Learn all you need to know to become a Technical Writer."
-          />
-          <RoadmapCard
-            icon={Megaphone}
-            title="DevRel Engineer"
-            link="/docs"
-            description="Learn all you need to know to become a DevRel Engineer."
-          />
-        </div>
-        <div className="flex flex-col justify-start gap-3">
-          <RoadmapCard
-            icon={FolderKanban}
-            title="Product Manager"
-            link="/docs"
-            description="Learn all you need to know to become a Project Manager."
-          />
-          <RoadmapCard
-            icon={Component}
-            title="Software Architect"
-            link="/docs"
-            description="Learn all you need to know to become a Software Architect."
-          />
-          <RoadmapCard
-            icon={GitBranch}
-            title="Git and GitHub"
-            link="/docs"
-            description="Learn all you need to know to become a Git and GitHub expert."
-          />
-        </div>
-      </RoleRoadmaps>
-
-      {/* There is more section */}
+      {/* Explore More Section */}
       <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="-mt-5 mb-12 rounded-3xl bg-black p-5 dark:bg-gray-950">
           <h2 className="mb-0.5 text-xl font-semibold text-white sm:mb-1 sm:text-2xl">
-            There is more!
+            Start Your Journey!
           </h2>
           <p className="text-sm text-gray-400 sm:text-base">
-            We have a lot more content for you to explore.
+            Ready to dive deep into modern development technologies?
           </p>
 
-          <div className="my-4 grid grid-cols-1 gap-2 sm:my-5 sm:grid-cols-2 sm:gap-3 md:grid-cols-3">
+          <div className="my-4 grid grid-cols-1 gap-2 sm:my-5 sm:grid-cols-2 sm:gap-3 md:grid-cols-4">
             <Link
-              href="/docs"
-              className="grow rounded-lg bg-gradient-to-br from-gray-800 to-gray-700 p-4 text-sm text-white transition-all hover:from-gray-700 hover:to-gray-700 sm:text-base"
+              href="/docs/soft-skills/rust/bai-0"
+              className="grow rounded-lg bg-gradient-to-br from-orange-700 to-orange-600 p-4 text-sm text-white transition-all hover:from-orange-600 hover:to-orange-600 sm:text-base"
             >
-              <Waypoints className="mb-3 h-5 w-5 text-gray-500 sm:mb-2" />
-              Explore all Roadmaps
+              <Braces className="mb-3 h-5 w-5 text-orange-200 sm:mb-2" />
+              🦀 Rust Mastery
             </Link>
             <Link
-              href="/docs"
-              className="grow rounded-lg bg-gradient-to-br from-gray-800 to-gray-700 p-4 text-sm text-white transition-all hover:from-gray-700 hover:to-gray-700 sm:text-base"
+              href="/docs/soft-skills/golang/bai-0"
+              className="grow rounded-lg bg-gradient-to-br from-cyan-700 to-cyan-600 p-4 text-sm text-white transition-all hover:from-cyan-600 hover:to-cyan-600 sm:text-base"
             >
-              <CheckSquare className="mb-3 h-5 w-5 text-gray-500 sm:mb-2" />
-              Explore Best Practices
+              <Server className="mb-3 h-5 w-5 text-cyan-200 sm:mb-2" />
+              🐹 Go Development
             </Link>
             <Link
-              href="/docs"
+              href="/docs/soft-skills/nextjs/bai-0"
               className="grow rounded-lg bg-gradient-to-br from-gray-800 to-gray-700 p-4 text-sm text-white transition-all hover:from-gray-700 hover:to-gray-700 sm:text-base"
             >
-              <CheckSquare className="mb-3 h-5 w-5 text-gray-500 sm:mb-2" />
-              Explore Questions
+              <Globe2 className="mb-3 h-5 w-5 text-gray-300 sm:mb-2" />
+              ⚡ Next.js Pro
+            </Link>
+            <Link
+              href="/docs/soft-skills/flutter/bai-0"
+              className="grow rounded-lg bg-gradient-to-br from-blue-700 to-blue-600 p-4 text-sm text-white transition-all hover:from-blue-600 hover:to-blue-600 sm:text-base"
+            >
+              <Smartphone className="mb-3 h-5 w-5 text-blue-200 sm:mb-2" />
+              💙 Flutter Expert
             </Link>
           </div>
           <p className="text-sm text-gray-400 sm:text-base">
-            Or visit our{" "}
+            Each path includes comprehensive{" "}
             <Link
               href="/docs"
               className="rounded-lg bg-gray-700 px-2 py-1 text-gray-300 transition-colors hover:bg-gray-600 hover:text-white"
             >
-              guides
+              tutorials
             </Link>{" "}
             and{" "}
             <Link
               href="/docs"
               className="rounded-lg bg-gray-700 px-2 py-1 text-gray-300 transition-colors hover:bg-gray-600 hover:text-white"
             >
-              videos
+              hands-on projects
             </Link>{" "}
-            for long-form content.
+            to build real-world expertise.
           </p>
         </div>
       </div>
