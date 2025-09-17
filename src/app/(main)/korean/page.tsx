@@ -82,42 +82,89 @@ export default function KoreanLearningPage() {
           </div>
 
           <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
-            <RoadmapCard
-              icon={BookOpen}
-              title="Sơ cấp 1 (초급 1)"
-              link="/docs/soft-skills/korean/bai-1"
-              description="Hangeul, từ vựng cơ bản, giới thiệu bản thân và gia đình."
-            />
-            <RoadmapCard
-              icon={BookOpen}
-              title="Sơ cấp 2 (초급 2)"
-              link="/docs/soft-skills/korean/bai-3"
-              description="Ngữ pháp hiện tại, quá khứ và hoạt động hàng ngày."
-            />
-            <RoadmapCard
-              icon={MessageSquare}
-              title="Trung cấp 1 (중급 1)"
-              link="/docs/soft-skills/korean/bai-6"
-              description="Giao tiếp trong các tình huống xã hội và công việc."
-            />
-            <RoadmapCard
-              icon={MessageSquare}
-              title="Trung cấp 2 (중급 2)"
-              link="/docs/soft-skills/korean/bai-9"
-              description="Thể hiện ý kiến, cảm xúc và thảo luận các chủ đề phức tạp."
-            />
-            <RoadmapCard
-              icon={Award}
-              title="Cao cấp 1 (고급 1)"
-              link="/docs/soft-skills/korean/bai-12"
-              description="Ngôn ngữ chuyên ngành, văn học và các văn bản học thuật."
-            />
-            <RoadmapCard
-              icon={Award}
-              title="Cao cấp 2 (고급 2)"
-              link="/docs/soft-skills/korean/bai-15"
-              description="Thành thạo hoàn toàn, nghiên cứu và sử dụng tiếng Hàn chuyên sâu."
-            />
+            <div className="rounded-xl border bg-gradient-to-br from-green-50 to-emerald-50 p-4 shadow-sm transition-all hover:shadow-md dark:from-green-950/50 dark:to-emerald-950/50 dark:border-green-800">
+              <Link href="/docs/soft-skills/korean/bai-1" className="block">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="p-2 bg-green-100 dark:bg-green-900 rounded-lg">
+                    <BookOpen className="h-5 w-5 text-green-600 dark:text-green-400" />
+                  </div>
+                  <h3 className="font-semibold text-green-800 dark:text-green-200">Sơ cấp 1 (초급 1)</h3>
+                </div>
+                <p className="text-sm text-green-700 dark:text-green-300">
+                  Hangeul, từ vựng cơ bản, giới thiệu bản thân và gia đình.
+                </p>
+              </Link>
+            </div>
+
+            <div className="rounded-xl border bg-gradient-to-br from-green-50 to-emerald-50 p-4 shadow-sm transition-all hover:shadow-md dark:from-green-950/50 dark:to-emerald-950/50 dark:border-green-800">
+              <Link href="/docs/soft-skills/korean/bai-3" className="block">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="p-2 bg-green-100 dark:bg-green-900 rounded-lg">
+                    <BookOpen className="h-5 w-5 text-green-600 dark:text-green-400" />
+                  </div>
+                  <h3 className="font-semibold text-green-800 dark:text-green-200">Sơ cấp 2 (초급 2)</h3>
+                </div>
+                <p className="text-sm text-green-700 dark:text-green-300">
+                  Ngữ pháp hiện tại, quá khứ và hoạt động hàng ngày.
+                </p>
+              </Link>
+            </div>
+
+            <div className="rounded-xl border bg-gradient-to-br from-blue-50 to-cyan-50 p-4 shadow-sm transition-all hover:shadow-md dark:from-blue-950/50 dark:to-cyan-950/50 dark:border-blue-800">
+              <Link href="/docs/soft-skills/korean/bai-6" className="block">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="p-2 bg-blue-100 dark:bg-blue-900 rounded-lg">
+                    <MessageSquare className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                  </div>
+                  <h3 className="font-semibold text-blue-800 dark:text-blue-200">Trung cấp 1 (중급 1)</h3>
+                </div>
+                <p className="text-sm text-blue-700 dark:text-blue-300">
+                  Giao tiếp trong các tình huống xã hội và công việc.
+                </p>
+              </Link>
+            </div>
+
+            <div className="rounded-xl border bg-gradient-to-br from-blue-50 to-cyan-50 p-4 shadow-sm transition-all hover:shadow-md dark:from-blue-950/50 dark:to-cyan-950/50 dark:border-blue-800">
+              <Link href="/docs/soft-skills/korean/bai-9" className="block">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="p-2 bg-blue-100 dark:bg-blue-900 rounded-lg">
+                    <MessageSquare className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                  </div>
+                  <h3 className="font-semibold text-blue-800 dark:text-blue-200">Trung cấp 2 (중급 2)</h3>
+                </div>
+                <p className="text-sm text-blue-700 dark:text-blue-300">
+                  Thể hiện ý kiến, cảm xúc và thảo luận các chủ đề phức tạp.
+                </p>
+              </Link>
+            </div>
+
+            <div className="rounded-xl border bg-gradient-to-br from-purple-50 to-violet-50 p-4 shadow-sm transition-all hover:shadow-md dark:from-purple-950/50 dark:to-violet-950/50 dark:border-purple-800">
+              <Link href="/docs/soft-skills/korean/bai-12" className="block">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="p-2 bg-purple-100 dark:bg-purple-900 rounded-lg">
+                    <Award className="h-5 w-5 text-purple-600 dark:text-purple-400" />
+                  </div>
+                  <h3 className="font-semibold text-purple-800 dark:text-purple-200">Cao cấp 1 (고급 1)</h3>
+                </div>
+                <p className="text-sm text-purple-700 dark:text-purple-300">
+                  Ngôn ngữ chuyên ngành, văn học và các văn bản học thuật.
+                </p>
+              </Link>
+            </div>
+
+            <div className="rounded-xl border bg-gradient-to-br from-purple-50 to-violet-50 p-4 shadow-sm transition-all hover:shadow-md dark:from-purple-950/50 dark:to-violet-950/50 dark:border-purple-800">
+              <Link href="/docs/soft-skills/korean/bai-15" className="block">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="p-2 bg-purple-100 dark:bg-purple-900 rounded-lg">
+                    <Award className="h-5 w-5 text-purple-600 dark:text-purple-400" />
+                  </div>
+                  <h3 className="font-semibold text-purple-800 dark:text-purple-200">Cao cấp 2 (고급 2)</h3>
+                </div>
+                <p className="text-sm text-purple-700 dark:text-purple-300">
+                  Thành thạo hoàn toàn, nghiên cứu và sử dụng tiếng Hàn chuyên sâu.
+                </p>
+              </Link>
+            </div>
           </div>
 
           <p className="my-4 text-sm text-gray-500 dark:text-gray-400 sm:my-7 sm:text-base">
