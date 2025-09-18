@@ -56,6 +56,11 @@ graph TB
 
 ## 📁 Cấu trúc File-based Routing
 
+<div className="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400 mb-4">
+  <p className="text-sm text-blue-700"><strong>💡 File-based Routing là gì?</strong></p>
+  <p className="text-sm text-blue-700 mt-2">Là hệ thống định tuyến dựa trên cấu trúc thư mục và file. Trong App Router, mỗi thư mục tương ứng với một route segment, và file <code>page.tsx</code> định nghĩa UI cho route đó.</p>
+</div>
+
 ### Cấu trúc cơ bản
 
 ```typescript
@@ -95,6 +100,11 @@ graph LR
 
 ### 1. Static Routes
 
+<div className="bg-green-50 p-4 rounded-lg border-l-4 border-green-400 mb-4">
+  <p className="text-sm text-green-700"><strong>💡 Static Routes là gì?</strong></p>
+  <p className="text-sm text-green-700 mt-2">Routes có đường dẫn cố định, không thay đổi. Ví dụ <code>/about</code>, <code>/contact</code>. Chúng được tạo bằng cách tạo thư mục với tên cố định và file <code>page.tsx</code> bên trong.</p>
+</div>
+
 <div className="bg-gray-50 p-4 rounded-lg border-l-4 border-gray-400 mb-4">
   <h4 className="font-medium mb-2">📝 Ví dụ: Tạo trang About</h4>
 </div>
@@ -114,6 +124,11 @@ export default function AboutPage() {
 ```
 
 ### 2. Nested Routes
+
+<div className="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-400 mb-4">
+  <p className="text-sm text-purple-700"><strong>💡 Nested Routes là gì?</strong></p>
+  <p className="text-sm text-purple-700 mt-2">Routes lồng nhau theo cấu trúc thư mục. Ví dụ <code>/products/shoes</code> có nghĩa là thư mục <code>shoes</code> nằm bên trong thư mục <code>products</code>. Nested routes cho phép tạo layout hierarchy và shared components.</p>
+</div>
 
 ```typescript
 // app/products/shoes/page.tsx
@@ -139,7 +154,16 @@ export default function ClothesPage() {
 
 ## 🔄 Dynamic Routing
 
+<div className="bg-orange-50 p-4 rounded-lg border-l-4 border-orange-400 mb-4">
+  <p className="text-sm text-orange-700"><strong>💡 Dynamic Routing là gì?</strong></p>
+  <p className="text-sm text-orange-700 mt-2">Cho phép tạo routes với tham số động thay vì đường dẫn cố định. Sử dụng dấu ngoặc vuông <code>[param]</code> để tạo dynamic segments. Ví dụ <code>[id]</code> có thể match <code>/products/1</code>, <code>/products/abc</code>, etc.</p>
+</div>
+
 ### Single Dynamic Segment `[id]`
+
+<div className="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400 mb-4">
+  <p className="text-sm text-yellow-700"><strong>💡 Single Dynamic Segment:</strong> Một tham số động duy nhất trong route. File/thư mục được đặt tên trong dấu <code>[]</code>. Giá trị này sẽ được truyền vào component qua <code>params</code> prop.</p>
+</div>
 
 ```typescript
 // app/products/[id]/page.tsx
@@ -163,6 +187,10 @@ export default function ProductPage({ params }: ProductPageProps) {
 
 ### Catch-all Segments `[...slug]`
 
+<div className="bg-indigo-50 p-4 rounded-lg border-l-4 border-indigo-400 mb-4">
+  <p className="text-sm text-indigo-700"><strong>💡 Catch-all Segments:</strong> Bắt tất cả các segments sau vị trí này. Sử dụng <code>[...param]</code> để match nhiều segments. Ví dụ <code>[...slug]</code> có thể match <code>/blog/2023</code>, <code>/blog/2023/post-1</code>, etc.</p>
+</div>
+
 ```typescript
 // app/blog/[...slug]/page.tsx
 interface BlogPostProps {
@@ -184,6 +212,10 @@ export default function BlogPost({ params }: BlogPostProps) {
 ```
 
 ### Optional Catch-all `[[...slug]]`
+
+<div className="bg-teal-50 p-4 rounded-lg border-l-4 border-teal-400 mb-4">
+  <p className="text-sm text-teal-700"><strong>💡 Optional Catch-all:</strong> Giống Catch-all nhưng cũng match route gốc. Sử dụng <code>[[...param]]</code> với double brackets. Ví dụ <code>[[...slug]]</code> match cả <code>/blog</code> và <code>/blog/category/post</code>.</p>
+</div>
 
 | URL | params.slug |
 |-----|-------------|
