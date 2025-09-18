@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { useSession } from '~/lib/authClient';
 import Link from 'next/link';
+import DocumentRenderer from '~/components/DocumentRenderer';
 
 interface Document {
   id: string;
@@ -243,9 +244,9 @@ export default function DocumentPage() {
         {/* Content */}
         <div className="bg-white rounded-lg shadow-sm border">
           <div className="p-8">
-            <div
-              className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-code:text-purple-600 prose-pre:bg-gray-100 prose-blockquote:border-l-blue-500"
-              dangerouslySetInnerHTML={{ __html: document.content }}
+            <DocumentRenderer
+              content={document.content}
+              className="prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-code:text-purple-600 prose-pre:bg-gray-100 prose-blockquote:border-l-blue-500"
             />
           </div>
         </div>

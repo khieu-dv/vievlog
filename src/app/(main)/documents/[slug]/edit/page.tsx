@@ -6,6 +6,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { useSession } from '~/lib/authClient';
 import TipTapEditor from '~/components/editor/TipTapEditor';
 import Link from 'next/link';
+import { mdxTemplates, type MDXTemplate } from '~/lib/mdx-templates';
 
 interface Document {
   id: string;
@@ -31,6 +32,8 @@ export default function EditDocumentPage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showTemplates, setShowTemplates] = useState(false);
+  const [selectedTemplate, setSelectedTemplate] = useState<MDXTemplate | null>(null);
   const [formData, setFormData] = useState({
     title: '',
     slug: '',
@@ -138,6 +141,16 @@ export default function EditDocumentPage() {
     }
   };
 
+  const handleTemplateSelect = (template: MDXTemplate) => {
+    setSelectedTemplate(template);
+    setFormData(prev => ({
+      ...prev,
+      content: template.content,
+      category: template.category
+    }));
+    setShowTemplates(false);
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 py-8">
@@ -183,15 +196,44 @@ export default function EditDocumentPage() {
             <div className="flex items-center justify-between">
               <div>
                 <h1 className="text-2xl font-bold text-gray-900">Chỉnh sửa tài liệu</h1>
-                <p className="text-gray-600 mt-1">Cập nhật nội dung tài liệu của bạn</p>
+                <p className="text-gray-600 mt-1">Cập nhật nội dung tài liệu MDX</p>
               </div>
-              <Link
-                href={`/documents/${document?.slug}`}
-                className="text-blue-600 hover:text-blue-800"
-              >
-                ← Quay lại tài liệu
-              </Link>
+              <div className="flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => setShowTemplates(true)}
+                  className="px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 flex items-center gap-2"
+                >
+                  📝 Template
+                </button>
+                <Link
+                  href={`/documents/${document?.slug}`}
+                  className="text-blue-600 hover:text-blue-800"
+                >
+                  ← Quay lại tài liệu
+                </Link>
+              </div>
             </div>
+            {selectedTemplate && (
+              <div className="mt-4 p-3 bg-purple-50 rounded-lg border border-purple-200">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <span className="text-2xl">{selectedTemplate.icon}</span>
+                    <div>
+                      <h3 className="font-semibold text-purple-800">{selectedTemplate.name}</h3>
+                      <p className="text-sm text-purple-600">{selectedTemplate.description}</p>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedTemplate(null)}
+                    className="text-purple-400 hover:text-purple-600"
+                  >
+                    ✕
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
 
           <form onSubmit={handleSubmit} className="p-6 space-y-6">
@@ -325,6 +367,64 @@ export default function EditDocumentPage() {
             </div>
           </form>
         </div>
+
+        {/* Template Selection Modal */}
+        {showTemplates && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+            <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[80vh] overflow-y-auto">
+              <div className="p-6 border-b border-gray-200">
+                <div className="flex items-center justify-between">
+                  <h2 className="text-2xl font-bold text-gray-900">Áp dụng Template MDX</h2>
+                  <button
+                    onClick={() => setShowTemplates(false)}
+                    className="text-gray-400 hover:text-gray-600 text-xl"
+                  >
+                    ✕
+                  </button>
+                </div>
+                <p className="text-gray-600 mt-2">⚠️ Lưu ý: Template sẽ thay thế toàn bộ nội dung hiện tại</p>
+              </div>
+
+              <div className="p-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {mdxTemplates.map((template) => (
+                    <div
+                      key={template.id}
+                      onClick={() => handleTemplateSelect(template)}
+                      className="p-4 border border-gray-200 rounded-lg hover:border-purple-300 hover:bg-purple-50 cursor-pointer transition-colors"
+                    >
+                      <div className="flex items-start gap-3">
+                        <span className="text-2xl">{template.icon}</span>
+                        <div className="flex-1">
+                          <h3 className="font-semibold text-gray-900 mb-1">{template.name}</h3>
+                          <p className="text-sm text-gray-600 mb-2">{template.description}</p>
+                          <span className={`inline-block px-2 py-1 text-xs rounded-full ${
+                            template.category === 'course' ? 'bg-blue-100 text-blue-700' :
+                            template.category === 'tutorial' ? 'bg-green-100 text-green-700' :
+                            template.category === 'documentation' ? 'bg-yellow-100 text-yellow-700' :
+                            template.category === 'blog' ? 'bg-pink-100 text-pink-700' :
+                            'bg-purple-100 text-purple-700'
+                          }`}>
+                            {template.category}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-6 text-center">
+                  <button
+                    onClick={() => setShowTemplates(false)}
+                    className="px-6 py-2 text-gray-600 bg-gray-100 rounded-md hover:bg-gray-200"
+                  >
+                    Hủy
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

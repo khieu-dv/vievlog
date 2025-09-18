@@ -11,7 +11,14 @@ import { TableRow } from '@tiptap/extension-table-row';
 import { TableHeader } from '@tiptap/extension-table-header';
 import { TableCell } from '@tiptap/extension-table-cell';
 import { createLowlight } from 'lowlight';
-import { useCallback } from 'react';
+import { useCallback, useState, useEffect, useRef } from 'react';
+import dynamic from 'next/dynamic';
+import TableBuilder from './TableBuilder';
+import TableControls from './TableControls';
+
+const MermaidLiveEditor = dynamic(() => import('~/components/MermaidLiveEditor'), {
+  ssr: false
+});
 
 interface TipTapEditorProps {
   content: string;
@@ -19,10 +26,17 @@ interface TipTapEditorProps {
   placeholder?: string;
 }
 
-const MenuBar = ({ editor }: { editor: any }) => {
-  if (!editor) {
-    return null;
-  }
+const MenuBar = ({
+  editor,
+  onOpenMermaidEditor
+}: {
+  editor: any;
+  onOpenMermaidEditor: () => void;
+}) => {
+  const [showTableBuilder, setShowTableBuilder] = useState(false);
+  const [showTableControls, setShowTableControls] = useState(false);
+  const tableBuilderRef = useRef<HTMLDivElement>(null);
+  const tableControlsRef = useRef<HTMLDivElement>(null);
 
   const addImage = useCallback(() => {
     const url = window.prompt('URL hình ảnh:');
@@ -46,6 +60,50 @@ const MenuBar = ({ editor }: { editor: any }) => {
 
     editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run();
   }, [editor]);
+
+  const insertMermaidDiagram = useCallback(() => {
+    const defaultMermaid = `\`\`\`mermaid
+flowchart TD
+    A[Start] --> B{Decision}
+    B --> C[Option 1]
+    B --> D[Option 2]
+    C --> E[End]
+    D --> E
+\`\`\``;
+    editor.chain().focus().insertContent(defaultMermaid).run();
+  }, [editor]);
+
+
+  const insertMDXComponent = useCallback(() => {
+    const component = `<div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+  <h4 className="font-semibold text-blue-800 mb-2">📝 Ghi chú</h4>
+  <p className="text-blue-700">Nội dung ghi chú ở đây...</p>
+</div>`;
+    editor.chain().focus().insertContent(component).run();
+  }, [editor]);
+
+  const insertTable = useCallback((rows: number, cols: number) => {
+    editor.chain().focus().insertTable({ rows, cols, withHeaderRow: true }).run();
+  }, [editor]);
+
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (tableBuilderRef.current && !tableBuilderRef.current.contains(event.target as Node)) {
+        setShowTableBuilder(false);
+      }
+      if (tableControlsRef.current && !tableControlsRef.current.contains(event.target as Node)) {
+        setShowTableControls(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  if (!editor) {
+    return null;
+  }
 
   return (
     <div className="border-b border-gray-200 p-3 flex flex-wrap gap-2">
@@ -186,12 +244,69 @@ const MenuBar = ({ editor }: { editor: any }) => {
       <div className="w-px h-6 bg-gray-300"></div>
 
       {/* Table */}
-      <div className="flex gap-1">
+      <div className="flex gap-1 relative" ref={tableBuilderRef}>
         <button
-          onClick={() => editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()}
+          onClick={() => {
+            setShowTableBuilder(!showTableBuilder);
+            setShowTableControls(false);
+          }}
           className="px-3 py-1 text-sm border rounded bg-white text-gray-700 hover:bg-gray-100"
         >
-          Table
+          📊 Tạo bảng
+        </button>
+
+        {showTableBuilder && (
+          <TableBuilder
+            onInsertTable={insertTable}
+            onClose={() => setShowTableBuilder(false)}
+          />
+        )}
+      </div>
+
+      {editor.isActive('table') && (
+        <div className="relative" ref={tableControlsRef}>
+          <button
+            onClick={() => {
+              setShowTableControls(!showTableControls);
+              setShowTableBuilder(false);
+            }}
+            className="px-3 py-1 text-sm border rounded bg-blue-50 text-blue-700 hover:bg-blue-100"
+          >
+            ⚙️ Chỉnh sửa bảng
+          </button>
+
+          {showTableControls && (
+            <TableControls
+              editor={editor}
+              onClose={() => setShowTableControls(false)}
+            />
+          )}
+        </div>
+      )}
+
+      <div className="w-px h-6 bg-gray-300"></div>
+
+      {/* MDX Components */}
+      <div className="flex gap-1">
+        <div className="relative">
+          <button
+            onClick={insertMermaidDiagram}
+            className="px-3 py-1 text-sm border rounded bg-purple-50 text-purple-700 hover:bg-purple-100"
+          >
+            📊 Quick Mermaid
+          </button>
+        </div>
+        <button
+          onClick={onOpenMermaidEditor}
+          className="px-3 py-1 text-sm border rounded bg-blue-50 text-blue-700 hover:bg-blue-100"
+        >
+          📊 Live Editor
+        </button>
+        <button
+          onClick={insertMDXComponent}
+          className="px-3 py-1 text-sm border rounded bg-green-50 text-green-700 hover:bg-green-100"
+        >
+          🧩 Component
         </button>
       </div>
 
@@ -218,8 +333,25 @@ const MenuBar = ({ editor }: { editor: any }) => {
   );
 };
 
+// Mermaid Editor Modal Component
+const MermaidEditorModal = ({ show, onSave, onCancel }: {
+  show: boolean;
+  onSave: (code: string) => void;
+  onCancel: () => void;
+}) => {
+  if (!show) return null;
+
+  return (
+    <MermaidLiveEditor
+      onSave={onSave}
+      onCancel={onCancel}
+    />
+  );
+};
+
 export default function TipTapEditor({ content, onChange, placeholder = 'Bắt đầu viết...' }: TipTapEditorProps) {
   const lowlight = createLowlight();
+  const [showMermaidEditor, setShowMermaidEditor] = useState(false);
 
   const editor = useEditor({
     extensions: [
@@ -250,14 +382,32 @@ export default function TipTapEditor({ content, onChange, placeholder = 'Bắt �
     immediatelyRender: false,
   });
 
+  const handleMermaidSave = useCallback((mermaidCode: string) => {
+    const wrappedCode = `\`\`\`mermaid\n${mermaidCode}\n\`\`\``;
+    editor?.chain().focus().insertContent(wrappedCode).run();
+    setShowMermaidEditor(false);
+  }, [editor]);
+
   return (
-    <div className="border border-gray-300 rounded-lg overflow-hidden">
-      <MenuBar editor={editor} />
-      <EditorContent
-        editor={editor}
-        placeholder={placeholder}
-        className="min-h-[300px] max-h-[600px] overflow-y-auto"
+    <>
+      <div className="border border-gray-300 rounded-lg overflow-hidden">
+        <MenuBar
+          editor={editor}
+          onOpenMermaidEditor={() => setShowMermaidEditor(true)}
+        />
+        <EditorContent
+          editor={editor}
+          placeholder={placeholder}
+          className="min-h-[300px] max-h-[600px] overflow-y-auto"
+        />
+      </div>
+
+      {/* Mermaid Visual Editor Modal */}
+      <MermaidEditorModal
+        show={showMermaidEditor}
+        onSave={handleMermaidSave}
+        onCancel={() => setShowMermaidEditor(false)}
       />
-    </div>
+    </>
   );
 }
