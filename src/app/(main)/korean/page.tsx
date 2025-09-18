@@ -104,7 +104,7 @@ export default function KoreanLearningPage() {
 
           <div className="grid gap-3 sm:grid-cols-1 md:grid-cols-3">
             <div className="rounded-xl border bg-gradient-to-br from-green-50 to-emerald-50 p-4 shadow-sm transition-all hover:shadow-md dark:from-green-950/50 dark:to-emerald-950/50 dark:border-green-800">
-              <Link href="/docs/soft-skills/korean/bai-1" className="block">
+              <Link href="/desktop-docs/soft-skills/korean/bai-1" className="block">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="p-2 bg-green-100 dark:bg-green-900 rounded-lg">
                     <BookOpen className="h-5 w-5 text-green-600 dark:text-green-400" />
@@ -118,7 +118,7 @@ export default function KoreanLearningPage() {
             </div>
 
             <div className="rounded-xl border bg-gradient-to-br from-blue-50 to-cyan-50 p-4 shadow-sm transition-all hover:shadow-md dark:from-blue-950/50 dark:to-cyan-950/50 dark:border-blue-800">
-              <Link href="/docs/soft-skills/korean/bai-6" className="block">
+              <Link href="/desktop-docs/soft-skills/korean/bai-6" className="block">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="p-2 bg-blue-100 dark:bg-blue-900 rounded-lg">
                     <MessageSquare className="h-5 w-5 text-blue-600 dark:text-blue-400" />
@@ -132,7 +132,7 @@ export default function KoreanLearningPage() {
             </div>
 
             <div className="rounded-xl border bg-gradient-to-br from-purple-50 to-violet-50 p-4 shadow-sm transition-all hover:shadow-md dark:from-purple-950/50 dark:to-violet-950/50 dark:border-purple-800">
-              <Link href="/docs/soft-skills/korean/bai-12" className="block">
+              <Link href="/desktop-docs/soft-skills/korean/bai-12" className="block">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="p-2 bg-purple-100 dark:bg-purple-900 rounded-lg">
                     <Award className="h-5 w-5 text-purple-600 dark:text-purple-400" />
@@ -149,7 +149,7 @@ export default function KoreanLearningPage() {
           <p className="my-4 text-sm text-gray-500 dark:text-gray-400 sm:my-7 sm:text-base">
             Chương trình tiếng Hàn tổng hợp dành riêng cho người Việt Nam với{" "}
             <Link
-              href="/docs/soft-skills/korean"
+              href="/desktop-docs/soft-skills/korean"
               className="font-medium underline underline-offset-2"
             >
               phương pháp học tập hiệu quả
@@ -201,133 +201,133 @@ export default function KoreanLearningPage() {
 
       {/* KIIP Program */}
       <div id="kiip-program">
-      <RoleRoadmaps
-        badge="Chương Trình KIIP"
-        title="Chương Trình Tiếng Hàn Hội Nhập Xã Hội Hàn Quốc (KIIP)"
-        description="Korea Immigration & Integration Program - Chương trình chính thức của Chính phủ Hàn Quốc"
-      >
-        <div className="flex flex-col gap-3">
+        <RoleRoadmaps
+          badge="Chương Trình KIIP"
+          title="Chương Trình Tiếng Hàn Hội Nhập Xã Hội Hàn Quốc (KIIP)"
+          description="Korea Immigration & Integration Program - Chương trình chính thức của Chính phủ Hàn Quốc"
+        >
+          <div className="flex flex-col gap-3">
+            <RoadmapCard
+              icon={Users}
+              title="KIIP Sơ Cấp (1-2급)"
+              link="/desktop-docs/soft-skills/korean/kiip-beginner"
+              description="Tiếng Hàn cơ bản cho cuộc sống hàng ngày, hiểu biết về xã hội Hàn Quốc."
+            />
+            <RoadmapCard
+              icon={Globe2}
+              title="KIIP Trung Cấp (3-4급)"
+              link="/desktop-docs/soft-skills/korean/kiip-intermediate"
+              description="Giao tiếp xã hội, tìm hiểu văn hóa và lịch sử Hàn Quốc sâu hơn."
+            />
+          </div>
           <RoadmapCard
-            icon={Users}
-            title="KIIP Sơ Cấp (1-2급)"
-            link="/docs/soft-skills/korean/kiip-beginner"
-            description="Tiếng Hàn cơ bản cho cuộc sống hàng ngày, hiểu biết về xã hội Hàn Quốc."
+            icon={Award}
+            title="KIIP Cao Cấp (5급)"
+            link="/desktop-docs/soft-skills/korean/kiip-advanced"
+            description="Hiểu biết sâu sắc về xã hội, chính trị, kinh tế Hàn Quốc. Chuẩn bị nhập quốc tịch."
           />
-          <RoadmapCard
-            icon={Globe2}
-            title="KIIP Trung Cấp (3-4급)"
-            link="/docs/soft-skills/korean/kiip-intermediate"
-            description="Giao tiếp xã hội, tìm hiểu văn hóa và lịch sử Hàn Quốc sâu hơn."
+          <RoadmapMultiCard
+            roadmaps={[
+              { title: "Văn hóa Hàn Quốc", link: "/desktop-docs/soft-skills/korean/kiip-culture" },
+              { title: "Lịch sử Hàn Quốc", link: "/desktop-docs/soft-skills/korean/kiip-history" },
+              { title: "Xã hội Hàn Quốc", link: "/desktop-docs/soft-skills/korean/kiip-society" },
+            ]}
+            description="Tìm hiểu toàn diện về đất nước và con người Hàn Quốc"
           />
-        </div>
-        <RoadmapCard
-          icon={Award}
-          title="KIIP Cao Cấp (5급)"
-          link="/docs/soft-skills/korean/kiip-advanced"
-          description="Hiểu biết sâu sắc về xã hội, chính trị, kinh tế Hàn Quốc. Chuẩn bị nhập quốc tịch."
-        />
-        <RoadmapMultiCard
-          roadmaps={[
-            { title: "Văn hóa Hàn Quốc", link: "/docs/soft-skills/korean/kiip-culture" },
-            { title: "Lịch sử Hàn Quốc", link: "/docs/soft-skills/korean/kiip-history" },
-            { title: "Xã hội Hàn Quốc", link: "/docs/soft-skills/korean/kiip-society" },
-          ]}
-          description="Tìm hiểu toàn diện về đất nước và con người Hàn Quốc"
-        />
-      </RoleRoadmaps>
+        </RoleRoadmaps>
       </div>
 
       {/* TOPIK Test */}
       <div id="topik-test">
-      <RoleRoadmaps
-        badge="Thi TOPIK"
-        title="Luyện Thi TOPIK (Test of Proficiency in Korean)"
-        description="Kỳ thi tiếng Hàn quan trọng nhất cho du học, làm việc và định cư tại Hàn Quốc"
-      >
-        <div className="flex flex-col gap-3">
-          <RoadmapCard
-            icon={Award}
-            title="TOPIK I (Sơ cấp 1-2)"
-            link="/docs/soft-skills/korean/topik-1"
-            description="Luyện thi TOPIK cấp độ 1-2: Nghe và Đọc hiểu cơ bản (200 câu hỏi, 100 phút)."
+        <RoleRoadmaps
+          badge="Thi TOPIK"
+          title="Luyện Thi TOPIK (Test of Proficiency in Korean)"
+          description="Kỳ thi tiếng Hàn quan trọng nhất cho du học, làm việc và định cư tại Hàn Quốc"
+        >
+          <div className="flex flex-col gap-3">
+            <RoadmapCard
+              icon={Award}
+              title="TOPIK I (Sơ cấp 1-2)"
+              link="/desktop-docs/soft-skills/korean/topik-1"
+              description="Luyện thi TOPIK cấp độ 1-2: Nghe và Đọc hiểu cơ bản (200 câu hỏi, 100 phút)."
+            />
+            <RoadmapCard
+              icon={Star}
+              title="TOPIK II (Trung-Cao cấp 3-6)"
+              link="/desktop-docs/soft-skills/korean/topik-2"
+              description="Luyện thi TOPIK cấp độ 3-6: Nghe, Đọc và Viết (70 câu + 4 bài viết, 180 phút)."
+            />
+          </div>
+          <RoadmapMultiCard
+            roadmaps={[
+              { title: "Chiến lược làm bài", link: "/desktop-docs/soft-skills/korean/topik-strategy" },
+              { title: "Đề thi thực hành", link: "/desktop-docs/soft-skills/korean/topik-practice" },
+              { title: "Từ vựng TOPIK", link: "/desktop-docs/soft-skills/korean/topik-vocabulary" },
+            ]}
+            description="Chuẩn bị toàn diện cho kỳ thi TOPIK"
+            secondaryRoadmaps={[
+              { title: "Kỹ năng Viết", link: "/desktop-docs/soft-skills/korean/topik-writing" },
+              { title: "Kỹ năng Nghe", link: "/desktop-docs/soft-skills/korean/topik-listening" },
+            ]}
+            secondaryDescription="Luyện tập chuyên sâu từng kỹ năng"
           />
-          <RoadmapCard
-            icon={Star}
-            title="TOPIK II (Trung-Cao cấp 3-6)"
-            link="/docs/soft-skills/korean/topik-2"
-            description="Luyện thi TOPIK cấp độ 3-6: Nghe, Đọc và Viết (70 câu + 4 bài viết, 180 phút)."
-          />
-        </div>
-        <RoadmapMultiCard
-          roadmaps={[
-            { title: "Chiến lược làm bài", link: "/docs/soft-skills/korean/topik-strategy" },
-            { title: "Đề thi thực hành", link: "/docs/soft-skills/korean/topik-practice" },
-            { title: "Từ vựng TOPIK", link: "/docs/soft-skills/korean/topik-vocabulary" },
-          ]}
-          description="Chuẩn bị toàn diện cho kỳ thi TOPIK"
-          secondaryRoadmaps={[
-            { title: "Kỹ năng Viết", link: "/docs/soft-skills/korean/topik-writing" },
-            { title: "Kỹ năng Nghe", link: "/docs/soft-skills/korean/topik-listening" },
-          ]}
-          secondaryDescription="Luyện tập chuyên sâu từng kỹ năng"
-        />
-      </RoleRoadmaps>
+        </RoleRoadmaps>
       </div>
 
       {/* KIIP Test */}
       <div id="kiip-test">
-      <RoleRoadmaps
-        badge="Thi KIIP"
-        title="Luyện Thi Tốt Nghiệp KIIP"
-        description="Kỳ thi tốt nghiệp chương trình KIIP để nhận chứng chỉ hoàn thành"
-      >
-        <RoadmapCard
-          icon={FileText}
-          title="Thi Tổng Hợp KIIP"
-          link="/docs/soft-skills/korean/kiip-test-comprehensive"
-          description="Thi tổng hợp kiến thức tiếng Hàn và văn hóa xã hội đã học trong chương trình KIIP."
-        />
-        <RoadmapMultiCard
-          roadmaps={[
-            { title: "Đề thi mẫu", link: "/docs/soft-skills/korean/kiip-test-samples" },
-            { title: "Kiến thức văn hóa", link: "/docs/soft-skills/korean/kiip-culture-test" },
-          ]}
-          description="Ôn tập và luyện đề thi KIIP hiệu quả"
-          secondaryRoadmaps={[
-            { title: "Thủ tục đăng ký", link: "/docs/soft-skills/korean/kiip-registration" },
-            { title: "Lịch thi", link: "/docs/soft-skills/korean/kiip-schedule" },
-          ]}
-          secondaryDescription="Hướng dẫn thủ tục và lịch trình thi"
-        />
-      </RoleRoadmaps>
+        <RoleRoadmaps
+          badge="Thi KIIP"
+          title="Luyện Thi Tốt Nghiệp KIIP"
+          description="Kỳ thi tốt nghiệp chương trình KIIP để nhận chứng chỉ hoàn thành"
+        >
+          <RoadmapCard
+            icon={FileText}
+            title="Thi Tổng Hợp KIIP"
+            link="/desktop-docs/soft-skills/korean/kiip-test-comprehensive"
+            description="Thi tổng hợp kiến thức tiếng Hàn và văn hóa xã hội đã học trong chương trình KIIP."
+          />
+          <RoadmapMultiCard
+            roadmaps={[
+              { title: "Đề thi mẫu", link: "/desktop-docs/soft-skills/korean/kiip-test-samples" },
+              { title: "Kiến thức văn hóa", link: "/desktop-docs/soft-skills/korean/kiip-culture-test" },
+            ]}
+            description="Ôn tập và luyện đề thi KIIP hiệu quả"
+            secondaryRoadmaps={[
+              { title: "Thủ tục đăng ký", link: "/desktop-docs/soft-skills/korean/kiip-registration" },
+              { title: "Lịch thi", link: "/desktop-docs/soft-skills/korean/kiip-schedule" },
+            ]}
+            secondaryDescription="Hướng dẫn thủ tục và lịch trình thi"
+          />
+        </RoleRoadmaps>
       </div>
 
       {/* ESP Test */}
       <div id="esp-test">
-      <RoleRoadmaps
-        badge="Thi ESP"
-        title="Luyện Thi ESP (Employment Permit System)"
-        description="Kỳ thi tiếng Hàn cho lao động nước ngoài muốn làm việc tại Hàn Quốc"
-      >
-        <RoadmapCard
-          icon={Star}
-          title="ESP Test Preparation"
-          link="/docs/soft-skills/korean/esp-preparation"
-          description="Chuẩn bị cho kỳ thi ESP: Kiến thức tiếng Hàn cơ bản cho môi trường làm việc."
-        />
-        <RoadmapMultiCard
-          roadmaps={[
-            { title: "Từ vựng công việc", link: "/docs/soft-skills/korean/esp-work-vocabulary" },
-            { title: "Giao tiếp nơi làm việc", link: "/docs/soft-skills/korean/esp-workplace-communication" },
-          ]}
-          description="Tiếng Hàn chuyên biệt cho môi trường làm việc"
-          secondaryRoadmaps={[
-            { title: "Quy trình đăng ký EPS", link: "/docs/soft-skills/korean/eps-registration" },
-            { title: "Chuẩn bị phỏng vấn", link: "/docs/soft-skills/korean/esp-interview" },
-          ]}
-          secondaryDescription="Hướng dẫn toàn diện về EPS"
-        />
-      </RoleRoadmaps>
+        <RoleRoadmaps
+          badge="Thi ESP"
+          title="Luyện Thi ESP (Employment Permit System)"
+          description="Kỳ thi tiếng Hàn cho lao động nước ngoài muốn làm việc tại Hàn Quốc"
+        >
+          <RoadmapCard
+            icon={Star}
+            title="ESP Test Preparation"
+            link="/desktop-docs/soft-skills/korean/esp-preparation"
+            description="Chuẩn bị cho kỳ thi ESP: Kiến thức tiếng Hàn cơ bản cho môi trường làm việc."
+          />
+          <RoadmapMultiCard
+            roadmaps={[
+              { title: "Từ vựng công việc", link: "/desktop-docs/soft-skills/korean/esp-work-vocabulary" },
+              { title: "Giao tiếp nơi làm việc", link: "/desktop-docs/soft-skills/korean/esp-workplace-communication" },
+            ]}
+            description="Tiếng Hàn chuyên biệt cho môi trường làm việc"
+            secondaryRoadmaps={[
+              { title: "Quy trình đăng ký EPS", link: "/desktop-docs/soft-skills/korean/eps-registration" },
+              { title: "Chuẩn bị phỏng vấn", link: "/desktop-docs/soft-skills/korean/esp-interview" },
+            ]}
+            secondaryDescription="Hướng dẫn toàn diện về EPS"
+          />
+        </RoleRoadmaps>
       </div>
 
       {/* Korean Learning Resources */}
@@ -342,7 +342,7 @@ export default function KoreanLearningPage() {
 
           <div className="my-4 grid grid-cols-1 gap-2 sm:my-5 sm:grid-cols-2 sm:gap-3 md:grid-cols-5">
             <Link
-              href="/docs/soft-skills/korean"
+              href="/desktop-docs/soft-skills/korean"
               className="grow rounded-lg bg-gradient-to-br from-blue-500/20 to-blue-600/20 backdrop-blur p-4 text-sm text-white transition-all hover:from-blue-400/30 hover:to-blue-500/30 sm:text-base"
             >
               <BookOpen className="mb-3 h-5 w-5 text-blue-200 sm:mb-2" />
@@ -380,14 +380,14 @@ export default function KoreanLearningPage() {
           <p className="text-sm text-blue-100 sm:text-base">
             Mỗi chương trình được thiết kế đặc biệt cho{" "}
             <Link
-              href="/docs/soft-skills/korean"
+              href="/desktop-docs/soft-skills/korean"
               className="rounded-lg bg-blue-500/30 px-2 py-1 text-blue-100 transition-colors hover:bg-blue-400/40 hover:text-white"
             >
               người Việt Nam
             </Link>{" "}
             với{" "}
             <Link
-              href="/docs/soft-skills/korean"
+              href="/desktop-docs/soft-skills/korean"
               className="rounded-lg bg-blue-500/30 px-2 py-1 text-blue-100 transition-colors hover:bg-blue-400/40 hover:text-white"
             >
               phương pháp hiệu quả

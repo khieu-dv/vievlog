@@ -63,28 +63,28 @@ export default function HomePage() {
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               <Link
-                href="/docs/soft-skills/rust/bai-0"
+                href="/desktop-docs/soft-skills/rust/bai-0"
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-orange-600 px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-orange-700"
               >
                 <Braces className="size-4" />
                 🦀 Rust
               </Link>
               <Link
-                href="/docs/soft-skills/golang/bai-0"
+                href="/desktop-docs/soft-skills/golang/bai-0"
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-600 px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-cyan-700"
               >
                 <Server className="size-4" />
                 🐹 Go
               </Link>
               <Link
-                href="/docs/soft-skills/nextjs/bai-0"
+                href="/desktop-docs/soft-skills/nextjs/bai-0"
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-black px-4 py-3 text-sm font-medium text-white transition-colors hover:opacity-80 dark:bg-white dark:text-black"
               >
                 <Globe2 className="size-4" />
                 ⚡ Next.js
               </Link>
               <Link
-                href="/docs/soft-skills/flutter/bai-0"
+                href="/desktop-docs/soft-skills/flutter/bai-0"
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-700"
               >
                 <Smartphone className="size-4" />
@@ -114,25 +114,25 @@ export default function HomePage() {
             <RoadmapCard
               icon={Braces}
               title="Systems Programming"
-              link="/docs/soft-skills/rust/bai-0"
+              link="/desktop-docs/soft-skills/rust/bai-0"
               description="Build fast, safe system software with Rust. Perfect for performance-critical applications."
             />
             <RoadmapCard
               icon={Server}
               title="Backend & Cloud"
-              link="/docs/soft-skills/golang/bai-0"
+              link="/desktop-docs/soft-skills/golang/bai-0"
               description="Create scalable backends and cloud services with Go's simplicity and concurrency."
             />
             <RoadmapCard
               icon={Globe2}
               title="Modern Web Apps"
-              link="/docs/soft-skills/nextjs/bai-0"
+              link="/desktop-docs/soft-skills/nextjs/bai-0"
               description="Build full-stack web applications with Next.js and React ecosystem."
             />
             <RoadmapCard
               icon={Smartphone}
               title="Cross-Platform Mobile"
-              link="/docs/soft-skills/flutter/bai-0"
+              link="/desktop-docs/soft-skills/flutter/bai-0"
               description="Develop beautiful native mobile apps for iOS and Android with Flutter."
             />
           </div>
@@ -140,7 +140,7 @@ export default function HomePage() {
           <p className="my-4 text-sm text-gray-500 dark:text-gray-400 sm:my-7 sm:text-base">
             Each path includes related tools and frameworks. For example, Rust ecosystem includes{" "}
             <Link
-              href="/docs/soft-skills/rust/bai-0"
+              href="/desktop-docs/soft-skills/rust/bai-0"
               className="font-medium underline underline-offset-2"
             >
               Actix, Tokio, Serde
@@ -200,19 +200,19 @@ export default function HomePage() {
         <RoadmapCard
           icon={Braces}
           title="Rust Fundamentals"
-          link="/docs/soft-skills/rust/bai-0"
+          link="/desktop-docs/soft-skills/rust/bai-0"
           description="Master ownership, borrowing, lifetimes, and Rust's unique memory safety features."
         />
         <RoadmapCard
           icon={Server}
           title="Web Development"
-          link="/docs/soft-skills/rust/bai-0"
+          link="/desktop-docs/soft-skills/rust/bai-0"
           description="Build web services with Actix-web, Warp, or Rocket frameworks."
         />
         <RoadmapMultiCard
-          roadmaps={[{ title: "Async Programming", link: "/docs/soft-skills/rust/bai-0" }]}
+          roadmaps={[{ title: "Async Programming", link: "/desktop-docs/soft-skills/rust/bai-0" }]}
           description="Learn async/await with Tokio, async-std for concurrent applications."
-          secondaryRoadmaps={[{ title: "WebAssembly", link: "/docs/soft-skills/rust/bai-0" }]}
+          secondaryRoadmaps={[{ title: "WebAssembly", link: "/desktop-docs/soft-skills/rust/bai-0" }]}
           secondaryDescription="Compile Rust to WebAssembly for high-performance web apps."
         />
       </RoleRoadmaps>
@@ -226,27 +226,27 @@ export default function HomePage() {
         <RoadmapCard
           icon={Server}
           title="Go Fundamentals"
-          link="/docs/soft-skills/golang/bai-0"
+          link="/desktop-docs/soft-skills/golang/bai-0"
           description="Master goroutines, channels, interfaces, and Go's simplicity philosophy."
         />
         <RoadmapMultiCard
           roadmaps={[
-            { title: "Web Frameworks", link: "/docs/soft-skills/golang/bai-0" },
-            { title: "Gin & Fiber", link: "/docs/soft-skills/golang/bai-0" },
+            { title: "Web Frameworks", link: "/desktop-docs/soft-skills/golang/bai-0" },
+            { title: "Gin & Fiber", link: "/desktop-docs/soft-skills/golang/bai-0" },
           ]}
           description="Build REST APIs with Gin, Fiber, or Echo frameworks."
-          secondaryRoadmaps={[{ title: "gRPC & Microservices", link: "/docs/soft-skills/golang/bai-0" }]}
+          secondaryRoadmaps={[{ title: "gRPC & Microservices", link: "/desktop-docs/soft-skills/golang/bai-0" }]}
           secondaryDescription="Learn gRPC for high-performance microservices communication."
         />
         <RoadmapMultiCard
           roadmaps={[
-            { title: "Docker & K8s", link: "/docs/soft-skills/golang/bai-0" },
-            { title: "Database Integration", link: "/docs/soft-skills/golang/bai-0" },
-            { title: "Testing", link: "/docs/soft-skills/golang/bai-0" },
-            { title: "CLI Tools", link: "/docs/soft-skills/golang/bai-0" },
+            { title: "Docker & K8s", link: "/desktop-docs/soft-skills/golang/bai-0" },
+            { title: "Database Integration", link: "/desktop-docs/soft-skills/golang/bai-0" },
+            { title: "Testing", link: "/desktop-docs/soft-skills/golang/bai-0" },
+            { title: "CLI Tools", link: "/desktop-docs/soft-skills/golang/bai-0" },
           ]}
           description="Go excels in DevOps tooling and cloud infrastructure."
-          secondaryRoadmaps={[{ title: "Concurrency Patterns", link: "/docs/soft-skills/golang/bai-0" }]}
+          secondaryRoadmaps={[{ title: "Concurrency Patterns", link: "/desktop-docs/soft-skills/golang/bai-0" }]}
           secondaryDescription="Master Go's concurrency with practical patterns."
         />
       </RoleRoadmaps>
@@ -261,35 +261,35 @@ export default function HomePage() {
           <RoadmapCard
             icon={Globe2}
             title="Next.js Fundamentals"
-            link="/docs/soft-skills/nextjs/bai-0"
+            link="/desktop-docs/soft-skills/nextjs/bai-0"
             description="Learn App Router, Server Components, and modern Next.js patterns."
           />
           <RoadmapCard
             icon={Braces}
             title="React & TypeScript"
-            link="/docs/soft-skills/nextjs/bai-0"
+            link="/desktop-docs/soft-skills/nextjs/bai-0"
             description="Master React 18+ features with TypeScript for type-safe development."
           />
         </div>
         <RoadmapMultiCard
           roadmaps={[
-            { title: "Styling Solutions", link: "/docs/soft-skills/nextjs/bai-0" },
-            { title: "Tailwind CSS", link: "/docs/soft-skills/nextjs/bai-0" },
-            { title: "shadcn/ui", link: "/docs/soft-skills/nextjs/bai-0" },
-            { title: "State Management", link: "/docs/soft-skills/nextjs/bai-0" },
+            { title: "Styling Solutions", link: "/desktop-docs/soft-skills/nextjs/bai-0" },
+            { title: "Tailwind CSS", link: "/desktop-docs/soft-skills/nextjs/bai-0" },
+            { title: "shadcn/ui", link: "/desktop-docs/soft-skills/nextjs/bai-0" },
+            { title: "State Management", link: "/desktop-docs/soft-skills/nextjs/bai-0" },
           ]}
           description="Build beautiful UIs with modern styling and state management."
         />
         <RoadmapMultiCard
           roadmaps={[
-            { title: "Database Integration", link: "/docs/soft-skills/nextjs/bai-0" },
-            { title: "Authentication", link: "/docs/soft-skills/nextjs/bai-0" },
+            { title: "Database Integration", link: "/desktop-docs/soft-skills/nextjs/bai-0" },
+            { title: "Authentication", link: "/desktop-docs/soft-skills/nextjs/bai-0" },
           ]}
           description="Full-stack features with Prisma, NextAuth, and more."
           secondaryRoadmaps={[
-            { title: "Deployment", link: "/docs/soft-skills/nextjs/bai-0" },
-            { title: "Vercel", link: "/docs/soft-skills/nextjs/bai-0" },
-            { title: "Performance", link: "/docs/soft-skills/nextjs/bai-0" },
+            { title: "Deployment", link: "/desktop-docs/soft-skills/nextjs/bai-0" },
+            { title: "Vercel", link: "/desktop-docs/soft-skills/nextjs/bai-0" },
+            { title: "Performance", link: "/desktop-docs/soft-skills/nextjs/bai-0" },
           ]}
           secondaryDescription="Deploy and optimize your Next.js applications."
         />
@@ -304,26 +304,26 @@ export default function HomePage() {
         <RoadmapCard
           icon={Smartphone}
           title="Flutter Fundamentals"
-          link="/docs/soft-skills/flutter/bai-0"
+          link="/desktop-docs/soft-skills/flutter/bai-0"
           description="Learn widgets, state management, and Dart programming language."
         />
         <RoadmapCard
           icon={Smartphone}
           title="Advanced Flutter"
-          link="/docs/soft-skills/flutter/bai-0"
+          link="/desktop-docs/soft-skills/flutter/bai-0"
           description="Master animations, custom widgets, and platform-specific features."
         />
         <RoadmapMultiCard
           roadmaps={[
-            { title: "State Management", link: "/docs/soft-skills/flutter/bai-0" },
-            { title: "BLoC & Riverpod", link: "/docs/soft-skills/flutter/bai-0" },
-            { title: "GetX & Provider", link: "/docs/soft-skills/flutter/bai-0" },
+            { title: "State Management", link: "/desktop-docs/soft-skills/flutter/bai-0" },
+            { title: "BLoC & Riverpod", link: "/desktop-docs/soft-skills/flutter/bai-0" },
+            { title: "GetX & Provider", link: "/desktop-docs/soft-skills/flutter/bai-0" },
           ]}
           description="Choose the right state management solution for your app."
           secondaryRoadmaps={[
-            { title: "Firebase Integration", link: "/docs/soft-skills/flutter/bai-0" },
-            { title: "Native Features", link: "/docs/soft-skills/flutter/bai-0" },
-            { title: "App Store Deployment", link: "/docs/soft-skills/flutter/bai-0" },
+            { title: "Firebase Integration", link: "/desktop-docs/soft-skills/flutter/bai-0" },
+            { title: "Native Features", link: "/desktop-docs/soft-skills/flutter/bai-0" },
+            { title: "App Store Deployment", link: "/desktop-docs/soft-skills/flutter/bai-0" },
           ]}
           secondaryDescription="Integrate backend services and deploy to app stores."
         />
@@ -342,28 +342,28 @@ export default function HomePage() {
 
           <div className="my-4 grid grid-cols-1 gap-2 sm:my-5 sm:grid-cols-2 sm:gap-3 md:grid-cols-4">
             <Link
-              href="/docs/soft-skills/rust/bai-0"
+              href="/desktop-docs/soft-skills/rust/bai-0"
               className="grow rounded-lg bg-gradient-to-br from-orange-700 to-orange-600 p-4 text-sm text-white transition-all hover:from-orange-600 hover:to-orange-600 sm:text-base"
             >
               <Braces className="mb-3 h-5 w-5 text-orange-200 sm:mb-2" />
               🦀 Rust Mastery
             </Link>
             <Link
-              href="/docs/soft-skills/golang/bai-0"
+              href="/desktop-docs/soft-skills/golang/bai-0"
               className="grow rounded-lg bg-gradient-to-br from-cyan-700 to-cyan-600 p-4 text-sm text-white transition-all hover:from-cyan-600 hover:to-cyan-600 sm:text-base"
             >
               <Server className="mb-3 h-5 w-5 text-cyan-200 sm:mb-2" />
               🐹 Go Development
             </Link>
             <Link
-              href="/docs/soft-skills/nextjs/bai-0"
+              href="/desktop-docs/soft-skills/nextjs/bai-0"
               className="grow rounded-lg bg-gradient-to-br from-gray-800 to-gray-700 p-4 text-sm text-white transition-all hover:from-gray-700 hover:to-gray-700 sm:text-base"
             >
               <Globe2 className="mb-3 h-5 w-5 text-gray-300 sm:mb-2" />
               ⚡ Next.js Pro
             </Link>
             <Link
-              href="/docs/soft-skills/flutter/bai-0"
+              href="/desktop-docs/soft-skills/flutter/bai-0"
               className="grow rounded-lg bg-gradient-to-br from-blue-700 to-blue-600 p-4 text-sm text-white transition-all hover:from-blue-600 hover:to-blue-600 sm:text-base"
             >
               <Smartphone className="mb-3 h-5 w-5 text-blue-200 sm:mb-2" />

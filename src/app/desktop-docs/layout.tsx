@@ -32,14 +32,13 @@ export default async function DocsLayout({ children }: DocsLayoutProps) {
     >
       {/* Các link custom trên navbar */}
       <div className="flex space-x-4 ml-6">
-        <Link href="/desktop-docs" className="hover:text-primary">Desktop Docs</Link>
         <Link href="/auth/sign-in" className="hover:text-primary">Login</Link>
       </div>
     </Navbar>
   )
 
 
-  const excludePages = ['posts', 'auth', 'profile', 'games', 'image-editor', 'video-generator', 'korean']
+  const excludePages = ['posts', 'auth', 'profile', 'games', 'image-editor', 'video-generator', 'korean', 'desktop-docs', 'docs']
 
   const filteredPageMap = pageMap.filter(
     (item: any) => !excludePages.includes(item.name.toLowerCase())
@@ -54,7 +53,7 @@ export default async function DocsLayout({ children }: DocsLayoutProps) {
         <Layout
           navbar={navbar}
           footer={<Footer>MIT {CURRENT_YEAR} © VieVlog.</Footer>}
-          sidebar={{ defaultMenuCollapseLevel: 1 }}
+          sidebar={{ autoCollapse: true, defaultOpen: false, toggleButton: false }}
           pageMap={filteredPageMap}
           feedback={{ content: null }}
           editLink={null}
