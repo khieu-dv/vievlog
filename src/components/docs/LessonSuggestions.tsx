@@ -152,28 +152,64 @@ export default function LessonSuggestions({
         💡 Bài học liên quan
       </h3>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {suggestions.map((lesson) => (
-          <Link
-            key={lesson.id}
-            href={`${basePath}/bai-${lesson.id}`}
-            className="group block p-5 bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md hover:border-gray-300 transition-all duration-200"
-          >
-            <div className="flex items-start gap-4">
-              <div className="text-2xl">📖</div>
-              <div className="flex-1 min-w-0">
-                <h4 className="font-semibold text-gray-900 mb-1 group-hover:text-blue-600 transition-colors">
-                  {lesson.title}
-                </h4>
-                <div className="mt-3 flex items-center text-blue-600 text-sm font-medium">
-                  <span className="group-hover:translate-x-1 transition-transform">
-                    Học ngay →
-                  </span>
+      <div className="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+        <div className="divide-y divide-gray-100">
+          {suggestions.map((lesson, index) => (
+            <Link
+              key={lesson.id}
+              href={`${basePath}/bai-${lesson.id}`}
+              className="group flex items-center p-4 hover:bg-gray-50 transition-colors duration-150"
+            >
+              <div className="flex items-center gap-4 flex-1">
+                {/* Number Badge */}
+                <div className="flex items-center justify-center w-8 h-8 bg-blue-100 text-blue-700 font-semibold text-sm rounded-full group-hover:bg-blue-200 transition-colors">
+                  {lesson.id}
+                </div>
+
+                {/* Lesson Title */}
+                <div className="flex-1 min-w-0">
+                  <h4 className="font-medium text-gray-900 group-hover:text-blue-600 transition-colors truncate">
+                    {lesson.title}
+                  </h4>
+                  {lesson.id === 0 && (
+                    <p className="text-sm text-gray-500 mt-1">Tổng quan khóa học</p>
+                  )}
+                </div>
+
+                {/* Status Indicator */}
+                <div className="flex items-center gap-2">
+                  {lesson.id === currentLesson && (
+                    <span className="px-2 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">
+                      Hiện tại
+                    </span>
+                  )}
+                  {lesson.id === 0 && currentLesson !== 0 && (
+                    <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded-full">
+                      Tổng quan
+                    </span>
+                  )}
+                  {lesson.id === currentLesson - 1 && currentLesson > 1 && (
+                    <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">
+                      Trước đó
+                    </span>
+                  )}
+                  {lesson.id === currentLesson + 1 && (
+                    <span className="px-2 py-1 bg-orange-100 text-orange-700 text-xs font-medium rounded-full">
+                      Tiếp theo
+                    </span>
+                  )}
+                </div>
+
+                {/* Arrow Icon */}
+                <div className="text-gray-400 group-hover:text-blue-500 group-hover:translate-x-1 transition-all duration-150">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
                 </div>
               </div>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          ))}
+        </div>
       </div>
 
       {/* Quick Navigation */}
