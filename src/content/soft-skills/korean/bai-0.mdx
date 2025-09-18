@@ -7,6 +7,94 @@ Khóa học này được thiết kế đặc biệt cho những người đã c
 </div>
 </div>
 
+## 1. 🗺️ Sơ đồ tổng quan khóa học
+
+```mermaid
+flowchart TD
+    Start([🇰🇷 Bắt đầu khóa học Korean]) --> Foundation{🏗️ Giai đoạn 1<br/>Nền tảng xã hội<br/>2-3 tuần}
+
+    Foundation --> B1[Bài 1: 대인관계<br/>🤝 Quan hệ xã hội →]
+    Foundation --> B2[Bài 2: 성격<br/>😊 Tính cách →]
+    Foundation --> B3[Bài 3: 지역 복지 서비스<br/>🏢 Dịch vụ phúc lợi →]
+    Foundation --> B4[Bài 4: 교환과 환불<br/>🔄 Đổi trả hàng →]
+
+    B1 --> Daily{🏠 Giai đoạn 2<br/>Cuộc sống hàng ngày<br/>2-3 tuần}
+    B2 --> Daily
+    B3 --> Daily
+    B4 --> Daily
+
+    Daily --> B5[Bài 5: 소비와 절약<br/>💰 Tiêu dùng & tiết kiệm →]
+    Daily --> B6[Bài 6: 주거 환경<br/>🏡 Môi trường sống →]
+    Daily --> B7[Bài 7: 문화생활<br/>🎭 Đời sống văn hóa →]
+    Daily --> B8[Bài 8: 음식과 요리<br/>🍲 Thực phẩm & nấu ăn →]
+
+    B5 --> Practical{🔧 Giai đoạn 3<br/>Kỹ năng thực tiễn<br/>3-4 tuần}
+    B6 --> Practical
+    B7 --> Practical
+    B8 --> Practical
+
+    Practical --> B9[Bài 9: 고장과 수리<br/>🔨 Hỏng hóc & sửa chữa →]
+    Practical --> B10[Bài 10: 취업<br/>💼 Xin việc làm →]
+    Practical --> B11[Bài 11: 부동산<br/>🏠 Bất động sản →]
+
+    B9 --> Culture{🇰🇷 Giai đoạn 4<br/>Văn hóa & xã hội<br/>2-3 tuần}
+    B10 --> Culture
+    B11 --> Culture
+
+    Culture --> B12[Bài 12: 전통 명절<br/>🏮 Lễ hội truyền thống →]
+    Culture --> B13[Bài 13: 직장 생활<br/>🏢 Cuộc sống công sở →]
+
+    B12 --> Modern{📱 Giai đoạn 5<br/>Đời sống hiện đại<br/>2-3 tuần}
+    B13 --> Modern
+
+    Modern --> B14[Bài 14: 인터넷과 스마트폰<br/>📱 Internet & Smartphone →]
+    Modern --> B15[Bài 15: 고민과 상담<br/>💭 Băn khoăn & tư vấn →]
+    Modern --> B16[Bài 16: 기후와 날씨<br/>🌤️ Khí hậu & thời tiết →]
+
+    B14 --> Complete([🎉 Hoàn thành khóa học])
+    B15 --> Complete
+    B16 --> Complete
+
+    %% Click events for navigation
+    click B1 "/desktop-docs/soft-skills/korean/bai-1" "Đi đến Bài 1"
+    click B2 "/desktop-docs/soft-skills/korean/bai-2" "Đi đến Bài 2"
+    click B3 "/desktop-docs/soft-skills/korean/bai-3" "Đi đến Bài 3"
+    click B4 "/desktop-docs/soft-skills/korean/bai-4" "Đi đến Bài 4"
+    click B5 "/desktop-docs/soft-skills/korean/bai-5" "Đi đến Bài 5"
+    click B6 "/desktop-docs/soft-skills/korean/bai-6" "Đi đến Bài 6"
+    click B7 "/desktop-docs/soft-skills/korean/bai-7" "Đi đến Bài 7"
+    click B8 "/desktop-docs/soft-skills/korean/bai-8" "Đi đến Bài 8"
+    click B9 "/desktop-docs/soft-skills/korean/bai-9" "Đi đến Bài 9"
+    click B10 "/desktop-docs/soft-skills/korean/bai-10" "Đi đến Bài 10"
+    click B11 "/desktop-docs/soft-skills/korean/bai-11" "Đi đến Bài 11"
+    click B12 "/desktop-docs/soft-skills/korean/bai-12" "Đi đến Bài 12"
+    click B13 "/desktop-docs/soft-skills/korean/bai-13" "Đi đến Bài 13"
+    click B14 "/desktop-docs/soft-skills/korean/bai-14" "Đi đến Bài 14"
+    click B15 "/desktop-docs/soft-skills/korean/bai-15" "Đi đến Bài 15"
+    click B16 "/desktop-docs/soft-skills/korean/bai-16" "Đi đến Bài 16"
+
+    %% Styling
+    classDef phaseBox fill:#e3f2fd,stroke:#1565c0,stroke-width:3px,color:#000
+    classDef lessonBox fill:#fff3e0,stroke:#ef6c00,stroke-width:2px,color:#000,cursor:pointer
+    classDef startEnd fill:#e8f5e8,stroke:#2e7d32,stroke-width:3px,color:#000
+
+    class Foundation,Daily,Practical,Culture,Modern phaseBox
+    class B1,B2,B3,B4,B5,B6,B7,B8,B9,B10,B11,B12,B13,B14,B15,B16 lessonBox
+    class Start,Complete startEnd
+```
+
+### 📚 Phân chia giai đoạn học tập
+
+| Giai đoạn | Bài học | Trọng tâm | Thời gian ước tính |
+|-----------|---------|-----------|-------------------|
+| **Nền tảng xã hội** | 1-4 | Quan hệ cá nhân, dịch vụ cơ bản | 2-3 tuần |
+| **Cuộc sống hàng ngày** | 5-8 | Tiêu dùng, môi trường sống, văn hóa | 2-3 tuần |
+| **Kỹ năng thực tiễn** | 9-11 | Sửa chữa, việc làm, bất động sản | 3-4 tuần |
+| **Văn hóa & xã hội** | 12-13 | Lễ hội, cuộc sống công sở | 2-3 tuần |
+| **Đời sống hiện đại** | 14-16 | Công nghệ, tư vấn, thời tiết | 2-3 tuần |
+
+---
+
 ## 📚 Tổng quan khóa học
 
 ### Thông tin cơ bản
@@ -20,34 +108,6 @@ Khóa học này được thiết kế đặc biệt cho những người đã c
 | **Trình độ đầu ra** | Chuẩn bị cho TOPIK Level 3-4 |
 | **Từ vựng mục tiêu** | 1,200-1,500 từ mới |
 | **Ngữ pháp** | 30+ mẫu câu trung cấp |
-
-### Cấu trúc khóa học
-
-```mermaid
-graph TD
-    A[Bài 0: Giới thiệu] --> B[Phần 1: Bài 1-8]
-    B --> C[Ôn tập 1]
-    C --> D[Phần 2: Bài 9-16]
-    D --> E[Ôn tập 2]
-    
-    B --> B1[Quan hệ xã hội]
-    B --> B2[Tính cách]
-    B --> B3[Dịch vụ phúc lợi]
-    B --> B4[Đổi trả hàng]
-    B --> B5[Tiêu dùng - Tiết kiệm]
-    B --> B6[Môi trường cư trú]
-    B --> B7[Đời sống văn hóa]
-    B --> B8[Thức ăn - Nấu nướng]
-    
-    D --> D1[Hỏng hóc - Sửa chữa]
-    D --> D2[Xin việc làm]
-    D --> D3[Bất động sản]
-    D --> D4[Lễ hội truyền thống]
-    D --> D5[Cuộc sống công sở]
-    D --> D6[Internet - Smartphone]
-    D --> D7[Băn khoăn - Tư vấn]
-    D --> D8[Khí hậu - Thời tiết]
-```
 
 ## 🎯 Mục tiêu học tập
 
