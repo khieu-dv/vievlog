@@ -12,50 +12,50 @@
 flowchart TD
     Start([🦀 Bắt đầu khóa học Rust]) --> Foundation{🏗️ Giai đoạn 1<br/>Nền tảng<br/>2-3 tuần}
 
-    Foundation --> B1[Bài 1: Giới thiệu & Cài đặt<br/>🔧 Setup environment]
-    Foundation --> B2[Bài 2: Cú pháp cơ bản<br/>📝 Variables & syntax]
-    Foundation --> B3[Bài 3: Kiểu dữ liệu<br/>🔢 Data types]
-    Foundation --> B4[Bài 4: Control flow<br/>🔄 Functions & loops]
+    Foundation --> B1[Bài 1: Giới thiệu & Cài đặt<br/>🔧 Setup environment →]
+    Foundation --> B2[Bài 2: Cú pháp cơ bản<br/>📝 Variables & syntax →]
+    Foundation --> B3[Bài 3: Kiểu dữ liệu<br/>🔢 Data types →]
+    Foundation --> B4[Bài 4: Control flow<br/>🔄 Functions & loops →]
 
     B1 --> DataStruct{📦 Giai đoạn 2<br/>Cấu trúc dữ liệu<br/>2 tuần}
     B2 --> DataStruct
     B3 --> DataStruct
     B4 --> DataStruct
 
-    DataStruct --> B5[Bài 5: Strings & Collections<br/>📚 Vec, HashMap]
-    DataStruct --> B6[Bài 6: Structs & Enums<br/>🏗️ Custom types]
-    DataStruct --> B7[Bài 7: Pattern Matching<br/>🎯 match, if let]
+    DataStruct --> B5[Bài 5: Strings & Collections<br/>📚 Vec, HashMap →]
+    DataStruct --> B6[Bài 6: Structs & Enums<br/>🏗️ Custom types →]
+    DataStruct --> B7[Bài 7: Pattern Matching<br/>🎯 match, if let →]
 
     B5 --> CoreRust{🦀 Giai đoạn 3<br/>Core Rust<br/>3-4 tuần}
     B6 --> CoreRust
     B7 --> CoreRust
 
-    CoreRust --> B8[Bài 8: Ownership<br/>🔒 Memory safety]
-    CoreRust --> B9[Bài 9: Borrowing<br/>🔗 References & slices]
-    CoreRust --> B10[Bài 10: Error Handling<br/>⚠️ Result & Option]
+    CoreRust --> B8[Bài 8: Ownership<br/>🔒 Memory safety →]
+    CoreRust --> B9[Bài 9: Borrowing<br/>🔗 References & slices →]
+    CoreRust --> B10[Bài 10: Error Handling<br/>⚠️ Result & Option →]
 
     B8 --> Organization{🏗️ Giai đoạn 4<br/>Tổ chức code<br/>2-3 tuần}
     B9 --> Organization
     B10 --> Organization
 
-    Organization --> B11[Bài 11: Modules<br/>📦 Project organization]
-    Organization --> B12[Bài 12: Traits<br/>🎭 Shared behavior]
-    Organization --> B13[Bài 13: Generics<br/>🔧 Generic programming]
+    Organization --> B11[Bài 11: Modules<br/>📦 Project organization →]
+    Organization --> B12[Bài 12: Traits<br/>🎭 Shared behavior →]
+    Organization --> B13[Bài 13: Generics<br/>🔧 Generic programming →]
 
     B11 --> Advanced{🚀 Giai đoạn 5<br/>Nâng cao<br/>3-4 tuần}
     B12 --> Advanced
     B13 --> Advanced
 
-    Advanced --> B14[Bài 14: Lifetimes<br/>⏰ Memory lifetimes]
-    Advanced --> B15[Bài 15: Collections<br/>🔄 Iterators & closures]
-    Advanced --> B16[Bài 16: Async<br/>⚡ Concurrent programming]
+    Advanced --> B14[Bài 14: Lifetimes<br/>⏰ Memory lifetimes →]
+    Advanced --> B15[Bài 15: Collections<br/>🔄 Iterators & closures →]
+    Advanced --> B16[Bài 16: Async<br/>⚡ Concurrent programming →]
 
     B14 --> Practical{💼 Giai đoạn 6<br/>Thực hành<br/>2-3 tuần}
     B15 --> Practical
     B16 --> Practical
 
-    Practical --> B17[Bài 17: Macros & Testing<br/>🧪 Code generation]
-    Practical --> B18[Bài 18: Web Development<br/>🌐 REST APIs]
+    Practical --> B17[Bài 17: Macros & Testing<br/>🧪 Code generation →]
+    Practical --> B18[Bài 18: Web Development<br/>🌐 REST APIs →]
 
     B17 --> Complete([🎉 Hoàn thành khóa học])
     B18 --> Complete
