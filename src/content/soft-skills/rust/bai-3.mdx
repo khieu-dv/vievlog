@@ -1,174 +1,150 @@
-# BÀI 3: KIỂU DỮ LIỆU CƠ BẢN
+# Bài 3: Kiểu Dữ Liệu Cơ Bản
 
-<div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-6 rounded-lg shadow-lg mb-8">
-  <h2 className="text-2xl font-bold mb-2">🎯 MỤC TIÊU BÀI HỌC</h2>
-  <p className="text-lg">Làm chủ các kiểu dữ liệu scalar và compound trong Rust để xây dựng nền tảng vững chắc cho việc lập trình hiệu quả</p>
+<div className="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-400 mb-8">
+  <h2 className="text-xl font-bold text-blue-800 mb-2">🎯 Mục Tiêu Bài Học</h2>
+  <div className="text-blue-700">Làm chủ các kiểu dữ liệu scalar và compound trong Rust, hiểu cách Rust quản lý memory và thực hiện type checking.</div>
 </div>
 
-## 📋 NỘI DUNG CHÍNH
+## 📚 Tổng Quan
+
+Rust là ngôn ngữ **statically typed**, nghĩa là tất cả các biến phải có kiểu dữ liệu được xác định tại compile time. Rust có hai loại kiểu dữ liệu chính:
+- **Scalar types**: Đại diện cho một giá trị đơn
+- **Compound types**: Nhóm nhiều giá trị thành một kiểu
 
 ```mermaid
 graph TD
     A[Kiểu Dữ Liệu Rust] --> B[Scalar Types]
     A --> C[Compound Types]
-    B --> D[Integers]
-    B --> E[Floats]
+    B --> D[Integer]
+    B --> E[Float]
     B --> F[Boolean]
     B --> G[Character]
-    C --> H[Tuples]
-    C --> I[Arrays]
-    D --> J[Signed: i8, i16, i32, i64, i128, isize]
-    D --> K[Unsigned: u8, u16, u32, u32, u64, u128, usize]
+    C --> H[Tuple]
+    C --> I[Array]
 ```
 
----
+## 🔢 Scalar Types
 
-## 🔢 1. SCALAR TYPES (KIỂU VÔ HƯỚNG)
+### Integer Types
 
-### 1.1 Integer Types (Kiểu Số Nguyên)
+Rust cung cấp nhiều kiểu số nguyên với kích thước và dấu khác nhau:
 
-<div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
-  <div className="flex">
-    <div className="flex-shrink-0">
-      <span className="text-2xl">💡</span>
-    </div>
-    <div className="ml-3">
-      <p className="text-sm text-yellow-700">
-        <strong>Lưu ý:</strong> Rust có hệ thống kiểu số nguyên rất phong phú với cả signed (có dấu) và unsigned (không dấu)
-      </p>
-    </div>
+| Độ dài | Signed | Unsigned |
+|---------|---------|-----------|
+| 8-bit | `i8` | `u8` |
+| 16-bit | `i16` | `u16` |
+| 32-bit | `i32` | `u32` |
+| 64-bit | `i64` | `u64` |
+| 128-bit | `i128` | `u128` |
+| arch | `isize` | `usize` |
+
+<div className="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400 my-4">
+  <h4 className="font-bold text-yellow-800">💡 Lưu Ý</h4>
+  <div className="text-yellow-700">
+    • <code>isize</code> và <code>usize</code> phụ thuộc vào kiến trúc máy (32-bit hoặc 64-bit)<br/>
+    • Kiểu mặc định cho integer là <code>i32</code><br/>
+    • Sử dụng <code>usize</code> cho indexing
   </div>
 </div>
 
-| Kiểu | Kích thước | Phạm vi giá trị | Ví dụ |
-|------|------------|----------------|-------|
-| `i8` | 8 bit | -128 đến 127 | `let x: i8 = -42;` |
-| `i16` | 16 bit | -32,768 đến 32,767 | `let y: i16 = 1000;` |
-| `i32` | 32 bit | -2³¹ đến 2³¹-1 | `let z = 42;` (mặc định) |
-| `i64` | 64 bit | -2⁶³ đến 2⁶³-1 | `let big: i64 = 1_000_000;` |
-| `i128` | 128 bit | -2¹²⁷ đến 2¹²⁷-1 | `let huge: i128 = 123;` |
-| `isize` | arch | Phụ thuộc kiến trúc | `let idx: isize = -1;` |
+#### Các Cách Viết Integer Literals
 
-| Kiểu | Kích thước | Phạm vi giá trị | Ví dụ |
-|------|------------|----------------|-------|
-| `u8` | 8 bit | 0 đến 255 | `let byte: u8 = 255;` |
-| `u16` | 16 bit | 0 đến 65,535 | `let port: u16 = 8080;` |
-| `u32` | 32 bit | 0 đến 2³²-1 | `let count: u32 = 42;` |
-| `u64` | 64 bit | 0 đến 2⁶⁴-1 | `let id: u64 = 12345;` |
-| `u128` | 128 bit | 0 đến 2¹²⁸-1 | `let massive: u128 = 999;` |
-| `usize` | arch | Phụ thuộc kiến trúc | `let len: usize = 10;` |
+| Định dạng | Ví dụ |
+|-----------|--------|
+| Decimal | `98_222` |
+| Hex | `0xff` |
+| Octal | `0o77` |
+| Binary | `0b1111_0000` |
+| Byte (u8 only) | `b'A'` |
 
-#### Ví dụ thực tế:
-
-```rust copy
+```rust
 fn main() {
-    // Integer literals với suffix
-    let decimal = 98_222;          // Decimal
-    let hex = 0xff;                // Hexadecimal
-    let octal = 0o77;              // Octal
-    let binary = 0b1111_0000;      // Binary
-    let byte = b'A';               // Byte (u8 only)
+    // Các cách khai báo integer
+    let decimal = 98_222;
+    let hex = 0xff;
+    let octal = 0o77;
+    let binary = 0b1111_0000;
+    let byte = b'A';
     
     // Type annotation
-    let x: u32 = 42;
-    let y: i64 = -1000;
-    
-    println!("decimal: {}, hex: {}, octal: {}", decimal, hex, octal);
+    let x: u8 = 255;
+    let y: i32 = -100_000;
 }
 ```
 
-### 1.2 Floating-Point Types (Kiểu Số Thực)
+### Float Types
 
-| Kiểu | Kích thước | Độ chính xác | Ví dụ |
-|------|------------|-------------|-------|
-| `f32` | 32 bit | Single precision | `let x: f32 = 3.14;` |
-| `f64` | 64 bit | Double precision | `let y = 2.71828;` (mặc định) |
+Rust có hai kiểu số thực:
 
-```rust copy
-fn main() {
-    let x = 2.0;        // f64 (mặc định)
-    let y: f32 = 3.0;   // f32
-    
-    // Các phép toán cơ bản
-    let sum = x + y as f64;
-    let difference = x - 1.5;
-    let product = x * 2.5;
-    let quotient = x / 2.0;
-    
-    println!("Kết quả: {}", sum);
-}
-```
+| Kiểu | Kích thước | Độ chính xác |
+|------|------------|---------------|
+| `f32` | 32-bit | Single precision |
+| `f64` | 64-bit | Double precision |
 
-### 1.3 Boolean Type
-
-```rust copy
-fn main() {
-    let t = true;
-    let f: bool = false;
-    
-    // Sử dụng trong điều kiện
-    if t {
-        println!("Điều kiện đúng!");
-    }
-    
-    // Các phép toán logic
-    let and_result = t && f;    // false
-    let or_result = t || f;     // true
-    let not_result = !t;        // false
-}
-```
-
-### 1.4 Character Type
-
-<div className="bg-blue-50 border-l-4 border-blue-400 p-4 mb-6">
-  <div className="flex">
-    <div className="flex-shrink-0">
-      <span className="text-2xl">🌟</span>
-    </div>
-    <div className="ml-3">
-      <p className="text-sm text-blue-700">
-        <strong>Đặc biệt:</strong> Rust sử dụng UTF-8 encoding, char có kích thước 4 bytes và có thể chứa bất kỳ ký tự Unicode nào
-      </p>
-    </div>
+<div className="bg-green-50 p-4 rounded-lg border-l-4 border-green-400 my-4">
+  <h4 className="font-bold text-green-800">✅ Best Practice</h4>
+  <div className="text-green-700">
+    Mặc định sử dụng <code>f64</code> vì tốc độ tương tự <code>f32</code> nhưng độ chính xác cao hơn.
   </div>
 </div>
 
-```rust copy
+```rust
 fn main() {
-    let c = 'z';
-    let z = 'ℤ';
-    let heart_eyed_cat = '😻';
-    let vietnamese = 'ạ';
+    let x = 2.0; // f64 mặc định
+    let y: f32 = 3.0; // f32 explicit
     
-    println!("Characters: {}, {}, {}, {}", c, z, heart_eyed_cat, vietnamese);
+    // Floating point operations
+    let sum = x + y as f64;
+    let difference = 95.5 - 4.3;
+    let product = 4.0 * 30.0;
+    let quotient = 56.7 / 32.2;
 }
 ```
 
----
+### Boolean Type
 
-## 🔗 2. COMPOUND TYPES (KIỂU PHỨC HỢP)
+```rust
+fn main() {
+    let t = true;
+    let f: bool = false; // với type annotation
+    
+    // Boolean operations
+    let is_greater = 5 > 3;  // true
+    let is_equal = 4 == 4;   // true
+}
+```
+
+### Character Type
+
+Kiểu `char` trong Rust là Unicode Scalar Value (4 bytes):
+
+```rust
+fn main() {
+    let c = 'z';
+    let z: char = 'ℤ'; // với type annotation
+    let heart_eyed_cat = '😻';
+    
+    println!("Character: {}", c);
+    println!("Unicode: {}", z);
+    println!("Emoji: {}", heart_eyed_cat);
+}
+```
+
+## 🔗 Compound Types
+
+### Tuples
+
+Tuple nhóm các giá trị có kiểu khác nhau thành một compound type:
 
 ```mermaid
 graph LR
-    A[Compound Types] --> B[Tuples]
-    A --> C[Arrays]
-    B --> D[Heterogeneous Data]
-    B --> E[Fixed Length]
-    C --> F[Homogeneous Data]
-    C --> G[Fixed Length]
+    A[Tuple] --> B[Element 0]
+    A --> C[Element 1]
+    A --> D[Element 2]
+    A --> E[... Element n]
 ```
 
-### 2.1 Tuple Types
-
-Tuples nhóm nhiều giá trị với các kiểu khác nhau thành một kiểu phức hợp duy nhất.
-
-| Đặc điểm | Mô tả | Ví dụ |
-|----------|-------|-------|
-| **Heterogeneous** | Chứa các kiểu khác nhau | `(i32, f64, u8)` |
-| **Fixed Length** | Độ dài cố định | Không thể thêm/bớt phần tử |
-| **Ordered** | Các phần tử có thứ tự | `(1, 2)` ≠ `(2, 1)` |
-
-```rust copy
+```rust
 fn main() {
     // Khai báo tuple
     let tup: (i32, f64, u8) = (500, 6.4, 1);
@@ -177,346 +153,225 @@ fn main() {
     let (x, y, z) = tup;
     println!("x: {}, y: {}, z: {}", x, y, z);
     
-    // Truy cập bằng index
+    // Access bằng index
     let five_hundred = tup.0;
     let six_point_four = tup.1;
     let one = tup.2;
     
-    // Unit tuple (empty tuple)
+    // Empty tuple (unit type)
     let unit = ();
 }
 ```
 
-### 2.2 Array Types
+#### Ứng Dụng Thực Tế của Tuple
 
-Arrays chứa nhiều giá trị cùng kiểu với độ dài cố định.
+| Use Case | Ví dụ |
+|----------|-------|
+| Return multiple values | `fn get_name_age() -> (String, u8)` |
+| Coordinate system | `(x: f64, y: f64)` |
+| RGB colors | `(r: u8, g: u8, b: u8)` |
 
-| Đặc điểm | Array | Vector |
-|----------|-------|--------|
-| **Kích thước** | Cố định | Có thể thay đổi |
-| **Bộ nhớ** | Stack | Heap |
-| **Hiệu suất** | Nhanh hơn | Linh hoạt hơn |
-| **Cú pháp** | `[T; N]` | `Vec<T>` |
+### Arrays
 
-```rust copy
+Array có fixed size và tất cả elements cùng kiểu:
+
+```rust
 fn main() {
     // Khai báo array
     let a = [1, 2, 3, 4, 5];
-    let months = [
-        "January", "February", "March", "April",
-        "May", "June", "July", "August", 
-        "September", "October", "November", "December"
-    ];
+    let months = ["January", "February", "March"];
     
-    // Array với type annotation
+    // Type annotation
     let a: [i32; 5] = [1, 2, 3, 4, 5];
     
-    // Array với giá trị giống nhau
-    let a = [3; 5];  // [3, 3, 3, 3, 3]
+    // Initialize với giá trị giống nhau
+    let a = [3; 5]; // [3, 3, 3, 3, 3]
     
-    // Truy cập phần tử
+    // Access elements
     let first = a[0];
     let second = a[1];
-    
-    // Độ dài array
-    println!("Array có {} phần tử", a.len());
 }
 ```
 
----
+#### So Sánh Array vs Vector
 
-## 🔄 3. TYPE INFERENCE VÀ TYPE ANNOTATIONS
+| Đặc điểm | Array | Vector |
+|----------|-------|---------|
+| Size | Fixed tại compile time | Dynamic |
+| Memory | Stack | Heap |
+| Performance | Faster access | Slower nhưng flexible |
+| Use case | Known size | Unknown/changing size |
 
 ```mermaid
-flowchart TD
-    A[Compiler] --> B{Type Known?}
-    B -->|Yes| C[Use Known Type]
-    B -->|No| D[Type Inference]
-    D --> E{Can Infer?}
-    E -->|Yes| F[Infer Type]
-    E -->|No| G[Require Annotation]
+graph TB
+    A[Data Structure Choice] --> B{Size known at compile time?}
+    B -->|Yes| C[Use Array]
+    B -->|No| D[Use Vector]
+    C --> E[Stack allocated<br/>Fixed size<br/>Faster access]
+    D --> F[Heap allocated<br/>Dynamic size<br/>More flexible]
 ```
 
-### 3.1 Type Inference (Suy luận kiểu)
+## 🔄 Type Inference và Type Annotation
 
-```rust copy
+### Type Inference
+
+Rust có thể tự động suy luận kiểu dữ liệu:
+
+```rust
 fn main() {
-    let x = 42;         // Compiler suy luận x là i32
-    let y = 3.14;       // Compiler suy luận y là f64
-    let z = true;       // Compiler suy luận z là bool
-    
-    // Suy luận từ context
-    let mut vec = Vec::new();  // Type chưa xác định
-    vec.push(5);               // Bây giờ vec là Vec<i32>
+    let x = 5; // Rust infer x là i32
+    let y = 2.5; // Rust infer y là f64
+    let is_ready = true; // Rust infer là bool
 }
 ```
 
-### 3.2 Explicit Type Annotations
+### Explicit Type Annotation
 
-```rust copy
+Khi cần thiết, chúng ta phải chỉ định kiểu rõ ràng:
+
+```rust
 fn main() {
-    let x: i32 = 42;
-    let y: f32 = 3.14;
-    let z: char = 'A';
-    let arr: [i32; 3] = [1, 2, 3];
-    let tup: (i32, f64, u8) = (500, 6.4, 1);
-    
-    // Khi cần thiết cho disambiguation
     let guess: u32 = "42".parse().expect("Not a number!");
+    let numbers: Vec<i32> = vec![1, 2, 3];
 }
 ```
 
----
+## 🔄 Type Casting
 
-## 🔄 4. TYPE CASTING VÀ CONVERSIONS
+### Explicit Casting với `as`
 
-### 4.1 Explicit Casting với `as`
-
-| Từ | Đến | Ví dụ | Lưu ý |
-|----|-----|-------|-------|
-| `i32` | `f64` | `x as f64` | An toàn |
-| `f64` | `i32` | `x as i32` | Có thể mất dữ liệu |
-| `u32` | `i32` | `x as i32` | Có thể overflow |
-| `char` | `u8` | `x as u8` | Chỉ với ASCII |
-
-```rust copy
+```rust
 fn main() {
-    let x: i32 = 42;
-    let y: f64 = x as f64;          // 42.0
+    let x = 10i32;
+    let y = 20u32;
     
-    let a: f64 = 3.14;
-    let b: i32 = a as i32;          // 3 (truncate)
+    // Cast i32 to u32
+    let sum = y + x as u32;
     
-    let c: u8 = 255;
-    let d: i8 = c as i8;            // -1 (overflow)
+    // Float to integer (truncation)
+    let pi = 3.14159f64;
+    let integer_pi = pi as i32; // 3
     
-    println!("y: {}, b: {}, d: {}", y, b, d);
+    // Casting có thể mất dữ liệu
+    let large_number = 300u16;
+    let small_number = large_number as u8; // 44 (300 - 256)
 }
 ```
 
-### 4.2 Safe Conversions
-
-```rust copy
-fn main() {
-    let x: i32 = 42;
-    
-    // Using TryFrom trait (safe)
-    use std::convert::TryFrom;
-    
-    match u8::try_from(x) {
-        Ok(val) => println!("Converted: {}", val),
-        Err(e) => println!("Conversion failed: {}", e),
-    }
-    
-    // Using Into trait
-    let y: i64 = x.into();  // Always safe i32 -> i64
-    println!("y: {}", y);
-}
-```
-
----
-
-## ⚠️ 5. OVERFLOW BEHAVIOR
-
-<div className="bg-red-50 border-l-4 border-red-400 p-4 mb-6">
-  <div className="flex">
-    <div className="flex-shrink-0">
-      <span className="text-2xl">⚠️</span>
-    </div>
-    <div className="ml-3">
-      <p className="text-sm text-red-700">
-        <strong>Cảnh báo:</strong> Integer overflow trong Rust có thể gây panic trong debug mode nhưng wrap around trong release mode
-      </p>
-    </div>
+<div className="bg-red-50 p-4 rounded-lg border-l-4 border-red-400 my-4">
+  <h4 className="font-bold text-red-800">⚠️ Cảnh Báo</h4>
+  <div className="text-red-700">
+    Type casting có thể gây mất dữ liệu hoặc overflow. Luôn kiểm tra bounds khi cần thiết.
   </div>
 </div>
 
-| Build Mode | Overflow Behavior | Ví dụ |
-|------------|------------------|-------|
-| **Debug** | Panic | Program crashes |
-| **Release** | Wrap around | 255u8 + 1 = 0u8 |
+### Overflow Behavior
 
-```rust copy
+| Build Mode | Behavior |
+|------------|----------|
+| Debug | Panic khi overflow |
+| Release | Two's complement wrapping |
+
+```rust
 fn main() {
     let mut x: u8 = 255;
+    x += 1; // Debug: panic, Release: x = 0
     
-    // Explicit overflow handling
-    let (result, overflowed) = x.overflowing_add(1);
-    println!("Result: {}, Overflowed: {}", result, overflowed);
-    
-    // Safe arithmetic
-    if let Some(result) = x.checked_add(1) {
-        println!("Safe addition: {}", result);
-    } else {
-        println!("Overflow would occur!");
-    }
-    
-    // Saturating arithmetic
-    let result = x.saturating_add(10);  // Clamps at maximum
-    println!("Saturating result: {}", result);
-    
-    // Wrapping arithmetic
-    let result = x.wrapping_add(10);    // Wraps around
-    println!("Wrapping result: {}", result);
+    // Explicit wrapping
+    let y = 255u8.wrapping_add(1); // 0
+    let z = 255u8.saturating_add(1); // 255
+    let (result, overflow) = 255u8.overflowing_add(1); // (0, true)
 }
 ```
 
----
+## 🧮 Thực Hành: Calculator Đơn Giản
 
-## 🧮 6. THỰC HÀNH: XÂY DỰNG CALCULATOR ĐƠN GIẢN
+Hãy xây dựng một calculator sử dụng các kiểu dữ liệu đã học:
 
-```rust copy
-use std::io;
-
+```rust
 fn main() {
-    println!("🧮 SIMPLE CALCULATOR");
-    println!("==================");
+    // Input values với different types
+    let a: f64 = 10.5;
+    let b: f64 = 3.2;
+    let operation: char = '+';
     
-    // Input first number
-    println!("Nhập số thứ nhất:");
-    let mut input = String::new();
-    io::stdin().read_line(&mut input).expect("Failed to read input");
-    let num1: f64 = input.trim().parse().expect("Invalid number");
-    
-    // Input operator
-    println!("Nhập phép toán (+, -, *, /):");
-    input.clear();
-    io::stdin().read_line(&mut input).expect("Failed to read input");
-    let operator = input.trim();
-    
-    // Input second number
-    println!("Nhập số thứ hai:");
-    input.clear();
-    io::stdin().read_line(&mut input).expect("Failed to read input");
-    let num2: f64 = input.trim().parse().expect("Invalid number");
-    
-    // Calculate result
-    let result = match operator {
-        "+" => num1 + num2,
-        "-" => num1 - num2,
-        "*" => num1 * num2,
-        "/" => {
-            if num2 != 0.0 {
-                num1 / num2
+    // Calculations
+    let result = match operation {
+        '+' => a + b,
+        '-' => a - b,
+        '*' => a * b,
+        '/' => {
+            if b != 0.0 {
+                a / b
             } else {
-                println!("❌ Lỗi: Không thể chia cho 0!");
-                return;
+                f64::NAN
             }
-        }
+        },
         _ => {
-            println!("❌ Phép toán không hợp lệ!");
-            return;
+            println!("Unknown operation: {}", operation);
+            f64::NAN
         }
     };
     
-    // Display result with type information
-    println!("\n📊 KẾT QUẢ");
-    println!("===========");
-    println!("{} {} {} = {}", num1, operator, num2, result);
-    println!("Kiểu dữ liệu kết quả: {}", std::any::type_name::<f64>());
+    // Display result
+    println!("{} {} {} = {}", a, operation, b, result);
     
-    // Additional calculations
-    demonstrate_types();
-}
-
-fn demonstrate_types() {
-    println!("\n🔬 DEMO KIỂU DỮ LIỆU");
-    println!("====================");
+    // Type casting example
+    let integer_result = result as i32;
+    println!("Integer result: {}", integer_result);
     
-    // Integers
-    let small: i8 = 127;
-    let medium: i32 = 2_147_483_647;
-    let large: i64 = 9_223_372_036_854_775_807;
+    // Working với tuples
+    let calculation: (f64, char, f64, f64) = (a, operation, b, result);
+    println!("Calculation tuple: {:?}", calculation);
     
-    println!("i8 max: {}", small);
-    println!("i32 max: {}", medium);
-    println!("i64 max: {}", large);
+    // Array of results
+    let results: [f64; 4] = [
+        a + b,
+        a - b,
+        a * b,
+        if b != 0.0 { a / b } else { 0.0 }
+    ];
     
-    // Floats
-    let pi: f32 = 3.14159;
-    let e: f64 = 2.718281828459045;
-    
-    println!("f32 π: {:.5}", pi);
-    println!("f64 e: {:.15}", e);
-    
-    // Boolean and char
-    let is_rust_awesome = true;
-    let grade = 'A';
-    let emoji = '🦀';
-    
-    println!("Boolean: {}", is_rust_awesome);
-    println!("Character: {}, Emoji: {}", grade, emoji);
-    
-    // Compound types
-    let coordinates: (i32, i32) = (10, 20);
-    let fibonacci: [i32; 5] = [1, 1, 2, 3, 5];
-    
-    println!("Coordinates: ({}, {})", coordinates.0, coordinates.1);
-    println!("Fibonacci: {:?}", fibonacci);
-    
-    // Memory usage demonstration
-    println!("\n💾 MEMORY USAGE:");
-    println!("Size of i32: {} bytes", std::mem::size_of::<i32>());
-    println!("Size of f64: {} bytes", std::mem::size_of::<f64>());
-    println!("Size of char: {} bytes", std::mem::size_of::<char>());
-    println!("Size of tuple (i32, f64): {} bytes", std::mem::size_of::<(i32, f64)>());
-    println!("Size of array [i32; 5]: {} bytes", std::mem::size_of::<[i32; 5]>());
+    println!("All operations: {:?}", results);
 }
 ```
 
----
+## 📋 Bảng Tóm Tắt
 
-## 📋 7. BẢNG TỔNG QUAN QUICK REFERENCE
+### Memory Layout
 
-| Danh mục | Kiểu | Kích thước | Giá trị mặc định | Ví dụ |
-|----------|------|------------|------------------|-------|
-| **Integer** | i32 | 4 bytes | 0 | `let x = 42;` |
-| **Float** | f64 | 8 bytes | 0.0 | `let y = 3.14;` |
-| **Boolean** | bool | 1 byte | false | `let flag = true;` |
-| **Character** | char | 4 bytes | '\0' | `let c = 'A';` |
-| **Tuple** | (T, U) | T + U | () | `let t = (1, 2);` |
-| **Array** | [T; N] | T × N | [T::default(); N] | `let arr = [1, 2, 3];` |
+| Type Category | Stack/Heap | Size |
+|---------------|------------|------|
+| Scalar types | Stack | Fixed, known at compile time |
+| Tuples | Stack | Sum of all elements |
+| Arrays | Stack | Element size × length |
 
----
+### Type Conversion Methods
 
-## 🎯 8. BÀI TẬP VÀ KIỂM TRA
+| Method | Description | Example |
+|--------|-------------|---------|
+| `as` | Explicit cast | `10i32 as u32` |
+| `.into()` | Generic conversion | `"hello".into()` |
+| `.from()` | Constructor conversion | `String::from("hello")` |
+| `.parse()` | String to number | `"42".parse::<i32>()` |
 
-<div className="bg-green-50 border-l-4 border-green-400 p-4 mb-6">
-  <div className="flex">
-    <div className="flex-shrink-0">
-      <span className="text-2xl">📝</span>
-    </div>
-    <div className="ml-3">
-      <div className="text-sm text-green-700">
-        <strong>Bài tập:</strong> Hãy thử implement các bài tập sau để củng cố kiến thức
-      </div>
-    </div>
-  </div>
-</div>
-
-### Bài tập 1: Temperature Converter
-Viết chương trình chuyển đổi nhiệt độ giữa Celsius, Fahrenheit và Kelvin.
-
-### Bài tập 2: Array Statistics  
-Tính toán mean, median và mode của một array số nguyên.
-
-### Bài tập 3: Tuple Manipulation
-Tạo các function để xử lý tuple 3D coordinates (x, y, z).
-
----
-
-## 📚 9. TÓM TẮT VÀ NEXT STEPS
-
-<div className="bg-indigo-600 text-white p-6 rounded-lg">
-  <h3 className="text-xl font-bold mb-4">🎓 KIẾN THỨC ĐÃ HỌC</h3>
-  <ul className="list-disc list-inside space-y-2">
-    <li>Scalar types: integers, floats, booleans, characters</li>
-    <li>Compound types: tuples và arrays</li>
-    <li>Type inference và explicit annotations</li>
-    <li>Type casting và overflow behavior</li>
-    <li>Memory management cơ bản</li>
+<div className="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-400 mt-8">
+  <h2 className="text-xl font-bold text-blue-800 mb-2">📝 Tóm Tắt</h2>
+  <ul className="text-blue-700 space-y-1">
+    <li>• Rust có scalar types (integer, float, bool, char) và compound types (tuple, array)</li>
+    <li>• Type inference mạnh mẽ nhưng đôi khi cần type annotation</li>
+    <li>• Arrays có fixed size, tuples có thể chứa các kiểu khác nhau</li>
+    <li>• Type casting cần cẩn thận với overflow và data loss</li>
+    <li>• Memory safety được đảm bảo thông qua type system</li>
   </ul>
-  
-  <h3 className="text-xl font-bold mt-6 mb-4">🚀 BÀI TIẾP THEO</h3>
-  <p>Bài 4 sẽ học về Control Flow và Functions để điều khiển luồng thực thi chương trình một cách hiệu quả.</p>
 </div>
+
+## 🚀 Bài Tập Thực Hành
+
+1. **Cơ Bản**: Viết chương trình chuyển đổi nhiệt độ giữa Celsius và Fahrenheit
+2. **Trung Bình**: Tạo một struct để represent một điểm 2D và tính khoảng cách
+3. **Nâng Cao**: Implement một simple polynomial calculator sử dụng arrays
+
+## 📖 Chuẩn Bị Cho Bài Tiếp Theo
+
+Bài 4 sẽ học về **Control Flow và Functions** - cách điều khiển luồng chương trình và tạo functions tái sử dụng.
