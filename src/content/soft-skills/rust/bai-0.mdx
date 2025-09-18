@@ -5,229 +5,90 @@
   <p className="text-lg">Hành trình khám phá ngôn ngữ lập trình an toàn, nhanh chóng và hiện đại nhất hiện nay</p>
 </div>
 
-## 📚 Lộ trình học tập
 
-<div className="bg-gradient-to-br from-blue-50 to-indigo-100 p-8 rounded-2xl my-8 border border-blue-200">
+### 🗺️ Sơ đồ tổng quan khóa học
 
-  {/* Foundation Phase */}
-  <div className="mb-10">
-    <div className="flex items-center mb-6">
-      <div className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold mr-4">
-        🏗️ Giai đoạn 1: Nền tảng
-      </div>
-      <div className="text-sm text-gray-600">Bài 1-4 • 2-3 tuần</div>
-    </div>
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <a href="/desktop-docs/soft-skills/rust/bai-1" className="group relative bg-white p-6 rounded-xl shadow-sm border border-blue-100 hover:shadow-lg hover:border-blue-300 transition-all duration-300">
-        <div className="flex items-center justify-between mb-3">
-          <span className="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full">Bài 1</span>
-          <span className="text-blue-500 group-hover:translate-x-1 transition-transform">→</span>
-        </div>
-        <h4 className="font-semibold text-gray-900 mb-2">Giới thiệu và cài đặt môi trường</h4>
-        <p className="text-sm text-gray-600">Cài đặt Rust toolchain, Hello World, Cargo basics</p>
-      </a>
-      <a href="/desktop-docs/soft-skills/rust/bai-2" className="group relative bg-white p-6 rounded-xl shadow-sm border border-blue-100 hover:shadow-lg hover:border-blue-300 transition-all duration-300">
-        <div className="flex items-center justify-between mb-3">
-          <span className="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full">Bài 2</span>
-          <span className="text-blue-500 group-hover:translate-x-1 transition-transform">→</span>
-        </div>
-        <h4 className="font-semibold text-gray-900 mb-2">Cú pháp cơ bản và biến</h4>
-        <p className="text-sm text-gray-600">Variables, mutability, constants, shadowing</p>
-      </a>
-      <a href="/desktop-docs/soft-skills/rust/bai-3" className="group relative bg-white p-6 rounded-xl shadow-sm border border-blue-100 hover:shadow-lg hover:border-blue-300 transition-all duration-300">
-        <div className="flex items-center justify-between mb-3">
-          <span className="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full">Bài 3</span>
-          <span className="text-blue-500 group-hover:translate-x-1 transition-transform">→</span>
-        </div>
-        <h4 className="font-semibold text-gray-900 mb-2">Kiểu dữ liệu</h4>
-        <p className="text-sm text-gray-600">Scalar types, compound types, type inference</p>
-      </a>
-      <a href="/desktop-docs/soft-skills/rust/bai-4" className="group relative bg-white p-6 rounded-xl shadow-sm border border-blue-100 hover:shadow-lg hover:border-blue-300 transition-all duration-300">
-        <div className="flex items-center justify-between mb-3">
-          <span className="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full">Bài 4</span>
-          <span className="text-blue-500 group-hover:translate-x-1 transition-transform">→</span>
-        </div>
-        <h4 className="font-semibold text-gray-900 mb-2">Control flow và functions</h4>
-        <p className="text-sm text-gray-600">if/else, loops, functions, return values</p>
-      </a>
-    </div>
-  </div>
+```mermaid
+flowchart TD
+    Start([🦀 Bắt đầu khóa học Rust]) --> Foundation{🏗️ Giai đoạn 1<br/>Nền tảng<br/>2-3 tuần}
 
-  {/* Data & Control Phase */}
-  <div className="mb-10">
-    <div className="flex items-center mb-6">
-      <div className="bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-full text-sm font-semibold mr-4">
-        📦 Giai đoạn 2: Cấu trúc dữ liệu
-      </div>
-      <div className="text-sm text-gray-600">Bài 5-7 • 2 tuần</div>
-    </div>
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <a href="/desktop-docs/soft-skills/rust/bai-5" className="group relative bg-white p-6 rounded-xl shadow-sm border border-green-100 hover:shadow-lg hover:border-green-300 transition-all duration-300">
-        <div className="flex items-center justify-between mb-3">
-          <span className="bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full">Bài 5</span>
-          <span className="text-green-500 group-hover:translate-x-1 transition-transform">→</span>
-        </div>
-        <h4 className="font-semibold text-gray-900 mb-2">Strings và collections</h4>
-        <p className="text-sm text-gray-600">String, Vec, HashMap basics</p>
-      </a>
-      <a href="/desktop-docs/soft-skills/rust/bai-6" className="group relative bg-white p-6 rounded-xl shadow-sm border border-green-100 hover:shadow-lg hover:border-green-300 transition-all duration-300">
-        <div className="flex items-center justify-between mb-3">
-          <span className="bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full">Bài 6</span>
-          <span className="text-green-500 group-hover:translate-x-1 transition-transform">→</span>
-        </div>
-        <h4 className="font-semibold text-gray-900 mb-2">Structs và enums</h4>
-        <p className="text-sm text-gray-600">Custom types, methods, associated functions</p>
-      </a>
-      <a href="/desktop-docs/soft-skills/rust/bai-7" className="group relative bg-white p-6 rounded-xl shadow-sm border border-green-100 hover:shadow-lg hover:border-green-300 transition-all duration-300">
-        <div className="flex items-center justify-between mb-3">
-          <span className="bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full">Bài 7</span>
-          <span className="text-green-500 group-hover:translate-x-1 transition-transform">→</span>
-        </div>
-        <h4 className="font-semibold text-gray-900 mb-2">Pattern matching</h4>
-        <p className="text-sm text-gray-600">match expressions, if let, while let</p>
-      </a>
-    </div>
-  </div>
+    Foundation --> B1[Bài 1: Giới thiệu & Cài đặt<br/>🔧 Setup environment]
+    Foundation --> B2[Bài 2: Cú pháp cơ bản<br/>📝 Variables & syntax]
+    Foundation --> B3[Bài 3: Kiểu dữ liệu<br/>🔢 Data types]
+    Foundation --> B4[Bài 4: Control flow<br/>🔄 Functions & loops]
 
-  {/* Core Rust Phase */}
-  <div className="mb-10">
-    <div className="flex items-center mb-6">
-      <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 rounded-full text-sm font-semibold mr-4">
-        🦀 Giai đoạn 3: Core Rust
-      </div>
-      <div className="text-sm text-gray-600">Bài 8-10 • 3-4 tuần</div>
-    </div>
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <a href="/desktop-docs/soft-skills/rust/bai-8" className="group relative bg-white p-6 rounded-xl shadow-sm border border-orange-100 hover:shadow-lg hover:border-orange-300 transition-all duration-300">
-        <div className="flex items-center justify-between mb-3">
-          <span className="bg-orange-100 text-orange-700 text-xs font-bold px-3 py-1 rounded-full">Bài 8</span>
-          <span className="text-orange-500 group-hover:translate-x-1 transition-transform">→</span>
-        </div>
-        <h4 className="font-semibold text-gray-900 mb-2">Ownership system</h4>
-        <p className="text-sm text-gray-600">Move semantics, stack vs heap</p>
-      </a>
-      <a href="/desktop-docs/soft-skills/rust/bai-9" className="group relative bg-white p-6 rounded-xl shadow-sm border border-orange-100 hover:shadow-lg hover:border-orange-300 transition-all duration-300">
-        <div className="flex items-center justify-between mb-3">
-          <span className="bg-orange-100 text-orange-700 text-xs font-bold px-3 py-1 rounded-full">Bài 9</span>
-          <span className="text-orange-500 group-hover:translate-x-1 transition-transform">→</span>
-        </div>
-        <h4 className="font-semibold text-gray-900 mb-2">Borrowing và references</h4>
-        <p className="text-sm text-gray-600">References, borrowing rules, slices</p>
-      </a>
-      <a href="/desktop-docs/soft-skills/rust/bai-10" className="group relative bg-white p-6 rounded-xl shadow-sm border border-orange-100 hover:shadow-lg hover:border-orange-300 transition-all duration-300">
-        <div className="flex items-center justify-between mb-3">
-          <span className="bg-orange-100 text-orange-700 text-xs font-bold px-3 py-1 rounded-full">Bài 10</span>
-          <span className="text-orange-500 group-hover:translate-x-1 transition-transform">→</span>
-        </div>
-        <h4 className="font-semibold text-gray-900 mb-2">Error handling</h4>
-        <p className="text-sm text-gray-600">Result, Option, panic!, error propagation</p>
-      </a>
-    </div>
-  </div>
+    B1 --> DataStruct{📦 Giai đoạn 2<br/>Cấu trúc dữ liệu<br/>2 tuần}
+    B2 --> DataStruct
+    B3 --> DataStruct
+    B4 --> DataStruct
 
-  {/* Organization Phase */}
-  <div className="mb-10">
-    <div className="flex items-center mb-6">
-      <div className="bg-gradient-to-r from-purple-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold mr-4">
-        🏗️ Giai đoạn 4: Tổ chức code
-      </div>
-      <div className="text-sm text-gray-600">Bài 11-13 • 2-3 tuần</div>
-    </div>
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <a href="/desktop-docs/soft-skills/rust/bai-11" className="group relative bg-white p-6 rounded-xl shadow-sm border border-purple-100 hover:shadow-lg hover:border-purple-300 transition-all duration-300">
-        <div className="flex items-center justify-between mb-3">
-          <span className="bg-purple-100 text-purple-700 text-xs font-bold px-3 py-1 rounded-full">Bài 11</span>
-          <span className="text-purple-500 group-hover:translate-x-1 transition-transform">→</span>
-        </div>
-        <h4 className="font-semibold text-gray-900 mb-2">Modules và crates</h4>
-        <p className="text-sm text-gray-600">Project organization, visibility, use statements</p>
-      </a>
-      <a href="/desktop-docs/soft-skills/rust/bai-12" className="group relative bg-white p-6 rounded-xl shadow-sm border border-purple-100 hover:shadow-lg hover:border-purple-300 transition-all duration-300">
-        <div className="flex items-center justify-between mb-3">
-          <span className="bg-purple-100 text-purple-700 text-xs font-bold px-3 py-1 rounded-full">Bài 12</span>
-          <span className="text-purple-500 group-hover:translate-x-1 transition-transform">→</span>
-        </div>
-        <h4 className="font-semibold text-gray-900 mb-2">Traits</h4>
-        <p className="text-sm text-gray-600">Shared behavior, trait bounds, trait objects</p>
-      </a>
-      <a href="/desktop-docs/soft-skills/rust/bai-13" className="group relative bg-white p-6 rounded-xl shadow-sm border border-purple-100 hover:shadow-lg hover:border-purple-300 transition-all duration-300">
-        <div className="flex items-center justify-between mb-3">
-          <span className="bg-purple-100 text-purple-700 text-xs font-bold px-3 py-1 rounded-full">Bài 13</span>
-          <span className="text-purple-500 group-hover:translate-x-1 transition-transform">→</span>
-        </div>
-        <h4 className="font-semibold text-gray-900 mb-2">Generics</h4>
-        <p className="text-sm text-gray-600">Generic types, functions, implementations</p>
-      </a>
-    </div>
-  </div>
+    DataStruct --> B5[Bài 5: Strings & Collections<br/>📚 Vec, HashMap]
+    DataStruct --> B6[Bài 6: Structs & Enums<br/>🏗️ Custom types]
+    DataStruct --> B7[Bài 7: Pattern Matching<br/>🎯 match, if let]
 
-  {/* Advanced Phase */}
-  <div className="mb-10">
-    <div className="flex items-center mb-6">
-      <div className="bg-gradient-to-r from-indigo-500 to-indigo-600 text-white px-4 py-2 rounded-full text-sm font-semibold mr-4">
-        🚀 Giai đoạn 5: Nâng cao
-      </div>
-      <div className="text-sm text-gray-600">Bài 14-16 • 3-4 tuần</div>
-    </div>
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <a href="/desktop-docs/soft-skills/rust/bai-14" className="group relative bg-white p-6 rounded-xl shadow-sm border border-indigo-100 hover:shadow-lg hover:border-indigo-300 transition-all duration-300">
-        <div className="flex items-center justify-between mb-3">
-          <span className="bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1 rounded-full">Bài 14</span>
-          <span className="text-indigo-500 group-hover:translate-x-1 transition-transform">→</span>
-        </div>
-        <h4 className="font-semibold text-gray-900 mb-2">Lifetimes</h4>
-        <p className="text-sm text-gray-600">Lifetime annotations, lifetime elision</p>
-      </a>
-      <a href="/desktop-docs/soft-skills/rust/bai-15" className="group relative bg-white p-6 rounded-xl shadow-sm border border-indigo-100 hover:shadow-lg hover:border-indigo-300 transition-all duration-300">
-        <div className="flex items-center justify-between mb-3">
-          <span className="bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1 rounded-full">Bài 15</span>
-          <span className="text-indigo-500 group-hover:translate-x-1 transition-transform">→</span>
-        </div>
-        <h4 className="font-semibold text-gray-900 mb-2">Advanced collections</h4>
-        <p className="text-sm text-gray-600">Iterator patterns, closure, functional programming</p>
-      </a>
-      <a href="/desktop-docs/soft-skills/rust/bai-16" className="group relative bg-white p-6 rounded-xl shadow-sm border border-indigo-100 hover:shadow-lg hover:border-indigo-300 transition-all duration-300">
-        <div className="flex items-center justify-between mb-3">
-          <span className="bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1 rounded-full">Bài 16</span>
-          <span className="text-indigo-500 group-hover:translate-x-1 transition-transform">→</span>
-        </div>
-        <h4 className="font-semibold text-gray-900 mb-2">Async programming</h4>
-        <p className="text-sm text-gray-600">async/await, Futures, concurrency</p>
-      </a>
-    </div>
-  </div>
+    B5 --> CoreRust{🦀 Giai đoạn 3<br/>Core Rust<br/>3-4 tuần}
+    B6 --> CoreRust
+    B7 --> CoreRust
 
-  {/* Practical Phase */}
-  <div>
-    <div className="flex items-center mb-6">
-      <div className="bg-gradient-to-r from-teal-500 to-teal-600 text-white px-4 py-2 rounded-full text-sm font-semibold mr-4">
-        💼 Giai đoạn 6: Thực hành
-      </div>
-      <div className="text-sm text-gray-600">Bài 17-18 • 2-3 tuần</div>
-    </div>
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <a href="/desktop-docs/soft-skills/rust/bai-17" className="group relative bg-white p-6 rounded-xl shadow-sm border border-teal-100 hover:shadow-lg hover:border-teal-300 transition-all duration-300">
-        <div className="flex items-center justify-between mb-3">
-          <span className="bg-teal-100 text-teal-700 text-xs font-bold px-3 py-1 rounded-full">Bài 17</span>
-          <span className="text-teal-500 group-hover:translate-x-1 transition-transform">→</span>
-        </div>
-        <h4 className="font-semibold text-gray-900 mb-2">Macros và testing</h4>
-        <p className="text-sm text-gray-600">Declarative macros, unit tests, integration tests</p>
-      </a>
-      <a href="/desktop-docs/soft-skills/rust/bai-18" className="group relative bg-white p-6 rounded-xl shadow-sm border border-teal-100 hover:shadow-lg hover:border-teal-300 transition-all duration-300">
-        <div className="flex items-center justify-between mb-3">
-          <span className="bg-teal-100 text-teal-700 text-xs font-bold px-3 py-1 rounded-full">Bài 18</span>
-          <span className="text-teal-500 group-hover:translate-x-1 transition-transform">→</span>
-        </div>
-        <h4 className="font-semibold text-gray-900 mb-2">Web development</h4>
-        <p className="text-sm text-gray-600">Web frameworks, REST APIs, database integration</p>
-      </a>
-    </div>
-  </div>
+    CoreRust --> B8[Bài 8: Ownership<br/>🔒 Memory safety]
+    CoreRust --> B9[Bài 9: Borrowing<br/>🔗 References & slices]
+    CoreRust --> B10[Bài 10: Error Handling<br/>⚠️ Result & Option]
 
-</div>
+    B8 --> Organization{🏗️ Giai đoạn 4<br/>Tổ chức code<br/>2-3 tuần}
+    B9 --> Organization
+    B10 --> Organization
 
----
+    Organization --> B11[Bài 11: Modules<br/>📦 Project organization]
+    Organization --> B12[Bài 12: Traits<br/>🎭 Shared behavior]
+    Organization --> B13[Bài 13: Generics<br/>🔧 Generic programming]
+
+    B11 --> Advanced{🚀 Giai đoạn 5<br/>Nâng cao<br/>3-4 tuần}
+    B12 --> Advanced
+    B13 --> Advanced
+
+    Advanced --> B14[Bài 14: Lifetimes<br/>⏰ Memory lifetimes]
+    Advanced --> B15[Bài 15: Collections<br/>🔄 Iterators & closures]
+    Advanced --> B16[Bài 16: Async<br/>⚡ Concurrent programming]
+
+    B14 --> Practical{💼 Giai đoạn 6<br/>Thực hành<br/>2-3 tuần}
+    B15 --> Practical
+    B16 --> Practical
+
+    Practical --> B17[Bài 17: Macros & Testing<br/>🧪 Code generation]
+    Practical --> B18[Bài 18: Web Development<br/>🌐 REST APIs]
+
+    B17 --> Complete([🎉 Hoàn thành khóa học])
+    B18 --> Complete
+
+    %% Click events for navigation
+    click B1 "/desktop-docs/soft-skills/rust/bai-1" "Đi đến Bài 1"
+    click B2 "/desktop-docs/soft-skills/rust/bai-2" "Đi đến Bài 2"
+    click B3 "/desktop-docs/soft-skills/rust/bai-3" "Đi đến Bài 3"
+    click B4 "/desktop-docs/soft-skills/rust/bai-4" "Đi đến Bài 4"
+    click B5 "/desktop-docs/soft-skills/rust/bai-5" "Đi đến Bài 5"
+    click B6 "/desktop-docs/soft-skills/rust/bai-6" "Đi đến Bài 6"
+    click B7 "/desktop-docs/soft-skills/rust/bai-7" "Đi đến Bài 7"
+    click B8 "/desktop-docs/soft-skills/rust/bai-8" "Đi đến Bài 8"
+    click B9 "/desktop-docs/soft-skills/rust/bai-9" "Đi đến Bài 9"
+    click B10 "/desktop-docs/soft-skills/rust/bai-10" "Đi đến Bài 10"
+    click B11 "/desktop-docs/soft-skills/rust/bai-11" "Đi đến Bài 11"
+    click B12 "/desktop-docs/soft-skills/rust/bai-12" "Đi đến Bài 12"
+    click B13 "/desktop-docs/soft-skills/rust/bai-13" "Đi đến Bài 13"
+    click B14 "/desktop-docs/soft-skills/rust/bai-14" "Đi đến Bài 14"
+    click B15 "/desktop-docs/soft-skills/rust/bai-15" "Đi đến Bài 15"
+    click B16 "/desktop-docs/soft-skills/rust/bai-16" "Đi đến Bài 16"
+    click B17 "/desktop-docs/soft-skills/rust/bai-17" "Đi đến Bài 17"
+    click B18 "/desktop-docs/soft-skills/rust/bai-18" "Đi đến Bài 18"
+
+    %% Styling
+    classDef phaseBox fill:#e1f5fe,stroke:#01579b,stroke-width:3px,color:#000
+    classDef lessonBox fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000,cursor:pointer
+    classDef startEnd fill:#c8e6c9,stroke:#1b5e20,stroke-width:3px,color:#000
+
+    class Foundation,DataStruct,CoreRust,Organization,Advanced,Practical phaseBox
+    class B1,B2,B3,B4,B5,B6,B7,B8,B9,B10,B11,B12,B13,B14,B15,B16,B17,B18 lessonBox
+    class Start,Complete startEnd
+```
 
 ## 1. Tổng quan về khóa học
 
