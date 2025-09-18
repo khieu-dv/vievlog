@@ -162,11 +162,6 @@ export default function LessonSuggestions({
             <div className="flex items-start gap-4">
               <div className="text-2xl">📖</div>
               <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-sm font-medium text-gray-500">
-                    Bài {lesson.id}
-                  </span>
-                </div>
                 <h4 className="font-semibold text-gray-900 mb-1 group-hover:text-blue-600 transition-colors">
                   {lesson.title}
                 </h4>
