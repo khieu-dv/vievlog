@@ -57,6 +57,10 @@ export default async function DocsLayout({ children }: DocsLayoutProps) {
           pageMap={filteredPageMap}
           feedback={{ content: null }}
           editLink={null}
+          navigation={{
+            prev: true,
+            next: true
+          }}
         >
           <div data-pagefind-body>
             {children}
