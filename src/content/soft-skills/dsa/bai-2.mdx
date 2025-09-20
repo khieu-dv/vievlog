@@ -107,35 +107,25 @@ graph TB
 
 ```mermaid
 flowchart TD
-    A[Bắt đầu phân tích bài toán] --> B{Cần truy cập<br/>random access?}
-    
+    A[Bắt đầu phân tích bài toán] --> B{Cần truy cập ngẫu nhiên?}
     B -->|Có| C[Array/Vector]
-    B -->|Không| D{Cần insert/delete<br/>thường xuyên?}
+    B -->|Không| D{Cần LIFO?}
+    D -->|Có| E[Stack]
+    D -->|Không| F{Cần FIFO?}
+    F -->|Có| G[Queue]
+    F -->|Không| H{Cần tìm kiếm nhanh?}
+    H -->|Có| I[Hash Table]
+    H -->|Không| J{Có cấu trúc phân cấp?}
+    J -->|Có| K[Tree]
+    J -->|Không| L[Linked List]
     
-    D -->|Có| E{Vị trí nào?}
-    D -->|Không| F[Array]
-    
-    E -->|Đầu/cuối| G{FIFO hay LIFO?}
-    E -->|Bất kỳ| H[Linked List]
-    
-    G -->|FIFO| I[Queue]
-    G -->|LIFO| J[Stack]
-    
-    A --> K{Dữ liệu có<br/>hierarchical?}
-    K -->|Có| L[Tree]
-    K -->|Không| M{Có relationships<br/>phức tạp?}
-    
-    M -->|Có| N[Graph]
-    M -->|Không| O[Linear Structure]
-    
-    style A fill:#e3f2fd
-    style C fill:#c8e6c9
-    style F fill:#c8e6c9
-    style H fill:#c8e6c9
-    style I fill:#c8e6c9
-    style J fill:#c8e6c9
-    style L fill:#fff9c4
-    style N fill:#ffccbc
+    style A fill:#ffeb3b
+    style C fill:#4caf50
+    style E fill:#ff9800
+    style G fill:#2196f3
+    style I fill:#9c27b0
+    style K fill:#f44336
+    style L fill:#795548
 ```
 
 ### 3.2 Performance Comparison
@@ -275,41 +265,100 @@ impl TaskScheduler {
 </ol>
 </div>
 
-### 5.2 Coding Exercise
+### 5.2 Coding Exercise với Rust
 
 ```rust
 // Bài tập 2: Implement Simple Data Structure Manager
+use std::collections::{HashMap, VecDeque};
+
 struct DataManager {
-    // Chọn cấu trúc dữ liệu phù hợp cho từng chức năng
-    recent_searches: Vec<String>,      // Stack for recent searches
-    pending_tasks: std::collections::VecDeque<String>,  // Queue for tasks
-    user_scores: std::collections::HashMap<String, i32>, // Hash for quick lookup
+    // Stack cho recent searches (LIFO)
+    recent_searches: Vec<String>,      
+    // Queue cho pending tasks (FIFO)  
+    pending_tasks: VecDeque<String>,   
+    // HashMap cho user scores (fast lookup)
+    user_scores: HashMap<String, i32>, 
 }
 
 impl DataManager {
-    // TODO: Implement các methods cần thiết
     fn new() -> Self {
-        todo!()
+        DataManager {
+            recent_searches: Vec::new(),
+            pending_tasks: VecDeque::new(),
+            user_scores: HashMap::new(),
+        }
     }
     
+    // Stack operations cho search history
     fn add_search(&mut self, query: String) {
-        // Thêm vào recent searches (giới hạn 10)
-        todo!()
+        // Giới hạn 10 searches gần nhất
+        if self.recent_searches.len() >= 10 {
+            self.recent_searches.remove(0); // Remove oldest
+        }
+        self.recent_searches.push(query); // Add to top
     }
     
     fn get_last_search(&mut self) -> Option<String> {
-        // Lấy search gần nhất
-        todo!()
+        self.recent_searches.pop() // LIFO - Last In, First Out
     }
     
+    // Queue operations cho task management
     fn add_task(&mut self, task: String) {
-        // Thêm task vào queue
-        todo!()
+        self.pending_tasks.push_back(task); // Enqueue
     }
     
     fn process_next_task(&mut self) -> Option<String> {
-        // Xử lý task tiếp theo
-        todo!()
+        self.pending_tasks.pop_front() // Dequeue - FIFO
+    }
+    
+    // HashMap operations cho user scores
+    fn update_score(&mut self, user: String, score: i32) {
+        self.user_scores.insert(user, score); // O(1) average
+    }
+    
+    fn get_score(&self, user: &str) -> Option<&i32> {
+        self.user_scores.get(user) // O(1) average lookup
+    }
+    
+    // Utility functions
+    fn search_count(&self) -> usize {
+        self.recent_searches.len()
+    }
+    
+    fn pending_task_count(&self) -> usize {
+        self.pending_tasks.len()
+    }
+}
+
+// Test function để verify implementation
+#[cfg(test)]
+mod tests {
+    use super::*;
+    
+    #[test]
+    fn test_data_manager() {
+        let mut dm = DataManager::new();
+        
+        // Test search history (Stack behavior)
+        dm.add_search("rust programming".to_string());
+        dm.add_search("data structures".to_string());
+        
+        assert_eq!(dm.get_last_search(), Some("data structures".to_string()));
+        assert_eq!(dm.get_last_search(), Some("rust programming".to_string()));
+        
+        // Test task queue (Queue behavior)  
+        dm.add_task("task1".to_string());
+        dm.add_task("task2".to_string());
+        
+        assert_eq!(dm.process_next_task(), Some("task1".to_string()));
+        assert_eq!(dm.process_next_task(), Some("task2".to_string()));
+        
+        // Test user scores (HashMap)
+        dm.update_score("alice".to_string(), 95);
+        dm.update_score("bob".to_string(), 87);
+        
+        assert_eq!(dm.get_score("alice"), Some(&95));
+        assert_eq!(dm.get_score("charlie"), None);
     }
 }
 ```
@@ -317,23 +366,30 @@ impl DataManager {
 ## 6. LeetCode Problems liên quan
 
 <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-<h4 className="font-semibold text-gray-800 mb-3">🏆 Recommended LeetCode Problems</h4>
+<h4 className="font-semibold text-gray-800 mb-3">🏆 Bài tập LeetCode liên quan đến Data Structures</h4>
 
-### Easy Level:
-- **[1. Two Sum](https://leetcode.com/problems/two-sum/)** - Hash Table application
-- **[20. Valid Parentheses](https://leetcode.com/problems/valid-parentheses/)** - Stack usage
-- **[232. Implement Queue using Stacks](https://leetcode.com/problems/implement-queue-using-stacks/)** - Data structure design
+### 🟢 Easy Level:
+| Problem | Difficulty | Concept | Link |
+|---------|------------|---------|------|
+| Two Sum | Easy | Hash Table | [Problem 1](https://leetcode.com/problems/two-sum/) |
+| Valid Parentheses | Easy | Stack | [Problem 20](https://leetcode.com/problems/valid-parentheses/) |
+| Implement Queue using Stacks | Easy | Stack & Queue | [Problem 232](https://leetcode.com/problems/implement-queue-using-stacks/) |
+| Remove Duplicates from Sorted Array | Easy | Array | [Problem 26](https://leetcode.com/problems/remove-duplicates-from-sorted-array/) |
 
-### Medium Level:
-- **[146. LRU Cache](https://leetcode.com/problems/lru-cache/)** - Hash Table + Linked List
-- **[225. Implement Stack using Queues](https://leetcode.com/problems/implement-stack-using-queues/)** - Understanding trade-offs
-- **[622. Design Circular Queue](https://leetcode.com/problems/design-circular-queue/)** - Array-based implementation
+### 🟡 Medium Level:
+| Problem | Difficulty | Concept | Link |
+|---------|------------|---------|------|
+| LRU Cache | Medium | Hash + LinkedList | [Problem 146](https://leetcode.com/problems/lru-cache/) |
+| Implement Stack using Queues | Medium | Queue & Stack | [Problem 225](https://leetcode.com/problems/implement-stack-using-queues/) |
+| Design Circular Queue | Medium | Array-based Queue | [Problem 622](https://leetcode.com/problems/design-circular-queue/) |
+| Top K Frequent Elements | Medium | Hash + Heap | [Problem 347](https://leetcode.com/problems/top-k-frequent-elements/) |
 
-### Pattern Recognition:
-- **Array problems:** Linear scan, two pointers
-- **Stack problems:** Matching patterns, monotonic stack
-- **Queue problems:** Level-order processing, sliding window
-- **Hash problems:** Frequency counting, fast lookups
+### 🔍 Pattern Recognition cho Data Structures:
+- **Array problems:** Linear scan, two pointers, sliding window
+- **Stack problems:** Matching patterns, monotonic stack, expression evaluation  
+- **Queue problems:** Level-order processing, BFS traversal
+- **Hash problems:** Frequency counting, fast lookups, caching
+- **Linked List:** Two pointers, cycle detection, merging
 </div>
 
 ## 7. Tóm tắt và Điểm cần nhớ
