@@ -1,0 +1,212 @@
+# Bài 0: Giới thiệu Khóa học Shaders với Bevy Rust và WGSL
+
+<div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-6 rounded-lg mb-8">
+  <h2 className="text-2xl font-bold mb-4">🎯 Chào mừng đến với thế giới Shaders!</h2>
+  <p className="text-lg">Khóa học toàn diện về lập trình shaders với công nghệ hiện đại nhất</p>
+</div>
+
+## 📋 Tổng quan khóa học
+
+Khóa học **"Shaders với Bevy Rust và WGSL"** là chương trình học 24 bài được thiết kế để đưa bạn từ người mới bắt đầu trở thành chuyên gia về lập trình đồ họa GPU.
+
+### 🎓 Đối tượng học viên
+
+| Đối tượng | Mô tả | Yêu cầu tiên quyết |
+|-----------|-------|-------------------|
+| **Beginner** | Lập trình viên Rust mới tiếp cận graphics | Rust cơ bản, toán học cấp 3 |
+| **Intermediate** | Developer muốn nâng cao kỹ năng 3D | Kinh nghiệm Rust 6 tháng+ |
+| **Advanced** | Game developer chuyên nghiệp | Hiểu biết về graphics pipeline |
+
+### 🛠️ Công nghệ sử dụng
+
+<div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-6">
+  <div className="bg-orange-100 p-4 rounded-lg">
+    <h3 className="font-bold text-orange-800">🦀 Rust</h3>
+    <p className="text-sm text-orange-700">Ngôn ngữ an toàn, hiệu năng cao</p>
+  </div>
+  <div className="bg-blue-100 p-4 rounded-lg">
+    <h3 className="font-bold text-blue-800">⚡ Bevy Engine</h3>
+    <p className="text-sm text-blue-700">Game engine hiện đại với ECS</p>
+  </div>
+  <div className="bg-green-100 p-4 rounded-lg">
+    <h3 className="font-bold text-green-800">🎨 WGSL</h3>
+    <p className="text-sm text-green-700">WebGPU Shading Language</p>
+  </div>
+</div>
+
+## 📚 Cấu trúc khóa học
+
+```mermaid
+graph TD
+    A[Bài 0: Giới thiệu] --> B[Phần I: Cơ bản<br/>Bài 1-8]
+    B --> C[Phần II: Trung cấp<br/>Bài 9-16]
+    C --> D[Phần III: Nâng cao<br/>Bài 17-24]
+    
+    B --> B1[Setup & Syntax]
+    B --> B2[Textures & Lighting]
+    
+    C --> C1[Advanced Lighting]
+    C --> C2[Post-processing]
+    
+    D --> D1[PBR & Volumetrics]
+    D --> D2[Optimization & Effects]
+```
+
+### 📊 Phân bổ nội dung theo cấp độ
+
+| Cấp độ | Số bài | Thời lượng | Trọng tâm |
+|--------|--------|------------|-----------|
+| **Cơ bản** | 8 bài | 40% | Syntax, textures, lighting cơ bản |
+| **Trung cấp** | 8 bài | 35% | Multi-lighting, shadows, post-processing |
+| **Nâng cao** | 8 bài | 25% | PBR, compute shaders, optimization |
+
+## 🎯 Mục tiêu học tập
+
+### Kiến thức cốt lõi
+
+```mermaid
+mindmap
+  root)Shader Programming(
+    Technical Skills
+      WGSL Syntax
+      GPU Architecture
+      Render Pipeline
+    Graphics Concepts
+      Lighting Models
+      Texture Mapping
+      Post-processing
+    Bevy Integration
+      Material System
+      Resource Management
+      Performance Optimization
+```
+
+### 🏆 Thành quả sau khóa học
+
+<div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 my-6">
+  <div className="flex">
+    <div className="ml-3">
+      <p className="text-sm text-yellow-700">
+        <strong>Sau khi hoàn thành khóa học, bạn sẽ có thể:</strong>
+      </p>
+      <ul className="mt-2 text-sm text-yellow-600 list-disc list-inside">
+        <li>Tạo materials và effects phức tạp trong Bevy</li>
+        <li>Implement các lighting model hiện đại (PBR)</li>
+        <li>Optimize performance cho mobile và desktop</li>
+        <li>Xây dựng post-processing pipeline hoàn chỉnh</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+## 💻 Yêu cầu hệ thống
+
+### Hardware tối thiểu
+
+| Component | Yêu cầu tối thiểu | Khuyến nghị |
+|-----------|-------------------|-------------|
+| **CPU** | 4 cores, 2.5GHz | 8 cores, 3.0GHz+ |
+| **RAM** | 8GB | 16GB+ |
+| **GPU** | Integrated GPU với Vulkan/DX12 | Dedicated GPU (GTX 1060/RX 580+) |
+| **Storage** | 10GB free space | SSD với 20GB+ |
+
+### Software requirements
+
+```mermaid
+graph LR
+    A[Development Environment] --> B[Rust Toolchain]
+    A --> C[IDE Setup]
+    A --> D[Graphics Tools]
+    
+    B --> B1[rustc 1.75+]
+    B --> B2[cargo]
+    B --> B3[rustup]
+    
+    C --> C1[VS Code + rust-analyzer]
+    C --> C2[CLion/RustRover]
+    
+    D --> D1[RenderDoc]
+    D --> D2[Blender optional]
+```
+
+## 📖 Phương pháp học tập
+
+### 🔄 Cấu trúc mỗi bài học
+
+| Giai đoạn | Thời lượng | Hoạt động |
+|-----------|------------|-----------|
+| **Warm-up** | 5% | Ôn tập bài trước |
+| **Theory** | 25% | Concepts & Math |
+| **Live Coding** | 45% | Implementation |
+| **Practice** | 20% | Bài tập độc lập |
+| **Troubleshooting** | 5% | Debug techniques |
+
+### 💡 Tips học hiệu quả
+
+<div className="bg-blue-50 p-6 rounded-lg">
+  <h3 className="text-lg font-semibold text-blue-800 mb-4">💡 Chiến lược học tập hiệu quả</h3>
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div>
+      <h4 className="font-medium text-blue-700">📝 Thực hành</h4>
+      <ul className="text-sm text-blue-600 mt-2 space-y-1">
+        <li>• Code cùng với video</li>
+        <li>• Thử nghiệm parameters</li>
+        <li>• Làm bài tập đầy đủ</li>
+      </ul>
+    </div>
+    <div>
+      <h4 className="font-medium text-blue-700">🔍 Khám phá</h4>
+      <ul className="text-sm text-blue-600 mt-2 space-y-1">
+        <li>• Đọc documentation</li>
+        <li>• Tham gia community</li>
+        <li>• Debug và experiment</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+## 🗺️ Lộ trình học tập
+
+### Phase 1: Foundation (Tuần 1-4)
+- **Mục tiêu**: Thiết lập môi trường và nắm vững cú pháp WGSL
+- **Deliverables**: Basic shader effects, texture mapping
+
+### Phase 2: Intermediate Skills (Tuần 5-8)  
+- **Mục tiêu**: Lighting models và post-processing
+- **Deliverables**: Phong lighting, shadow mapping
+
+### Phase 3: Advanced Mastery (Tuần 9-12)
+- **Mục tiêu**: PBR, compute shaders, optimization  
+- **Deliverables**: Complete game-ready materials
+
+## 🚀 Chuẩn bị cho bài học đầu tiên
+
+### Checklist chuẩn bị
+
+- [ ] Cài đặt Rust toolchain (rustup, cargo)
+- [ ] Setup IDE với rust-analyzer
+- [ ] Clone repository template
+- [ ] Test build environment
+- [ ] Join Discord community
+
+### 🔗 Resources quan trọng
+
+| Loại | Link/Tool | Mục đích |
+|------|-----------|----------|
+| **Docs** | [Bevy Book](https://bevyengine.org/learn/book/) | Tài liệu chính thức |
+| **Reference** | [WGSL Spec](https://gpuweb.github.io/gpuweb/wgsl/) | Cú pháp WGSL |
+| **Community** | Discord Server | Q&A và thảo luận |
+| **Tools** | RenderDoc | Graphics debugging |
+
+---
+
+<div className="bg-gray-100 p-6 rounded-lg mt-8">
+  <h3 className="text-lg font-semibold mb-4">🎉 Bạn đã sẵn sàng!</h3>
+  <div className="text-gray-700 mb-4">
+    Khóa học này sẽ mở ra một thế giới mới của lập trình đồ họa. 
+    Từ những shader đơn giản đến các effect phức tạp như PBR và volumetric rendering.
+  </div>
+  <div className="text-center">
+    <strong className="text-blue-600">Tiếp theo: Bài 1 - Giới thiệu về Bevy và WGSL →</strong>
+  </div>
+</div>
