@@ -1,549 +1,361 @@
 # Bài 5: Stacks & Queues - Ngăn xếp và Hàng đợi
 
-<div className="border-l-4 border-blue-500 p-6 mb-6">
-  <h2 className="text-2xl font-bold text-blue-800 mb-2">🎯 Mục tiêu bài học</h2>
-  <ul className="text-blue-700 space-y-2">
-    <li>✅ Hiểu khái niệm và nguyên lý hoạt động của Stack và Queue</li>
-    <li>✅ Cài đặt Stack và Queue với Array và Linked List</li>
-    <li>✅ Thành thạo các thao tác cơ bản và phân tích độ phức tạp</li>
-    <li>✅ Ứng dụng Stack và Queue trong các bài toán thực tế</li>
-  </ul>
+<div className="bg-blue-50 border-l-4 border-blue-500 p-4 my-6">
+<h2 className="text-xl font-bold text-blue-800 mb-2">🎯 Mục tiêu học tập</h2>
+<p className="text-blue-700">Nắm vững hai cấu trúc dữ liệu tuyến tính quan trọng: Stack (LIFO) và Queue (FIFO), cùng với các ứng dụng thực tế của chúng.</p>
 </div>
 
-## 📚 1. Stack (Ngăn xếp)
+## 📋 Nội dung chính
 
-### 1.1 Định nghĩa và Khái niệm
+### 1. Stack (Ngăn xếp) - LIFO (Last In, First Out)
 
-<div className="p-4 rounded-lg mb-4">
-  <p className="text-lg"><strong>Stack</strong> là cấu trúc dữ liệu tuyến tính hoạt động theo nguyên lý <span className="text-red-600 font-bold">LIFO (Last In, First Out)</span> - phần tử được thêm vào cuối cùng sẽ được lấy ra đầu tiên.</p>
+Stack là cấu trúc dữ liệu tuyến tính hoạt động theo nguyên tắc **LIFO** - phần tử được thêm vào cuối cùng sẽ được lấy ra đầu tiên.
+
+<div className="bg-gray-50 p-4 rounded-lg my-4">
+<h4 className="font-bold text-gray-800 mb-2">🔄 Các thao tác cơ bản của Stack:</h4>
+<ul className="list-disc list-inside text-gray-700">
+<li><strong>push(item)</strong>: Thêm phần tử vào đỉnh stack</li>
+<li><strong>pop()</strong>: Loại bỏ và trả về phần tử ở đỉnh stack</li>
+<li><strong>top/peek()</strong>: Xem phần tử ở đỉnh stack mà không loại bỏ</li>
+<li><strong>is_empty()</strong>: Kiểm tra stack có rỗng không</li>
+<li><strong>size()</strong>: Trả về số lượng phần tử trong stack</li>
+</ul>
 </div>
 
 ```mermaid
 graph TD
-    A[Stack Visualization] --> B[Top]
-    B --> C[Element 3]
-    C --> D[Element 2]
-    D --> E[Element 1]
-    E --> F[Bottom]
-
-    G[Push Operation] --> H[Add to Top]
-    I[Pop Operation] --> J[Remove from Top]
+    A[Stack Visualization] --> B[Top: 40]
+    B --> C[30]
+    C --> D[20]
+    D --> E[Bottom: 10]
+    
+    F[Push 50] --> G[Top: 50]
+    G --> H[40]
+    H --> I[30]
+    I --> J[20]
+    J --> K[Bottom: 10]
+    
+    L[Pop] --> M[Top: 30]
+    M --> N[20]
+    N --> O[Bottom: 10]
 ```
 
-### 1.2 Các Thao tác Cơ bản
+#### Cài đặt Stack với Array trong Rust
 
-| Thao tác           | Mô tả                             | Độ phức tạp |
-| ------------------ | --------------------------------- | ----------- |
-| `push(x)`          | Thêm phần tử x vào đỉnh stack     | O(1)        |
-| `pop()`            | Loại bỏ và trả về phần tử ở đỉnh  | O(1)        |
-| `top()` / `peek()` | Trả về phần tử ở đỉnh (không xóa) | O(1)        |
-| `isEmpty()`        | Kiểm tra stack có rỗng không      | O(1)        |
-| `size()`           | Trả về số phần tử trong stack     | O(1)        |
+```rust
+pub struct ArrayStack<T> {
+    data: Vec<T>,
+    capacity: usize,
+}
 
-### 1.3 Cài đặt Stack với Array
-
-```cpp
-#include <iostream>
-#include <vector>
-#include <stdexcept>
-
-class ArrayStack {
-private:
-    std::vector<int> data;
-    int topIndex;
-    int capacity;
-
-public:
-    // Constructor
-    ArrayStack(int cap = 100) : capacity(cap), topIndex(-1) {
-        data.resize(capacity);
-    }
-
-    // Push operation
-    void push(int value) {
-        if (topIndex >= capacity - 1) {
-            throw std::overflow_error("Stack overflow!");
+impl<T> ArrayStack<T> {
+    pub fn new(capacity: usize) -> Self {
+        ArrayStack {
+            data: Vec::with_capacity(capacity),
+            capacity,
         }
-        data[++topIndex] = value;
     }
-
-    // Pop operation
-    int pop() {
-        if (isEmpty()) {
-            throw std::underflow_error("Stack underflow!");
+    
+    pub fn push(&mut self, item: T) -> Result<(), &'static str> {
+        if self.data.len() >= self.capacity {
+            return Err("Stack overflow");
         }
-        return data[topIndex--];
+        self.data.push(item);
+        Ok(())
     }
-
-    // Peek operation
-    int top() const {
-        if (isEmpty()) {
-            throw std::underflow_error("Stack is empty!");
-        }
-        return data[topIndex];
+    
+    pub fn pop(&mut self) -> Option<T> {
+        self.data.pop()
     }
-
-    // Check if empty
-    bool isEmpty() const {
-        return topIndex == -1;
+    
+    pub fn peek(&self) -> Option<&T> {
+        self.data.last()
     }
-
-    // Get size
-    int size() const {
-        return topIndex + 1;
+    
+    pub fn is_empty(&self) -> bool {
+        self.data.is_empty()
     }
-
-    // Display stack
-    void display() const {
-        std::cout << "Stack: ";
-        for (int i = 0; i <= topIndex; i++) {
-            std::cout << data[i] << " ";
-        }
-        std::cout << "(top: " << (isEmpty() ? "empty" : std::to_string(data[topIndex])) << ")\n";
+    
+    pub fn size(&self) -> usize {
+        self.data.len()
     }
-};
+}
 ```
 
-### 1.4 Cài đặt Stack với Linked List
+#### Cài đặt Stack với Linked List trong Rust
 
-```cpp
-#include <iostream>
+```rust
+type Link<T> = Option<Box<Node<T>>>;
 
-struct Node {
-    int data;
-    Node* next;
+struct Node<T> {
+    data: T,
+    next: Link<T>,
+}
 
-    Node(int val) : data(val), next(nullptr) {}
-};
+pub struct LinkedStack<T> {
+    head: Link<T>,
+    size: usize,
+}
 
-class LinkedStack {
-private:
-    Node* topNode;
-    int stackSize;
-
-public:
-    // Constructor
-    LinkedStack() : topNode(nullptr), stackSize(0) {}
-
-    // Destructor
-    ~LinkedStack() {
-        while (!isEmpty()) {
-            pop();
-        }
+impl<T> LinkedStack<T> {
+    pub fn new() -> Self {
+        LinkedStack { head: None, size: 0 }
     }
-
-    // Push operation
-    void push(int value) {
-        Node* newNode = new Node(value);
-        newNode->next = topNode;
-        topNode = newNode;
-        stackSize++;
+    
+    pub fn push(&mut self, item: T) {
+        let new_node = Box::new(Node {
+            data: item,
+            next: self.head.take(),
+        });
+        self.head = Some(new_node);
+        self.size += 1;
     }
-
-    // Pop operation
-    int pop() {
-        if (isEmpty()) {
-            throw std::underflow_error("Stack underflow!");
-        }
-
-        Node* temp = topNode;
-        int value = topNode->data;
-        topNode = topNode->next;
-        delete temp;
-        stackSize--;
-        return value;
+    
+    pub fn pop(&mut self) -> Option<T> {
+        self.head.take().map(|node| {
+            self.head = node.next;
+            self.size -= 1;
+            node.data
+        })
     }
-
-    // Peek operation
-    int top() const {
-        if (isEmpty()) {
-            throw std::underflow_error("Stack is empty!");
-        }
-        return topNode->data;
+    
+    pub fn peek(&self) -> Option<&T> {
+        self.head.as_ref().map(|node| &node.data)
     }
-
-    // Check if empty
-    bool isEmpty() const {
-        return topNode == nullptr;
+    
+    pub fn is_empty(&self) -> bool {
+        self.head.is_none()
     }
-
-    // Get size
-    int size() const {
-        return stackSize;
+    
+    pub fn size(&self) -> usize {
+        self.size
     }
-};
+}
 ```
 
-## 📚 2. Queue (Hàng đợi)
+### 2. Queue (Hàng đợi) - FIFO (First In, First Out)
 
-### 2.1 Định nghĩa và Khái niệm
+Queue là cấu trúc dữ liệu tuyến tính hoạt động theo nguyên tắc **FIFO** - phần tử được thêm vào đầu tiên sẽ được lấy ra đầu tiên.
 
-<div className="p-4 rounded-lg mb-4">
-  <p className="text-lg"><strong>Queue</strong> là cấu trúc dữ liệu tuyến tính hoạt động theo nguyên lý <span className="text-green-600 font-bold">FIFO (First In, First Out)</span> - phần tử được thêm vào trước sẽ được lấy ra trước.</p>
+<div className="bg-green-50 p-4 rounded-lg my-4">
+<h4 className="font-bold text-green-800 mb-2">🔄 Các thao tác cơ bản của Queue:</h4>
+<ul className="list-disc list-inside text-green-700">
+<li><strong>enqueue(item)</strong>: Thêm phần tử vào cuối queue</li>
+<li><strong>dequeue()</strong>: Loại bỏ và trả về phần tử ở đầu queue</li>
+<li><strong>front()</strong>: Xem phần tử ở đầu queue mà không loại bỏ</li>
+<li><strong>rear()</strong>: Xem phần tử ở cuối queue</li>
+<li><strong>is_empty()</strong>: Kiểm tra queue có rỗng không</li>
+<li><strong>size()</strong>: Trả về số lượng phần tử trong queue</li>
+</ul>
 </div>
 
 ```mermaid
 graph LR
-    A[Rear] --> B[Element 4]
-    B --> C[Element 3]
-    C --> D[Element 2]
-    D --> E[Element 1]
-    E --> F[Front]
-
-    G[Enqueue] --> A
-    F --> H[Dequeue]
+    A[Front] --> B[10] --> C[20] --> D[30] --> E[40] --> F[Rear]
+    
+    G[Enqueue 50] 
+    H[Front] --> I[10] --> J[20] --> K[30] --> L[40] --> M[50] --> N[Rear]
+    
+    O[Dequeue]
+    P[Front] --> Q[20] --> R[30] --> S[40] --> T[50] --> U[Rear]
 ```
 
-### 2.2 Các Thao tác Cơ bản
+#### Cài đặt Queue với Circular Buffer trong Rust
 
-| Thao tác            | Mô tả                            | Độ phức tạp |
-| ------------------- | -------------------------------- | ----------- |
-| `enqueue(x)`        | Thêm phần tử x vào cuối queue    | O(1)        |
-| `dequeue()`         | Loại bỏ và trả về phần tử ở đầu  | O(1)        |
-| `front()`           | Trả về phần tử ở đầu (không xóa) | O(1)        |
-| `rear()` / `back()` | Trả về phần tử ở cuối            | O(1)        |
-| `isEmpty()`         | Kiểm tra queue có rỗng không     | O(1)        |
-| `size()`            | Trả về số phần tử trong queue    | O(1)        |
+```rust
+pub struct CircularQueue<T> {
+    data: Vec<Option<T>>,
+    front: usize,
+    rear: usize,
+    size: usize,
+    capacity: usize,
+}
 
-### 2.3 Cài đặt Queue với Circular Array
-
-```cpp
-#include <iostream>
-#include <vector>
-
-class CircularQueue {
-private:
-    std::vector<int> data;
-    int frontIndex;
-    int rearIndex;
-    int capacity;
-    int queueSize;
-
-public:
-    // Constructor
-    CircularQueue(int cap = 100) : capacity(cap + 1), frontIndex(0), rearIndex(0), queueSize(0) {
-        data.resize(capacity);
-    }
-
-    // Enqueue operation
-    void enqueue(int value) {
-        if (isFull()) {
-            throw std::overflow_error("Queue overflow!");
-        }
-
-        data[rearIndex] = value;
-        rearIndex = (rearIndex + 1) % capacity;
-        queueSize++;
-    }
-
-    // Dequeue operation
-    int dequeue() {
-        if (isEmpty()) {
-            throw std::underflow_error("Queue underflow!");
-        }
-
-        int value = data[frontIndex];
-        frontIndex = (frontIndex + 1) % capacity;
-        queueSize--;
-        return value;
-    }
-
-    // Front operation
-    int front() const {
-        if (isEmpty()) {
-            throw std::underflow_error("Queue is empty!");
-        }
-        return data[frontIndex];
-    }
-
-    // Rear operation
-    int rear() const {
-        if (isEmpty()) {
-            throw std::underflow_error("Queue is empty!");
-        }
-        return data[(rearIndex - 1 + capacity) % capacity];
-    }
-
-    // Check if empty
-    bool isEmpty() const {
-        return queueSize == 0;
-    }
-
-    // Check if full
-    bool isFull() const {
-        return queueSize == capacity - 1;
-    }
-
-    // Get size
-    int size() const {
-        return queueSize;
-    }
-
-    // Display queue
-    void display() const {
-        if (isEmpty()) {
-            std::cout << "Queue is empty\n";
-            return;
-        }
-
-        std::cout << "Queue: ";
-        int i = frontIndex;
-        for (int count = 0; count < queueSize; count++) {
-            std::cout << data[i] << " ";
-            i = (i + 1) % capacity;
-        }
-        std::cout << "(front: " << front() << ", rear: " << rear() << ")\n";
-    }
-};
-```
-
-### 2.4 Cài đặt Queue với Linked List
-
-```cpp
-#include <iostream>
-
-struct QueueNode {
-    int data;
-    QueueNode* next;
-
-    QueueNode(int val) : data(val), next(nullptr) {}
-};
-
-class LinkedQueue {
-private:
-    QueueNode* frontNode;
-    QueueNode* rearNode;
-    int queueSize;
-
-public:
-    // Constructor
-    LinkedQueue() : frontNode(nullptr), rearNode(nullptr), queueSize(0) {}
-
-    // Destructor
-    ~LinkedQueue() {
-        while (!isEmpty()) {
-            dequeue();
+impl<T> CircularQueue<T> {
+    pub fn new(capacity: usize) -> Self {
+        CircularQueue {
+            data: vec![None; capacity + 1],
+            front: 0,
+            rear: 0,
+            size: 0,
+            capacity: capacity + 1,
         }
     }
-
-    // Enqueue operation
-    void enqueue(int value) {
-        QueueNode* newNode = new QueueNode(value);
-
-        if (isEmpty()) {
-            frontNode = rearNode = newNode;
+    
+    pub fn enqueue(&mut self, item: T) -> Result<(), &'static str> {
+        if self.is_full() {
+            return Err("Queue is full");
+        }
+        
+        self.data[self.rear] = Some(item);
+        self.rear = (self.rear + 1) % self.capacity;
+        self.size += 1;
+        Ok(())
+    }
+    
+    pub fn dequeue(&mut self) -> Option<T> {
+        if self.is_empty() {
+            return None;
+        }
+        
+        let item = self.data[self.front].take();
+        self.front = (self.front + 1) % self.capacity;
+        self.size -= 1;
+        item
+    }
+    
+    pub fn front(&self) -> Option<&T> {
+        if self.is_empty() {
+            None
         } else {
-            rearNode->next = newNode;
-            rearNode = newNode;
+            self.data[self.front].as_ref()
         }
-        queueSize++;
     }
-
-    // Dequeue operation
-    int dequeue() {
-        if (isEmpty()) {
-            throw std::underflow_error("Queue underflow!");
-        }
-
-        QueueNode* temp = frontNode;
-        int value = frontNode->data;
-        frontNode = frontNode->next;
-
-        if (frontNode == nullptr) {
-            rearNode = nullptr;
-        }
-
-        delete temp;
-        queueSize--;
-        return value;
+    
+    pub fn is_empty(&self) -> bool {
+        self.size == 0
     }
-
-    // Front operation
-    int front() const {
-        if (isEmpty()) {
-            throw std::underflow_error("Queue is empty!");
-        }
-        return frontNode->data;
+    
+    pub fn is_full(&self) -> bool {
+        self.size == self.capacity - 1
     }
-
-    // Rear operation
-    int rear() const {
-        if (isEmpty()) {
-            throw std::underflow_error("Queue is empty!");
-        }
-        return rearNode->data;
+    
+    pub fn size(&self) -> usize {
+        self.size
     }
-
-    // Check if empty
-    bool isEmpty() const {
-        return frontNode == nullptr;
-    }
-
-    // Get size
-    int size() const {
-        return queueSize;
-    }
-};
+}
 ```
 
-## 🔄 3. So sánh Stack và Queue
+### 3. So sánh Stack và Queue
 
-<div className="overflow-x-auto">
+| Tiêu chí | Stack (LIFO) | Queue (FIFO) |
+|----------|--------------|--------------|
+| **Nguyên tắc** | Last In, First Out | First In, First Out |
+| **Thao tác thêm** | push() - ở top | enqueue() - ở rear |
+| **Thao tác lấy** | pop() - ở top | dequeue() - ở front |
+| **Ứng dụng** | Function calls, Undo operations | Task scheduling, BFS |
+| **Complexity** | O(1) cho tất cả operations | O(1) cho tất cả operations |
 
-| Đặc điểm             | Stack                           | Queue                           |
-| -------------------- | ------------------------------- | ------------------------------- |
-| **Nguyên lý**        | LIFO (Last In, First Out)       | FIFO (First In, First Out)      |
-| **Điểm truy cập**    | Chỉ ở đỉnh (top)                | Hai đầu (front và rear)         |
-| **Thao tác chính**   | push(), pop(), top()            | enqueue(), dequeue(), front()   |
-| **Ứng dụng chính**   | Function calls, Undo operations | Task scheduling, BFS            |
-| **Cài đặt đơn giản** | Array hoặc Linked List          | Circular Array hoặc Linked List |
+### 4. Ứng dụng thực tế
 
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+<div className="bg-purple-50 p-4 rounded-lg">
+<h4 className="font-bold text-purple-800 mb-2">🥞 Ứng dụng của Stack:</h4>
+<ul className="list-disc list-inside text-purple-700 space-y-1">
+<li>Function call stack</li>
+<li>Expression evaluation</li>
+<li>Undo operations trong editors</li>
+<li>Browser history</li>
+<li>Syntax parsing</li>
+<li>Backtracking algorithms</li>
+</ul>
 </div>
 
-## 🚀 4. Ứng dụng Thực tế
-
-### 4.1 Ứng dụng của Stack
-
-<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-  <div className="p-4 rounded-lg">
-    <h4 className="font-bold text-blue-800 mb-2">🔧 Expression Evaluation</h4>
-    <p className="text-sm">Tính toán biểu thức trung tố, hậu tố</p>
-  </div>
-  <div className="p-4 rounded-lg">
-    <h4 className="font-bold text-purple-800 mb-2">📞 Function Calls</h4>
-    <p className="text-sm">Quản lý call stack trong chương trình</p>
-  </div>
-  <div className="p-4 rounded-lg">
-    <h4 className="font-bold text-green-800 mb-2">↩️ Undo Operations</h4>
-    <p className="text-sm">Tính năng Undo trong text editors</p>
-  </div>
-  <div className="p-4 rounded-lg">
-    <h4 className="font-bold text-orange-800 mb-2">🌐 Browser History</h4>
-    <p className="text-sm">Lịch sử back/forward trong trình duyệt</p>
-  </div>
+<div className="bg-orange-50 p-4 rounded-lg">
+<h4 className="font-bold text-orange-800 mb-2">🚶‍♀️ Ứng dụng của Queue:</h4>
+<ul className="list-disc list-inside text-orange-700 space-y-1">
+<li>CPU task scheduling</li>
+<li>Print queue management</li>
+<li>Breadth-First Search (BFS)</li>
+<li>Buffer cho I/O operations</li>
+<li>Traffic light systems</li>
+<li>Call center systems</li>
+</ul>
+</div>
 </div>
 
-### 4.2 Ứng dụng của Queue
+### 5. Ví dụ thực tế: Expression Evaluation
 
-<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-  <div className="p-4 rounded-lg">
-    <h4 className="font-bold text-red-800 mb-2">⚙️ Task Scheduling</h4>
-    <p className="text-sm">Lập lịch CPU, process management</p>
-  </div>
-  <div className="bg-teal-50 p-4 rounded-lg">
-    <h4 className="font-bold text-teal-800 mb-2">🔍 BFS Algorithm</h4>
-    <p className="text-sm">Breadth-First Search trong graphs</p>
-  </div>
-  <div className="p-4 rounded-lg">
-    <h4 className="font-bold text-yellow-800 mb-2">🖨️ Print Queue</h4>
-    <p className="text-sm">Hàng đợi in ấn, buffer management</p>
-  </div>
-  <div className="p-4 rounded-lg">
-    <h4 className="font-bold text-indigo-800 mb-2">🌊 Stream Processing</h4>
-    <p className="text-sm">Xử lý dữ liệu streaming, IO buffer</p>
-  </div>
-</div>
-
-### 4.3 Ví dụ: Kiểm tra dấu ngoặc hợp lệ
-
-```cpp
-#include <iostream>
-#include <stack>
-#include <string>
-
-bool isValidParentheses(const std::string& s) {
-    std::stack<char> stack;
-
-    for (char c : s) {
-        if (c == '(' || c == '[' || c == '{') {
-            stack.push(c);
-        } else if (c == ')' || c == ']' || c == '}') {
-            if (stack.empty()) return false;
-
-            char top = stack.top();
-            stack.pop();
-
-            if ((c == ')' && top != '(') ||
-                (c == ']' && top != '[') ||
-                (c == '}' && top != '{')) {
-                return false;
+```rust
+fn evaluate_postfix(expression: &str) -> Result<i32, &'static str> {
+    let mut stack = ArrayStack::new(100);
+    
+    for token in expression.split_whitespace() {
+        match token {
+            "+" | "-" | "*" | "/" => {
+                let b = stack.pop().ok_or("Invalid expression")?;
+                let a = stack.pop().ok_or("Invalid expression")?;
+                
+                let result = match token {
+                    "+" => a + b,
+                    "-" => a - b,
+                    "*" => a * b,
+                    "/" => {
+                        if b == 0 { return Err("Division by zero"); }
+                        a / b
+                    }
+                    _ => unreachable!(),
+                };
+                
+                stack.push(result)?;
+            }
+            _ => {
+                let num = token.parse::<i32>()
+                    .map_err(|_| "Invalid number")?;
+                stack.push(num)?;
             }
         }
     }
-
-    return stack.empty();
-}
-
-// Test function
-void testParentheses() {
-    std::vector<std::string> testCases = {
-        "()", "()[]{}", "((()))", "({[]})",
-        "(", "())", "([)]", "}{"
-    };
-
-    for (const std::string& test : testCases) {
-        std::cout << "\"" << test << "\": "
-                  << (isValidParentheses(test) ? "Valid" : "Invalid") << "\n";
+    
+    if stack.size() == 1 {
+        stack.pop().ok_or("Empty stack")
+    } else {
+        Err("Invalid expression")
     }
 }
+
+// Sử dụng: evaluate_postfix("3 4 + 2 *") → 14
 ```
 
-## 📊 5. Phân tích Độ phức tạp
+### 6. Độ phức tạp thời gian và không gian
+
+| Thao tác | Stack | Queue |
+|----------|-------|-------|
+| **Push/Enqueue** | O(1) | O(1) |
+| **Pop/Dequeue** | O(1) | O(1) |
+| **Peek/Front** | O(1) | O(1) |
+| **Size** | O(1) | O(1) |
+| **Space** | O(n) | O(n) |
 
 ```mermaid
-graph TD
-    A[Operations Complexity] --> B[Stack]
-    A --> C[Queue]
-
-    B --> D["Push: O(1)"]
-    B --> E["Pop: O(1)"]
-    B --> F["Top: O(1)"]
-
-    C --> G["Enqueue: O(1)"]
-    C --> H["Dequeue: O(1)"]
-    C --> I["Front/Rear: O(1)"]
-
-    J[Space Complexity] --> K["Array-based: O(n)"]
-    J --> L["Linked-based: O(n)"]
+graph TB
+    A[Memory Layout Comparison] 
+    
+    B[Stack with Array]
+    B --> C[Contiguous memory]
+    B --> D[Fixed size]
+    B --> E[Cache friendly]
+    
+    F[Stack with Linked List]
+    F --> G[Dynamic size]
+    F --> H[Extra memory for pointers]
+    F --> I[Memory scattered]
+    
+    J[Queue with Circular Buffer]
+    J --> K[Efficient space usage]
+    J --> L[No memory waste]
+    J --> M[Fixed size]
 ```
 
-### 5.1 Bảng So sánh Implementation
+## 🎯 Tổng kết
 
-| Implementation   | Space | Access | Search | Insertion | Deletion |
-| ---------------- | ----- | ------ | ------ | --------- | -------- |
-| **Array Stack**  | O(n)  | O(1)   | O(n)   | O(1)      | O(1)     |
-| **Linked Stack** | O(n)  | O(1)   | O(n)   | O(1)      | O(1)     |
-| **Array Queue**  | O(n)  | O(1)   | O(n)   | O(1)      | O(1)     |
-| **Linked Queue** | O(n)  | O(1)   | O(n)   | O(1)      | O(1)     |
+**Stack và Queue** là hai cấu trúc dữ liệu cơ bản nhưng vô cùng quan trọng trong lập trình. Stack với nguyên tắc LIFO phù hợp cho việc quản lý trạng thái tạm thời, còn Queue với FIFO lý tưởng cho việc xử lý tuần tự các tác vụ.
 
-## 🎯 6. Bài tập LeetCode liên quan
-
-### Bài tập Stack:
-
-1. **[20. Valid Parentheses](https://leetcode.com/problems/valid-parentheses/)** - Easy
-2. **[155. Min Stack](https://leetcode.com/problems/min-stack/)** - Medium
-3. **[232. Implement Queue using Stacks](https://leetcode.com/problems/implement-queue-using-stacks/)** - Easy
-4. **[150. Evaluate Reverse Polish Notation](https://leetcode.com/problems/evaluate-reverse-polish-notation/)** - Medium
-5. **[84. Largest Rectangle in Histogram](https://leetcode.com/problems/largest-rectangle-in-histogram/)** - Hard
-
-### Bài tập Queue:
-
-1. **[225. Implement Stack using Queues](https://leetcode.com/problems/implement-stack-using-queues/)** - Easy
-2. **[933. Number of Recent Calls](https://leetcode.com/problems/number-of-recent-calls/)** - Easy
-3. **[622. Design Circular Queue](https://leetcode.com/problems/design-circular-queue/)** - Medium
-4. **[346. Moving Average from Data Stream](https://leetcode.com/problems/moving-average-from-data-stream/)** - Easy (Premium)
-5. **[239. Sliding Window Maximum](https://leetcode.com/problems/sliding-window-maximum/)** - Hard
-
-<div className="bg-amber-50 border-l-4 border-amber-500 p-4 mb-4">
-  <h4 className="font-bold text-amber-800 mb-2">💡 Lời khuyên học tập</h4>
-  <ul className="text-amber-700 space-y-1 text-sm">
-    <li>• Thực hành cài đặt cả Array và Linked List version</li>
-    <li>• Tập trung vào việc hiểu khi nào dùng Stack, khi nào dùng Queue</li>
-    <li>• Làm nhiều bài tập thực hành để nắm vững pattern</li>
-    <li>• Chú ý edge cases: empty stack/queue, overflow/underflow</li>
-  </ul>
+<div className="bg-yellow-50 border border-yellow-200 p-4 rounded-lg my-4">
+<h4 className="font-bold text-yellow-800 mb-2">💡 Lời khuyên:</h4>
+<p className="text-yellow-700">Hãy thực hành cài đặt cả hai cấu trúc bằng array và linked list để hiểu rõ trade-offs giữa performance và memory usage.</p>
 </div>
 
-## 📝 Tổng kết
+## 📝 Bài tập LeetCode liên quan
 
-Stack và Queue là hai cấu trúc dữ liệu cơ bản nhưng vô cùng quan trọng trong lập trình. Việc nắm vững cách cài đặt và ứng dụng chúng sẽ giúp bạn giải quyết nhiều bài toán phức tạp một cách hiệu quả. Hãy thực hành nhiều với các bài tập trên LeetCode để củng cố kiến thức!
+1. **[Valid Parentheses (Easy)](https://leetcode.com/problems/valid-parentheses/)** - Stack
+2. **[Implement Queue using Stacks (Easy)](https://leetcode.com/problems/implement-queue-using-stacks/)** 
+3. **[Implement Stack using Queues (Easy)](https://leetcode.com/problems/implement-stack-using-queues/)**
+4. **[Min Stack (Easy)](https://leetcode.com/problems/min-stack/)** 
+5. **[Daily Temperatures (Medium)](https://leetcode.com/problems/daily-temperatures/)** - Monotonic Stack
+6. **[Sliding Window Maximum (Hard)](https://leetcode.com/problems/sliding-window-maximum/)** - Deque
+7. **[Evaluate Reverse Polish Notation (Medium)](https://leetcode.com/problems/evaluate-reverse-polish-notation/)**
+
+---
+
+**Bài tiếp theo:** [Bài 6: Hash Tables - Bảng băm]()

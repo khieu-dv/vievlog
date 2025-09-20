@@ -1,369 +1,331 @@
 # Bài 2: Introduction to Data Structures
+## Giới thiệu về Cấu trúc Dữ liệu
 
-## 🎯 **Mục tiêu bài học**
+---
 
-<div className="p-6 border-l-4 border-blue-500 mb-6">
-  <h3 className="text-lg font-semibold text-blue-800 mb-3">Sau khi hoàn thành bài học này, bạn sẽ:</h3>
-  <ul className="text-blue-700 space-y-2">
-    <li>✅ Hiểu rõ khái niệm và vai trò của Data Structures</li>
-    <li>✅ Phân biệt được các loại Data Structures cơ bản</li>
-    <li>✅ Biết cách chọn Data Structure phù hợp cho từng bài toán</li>
-    <li>✅ Hiểu mối quan hệ giữa Data Structure và hiệu suất chương trình</li>
+<div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg border-l-4 border-blue-500 mb-6">
+  <h3 className="text-xl font-bold text-blue-800 mb-2">🎯 Mục tiêu học tập</h3>
+  <ul className="text-gray-700 space-y-1">
+    <li>✅ Hiểu định nghĩa và tầm quan trọng của Data Structures</li>
+    <li>✅ Phân loại các loại cấu trúc dữ liệu cơ bản</li>
+    <li>✅ Phân tích ưu nhược điểm của từng loại</li>
+    <li>✅ Lựa chọn cấu trúc dữ liệu phù hợp cho bài toán</li>
   </ul>
 </div>
 
 ---
 
-## 📚 **1. Data Structure là gì?**
+## 1. Data Structure là gì?
 
-<div className="p-5 rounded-lg border mb-6">
-  <p className="text-lg font-medium text-gray-800 mb-3">
-    <strong>Data Structure (Cấu trúc dữ liệu)</strong> là cách tổ chức, lưu trữ và quản lý dữ liệu trong máy tính để có thể truy cập và sử dụng hiệu quả.
-  </p>
-  <p className="text-gray-700">
-    Giống như cách bạn sắp xếp sách trong thư viện, Data Structure giúp sắp xếp dữ liệu theo một quy tắc nhất định.
-  </p>
+<div className="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400 mb-4">
+  <p className="font-semibold text-yellow-800">📚 Định nghĩa</p>
+  <p className="text-gray-700">Data Structure (Cấu trúc dữ liệu) là cách tổ chức, lưu trữ và quản lý dữ liệu trong máy tính để có thể truy cập và sử dụng hiệu quả.</p>
 </div>
 
-### **Tại sao Data Structure quan trọng?**
+### Tại sao Data Structures quan trọng?
 
-| **Lý do**       | **Giải thích**                            | **Ví dụ thực tế**                        |
-| --------------- | ----------------------------------------- | ---------------------------------------- |
-| **Hiệu suất**   | Giảm thời gian thực thi và bộ nhớ sử dụng | Tìm kiếm trong dictionary thay vì list   |
-| **Tổ chức**     | Dữ liệu được sắp xếp logic, dễ quản lý    | File system với folders và subfolders    |
-| **Tái sử dụng** | Code có thể được sử dụng lại nhiều lần    | Library functions cho sorting, searching |
-| **Bảo trì**     | Code dễ đọc, sửa đổi và mở rộng           | Modular programming approach             |
+| Lý do | Mô tả | Ví dụ thực tế |
+|-------|-------|---------------|
+| **Hiệu suất** | Tối ưu hóa thời gian truy cập và xử lý | Tìm kiếm trong Google (< 0.5 giây) |
+| **Tổ chức** | Sắp xếp dữ liệu logic và có cấu trúc | Hệ thống file Windows/Mac |
+| **Tái sử dụng** | Code dễ bảo trì và mở rộng | Framework React, Vue.js |
+| **Tiết kiệm bộ nhớ** | Sử dụng RAM hiệu quả | Compression algorithms |
 
 ---
 
-## 🏗️ **2. Phân loại Data Structures**
+## 2. Phân loại Data Structures
 
 ```mermaid
 graph TD
-    DS[Data Structures] --> P[Primitive]
-    DS --> NP[Non-Primitive]
-
-    P --> INT[Integer]
-    P --> FLOAT[Float]
-    P --> CHAR[Character]
-    P --> BOOL[Boolean]
-
-    NP --> LINEAR[Linear]
-    NP --> NONLINEAR[Non-Linear]
-
-    LINEAR --> ARRAY[Array]
-    LINEAR --> LL[Linked List]
-    LINEAR --> STACK[Stack]
-    LINEAR --> QUEUE[Queue]
-
-    NONLINEAR --> TREE[Tree]
-    NONLINEAR --> GRAPH[Graph]
-    NONLINEAR --> HASH[Hash Table]
+    A[Data Structures] --> B[Linear Data Structures]
+    A --> C[Non-Linear Data Structures]
+    
+    B --> D[Array]
+    B --> E[Linked List]
+    B --> F[Stack]
+    B --> G[Queue]
+    
+    C --> H[Tree]
+    C --> I[Graph]
+    C --> J[Hash Table]
+    
+    style A fill:#e1f5fe
+    style B fill:#f3e5f5
+    style C fill:#e8f5e8
 ```
 
-### **2.1 Linear Data Structures**
+### 2.1 Linear Data Structures (Cấu trúc tuyến tính)
 
 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-  <div className="border rounded-lg p-4">
-    <h4 className="font-semibold text-green-700 mb-2">✅ Ưu điểm</h4>
-    <ul className="text-sm text-green-600 space-y-1">
-      <li>• Dễ hiểu và cài đặt</li>
-      <li>• Memory locality tốt</li>
-      <li>• Truy cập tuần tự hiệu quả</li>
+  <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+    <h4 className="font-bold text-blue-800">✨ Đặc điểm</h4>
+    <ul className="text-sm text-gray-700 mt-2">
+      <li>• Dữ liệu được sắp xếp tuần tự</li>
+      <li>• Mỗi phần tử có tối đa 1 successor và 1 predecessor</li>
+      <li>• Duyệt theo thứ tự nhất định</li>
     </ul>
   </div>
-  <div className="border rounded-lg p-4">
-    <h4 className="font-semibold text-red-700 mb-2">❌ Nhược điểm</h4>
-    <ul className="text-sm text-red-600 space-y-1">
-      <li>• Kích thước cố định (một số loại)</li>
-      <li>• Insert/Delete có thể chậm</li>
-      <li>• Waste memory nếu không full</li>
+  
+  <div className="bg-green-50 p-4 rounded-lg border border-green-200">
+    <h4 className="font-bold text-green-800">🎯 Ứng dụng</h4>
+    <ul className="text-sm text-gray-700 mt-2">
+      <li>• Lưu trữ danh sách</li>
+      <li>• Xử lý tuần tự</li>
+      <li>• Undo/Redo operations</li>
     </ul>
   </div>
 </div>
 
-### **2.2 Non-Linear Data Structures**
+### 2.2 Non-Linear Data Structures (Cấu trúc phi tuyến)
 
-<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-  <div className="border rounded-lg p-4">
-    <h4 className="font-semibold text-green-700 mb-2">✅ Ưu điểm</h4>
-    <ul className="text-sm text-green-600 space-y-1">
-      <li>• Biểu diễn quan hệ phức tạp</li>
-      <li>• Tìm kiếm nhanh (Tree)</li>
-      <li>• Flexible structure</li>
-    </ul>
-  </div>
-  <div className="border rounded-lg p-4">
-    <h4 className="font-semibold text-red-700 mb-2">❌ Nhược điểm</h4>
-    <ul className="text-sm text-red-600 space-y-1">
-      <li>• Phức tạp hơn để cài đặt</li>
-      <li>• Memory overhead cao</li>
-      <li>• Cache performance kém</li>
-    </ul>
-  </div>
-</div>
+| Loại | Mô tả | Ví dụ ứng dụng |
+|------|-------|----------------|
+| **Tree** | Cấu trúc phân cấp với root và các node con | File system, DOM HTML |
+| **Graph** | Tập hợp các node kết nối bởi edges | Social networks, Maps |
+| **Hash Table** | Key-value mapping với hash function | Databases, Caching |
 
 ---
 
-## ⚡ **3. So sánh hiệu suất các Data Structures**
+## 3. So sánh các Data Structures cơ bản
 
-| **Data Structure** | **Access** | **Search** | **Insert** | **Delete** | **Memory** |
-| ------------------ | ---------- | ---------- | ---------- | ---------- | ---------- |
-| **Array**          | O(1)       | O(n)       | O(n)       | O(n)       | Thấp       |
-| **Linked List**    | O(n)       | O(n)       | O(1)       | O(1)       | Trung bình |
-| **Stack**          | O(1)       | O(n)       | O(1)       | O(1)       | Thấp       |
-| **Queue**          | O(1)       | O(n)       | O(1)       | O(1)       | Thấp       |
-| **Hash Table**     | N/A        | O(1) avg   | O(1) avg   | O(1) avg   | Cao        |
-| **Binary Tree**    | O(log n)   | O(log n)   | O(log n)   | O(log n)   | Trung bình |
+### Bảng so sánh hiệu suất
 
-<div className="border-l-4 border-yellow-400 p-4 mb-6">
-  <p className="text-yellow-800">
-    <strong>Lưu ý:</strong> Các độ phức tạp trên là cho trường hợp trung bình. Worst-case có thể khác biệt đáng kể.
-  </p>
-</div>
+| Data Structure | Access | Search | Insert | Delete | Space |
+|----------------|--------|--------|--------|--------|-------|
+| **Array** | O(1) | O(n) | O(n) | O(n) | O(n) |
+| **Linked List** | O(n) | O(n) | O(1) | O(1) | O(n) |
+| **Stack** | O(n) | O(n) | O(1) | O(1) | O(n) |
+| **Queue** | O(n) | O(n) | O(1) | O(1) | O(n) |
+| **Hash Table** | O(1)* | O(1)* | O(1)* | O(1)* | O(n) |
+| **Binary Tree** | O(log n) | O(log n) | O(log n) | O(log n) | O(n) |
+
+<div className="text-sm text-gray-600 italic">* Average case, worst case có thể là O(n)</div>
 
 ---
 
-## 🎯 **4. Cách chọn Data Structure phù hợp**
+## 4. Cách chọn Data Structure phù hợp
+
+### Decision Tree cho việc lựa chọn
 
 ```mermaid
 flowchart TD
-    START([Bắt đầu phân tích bài toán]) --> Q1{Cần truy cập ngẫu nhiên?}
-
-    Q1 -->|Có| Q2{Kích thước cố định?}
-    Q1 -->|Không| Q3{Thêm/xóa ở đâu?}
-
-    Q2 -->|Có| ARRAY[Array]
-    Q2 -->|Không| VECTOR[Vector/Dynamic Array]
-
-    Q3 -->|Đầu/Cuối| Q4{LIFO hay FIFO?}
-    Q3 -->|Giữa| LL[Linked List]
-
-    Q4 -->|LIFO| STACK[Stack]
-    Q4 -->|FIFO| QUEUE[Queue]
-
-    Q1 -->|Tìm kiếm nhanh| Q5{Key-Value?}
-    Q5 -->|Có| HASH[Hash Table]
-    Q5 -->|Không| Q6{Sorted data?}
-
-    Q6 -->|Có| BST[Binary Search Tree]
-    Q6 -->|Không| SET[Set/Map]
+    A[Bắt đầu phân tích bài toán] --> B{Cần truy cập ngẫu nhiên?}
+    B -->|Có| C[Array/Vector]
+    B -->|Không| D{Cần LIFO?}
+    D -->|Có| E[Stack]
+    D -->|Không| F{Cần FIFO?}
+    F -->|Có| G[Queue]
+    F -->|Không| H{Cần tìm kiếm nhanh?}
+    H -->|Có| I[Hash Table]
+    H -->|Không| J{Có cấu trúc phân cấp?}
+    J -->|Có| K[Tree]
+    J -->|Không| L[Linked List]
+    
+    style A fill:#ffeb3b
+    style C fill:#4caf50
+    style E fill:#ff9800
+    style G fill:#2196f3
+    style I fill:#9c27b0
+    style K fill:#f44336
+    style L fill:#795548
 ```
 
-### **Bảng hướng dẫn chọn Data Structure**
+### Checklist chọn Data Structure
 
-| **Yêu cầu chính**   | **Data Structure khuyến nghị** | **Lý do**           |
-| ------------------- | ------------------------------ | ------------------- |
-| Truy cập theo index | Array, Vector                  | O(1) random access  |
-| Thêm/xóa đầu cuối   | Stack, Queue                   | O(1) operations     |
-| Tìm kiếm nhanh      | Hash Table, BST                | O(1) hoặc O(log n)  |
-| Thêm/xóa ở giữa     | Linked List                    | O(1) nếu có pointer |
-| Dữ liệu có thứ tự   | Array, BST                     | Maintain order      |
-| Key-Value mapping   | Hash Table, Map                | Direct key lookup   |
+<div className="bg-gray-50 p-4 rounded-lg">
+  <h4 className="font-bold mb-2">🔍 Câu hỏi cần trả lời:</h4>
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
+    <div>
+      <input type="checkbox" className="mr-2" /> Dữ liệu có cố định kích thước?
+      <input type="checkbox" className="mr-2" /> Cần truy cập theo index?
+      <input type="checkbox" className="mr-2" /> Thêm/xóa thường xuyên?
+      <input type="checkbox" className="mr-2" /> Cần sắp xếp tự động?
+    </div>
+    <div>
+      <input type="checkbox" className="mr-2" /> Tìm kiếm là operation chính?
+      <input type="checkbox" className="mr-2" /> Cần duyệt theo thứ tự?
+      <input type="checkbox" className="mr-2" /> Bộ nhớ có giới hạn?
+      <input type="checkbox" className="mr-2" /> Cần thread-safe?
+    </div>
+  </div>
+</div>
 
 ---
 
-## 💻 **5. Ví dụ thực tế với C++**
+## 5. Ví dụ thực tế với Rust
 
-### **5.1 Chọn Array cho truy cập nhanh**
+### Array vs Vector trong Rust
 
-```cpp
-#include <iostream>
-#include <vector>
-#include <chrono>
+```rust
+// Array - kích thước cố định tại compile time
+fn array_example() {
+    let fixed_array: [i32; 5] = [1, 2, 3, 4, 5];
+    
+    // Truy cập O(1)
+    println!("Element at index 2: {}", fixed_array[2]);
+    
+    // Không thể thay đổi kích thước
+    // fixed_array.push(6); // ❌ Error!
+}
 
-// Ví dụ: Tính tổng các phần tử
-class ArrayExample {
-private:
-    std::vector<int> data;
-
-public:
-    ArrayExample(int size) {
-        data.resize(size);
-        // Initialize with random values
-        for(int i = 0; i < size; i++) {
-            data[i] = rand() % 1000;
-        }
-    }
-
-    // O(n) - Linear time
-    long long calculateSum() {
-        long long sum = 0;
-        for(int i = 0; i < data.size(); i++) {
-            sum += data[i];  // O(1) access time
-        }
-        return sum;
-    }
-
-    // O(1) - Constant time access
-    int getElement(int index) {
-        if(index >= 0 && index < data.size()) {
-            return data[index];
-        }
-        return -1; // Error value
-    }
-};
+// Vector - kích thước động
+fn vector_example() {
+    let mut dynamic_vec: Vec<i32> = vec![1, 2, 3, 4, 5];
+    
+    // Insert O(1) amortized
+    dynamic_vec.push(6);
+    
+    // Insert tại vị trí bất kỳ O(n)
+    dynamic_vec.insert(2, 10);
+    
+    println!("Vector: {:?}", dynamic_vec);
+}
 ```
 
-### **5.2 Performance Measurement**
+### HashMap cho key-value storage
 
-```cpp
-#include <chrono>
-#include <iostream>
+```rust
+use std::collections::HashMap;
 
-void measurePerformance() {
-    const int SIZE = 1000000;
-    ArrayExample arr(SIZE);
-
-    auto start = std::chrono::high_resolution_clock::now();
-    long long sum = arr.calculateSum();
-    auto end = std::chrono::high_resolution_clock::now();
-
-    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-
-    std::cout << "Sum: " << sum << std::endl;
-    std::cout << "Time taken: " << duration.count() << " microseconds" << std::endl;
+fn hashmap_example() {
+    let mut scores = HashMap::new();
+    
+    // Insert O(1) average
+    scores.insert("Alice", 95);
+    scores.insert("Bob", 87);
+    scores.insert("Charlie", 92);
+    
+    // Search O(1) average
+    match scores.get("Alice") {
+        Some(score) => println!("Alice's score: {}", score),
+        None => println!("Alice not found"),
+    }
+    
+    // Iterate through all entries
+    for (name, score) in &scores {
+        println!("{}: {}", name, score);
+    }
 }
 ```
 
 ---
 
-## 📊 **6. Memory Layout và Cache Performance**
+## 6. Trade-offs Analysis
 
-```mermaid
-graph LR
-    subgraph Array["Array Memory Layout"]
-        A1[data0] --> A2[data1]
-        A2 --> A3[data2]
-        A3 --> A4[data3]
-        A4 --> A5[data4]
-    end
+### Memory vs Speed Trade-offs
 
-    subgraph LinkedList["Linked List Memory Layout"]
-        L1[Node1] -.-> L2[Node2]
-        L2 -.-> L3[Node3]
-        L3 -.-> L4[Node4]
-        L4 -.-> L5[Node5]
-    end
-
-    A1 -.-> CACHE[CPU Cache]
-    L1 -.-> CACHE
-```
-
-<div className="border rounded-lg p-4 mb-6">
-  <h4 className="text-blue-800 font-semibold mb-2">💡 Memory Access Patterns</h4>
-  <div className="text-blue-700 text-sm">
-    <p><strong>Sequential Access (Array):</strong> Tận dụng được CPU cache, performance cao</p>
-    <p><strong>Random Access (Linked List):</strong> Cache miss nhiều, performance thấp hơn</p>
-  </div>
+<div className="overflow-x-auto">
+<table className="w-full border-collapse border border-gray-300">
+  <thead className="bg-gray-100">
+    <tr>
+      <th className="border border-gray-300 p-2">Scenario</th>
+      <th className="border border-gray-300 p-2">Priority</th>
+      <th className="border border-gray-300 p-2">Recommended Structure</th>
+      <th className="border border-gray-300 p-2">Reason</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td className="border border-gray-300 p-2">Gaming leaderboard</td>
+      <td className="border border-gray-300 p-2">Fast lookup</td>
+      <td className="border border-gray-300 p-2">HashMap</td>
+      <td className="border border-gray-300 p-2">O(1) search by player ID</td>
+    </tr>
+    <tr className="bg-gray-50">
+      <td className="border border-gray-300 p-2">Undo/Redo text editor</td>
+      <td className="border border-gray-300 p-2">LIFO operations</td>
+      <td className="border border-gray-300 p-2">Stack</td>
+      <td className="border border-gray-300 p-2">Natural fit for reversal</td>
+    </tr>
+    <tr>
+      <td className="border border-gray-300 p-2">Print queue</td>
+      <td className="border border-gray-300 p-2">FIFO fairness</td>
+      <td className="border border-gray-300 p-2">Queue</td>
+      <td className="border border-gray-300 p-2">First come, first served</td>
+    </tr>
+    <tr className="bg-gray-50">
+      <td className="border border-gray-300 p-2">File system</td>
+      <td className="border border-gray-300 p-2">Hierarchy</td>
+      <td className="border border-gray-300 p-2">Tree</td>
+      <td className="border border-gray-300 p-2">Natural parent-child relationship</td>
+    </tr>
+  </tbody>
+</table>
 </div>
 
 ---
 
-## 🧪 **7. Bài tập thực hành**
+## 7. Các lỗi thường gặp khi chọn Data Structure
 
-### **Bài tập 1: Phân tích bài toán**
-
-<div className="border rounded-lg p-4 mb-4">
-  <h4 className="font-semibold mb-2">🔍 Tình huống:</h4>
-  <p className="mb-3">Bạn cần xây dựng một hệ thống quản lý danh sách sinh viên với các yêu cầu:</p>
-  <ul className="space-y-1 text-sm">
-    <li>• Thêm sinh viên mới (ở cuối danh sách)</li>
-    <li>• Tìm sinh viên theo mã số</li>
-    <li>• Hiển thị danh sách theo thứ tự alphabet</li>
-    <li>• Xóa sinh viên theo mã số</li>
+<div className="bg-red-50 p-4 rounded-lg border-l-4 border-red-400 mb-4">
+  <h4 className="font-bold text-red-800">⚠️ Pitfalls phổ biến:</h4>
+  <ul className="text-red-700 mt-2 space-y-1">
+    <li>• <strong>Premature optimization</strong>: Chọn structure phức tạp cho bài toán đơn giản</li>
+    <li>• <strong>Không consider scale</strong>: Array cho 10 elements vs 10 million elements</li>
+    <li>• <strong>Ignore access patterns</strong>: Dùng LinkedList khi cần random access nhiều</li>
+    <li>• <strong>Memory overhead</strong>: Dùng Tree cho data nhỏ, overhead pointers > data</li>
   </ul>
 </div>
 
-**Hãy chọn Data Structure phù hợp và giải thích lý do:**
+---
 
-| **Yêu cầu** | **Data Structure gợi ý** | **Lý do**             |
-| ----------- | ------------------------ | --------------------- |
-| Thêm cuối   | Vector/Array             | O(1) amortized        |
-| Tìm theo mã | Hash Table               | O(1) average          |
-| Sắp xếp     | Sorted Vector            | Maintain order        |
-| Xóa theo mã | Hash Table + Vector      | Fast lookup + removal |
+## 8. Practice Problems
 
-### **Bài tập 2: Code Implementation**
+### Bài tập phân tích và lựa chọn
 
-```cpp
-#include <unordered_map>
-#include <vector>
-#include <algorithm>
+1. **Bài toán**: Lưu trữ 1000 sinh viên, thường xuyên tìm kiếm theo ID
+   - **Phân tích**: Cần fast lookup, kích thước biết trước
+   - **Lựa chọn**: HashMap hoặc Array nếu ID liên tục
 
-struct Student {
-    int id;
-    std::string name;
-    float gpa;
+2. **Bài toán**: Implement browser back/forward buttons  
+   - **Phân tích**: Cần track history, navigate qua lại
+   - **Lựa chọn**: Two Stacks hoặc Doubly Linked List
 
-    Student(int id, std::string name, float gpa)
-        : id(id), name(name), gpa(gpa) {}
-};
-
-class StudentManager {
-private:
-    std::vector<Student> students;           // For ordered access
-    std::unordered_map<int, int> idToIndex;  // For fast lookup
-
-public:
-    // O(1) amortized
-    void addStudent(const Student& student) {
-        idToIndex[student.id] = students.size();
-        students.push_back(student);
-    }
-
-    // O(1) average
-    Student* findStudent(int id) {
-        auto it = idToIndex.find(id);
-        if(it != idToIndex.end()) {
-            return &students[it->second];
-        }
-        return nullptr;
-    }
-
-    // O(n log n)
-    void sortByName() {
-        std::sort(students.begin(), students.end(),
-                 [](const Student& a, const Student& b) {
-                     return a.name < b.name;
-                 });
-
-        // Update index map
-        for(int i = 0; i < students.size(); i++) {
-            idToIndex[students[i].id] = i;
-        }
-    }
-};
-```
+3. **Bài toán**: Merge multiple sorted arrays
+   - **Phân tích**: Cần compare minimums efficiently
+   - **Lựa chọn**: Priority Queue (Min Heap)
 
 ---
 
-## 📋 **Tóm tắt bài học**
+## 9. LeetCode Problems liên quan
 
-<div className="border-l-4 border-green-400 p-4">
-  <h4 className="text-green-800 font-semibold mb-3">🎯 Những điều cần nhớ:</h4>
-  <div className="text-green-700 space-y-2 text-sm">
-    <p><strong>1.</strong> Data Structure là cách tổ chức dữ liệu để sử dụng hiệu quả</p>
-    <p><strong>2.</strong> Mỗi loại có ưu nhược điểm riêng - không có "best" universal</p>
-    <p><strong>3.</strong> Chọn DS dựa trên: access pattern, performance requirement, memory constraint</p>
-    <p><strong>4.</strong> Linear DS: đơn giản, cache-friendly; Non-linear DS: flexible, complex relationships</p>
-    <p><strong>5.</strong> Luôn đo performance thực tế, không chỉ dựa vào Big-O theory</p>
+<div className="bg-blue-50 p-4 rounded-lg">
+  <h4 className="font-bold text-blue-800 mb-2">🎯 Recommended LeetCode Problems:</h4>
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
+    <div>
+      <strong>Easy Level:</strong>
+      <ul className="mt-1 space-y-1">
+        <li>• <a href="#" className="text-blue-600">1. Two Sum</a> - HashMap usage</li>
+        <li>• <a href="#" className="text-blue-600">20. Valid Parentheses</a> - Stack</li>
+        <li>• <a href="#" className="text-blue-600">232. Implement Queue using Stacks</a></li>
+      </ul>
+    </div>
+    <div>
+      <strong>Medium Level:</strong>
+      <ul className="mt-1 space-y-1">
+        <li>• <a href="#" className="text-blue-600">146. LRU Cache</a> - HashMap + LinkedList</li>
+        <li>• <a href="#" className="text-blue-600">215. Kth Largest Element</a> - Heap</li>
+        <li>• <a href="#" className="text-blue-600">359. Logger Rate Limiter</a> - HashMap</li>
+      </ul>
+    </div>
   </div>
 </div>
 
 ---
 
-## 🔗 **Chuẩn bị cho bài tiếp theo**
+## 10. Tóm tắt và Next Steps
 
-**Bài 3: Arrays - Cấu trúc dữ liệu đầu tiên**
+<div className="bg-green-50 p-4 rounded-lg border-l-4 border-green-400">
+  <h4 className="font-bold text-green-800">📝 Key Takeaways:</h4>
+  <ul className="text-green-700 mt-2 space-y-1">
+    <li>✅ <strong>Data Structure</strong> = cách tổ chức dữ liệu hiệu quả</li>
+    <li>✅ <strong>Linear vs Non-linear</strong>: tuần tự vs phân cấp</li>
+    <li>✅ <strong>Trade-offs</strong>: Time vs Space vs Simplicity</li>
+    <li>✅ <strong>Context matters</strong>: Không có "best" structure, chỉ có "suitable"</li>
+  </ul>
+</div>
 
-- Cài đặt Array operations từ cơ bản
-- Memory management và pointer arithmetic
-- Multi-dimensional arrays
-- Performance optimization techniques
-
-<div className="text-center p-4 border-t mt-6">
-  <p className="text-gray-600 text-sm">
-    📚 <strong>Tài liệu tham khảo:</strong> Introduction to Algorithms (CLRS), Data Structures and Algorithms in C++ (Goodrich)
-  </p>
+<div className="text-center mt-6 p-4 bg-purple-50 rounded-lg">
+  <h4 className="font-bold text-purple-800">🚀 Bài tiếp theo: Arrays - Cấu trúc dữ liệu đầu tiên</h4>
+  <p className="text-purple-600 text-sm mt-1">Chúng ta sẽ dive deep vào Array - foundation của hầu hết data structures khác!</p>
 </div>
