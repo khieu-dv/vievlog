@@ -1,318 +1,353 @@
 # Bài 1: Programming Fundamentals & Language Selection
 
-<div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg border-l-4 border-blue-500 mb-8">
-  <h2 className="text-2xl font-bold text-blue-800 mb-2">🎯 Mục tiêu học tập</h2>
-  <p className="text-gray-700">Nắm vững các khái niệm cơ bản về lập trình và chọn ngôn ngữ phù hợp để học Data Structures & Algorithms hiệu quả.</p>
+<div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg border-l-4 border-blue-500 mb-6">
+  <h2 className="text-2xl font-bold text-blue-800 mb-2">🎯 Mục tiêu bài học</h2>
+  <p className="text-gray-700">Nắm vững các khái niệm lập trình cơ bản và chọn ngôn ngữ phù hợp cho việc học Data Structures & Algorithms</p>
 </div>
 
-## 1. Chọn Ngôn Ngữ Lập Trình Phù Hợp
+## 1. Tại sao cần chọn ngôn ngữ lập trình phù hợp?
 
-### 1.1 So Sánh Các Ngôn Ngữ Phổ Biến
+Việc chọn ngôn ngữ lập trình đóng vai trò quan trọng trong hành trình học DSA. Mỗi ngôn ngữ có những ưu điểm riêng:
 
-| Ngôn ngữ | Ưu điểm | Nhược điểm | Phù hợp cho |
-|----------|---------|------------|-------------|
-| **Python** | Cú pháp đơn giản, thư viện phong phú | Tốc độ chậm | Người mới bắt đầu, Data Science |
-| **Java** | OOP mạnh, tài liệu phong phú | Verbose, cần JVM | Enterprise, Android |
-| **C++** | Tốc độ cao, kiểm soát bộ nhớ | Phức tạp, dễ lỗi | Competitive Programming, System |
-| **JavaScript** | Web-friendly, linh hoạt | Động typing, quirks | Web Development |
-| **Rust** | Hiệu năng cao, memory safety | Steep learning curve | System Programming, Performance |
+### So sánh các ngôn ngữ phổ biến
 
-### 1.2 Lý Do Chọn Rust Cho Khóa Học Này
+| Ngôn ngữ | Tốc độ thực thi | Dễ học | Cộng đồng | Phỏng vấn | Memory Safety | Khuyến nghị |
+|----------|----------------|---------|-----------|-----------|---------------|-------------|
+| **Rust** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | **Tốt nhất** |
+| Python | ⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | Rất tốt |
+| Java | ⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | Rất tốt |
+| C++ | ⭐⭐⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐ | Tốt |
+| JavaScript | ⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐ | Tốt |
 
-<div className="bg-yellow-50 p-4 rounded-lg border border-yellow-200 mb-6">
-  <h4 className="font-semibold text-yellow-800 mb-2">⚡ Tại sao chọn Rust?</h4>
-  <ul className="text-sm text-yellow-700 space-y-1">
-    <li>• <strong>Performance:</strong> Tốc độ tương đương C/C++ nhưng an toàn hơn</li>
-    <li>• <strong>Memory Safety:</strong> Tránh được các lỗi phổ biến như buffer overflow</li>
-    <li>• <strong>Modern Syntax:</strong> Cú pháp hiện đại, dễ đọc</li>
-    <li>• <strong>Growing Ecosystem:</strong> Đang phát triển mạnh trong industry</li>
+<div className="bg-green-50 p-4 rounded-lg border border-green-200 my-4">
+  <h3 className="text-green-800 font-semibold mb-2">💡 Lý do chọn Rust:</h3>
+  <ul className="text-green-700 space-y-1">
+    <li>• Hiệu suất cao như C/C++ nhưng an toàn về bộ nhớ</li>
+    <li>• Syntax rõ ràng, tránh được nhiều lỗi thường gặp</li>
+    <li>• Công cụ phát triển mạnh mẽ (Cargo, rustfmt, clippy)</li>
+    <li>• Ngôn ngữ của tương lai, được nhiều công ty lớn sử dụng</li>
   </ul>
 </div>
 
-## 2. Ôn Tập Cú Pháp Cơ Bản Rust
+## 2. Cú pháp cơ bản Rust cho DSA
 
 ### 2.1 Variables và Data Types
 
 ```rust
 fn main() {
-    // Immutable variable (default)
+    // Immutable variables (mặc định)
     let x = 5;
-    println!("x = {}", x);
+    let name = "Rust DSA";
     
-    // Mutable variable
-    let mut y = 10;
-    y = 15;
-    println!("y = {}", y);
+    // Mutable variables
+    let mut count = 0;
+    count += 1;
     
-    // Explicit types
-    let integer: i32 = 42;
-    let floating: f64 = 3.14;
-    let boolean: bool = true;
-    let character: char = 'A';
-    let string: String = String::from("Hello");
+    // Explicit typing
+    let number: i32 = 42;
+    let float_num: f64 = 3.14;
+    let is_learning: bool = true;
     
-    // Arrays và Vectors
-    let array: [i32; 3] = [1, 2, 3];
-    let mut vector: Vec<i32> = vec![1, 2, 3];
-    vector.push(4);
+    println!("Learning {} with number {}", name, number);
 }
 ```
 
-### 2.2 Control Flow Structures
+### 2.2 Collections cơ bản
 
 ```rust
-fn demonstrate_control_flow() {
-    let number = 6;
+fn collections_example() {
+    // Vector (dynamic array)
+    let mut numbers = vec![1, 2, 3, 4, 5];
+    numbers.push(6);
     
-    // If-else statements
-    if number % 4 == 0 {
-        println!("number is divisible by 4");
-    } else if number % 3 == 0 {
-        println!("number is divisible by 3");
+    // Array (fixed size)
+    let fixed_array: [i32; 5] = [1, 2, 3, 4, 5];
+    
+    // String
+    let mut text = String::from("Hello");
+    text.push_str(" World");
+    
+    println!("Vector: {:?}", numbers);
+    println!("Array: {:?}", fixed_array);
+    println!("String: {}", text);
+}
+```
+
+## 3. Cấu trúc điều khiển
+
+### Sơ đồ luồng điều khiển
+
+```mermaid
+flowchart TD
+    A[Start Program] --> B{Check Condition}
+    B -->|True| C[Execute True Block]
+    B -->|False| D[Execute False Block]
+    C --> E[Merge Point]
+    D --> E
+    E --> F{Loop Condition?}
+    F -->|Continue| G[Execute Loop Body]
+    G --> H[Update Variables]
+    H --> F
+    F -->|Exit| I[End Program]
+    
+    style A fill:#e8f5e8
+    style B fill:#fff3e0
+    style C fill:#e1f5fe
+    style D fill:#fce4ec
+    style E fill:#f3e5f5
+    style F fill:#fff3e0
+    style G fill:#e1f5fe
+    style H fill:#f1f8e9
+    style I fill:#ffcdd2
+```
+
+### 3.1 Conditional Statements
+
+```rust
+fn conditional_examples(score: i32) {
+    // if-else if-else
+    if score >= 90 {
+        println!("Grade: A");
+    } else if score >= 80 {
+        println!("Grade: B");
+    } else if score >= 70 {
+        println!("Grade: C");
     } else {
-        println!("number is not divisible by 4 or 3");
+        println!("Grade: F");
     }
     
-    // Loop structures
-    let mut counter = 0;
+    // match (như switch)
+    match score {
+        90..=100 => println!("Excellent!"),
+        80..=89 => println!("Good!"),
+        70..=79 => println!("Average"),
+        _ => println!("Need improvement"),
+    }
+}
+```
+
+### 3.2 Loops
+
+| Loop Type | Cú pháp | Khi nào sử dụng |
+|-----------|---------|-----------------|
+| `loop` | `loop { ... }` | Vòng lặp vô hạn |
+| `while` | `while condition { ... }` | Lặp với điều kiện |
+| `for` | `for item in collection { ... }` | Duyệt collection |
+
+```rust
+fn loop_examples() {
+    // For loop với range
+    for i in 0..5 {
+        println!("Count: {}", i);
+    }
     
-    // Infinite loop with break
-    loop {
-        counter += 1;
-        if counter == 3 {
-            break;
-        }
+    // For loop với vector
+    let numbers = vec![1, 2, 3, 4, 5];
+    for num in &numbers {
+        println!("Number: {}", num);
     }
     
     // While loop
-    let mut number = 3;
-    while number != 0 {
-        println!("{}!", number);
-        number -= 1;
+    let mut counter = 0;
+    while counter < 3 {
+        println!("Counter: {}", counter);
+        counter += 1;
     }
     
-    // For loop
-    let a = [10, 20, 30, 40, 50];
-    for element in a {
-        println!("the value is: {}", element);
+    // Loop với break
+    let mut x = 0;
+    loop {
+        if x >= 5 { break; }
+        println!("x = {}", x);
+        x += 1;
     }
+}
+```
+
+## 4. Functions và Parameters
+
+### Cấu trúc function trong Rust
+
+```mermaid
+flowchart LR
+    A[fn keyword] --> B[function_name]
+    B --> C["(parameters)"]
+    C --> D["-> return_type"]
+    D --> E["{body}"]
+    E --> F[return value]
     
-    // Range-based for loop
-    for number in 1..4 {
-        println!("{}!", number);
-    }
-}
+    style A fill:#e1f5fe
+    style B fill:#f3e5f5
+    style C fill:#e8f5e8
+    style D fill:#fff3e0
+    style E fill:#fce4ec
+    style F fill:#f1f8e9
 ```
 
-### 2.3 Match Statements (Similar to Switch)
-
 ```rust
-fn match_example(x: i32) -> String {
-    match x {
-        1 => String::from("one"),
-        2 => String::from("two"),
-        3 => String::from("three"),
-        4..=9 => String::from("between four and nine"),
-        _ => String::from("something else"),
-    }
+// Function cơ bản
+fn add_numbers(a: i32, b: i32) -> i32 {
+    a + b  // implicit return (không có semicolon)
 }
 
-// Pattern matching với enums
-#[derive(Debug)]
-enum Direction {
-    North,
-    South,
-    East,
-    West,
+// Function với multiple return
+fn analyze_number(num: i32) -> (bool, bool, String) {
+    let is_positive = num > 0;
+    let is_even = num % 2 == 0;
+    let description = match (is_positive, is_even) {
+        (true, true) => "Positive and even".to_string(),
+        (true, false) => "Positive and odd".to_string(),
+        (false, true) => "Negative and even".to_string(),
+        (false, false) => "Negative and odd".to_string(),
+    };
+    (is_positive, is_even, description)
 }
 
-fn move_direction(direction: Direction) {
-    match direction {
-        Direction::North => println!("Moving North"),
-        Direction::South => println!("Moving South"),
-        Direction::East => println!("Moving East"),
-        Direction::West => println!("Moving West"),
-    }
-}
-```
-
-## 3. Functions, Parameters và Return Values
-
-### 3.1 Function Fundamentals
-
-```rust
-// Basic function
-fn greet() {
-    println!("Hello, world!");
+// Higher-order function
+fn apply_operation<F>(numbers: &[i32], operation: F) -> Vec<i32>
+where
+    F: Fn(i32) -> i32,
+{
+    numbers.iter().map(|&x| operation(x)).collect()
 }
 
-// Function with parameters
-fn greet_person(name: &str) {
-    println!("Hello, {}!", name);
-}
-
-// Function with return value
-fn add(a: i32, b: i32) -> i32 {
-    a + b  // No semicolon = return value
-}
-
-// Function with multiple return values (using tuple)
-fn calculate(a: i32, b: i32) -> (i32, i32, i32) {
-    (a + b, a - b, a * b)
-}
-
-// Function with Option return type (for error handling)
-fn divide(a: f64, b: f64) -> Option<f64> {
-    if b != 0.0 {
-        Some(a / b)
-    } else {
-        None
-    }
-}
-```
-
-### 3.2 Ownership và Borrowing
-
-<div className="bg-green-50 p-4 rounded-lg border border-green-200 mb-6">
-  <h4 className="font-semibold text-green-800 mb-2">🔑 Khái niệm quan trọng: Ownership</h4>
-  <p className="text-sm text-green-700">Rust sử dụng hệ thống ownership để quản lý bộ nhớ mà không cần garbage collector.</p>
-</div>
-
-```rust
-fn ownership_example() {
-    let s1 = String::from("hello");
-    let s2 = s1;  // s1 is moved to s2, s1 is no longer valid
-    // println!("{}", s1);  // This would cause a compile error
-    println!("{}", s2);  // This is fine
+fn main() {
+    let result = add_numbers(5, 3);
+    println!("5 + 3 = {}", result);
     
-    // Borrowing (references)
-    let s3 = String::from("world");
-    let len = calculate_length(&s3);  // s3 is borrowed
-    println!("The length of '{}' is {}.", s3, len);  // s3 is still valid
+    let (pos, even, desc) = analyze_number(-4);
+    println!("Number analysis: {} {} - {}", pos, even, desc);
+    
+    let numbers = vec![1, 2, 3, 4, 5];
+    let doubled = apply_operation(&numbers, |x| x * 2);
+    println!("Doubled: {:?}", doubled);
 }
-
-fn calculate_length(s: &String) -> usize {
-    s.len()
-}  // s goes out of scope, but it's just a reference, so nothing happens
 ```
 
-## 4. Object-Oriented Programming Basics
+## 5. OOP Basics trong Rust
 
-### 4.1 Structs và Implementation
+### 5.1 Structs và Implementation
 
 ```rust
-// Define a struct
+// Struct definition
 #[derive(Debug, Clone)]
-struct Rectangle {
-    width: u32,
-    height: u32,
+struct Student {
+    name: String,
+    age: u8,
+    grades: Vec<f32>,
 }
 
-// Implementation block
-impl Rectangle {
-    // Associated function (like static method)
-    fn new(width: u32, height: u32) -> Rectangle {
-        Rectangle { width, height }
+impl Student {
+    // Associated function (constructor)
+    fn new(name: String, age: u8) -> Self {
+        Student {
+            name,
+            age,
+            grades: Vec::new(),
+        }
     }
     
     // Method (takes &self)
-    fn area(&self) -> u32 {
-        self.width * self.height
+    fn add_grade(&mut self, grade: f32) {
+        if grade >= 0.0 && grade <= 100.0 {
+            self.grades.push(grade);
+        }
     }
     
-    // Method that modifies the struct
-    fn scale(&mut self, factor: u32) {
-        self.width *= factor;
-        self.height *= factor;
+    fn average_grade(&self) -> Option<f32> {
+        if self.grades.is_empty() {
+            None
+        } else {
+            let sum: f32 = self.grades.iter().sum();
+            Some(sum / self.grades.len() as f32)
+        }
     }
     
-    // Method that compares with another Rectangle
-    fn can_hold(&self, other: &Rectangle) -> bool {
-        self.width > other.width && self.height > other.height
+    fn display_info(&self) {
+        println!("Student: {}, Age: {}", self.name, self.age);
+        if let Some(avg) = self.average_grade() {
+            println!("Average grade: {:.2}", avg);
+        } else {
+            println!("No grades available");
+        }
     }
 }
 ```
 
-### 4.2 Traits (Similar to Interfaces)
+### 5.2 Traits (Interfaces)
 
 ```rust
-// Define a trait
-trait Shape {
+// Trait definition
+trait Drawable {
+    fn draw(&self);
     fn area(&self) -> f64;
-    fn perimeter(&self) -> f64;
 }
 
-// Implement trait for Rectangle
-impl Shape for Rectangle {
-    fn area(&self) -> f64 {
-        (self.width * self.height) as f64
-    }
-    
-    fn perimeter(&self) -> f64 {
-        2.0 * (self.width + self.height) as f64
-    }
-}
-
-// Circle struct
+// Struct implementing trait
 struct Circle {
     radius: f64,
 }
 
-impl Shape for Circle {
+impl Drawable for Circle {
+    fn draw(&self) {
+        println!("Drawing a circle with radius {}", self.radius);
+    }
+    
     fn area(&self) -> f64 {
         std::f64::consts::PI * self.radius * self.radius
     }
+}
+
+struct Rectangle {
+    width: f64,
+    height: f64,
+}
+
+impl Drawable for Rectangle {
+    fn draw(&self) {
+        println!("Drawing a rectangle {}x{}", self.width, self.height);
+    }
     
-    fn perimeter(&self) -> f64 {
-        2.0 * std::f64::consts::PI * self.radius
+    fn area(&self) -> f64 {
+        self.width * self.height
     }
 }
-
-// Generic function using trait
-fn print_shape_info<T: Shape>(shape: &T) {
-    println!("Area: {:.2}", shape.area());
-    println!("Perimeter: {:.2}", shape.perimeter());
-}
 ```
 
-## 5. Pseudo Code và Algorithm Description
+## 6. Pseudocode và Algorithm Design
 
-### 5.1 Tầm Quan Trọng của Pseudo Code
-
-<div className="bg-purple-50 p-4 rounded-lg border border-purple-200 mb-6">
-  <h4 className="font-semibold text-purple-800 mb-2">📝 Pseudo Code Benefits</h4>
-  <ul className="text-sm text-purple-700 space-y-1">
-    <li>• Tập trung vào logic thay vì cú pháp</li>
-    <li>• Dễ dàng communicate với team</li>
-    <li>• Platform-independent thinking</li>
-    <li>• Chuẩn bị tốt cho coding interviews</li>
-  </ul>
+<div className="bg-yellow-50 p-4 rounded-lg border border-yellow-200 my-4">
+  <h3 className="text-yellow-800 font-semibold mb-2">📝 Tại sao Pseudocode quan trọng?</h3>
+  <p className="text-yellow-700">Pseudocode giúp bạn tập trung vào logic thuật toán thay vì cú pháp ngôn ngữ</p>
 </div>
 
-### 5.2 Ví Dụ Pseudo Code
+### Template Pseudocode chuẩn
+
+| Cấu trúc | Pseudocode | Rust Implementation |
+|----------|------------|-------------------|
+| **Sequence** | `Step 1`<br />`Step 2`<br />`Step 3` | `statement1;`<br />`statement2;`<br />`statement3;` |
+| **Selection** | `IF condition THEN`<br />&nbsp;&nbsp;`action1`<br />`ELSE`<br />&nbsp;&nbsp;`action2`<br />`ENDIF` | `if condition {`<br />&nbsp;&nbsp;`action1;`<br />`} else {`<br />&nbsp;&nbsp;`action2;`<br />`}` |
+| **Iteration** | `FOR i = 1 TO n DO`<br />&nbsp;&nbsp;`process(i)`<br />`ENDFOR` | `for i in 1..=n {`<br />&nbsp;&nbsp;`process(i);`<br />`}` |
+
+### Ví dụ: Find Maximum Algorithm
 
 ```
-ALGORITHM: Find Maximum Element in Array
+ALGORITHM FindMaximum
 INPUT: array A of size n
-OUTPUT: maximum element
+OUTPUT: maximum value in A
 
 BEGIN
-    IF n = 0 THEN
-        RETURN "Array is empty"
-    END IF
-    
     max ← A[0]
-    FOR i ← 1 TO n-1 DO
+    FOR i = 1 TO n-1 DO
         IF A[i] > max THEN
             max ← A[i]
-        END IF
-    END FOR
-    
+        ENDIF
+    ENDFOR
     RETURN max
 END
 ```
 
-### 5.3 Chuyển Đổi Sang Rust Code
+**Rust Implementation:**
 
 ```rust
 fn find_maximum(arr: &[i32]) -> Option<i32> {
@@ -321,280 +356,209 @@ fn find_maximum(arr: &[i32]) -> Option<i32> {
     }
     
     let mut max = arr[0];
-    for &element in arr.iter().skip(1) {
-        if element > max {
-            max = element;
+    for &num in &arr[1..] {
+        if num > max {
+            max = num;
         }
     }
-    
     Some(max)
 }
 
-// Usage example
-fn main() {
+// Test function
+fn test_find_maximum() {
     let numbers = vec![3, 7, 2, 9, 1, 5];
-    
     match find_maximum(&numbers) {
-        Some(max) => println!("Maximum element: {}", max),
+        Some(max) => println!("Maximum value: {}", max),
         None => println!("Array is empty"),
     }
 }
 ```
 
-## 6. Complexity Analysis Framework
+## 7. Complexity Analysis Preview
 
-### 6.1 Hiểu về Algorithm Complexity
+### Time Complexity Comparison
 
 ```mermaid
-graph TD
-    A[Algorithm Analysis] --> B[Time Complexity]
-    A --> C[Space Complexity]
-    B --> D[Best Case]
-    B --> E[Average Case]
-    B --> F[Worst Case]
-    C --> G[Input Space]
-    C --> H[Auxiliary Space]
+flowchart TD
+    A["O(1) - Constant"] --> B["O(log n) - Logarithmic"]
+    B --> C["O(n) - Linear"]
+    C --> D["O(n log n) - Log-linear"]
+    D --> E["O(n²) - Quadratic"]
+    E --> F["O(2ⁿ) - Exponential"]
+    
+    A -.-> A1["Hash Table Access<br/>Array Index"]
+    B -.-> B1["Binary Search<br/>Tree Height"]
+    C -.-> C1["Linear Search<br/>Array Traversal"]
+    D -.-> D1["Merge Sort<br/>Heap Sort"]
+    E -.-> E1["Bubble Sort<br/>Nested Loops"]
+    F -.-> F1["Subset Generation<br/>Recursive Fibonacci"]
+    
+    style A fill:#c8e6c9
+    style B fill:#dcedc8
+    style C fill:#fff9c4
+    style D fill:#ffe0b2
+    style E fill:#ffcdd2
+    style F fill:#f8bbd9
 ```
 
-### 6.2 Bảng Phân Tích Complexity
+| Complexity | Tên gọi | Ví dụ thuật toán | Performance (n=1000) |
+|------------|---------|------------------|---------------------|
+| O(1) | Constant | Array access | 1 step |
+| O(log n) | Logarithmic | Binary search | ~10 steps |
+| O(n) | Linear | Linear search | 1,000 steps |
+| O(n log n) | Log-linear | Merge sort | ~10,000 steps |
+| O(n²) | Quadratic | Bubble sort | 1,000,000 steps |
 
-| Complexity | Name | Example Operations |
-|------------|------|-------------------|
-| O(1) | Constant | Array access, Hash table lookup |
-| O(log n) | Logarithmic | Binary search, Tree operations |
-| O(n) | Linear | Array traversal, Linear search |
-| O(n log n) | Log-linear | Merge sort, Heap sort |
-| O(n²) | Quadratic | Bubble sort, Nested loops |
-| O(2ⁿ) | Exponential | Recursive fibonacci, Subset generation |
+## 8. Bài tập thực hành
 
-### 6.3 Complexity Analysis Example
-
-```rust
-// O(1) - Constant time
-fn get_first_element(arr: &[i32]) -> Option<i32> {
-    arr.first().copied()
-}
-
-// O(n) - Linear time
-fn sum_array(arr: &[i32]) -> i32 {
-    arr.iter().sum()
-}
-
-// O(n²) - Quadratic time
-fn bubble_sort(arr: &mut [i32]) {
-    let n = arr.len();
-    for i in 0..n {
-        for j in 0..n-1-i {
-            if arr[j] > arr[j+1] {
-                arr.swap(j, j+1);
-            }
-        }
-    }
-}
-
-// O(log n) - Logarithmic time
-fn binary_search(arr: &[i32], target: i32) -> Option<usize> {
-    let mut left = 0;
-    let mut right = arr.len();
-    
-    while left < right {
-        let mid = left + (right - left) / 2;
-        
-        match arr[mid].cmp(&target) {
-            std::cmp::Ordering::Equal => return Some(mid),
-            std::cmp::Ordering::Less => left = mid + 1,
-            std::cmp::Ordering::Greater => right = mid,
-        }
-    }
-    
-    None
-}
-```
-
-## 7. Best Practices và Coding Standards
-
-### 7.1 Rust Coding Conventions
-
-<div className="bg-blue-50 p-4 rounded-lg border border-blue-200 mb-6">
-  <h4 className="font-semibold text-blue-800 mb-2">✨ Rust Best Practices</h4>
-  <ul className="text-sm text-blue-700 space-y-1">
-    <li>• Use <code>snake_case</code> for variables and functions</li>
-    <li>• Use <code>PascalCase</code> for types and traits</li>
-    <li>• Use <code>SCREAMING_SNAKE_CASE</code> for constants</li>
-    <li>• Prefer <code>Vec&lt;T&gt;</code> over arrays for dynamic data</li>
-    <li>• Use <code>Option&lt;T&gt;</code> and <code>Result&lt;T, E&gt;</code> for error handling</li>
-  </ul>
-</div>
-
-### 7.2 Error Handling Patterns
-
-```rust
-// Using Option for nullable values
-fn safe_divide(a: f64, b: f64) -> Option<f64> {
-    if b != 0.0 {
-        Some(a / b)
-    } else {
-        None
-    }
-}
-
-// Using Result for operations that might fail
-#[derive(Debug)]
-enum MathError {
-    DivisionByZero,
-    NegativeSquareRoot,
-}
-
-fn sqrt_divide(a: f64, b: f64) -> Result<f64, MathError> {
-    if b == 0.0 {
-        return Err(MathError::DivisionByZero);
-    }
-    
-    let result = a / b;
-    if result < 0.0 {
-        return Err(MathError::NegativeSquareRoot);
-    }
-    
-    Ok(result.sqrt())
-}
-```
-
-## 8. Development Environment Setup
-
-### 8.1 Installation Steps
-
-```bash
-# Install Rust
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-
-# Update PATH
-source ~/.cargo/env
-
-# Verify installation
-rustc --version
-cargo --version
-
-# Create new project
-cargo new dsa_practice
-cd dsa_practice
-
-# Build and run
-cargo build
-cargo run
-```
-
-### 8.2 Essential Cargo Commands
-
-| Command | Description |
-|---------|-------------|
-| `cargo new <name>` | Create new project |
-| `cargo build` | Compile project |
-| `cargo run` | Build and run |
-| `cargo test` | Run tests |
-| `cargo check` | Check code without building |
-| `cargo fmt` | Format code |
-| `cargo clippy` | Lint code |
-
-## 9. Practice Problems
-
-### 9.1 LeetCode Problems Related to This Lesson
-
-<div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-  <h4 className="font-semibold text-gray-800 mb-3">🏋️ Practice Problems on LeetCode</h4>
+<div className="bg-blue-50 p-4 rounded-lg border border-blue-200 my-4">
+  <h3 className="text-blue-800 font-semibold mb-3">🏋️ Bài tập cơ bản</h3>
   
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-    <div>
-      <h5 className="font-medium text-green-700 mb-2">Easy Level:</h5>
-      <ul className="space-y-1 text-gray-600">
-        <li>• <a href="#" className="text-blue-600 hover:underline">1. Two Sum</a></li>
-        <li>• <a href="#" className="text-blue-600 hover:underline">9. Palindrome Number</a></li>
-        <li>• <a href="#" className="text-blue-600 hover:underline">13. Roman to Integer</a></li>
-        <li>• <a href="#" className="text-blue-600 hover:underline">20. Valid Parentheses</a></li>
-        <li>• <a href="#" className="text-blue-600 hover:underline">21. Merge Two Sorted Lists</a></li>
-      </ul>
+  <div className="space-y-3">
+    <div className="bg-white p-3 rounded border-l-4 border-blue-400">
+      <h4 className="font-medium text-gray-800">Bài 1: Temperature Converter</h4>
+      <p className="text-sm text-gray-600">Viết chương trình chuyển đổi nhiệt độ giữa Celsius, Fahrenheit và Kelvin</p>
     </div>
     
-    <div>
-      <h5 className="font-medium text-orange-700 mb-2">Medium Level:</h5>
-      <ul className="space-y-1 text-gray-600">
-        <li>• <a href="#" className="text-blue-600 hover:underline">2. Add Two Numbers</a></li>
-        <li>• <a href="#" className="text-blue-600 hover:underline">3. Longest Substring Without Repeating</a></li>
-        <li>• <a href="#" className="text-blue-600 hover:underline">7. Reverse Integer</a></li>
-        <li>• <a href="#" className="text-blue-600 hover:underline">8. String to Integer (atoi)</a></li>
-      </ul>
+    <div className="bg-white p-3 rounded border-l-4 border-green-400">
+      <h4 className="font-medium text-gray-800">Bài 2: Grade Calculator</h4>
+      <p className="text-sm text-gray-600">Tính điểm trung bình và xếp loại học lực từ một danh sách điểm số</p>
+    </div>
+    
+    <div className="bg-white p-3 rounded border-l-4 border-purple-400">
+      <h4 className="font-medium text-gray-800">Bài 3: Number Pattern</h4>
+      <p className="text-sm text-gray-600">In ra các pattern số như tam giác Pascal, Fibonacci sequence</p>
     </div>
   </div>
 </div>
 
-### 9.2 Hands-on Exercise
+### Bài tập mẫu: Simple Calculator
 
 ```rust
-// Exercise: Implement a simple calculator
+use std::io;
+
 struct Calculator;
 
 impl Calculator {
-    fn new() -> Self {
-        Calculator
-    }
-    
-    fn add(&self, a: f64, b: f64) -> f64 {
-        a + b
-    }
-    
-    fn subtract(&self, a: f64, b: f64) -> f64 {
-        a - b
-    }
-    
-    fn multiply(&self, a: f64, b: f64) -> f64 {
-        a * b
-    }
-    
-    fn divide(&self, a: f64, b: f64) -> Result<f64, String> {
+    fn add(a: f64, b: f64) -> f64 { a + b }
+    fn subtract(a: f64, b: f64) -> f64 { a - b }
+    fn multiply(a: f64, b: f64) -> f64 { a * b }
+    fn divide(a: f64, b: f64) -> Result<f64, String> {
         if b == 0.0 {
-            Err("Division by zero".to_string())
+            Err("Division by zero!".to_string())
         } else {
             Ok(a / b)
         }
     }
+    
+    fn calculate(operation: &str, a: f64, b: f64) -> Result<f64, String> {
+        match operation {
+            "+" => Ok(Self::add(a, b)),
+            "-" => Ok(Self::subtract(a, b)),
+            "*" => Ok(Self::multiply(a, b)),
+            "/" => Self::divide(a, b),
+            _ => Err("Invalid operation".to_string()),
+        }
+    }
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+fn main() {
+    println!("Simple Calculator");
+    println!("Enter: number1 operator number2");
     
-    #[test]
-    fn test_calculator() {
-        let calc = Calculator::new();
-        
-        assert_eq!(calc.add(2.0, 3.0), 5.0);
-        assert_eq!(calc.subtract(5.0, 3.0), 2.0);
-        assert_eq!(calc.multiply(4.0, 3.0), 12.0);
-        assert!(calc.divide(10.0, 2.0).is_ok());
-        assert!(calc.divide(10.0, 0.0).is_err());
+    let mut input = String::new();
+    io::stdin().read_line(&mut input).expect("Failed to read input");
+    
+    let parts: Vec<&str> = input.trim().split_whitespace().collect();
+    
+    if parts.len() != 3 {
+        println!("Invalid input format!");
+        return;
+    }
+    
+    let a: f64 = match parts[0].parse() {
+        Ok(num) => num,
+        Err(_) => {
+            println!("Invalid first number!");
+            return;
+        }
+    };
+    
+    let operator = parts[1];
+    
+    let b: f64 = match parts[2].parse() {
+        Ok(num) => num,
+        Err(_) => {
+            println!("Invalid second number!");
+            return;
+        }
+    };
+    
+    match Calculator::calculate(operator, a, b) {
+        Ok(result) => println!("Result: {}", result),
+        Err(error) => println!("Error: {}", error),
     }
 }
 ```
 
-## 10. Tổng Kết
+## 9. LeetCode Problems cho Bài 1
 
-<div className="bg-gradient-to-r from-green-50 to-blue-50 p-6 rounded-lg border-l-4 border-green-500 mt-8">
-  <h3 className="text-xl font-bold text-green-800 mb-3">🎯 Key Takeaways</h3>
-  <ul className="text-gray-700 space-y-2">
-    <li>• Rust cung cấp hiệu năng cao và memory safety cho DSA</li>
-    <li>• Ownership system giúp quản lý bộ nhớ hiệu quả</li>
-    <li>• Pattern matching và enums mạnh mẽ cho algorithm design</li>
-    <li>• Error handling với Option và Result types</li>
-    <li>• Pseudo code là công cụ quan trọng cho việc thiết kế thuật toán</li>
-  </ul>
+<div className="bg-gradient-to-r from-green-50 to-blue-50 p-4 rounded-lg border border-gray-200">
+  <h3 className="text-lg font-semibold text-gray-800 mb-3">🎯 Danh sách bài tập LeetCode</h3>
+  
+  <div className="grid md:grid-cols-2 gap-4">
+    <div>
+      <h4 className="font-medium text-green-700 mb-2">Easy Level (Nền tảng):</h4>
+      <ul className="text-sm space-y-1 text-gray-700">
+        <li>• <strong>1. Two Sum</strong> - Basic array operations</li>
+        <li>• <strong>9. Palindrome Number</strong> - Number manipulation</li>
+        <li>• <strong>13. Roman to Integer</strong> - String processing</li>
+        <li>• <strong>26. Remove Duplicates</strong> - Array modification</li>
+        <li>• <strong>27. Remove Element</strong> - In-place operations</li>
+        <li>• <strong>35. Search Insert Position</strong> - Binary search basics</li>
+      </ul>
+    </div>
+    
+    <div>
+      <h4 className="font-medium text-blue-700 mb-2">Medium Level (Nâng cao):</h4>
+      <ul className="text-sm space-y-1 text-gray-700">
+        <li>• <strong>7. Reverse Integer</strong> - Number processing</li>
+        <li>• <strong>8. String to Integer (atoi)</strong> - String parsing</li>
+        <li>• <strong>12. Integer to Roman</strong> - Algorithm design</li>
+      </ul>
+    </div>
+  </div>
+  
+  <div className="mt-4 p-3 bg-white rounded border-l-4 border-orange-400">
+    <p className="text-sm text-gray-700"><strong>Gợi ý:</strong> Bắt đầu với Easy level để nắm vững cú pháp và tư duy. Mỗi bài nên code bằng Rust và viết pseudocode trước khi implement.</p>
+  </div>
 </div>
-
-### Next Steps
-
-Trong bài học tiếp theo, chúng ta sẽ tìm hiểu về **Introduction to Data Structures** - các khái niệm cơ bản về cấu trúc dữ liệu và cách chọn lựa cấu trúc phù hợp cho từng bài toán cụ thể.
 
 ---
 
-<div className="text-center text-gray-500 text-sm mt-8 p-4 border-t">
-  <p>📚 <strong>Data Structures & Algorithms với Rust</strong> | Bài 1/24</p>
-  <p>Được biên soạn theo phong cách giáo trình sư phạm hiện đại</p>
+<div className="bg-gray-50 p-6 rounded-lg mt-8">
+  <h2 className="text-xl font-bold text-gray-800 mb-4">📚 Tổng kết bài học</h2>
+  
+  <div className="grid md:grid-cols-2 gap-6">
+    <div>
+      <h3 className="font-semibold text-gray-700 mb-2">✅ Đã học được:</h3>
+      <ul className="text-sm space-y-1 text-gray-600">
+        <li>• Chọn ngôn ngữ lập trình phù hợp</li>
+        <li>• Cú pháp cơ bản của Rust</li>
+        <li>• Cấu trúc điều khiển và functions</li>
+        <li>• OOP concepts trong Rust</li>
+        <li>• Viết pseudocode hiệu quả</li>
+      </ul>
+    </div>
+    
+    <div>
+      <h3 className="font-semibold text-gray-700 mb-2">➡️ Bài học tiếp theo:</h3>
+      <ul className="text-sm space-y-1 text-gray-600">
+        <li>• Giới thiệu Data Structures</li>
+        <li>• Phân loại các loại cấu trúc dữ liệu</li>
+        <li>• Arrays và basic operations</li>
+        <li>• Time & Space complexity analysis</li>
+      </ul>
+    </div>
+  </div>
 </div>

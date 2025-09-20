@@ -1,0 +1,202 @@
+# Bài 0: Giới thiệu Khóa học Data Structures & Algorithms
+
+<div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg border-l-4 border-blue-500 mb-8">
+  <h2 className="text-2xl font-bold text-blue-800 mb-4">🎯 Mục tiêu khóa học</h2>
+  <div className="text-gray-700 leading-relaxed">
+    Khóa học này được thiết kế để giúp bạn nắm vững kiến thức nền tảng về Cấu trúc dữ liệu và Thuật toán, 
+    từ cơ bản đến nâng cao, với phương pháp học tập thực hành và ứng dụng thực tế.
+  </div>
+</div>
+
+## 📚 Tổng quan khóa học
+
+Khóa học **Data Structures & Algorithms** bao gồm **24 bài học** được chia thành **5 giai đoạn** học tập có hệ thống:
+
+```mermaid
+graph TD
+    A[Bài 0: Giới thiệu] --> B[Giai đoạn 1: Nền tảng<br/>Bài 1-6]
+    B --> C[Giai đoạn 2: Complexity & Sorting<br/>Bài 7-12]
+    C --> D[Giai đoạn 3: Trees & Graphs<br/>Bài 13-18]
+    D --> E[Giai đoạn 4: Graph Algorithms<br/>Bài 19-21]
+    E --> F[Giai đoạn 5: Advanced Topics<br/>Bài 22-24]
+    
+    style A fill:#e1f5fe
+    style B fill:#f3e5f5
+    style C fill:#e8f5e8
+    style D fill:#fff3e0
+    style E fill:#fce4ec
+    style F fill:#f1f8e9
+```
+
+## 🗺️ Lộ trình học tập chi tiết
+
+| Giai đoạn | Bài học | Nội dung chính | Thời gian ước tính |
+|-----------|---------|----------------|-------------------|
+| **1. Nền tảng** | 1-6 | Arrays, Linked Lists, Stacks/Queues, Hash Tables | 3-4 tuần |
+| **2. Complexity & Sorting** | 7-12 | Big-O, Sorting algorithms, Searching | 2-3 tuần |
+| **3. Trees & Graphs** | 13-18 | Binary Trees, BST, AVL Trees, Graph basics | 3-4 tuần |
+| **4. Graph Algorithms** | 19-21 | BFS/DFS, Shortest Path, MST | 2 tuần |
+| **5. Advanced Topics** | 22-24 | Dynamic Programming, Advanced DS, Patterns | 2-3 tuần |
+
+## 🎯 Đối tượng học viên
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+  <div className="bg-green-50 p-6 rounded-lg border border-green-200">
+    <h3 className="text-lg font-semibold text-green-800 mb-3">✅ Phù hợp với:</h3>
+    <ul className="text-green-700 space-y-2">
+      <li>• Sinh viên ngành CNTT</li>
+      <li>• Lập trình viên mới bắt đầu</li>
+      <li>• Người chuẩn bị phỏng vấn tech</li>
+      <li>• Ai muốn củng cố kiến thức nền tảng</li>
+    </ul>
+  </div>
+  
+  <div className="bg-orange-50 p-6 rounded-lg border border-orange-200">
+    <h3 className="text-lg font-semibold text-orange-800 mb-3">⚠️ Yêu cầu tiên quyết:</h3>
+    <ul className="text-orange-700 space-y-2">
+      <li>• Biết ít nhất 1 ngôn ngữ lập trình</li>
+      <li>• Hiểu cấu trúc điều khiển cơ bản</li>
+      <li>• Có kiến thức OOP căn bản</li>
+      <li>• Tư duy logic và toán học</li>
+    </ul>
+  </div>
+</div>
+
+## 🛠️ Ngôn ngữ lập trình được hỗ trợ
+
+```mermaid
+graph TB
+    A[Ngôn ngữ lập trình] --> B[JavaScript]
+    A --> C[Python]  
+    A --> D[Java]
+    A --> E[C++]
+    
+    B --> B1[Node.js]
+    B --> B2[Browser]
+    B --> B3[ES6+]
+    
+    C --> C1[Python 3.x]
+    C --> C2[Libraries]
+    C --> C3[Jupyter]
+    
+    D --> D1[JDK 8+]
+    D --> D2[Collections]
+    D --> D3[OOP]
+    
+    E --> E1[STL]
+    E --> E2[Modern C++]
+    E --> E3[Performance]
+```
+
+| Ngôn ngữ | Ưu điểm | Nhược điểm | Khuyến nghị |
+|----------|---------|------------|-------------|
+| **JavaScript** | Dễ học, linh hoạt, web development | Performance thấp hơn | ⭐⭐⭐⭐⭐ Người mới |
+| **Python** | Cú pháp đơn giản, thư viện phong phú | Chậm hơn, GIL | ⭐⭐⭐⭐⭐ Người mới |
+| **Java** | Mạnh mẽ, enterprise, JVM ecosystem | Verbose, setup phức tạp | ⭐⭐⭐⭐ Trung cấp |
+| **C++** | Performance cao, memory control | Khó học, phức tạp | ⭐⭐⭐ Nâng cao |
+
+## 📈 Tiến trình học tập
+
+```mermaid
+gantt
+    title Lộ trình học DSA
+    dateFormat YYYY-MM-DD
+    axisFormat %m/%d
+    
+    section Giai đoạn 1
+    Nền tảng Programming    :done, stage1, 2024-01-01, 3w
+    Arrays và Linked Lists   :done, stage1b, after stage1, 3w
+    Stacks/Queues/Hash      :active, stage1c, after stage1b, 3w
+    
+    section Giai đoạn 2
+    Complexity Analysis     :stage2a, after stage1c, 2w
+    Sorting Algorithms      :stage2b, after stage2a, 3w
+    
+    section Giai đoạn 3
+    Trees Fundamentals      :stage3a, after stage2b, 3w
+    Advanced Trees          :stage3b, after stage3a, 3w
+    
+    section Giai đoạn 4-5
+    Graph Algorithms        :stage4, after stage3b, 2w
+    Advanced Topics         :stage5, after stage4, 2w
+```
+
+## 🎖️ Hệ thống đánh giá và chứng chỉ
+
+<div className="bg-blue-50 p-6 rounded-lg my-6">
+  <h3 className="text-xl font-bold text-blue-800 mb-4">📊 Tiêu chí đánh giá</h3>
+  <div className="grid grid-cols-2 gap-4">
+    <div>
+      <strong>Bài tập thực hành:</strong> 40%<br/>
+      <strong>Project cuối khóa:</strong> 30%<br/>
+    </div>
+    <div>
+      <strong>Quiz định kỳ:</strong> 20%<br/>
+      <strong>Tham gia lớp:</strong> 10%<br/>
+    </div>
+  </div>
+</div>
+
+## 🔧 Công cụ và tài nguyên học tập
+
+| Loại công cụ | Tên công cụ | Mục đích sử dụng |
+|--------------|-------------|------------------|
+| **IDE/Editor** | VS Code, IntelliJ, PyCharm | Viết và debug code |
+| **Platform** | LeetCode, HackerRank | Luyện tập bài tập |
+| **Visualization** | Algorithm Visualizer, VisuAlgo | Hiểu thuật toán trực quan |
+| **Documentation** | MDN, Python Docs, Java Docs | Tham khảo syntax |
+
+## 🎉 Kết quả mong đợi
+
+Sau khi hoàn thành khóa học, bạn sẽ:
+
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-6">
+  <div className="bg-purple-50 p-4 rounded-lg text-center">
+    <div className="text-3xl mb-2">🧠</div>
+    <h4 className="font-semibold text-purple-800">Tư duy thuật toán</h4>
+    <p className="text-sm text-purple-600">Phân tích và thiết kế thuật toán hiệu quả</p>
+  </div>
+  
+  <div className="bg-green-50 p-4 rounded-lg text-center">
+    <div className="text-3xl mb-2">⚡</div>
+    <h4 className="font-semibold text-green-800">Tối ưu hiệu suất</h4>
+    <p className="text-sm text-green-600">Chọn cấu trúc dữ liệu phù hợp</p>
+  </div>
+  
+  <div className="bg-blue-50 p-4 rounded-lg text-center">
+    <div className="text-3xl mb-2">💼</div>
+    <h4 className="font-semibold text-blue-800">Sẵn sàng phỏng vấn</h4>
+    <p className="text-sm text-blue-600">Tự tin với coding interview</p>
+  </div>
+</div>
+
+## 📋 Chuẩn bị cho bài học tiếp theo
+
+```mermaid
+flowchart LR
+    A[Chọn ngôn ngữ] --> B[Cài đặt môi trường]
+    B --> C[Ôn tập cú pháp]
+    C --> D[Sẵn sàng Bài 1]
+    
+    style A fill:#e3f2fd
+    style B fill:#f3e5f5  
+    style C fill:#e8f5e8
+    style D fill:#fff3e0
+```
+
+<div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 my-6">
+  <div className="flex">
+    <div className="text-yellow-400 text-xl mr-3">💡</div>
+    <div>
+      <strong>Lời khuyên:</strong> Hãy chọn một ngôn ngữ và kiên trì với nó trong suốt khóa học. 
+      Việc chuyển đổi ngôn ngữ giữa chừng sẽ làm gián đoạn quá trình học tập.
+    </div>
+  </div>
+</div>
+
+---
+
+<div className="text-center bg-gray-50 p-6 rounded-lg">
+  <h3 className="text-xl font-bold text-gray-800 mb-2">🚀 Sẵn sàng bắt đầu hành trình?</h3>
+  <div className="text-gray-600">Chuyển sang <strong>Bài 1: Programming Fundamentals & Language Selection</strong> để bắt đầu!</div>
+</div>
