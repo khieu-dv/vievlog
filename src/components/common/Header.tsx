@@ -47,6 +47,7 @@ export function Header({ showAuth = true, className }: HeaderProps) {
     { name: t("header.home"), href: "/" },
     { name: "🖼️ Image Editor", href: "/image-editor" },
     { name: "🎥 Video Generator", href: "/video-generator" },
+    { name: "⚡ C++ WASM", href: "/cpp-wasm-demo" },
     { name: "Games", href: "/games" },
   ];
 
