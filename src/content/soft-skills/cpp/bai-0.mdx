@@ -1,0 +1,281 @@
+# Bài 0: Giới thiệu khóa học C++ - Hành trình từ Zero đến Hero
+
+<div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-6 rounded-lg mb-8">
+  <h2 className="text-2xl font-bold mb-4">🚀 Chào mừng bạn đến với hành trình chinh phục C++!</h2>
+  <p className="text-lg">Khóa học này sẽ đưa bạn từ một người mới bắt đầu hoàn toàn đến một lập trình viên C++ có thể tự tin xây dựng các ứng dụng phức tạp.</p>
+</div>
+
+## 🎯 Mục tiêu khóa học
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+  <div className="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+    <h3 className="font-bold text-green-800 mb-2">📚 Kiến thức cơ bản</h3>
+    <p className="text-green-700">Nắm vững syntax, concepts và paradigms của C++</p>
+  </div>
+  <div className="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+    <h3 className="font-bold text-blue-800 mb-2">⚙️ Lập trình thực tế</h3>
+    <p className="text-blue-700">Xây dựng ứng dụng real-world với best practices</p>
+  </div>
+  <div className="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-500">
+    <h3 className="font-bold text-purple-800 mb-2">🔧 Kỹ năng debug</h3>
+    <p className="text-purple-700">Học cách tìm và sửa lỗi hiệu quả</p>
+  </div>
+  <div className="bg-orange-50 p-4 rounded-lg border-l-4 border-orange-500">
+    <h3 className="font-bold text-orange-800 mb-2">🚀 Modern C++</h3>
+    <p className="text-orange-700">Sử dụng các tính năng C++11/14/17/20</p>
+  </div>
+</div>
+
+## 🗺️ Lộ trình học tập 18 bài
+
+```mermaid
+graph TD
+    A[Bài 1-3: Nền tảng] --> B[Bài 4-6: Cấu trúc cơ bản]
+    B --> C[Bài 7-8: Memory Management]
+    C --> D[Bài 9-11: OOP]
+    D --> E[Bài 12-14: STL & Modern Features]
+    E --> F[Bài 15-17: Advanced Topics]
+    F --> G[Bài 18: Real Project]
+    
+    A1[Setup & Hello World] --> A
+    B1[Control Flow & Arrays] --> B
+    C1[Pointers & Dynamic Memory] --> C
+    D1[Classes & Inheritance] --> D
+    E1[Containers & Algorithms] --> E
+    F1[Threading & Templates] --> F
+    G1[Complete Application] --> G
+```
+
+## 📋 Cấu trúc chi tiết khóa học
+
+### 🏗️ Phần I: Nền tảng (Bài 1-3)
+
+| Bài học | Nội dung chính | Thời lượng | Độ khó |
+|---------|---------------|------------|--------|
+| **Bài 1** | Thiết lập môi trường, Hello World | 3h | ⭐ |
+| **Bài 2** | Kiểu dữ liệu, biến, const/auto | 3h | ⭐ |
+| **Bài 3** | Toán tử, biểu thức, máy tính | 3h | ⭐⭐ |
+
+### 🔄 Phần II: Cấu trúc điều khiển (Bài 4-6)
+
+| Bài học | Nội dung chính | Thời lượng | Độ khó |
+|---------|---------------|------------|--------|
+| **Bài 4** | If/else, loops, switch-case | 3h | ⭐⭐ |
+| **Bài 5** | Functions, scope, overloading | 3h | ⭐⭐ |
+| **Bài 6** | Arrays, strings, algorithms | 3h | ⭐⭐⭐ |
+
+### 🧠 Phần III: Memory & Pointers (Bài 7-8)
+
+| Bài học | Nội dung chính | Thời lượng | Độ khó |
+|---------|---------------|------------|--------|
+| **Bài 7** | Pointers, references, functions | 3h | ⭐⭐⭐ |
+| **Bài 8** | Dynamic memory, new/delete | 3h | ⭐⭐⭐⭐ |
+
+### 🏛️ Phần IV: Object-Oriented Programming (Bài 9-11)
+
+```mermaid
+classDiagram
+    class Student {
+        -string name
+        -int age
+        +getName()
+        +setAge()
+    }
+    
+    class Person {
+        <<abstract>>
+        +speak()
+    }
+    
+    Person <|-- Student
+    Student --> "1..*" Course
+    
+    class Course {
+        -string title
+        -int credits
+        +getInfo()
+    }
+```
+
+| Bài học | Nội dung chính | Thời lượng | Độ khó |
+|---------|---------------|------------|--------|
+| **Bài 9** | Struct, class, constructor/destructor | 3h | ⭐⭐⭐ |
+| **Bài 10** | Inheritance, polymorphism, virtual | 3h | ⭐⭐⭐⭐ |
+| **Bài 11** | Operator overloading, templates | 3h | ⭐⭐⭐⭐ |
+
+### 🔧 Phần V: Modern C++ & STL (Bài 12-14)
+
+| Bài học | Nội dung chính | Thời lượng | Độ khó |
+|---------|---------------|------------|--------|
+| **Bài 12** | Exception handling, RAII | 3h | ⭐⭐⭐⭐ |
+| **Bài 13** | STL containers, iterators | 3h | ⭐⭐⭐ |
+| **Bài 14** | Algorithms, lambda functions | 3h | ⭐⭐⭐⭐ |
+
+### 🚀 Phần VI: Advanced Topics (Bài 15-17)
+
+| Bài học | Nội dung chính | Thời lượng | Độ khó |
+|---------|---------------|------------|--------|
+| **Bài 15** | Smart pointers, memory safety | 3h | ⭐⭐⭐⭐ |
+| **Bài 16** | Advanced templates, metaprogramming | 3h | ⭐⭐⭐⭐⭐ |
+| **Bài 17** | Multithreading, concurrency | 3h | ⭐⭐⭐⭐⭐ |
+
+### 🏆 Phần VII: Capstone Project (Bài 18)
+
+<div className="bg-yellow-50 p-6 rounded-lg border border-yellow-200">
+  <h4 className="text-xl font-bold text-yellow-800 mb-3">🎓 Dự án tốt nghiệp</h4>
+  <p className="text-yellow-700 mb-4">Xây dựng một ứng dụng hoàn chỉnh sử dụng tất cả kiến thức đã học</p>
+  <ul className="list-disc list-inside text-yellow-700 space-y-2">
+    <li>Build system với CMake</li>
+    <li>External libraries integration</li>
+    <li>Unit testing & debugging</li>
+    <li>Performance optimization</li>
+  </ul>
+</div>
+
+## 🎯 Đối tượng học viên
+
+```mermaid
+mindmap
+  root((Đối tượng))
+    Beginners
+      Không có kinh nghiệm lập trình
+      Học sinh/sinh viên IT
+      Chuyển ngành sang IT
+    Developers
+      Biết ngôn ngữ khác
+      Muốn học thêm C++
+      Nâng cấp kỹ năng
+    Professionals
+      System programmers
+      Game developers
+      Embedded developers
+```
+
+## 📚 Yêu cầu trước khóa học
+
+### ✅ Bắt buộc
+
+| Yêu cầu | Mô tả | Ghi chú |
+|---------|-------|---------|
+| **Máy tính** | Windows/macOS/Linux | RAM ≥ 4GB |
+| **Internet** | Tốc độ ổn định | Download tools/libraries |
+| **Thời gian** | 3-5h/tuần | Consistency quan trọng |
+
+### 🎯 Tùy chọn (có càng tốt)
+
+| Kiến thức | Mức độ | Lợi ích |
+|-----------|--------|---------|
+| **Logic học** | Cơ bản | Tư duy thuật toán |
+| **Toán học** | Cấp 3 | Hiểu algorithms |
+| **Tiếng Anh** | Đọc hiểu | Đọc documentation |
+
+## 🛠️ Công cụ và môi trường
+
+### 💻 Development Environment
+
+| Tool | Platform | Mô tả | Khuyến nghị |
+|------|----------|--------|-------------|
+| **Visual Studio** | Windows | IDE đầy đủ tính năng | ⭐⭐⭐⭐⭐ |
+| **VS Code** | Cross-platform | Lightweight, extensible | ⭐⭐⭐⭐ |
+| **Code::Blocks** | Cross-platform | Free, đơn giản | ⭐⭐⭐ |
+| **CLion** | Cross-platform | JetBrains IDE (paid) | ⭐⭐⭐⭐ |
+
+### 🔨 Compilers
+
+```mermaid
+graph LR
+    A[Source Code .cpp] --> B[Compiler]
+    B --> C[Object Code .o/.obj]
+    C --> D[Linker]
+    D --> E[Executable .exe]
+    
+    B1[GCC] --> B
+    B2[Clang] --> B
+    B3[MSVC] --> B
+```
+
+| Compiler | Platform | Đặc điểm | Standard Support |
+|----------|----------|----------|------------------|
+| **GCC** | Linux/Windows | Open source, powerful | C++20 |
+| **Clang** | Cross-platform | Fast compilation | C++20 |
+| **MSVC** | Windows | Microsoft official | C++20 |
+
+## 📈 Phương pháp học tập hiệu quả
+
+<div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+  <div className="bg-blue-50 p-4 rounded-lg text-center">
+    <div className="text-3xl mb-2">📖</div>
+    <h4 className="font-bold text-blue-800">Đọc hiểu</h4>
+    <p className="text-sm text-blue-600">Theory + Examples</p>
+  </div>
+  <div className="bg-green-50 p-4 rounded-lg text-center">
+    <div className="text-3xl mb-2">💻</div>
+    <h4 className="font-bold text-green-800">Thực hành</h4>
+    <p className="text-sm text-green-600">Coding + Debugging</p>
+  </div>
+  <div className="bg-purple-50 p-4 rounded-lg text-center">
+    <div className="text-3xl mb-2">🔄</div>
+    <h4 className="font-bold text-purple-800">Lặp lại</h4>
+    <p className="text-sm text-purple-600">Review + Practice</p>
+  </div>
+</div>
+
+### 🎓 Học tập theo chu trình PDCA
+
+```mermaid
+graph TD
+    P[Plan: Đặt mục tiêu bài học] --> D[Do: Thực hành coding]
+    D --> C[Check: Kiểm tra kết quả]
+    C --> A[Act: Cải thiện và ứng dụng]
+    A --> P
+```
+
+## 🏆 Kết quả mong đợi sau khóa học
+
+### 💪 Kỹ năng kỹ thuật
+
+- **Viết code C++ clean và hiệu quả**
+- **Debug và troubleshoot complex issues**  
+- **Sử dụng STL và modern C++ features**
+- **Apply OOP principles correctly**
+- **Manage memory safely**
+- **Work with multithreading**
+
+### 🧠 Kỹ năng soft skills
+
+- **Problem-solving systematically**
+- **Read and understand documentation**
+- **Code review và collaboration**
+- **Self-learning advanced topics**
+
+## 📞 Hỗ trợ học tập
+
+<div className="bg-gray-50 p-6 rounded-lg">
+  <h4 className="text-lg font-bold text-gray-800 mb-4">🤝 Các kênh hỗ trợ</h4>
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div>
+      <h5 className="font-semibold text-gray-700">📧 Email Support</h5>
+      <p className="text-sm text-gray-600">Q&A, assignment review</p>
+    </div>
+    <div>
+      <h5 className="font-semibold text-gray-700">💬 Discussion Forum</h5>
+      <p className="text-sm text-gray-600">Peer learning, code sharing</p>
+    </div>
+    <div>
+      <h5 className="font-semibold text-gray-700">🎥 Office Hours</h5>
+      <p className="text-sm text-gray-600">1-on-1 mentoring</p>
+    </div>
+    <div>
+      <h5 className="font-semibold text-gray-700">📱 Study Groups</h5>
+      <p className="text-sm text-gray-600">Collaborative learning</p>
+    </div>
+  </div>
+</div>
+
+---
+
+<div className="bg-gradient-to-r from-green-400 to-blue-500 text-white p-6 rounded-lg mt-8">
+  <h3 className="text-xl font-bold mb-4">🎉 Sẵn sàng bắt đầu?</h3>
+  <p className="mb-4">Hành trình 1000 dặm bắt đầu bằng một bước chân. Bước tiếp theo của bạn là <strong>Bài 1: Thiết lập môi trường và Hello World</strong>!</p>
+  <p className="text-sm opacity-90">💡 <em>Tip: Hãy chuẩn bị sẵn máy tính và tinh thần học hỏi. Success = Consistency + Practice!</em></p>
+</div>
