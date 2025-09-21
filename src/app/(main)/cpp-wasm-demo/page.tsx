@@ -178,292 +178,290 @@ export default function CppWasmDemo() {
               </div>
             </div>
 
-          {/* Service Selector */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 mb-6">
-            <div className="flex border-b border-gray-200 dark:border-gray-700">
-              <button
-                onClick={() => setActiveService('math')}
-                className={`px-6 py-4 text-sm font-medium border-b-2 ${
-                  activeService === 'math'
+            {/* Service Selector */}
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 mb-6">
+              <div className="flex border-b border-gray-200 dark:border-gray-700">
+                <button
+                  onClick={() => setActiveService('math')}
+                  className={`px-6 py-4 text-sm font-medium border-b-2 ${activeService === 'math'
                     ? 'border-blue-500 text-blue-600 dark:text-blue-400'
                     : 'border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'
-                }`}
-              >
-                🔢 Math Functions
-              </button>
-              <button
-                onClick={() => setActiveService('string')}
-                className={`px-6 py-4 text-sm font-medium border-b-2 ${
-                  activeService === 'string'
+                    }`}
+                >
+                  🔢 Math Functions
+                </button>
+                <button
+                  onClick={() => setActiveService('string')}
+                  className={`px-6 py-4 text-sm font-medium border-b-2 ${activeService === 'string'
                     ? 'border-green-500 text-green-600 dark:text-green-400'
                     : 'border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'
-                }`}
-              >
-                📝 String Processing
-              </button>
-              <button
-                onClick={() => setActiveService('array')}
-                className={`px-6 py-4 text-sm font-medium border-b-2 ${
-                  activeService === 'array'
+                    }`}
+                >
+                  📝 String Processing
+                </button>
+                <button
+                  onClick={() => setActiveService('array')}
+                  className={`px-6 py-4 text-sm font-medium border-b-2 ${activeService === 'array'
                     ? 'border-purple-500 text-purple-600 dark:text-purple-400'
                     : 'border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'
-                }`}
-              >
-                📊 Array Operations
-              </button>
-            </div>
+                    }`}
+                >
+                  📊 Array Operations
+                </button>
+              </div>
 
-            {/* Service Content */}
-            <div className="p-6">
-              {/* Math Service */}
-              {activeService === 'math' && (
-                <div className="space-y-6">
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Mathematical Operations</h3>
+              {/* Service Content */}
+              <div className="p-6">
+                {/* Math Service */}
+                {activeService === 'math' && (
+                  <div className="space-y-6">
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Mathematical Operations</h3>
 
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Number A</label>
-                      <input
-                        type="number"
-                        value={mathInputs.a}
-                        onChange={(e) => setMathInputs(prev => ({ ...prev, a: e.target.value }))}
-                        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
-                        placeholder="15"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Number B</label>
-                      <input
-                        type="number"
-                        value={mathInputs.b}
-                        onChange={(e) => setMathInputs(prev => ({ ...prev, b: e.target.value }))}
-                        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
-                        placeholder="25"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">N (Fibonacci)</label>
-                      <input
-                        type="number"
-                        value={mathInputs.n}
-                        onChange={(e) => setMathInputs(prev => ({ ...prev, n: e.target.value }))}
-                        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
-                        placeholder="10"
-                        max="20"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Distance Points</label>
-                      <div className="grid grid-cols-2 gap-1">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Number A</label>
                         <input
                           type="number"
-                          step="0.1"
-                          value={mathInputs.x1}
-                          onChange={(e) => setMathInputs(prev => ({ ...prev, x1: e.target.value }))}
-                          className="w-full px-2 py-1 text-sm border border-gray-300 dark:border-gray-600 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
-                          placeholder="x1"
-                        />
-                        <input
-                          type="number"
-                          step="0.1"
-                          value={mathInputs.y1}
-                          onChange={(e) => setMathInputs(prev => ({ ...prev, y1: e.target.value }))}
-                          className="w-full px-2 py-1 text-sm border border-gray-300 dark:border-gray-600 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
-                          placeholder="y1"
-                        />
-                        <input
-                          type="number"
-                          step="0.1"
-                          value={mathInputs.x2}
-                          onChange={(e) => setMathInputs(prev => ({ ...prev, x2: e.target.value }))}
-                          className="w-full px-2 py-1 text-sm border border-gray-300 dark:border-gray-600 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
-                          placeholder="x2"
-                        />
-                        <input
-                          type="number"
-                          step="0.1"
-                          value={mathInputs.y2}
-                          onChange={(e) => setMathInputs(prev => ({ ...prev, y2: e.target.value }))}
-                          className="w-full px-2 py-1 text-sm border border-gray-300 dark:border-gray-600 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
-                          placeholder="y2"
+                          value={mathInputs.a}
+                          onChange={(e) => setMathInputs(prev => ({ ...prev, a: e.target.value }))}
+                          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+                          placeholder="15"
                         />
                       </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Number B</label>
+                        <input
+                          type="number"
+                          value={mathInputs.b}
+                          onChange={(e) => setMathInputs(prev => ({ ...prev, b: e.target.value }))}
+                          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+                          placeholder="25"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">N (Fibonacci)</label>
+                        <input
+                          type="number"
+                          value={mathInputs.n}
+                          onChange={(e) => setMathInputs(prev => ({ ...prev, n: e.target.value }))}
+                          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+                          placeholder="10"
+                          max="20"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Distance Points</label>
+                        <div className="grid grid-cols-2 gap-1">
+                          <input
+                            type="number"
+                            step="0.1"
+                            value={mathInputs.x1}
+                            onChange={(e) => setMathInputs(prev => ({ ...prev, x1: e.target.value }))}
+                            className="w-full px-2 py-1 text-sm border border-gray-300 dark:border-gray-600 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+                            placeholder="x1"
+                          />
+                          <input
+                            type="number"
+                            step="0.1"
+                            value={mathInputs.y1}
+                            onChange={(e) => setMathInputs(prev => ({ ...prev, y1: e.target.value }))}
+                            className="w-full px-2 py-1 text-sm border border-gray-300 dark:border-gray-600 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+                            placeholder="y1"
+                          />
+                          <input
+                            type="number"
+                            step="0.1"
+                            value={mathInputs.x2}
+                            onChange={(e) => setMathInputs(prev => ({ ...prev, x2: e.target.value }))}
+                            className="w-full px-2 py-1 text-sm border border-gray-300 dark:border-gray-600 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+                            placeholder="x2"
+                          />
+                          <input
+                            type="number"
+                            step="0.1"
+                            value={mathInputs.y2}
+                            onChange={(e) => setMathInputs(prev => ({ ...prev, y2: e.target.value }))}
+                            className="w-full px-2 py-1 text-sm border border-gray-300 dark:border-gray-600 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+                            placeholder="y2"
+                          />
+                        </div>
+                      </div>
                     </div>
+
+                    <button
+                      onClick={runMathDemos}
+                      className="w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md transition-colors"
+                    >
+                      Run Math Functions
+                    </button>
+
+                    {Object.keys(mathResults).length > 0 && (
+                      <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+                        <h4 className="font-medium text-gray-900 dark:text-white mb-3">Results:</h4>
+                        <div className="space-y-2 text-sm">
+                          <div><strong>Add:</strong> {mathInputs.a} + {mathInputs.b} = {mathResults.add}</div>
+                          <div><strong>Multiply:</strong> {mathInputs.a} × {mathInputs.b} = {mathResults.multiply}</div>
+                          <div><strong>Fibonacci:</strong> F({mathInputs.n}) = {mathResults.fibonacci}</div>
+                          <div><strong>Factorial:</strong> {mathInputs.n}! = {mathResults.factorial}</div>
+                          <div><strong>Distance:</strong> d(({mathInputs.x1},{mathInputs.y1}), ({mathInputs.x2},{mathInputs.y2})) = {mathResults.distance?.toFixed(2)}</div>
+                        </div>
+                      </div>
+                    )}
                   </div>
+                )}
 
-                  <button
-                    onClick={runMathDemos}
-                    className="w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md transition-colors"
-                  >
-                    Run Math Functions
-                  </button>
+                {/* String Service */}
+                {activeService === 'string' && (
+                  <div className="space-y-6">
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">String Processing</h3>
 
-                  {Object.keys(mathResults).length > 0 && (
-                    <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
-                      <h4 className="font-medium text-gray-900 dark:text-white mb-3">Results:</h4>
-                      <div className="space-y-2 text-sm">
-                        <div><strong>Add:</strong> {mathInputs.a} + {mathInputs.b} = {mathResults.add}</div>
-                        <div><strong>Multiply:</strong> {mathInputs.a} × {mathInputs.b} = {mathResults.multiply}</div>
-                        <div><strong>Fibonacci:</strong> F({mathInputs.n}) = {mathResults.fibonacci}</div>
-                        <div><strong>Factorial:</strong> {mathInputs.n}! = {mathResults.factorial}</div>
-                        <div><strong>Distance:</strong> d(({mathInputs.x1},{mathInputs.y1}), ({mathInputs.x2},{mathInputs.y2})) = {mathResults.distance?.toFixed(2)}</div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              )}
-
-              {/* String Service */}
-              {activeService === 'string' && (
-                <div className="space-y-6">
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">String Processing</h3>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Input Text</label>
-                    <input
-                      type="text"
-                      value={stringInput}
-                      onChange={(e) => setStringInput(e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white"
-                      placeholder="Enter any text here..."
-                    />
-                  </div>
-
-                  <button
-                    onClick={runStringDemos}
-                    className="w-full px-4 py-2 bg-green-600 hover:bg-green-700 text-white font-medium rounded-md transition-colors"
-                  >
-                    Process String
-                  </button>
-
-                  {Object.keys(stringResults).length > 0 && (
-                    <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
-                      <h4 className="font-medium text-gray-900 dark:text-white mb-3">Results:</h4>
-                      <div className="space-y-3">
-                        <div>
-                          <div className="text-sm text-gray-600 dark:text-gray-400">Original:</div>
-                          <div className="font-mono bg-white dark:bg-gray-800 p-2 rounded border">"{stringResults.original}"</div>
-                        </div>
-                        <div>
-                          <div className="text-sm text-gray-600 dark:text-gray-400">Reversed:</div>
-                          <div className="font-mono bg-white dark:bg-gray-800 p-2 rounded border">"{stringResults.reversed}"</div>
-                        </div>
-                        <div>
-                          <div className="text-sm text-gray-600 dark:text-gray-400">Uppercase:</div>
-                          <div className="font-mono bg-white dark:bg-gray-800 p-2 rounded border">"{stringResults.uppercase}"</div>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              )}
-
-              {/* Array Service */}
-              {activeService === 'array' && (
-                <div className="space-y-6">
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Array Operations</h3>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Integer Array (for sorting)</label>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Input Text</label>
                       <input
                         type="text"
-                        value={arrayInput}
-                        onChange={(e) => setArrayInput(e.target.value)}
-                        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-white font-mono"
-                        placeholder="64,34,25,12,22,11,90"
+                        value={stringInput}
+                        onChange={(e) => setStringInput(e.target.value)}
+                        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white"
+                        placeholder="Enter any text here..."
                       />
-                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                        Comma-separated integers
-                      </p>
                     </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Number Array (for mean calculation)</label>
-                      <input
-                        type="text"
-                        value={numberArrayInput}
-                        onChange={(e) => setNumberArrayInput(e.target.value)}
-                        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-white font-mono"
-                        placeholder="1.5,2.7,3.2,4.8,5.1"
-                      />
-                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                        Comma-separated decimal numbers
-                      </p>
-                    </div>
-                  </div>
 
-                  {/* Smart Input Helper */}
-                  <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
-                    <SmartInputHelper
-                      code={`
+                    <button
+                      onClick={runStringDemos}
+                      className="w-full px-4 py-2 bg-green-600 hover:bg-green-700 text-white font-medium rounded-md transition-colors"
+                    >
+                      Process String
+                    </button>
+
+                    {Object.keys(stringResults).length > 0 && (
+                      <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+                        <h4 className="font-medium text-gray-900 dark:text-white mb-3">Results:</h4>
+                        <div className="space-y-3">
+                          <div>
+                            <div className="text-sm text-gray-600 dark:text-gray-400">Original:</div>
+                            <div className="font-mono bg-white dark:bg-gray-800 p-2 rounded border">"{stringResults.original}"</div>
+                          </div>
+                          <div>
+                            <div className="text-sm text-gray-600 dark:text-gray-400">Reversed:</div>
+                            <div className="font-mono bg-white dark:bg-gray-800 p-2 rounded border">"{stringResults.reversed}"</div>
+                          </div>
+                          <div>
+                            <div className="text-sm text-gray-600 dark:text-gray-400">Uppercase:</div>
+                            <div className="font-mono bg-white dark:bg-gray-800 p-2 rounded border">"{stringResults.uppercase}"</div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* Array Service */}
+                {activeService === 'array' && (
+                  <div className="space-y-6">
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Array Operations</h3>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Integer Array (for sorting)</label>
+                        <input
+                          type="text"
+                          value={arrayInput}
+                          onChange={(e) => setArrayInput(e.target.value)}
+                          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-white font-mono"
+                          placeholder="64,34,25,12,22,11,90"
+                        />
+                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                          Comma-separated integers
+                        </p>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Number Array (for mean calculation)</label>
+                        <input
+                          type="text"
+                          value={numberArrayInput}
+                          onChange={(e) => setNumberArrayInput(e.target.value)}
+                          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-white font-mono"
+                          placeholder="1.5,2.7,3.2,4.8,5.1"
+                        />
+                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                          Comma-separated decimal numbers
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Smart Input Helper */}
+                    <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+                      <SmartInputHelper
+                        code={`
 // Example code that processes arrays
 const numbers = input.split(',').map(x => parseFloat(x.trim()));
 const integers = input.split(',').map(x => parseInt(x.trim()));
 console.log('Processing arrays:', numbers, integers);
                       `}
-                      language="javascript"
-                      input={arrayInput}
-                      onInputChange={setArrayInput}
-                      className=""
-                    />
-                  </div>
-
-                  <button
-                    onClick={runArrayDemos}
-                    className="w-full px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-medium rounded-md transition-colors"
-                  >
-                    Process Arrays
-                  </button>
-
-                  {Object.keys(arrayResults).length > 0 && (
-                    <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
-                      <h4 className="font-medium text-gray-900 dark:text-white mb-3">Results:</h4>
-                      {arrayResults.error ? (
-                        <div className="text-red-600 bg-red-50 dark:bg-red-900/20 p-3 rounded border border-red-200 dark:border-red-800">
-                          <strong>Error:</strong> {arrayResults.error}
-                        </div>
-                      ) : (
-                        <div className="space-y-4">
-                          <div>
-                            <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">Sorting Results:</div>
-                            <div className="space-y-2">
-                              <div>
-                                <div className="text-xs text-gray-500 dark:text-gray-500">Original:</div>
-                                <div className="font-mono bg-white dark:bg-gray-800 p-2 rounded border text-sm">
-                                  [{arrayResults.originalArray?.join(', ')}]
-                                </div>
-                              </div>
-                              <div>
-                                <div className="text-xs text-gray-500 dark:text-gray-500">Sorted:</div>
-                                <div className="font-mono bg-white dark:bg-gray-800 p-2 rounded border text-sm">
-                                  [{arrayResults.sortedArray?.join(', ')}]
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div>
-                            <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">Statistics:</div>
-                            <div className="grid grid-cols-2 gap-4">
-                              <div>
-                                <div className="text-xs text-gray-500 dark:text-gray-500">Numbers:</div>
-                                <div className="font-mono bg-white dark:bg-gray-800 p-2 rounded border text-sm">
-                                  [{arrayResults.numbers?.join(', ')}]
-                                </div>
-                              </div>
-                              <div>
-                                <div className="text-xs text-gray-500 dark:text-gray-500">Mean:</div>
-                                <div className="font-mono bg-white dark:bg-gray-800 p-2 rounded border text-sm font-bold">
-                                  {arrayResults.mean?.toFixed(3)}
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      )}
+                        language="javascript"
+                        input={arrayInput}
+                        onInputChange={setArrayInput}
+                        className=""
+                      />
                     </div>
-                  )}
-                </div>
-              )}
+
+                    <button
+                      onClick={runArrayDemos}
+                      className="w-full px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-medium rounded-md transition-colors"
+                    >
+                      Process Arrays
+                    </button>
+
+                    {Object.keys(arrayResults).length > 0 && (
+                      <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+                        <h4 className="font-medium text-gray-900 dark:text-white mb-3">Results:</h4>
+                        {arrayResults.error ? (
+                          <div className="text-red-600 bg-red-50 dark:bg-red-900/20 p-3 rounded border border-red-200 dark:border-red-800">
+                            <strong>Error:</strong> {arrayResults.error}
+                          </div>
+                        ) : (
+                          <div className="space-y-4">
+                            <div>
+                              <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">Sorting Results:</div>
+                              <div className="space-y-2">
+                                <div>
+                                  <div className="text-xs text-gray-500 dark:text-gray-500">Original:</div>
+                                  <div className="font-mono bg-white dark:bg-gray-800 p-2 rounded border text-sm">
+                                    [{arrayResults.originalArray?.join(', ')}]
+                                  </div>
+                                </div>
+                                <div>
+                                  <div className="text-xs text-gray-500 dark:text-gray-500">Sorted:</div>
+                                  <div className="font-mono bg-white dark:bg-gray-800 p-2 rounded border text-sm">
+                                    [{arrayResults.sortedArray?.join(', ')}]
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div>
+                              <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">Statistics:</div>
+                              <div className="grid grid-cols-2 gap-4">
+                                <div>
+                                  <div className="text-xs text-gray-500 dark:text-gray-500">Numbers:</div>
+                                  <div className="font-mono bg-white dark:bg-gray-800 p-2 rounded border text-sm">
+                                    [{arrayResults.numbers?.join(', ')}]
+                                  </div>
+                                </div>
+                                <div>
+                                  <div className="text-xs text-gray-500 dark:text-gray-500">Mean:</div>
+                                  <div className="font-mono bg-white dark:bg-gray-800 p-2 rounded border text-sm font-bold">
+                                    {arrayResults.mean?.toFixed(3)}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
