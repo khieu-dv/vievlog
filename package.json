@@ -5,7 +5,9 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "build:rust": "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && . \"$HOME/.cargo/env\" && cd rust-wasm && wasm-pack build --target bundler --out-dir ../src/wasm",
+    "build:rust": "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && . \"$HOME/.cargo/env\" && cd rust-wasm && wasm-pack build --target bundler --out-dir ../src/wasm/rust",
+    "build:cpp": "cd cpp-wasm && ./build.sh",
+    "build:wasm": "npm run build:rust && npm run build:cpp",
     "postbuild": "node script-search/build-search.cjs",
     "dev": "next dev --turbopack",
     "db:push": "drizzle-kit push",

@@ -32,7 +32,7 @@ export class RustWasm {
 
     try {
       // Import WASM module
-      const wasmModule = await import('~/wasm/vievlog_rust');
+      const wasmModule = await import('~/wasm/rust/vievlog_rust');
       
       // The bundler target automatically initializes
       window.rustWasm = wasmModule;
