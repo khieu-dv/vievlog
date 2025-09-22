@@ -247,17 +247,17 @@ export function HashTableSection() {
               chart={`
                 graph TD
                     subgraph "Hash Table Structure"
-                        KEY1[Key: "name"] --> HASH1[Hash Function]
-                        KEY2[Key: "age"] --> HASH2[Hash Function]
-                        KEY3[Key: "city"] --> HASH3[Hash Function]
+                        KEY1[Key: name] --> HASH1[Hash Function]
+                        KEY2[Key: age] --> HASH2[Hash Function]
+                        KEY3[Key: city] --> HASH3[Hash Function]
 
                         HASH1 --> BUCKET1[Bucket 0]
                         HASH2 --> BUCKET2[Bucket 1]
                         HASH3 --> BUCKET3[Bucket 2]
 
-                        BUCKET1 --> VALUE1["Value: John"]
-                        BUCKET2 --> VALUE2["Value: 25"]
-                        BUCKET3 --> VALUE3["Value: Hanoi"]
+                        BUCKET1 --> VALUE1[Value: John]
+                        BUCKET2 --> VALUE2[Value: 25]
+                        BUCKET3 --> VALUE3[Value: Hanoi]
                     end
 
                     subgraph "Collision Handling"

@@ -207,83 +207,92 @@ export function GraphsSection() {
           </div>
 
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
-            <h4 className="font-medium mb-2">Xây Dựng Đồ Thị:</h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-              <div className="space-y-2">
+            <h4 className="font-medium mb-4">Điều Khiển Đồ Thị:</h4>
+
+            {/* Graph Type Selection */}
+            <div className="mb-4 p-3 bg-white dark:bg-slate-800 rounded border">
+              <label className="flex items-center gap-2 text-sm font-medium">
+                <input
+                  type="checkbox"
+                  checked={isDirected}
+                  onChange={(e) => setIsDirected(e.target.checked)}
+                  className="rounded"
+                />
+                <span className="text-purple-600 dark:text-purple-400">
+                  {isDirected ? "Đồ Thị Có Hướng (Directed)" : "Đồ Thị Vô Hướng (Undirected)"}
+                </span>
+              </label>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              {/* Graph Building */}
+              <div className="space-y-3">
+                <h5 className="text-sm font-medium text-gray-700 dark:text-gray-300">Xây Dựng Đồ Thị</h5>
                 <div className="flex gap-2">
                   <input
                     type="number"
                     value={fromVertex}
                     onChange={(e) => setFromVertex(e.target.value)}
                     placeholder="Từ đỉnh"
-                    className="px-3 py-2 border rounded dark:bg-slate-600 dark:border-slate-500 flex-1"
+                    className="px-3 py-2 border rounded dark:bg-slate-600 dark:border-slate-500 flex-1 text-sm"
                   />
                   <input
                     type="number"
                     value={toVertex}
                     onChange={(e) => setToVertex(e.target.value)}
                     placeholder="Đến đỉnh"
-                    className="px-3 py-2 border rounded dark:bg-slate-600 dark:border-slate-500 flex-1"
+                    className="px-3 py-2 border rounded dark:bg-slate-600 dark:border-slate-500 flex-1 text-sm"
                   />
                 </div>
-                <div className="flex items-center gap-2">
-                  <label className="flex items-center gap-2 text-sm">
-                    <input
-                      type="checkbox"
-                      checked={isDirected}
-                      onChange={(e) => setIsDirected(e.target.checked)}
-                      className="rounded"
-                    />
-                    Có hướng
-                  </label>
-                </div>
-                <div className="flex gap-2">
-                  <button
-                    onClick={addEdge}
-                    disabled={!wasmReady}
-                    className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 flex-1 disabled:opacity-50"
-                  >
-                    🦀 Thêm cạnh
-                  </button>
+                <div className="grid grid-cols-3 gap-2">
                   <button
                     onClick={addVertex}
                     disabled={!wasmReady}
-                    className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 flex-1 disabled:opacity-50"
+                    className="px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50 text-sm"
                   >
-                    🦀 Thêm đỉnh
+                    + Đỉnh
+                  </button>
+                  <button
+                    onClick={addEdge}
+                    disabled={!wasmReady}
+                    className="px-3 py-2 bg-green-500 text-white rounded hover:bg-green-600 disabled:opacity-50 text-sm"
+                  >
+                    + Cạnh
                   </button>
                   <button
                     onClick={clearGraph}
                     disabled={!wasmReady}
-                    className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 flex-1 disabled:opacity-50"
+                    className="px-3 py-2 bg-red-500 text-white rounded hover:bg-red-600 disabled:opacity-50 text-sm"
                   >
-                    🧹 Xóa hết
+                    🗑️ Xóa
                   </button>
                 </div>
               </div>
 
-              <div className="space-y-2">
+              {/* Graph Traversal */}
+              <div className="space-y-3">
+                <h5 className="text-sm font-medium text-gray-700 dark:text-gray-300">Duyệt Đồ Thị</h5>
                 <input
                   type="number"
                   value={startVertex}
                   onChange={(e) => setStartVertex(e.target.value)}
                   placeholder="Đỉnh bắt đầu duyệt"
-                  className="px-3 py-2 border rounded dark:bg-slate-600 dark:border-slate-500 w-full"
+                  className="px-3 py-2 border rounded dark:bg-slate-600 dark:border-slate-500 w-full text-sm"
                 />
-                <div className="flex gap-2">
+                <div className="grid grid-cols-2 gap-2">
                   <button
                     onClick={runBFS}
                     disabled={!wasmReady}
-                    className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600 flex-1 disabled:opacity-50"
+                    className="px-3 py-2 bg-orange-500 text-white rounded hover:bg-orange-600 disabled:opacity-50 text-sm"
                   >
-                    🦀 BFS
+                    🔍 BFS
                   </button>
                   <button
                     onClick={runDFS}
                     disabled={!wasmReady}
-                    className="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600 flex-1 disabled:opacity-50"
+                    className="px-3 py-2 bg-purple-500 text-white rounded hover:bg-purple-600 disabled:opacity-50 text-sm"
                   >
-                    🦀 DFS
+                    🔍 DFS
                   </button>
                 </div>
               </div>
@@ -295,22 +304,57 @@ export function GraphsSection() {
               </div>
             )}
 
-            <div className="space-y-2">
-              <div>
-                <strong>🦀 Đỉnh:</strong> {verticesDisplay.length > 0 ? verticesDisplay.join(", ") : "Không có"}
-              </div>
-              <div>
-                <strong>🦀 Cạnh:</strong>{" "}
-                {graphDisplay.length > 0 ? (
-                  <div className="flex flex-wrap gap-1 mt-1">
-                    {graphDisplay.map((edge, index) => (
-                      <span key={index} className="px-2 py-1 bg-orange-100 dark:bg-orange-900 rounded text-xs">
-                        {edge.from} {isDirected ? "→" : "↔"} {edge.to}
-                      </span>
-                    ))}
+            {/* Visual Graph Display */}
+            <div className="bg-white dark:bg-slate-800 p-4 rounded border">
+              <h5 className="font-medium mb-3">🦀 Biểu Diễn Đồ Thị</h5>
+              <div className="min-h-32 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-4">
+                {verticesDisplay.length === 0 ? (
+                  <div className="flex items-center justify-center h-24 text-gray-500 text-sm">
+                    Đồ thị trống - hãy thêm đỉnh và cạnh
                   </div>
                 ) : (
-                  "Không có"
+                  <div className="space-y-3">
+                    {/* Graph Statistics */}
+                    <div className="flex gap-4 text-sm bg-gray-50 dark:bg-slate-700 p-2 rounded">
+                      <span className="font-medium">Đỉnh: <span className="text-blue-600 dark:text-blue-400">{verticesDisplay.length}</span></span>
+                      <span className="font-medium">Cạnh: <span className="text-green-600 dark:text-green-400">{graphDisplay.length}</span></span>
+                      <span className="font-medium">Loại: <span className="text-purple-600 dark:text-purple-400">{isDirected ? "Có hướng" : "Vô hướng"}</span></span>
+                    </div>
+
+                    {/* Vertices Display */}
+                    <div>
+                      <div className="text-sm font-medium mb-2">Đỉnh:</div>
+                      <div className="flex flex-wrap gap-2">
+                        {verticesDisplay.map((vertex, index) => (
+                          <div key={index} className="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs font-bold">
+                            {vertex}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Edges Display */}
+                    {graphDisplay.length > 0 && (
+                      <div>
+                        <div className="text-sm font-medium mb-2">Cạnh:</div>
+                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+                          {graphDisplay.map((edge, index) => (
+                            <div key={index} className="flex items-center gap-1 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-xs">
+                              <span className="w-5 h-5 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs">
+                                {edge.from}
+                              </span>
+                              <span className="text-gray-600 dark:text-gray-300">
+                                {isDirected ? "→" : "↔"}
+                              </span>
+                              <span className="w-5 h-5 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs">
+                                {edge.to}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 )}
               </div>
             </div>

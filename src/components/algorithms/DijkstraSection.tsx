@@ -49,7 +49,7 @@ export function DijkstraSection() {
 
         // Initialize with default edges
         edgesDisplay.forEach(edge => {
-          newGraph.addEdge(edge.from, edge.to, edge.weight);
+          newGraph.add_edge(edge.from, edge.to, edge.weight);
         });
 
         setRustGraph(newGraph);
@@ -68,7 +68,7 @@ export function DijkstraSection() {
   const updateDisplayFromRustGraph = () => {
     if (rustGraph) {
       try {
-        const edges = Array.from(rustGraph.getEdges()) as Edge[];
+        const edges = Array.from(rustGraph.get_edges()) as Edge[];
         setEdgesDisplay(edges);
       } catch (error) {
         console.error("Error updating display:", error);
@@ -84,8 +84,9 @@ export function DijkstraSection() {
 
       if (wasmReady && rustGraph) {
         try {
-          rustGraph.addEdge(newEdge.from, newEdge.to, newEdge.weight);
-          const edgeCount = rustGraph.edgeCount();
+          rustGraph.add_edge(newEdge.from, newEdge.to, newEdge.weight);
+          const edges = Array.from(rustGraph.get_edges());
+          const edgeCount = edges.length;
           setResult(`🦀 Đã thêm cạnh từ ${newEdge.from} đến ${newEdge.to} (trọng số ${newEdge.weight}). Tổng cạnh: ${edgeCount}`);
           updateDisplayFromRustGraph();
         } catch (error) {
@@ -101,8 +102,16 @@ export function DijkstraSection() {
     const edgeToRemove = edgesDisplay[index];
     if (wasmReady && rustGraph && edgeToRemove) {
       try {
-        rustGraph.removeEdge(edgeToRemove.from, edgeToRemove.to);
-        const edgeCount = rustGraph.edgeCount();
+        // WeightedGraph doesn't have remove_edge method, need to rebuild
+        const newGraph = wasm.dataStructures.createWeightedGraph(true);
+        const updatedEdges = edgesDisplay.filter((_, i) => i !== index);
+        updatedEdges.forEach(edge => {
+          newGraph.add_edge(edge.from, edge.to, edge.weight);
+        });
+        setRustGraph(newGraph);
+        setEdgesDisplay(updatedEdges);
+        const edges = Array.from(rustGraph.get_edges());
+        const edgeCount = edges.length;
         setResult(`🦀 Đã xóa cạnh từ ${edgeToRemove.from} đến ${edgeToRemove.to}. Tổng cạnh: ${edgeCount}`);
         updateDisplayFromRustGraph();
       } catch (error) {
@@ -121,15 +130,19 @@ export function DijkstraSection() {
 
     if (wasmReady && rustGraph) {
       try {
-        const dijkstraResult = rustGraph.dijkstra(startNode, endNode);
-        const path = Array.from(dijkstraResult.path) as number[];
-        const distances = Array.from(dijkstraResult.distances) as number[];
+        // dijkstra() returns distances from start to all vertices
+        const dijkstraResult = rustGraph.dijkstra(startNode);
+        const distanceArray = Array.from(dijkstraResult);
+
+        // Use shortest_path_with_weights for getting the actual path
+        const pathResult = rustGraph.shortest_path_with_weights(startNode, endNode);
+        const path = pathResult.length > 0 ? Array.from(pathResult[0]) as number[] : [];
+        const totalDistance = pathResult.length > 1 ? pathResult[1] : Infinity;
 
         setPathResult(path);
-        setDistanceResult(distances);
+        setDistanceResult(distanceArray);
 
         if (path.length > 0) {
-          const totalDistance = distances[endNode];
           setResult(`🦀 Đường đi ngắn nhất từ ${startNode} đến ${endNode}: ${path.join(" → ")} (tổng khoảng cách: ${totalDistance})`);
         } else {
           setResult(`🦀 Không có đường đi từ node ${startNode} đến node ${endNode}`);

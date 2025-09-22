@@ -230,7 +230,17 @@ export class DataStructureManager {
 
   // Graphs
   createGraph(is_directed: boolean): any {
-    return new Graph(is_directed);
+    try {
+      console.log("Creating Graph with is_directed:", is_directed);
+      const graph = new Graph(is_directed);
+      console.log("Graph created:", graph);
+      console.log("Graph prototype:", Object.getPrototypeOf(graph));
+      console.log("Graph methods:", Object.getOwnPropertyNames(Object.getPrototypeOf(graph)));
+      return graph;
+    } catch (error) {
+      console.error("Error creating Graph:", error);
+      throw error;
+    }
   }
 
   createWeightedGraph(is_directed: boolean): any {
