@@ -23,13 +23,13 @@ graph TD
     A --> D[Streaming]
     
     B --> B1[Build Time]
-    B --> B2[ISR - On Demand]
+    B --> B2[ISR]
     
     C --> C1[Request Time]
-    C --> C2[Server Components]
+    C --> C2[Real-time Data]
     
     D --> D1[Progressive Loading]
-    D --> D2[Suspense Boundaries]
+    D --> D2[Suspense]
 ```
 
 ## 2. Static Rendering vs Dynamic Rendering
@@ -81,9 +81,9 @@ export default async function Dashboard() {
 
 <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 my-6">
   <h3 className="font-semibold text-yellow-800">⚡ Lưu ý quan trọng</h3>
-  <p className="text-yellow-700 mt-2">
+  <div className="text-yellow-700 mt-2">
     Next.js tự động chuyển từ Static sang Dynamic rendering khi phát hiện:
-  </p>
+  </div>
   <ul className="mt-2 text-yellow-700">
     <li>• Dynamic functions (headers(), cookies(), searchParams)</li>
     <li>• Uncached data requests</li>
@@ -175,11 +175,11 @@ export default function Counter() {
 
 ```mermaid
 flowchart TD
-    A[Component cần render?] --> B{Cần interactivity?}
-    B -->|Có| C{Sử dụng hooks/events?}
+    A[Tạo Component] --> B{Cần tương tác?}
+    B -->|Có| C{Dùng hooks?}
     B -->|Không| D[Server Component]
-    C -->|Có| E['use client']
-    C -->|Không| F{Truy cập browser APIs?}
+    C -->|Có| E[use client]
+    C -->|Không| F{Browser API?}
     F -->|Có| E
     F -->|Không| D
 ```
@@ -192,20 +192,19 @@ ISR cho phép bạn cập nhật static content sau khi đã build mà không c�
 
 ```mermaid
 sequenceDiagram
-    participant U as User
-    participant C as CDN Cache
-    participant S as Server
-    participant D as Database
+    participant User
+    participant CDN
+    participant Server
+    participant DB
     
-    U->>C: Request page
-    C->>U: Return cached page (stale)
-    C->>S: Trigger revalidation
-    S->>D: Fetch fresh data
-    D->>S: Return new data
-    S->>S: Generate new page
-    S->>C: Update cache
+    User->>CDN: Request page
+    CDN->>User: Return cached page
+    CDN->>Server: Revalidate in background
+    Server->>DB: Fetch new data
+    DB->>Server: Return data
+    Server->>CDN: Update cache
     
-    Note over C: Next request gets fresh page
+    Note over CDN: Fresh content ready
 ```
 
 ### Time-based Revalidation
@@ -372,15 +371,15 @@ export default function Dashboard() {
 
 ```mermaid
 graph LR
-    A[Server HTML] --> B[Client Download]
+    A[Server HTML] --> B[Download JS]
     B --> C[React Hydration]
-    C --> D[Interactive App]
+    C --> D[Interactive]
     
-    subgraph "Hydration Process"
+    subgraph "Hydration Steps"
         E[Static HTML]
-        F[Attach Event Listeners]
-        G[Initialize State]
-        H[Component Tree Ready]
+        F[Event Listeners]
+        G[State Init]
+        H[Ready]
         
         E --> F --> G --> H
     end
@@ -488,10 +487,11 @@ async function getPost(slug: string): Promise<Post> {
 }
 
 export async function generateStaticParams() {
-  const posts = await fetch('https://api.example.com/posts').then(res => res.json());
+  const posts = await fetch('https://jsonplaceholder.typicode.com/posts')
+    .then(res => res.json());
   
-  return posts.map((post: Post) => ({
-    slug: post.id,
+  return posts.slice(0, 10).map((post: Post) => ({
+    slug: post.id.toString(),
   }));
 }
 
@@ -562,9 +562,9 @@ Việc lựa chọn đúng rendering strategy sẽ giúp ứng dụng của bạ
 
 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-8">
   <h3 className="font-semibold text-blue-800 mb-2">🎯 Bài tập về nhà</h3>
-  <p className="text-blue-700">
+  <div className="text-blue-700">
     Xây dựng một ứng dụng news aggregator sử dụng:
-  </p>
+  </div>
   <ul className="mt-2 text-blue-700 ml-4">
     <li>• Static rendering cho trang chủ</li>
     <li>• ISR cho từng bài báo</li>
