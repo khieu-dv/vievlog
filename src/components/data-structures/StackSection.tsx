@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Layers } from "lucide-react";
 import { MermaidDiagram } from "~/components/common/MermaidDiagram";
+import { RustCodeEditor } from "~/components/common/RustCodeEditor";
 import { initRustWasm } from "~/lib/rust-wasm-helper";
 
 export function StackSection() {
@@ -299,8 +300,8 @@ export function StackSection() {
 
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
             <h4 className="font-medium mb-2">Cài Đặt Rust:</h4>
-            <pre className="text-sm bg-gray-900 text-green-400 p-3 rounded overflow-x-auto">
-              {`// Stack implementation với Vec
+            <RustCodeEditor
+              code={`// Stack implementation với Vec
 #[derive(Debug)]
 pub struct Stack<T> {
     items: Vec<T>,
@@ -377,7 +378,8 @@ fn main() {
     println!("{}", is_balanced("(a+b)[c+d]")); // true
     println!("{}", is_balanced("(a+b][c+d)")); // false
 }`}
-            </pre>
+              height="400px"
+            />
           </div>
         </div>
       </div>

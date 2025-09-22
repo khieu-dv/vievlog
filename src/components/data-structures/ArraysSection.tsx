@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Layout } from "lucide-react";
 import { MermaidDiagram } from "~/components/common/MermaidDiagram";
+import { RustCodeEditor } from "~/components/common/RustCodeEditor";
 
 export function ArraysSection() {
   const [vector, setVector] = useState<number[]>([]);
@@ -93,8 +94,8 @@ export function ArraysSection() {
 
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
             <h4 className="font-medium mb-2">Cài Đặt Rust:</h4>
-            <pre className="text-sm bg-gray-900 text-green-400 p-3 rounded overflow-x-auto">
-{`// Các thao tác với Vector trong Rust
+            <RustCodeEditor
+              code={`// Các thao tác với Vector trong Rust
 let mut vec = Vec::new();
 vec.push(1);
 vec.push(2);
@@ -109,7 +110,8 @@ let second = vec.get(1); // Trả về Option<&T>
 for item in &vec {
     println!("{}", item);
 }`}
-            </pre>
+              height="200px"
+            />
           </div>
 
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">

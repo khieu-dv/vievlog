@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Route } from "lucide-react";
 import { MermaidDiagram } from "~/components/common/MermaidDiagram";
+import { RustCodeEditor } from "~/components/common/RustCodeEditor";
 import { initRustWasm } from "~/lib/rust-wasm-helper";
 
 interface Edge {
@@ -415,8 +416,8 @@ export function DijkstraSection() {
 
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
             <h4 className="font-medium mb-2">Cài Đặt Rust:</h4>
-            <pre className="text-sm bg-gray-900 text-green-400 p-3 rounded overflow-x-auto">
-{`use std::collections::{BinaryHeap, HashMap};
+            <RustCodeEditor
+              code={`use std::collections::{BinaryHeap, HashMap};
 use std::cmp::Ordering;
 
 #[derive(Debug, Clone, Eq, PartialEq)]
@@ -542,7 +543,8 @@ fn main() {
                 if distance == usize::MAX { "∞".to_string() } else { distance.to_string() });
     }
 }`}
-            </pre>
+              height="500px"
+            />
           </div>
         </div>
       </div>

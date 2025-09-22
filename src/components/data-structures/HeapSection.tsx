@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { TrendingUp } from "lucide-react";
 import { MermaidDiagram } from "~/components/common/MermaidDiagram";
+import { RustCodeEditor } from "~/components/common/RustCodeEditor";
 import { initRustWasm } from "~/lib/rust-wasm-helper";
 
 export function HeapSection() {
@@ -492,8 +493,8 @@ export function HeapSection() {
 
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
             <h4 className="font-medium mb-2">Cài Đặt Rust:</h4>
-            <pre className="text-sm bg-gray-900 text-green-400 p-3 rounded overflow-x-auto">
-{`use std::cmp::Ordering;
+            <RustCodeEditor
+              code={`use std::cmp::Ordering;
 
 #[derive(Debug)]
 pub struct BinaryHeap<T> {
@@ -657,7 +658,8 @@ fn main() {
     heap_sort(&mut arr);
     println!("Sorted: {:?}", arr); // [1, 1, 2, 3, 4, 5, 6, 9]
 }`}
-            </pre>
+              height="400px"
+            />
           </div>
         </div>
       </div>

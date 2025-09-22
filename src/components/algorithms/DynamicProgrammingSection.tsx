@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Layers2 } from "lucide-react";
 import { MermaidDiagram } from "~/components/common/MermaidDiagram";
+import { RustCodeEditor } from "~/components/common/RustCodeEditor";
 import { initRustWasm } from "~/lib/rust-wasm-helper";
 
 export function DynamicProgrammingSection() {
@@ -398,8 +399,8 @@ export function DynamicProgrammingSection() {
           {/* Rust Implementation */}
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
             <h4 className="font-medium mb-2">Cài Đặt Rust:</h4>
-            <pre className="text-sm bg-gray-900 text-green-400 p-3 rounded overflow-x-auto">
-{`use std::collections::HashMap;
+            <RustCodeEditor
+              code={`use std::collections::HashMap;
 
 // 1. Fibonacci với Memoization
 pub fn fibonacci_memo(n: usize, memo: &mut HashMap<usize, u64>) -> u64 {
@@ -536,7 +537,8 @@ fn main() {
     // Edit Distance
     println!("Edit distance = {}", edit_distance("kitten", "sitting"));
 }`}
-            </pre>
+              height="500px"
+            />
           </div>
         </div>
       </div>

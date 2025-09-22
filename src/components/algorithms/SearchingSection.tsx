@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Search } from "lucide-react";
 import { MermaidDiagram } from "~/components/common/MermaidDiagram";
+import { RustCodeEditor } from "~/components/common/RustCodeEditor";
 import { initRustWasm } from "~/lib/rust-wasm-helper";
 
 export function SearchingSection() {
@@ -287,8 +288,8 @@ export function SearchingSection() {
 
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
             <h4 className="font-medium mb-2">Cài Đặt Rust:</h4>
-            <pre className="text-sm bg-gray-900 text-green-400 p-3 rounded overflow-x-auto">
-              {`// Binary Search - O(log n) - yêu cầu mảng đã sắp xếp
+            <RustCodeEditor
+              code={`// Binary Search - O(log n) - yêu cầu mảng đã sắp xếp
 fn binary_search<T: Ord>(arr: &[T], target: &T) -> Option<usize> {
     let mut left = 0;
     let mut right = arr.len().saturating_sub(1);
@@ -341,7 +342,8 @@ fn interpolation_search(arr: &[i32], target: i32) -> Option<usize> {
     }
     None
 }`}
-            </pre>
+              height="400px"
+            />
           </div>
         </div>
       </div>

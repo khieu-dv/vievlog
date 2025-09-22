@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Network } from "lucide-react";
 import { MermaidDiagram } from "~/components/common/MermaidDiagram";
+import { RustCodeEditor } from "~/components/common/RustCodeEditor";
 import { initRustWasm } from "~/lib/rust-wasm-helper";
 
 interface Edge {
@@ -320,8 +321,8 @@ export function GraphsSection() {
 
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
             <h4 className="font-medium mb-2">Cài Đặt Rust:</h4>
-            <pre className="text-sm bg-gray-900 text-green-400 p-3 rounded overflow-x-auto">
-{`use std::collections::HashMap;
+            <RustCodeEditor
+              code={`use std::collections::HashMap;
 
 #[derive(Debug)]
 struct Graph<T> {
@@ -356,7 +357,8 @@ impl<T: Clone + Eq + std::hash::Hash> Graph<T> {
         self.adjacency_list.get(vertex)
     }
 }`}
-            </pre>
+              height="350px"
+            />
           </div>
 
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">

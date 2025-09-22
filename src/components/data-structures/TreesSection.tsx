@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { TreePine } from "lucide-react";
 import { MermaidDiagram } from "~/components/common/MermaidDiagram";
+import { RustCodeEditor } from "~/components/common/RustCodeEditor";
 import { initRustWasm } from "~/lib/rust-wasm-helper";
 
 export function TreesSection() {
@@ -250,12 +251,18 @@ export function TreesSection() {
 
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
             <h4 className="font-medium mb-2">Cài Đặt Rust:</h4>
-            <pre className="text-sm bg-gray-900 text-green-400 p-3 rounded overflow-x-auto">
-{`#[derive(Debug)]
+            <RustCodeEditor
+              code={`#[derive(Debug)]
 struct TreeNode<T> {
     value: T,
     left: Option<Box<TreeNode<T>>>,
     right: Option<Box<TreeNode<T>>>,
+}
+
+#[derive(Debug)]
+struct BinarySearchTree<T: Ord> {
+    root: Option<Box<TreeNode<T>>>,
+    size: usize,
 }
 
 impl<T: Ord> TreeNode<T> {
@@ -292,8 +299,50 @@ impl<T: Ord> TreeNode<T> {
             }
         }
     }
+
+    fn inorder_traversal(&self, result: &mut Vec<&T>) {
+        if let Some(left) = &self.left {
+            left.inorder_traversal(result);
+        }
+        result.push(&self.value);
+        if let Some(right) = &self.right {
+            right.inorder_traversal(result);
+        }
+    }
+
+    fn find_min(&self) -> &T {
+        match &self.left {
+            Some(left) => left.find_min(),
+            None => &self.value,
+        }
+    }
+}
+
+impl<T: Ord> BinarySearchTree<T> {
+    fn new() -> Self {
+        BinarySearchTree {
+            root: None,
+            size: 0,
+        }
+    }
+
+    fn insert(&mut self, value: T) {
+        match &mut self.root {
+            Some(root) => root.insert(value),
+            None => self.root = Some(Box::new(TreeNode::new(value))),
+        }
+        self.size += 1;
+    }
+
+    fn search(&self, value: &T) -> bool {
+        match &self.root {
+            Some(root) => root.search(value),
+            None => false,
+        }
+    }
 }`}
-            </pre>
+              height="400px"
+            />
           </div>
 
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">

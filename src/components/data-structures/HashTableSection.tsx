@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Hash } from "lucide-react";
 import { MermaidDiagram } from "~/components/common/MermaidDiagram";
+import { RustCodeEditor } from "~/components/common/RustCodeEditor";
 import { initRustWasm } from "~/lib/rust-wasm-helper";
 
 interface HashEntry {
@@ -316,8 +317,8 @@ export function HashTableSection() {
 
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
             <h4 className="font-medium mb-2">Cài Đặt Rust:</h4>
-            <pre className="text-sm bg-gray-900 text-green-400 p-3 rounded overflow-x-auto">
-{`use std::collections::HashMap;
+            <RustCodeEditor
+              code={`use std::collections::HashMap;
 use std::hash::{Hash, Hasher};
 use std::collections::hash_map::DefaultHasher;
 
@@ -414,7 +415,8 @@ fn hash_map_example() {
         println!("{}: {}", key, value);
     }
 }`}
-            </pre>
+              height="400px"
+            />
           </div>
         </div>
       </div>

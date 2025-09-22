@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { ArrowRight } from "lucide-react";
 import { MermaidDiagram } from "~/components/common/MermaidDiagram";
+import { RustCodeEditor } from "~/components/common/RustCodeEditor";
 import { initRustWasm } from "~/lib/rust-wasm-helper";
 
 export function QueueSection() {
@@ -432,8 +433,8 @@ export function QueueSection() {
 
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
             <h4 className="font-medium mb-2">Cài Đặt Rust:</h4>
-            <pre className="text-sm bg-gray-900 text-green-400 p-3 rounded overflow-x-auto">
-{`use std::collections::VecDeque;
+            <RustCodeEditor
+              code={`use std::collections::VecDeque;
 
 // Simple Queue implementation
 #[derive(Debug)]
@@ -551,7 +552,8 @@ fn main() {
     cq.enqueue(20).unwrap();
     println!("Dequeue: {:?}", cq.dequeue()); // Some(10)
 }`}
-            </pre>
+              height="400px"
+            />
           </div>
         </div>
       </div>

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { List } from "lucide-react";
 import { MermaidDiagram } from "~/components/common/MermaidDiagram";
+import { RustCodeEditor } from "~/components/common/RustCodeEditor";
 import { initRustWasm } from "~/lib/rust-wasm-helper";
 
 interface ListNode {
@@ -250,8 +251,8 @@ export function LinkedListsSection() {
 
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
             <h4 className="font-medium mb-2">Cài Đặt Rust:</h4>
-            <pre className="text-sm bg-gray-900 text-green-400 p-3 rounded overflow-x-auto">
-              {`#[derive(Debug)]
+            <RustCodeEditor
+              code={`#[derive(Debug)]
 struct Node<T> {
     data: T,
     next: Option<Box<Node<T>>>,
@@ -284,8 +285,39 @@ impl<T> LinkedList<T> {
             node.data
         })
     }
+
+    fn push_back(&mut self, data: T) {
+        let new_node = Box::new(Node {
+            data,
+            next: None,
+        });
+
+        if self.head.is_none() {
+            self.head = Some(new_node);
+        } else {
+            let mut current = self.head.as_mut().unwrap();
+            while current.next.is_some() {
+                current = current.next.as_mut().unwrap();
+            }
+            current.next = Some(new_node);
+        }
+        self.size += 1;
+    }
+
+    fn display(&self) -> Vec<&T> {
+        let mut result = Vec::new();
+        let mut current = &self.head;
+
+        while let Some(node) = current {
+            result.push(&node.data);
+            current = &node.next;
+        }
+
+        result
+    }
 }`}
-            </pre>
+              height="350px"
+            />
           </div>
 
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { SortAsc } from "lucide-react";
 import { MermaidDiagram } from "~/components/common/MermaidDiagram";
+import { RustCodeEditor } from "~/components/common/RustCodeEditor";
 import { initRustWasm } from "~/lib/rust-wasm-helper";
 
 export function SortingSection() {
@@ -280,8 +281,8 @@ export function SortingSection() {
 
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
             <h4 className="font-medium mb-2">Cài Đặt Rust:</h4>
-            <pre className="text-sm bg-gray-900 text-green-400 p-3 rounded overflow-x-auto">
-              {`// Bubble Sort - O(n²)
+            <RustCodeEditor
+              code={`// Bubble Sort - O(n²)
 fn bubble_sort<T: Ord>(arr: &mut [T]) {
     let n = arr.len();
     for i in 0..n {
@@ -331,7 +332,8 @@ fn merge_sort<T: Ord + Clone>(arr: &mut [T]) {
     merge(&arr[0..mid], &arr[mid..], &mut temp);
     arr.copy_from_slice(&temp);
 }`}
-            </pre>
+              height="400px"
+            />
           </div>
         </div>
       </div>
