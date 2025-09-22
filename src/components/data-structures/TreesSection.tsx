@@ -37,7 +37,7 @@ export function TreesSection() {
   const updateDisplayFromRustBST = () => {
     if (rustBST) {
       try {
-        const inorderArray = Array.from(rustBST.inorderTraversal()) as number[];
+        const inorderArray = Array.from(rustBST.inorder_traversal()) as number[];
         setTreeDisplay(inorderArray);
       } catch (error) {
         console.error("Error updating display:", error);
@@ -51,7 +51,7 @@ export function TreesSection() {
       if (wasmReady && rustBST) {
         try {
           rustBST.insert(value);
-          const treeSize = rustBST.size();
+          const treeSize = rustBST.len();
           setResult(`🦀 Đã thêm ${value} vào cây. Kích thước: ${treeSize}`);
           updateDisplayFromRustBST();
           setInputValue("");
@@ -90,7 +90,7 @@ export function TreesSection() {
       if (wasmReady && rustBST) {
         try {
           const removed = rustBST.remove(value);
-          const treeSize = rustBST.size();
+          const treeSize = rustBST.len();
           if (removed) {
             setResult(`🦀 Đã xóa ${value} khỏi cây. Kích thước: ${treeSize}`);
           } else {

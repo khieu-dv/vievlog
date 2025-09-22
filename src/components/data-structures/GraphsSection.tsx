@@ -46,10 +46,21 @@ export function GraphsSection() {
   const updateDisplayFromRustGraph = () => {
     if (rustGraph) {
       try {
-        const edges = Array.from(rustGraph.getEdges()) as Edge[];
-        const vertices = Array.from(rustGraph.getVertices()) as number[];
-        setGraphDisplay(edges);
+        const vertices = Array.from(rustGraph.get_vertices()) as number[];
         setVerticesDisplay(vertices);
+
+        // Manually construct edges from graph structure
+        const edges: Edge[] = [];
+        for (const vertex of vertices) {
+          const neighbors = Array.from(rustGraph.get_neighbors(vertex)) as number[];
+          for (const neighbor of neighbors) {
+            // Only add each edge once for undirected graphs
+            if (isDirected || vertex <= neighbor) {
+              edges.push({ from: vertex, to: neighbor });
+            }
+          }
+        }
+        setGraphDisplay(edges);
       } catch (error) {
         console.error("Error updating display:", error);
       }
@@ -63,8 +74,8 @@ export function GraphsSection() {
     if (!isNaN(from) && !isNaN(to)) {
       if (wasmReady && rustGraph) {
         try {
-          rustGraph.addEdge(from, to, isDirected);
-          const edgeCount = rustGraph.edgeCount();
+          rustGraph.add_edge(from, to);
+          const edgeCount = rustGraph.edge_count();
           setResult(`🦀 Đã thêm cạnh từ ${from} đến ${to}. Số cạnh: ${edgeCount}`);
           updateDisplayFromRustGraph();
           setFromVertex("");
@@ -83,8 +94,8 @@ export function GraphsSection() {
     if (!isNaN(vertex)) {
       if (wasmReady && rustGraph) {
         try {
-          rustGraph.addVertex(vertex);
-          const vertexCount = rustGraph.vertexCount();
+          rustGraph.add_vertex(vertex);
+          const vertexCount = rustGraph.vertex_count();
           setResult(`🦀 Đã thêm đỉnh ${vertex}. Số đỉnh: ${vertexCount}`);
           updateDisplayFromRustGraph();
           setFromVertex("");
@@ -100,7 +111,11 @@ export function GraphsSection() {
   const clearGraph = () => {
     if (wasmReady && rustGraph) {
       try {
-        rustGraph.clear();
+        // Clear graph by removing all vertices
+        const vertices = Array.from(rustGraph.get_vertices());
+        for (const vertex of vertices) {
+          rustGraph.remove_vertex(vertex);
+        }
         setResult("🦀 Đã xóa toàn bộ đồ thị");
         updateDisplayFromRustGraph();
       } catch (error) {
@@ -116,7 +131,7 @@ export function GraphsSection() {
     if (!isNaN(start)) {
       if (wasmReady && rustGraph) {
         try {
-          const traversalResult = Array.from(rustGraph.bfs(start));
+          const traversalResult = Array.from(rustGraph.bfs_traversal(start));
           setResult(`🦀 BFS từ đỉnh ${start}: ${traversalResult.join(" → ")}`);
         } catch (error) {
           setResult("❌ Rust WASM BFS failed: " + error);
@@ -132,7 +147,7 @@ export function GraphsSection() {
     if (!isNaN(start)) {
       if (wasmReady && rustGraph) {
         try {
-          const traversalResult = Array.from(rustGraph.dfs(start));
+          const traversalResult = Array.from(rustGraph.dfs_traversal(start));
           setResult(`🦀 DFS từ đỉnh ${start}: ${traversalResult.join(" → ")}`);
         } catch (error) {
           setResult("❌ Rust WASM DFS failed: " + error);

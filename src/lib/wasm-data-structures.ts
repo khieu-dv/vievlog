@@ -220,6 +220,10 @@ export class WasmBST {
   length(): number {
     return this.tree.len();
   }
+
+  clear(): void {
+    this.tree.clear();
+  }
 }
 
 export class WasmGraph {
