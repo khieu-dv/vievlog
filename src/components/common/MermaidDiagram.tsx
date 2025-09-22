@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ZoomIn, ZoomOut, RotateCcw } from "lucide-react";
+import { ZoomIn, ZoomOut } from "lucide-react";
 import mermaid from "mermaid";
 
 interface MermaidDiagramProps {
@@ -124,9 +124,6 @@ export function MermaidDiagram({ chart, id, className = "", showZoomControls = t
           >
             <ZoomOut size={16} className="text-gray-600 dark:text-gray-300" />
           </button>
-          <span className="px-2 py-1.5 text-xs font-medium text-gray-600 dark:text-gray-300 min-w-[3rem] text-center">
-            {Math.round(zoom * 100)}%
-          </span>
           <button
             onClick={zoomIn}
             disabled={zoom >= 3}
@@ -134,13 +131,6 @@ export function MermaidDiagram({ chart, id, className = "", showZoomControls = t
             title="Phóng to"
           >
             <ZoomIn size={16} className="text-gray-600 dark:text-gray-300" />
-          </button>
-          <button
-            onClick={resetZoom}
-            className="p-1.5 rounded hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors"
-            title="Đặt lại zoom"
-          >
-            <RotateCcw size={16} className="text-gray-600 dark:text-gray-300" />
           </button>
         </div>
       )}

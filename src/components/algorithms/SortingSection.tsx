@@ -206,30 +206,25 @@ export function SortingSection() {
             <h4 className="font-medium mb-2">Luồng Thuật Toán Bubble Sort:</h4>
             <MermaidDiagram
               chart={`
-                graph TD
-                    START([Bắt đầu]) --> INPUT[Mảng đầu vào]
-                    INPUT --> CHECK{Kích thước > 1?}
-                    CHECK -->|Không| END([Kết thúc])
-                    CHECK -->|Có| BUBBLE[Bubble Sort]
+                graph LR
+                    A[Bắt đầu] --> B{n > 1?}
+                    B -->|Có| C[i = 0 to n-1]
+                    C --> D[j = 0 to n-i-2]
+                    D --> E{"arr[j] > arr[j+1]?"}
+                    E -->|Có| G[Swap]
+                    E -->|Không| H[j++]
+                    G --> H
+                    H --> I{j < n-i-1?}
+                    I -->|Có| D
+                    I -->|Không| J[i++]
+                    J --> K{i < n-1?}
+                    K -->|Có| C
+                    K -->|Không| F[Kết thúc]
+                    B -->|Không| F
 
-                    BUBBLE --> OUTER[i = 0 đến n-1]
-                    OUTER --> INNER[j = 0 đến n-i-2]
-                    INNER --> COMPARE{"arr[j] > arr[j+1]?"}
-                    COMPARE -->|Có| SWAP["Hoán đổi arr[j], arr[j+1]"]
-                    COMPARE -->|Không| NEXT_J[j++]
-                    SWAP --> NEXT_J
-                    NEXT_J --> CHECK_J{j < n-i-1?}
-                    CHECK_J -->|Có| INNER
-                    CHECK_J -->|Không| NEXT_I[i++]
-                    NEXT_I --> CHECK_I{i < n-1?}
-                    CHECK_I -->|Có| OUTER
-                    CHECK_I -->|Không| SORTED[Mảng đã sắp xếp]
-                    SORTED --> END
-
-                    style START fill:#4CAF50,color:#fff
-                    style END fill:#F44336,color:#fff
-                    style SWAP fill:#FF9800,color:#fff
-                    style SORTED fill:#2196F3,color:#fff
+                    style A fill:#4CAF50,color:#fff
+                    style F fill:#F44336,color:#fff
+                    style G fill:#FF9800,color:#fff
               `}
               className="mb-4"
             />

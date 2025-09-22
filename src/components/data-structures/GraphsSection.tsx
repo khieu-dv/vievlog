@@ -174,28 +174,23 @@ export function GraphsSection() {
             <h4 className="font-medium mb-2">Các Loại Đồ Thị:</h4>
             <MermaidDiagram
               chart={`
-                graph LR
-                    subgraph "Đồ Thị Có Hướng"
+                graph TD
+                    subgraph "Có Hướng"
                         A1[A] --> B1[B]
                         B1 --> C1[C]
                         C1 --> A1
-                        A1 --> D1[D]
                     end
 
-                    subgraph "Đồ Thị Vô Hướng"
+                    subgraph "Vô Hướng"
                         A2[A] --- B2[B]
                         B2 --- C2[C]
-                        C2 --- D2[D]
-                        A2 --- D2
-                        B2 --- D2
+                        A2 --- C2
                     end
 
-                    subgraph "Đồ Thị Có Trọng Số"
+                    subgraph "Có Trọng Số"
                         A3[A] -->|5| B3[B]
                         B3 -->|3| C3[C]
                         A3 -->|8| C3
-                        C3 -->|2| D3[D]
-                        A3 -->|7| D3
                     end
 
                     style A1 fill:#4CAF50,color:#fff
