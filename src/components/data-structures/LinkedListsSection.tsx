@@ -40,7 +40,7 @@ export function LinkedListsSection() {
   const updateDisplayFromRustList = () => {
     if (rustLinkedList) {
       try {
-        const listArray = Array.from(rustLinkedList.toArray()) as number[];
+        const listArray = Array.from(rustLinkedList.to_array()) as number[];
         setListDisplay(listArray);
       } catch (error) {
         console.error("Error updating display:", error);
@@ -53,7 +53,7 @@ export function LinkedListsSection() {
     if (!isNaN(value)) {
       if (wasmReady && rustLinkedList) {
         try {
-          rustLinkedList.pushFront(value);
+          rustLinkedList.push_front(value);
           const listSize = rustLinkedList.len();
           setResult(`🦀 Đã thêm ${value} vào đầu danh sách. Kích thước: ${listSize}`);
           updateDisplayFromRustList();
@@ -72,7 +72,7 @@ export function LinkedListsSection() {
     if (!isNaN(value)) {
       if (wasmReady && rustLinkedList) {
         try {
-          rustLinkedList.pushBack(value);
+          rustLinkedList.push_back(value);
           const listSize = rustLinkedList.len();
           setResult(`🦀 Đã thêm ${value} vào cuối danh sách. Kích thước: ${listSize}`);
           updateDisplayFromRustList();
@@ -89,7 +89,7 @@ export function LinkedListsSection() {
   const removeHead = () => {
     if (wasmReady && rustLinkedList) {
       try {
-        const removed = rustLinkedList.popFront();
+        const removed = rustLinkedList.pop_front();
         const listSize = rustLinkedList.len();
         if (removed !== null && removed !== undefined) {
           setResult(`🦀 Đã xóa phần tử đầu: ${removed}. Kích thước: ${listSize}`);
@@ -108,7 +108,7 @@ export function LinkedListsSection() {
   const removeTail = () => {
     if (wasmReady && rustLinkedList) {
       try {
-        const removed = rustLinkedList.popBack();
+        const removed = rustLinkedList.pop_back();
         const listSize = rustLinkedList.len();
         if (removed !== null && removed !== undefined) {
           setResult(`🦀 Đã xóa phần tử cuối: ${removed}. Kích thước: ${listSize}`);
