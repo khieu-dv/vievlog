@@ -8,12 +8,18 @@ import {
   Network,
   Search,
   SortAsc,
-  TreePine
+  TreePine,
+  Hash,
+  Layers,
+  ArrowRight,
+  TrendingUp,
+  Route,
+  Layers2
 } from "lucide-react";
 import { Header } from "~/components/common/Header";
 import { Footer } from "~/components/common/Footer";
-import { ArraysSection, LinkedListsSection, TreesSection, GraphsSection } from "~/components/data-structures";
-import { SortingSection, SearchingSection, ComplexitySection } from "~/components/algorithms";
+import { ArraysSection, LinkedListsSection, TreesSection, GraphsSection, HashTableSection, StackSection, QueueSection, HeapSection } from "~/components/data-structures";
+import { SortingSection, SearchingSection, ComplexitySection, DijkstraSection, DynamicProgrammingSection } from "~/components/algorithms";
 
 interface TabProps {
   id: string;
@@ -48,6 +54,30 @@ const tabs: TabProps[] = [
     content: <GraphsSection />
   },
   {
+    id: "hash-table",
+    title: "Hash Table",
+    icon: Hash,
+    content: <HashTableSection />
+  },
+  {
+    id: "stack",
+    title: "Stack",
+    icon: Layers,
+    content: <StackSection />
+  },
+  {
+    id: "queue",
+    title: "Queue",
+    icon: ArrowRight,
+    content: <QueueSection />
+  },
+  {
+    id: "heap",
+    title: "Heap",
+    icon: TrendingUp,
+    content: <HeapSection />
+  },
+  {
     id: "sorting",
     title: "Sắp Xếp",
     icon: SortAsc,
@@ -58,6 +88,18 @@ const tabs: TabProps[] = [
     title: "Tìm Kiếm",
     icon: Search,
     content: <SearchingSection />
+  },
+  {
+    id: "dijkstra",
+    title: "Dijkstra",
+    icon: Route,
+    content: <DijkstraSection />
+  },
+  {
+    id: "dynamic-programming",
+    title: "Dynamic Programming",
+    icon: Layers2,
+    content: <DynamicProgrammingSection />
   }
 ];
 
