@@ -130,9 +130,47 @@ export function DynamicProgrammingSection() {
           <Layers2 className="h-5 w-5" />
           🦀 Rust WASM Dynamic Programming (Quy Hoạch Động)
         </h3>
-        <p className="text-gray-600 dark:text-gray-300 mb-4">
-          Demo tương tác Dynamic Programming sử dụng Rust WASM. Quy hoạch động được tối ưu hóa là kỹ thuật giải quyết bài toán bằng cách chia nhỏ thành các bài toán con và lưu trữ kết quả để tránh tính toán lặp lại.
-        </p>
+
+        {/* Định nghĩa và giải thích cơ bản */}
+        <div className="bg-slate-50 dark:bg-slate-900/20 p-4 rounded-lg mb-4 border-l-4 border-slate-500">
+          <h4 className="font-semibold text-slate-800 dark:text-slate-300 mb-2">🧩 Quy Hoạch Động là gì?</h4>
+          <p className="text-gray-700 dark:text-gray-300 mb-3">
+            <strong>Dynamic Programming (DP)</strong> là kỹ thuật giải quyết bài toán phức tạp bằng cách:
+            chia nhỏ thành các bài toán con + lưu kết quả để tránh tính lại.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+            <div className="bg-white dark:bg-slate-800 p-3 rounded">
+              <strong className="text-blue-600 dark:text-blue-400">🔑 Điều kiện sử dụng DP:</strong>
+              <ul className="mt-1 text-gray-600 dark:text-gray-300">
+                <li>• <strong>Overlapping Subproblems:</strong> Các bài toán con trùng lặp</li>
+                <li>• <strong>Optimal Substructure:</strong> Lời giải tối ưu từ lời giải con</li>
+              </ul>
+            </div>
+            <div className="bg-white dark:bg-slate-800 p-3 rounded">
+              <strong className="text-green-600 dark:text-green-400">🎯 Ứng dụng thực tế:</strong>
+              <ul className="mt-1 text-gray-600 dark:text-gray-300">
+                <li>• Tối ưu hóa đầu tư, lập lịch</li>
+                <li>• Game: tìm path tối ưu</li>
+                <li>• Xử lý ngôn ngữ tự nhiên</li>
+                <li>• Bioinformatics (DNA)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-emerald-50 dark:bg-emerald-900/20 p-4 rounded-lg mb-4 border-l-4 border-emerald-500">
+          <h4 className="font-semibold text-emerald-800 dark:text-emerald-300 mb-2">⚡ Top-down vs Bottom-up:</h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+            <div>
+              <strong>Memoization (Top-down):</strong>
+              <br/><span className="text-gray-600 dark:text-gray-400">Recursion + cache kết quả đã tính</span>
+            </div>
+            <div>
+              <strong>Tabulation (Bottom-up):</strong>
+              <br/><span className="text-gray-600 dark:text-gray-400">Dùng bảng, tính từ nhỏ đến lớn</span>
+            </div>
+          </div>
+        </div>
 
         {result && (
           <div className="mb-4 p-3 bg-orange-50 dark:bg-orange-900/20 rounded">

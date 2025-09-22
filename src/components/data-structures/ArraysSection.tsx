@@ -28,9 +28,41 @@ export function ArraysSection() {
           <Layout className="h-5 w-5" />
           Mảng Động (Vector)
         </h3>
-        <p className="text-gray-600 dark:text-gray-300 mb-4">
-          Mảng là tập hợp các phần tử liên tiếp trong bộ nhớ. Vector là mảng động có thể tăng giảm kích thước trong quá trình chạy.
-        </p>
+
+        {/* Định nghĩa và giải thích cơ bản */}
+        <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg mb-4 border-l-4 border-blue-500">
+          <h4 className="font-semibold text-blue-800 dark:text-blue-300 mb-2">📚 Mảng là gì?</h4>
+          <p className="text-gray-700 dark:text-gray-300 mb-3">
+            <strong>Mảng (Array)</strong> là cấu trúc dữ liệu cơ bản nhất, lưu trữ các phần tử cùng kiểu dữ liệu trong bộ nhớ liên tiếp.
+            Mỗi phần tử có một chỉ số (index) bắt đầu từ 0.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+            <div className="bg-white dark:bg-slate-800 p-3 rounded">
+              <strong className="text-green-600 dark:text-green-400">✅ Ưu điểm:</strong>
+              <ul className="mt-1 list-disc list-inside text-gray-600 dark:text-gray-300">
+                <li>Truy cập nhanh O(1)</li>
+                <li>Tiết kiệm bộ nhớ</li>
+                <li>Duyệt tuần tự hiệu quả</li>
+              </ul>
+            </div>
+            <div className="bg-white dark:bg-slate-800 p-3 rounded">
+              <strong className="text-red-600 dark:text-red-400">❌ Nhược điểm:</strong>
+              <ul className="mt-1 list-disc list-inside text-gray-600 dark:text-gray-300">
+                <li>Kích thước cố định (mảng tĩnh)</li>
+                <li>Chèn/xóa giữa chậm O(n)</li>
+                <li>Phải biết trước kích thước</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg mb-4 border-l-4 border-amber-500">
+          <h4 className="font-semibold text-amber-800 dark:text-amber-300 mb-2">🔧 Vector (Mảng Động)</h4>
+          <p className="text-gray-700 dark:text-gray-300">
+            <strong>Vector</strong> là phiên bản cải tiến của mảng, có thể tự động thay đổi kích thước.
+            Khi hết chỗ, vector sẽ tự động cấp phát bộ nhớ mới và sao chép dữ liệu.
+          </p>
+        </div>
 
         <div className="space-y-4">
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">

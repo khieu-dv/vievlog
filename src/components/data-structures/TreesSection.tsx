@@ -127,9 +127,53 @@ export function TreesSection() {
           <TreePine className="h-5 w-5" />
           🦀 Rust WASM Cây Tìm Kiếm Nhị Phân
         </h3>
-        <p className="text-gray-600 dark:text-gray-300 mb-4">
-          Demo tương tác Cây Tìm Kiếm Nhị Phân sử dụng Rust WASM. BST được tối ưu hóa là cấu trúc dữ liệu phân cấp cho phép tìm kiếm, thêm và xóa hiệu quả với độ phức tạp O(log n).
-        </p>
+
+        {/* Định nghĩa và giải thích cơ bản */}
+        <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg mb-4 border-l-4 border-green-500">
+          <h4 className="font-semibold text-green-800 dark:text-green-300 mb-2">🌳 Cây là gì?</h4>
+          <p className="text-gray-700 dark:text-gray-300 mb-3">
+            <strong>Cây (Tree)</strong> là cấu trúc dữ liệu phân cấp gồm các nút (node) được kết nối bởi các cạnh (edge).
+            Mỗi cây có một nút gốc (root) và các nút con tạo thành cấu trúc phân nhánh.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
+            <div className="bg-white dark:bg-slate-800 p-3 rounded">
+              <strong className="text-blue-600 dark:text-blue-400">📝 Thuật ngữ:</strong>
+              <ul className="mt-1 text-gray-600 dark:text-gray-300">
+                <li>• Root: Nút gốc</li>
+                <li>• Leaf: Nút lá</li>
+                <li>• Parent/Child: Cha/Con</li>
+                <li>• Height: Chiều cao</li>
+              </ul>
+            </div>
+            <div className="bg-white dark:bg-slate-800 p-3 rounded">
+              <strong className="text-green-600 dark:text-green-400">✅ Ưu điểm:</strong>
+              <ul className="mt-1 text-gray-600 dark:text-gray-300">
+                <li>• Tìm kiếm nhanh</li>
+                <li>• Sắp xếp tự động</li>
+                <li>• Duyệt có thứ tự</li>
+              </ul>
+            </div>
+            <div className="bg-white dark:bg-slate-800 p-3 rounded">
+              <strong className="text-orange-600 dark:text-orange-400">⚠️ Lưu ý:</strong>
+              <ul className="mt-1 text-gray-600 dark:text-gray-300">
+                <li>• Có thể mất cân bằng</li>
+                <li>• Tốn bộ nhớ pointer</li>
+                <li>• Phức tạp hơn mảng</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg mb-4 border-l-4 border-purple-500">
+          <h4 className="font-semibold text-purple-800 dark:text-purple-300 mb-2">🔍 Cây Tìm Kiếm Nhị Phân (BST)</h4>
+          <p className="text-gray-700 dark:text-gray-300 mb-2">
+            <strong>BST</strong> là cây nhị phân đặc biệt với quy tắc:
+            <span className="font-mono bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded mx-1">trái &lt; gốc &lt; phải</span>
+          </p>
+          <div className="text-sm text-gray-600 dark:text-gray-400">
+            Mỗi nút có tối đa 2 con: con trái chứa giá trị nhỏ hơn, con phải chứa giá trị lớn hơn nút cha.
+          </div>
+        </div>
 
         <div className="space-y-4">
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">

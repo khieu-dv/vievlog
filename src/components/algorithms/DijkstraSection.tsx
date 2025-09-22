@@ -132,7 +132,7 @@ export function DijkstraSection() {
       try {
         // dijkstra() returns distances from start to all vertices
         const dijkstraResult = rustGraph.dijkstra(startNode);
-        const distanceArray = Array.from(dijkstraResult);
+        const distanceArray = Array.from(dijkstraResult) as number[];
 
         // Use shortest_path_with_weights for getting the actual path
         const pathResult = rustGraph.shortest_path_with_weights(startNode, endNode);
@@ -197,9 +197,56 @@ export function DijkstraSection() {
           <Route className="h-5 w-5" />
           🦀 Rust WASM Thuật Toán Dijkstra
         </h3>
-        <p className="text-gray-600 dark:text-gray-300 mb-4">
-          Demo tương tác Thuật toán Dijkstra sử dụng Rust WASM. Dijkstra được tối ưu hóa tìm đường đi ngắn nhất từ một node nguồn đến tất cả các node khác trong đồ thị có trọng số không âm với độ phức tạp O((V+E)logV).
-        </p>
+
+        {/* Định nghĩa và giải thích cơ bản */}
+        <div className="bg-emerald-50 dark:bg-emerald-900/20 p-4 rounded-lg mb-4 border-l-4 border-emerald-500">
+          <h4 className="font-semibold text-emerald-800 dark:text-emerald-300 mb-2">🗺️ Thuật toán Dijkstra là gì?</h4>
+          <p className="text-gray-700 dark:text-gray-300 mb-3">
+            <strong>Thuật toán Dijkstra</strong> tìm đường đi ngắn nhất từ một điểm xuất phát đến tất cả các điểm khác trong đồ thị có trọng số không âm.
+            Được phát minh bởi Edsger Dijkstra năm 1956.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+            <div className="bg-white dark:bg-slate-800 p-3 rounded">
+              <strong className="text-blue-600 dark:text-blue-400">🎯 Ứng dụng thực tế:</strong>
+              <ul className="mt-1 text-gray-600 dark:text-gray-300">
+                <li>• Google Maps, GPS</li>
+                <li>• Định tuyến mạng Internet</li>
+                <li>• Game: AI tìm đường</li>
+                <li>• Hệ thống giao thông</li>
+              </ul>
+            </div>
+            <div className="bg-white dark:bg-slate-800 p-3 rounded">
+              <strong className="text-green-600 dark:text-green-400">💡 Ý tưởng chính:</strong>
+              <ul className="mt-1 text-gray-600 dark:text-gray-300">
+                <li>• Bắt đầu từ node gốc</li>
+                <li>• Luôn chọn node gần nhất</li>
+                <li>• Cập nhật khoảng cách</li>
+                <li>• Lặp đến khi hoàn thành</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-sky-50 dark:bg-sky-900/20 p-4 rounded-lg mb-4 border-l-4 border-sky-500">
+          <h4 className="font-semibold text-sky-800 dark:text-sky-300 mb-2">⚙️ Cách hoạt động:</h4>
+          <div className="text-sm text-gray-700 dark:text-gray-300">
+            <span className="font-mono bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded">
+              Bước 1: Đặt khoảng cách = 0 cho node gốc, ∞ cho các node khác
+            </span>
+            <br/>
+            <span className="font-mono bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded mt-1 inline-block">
+              Bước 2: Chọn node chưa thăm có khoảng cách nhỏ nhất
+            </span>
+            <br/>
+            <span className="font-mono bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded mt-1 inline-block">
+              Bước 3: Cập nhật khoảng cách đến các node láng giềng
+            </span>
+            <br/>
+            <span className="font-mono bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded mt-1 inline-block">
+              Bước 4: Lặp cho đến khi tất cả node được thăm
+            </span>
+          </div>
+        </div>
 
         <div className="space-y-4">
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">

@@ -150,9 +150,46 @@ export function HashTableSection() {
           <Hash className="h-5 w-5" />
           🦀 Rust WASM Hash Table (Bảng Băm)
         </h3>
-        <p className="text-gray-600 dark:text-gray-300 mb-4">
-          Demo tương tác Hash Table sử dụng Rust WASM. Hash Table được tối ưu hóa với hàm băm để ánh xạ khóa tới giá trị, cho phép truy cập dữ liệu với độ phức tạp O(1) trung bình.
-        </p>
+
+        {/* Định nghĩa và giải thích cơ bản */}
+        <div className="bg-orange-50 dark:bg-orange-900/20 p-4 rounded-lg mb-4 border-l-4 border-orange-500">
+          <h4 className="font-semibold text-orange-800 dark:text-orange-300 mb-2">🔗 Hash Table là gì?</h4>
+          <p className="text-gray-700 dark:text-gray-300 mb-3">
+            <strong>Hash Table (Bảng Băm)</strong> là cấu trúc dữ liệu sử dụng hàm băm để ánh xạ khóa (key) tới vị trí lưu trữ giá trị (value).
+            Giống như từ điển: biết từ khóa → tìm thấy nghĩa ngay lập tức.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+            <div className="bg-white dark:bg-slate-800 p-3 rounded">
+              <strong className="text-green-600 dark:text-green-400">✅ Ưu điểm:</strong>
+              <ul className="mt-1 list-disc list-inside text-gray-600 dark:text-gray-300">
+                <li>Truy cập cực nhanh O(1)</li>
+                <li>Thêm/xóa hiệu quả</li>
+                <li>Linh hoạt với key</li>
+                <li>Phù hợp lưu cache</li>
+              </ul>
+            </div>
+            <div className="bg-white dark:bg-slate-800 p-3 rounded">
+              <strong className="text-red-600 dark:text-red-400">❌ Nhược điểm:</strong>
+              <ul className="mt-1 list-disc list-inside text-gray-600 dark:text-gray-300">
+                <li>Collision (xung đột)</li>
+                <li>Tốn bộ nhớ</li>
+                <li>Không có thứ tự</li>
+                <li>Phụ thuộc hash function</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-cyan-50 dark:bg-cyan-900/20 p-4 rounded-lg mb-4 border-l-4 border-cyan-500">
+          <h4 className="font-semibold text-cyan-800 dark:text-cyan-300 mb-2">⚡ Hash Function (Hàm Băm)</h4>
+          <p className="text-gray-700 dark:text-gray-300 mb-2">
+            <strong>Hàm băm</strong> chuyển đổi key thành index:
+            <span className="font-mono bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded mx-1">hash("key") → index</span>
+          </p>
+          <div className="text-sm text-gray-600 dark:text-gray-400">
+            <strong>Collision:</strong> Khi 2 key khác nhau có cùng hash → xử lý bằng Chaining hoặc Open Addressing.
+          </div>
+        </div>
 
         <div className="space-y-4">
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">

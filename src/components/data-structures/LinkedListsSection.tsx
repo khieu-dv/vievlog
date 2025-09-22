@@ -146,9 +146,57 @@ export function LinkedListsSection() {
           <List className="h-5 w-5" />
           🦀 Rust WASM Danh Sách Liên Kết
         </h3>
-        <p className="text-gray-600 dark:text-gray-300 mb-4">
-          Demo tương tác Danh sách liên kết sử dụng Rust WASM. Danh sách liên kết được tối ưu hóa là cấu trúc dữ liệu tuyến tính, trong đó các phần tử được lưu trữ trong các nút với tham chiếu đến nút tiếp theo.
-        </p>
+
+        {/* Định nghĩa và giải thích cơ bản */}
+        <div className="bg-lime-50 dark:bg-lime-900/20 p-4 rounded-lg mb-4 border-l-4 border-lime-500">
+          <h4 className="font-semibold text-lime-800 dark:text-lime-300 mb-2">🔗 Danh Sách Liên Kết là gì?</h4>
+          <p className="text-gray-700 dark:text-gray-300 mb-3">
+            <strong>Linked List (Danh Sách Liên Kết)</strong> là cấu trúc dữ liệu tuyến tính trong đó các phần tử (node) được lưu trữ trong các vị trí bộ nhớ không liên tiếp.
+            Mỗi node chứa dữ liệu và pointer trỏ đến node tiếp theo.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+            <div className="bg-white dark:bg-slate-800 p-3 rounded">
+              <strong className="text-green-600 dark:text-green-400">✅ Ưu điểm:</strong>
+              <ul className="mt-1 list-disc list-inside text-gray-600 dark:text-gray-300">
+                <li>Kích thước động</li>
+                <li>Thêm/xóa đầu nhanh O(1)</li>
+                <li>Sử dụng bộ nhớ hiệu quả</li>
+                <li>Không cần biết trước kích thước</li>
+              </ul>
+            </div>
+            <div className="bg-white dark:bg-slate-800 p-3 rounded">
+              <strong className="text-red-600 dark:text-red-400">❌ Nhược điểm:</strong>
+              <ul className="mt-1 list-disc list-inside text-gray-600 dark:text-gray-300">
+                <li>Truy cập chậm O(n)</li>
+                <li>Tốn bộ nhớ cho pointer</li>
+                <li>Không cache-friendly</li>
+                <li>Không thể binary search</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-fuchsia-50 dark:bg-fuchsia-900/20 p-4 rounded-lg mb-4 border-l-4 border-fuchsia-500">
+          <h4 className="font-semibold text-fuchsia-800 dark:text-fuchsia-300 mb-2">🎯 Khi nào dùng Linked List?</h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+            <div>
+              <strong className="text-blue-600 dark:text-blue-400">🎪 Ứng dụng thực tế:</strong>
+              <ul className="mt-1 text-gray-600 dark:text-gray-300">
+                <li>• Undo/Redo trong editor</li>
+                <li>• Browser history</li>
+                <li>• Music playlist</li>
+                <li>• Implement Stack/Queue</li>
+              </ul>
+            </div>
+            <div>
+              <strong className="text-purple-600 dark:text-purple-400">⚡ So với Array:</strong>
+              <ul className="mt-1 text-gray-600 dark:text-gray-300">
+                <li>• Array: Truy cập nhanh, thêm/xóa chậm</li>
+                <li>• Linked List: Truy cập chậm, thêm/xóa nhanh</li>
+              </ul>
+            </div>
+          </div>
+        </div>
 
         <div className="space-y-4">
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">

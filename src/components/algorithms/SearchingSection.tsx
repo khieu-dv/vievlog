@@ -136,9 +136,49 @@ export function SearchingSection() {
           <Search className="h-5 w-5" />
           🦀 Rust WASM Giải Thuật Tìm Kiếm
         </h3>
-        <p className="text-gray-600 dark:text-gray-300 mb-4">
-          Demo tương tác các giải thuật tìm kiếm sử dụng Rust WASM. Các thuật toán được tối ưu hóa và có thể so sánh hiệu suất trực tiếp.
-        </p>
+
+        {/* Định nghĩa và giải thích cơ bản */}
+        <div className="bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-lg mb-4 border-l-4 border-yellow-500">
+          <h4 className="font-semibold text-yellow-800 dark:text-yellow-300 mb-2">🔍 Tìm Kiếm là gì?</h4>
+          <p className="text-gray-700 dark:text-gray-300 mb-3">
+            <strong>Tìm kiếm (Searching)</strong> là quá trình tìm một phần tử cụ thể trong tập dữ liệu.
+            Là một trong những vấn đề cơ bản nhất và được sử dụng hàng ngày.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+            <div className="bg-white dark:bg-slate-800 p-3 rounded">
+              <strong className="text-blue-600 dark:text-blue-400">📱 Ứng dụng hàng ngày:</strong>
+              <ul className="mt-1 text-gray-600 dark:text-gray-300">
+                <li>• Tìm liên hệ trong điện thoại</li>
+                <li>• Google search</li>
+                <li>• Tìm file trong máy tính</li>
+                <li>• Tìm sản phẩm trong e-commerce</li>
+              </ul>
+            </div>
+            <div className="bg-white dark:bg-slate-800 p-3 rounded">
+              <strong className="text-green-600 dark:text-green-400">⚡ Yếu tố quan trọng:</strong>
+              <ul className="mt-1 text-gray-600 dark:text-gray-300">
+                <li>• Tốc độ tìm kiếm</li>
+                <li>• Dữ liệu có sắp xếp chưa?</li>
+                <li>• Kích thước tập dữ liệu</li>
+                <li>• Bộ nhớ sử dụng</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-violet-50 dark:bg-violet-900/20 p-4 rounded-lg mb-4 border-l-4 border-violet-500">
+          <h4 className="font-semibold text-violet-800 dark:text-violet-300 mb-2">🏃‍♂️ Phân loại thuật toán tìm kiếm:</h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+            <div>
+              <strong>Linear Search:</strong> Duyệt từ đầu đến cuối
+              <br/><span className="text-gray-600 dark:text-gray-400">O(n) - Đơn giản, mảng không cần sắp xếp</span>
+            </div>
+            <div>
+              <strong>Binary Search:</strong> Chia đôi tìm kiếm
+              <br/><span className="text-gray-600 dark:text-gray-400">O(log n) - Nhanh, mảng phải sắp xếp</span>
+            </div>
+          </div>
+        </div>
 
         <div className="space-y-4">
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">

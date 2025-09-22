@@ -165,9 +165,49 @@ export function GraphsSection() {
           <Network className="h-5 w-5" />
           🦀 Rust WASM Đồ Thị
         </h3>
-        <p className="text-gray-600 dark:text-gray-300 mb-4">
-          Demo tương tác Đồ thị sử dụng Rust WASM. Đồ thị được tối ưu hóa là tập hợp các đỉnh (nút) được kết nối bởi các cạnh, hỗ trợ BFS, DFS và các thuật toán duyệt đồ thị hiệu quả.
-        </p>
+
+        {/* Định nghĩa và giải thích cơ bản */}
+        <div className="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg mb-4 border-l-4 border-indigo-500">
+          <h4 className="font-semibold text-indigo-800 dark:text-indigo-300 mb-2">🕸️ Đồ Thị là gì?</h4>
+          <p className="text-gray-700 dark:text-gray-300 mb-3">
+            <strong>Đồ Thị (Graph)</strong> là tập hợp các đỉnh (vertex/node) được kết nối bởi các cạnh (edge).
+            Mô tả mối quan hệ giữa các đối tượng: mạng xã hội, bản đồ đường, internet...
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+            <div className="bg-white dark:bg-slate-800 p-3 rounded">
+              <strong className="text-blue-600 dark:text-blue-400">📝 Thành phần:</strong>
+              <ul className="mt-1 text-gray-600 dark:text-gray-300">
+                <li>• <strong>Vertex (Đỉnh):</strong> Các nút</li>
+                <li>• <strong>Edge (Cạnh):</strong> Kết nối</li>
+                <li>• <strong>Weight:</strong> Trọng số cạnh</li>
+                <li>• <strong>Path:</strong> Đường đi</li>
+              </ul>
+            </div>
+            <div className="bg-white dark:bg-slate-800 p-3 rounded">
+              <strong className="text-green-600 dark:text-green-400">🎯 Ứng dụng:</strong>
+              <ul className="mt-1 text-gray-600 dark:text-gray-300">
+                <li>• Mạng xã hội (Facebook)</li>
+                <li>• GPS, bản đồ đường</li>
+                <li>• Internet, mạng máy tính</li>
+                <li>• Game, AI pathfinding</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-teal-50 dark:bg-teal-900/20 p-4 rounded-lg mb-4 border-l-4 border-teal-500">
+          <h4 className="font-semibold text-teal-800 dark:text-teal-300 mb-2">🔄 Loại Đồ Thị</h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+            <div>
+              <strong>Directed (Có hướng):</strong> A → B (một chiều)
+              <br/><span className="text-gray-600 dark:text-gray-400">VD: Follow Twitter, đường một chiều</span>
+            </div>
+            <div>
+              <strong>Undirected (Vô hướng):</strong> A ↔ B (hai chiều)
+              <br/><span className="text-gray-600 dark:text-gray-400">VD: Kết bạn Facebook, đường hai chiều</span>
+            </div>
+          </div>
+        </div>
 
         <div className="space-y-4">
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">

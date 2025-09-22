@@ -11,6 +11,52 @@ export function ComplexitySection() {
         So Sánh Độ Phức Tạp Giải Thuật
       </h3>
 
+      {/* Định nghĩa và giải thích cơ bản */}
+      <div className="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg mb-4 border-l-4 border-red-500">
+        <h4 className="font-semibold text-red-800 dark:text-red-300 mb-2">⏱️ Độ Phức Tạp là gì?</h4>
+        <p className="text-gray-700 dark:text-gray-300 mb-3">
+          <strong>Độ phức tạp (Complexity)</strong> đo lường tài nguyên cần thiết để chạy thuật toán:
+          thời gian (Time) và không gian (Space). Giúp so sánh hiệu quả các thuật toán.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+          <div className="bg-white dark:bg-slate-800 p-3 rounded">
+            <strong className="text-blue-600 dark:text-blue-400">🕐 Time Complexity:</strong>
+            <div className="mt-1 text-gray-600 dark:text-gray-300">
+              Thời gian chạy tăng như thế nào khi input tăng?
+              <br/>VD: O(n) = input gấp đôi → thời gian gấp đôi
+            </div>
+          </div>
+          <div className="bg-white dark:bg-slate-800 p-3 rounded">
+            <strong className="text-green-600 dark:text-green-400">💾 Space Complexity:</strong>
+            <div className="mt-1 text-gray-600 dark:text-gray-300">
+              Bộ nhớ cần thêm khi input tăng?
+              <br/>VD: O(1) = input tăng, bộ nhớ không đổi
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-pink-50 dark:bg-pink-900/20 p-4 rounded-lg mb-6 border-l-4 border-pink-500">
+        <h4 className="font-semibold text-pink-800 dark:text-pink-300 mb-2">📊 Big O Notation:</h4>
+        <p className="text-gray-700 dark:text-gray-300 text-sm mb-3">
+          <strong>Big O</strong> mô tả hiệu suất xấu nhất của thuật toán. Bỏ qua hằng số và tập trung vào tốc độ tăng trưởng.
+        </p>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
+          <div className="bg-green-100 dark:bg-green-900 p-2 rounded text-center">
+            <strong>O(1)</strong><br/>Tuyệt vời ✅
+          </div>
+          <div className="bg-yellow-100 dark:bg-yellow-900 p-2 rounded text-center">
+            <strong>O(log n)</strong><br/>Rất tốt ✅
+          </div>
+          <div className="bg-orange-100 dark:bg-orange-900 p-2 rounded text-center">
+            <strong>O(n)</strong><br/>Chấp nhận được ⚠️
+          </div>
+          <div className="bg-red-100 dark:bg-red-900 p-2 rounded text-center">
+            <strong>O(n²)</strong><br/>Chậm ❌
+          </div>
+        </div>
+      </div>
+
       <div className="mb-6">
         <h4 className="font-medium mb-2">Biểu Đồ Độ Phức Tạp Thời Gian:</h4>
         <MermaidDiagram

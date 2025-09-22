@@ -284,9 +284,49 @@ export function HeapSection() {
           <TrendingUp className="h-5 w-5" />
           🦀 Rust WASM Heap (Đống)
         </h3>
-        <p className="text-gray-600 dark:text-gray-300 mb-4">
-          Demo tương tác Heap sử dụng Rust WASM. Heap là cây nhị phân hoàn chỉnh thỏa mãn tính chất heap: mỗi node cha lớn hơn (max-heap) hoặc nhỏ hơn (min-heap) các node con.
-        </p>
+
+        {/* Định nghĩa và giải thích cơ bản */}
+        <div className="bg-rose-50 dark:bg-rose-900/20 p-4 rounded-lg mb-4 border-l-4 border-rose-500">
+          <h4 className="font-semibold text-rose-800 dark:text-rose-300 mb-2">🏔️ Heap là gì?</h4>
+          <p className="text-gray-700 dark:text-gray-300 mb-3">
+            <strong>Heap (Đống)</strong> là cây nhị phân hoàn chỉnh đặc biệt thỏa mãn <strong>tính chất heap</strong>:
+            Node cha luôn lớn hơn (Max-Heap) hoặc nhỏ hơn (Min-Heap) tất cả các node con.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+            <div className="bg-white dark:bg-slate-800 p-3 rounded">
+              <strong className="text-blue-600 dark:text-blue-400">🎯 Ứng dụng thực tế:</strong>
+              <ul className="mt-1 text-gray-600 dark:text-gray-300">
+                <li>• Priority Queue (hàng đợi ưu tiên)</li>
+                <li>• Heap Sort (sắp xếp đống)</li>
+                <li>• Dijkstra's algorithm</li>
+                <li>• Memory management</li>
+              </ul>
+            </div>
+            <div className="bg-white dark:bg-slate-800 p-3 rounded">
+              <strong className="text-green-600 dark:text-green-400">⚡ Tính chất quan trọng:</strong>
+              <ul className="mt-1 text-gray-600 dark:text-gray-300">
+                <li>• Cây nhị phân hoàn chỉnh</li>
+                <li>• Insert/Delete: O(log n)</li>
+                <li>• Find min/max: O(1)</li>
+                <li>• Được lưu trong array</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-violet-50 dark:bg-violet-900/20 p-4 rounded-lg mb-4 border-l-4 border-violet-500">
+          <h4 className="font-semibold text-violet-800 dark:text-violet-300 mb-2">🔺 Max-Heap vs Min-Heap:</h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+            <div>
+              <strong>Max-Heap:</strong> Cha ≥ Con
+              <br/><span className="text-gray-600 dark:text-gray-400">→ Root = phần tử lớn nhất</span>
+            </div>
+            <div>
+              <strong>Min-Heap:</strong> Cha ≤ Con
+              <br/><span className="text-gray-600 dark:text-gray-400">→ Root = phần tử nhỏ nhất</span>
+            </div>
+          </div>
+        </div>
 
         <div className="space-y-4">
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">

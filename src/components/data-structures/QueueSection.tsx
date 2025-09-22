@@ -186,9 +186,49 @@ export function QueueSection() {
           <ArrowRight className="h-5 w-5" />
           🦀 Rust WASM Queue (Hàng Đợi)
         </h3>
-        <p className="text-gray-600 dark:text-gray-300 mb-4">
-          Demo tương tác Queue sử dụng Rust WASM. Queue là cấu trúc dữ liệu FIFO (First In, First Out) - phần tử đầu tiên được thêm vào sẽ là phần tử đầu tiên được lấy ra.
-        </p>
+
+        {/* Định nghĩa và giải thích cơ bản */}
+        <div className="bg-cyan-50 dark:bg-cyan-900/20 p-4 rounded-lg mb-4 border-l-4 border-cyan-500">
+          <h4 className="font-semibold text-cyan-800 dark:text-cyan-300 mb-2">🚶‍♂️ Queue là gì?</h4>
+          <p className="text-gray-700 dark:text-gray-300 mb-3">
+            <strong>Queue (Hàng Đợi)</strong> là cấu trúc dữ liệu tuân theo nguyên tắc <strong>FIFO (First In, First Out)</strong>.
+            Giống như xếp hàng mua vé: người đến trước sẽ được phục vụ trước.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+            <div className="bg-white dark:bg-slate-800 p-3 rounded">
+              <strong className="text-blue-600 dark:text-blue-400">🎯 Ứng dụng thực tế:</strong>
+              <ul className="mt-1 text-gray-600 dark:text-gray-300">
+                <li>• Hàng đợi in ấn (Print Queue)</li>
+                <li>• Xử lý tasks, job scheduling</li>
+                <li>• Breadth-First Search (BFS)</li>
+                <li>• Buffer cho streaming</li>
+              </ul>
+            </div>
+            <div className="bg-white dark:bg-slate-800 p-3 rounded">
+              <strong className="text-green-600 dark:text-green-400">⚡ Thao tác chính:</strong>
+              <ul className="mt-1 text-gray-600 dark:text-gray-300">
+                <li>• <strong>Enqueue:</strong> Thêm vào cuối</li>
+                <li>• <strong>Dequeue:</strong> Lấy từ đầu</li>
+                <li>• <strong>Front:</strong> Xem phần tử đầu</li>
+                <li>• <strong>Rear:</strong> Xem phần tử cuối</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg mb-4 border-l-4 border-amber-500">
+          <h4 className="font-semibold text-amber-800 dark:text-amber-300 mb-2">🔄 Queue vs Stack:</h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+            <div>
+              <strong>Queue (FIFO):</strong> Thêm cuối, lấy đầu
+              <br/><span className="text-gray-600 dark:text-gray-400">→ Công bằng, theo thứ tự</span>
+            </div>
+            <div>
+              <strong>Stack (LIFO):</strong> Thêm đỉnh, lấy đỉnh
+              <br/><span className="text-gray-600 dark:text-gray-400">→ Ưu tiên mới nhất</span>
+            </div>
+          </div>
+        </div>
 
         <div className="space-y-4">
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">

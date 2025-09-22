@@ -125,9 +125,53 @@ export function SortingSection() {
           <SortAsc className="h-5 w-5" />
           🦀 Rust WASM Giải Thuật Sắp Xếp
         </h3>
-        <p className="text-gray-600 dark:text-gray-300 mb-4">
-          Demo tương tác các giải thuật sắp xếp sử dụng Rust WASM. Các thuật toán được tối ưu hóa và có thể so sánh hiệu suất trực tiếp.
-        </p>
+
+        {/* Định nghĩa và giải thích cơ bản */}
+        <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg mb-4 border-l-4 border-purple-500">
+          <h4 className="font-semibold text-purple-800 dark:text-purple-300 mb-2">📊 Sắp Xếp là gì?</h4>
+          <p className="text-gray-700 dark:text-gray-300 mb-3">
+            <strong>Sắp xếp (Sorting)</strong> là quá trình sắp đặt các phần tử theo thứ tự nhất định (tăng dần hoặc giảm dần).
+            Là một trong những vấn đề cơ bản nhất trong khoa học máy tính.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+            <div className="bg-white dark:bg-slate-800 p-3 rounded">
+              <strong className="text-green-600 dark:text-green-400">🎯 Tại sao cần sắp xếp?</strong>
+              <ul className="mt-1 text-gray-600 dark:text-gray-300">
+                <li>• Tìm kiếm nhanh hơn</li>
+                <li>• Dễ phân tích dữ liệu</li>
+                <li>• Cơ sở cho nhiều thuật toán</li>
+                <li>• Hiển thị đẹp cho người dùng</li>
+              </ul>
+            </div>
+            <div className="bg-white dark:bg-slate-800 p-3 rounded">
+              <strong className="text-blue-600 dark:text-blue-400">💡 Ứng dụng thực tế:</strong>
+              <ul className="mt-1 text-gray-600 dark:text-gray-300">
+                <li>• Danh bạ điện thoại</li>
+                <li>• Kết quả tìm kiếm Google</li>
+                <li>• Sắp xếp file theo tên/ngày</li>
+                <li>• Xếp hạng trong game</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-rose-50 dark:bg-rose-900/20 p-4 rounded-lg mb-4 border-l-4 border-rose-500">
+          <h4 className="font-semibold text-rose-800 dark:text-rose-300 mb-2">⚡ Phân loại thuật toán sắp xếp:</h4>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
+            <div>
+              <strong>Stable vs Unstable:</strong>
+              <br/><span className="text-gray-600 dark:text-gray-400">Có giữ thứ tự phần tử bằng nhau?</span>
+            </div>
+            <div>
+              <strong>In-place vs Out-place:</strong>
+              <br/><span className="text-gray-600 dark:text-gray-400">Cần thêm bộ nhớ không?</span>
+            </div>
+            <div>
+              <strong>Comparison vs Non-comparison:</strong>
+              <br/><span className="text-gray-600 dark:text-gray-400">So sánh phần tử hay không?</span>
+            </div>
+          </div>
+        </div>
 
         <div className="space-y-4">
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">

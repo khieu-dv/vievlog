@@ -136,9 +136,45 @@ export function StackSection() {
           <Layers className="h-5 w-5" />
           🦀 Rust WASM Stack (Ngăn Xếp)
         </h3>
-        <p className="text-gray-600 dark:text-gray-300 mb-4">
-          Demo tương tác Stack sử dụng Rust WASM. Stack được tối ưu hóa là cấu trúc dữ liệu LIFO (Last In, First Out) cho phép thêm và lấy phần tử chỉ ở một đầu gọi là đỉnh.
-        </p>
+
+        {/* Định nghĩa và giải thích cơ bản */}
+        <div className="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg mb-4 border-l-4 border-red-500">
+          <h4 className="font-semibold text-red-800 dark:text-red-300 mb-2">📚 Stack là gì?</h4>
+          <p className="text-gray-700 dark:text-gray-300 mb-3">
+            <strong>Stack (Ngăn Xếp)</strong> là cấu trúc dữ liệu tuân theo nguyên tắc <strong>LIFO (Last In, First Out)</strong>.
+            Giống như chồng sách: sách cuối cùng đặt lên sẽ là sách đầu tiên được lấy ra.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+            <div className="bg-white dark:bg-slate-800 p-3 rounded">
+              <strong className="text-blue-600 dark:text-blue-400">🎯 Ứng dụng thực tế:</strong>
+              <ul className="mt-1 text-gray-600 dark:text-gray-300">
+                <li>• Undo/Redo trong editor</li>
+                <li>• Function call stack</li>
+                <li>• Browser back button</li>
+                <li>• Kiểm tra ngoặc cân bằng</li>
+              </ul>
+            </div>
+            <div className="bg-white dark:bg-slate-800 p-3 rounded">
+              <strong className="text-green-600 dark:text-green-400">⚡ Thao tác chính:</strong>
+              <ul className="mt-1 text-gray-600 dark:text-gray-300">
+                <li>• <strong>Push:</strong> Thêm vào đỉnh</li>
+                <li>• <strong>Pop:</strong> Lấy từ đỉnh</li>
+                <li>• <strong>Peek/Top:</strong> Xem đỉnh</li>
+                <li>• <strong>IsEmpty:</strong> Kiểm tra rỗng</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-pink-50 dark:bg-pink-900/20 p-4 rounded-lg mb-4 border-l-4 border-pink-500">
+          <h4 className="font-semibold text-pink-800 dark:text-pink-300 mb-2">💡 Tại sao dùng Stack?</h4>
+          <div className="text-sm text-gray-700 dark:text-gray-300">
+            <strong>Stack rất hiệu quả cho các bài toán cần "quay lại trạng thái trước":</strong>
+            <br/>• Tất cả operations O(1) - cực nhanh
+            <br/>• Memory hiệu quả - chỉ cần track đỉnh
+            <br/>• Đơn giản implement và debug
+          </div>
+        </div>
 
         {result && (
           <div className="mb-4 p-3 bg-orange-50 dark:bg-orange-900/20 rounded">
