@@ -410,10 +410,16 @@ fn apply_color_grade(data: &mut [u8], shadows: (f32, f32, f32), highlights: (f32
     }
 }
 
+// Data Structures and Algorithms Module
+pub mod data_structures;
+
+// Re-export data structures
+pub use data_structures::*;
+
 #[wasm_bindgen(start)]
 pub fn main() {
     #[cfg(feature = "console_error_panic_hook")]
     console_error_panic_hook::set_once();
-    
+
     console_log!("VieVlog Rust WASM with Bevy 0.16 initialized!");
 }

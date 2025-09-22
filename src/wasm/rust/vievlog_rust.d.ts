@@ -1,6 +1,17 @@
 /* tslint:disable */
 /* eslint-disable */
 export function main(): void;
+export function bubble_sort(arr: Int32Array): void;
+export function bubble_sort_array(arr: Int32Array): Array<any>;
+export function quick_sort_array(arr: Int32Array): Array<any>;
+export function merge_sort_array(arr: Int32Array): Array<any>;
+export function binary_search(arr: Int32Array, target: number): number | undefined;
+export function binary_search_array(arr: Int32Array, target: number): any;
+export function linear_search(arr: Int32Array, target: number): number | undefined;
+export function linear_search_array(arr: Int32Array, target: number): any;
+export function generate_random_array(size: number, max_value: number): Array<any>;
+export function generate_sorted_array(size: number): Array<any>;
+export function benchmark_sort(algorithm: string, arr: Int32Array): number;
 /**
  * Process image with Bevy ECS system
  */
@@ -77,3 +88,45 @@ export function bevy_generate_slideshow(images_data: Array<any>, frames_per_imag
  * Generate parallax scrolling effect
  */
 export function bevy_generate_parallax(bg_data: Uint8Array, fg_data: Uint8Array, width: number, height: number, frames: number, scroll_speed: number): Array<any>;
+export class BinarySearchTree {
+  free(): void;
+  constructor();
+  insert(value: number): void;
+  search(value: number): boolean;
+  inorder_traversal(): Array<any>;
+}
+export class Graph {
+  free(): void;
+  constructor();
+  add_vertex(vertex: number): void;
+  add_edge(from: number, to: number): void;
+  add_undirected_edge(vertex1: number, vertex2: number): void;
+  get_neighbors(vertex: number): Array<any>;
+  get_vertices(): Array<any>;
+}
+export class LinkedList {
+  free(): void;
+  constructor();
+  push_front(value: number): void;
+  pop_front(): number | undefined;
+  len(): number;
+  to_array(): Array<any>;
+}
+export class ListNode {
+  private constructor();
+  free(): void;
+}
+export class RustVector {
+  free(): void;
+  constructor();
+  push(value: number): void;
+  pop(): number | undefined;
+  get(index: number): number | undefined;
+  len(): number;
+  to_array(): Array<any>;
+}
+export class TreeNode {
+  free(): void;
+  constructor(value: number);
+  get_value(): number;
+}
