@@ -1,77 +1,130 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Layers } from "lucide-react";
 import { MermaidDiagram } from "~/components/common/MermaidDiagram";
+import { initRustWasm } from "~/lib/rust-wasm-helper";
 
 export function StackSection() {
-  const [stack, setStack] = useState<number[]>([]);
+  const [rustStack, setRustStack] = useState<any>(null);
+  const [wasmReady, setWasmReady] = useState(false);
+  const [stackDisplay, setStackDisplay] = useState<number[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [result, setResult] = useState("");
+  const [wasm, setWasm] = useState<any>(null);
+  const [expression, setExpression] = useState("");
+  const [balanceResult, setBalanceResult] = useState("");
+
+  // Initialize WASM
+  useEffect(() => {
+    async function init() {
+      try {
+        const wasmInstance = await initRustWasm();
+        const newStack = wasmInstance.dataStructures.createStack();
+        setRustStack(newStack);
+        setWasm(wasmInstance);
+        setWasmReady(true);
+        setResult("✅ Rust WASM Stack đã sẵn sàng!");
+      } catch (error) {
+        console.error("Failed to initialize WASM:", error);
+        setResult("❌ Không thể khởi tạo Rust WASM");
+      }
+    }
+    init();
+  }, []);
+
+  // Helper function to update display array from Rust stack
+  const updateDisplayFromRustStack = () => {
+    if (rustStack) {
+      try {
+        const stackArray = Array.from(rustStack.to_array()) as number[];
+        setStackDisplay(stackArray);
+      } catch (error) {
+        console.error("Error updating display:", error);
+      }
+    }
+  };
 
   const push = () => {
     const value = parseInt(inputValue);
     if (!isNaN(value)) {
-      const newStack = [...stack, value];
-      setStack(newStack);
-      setResult(`Đã push ${value} vào stack. Kích thước: ${newStack.length}`);
-      setInputValue("");
-    } else {
-      setResult("Vui lòng nhập một số hợp lệ");
+      if (wasmReady && rustStack) {
+        try {
+          rustStack.push(value);
+          const wasmSize = rustStack.len();
+          setResult(`🦀 Đã push ${value} vào stack. Kích thước: ${wasmSize}`);
+          updateDisplayFromRustStack();
+          setInputValue("");
+        } catch (error) {
+          setResult("❌ Rust WASM push failed: " + error);
+        }
+      } else {
+        setResult("❌ WASM chưa sẵn sàng");
+      }
     }
   };
 
   const pop = () => {
-    if (stack.length > 0) {
-      const poppedValue = stack[stack.length - 1];
-      const newStack = stack.slice(0, -1);
-      setStack(newStack);
-      setResult(`Đã pop ${poppedValue} khỏi stack. Kích thước: ${newStack.length}`);
+    if (wasmReady && rustStack) {
+      try {
+        const poppedValue = rustStack.pop();
+        const wasmSize = rustStack.len();
+        if (poppedValue !== null && poppedValue !== undefined) {
+          setResult(`🦀 Đã pop ${poppedValue} khỏi stack. Kích thước: ${wasmSize}`);
+        } else {
+          setResult(`🦀 Stack rỗng, không thể pop`);
+        }
+        updateDisplayFromRustStack();
+      } catch (error) {
+        setResult("❌ Rust WASM pop failed: " + error);
+      }
     } else {
-      setResult("Stack trống, không thể pop");
+      setResult("❌ WASM chưa sẵn sàng");
     }
   };
 
   const peek = () => {
-    if (stack.length > 0) {
-      const topValue = stack[stack.length - 1];
-      setResult(`Phần tử trên đỉnh: ${topValue}`);
+    if (wasmReady && rustStack) {
+      try {
+        const topValue = rustStack.peek();
+        if (topValue !== null && topValue !== undefined) {
+          setResult(`🦀 Phần tử trên đỉnh: ${topValue}`);
+        } else {
+          setResult(`🦀 Stack rỗng`);
+        }
+      } catch (error) {
+        setResult("❌ Rust WASM peek failed: " + error);
+      }
     } else {
-      setResult("Stack trống");
+      setResult("❌ WASM chưa sẵn sàng");
     }
   };
 
   const clear = () => {
-    setStack([]);
-    setResult("Đã xóa toàn bộ stack");
-  };
-
-  const checkBalance = (expression: string): string => {
-    const stack: string[] = [];
-    const opening = ['(', '[', '{'];
-    const closing = [')', ']', '}'];
-    const pairs: { [key: string]: string } = { ')': '(', ']': '[', '}': '{' };
-
-    for (let char of expression) {
-      if (opening.includes(char)) {
-        stack.push(char);
-      } else if (closing.includes(char)) {
-        if (stack.length === 0 || stack.pop() !== pairs[char]) {
-          return "Không cân bằng";
-        }
+    if (wasmReady && rustStack) {
+      try {
+        rustStack.clear();
+        const wasmSize = rustStack.len();
+        setResult(`🦀 Đã xóa toàn bộ stack. Kích thước: ${wasmSize}`);
+        updateDisplayFromRustStack();
+      } catch (error) {
+        setResult("❌ Rust WASM clear failed: " + error);
       }
+    } else {
+      setResult("❌ WASM chưa sẵn sàng");
     }
-
-    return stack.length === 0 ? "Cân bằng" : "Không cân bằng";
   };
-
-  const [expression, setExpression] = useState("");
-  const [balanceResult, setBalanceResult] = useState("");
 
   const checkExpressionBalance = () => {
-    if (expression.trim()) {
-      const result = checkBalance(expression);
-      setBalanceResult(`Biểu thức "${expression}" ${result}`);
+    if (expression.trim() && wasmReady && wasm) {
+      try {
+        const result = wasm.algorithms.utils.isBalancedParentheses(expression);
+        setBalanceResult(`🦀 Biểu thức "${expression}" ${result ? "Cân bằng" : "Không cân bằng"}`);
+      } catch (error) {
+        setBalanceResult("❌ Rust WASM error: " + error);
+      }
+    } else {
+      setBalanceResult("❌ WASM chưa sẵn sàng hoặc biểu thức trống");
     }
   };
 
@@ -80,16 +133,22 @@ export function StackSection() {
       <div className="bg-white dark:bg-slate-800 rounded-lg p-6 border">
         <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
           <Layers className="h-5 w-5" />
-          Stack (Ngăn Xếp)
+          🦀 Rust WASM Stack (Ngăn Xếp)
         </h3>
         <p className="text-gray-600 dark:text-gray-300 mb-4">
-          Stack là cấu trúc dữ liệu LIFO (Last In, First Out) - phần tử cuối cùng được thêm vào sẽ là phần tử đầu tiên được lấy ra.
+          Demo tương tác Stack sử dụng Rust WASM. Stack được tối ưu hóa là cấu trúc dữ liệu LIFO (Last In, First Out) cho phép thêm và lấy phần tử chỉ ở một đầu gọi là đỉnh.
         </p>
+
+        {result && (
+          <div className="mb-4 p-3 bg-orange-50 dark:bg-orange-900/20 rounded">
+            <strong>Kết quả:</strong> {result}
+          </div>
+        )}
 
         <div className="space-y-4">
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
-            <h4 className="font-medium mb-2">Thao Tác Stack:</h4>
-            <div className="flex gap-2 mb-3 flex-wrap">
+            <h4 className="font-medium mb-2">Stack Tương Tác:</h4>
+            <div className="flex gap-2 mb-3">
               <input
                 type="number"
                 value={inputValue}
@@ -99,90 +158,78 @@ export function StackSection() {
               />
               <button
                 onClick={push}
-                className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+                disabled={!wasmReady}
+                className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 disabled:opacity-50"
               >
-                Push
+                🦀 Push
               </button>
               <button
                 onClick={pop}
-                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                disabled={!wasmReady}
+                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 disabled:opacity-50"
               >
-                Pop
+                🦀 Pop
               </button>
               <button
                 onClick={peek}
-                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                disabled={!wasmReady}
+                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50"
               >
-                Peek
+                🦀 Peek
               </button>
               <button
                 onClick={clear}
-                className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
+                disabled={!wasmReady}
+                className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 disabled:opacity-50"
               >
-                Clear
+                🧹 Clear
               </button>
             </div>
 
-            {result && (
-              <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-900/20 rounded">
-                <strong>Kết quả:</strong> {result}
-              </div>
-            )}
-          </div>
-
-          <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
-            <h4 className="font-medium mb-2">Trạng Thái Stack:</h4>
-            <div className="space-y-2">
-              <p className="text-sm">
-                <strong>Kích thước:</strong> {stack.length}
-              </p>
-              <p className="text-sm">
-                <strong>Top:</strong> {stack.length > 0 ? stack[stack.length - 1] : "Stack trống"}
-              </p>
-              <div className="bg-white dark:bg-slate-800 p-3 rounded">
-                <div className="font-mono text-sm">
-                  {stack.length === 0 ? (
-                    <div className="text-gray-500 text-center py-4">Stack trống</div>
-                  ) : (
-                    <div className="space-y-1">
-                      {[...stack].reverse().map((value, index) => (
-                        <div
-                          key={stack.length - 1 - index}
-                          className={`p-2 border-2 text-center ${
-                            index === 0
-                              ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20"
-                              : "border-gray-300 dark:border-gray-600"
-                          }`}
-                        >
-                          {value} {index === 0 && "← TOP"}
-                        </div>
-                      ))}
+            <div className="mb-4">
+              <h5 className="font-medium mb-2">🦀 Stack hiện tại (đỉnh ở bên phải):</h5>
+              <div className="flex items-end gap-1 min-h-16 p-3 bg-white dark:bg-slate-800 rounded border">
+                {stackDisplay.length === 0 ? (
+                  <div className="text-gray-500 italic">Stack rỗng</div>
+                ) : (
+                  stackDisplay.map((value, index) => (
+                    <div
+                      key={index}
+                      className={`p-2 border-2 text-center ${
+                        index === stackDisplay.length - 1
+                          ? "border-orange-500 bg-orange-100 dark:bg-orange-900"
+                          : "border-blue-500 bg-blue-100 dark:bg-blue-900"
+                      }`}
+                      style={{ minWidth: "40px" }}
+                    >
+                      {value}
                     </div>
-                  )}
-                </div>
+                  ))
+                )}
               </div>
             </div>
           </div>
 
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
-            <h4 className="font-medium mb-2">Ứng Dụng: Kiểm Tra Dấu Ngoặc Cân Bằng:</h4>
+            <h4 className="font-medium mb-2">Kiểm Tra Dấu Ngoặc Cân Bằng:</h4>
             <div className="flex gap-2 mb-3">
               <input
                 type="text"
                 value={expression}
                 onChange={(e) => setExpression(e.target.value)}
-                placeholder="Nhập biểu thức có dấu ngoặc: (a+b)[c+d]{e+f}"
+                placeholder="Nhập biểu thức (vd: (a+b)[c+d])"
                 className="flex-1 px-3 py-2 border rounded dark:bg-slate-600 dark:border-slate-500"
               />
               <button
                 onClick={checkExpressionBalance}
-                className="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600"
+                disabled={!wasmReady}
+                className="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600 disabled:opacity-50"
               >
-                Kiểm Tra
+                🦀 Kiểm Tra
               </button>
             </div>
             {balanceResult && (
-              <div className="p-3 bg-green-50 dark:bg-green-900/20 rounded">
+              <div className="p-3 bg-orange-50 dark:bg-orange-900/20 rounded">
                 <strong>Kết quả:</strong> {balanceResult}
               </div>
             )}
@@ -194,28 +241,20 @@ export function StackSection() {
               chart={`
                 graph TD
                     subgraph "Stack Operations"
-                        TOP[Top] --> ELEM3[Element 3]
-                        ELEM3 --> ELEM2[Element 2]
-                        ELEM2 --> ELEM1[Element 1]
-                        ELEM1 --> BOTTOM[Bottom]
+                        A[Push] --> B[Top]
+                        B --> C[Element 3]
+                        C --> D[Element 2]
+                        D --> E[Element 1]
+                        E --> F[Bottom]
 
-                        PUSH[Push Operation] --> TOP
-                        POP[Pop Operation] --> TOP
-                        PEEK[Peek Operation] --> TOP
+                        G[Pop] --> B
+                        H[Peek] -.-> B
                     end
 
-                    subgraph "Stack Applications"
-                        APP1[Function Calls]
-                        APP2[Expression Evaluation]
-                        APP3[Bracket Matching]
-                        APP4[Undo Operations]
-                        APP5[Browser History]
-                    end
-
-                    style TOP fill:#FF5722,color:#fff
-                    style PUSH fill:#4CAF50,color:#fff
-                    style POP fill:#F44336,color:#fff
-                    style PEEK fill:#2196F3,color:#fff
+                    style B fill:#FF9800,color:#fff
+                    style A fill:#4CAF50,color:#fff
+                    style G fill:#F44336,color:#fff
+                    style H fill:#2196F3,color:#fff
               `}
               className="mb-4"
             />
@@ -261,7 +300,7 @@ export function StackSection() {
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
             <h4 className="font-medium mb-2">Cài Đặt Rust:</h4>
             <pre className="text-sm bg-gray-900 text-green-400 p-3 rounded overflow-x-auto">
-{`// Stack implementation với Vec
+              {`// Stack implementation với Vec
 #[derive(Debug)]
 pub struct Stack<T> {
     items: Vec<T>,
@@ -274,49 +313,40 @@ impl<T> Stack<T> {
         }
     }
 
-    // Thêm phần tử vào đỉnh stack
     pub fn push(&mut self, item: T) {
         self.items.push(item);
     }
 
-    // Lấy phần tử từ đỉnh stack
     pub fn pop(&mut self) -> Option<T> {
         self.items.pop()
     }
 
-    // Xem phần tử trên đỉnh mà không lấy ra
     pub fn peek(&self) -> Option<&T> {
         self.items.last()
     }
 
-    // Kiểm tra stack có trống không
     pub fn is_empty(&self) -> bool {
         self.items.is_empty()
     }
 
-    // Lấy kích thước stack
     pub fn len(&self) -> usize {
         self.items.len()
     }
 }
 
-// Ứng dụng: Kiểm tra dấu ngoặc cân bằng
-pub fn is_balanced(expression: &str) -> bool {
-    let mut stack = Stack::new();
-    let pairs = [('(', ')'), ('[', ']'), ('{', '}')];
+// Kiểm tra dấu ngoặc cân bằng
+fn is_balanced(expression: &str) -> bool {
+    let mut stack = Vec::new();
 
     for ch in expression.chars() {
         match ch {
             '(' | '[' | '{' => stack.push(ch),
             ')' | ']' | '}' => {
-                if let Some(top) = stack.pop() {
-                    let mut matched = false;
-                    for (open, close) in &pairs {
-                        if top == *open && ch == *close {
-                            matched = true;
-                            break;
-                        }
-                    }
+                if let Some(last) = stack.pop() {
+                    let matched = match (last, ch) {
+                        ('(', ')') | ('[', ']') | ('{', '}') => true,
+                        _ => false,
+                    };
                     if !matched {
                         return false;
                     }

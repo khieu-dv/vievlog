@@ -1,58 +1,134 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ArrowRight } from "lucide-react";
 import { MermaidDiagram } from "~/components/common/MermaidDiagram";
+import { initRustWasm } from "~/lib/rust-wasm-helper";
 
 export function QueueSection() {
-  const [queue, setQueue] = useState<number[]>([]);
+  const [rustQueue, setRustQueue] = useState<any>(null);
+  const [wasmReady, setWasmReady] = useState(false);
+  const [queueDisplay, setQueueDisplay] = useState<number[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [result, setResult] = useState("");
+  const [wasm, setWasm] = useState<any>(null);
+
+  // Initialize WASM
+  useEffect(() => {
+    async function init() {
+      try {
+        const wasmInstance = await initRustWasm();
+        const newQueue = wasmInstance.dataStructures.createQueue();
+        setRustQueue(newQueue);
+        setWasm(wasmInstance);
+        setWasmReady(true);
+        setResult("✅ Rust WASM Queue đã sẵn sàng!");
+      } catch (error) {
+        console.error("Failed to initialize WASM:", error);
+        setResult("❌ Không thể khởi tạo Rust WASM");
+      }
+    }
+    init();
+  }, []);
+
+  // Update display from Rust queue
+  const updateDisplayFromRustQueue = () => {
+    if (rustQueue) {
+      try {
+        const queueArray = Array.from(rustQueue.to_array()) as number[];
+        setQueueDisplay(queueArray);
+      } catch (error) {
+        console.error("Error updating display:", error);
+      }
+    }
+  };
 
   const enqueue = () => {
     const value = parseInt(inputValue);
     if (!isNaN(value)) {
-      const newQueue = [...queue, value];
-      setQueue(newQueue);
-      setResult(`Đã enqueue ${value} vào queue. Kích thước: ${newQueue.length}`);
-      setInputValue("");
+      if (wasmReady && rustQueue) {
+        try {
+          rustQueue.enqueue(value);
+          const wasmSize = rustQueue.len();
+          setResult(`🦀 Đã enqueue ${value} vào queue. Kích thước: ${wasmSize}`);
+          updateDisplayFromRustQueue();
+          setInputValue("");
+        } catch (error) {
+          setResult("❌ Rust WASM enqueue failed: " + error);
+        }
+      } else {
+        setResult("❌ WASM chưa sẵn sàng");
+      }
     } else {
       setResult("Vui lòng nhập một số hợp lệ");
     }
   };
 
   const dequeue = () => {
-    if (queue.length > 0) {
-      const dequeuedValue = queue[0];
-      const newQueue = queue.slice(1);
-      setQueue(newQueue);
-      setResult(`Đã dequeue ${dequeuedValue} khỏi queue. Kích thước: ${newQueue.length}`);
+    if (wasmReady && rustQueue) {
+      try {
+        const dequeuedValue = rustQueue.dequeue();
+        const wasmSize = rustQueue.len();
+        if (dequeuedValue !== null && dequeuedValue !== undefined) {
+          setResult(`🦀 Đã dequeue ${dequeuedValue} khỏi queue. Kích thước: ${wasmSize}`);
+        } else {
+          setResult("🦀 Queue trống, không thể dequeue");
+        }
+        updateDisplayFromRustQueue();
+      } catch (error) {
+        setResult("❌ Rust WASM dequeue failed: " + error);
+      }
     } else {
-      setResult("Queue trống, không thể dequeue");
+      setResult("❌ WASM chưa sẵn sàng");
     }
   };
 
   const front = () => {
-    if (queue.length > 0) {
-      const frontValue = queue[0];
-      setResult(`Phần tử đầu queue: ${frontValue}`);
+    if (wasmReady && rustQueue) {
+      try {
+        const frontValue = rustQueue.front();
+        if (frontValue !== null && frontValue !== undefined) {
+          setResult(`🦀 Phần tử đầu queue: ${frontValue}`);
+        } else {
+          setResult("🦀 Queue trống");
+        }
+      } catch (error) {
+        setResult("❌ Rust WASM front failed: " + error);
+      }
     } else {
-      setResult("Queue trống");
+      setResult("❌ WASM chưa sẵn sàng");
     }
   };
 
   const rear = () => {
-    if (queue.length > 0) {
-      const rearValue = queue[queue.length - 1];
-      setResult(`Phần tử cuối queue: ${rearValue}`);
+    if (wasmReady && rustQueue) {
+      try {
+        const rearValue = rustQueue.rear();
+        if (rearValue !== null && rearValue !== undefined) {
+          setResult(`🦀 Phần tử cuối queue: ${rearValue}`);
+        } else {
+          setResult("🦀 Queue trống");
+        }
+      } catch (error) {
+        setResult("❌ Rust WASM rear failed: " + error);
+      }
     } else {
-      setResult("Queue trống");
+      setResult("❌ WASM chưa sẵn sàng");
     }
   };
 
   const clear = () => {
-    setQueue([]);
-    setResult("Đã xóa toàn bộ queue");
+    if (wasmReady && rustQueue) {
+      try {
+        rustQueue.clear();
+        setResult("🦀 Đã xóa toàn bộ queue");
+        updateDisplayFromRustQueue();
+      } catch (error) {
+        setResult("❌ Rust WASM clear failed: " + error);
+      }
+    } else {
+      setResult("❌ WASM chưa sẵn sàng");
+    }
   };
 
   // Circular Queue simulation
@@ -107,10 +183,10 @@ export function QueueSection() {
       <div className="bg-white dark:bg-slate-800 rounded-lg p-6 border">
         <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
           <ArrowRight className="h-5 w-5" />
-          Queue (Hàng Đợi)
+          🦀 Rust WASM Queue (Hàng Đợi)
         </h3>
         <p className="text-gray-600 dark:text-gray-300 mb-4">
-          Queue là cấu trúc dữ liệu FIFO (First In, First Out) - phần tử đầu tiên được thêm vào sẽ là phần tử đầu tiên được lấy ra.
+          Demo tương tác Queue sử dụng Rust WASM. Queue là cấu trúc dữ liệu FIFO (First In, First Out) - phần tử đầu tiên được thêm vào sẽ là phần tử đầu tiên được lấy ra.
         </p>
 
         <div className="space-y-4">
@@ -167,34 +243,34 @@ export function QueueSection() {
             <h4 className="font-medium mb-2">Trạng Thái Queue:</h4>
             <div className="space-y-2">
               <p className="text-sm">
-                <strong>Kích thước:</strong> {queue.length}
+                <strong>Kích thước:</strong> {wasmReady && rustQueue ? rustQueue.len() : "Chưa khởi tạo"}
               </p>
               <p className="text-sm">
-                <strong>Front:</strong> {queue.length > 0 ? queue[0] : "Queue trống"}
+                <strong>Front:</strong> {queueDisplay.length > 0 ? queueDisplay[0] : "Queue trống"}
               </p>
               <p className="text-sm">
-                <strong>Rear:</strong> {queue.length > 0 ? queue[queue.length - 1] : "Queue trống"}
+                <strong>Rear:</strong> {queueDisplay.length > 0 ? queueDisplay[queueDisplay.length - 1] : "Queue trống"}
               </p>
               <div className="bg-white dark:bg-slate-800 p-3 rounded">
                 <div className="font-mono text-sm">
-                  {queue.length === 0 ? (
+                  {queueDisplay.length === 0 ? (
                     <div className="text-gray-500 text-center py-4">Queue trống</div>
                   ) : (
                     <div className="flex gap-2 overflow-x-auto">
-                      {queue.map((value, index) => (
+                      {queueDisplay.map((value, index) => (
                         <div
                           key={index}
                           className={`p-2 border-2 min-w-[60px] text-center ${
                             index === 0
                               ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20"
-                              : index === queue.length - 1
+                              : index === queueDisplay.length - 1
                               ? "border-green-500 bg-green-50 dark:bg-green-900/20"
                               : "border-gray-300 dark:border-gray-600"
                           }`}
                         >
                           {value}
                           {index === 0 && <div className="text-xs text-blue-600">FRONT</div>}
-                          {index === queue.length - 1 && <div className="text-xs text-green-600">REAR</div>}
+                          {index === queueDisplay.length - 1 && <div className="text-xs text-green-600">REAR</div>}
                         </div>
                       ))}
                       <div className="flex items-center text-gray-500">→ OUT</div>

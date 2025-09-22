@@ -410,11 +410,18 @@ fn apply_color_grade(data: &mut [u8], shadows: (f32, f32, f32), highlights: (f32
     }
 }
 
-// Data Structures and Algorithms Module
+// Data Structures and Algorithms Modules
 pub mod data_structures;
+pub mod algorithms;
 
-// Re-export data structures
-pub use data_structures::*;
+// Re-export specific modules to avoid conflicts
+pub use data_structures::{
+    arrays::*, linked_lists::*, trees::*, graphs::*,
+    hash_tables::*, stacks::*, queues::*, heaps::*
+};
+pub use algorithms::{
+    sorting::*, searching::*, graph_algorithms::*, dynamic_programming::*
+};
 
 #[wasm_bindgen(start)]
 pub fn main() {

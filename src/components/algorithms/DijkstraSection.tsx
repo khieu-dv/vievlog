@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Route } from "lucide-react";
 import { MermaidDiagram } from "~/components/common/MermaidDiagram";
+import { initRustWasm } from "~/lib/rust-wasm-helper";
 
 interface Edge {
   from: number;
@@ -18,8 +19,10 @@ interface DijkstraResult {
 }
 
 export function DijkstraSection() {
+  const [rustGraph, setRustGraph] = useState<any>(null);
+  const [wasmReady, setWasmReady] = useState(false);
   const [nodes, setNodes] = useState(5);
-  const [edges, setEdges] = useState<Edge[]>([
+  const [edgesDisplay, setEdgesDisplay] = useState<Edge[]>([
     { from: 0, to: 1, weight: 4 },
     { from: 0, to: 2, weight: 2 },
     { from: 1, to: 2, weight: 1 },
@@ -30,10 +33,47 @@ export function DijkstraSection() {
   ]);
   const [startNode, setStartNode] = useState(0);
   const [endNode, setEndNode] = useState(4);
-  const [result, setResult] = useState<DijkstraResult | null>(null);
-  const [steps, setSteps] = useState<string[]>([]);
-
+  const [result, setResult] = useState("");
+  const [pathResult, setPathResult] = useState<number[]>([]);
+  const [distanceResult, setDistanceResult] = useState<number[]>([]);
   const [newEdge, setNewEdge] = useState({ from: 0, to: 1, weight: 1 });
+  const [wasm, setWasm] = useState<any>(null);
+
+  // Initialize WASM
+  useEffect(() => {
+    async function init() {
+      try {
+        const wasmInstance = await initRustWasm();
+        const newGraph = wasmInstance.dataStructures.createWeightedGraph(true);
+
+        // Initialize with default edges
+        edgesDisplay.forEach(edge => {
+          newGraph.addEdge(edge.from, edge.to, edge.weight);
+        });
+
+        setRustGraph(newGraph);
+        setWasm(wasmInstance);
+        setWasmReady(true);
+        setResult("✅ Rust WASM Dijkstra Algorithm đã sẵn sàng!");
+      } catch (error) {
+        console.error("Failed to initialize WASM:", error);
+        setResult("❌ Không thể khởi tạo Rust WASM");
+      }
+    }
+    init();
+  }, []);
+
+  // Update display from Rust graph
+  const updateDisplayFromRustGraph = () => {
+    if (rustGraph) {
+      try {
+        const edges = Array.from(rustGraph.getEdges()) as Edge[];
+        setEdgesDisplay(edges);
+      } catch (error) {
+        console.error("Error updating display:", error);
+      }
+    }
+  };
 
   const addEdge = () => {
     if (newEdge.from >= 0 && newEdge.from < nodes &&
@@ -41,103 +81,64 @@ export function DijkstraSection() {
         newEdge.from !== newEdge.to &&
         newEdge.weight > 0) {
 
-      // Check if edge already exists
-      const exists = edges.some(e =>
-        (e.from === newEdge.from && e.to === newEdge.to) ||
-        (e.from === newEdge.to && e.to === newEdge.from)
-      );
-
-      if (!exists) {
-        setEdges([...edges, { ...newEdge }]);
+      if (wasmReady && rustGraph) {
+        try {
+          rustGraph.addEdge(newEdge.from, newEdge.to, newEdge.weight);
+          const edgeCount = rustGraph.edgeCount();
+          setResult(`🦀 Đã thêm cạnh từ ${newEdge.from} đến ${newEdge.to} (trọng số ${newEdge.weight}). Tổng cạnh: ${edgeCount}`);
+          updateDisplayFromRustGraph();
+        } catch (error) {
+          setResult("❌ Rust WASM addEdge failed: " + error);
+        }
+      } else {
+        setResult("❌ WASM chưa sẵn sàng");
       }
     }
   };
 
   const removeEdge = (index: number) => {
-    setEdges(edges.filter((_, i) => i !== index));
+    const edgeToRemove = edgesDisplay[index];
+    if (wasmReady && rustGraph && edgeToRemove) {
+      try {
+        rustGraph.removeEdge(edgeToRemove.from, edgeToRemove.to);
+        const edgeCount = rustGraph.edgeCount();
+        setResult(`🦀 Đã xóa cạnh từ ${edgeToRemove.from} đến ${edgeToRemove.to}. Tổng cạnh: ${edgeCount}`);
+        updateDisplayFromRustGraph();
+      } catch (error) {
+        setResult("❌ Rust WASM removeEdge failed: " + error);
+      }
+    } else {
+      setResult("❌ WASM chưa sẵn sàng");
+    }
   };
 
   const dijkstra = () => {
     if (startNode < 0 || startNode >= nodes || endNode < 0 || endNode >= nodes) {
+      setResult("❌ Đỉnh bắt đầu hoặc kết thúc không hợp lệ");
       return;
     }
 
-    const distances = Array(nodes).fill(Infinity);
-    const previous = Array(nodes).fill(null);
-    const visited = Array(nodes).fill(false);
-    const stepsList: string[] = [];
+    if (wasmReady && rustGraph) {
+      try {
+        const dijkstraResult = rustGraph.dijkstra(startNode, endNode);
+        const path = Array.from(dijkstraResult.path) as number[];
+        const distances = Array.from(dijkstraResult.distances) as number[];
 
-    distances[startNode] = 0;
-    stepsList.push(`Khởi tạo: node ${startNode} có khoảng cách 0, các node khác có khoảng cách ∞`);
+        setPathResult(path);
+        setDistanceResult(distances);
 
-    // Build adjacency list
-    const adjList: { [key: number]: { node: number; weight: number }[] } = {};
-    for (let i = 0; i < nodes; i++) {
-      adjList[i] = [];
-    }
-
-    edges.forEach(edge => {
-      adjList[edge.from].push({ node: edge.to, weight: edge.weight });
-      adjList[edge.to].push({ node: edge.from, weight: edge.weight });
-    });
-
-    for (let count = 0; count < nodes; count++) {
-      // Find minimum distance node
-      let minDistance = Infinity;
-      let minNode = -1;
-
-      for (let i = 0; i < nodes; i++) {
-        if (!visited[i] && distances[i] < minDistance) {
-          minDistance = distances[i];
-          minNode = i;
+        if (path.length > 0) {
+          const totalDistance = distances[endNode];
+          setResult(`🦀 Đường đi ngắn nhất từ ${startNode} đến ${endNode}: ${path.join(" → ")} (tổng khoảng cách: ${totalDistance})`);
+        } else {
+          setResult(`🦀 Không có đường đi từ node ${startNode} đến node ${endNode}`);
         }
+      } catch (error) {
+        setResult("❌ Rust WASM Dijkstra failed: " + error);
       }
-
-      if (minNode === -1) break;
-
-      visited[minNode] = true;
-      stepsList.push(`Bước ${count + 1}: Chọn node ${minNode} (khoảng cách: ${distances[minNode]})`);
-
-      // Update distances to neighbors
-      adjList[minNode].forEach(({ node: neighbor, weight }) => {
-        if (!visited[neighbor]) {
-          const newDistance = distances[minNode] + weight;
-          if (newDistance < distances[neighbor]) {
-            distances[neighbor] = newDistance;
-            previous[neighbor] = minNode;
-            stepsList.push(`  Cập nhật: node ${neighbor} khoảng cách ${distances[neighbor]} → ${newDistance} qua node ${minNode}`);
-          }
-        }
-      });
-    }
-
-    // Build path
-    const path: number[] = [];
-    let current = endNode;
-    while (current !== null) {
-      path.unshift(current);
-      current = previous[current];
-    }
-
-    if (path[0] !== startNode) {
-      stepsList.push(`Không có đường đi từ node ${startNode} đến node ${endNode}`);
-      setResult({
-        distances,
-        previous,
-        visited,
-        path: []
-      });
     } else {
-      stepsList.push(`Đường đi ngắn nhất từ ${startNode} đến ${endNode}: ${path.join(" → ")} (tổng khoảng cách: ${distances[endNode]})`);
-      setResult({
-        distances,
-        previous,
-        visited,
-        path
-      });
+      setResult("❌ WASM chưa sẵn sàng");
     }
-
-    setSteps(stepsList);
   };
 
   const generateMermaidGraph = () => {
@@ -147,7 +148,7 @@ export function DijkstraSection() {
     for (let i = 0; i < nodes; i++) {
       const isStart = i === startNode;
       const isEnd = i === endNode;
-      const isInPath = result?.path.includes(i) || false;
+      const isInPath = pathResult.includes(i) || false;
 
       let nodeStyle = "";
       if (isStart) nodeStyle = "fill:#4CAF50,color:#fff";
@@ -160,13 +161,13 @@ export function DijkstraSection() {
     }
 
     // Add edges
-    edges.forEach(edge => {
-      const isInPath = result?.path.includes(edge.from) && result?.path.includes(edge.to) &&
-                     Math.abs(result.path.indexOf(edge.from) - result.path.indexOf(edge.to)) === 1;
+    edgesDisplay.forEach(edge => {
+      const isInPath = pathResult.includes(edge.from) && pathResult.includes(edge.to) &&
+                     Math.abs(pathResult.indexOf(edge.from) - pathResult.indexOf(edge.to)) === 1;
 
       if (isInPath) {
         mermaidCode += `    ${edge.from} -.->|${edge.weight}| ${edge.to}\n`;
-        mermaidCode += `    linkStyle ${edges.indexOf(edge)} stroke:#FF9800,stroke-width:4px\n`;
+        mermaidCode += `    linkStyle ${edgesDisplay.indexOf(edge)} stroke:#FF9800,stroke-width:4px\n`;
       } else {
         mermaidCode += `    ${edge.from} -->|${edge.weight}| ${edge.to}\n`;
       }
@@ -180,10 +181,10 @@ export function DijkstraSection() {
       <div className="bg-white dark:bg-slate-800 rounded-lg p-6 border">
         <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
           <Route className="h-5 w-5" />
-          Thuật Toán Dijkstra
+          🦀 Rust WASM Thuật Toán Dijkstra
         </h3>
         <p className="text-gray-600 dark:text-gray-300 mb-4">
-          Thuật toán Dijkstra tìm đường đi ngắn nhất từ một node nguồn đến tất cả các node khác trong đồ thị có trọng số không âm.
+          Demo tương tác Thuật toán Dijkstra sử dụng Rust WASM. Dijkstra được tối ưu hóa tìm đường đi ngắn nhất từ một node nguồn đến tất cả các node khác trong đồ thị có trọng số không âm với độ phức tạp O((V+E)logV).
         </p>
 
         <div className="space-y-4">
@@ -199,9 +200,10 @@ export function DijkstraSection() {
                     const newNodes = parseInt(e.target.value);
                     if (newNodes >= 2 && newNodes <= 10) {
                       setNodes(newNodes);
-                      setEdges(edges.filter(e => e.from < newNodes && e.to < newNodes));
-                      setResult(null);
-                      setSteps([]);
+                      setEdgesDisplay(edgesDisplay.filter(e => e.from < newNodes && e.to < newNodes));
+                      setResult("");
+                      setPathResult([]);
+                      setDistanceResult([]);
                     }
                   }}
                   min="2"
@@ -267,26 +269,28 @@ export function DijkstraSection() {
               />
               <button
                 onClick={addEdge}
-                className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+                disabled={!wasmReady}
+                className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 disabled:opacity-50"
               >
-                Thêm Cạnh
+                🦀 Thêm Cạnh
               </button>
             </div>
 
             <div className="max-h-32 overflow-y-auto">
               <h5 className="font-medium mb-2">Danh Sách Cạnh:</h5>
-              {edges.length === 0 ? (
+              {edgesDisplay.length === 0 ? (
                 <p className="text-gray-500 text-sm">Chưa có cạnh nào</p>
               ) : (
                 <div className="space-y-1">
-                  {edges.map((edge, index) => (
+                  {edgesDisplay.map((edge, index) => (
                     <div key={index} className="flex items-center justify-between bg-white dark:bg-slate-800 px-3 py-2 rounded">
                       <span className="text-sm">
-                        Node {edge.from} → Node {edge.to} (trọng số: {edge.weight})
+                        🦀 Node {edge.from} → Node {edge.to} (trọng số: {edge.weight})
                       </span>
                       <button
                         onClick={() => removeEdge(index)}
-                        className="text-red-500 hover:text-red-700 text-sm"
+                        disabled={!wasmReady}
+                        className="text-red-500 hover:text-red-700 text-sm disabled:opacity-50"
                       >
                         Xóa
                       </button>
@@ -301,36 +305,30 @@ export function DijkstraSection() {
             <h4 className="font-medium mb-2">Thực Hiện Dijkstra:</h4>
             <button
               onClick={dijkstra}
-              className="px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+              disabled={!wasmReady}
+              className="px-6 py-2 bg-orange-500 text-white rounded hover:bg-orange-600 disabled:opacity-50"
             >
-              Tìm Đường Đi Ngắn Nhất
+              🦀 Tìm Đường Đi Ngắn Nhất
             </button>
 
             {result && (
-              <div className="mt-4 space-y-3">
-                <div className="bg-white dark:bg-slate-800 p-3 rounded">
-                  <h5 className="font-medium mb-2">Kết Quả:</h5>
-                  <div className="text-sm space-y-1">
-                    <p><strong>Khoảng cách từ node {startNode}:</strong></p>
-                    {result.distances.map((dist, i) => (
-                      <p key={i} className="ml-4">
-                        Node {i}: {dist === Infinity ? "∞" : dist}
-                      </p>
-                    ))}
-                    {result.path.length > 0 && (
-                      <p><strong>Đường đi ngắn nhất:</strong> {result.path.join(" → ")} (tổng: {result.distances[endNode]})</p>
+              <div className="mt-4 p-3 bg-orange-50 dark:bg-orange-900/20 rounded">
+                <strong>Kết quả:</strong> {result}
+                {pathResult.length > 0 && (
+                  <div className="mt-2 text-sm">
+                    <p><strong>🦀 Đường đi:</strong> {pathResult.join(" → ")}</p>
+                    {distanceResult.length > 0 && (
+                      <div className="mt-1">
+                        <strong>🦀 Khoảng cách từ node {startNode}:</strong>
+                        <div className="flex flex-wrap gap-2 mt-1">
+                          {distanceResult.map((dist, i) => (
+                            <span key={i} className="px-2 py-1 bg-orange-100 dark:bg-orange-900 rounded text-xs">
+                              Node {i}: {dist === Infinity ? "∞" : dist}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
                     )}
-                  </div>
-                </div>
-
-                {steps.length > 0 && (
-                  <div className="bg-blue-50 dark:bg-blue-900/20 p-3 rounded">
-                    <h5 className="font-medium mb-2">Các Bước Thực Hiện:</h5>
-                    <div className="text-sm space-y-1 max-h-32 overflow-y-auto">
-                      {steps.map((step, index) => (
-                        <p key={index}>{step}</p>
-                      ))}
-                    </div>
                   </div>
                 )}
               </div>

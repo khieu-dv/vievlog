@@ -1,130 +1,111 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { SortAsc } from "lucide-react";
 import { MermaidDiagram } from "~/components/common/MermaidDiagram";
+import { initRustWasm } from "~/lib/rust-wasm-helper";
 
 export function SortingSection() {
   const [array, setArray] = useState<number[]>([64, 34, 25, 12, 22, 11, 90]);
   const [sorting, setSorting] = useState(false);
-  const [algorithm, setAlgorithm] = useState<"bubble" | "quick" | "merge">("bubble");
+  const [algorithm, setAlgorithm] = useState<"bubble" | "quick" | "merge" | "heap" | "selection" | "insertion">("bubble");
+  const [wasm, setWasm] = useState<any>(null);
+  const [wasmReady, setWasmReady] = useState(false);
+  const [result, setResult] = useState("");
 
-  const bubbleSort = async () => {
-    setSorting(true);
-    const arr = [...array];
-    const n = arr.length;
-
-    for (let i = 0; i < n - 1; i++) {
-      for (let j = 0; j < n - i - 1; j++) {
-        if (arr[j] > arr[j + 1]) {
-          [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
-          setArray([...arr]);
-          await new Promise(resolve => setTimeout(resolve, 100));
-        }
+  // Initialize WASM
+  useEffect(() => {
+    async function init() {
+      try {
+        const wasmInstance = await initRustWasm();
+        setWasm(wasmInstance);
+        setWasmReady(true);
+        setResult("✅ Rust WASM Sorting algorithms đã sẵn sàng!");
+      } catch (error) {
+        console.error("Failed to initialize WASM:", error);
+        setResult("❌ Không thể khởi tạo Rust WASM");
       }
+    }
+    init();
+  }, []);
+
+  const runSort = async () => {
+    if (!wasmReady || !wasm) {
+      setResult("❌ WASM chưa sẵn sàng");
+      return;
+    }
+
+    setSorting(true);
+    const startTime = performance.now();
+
+    try {
+      let sortedArray;
+      switch (algorithm) {
+        case "bubble":
+          sortedArray = wasm.algorithms.sorting.bubbleSort([...array]);
+          break;
+        case "quick":
+          sortedArray = wasm.algorithms.sorting.quickSort([...array]);
+          break;
+        case "merge":
+          sortedArray = wasm.algorithms.sorting.mergeSort([...array]);
+          break;
+        case "heap":
+          sortedArray = wasm.algorithms.sorting.heapSort([...array]);
+          break;
+        case "selection":
+          sortedArray = wasm.algorithms.sorting.selectionSort([...array]);
+          break;
+        case "insertion":
+          sortedArray = wasm.algorithms.sorting.insertionSort([...array]);
+          break;
+        default:
+          sortedArray = wasm.algorithms.sorting.quickSort([...array]);
+      }
+
+      const endTime = performance.now();
+      const duration = (endTime - startTime).toFixed(2);
+
+      const resultArray = sortedArray as number[];
+      setArray(resultArray);
+      setResult(`🦀 Rust ${algorithm} sort hoàn thành trong ${duration}ms. Kết quả: [${resultArray.join(', ')}]`);
+    } catch (error) {
+      setResult("❌ Rust WASM sorting failed: " + error);
+    }
+
+    setSorting(false);
+  };
+
+  const compareAlgorithms = async () => {
+    if (!wasmReady || !wasm) {
+      setResult("❌ WASM chưa sẵn sàng");
+      return;
+    }
+
+    setSorting(true);
+    try {
+      const comparison = wasm.benchmarks.sorting.compare([...array]);
+      const results = Array.from(comparison);
+      let resultText = "🦀 So sánh hiệu suất các thuật toán sắp xếp Rust:\n";
+      results.forEach((result: any) => {
+        const [algo, time] = Array.from(result);
+        resultText += `- ${algo}: ${time}ms\n`;
+      });
+      setResult(resultText);
+    } catch (error) {
+      setResult("❌ Rust WASM comparison failed: " + error);
     }
     setSorting(false);
   };
 
-  const quickSort = async () => {
-    setSorting(true);
-    const arr = [...array];
-
-    const quickSortHelper = async (arr: number[], low: number, high: number) => {
-      if (low < high) {
-        const pi = await partition(arr, low, high);
-        await quickSortHelper(arr, low, pi - 1);
-        await quickSortHelper(arr, pi + 1, high);
-      }
-    };
-
-    const partition = async (arr: number[], low: number, high: number): Promise<number> => {
-      const pivot = arr[high];
-      let i = low - 1;
-
-      for (let j = low; j < high; j++) {
-        if (arr[j] <= pivot) {
-          i++;
-          [arr[i], arr[j]] = [arr[j], arr[i]];
-          setArray([...arr]);
-          await new Promise(resolve => setTimeout(resolve, 50));
-        }
-      }
-      [arr[i + 1], arr[high]] = [arr[high], arr[i + 1]];
-      setArray([...arr]);
-      await new Promise(resolve => setTimeout(resolve, 50));
-      return i + 1;
-    };
-
-    await quickSortHelper(arr, 0, arr.length - 1);
-    setSorting(false);
-  };
-
-  const mergeSort = async () => {
-    setSorting(true);
-    const arr = [...array];
-
-    const mergeSortHelper = async (arr: number[], left: number, right: number) => {
-      if (left < right) {
-        const mid = Math.floor((left + right) / 2);
-        await mergeSortHelper(arr, left, mid);
-        await mergeSortHelper(arr, mid + 1, right);
-        await merge(arr, left, mid, right);
-      }
-    };
-
-    const merge = async (arr: number[], left: number, mid: number, right: number) => {
-      const leftArr = arr.slice(left, mid + 1);
-      const rightArr = arr.slice(mid + 1, right + 1);
-
-      let i = 0, j = 0, k = left;
-
-      while (i < leftArr.length && j < rightArr.length) {
-        if (leftArr[i] <= rightArr[j]) {
-          arr[k] = leftArr[i];
-          i++;
-        } else {
-          arr[k] = rightArr[j];
-          j++;
-        }
-        k++;
-        setArray([...arr]);
-        await new Promise(resolve => setTimeout(resolve, 100));
-      }
-
-      while (i < leftArr.length) {
-        arr[k] = leftArr[i];
-        i++;
-        k++;
-        setArray([...arr]);
-        await new Promise(resolve => setTimeout(resolve, 100));
-      }
-
-      while (j < rightArr.length) {
-        arr[k] = rightArr[j];
-        j++;
-        k++;
-        setArray([...arr]);
-        await new Promise(resolve => setTimeout(resolve, 100));
-      }
-    };
-
-    await mergeSortHelper(arr, 0, arr.length - 1);
-    setSorting(false);
-  };
-
-  const runSort = () => {
-    switch (algorithm) {
-      case "bubble":
-        bubbleSort();
-        break;
-      case "quick":
-        quickSort();
-        break;
-      case "merge":
-        mergeSort();
-        break;
+  const shuffleArray = () => {
+    const newArray = [...array];
+    for (let i = newArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
     }
+    setArray(newArray);
+    setResult("Đã xáo trộn mảng");
   };
 
   const resetArray = () => {
@@ -141,10 +122,10 @@ export function SortingSection() {
       <div className="bg-white dark:bg-slate-800 rounded-lg p-6 border">
         <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
           <SortAsc className="h-5 w-5" />
-          Giải Thuật Sắp Xếp
+          🦀 Rust WASM Giải Thuật Sắp Xếp
         </h3>
         <p className="text-gray-600 dark:text-gray-300 mb-4">
-          Giải thuật sắp xếp sắp xếp các phần tử theo thứ tự nhất định. Dưới đây là một số giải thuật sắp xếp phổ biến và cách cài đặt.
+          Demo tương tác các giải thuật sắp xếp sử dụng Rust WASM. Các thuật toán được tối ưu hóa và có thể so sánh hiệu suất trực tiếp.
         </p>
 
         <div className="space-y-4">
@@ -153,36 +134,54 @@ export function SortingSection() {
             <div className="flex gap-2 mb-3 flex-wrap">
               <select
                 value={algorithm}
-                onChange={(e) => setAlgorithm(e.target.value as "bubble" | "quick" | "merge")}
+                onChange={(e) => setAlgorithm(e.target.value as "bubble" | "quick" | "merge" | "heap" | "selection" | "insertion")}
                 className="px-3 py-2 border rounded dark:bg-slate-600 dark:border-slate-500"
                 disabled={sorting}
               >
                 <option value="bubble">Bubble Sort</option>
                 <option value="quick">Quick Sort</option>
                 <option value="merge">Merge Sort</option>
+                <option value="heap">Heap Sort</option>
+                <option value="selection">Selection Sort</option>
+                <option value="insertion">Insertion Sort</option>
               </select>
               <button
                 onClick={runSort}
-                disabled={sorting}
+                disabled={sorting || !wasmReady}
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50"
               >
-                {sorting ? "Đang sắp xếp..." : `Chạy ${algorithm.charAt(0).toUpperCase() + algorithm.slice(1)} Sort`}
+                {sorting ? "Đang sắp xếp..." : `🦀 Chạy ${algorithm.charAt(0).toUpperCase() + algorithm.slice(1)} Sort`}
+              </button>
+              <button
+                onClick={compareAlgorithms}
+                disabled={sorting || !wasmReady}
+                className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600 disabled:opacity-50"
+              >
+                🏁 So Sánh Tất Cả
               </button>
               <button
                 onClick={resetArray}
                 disabled={sorting}
                 className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 disabled:opacity-50"
               >
-                Đặt lại
+                🔄 Đặt lại
               </button>
               <button
-                onClick={randomizeArray}
+                onClick={shuffleArray}
                 disabled={sorting}
                 className="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600 disabled:opacity-50"
               >
-                Ngẫu nhiên
+                🔀 Xáo Trộn
               </button>
             </div>
+
+            {result && (
+              <div className="mb-3 p-3 bg-orange-50 dark:bg-orange-900/20 rounded">
+                <strong>Kết quả:</strong>
+                <pre className="mt-2 text-sm whitespace-pre-wrap">{result}</pre>
+              </div>
+            )}
+
             <div className="flex gap-2 flex-wrap items-end">
               {array.map((value, index) => (
                 <div

@@ -227,144 +227,6 @@ export function main() {
     wasm.main();
 }
 
-let cachedUint32ArrayMemory0 = null;
-
-function getUint32ArrayMemory0() {
-    if (cachedUint32ArrayMemory0 === null || cachedUint32ArrayMemory0.byteLength === 0) {
-        cachedUint32ArrayMemory0 = new Uint32Array(wasm.memory.buffer);
-    }
-    return cachedUint32ArrayMemory0;
-}
-
-function passArray32ToWasm0(arg, malloc) {
-    const ptr = malloc(arg.length * 4, 4) >>> 0;
-    getUint32ArrayMemory0().set(arg, ptr / 4);
-    WASM_VECTOR_LEN = arg.length;
-    return ptr;
-}
-/**
- * @param {Int32Array} arr
- */
-export function bubble_sort(arr) {
-    var ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
-    var len0 = WASM_VECTOR_LEN;
-    wasm.bubble_sort(ptr0, len0, arr);
-}
-
-/**
- * @param {Int32Array} arr
- * @returns {Array<any>}
- */
-export function bubble_sort_array(arr) {
-    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
-    const len0 = WASM_VECTOR_LEN;
-    const ret = wasm.bubble_sort_array(ptr0, len0);
-    return ret;
-}
-
-/**
- * @param {Int32Array} arr
- * @returns {Array<any>}
- */
-export function quick_sort_array(arr) {
-    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
-    const len0 = WASM_VECTOR_LEN;
-    const ret = wasm.quick_sort_array(ptr0, len0);
-    return ret;
-}
-
-/**
- * @param {Int32Array} arr
- * @returns {Array<any>}
- */
-export function merge_sort_array(arr) {
-    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
-    const len0 = WASM_VECTOR_LEN;
-    const ret = wasm.merge_sort_array(ptr0, len0);
-    return ret;
-}
-
-/**
- * @param {Int32Array} arr
- * @param {number} target
- * @returns {number | undefined}
- */
-export function binary_search(arr, target) {
-    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
-    const len0 = WASM_VECTOR_LEN;
-    const ret = wasm.binary_search(ptr0, len0, target);
-    return ret === 0x100000001 ? undefined : ret;
-}
-
-/**
- * @param {Int32Array} arr
- * @param {number} target
- * @returns {any}
- */
-export function binary_search_array(arr, target) {
-    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
-    const len0 = WASM_VECTOR_LEN;
-    const ret = wasm.binary_search_array(ptr0, len0, target);
-    return ret;
-}
-
-/**
- * @param {Int32Array} arr
- * @param {number} target
- * @returns {number | undefined}
- */
-export function linear_search(arr, target) {
-    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
-    const len0 = WASM_VECTOR_LEN;
-    const ret = wasm.linear_search(ptr0, len0, target);
-    return ret === 0x100000001 ? undefined : ret;
-}
-
-/**
- * @param {Int32Array} arr
- * @param {number} target
- * @returns {any}
- */
-export function linear_search_array(arr, target) {
-    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
-    const len0 = WASM_VECTOR_LEN;
-    const ret = wasm.linear_search_array(ptr0, len0, target);
-    return ret;
-}
-
-/**
- * @param {number} size
- * @param {number} max_value
- * @returns {Array<any>}
- */
-export function generate_random_array(size, max_value) {
-    const ret = wasm.generate_random_array(size, max_value);
-    return ret;
-}
-
-/**
- * @param {number} size
- * @returns {Array<any>}
- */
-export function generate_sorted_array(size) {
-    const ret = wasm.generate_sorted_array(size);
-    return ret;
-}
-
-/**
- * @param {string} algorithm
- * @param {Int32Array} arr
- * @returns {number}
- */
-export function benchmark_sort(algorithm, arr) {
-    const ptr0 = passStringToWasm0(algorithm, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-    const len0 = WASM_VECTOR_LEN;
-    const ptr1 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
-    const len1 = WASM_VECTOR_LEN;
-    const ret = wasm.benchmark_sort(ptr0, len0, ptr1, len1);
-    return ret;
-}
-
 function passArray8ToWasm0(arg, malloc) {
     const ptr = malloc(arg.length * 1, 1) >>> 0;
     getUint8ArrayMemory0().set(arg, ptr / 1);
@@ -488,6 +350,1201 @@ export function bevy_resize_image(rgba_data, old_width, old_height, new_width, n
 }
 
 /**
+ * Dijkstra's shortest path algorithm
+ * @param {Array<any>} vertices
+ * @param {Array<any>} edges
+ * @param {number} start
+ * @param {number} end
+ * @returns {Array<any>}
+ */
+export function dijkstra_shortest_path(vertices, edges, start, end) {
+    const ret = wasm.dijkstra_shortest_path(vertices, edges, start, end);
+    return ret;
+}
+
+/**
+ * Breadth-First Search
+ * @param {Array<any>} adjacency_list
+ * @param {number} start
+ * @returns {Array<any>}
+ */
+export function bfs_graph_traversal(adjacency_list, start) {
+    const ret = wasm.bfs_graph_traversal(adjacency_list, start);
+    return ret;
+}
+
+/**
+ * Depth-First Search
+ * @param {Array<any>} adjacency_list
+ * @param {number} start
+ * @returns {Array<any>}
+ */
+export function dfs_graph_traversal(adjacency_list, start) {
+    const ret = wasm.dfs_graph_traversal(adjacency_list, start);
+    return ret;
+}
+
+/**
+ * Topological Sort (Kahn's algorithm)
+ * @param {Array<any>} vertices
+ * @param {Array<any>} edges
+ * @returns {Array<any>}
+ */
+export function topological_sort(vertices, edges) {
+    const ret = wasm.topological_sort(vertices, edges);
+    return ret;
+}
+
+/**
+ * Detect cycle in directed graph
+ * @param {Array<any>} vertices
+ * @param {Array<any>} edges
+ * @returns {boolean}
+ */
+export function has_cycle_directed(vertices, edges) {
+    const ret = wasm.has_cycle_directed(vertices, edges);
+    return ret !== 0;
+}
+
+/**
+ * Find strongly connected components (Kosaraju's algorithm)
+ * @param {Array<any>} vertices
+ * @param {Array<any>} edges
+ * @returns {Array<any>}
+ */
+export function strongly_connected_components(vertices, edges) {
+    const ret = wasm.strongly_connected_components(vertices, edges);
+    return ret;
+}
+
+/**
+ * Minimum Spanning Tree - Kruskal's algorithm
+ * @param {Array<any>} vertices
+ * @param {Array<any>} edges
+ * @returns {Array<any>}
+ */
+export function minimum_spanning_tree_kruskal(vertices, edges) {
+    const ret = wasm.minimum_spanning_tree_kruskal(vertices, edges);
+    return ret;
+}
+
+let cachedUint32ArrayMemory0 = null;
+
+function getUint32ArrayMemory0() {
+    if (cachedUint32ArrayMemory0 === null || cachedUint32ArrayMemory0.byteLength === 0) {
+        cachedUint32ArrayMemory0 = new Uint32Array(wasm.memory.buffer);
+    }
+    return cachedUint32ArrayMemory0;
+}
+
+function passArray32ToWasm0(arg, malloc) {
+    const ptr = malloc(arg.length * 4, 4) >>> 0;
+    getUint32ArrayMemory0().set(arg, ptr / 4);
+    WASM_VECTOR_LEN = arg.length;
+    return ptr;
+}
+/**
+ * Heap Sort implementation from heaps module
+ * @param {Int32Array} arr
+ * @returns {Array<any>}
+ */
+export function heap_sort_heaps(arr) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.heap_sort_heaps(ptr0, len0);
+    return ret;
+}
+
+/**
+ * K Largest Elements
+ * @param {Int32Array} arr
+ * @param {number} k
+ * @returns {Array<any>}
+ */
+export function find_k_largest(arr, k) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.find_k_largest(ptr0, len0, k);
+    return ret;
+}
+
+/**
+ * K Smallest Elements
+ * @param {Int32Array} arr
+ * @param {number} k
+ * @returns {Array<any>}
+ */
+export function find_k_smallest(arr, k) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.find_k_smallest(ptr0, len0, k);
+    return ret;
+}
+
+/**
+ * Check if array represents a valid heap
+ * @param {Int32Array} arr
+ * @param {boolean} is_max_heap
+ * @returns {boolean}
+ */
+export function is_heap(arr, is_max_heap) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.is_heap(ptr0, len0, is_max_heap);
+    return ret !== 0;
+}
+
+/**
+ * Merge K Sorted Arrays using heap
+ * @param {Array<any>} arrays
+ * @returns {Array<any>}
+ */
+export function merge_k_sorted_arrays(arrays) {
+    const ret = wasm.merge_k_sorted_arrays(arrays);
+    return ret;
+}
+
+/**
+ * Performance benchmark for heap operations
+ * @param {string} operation
+ * @param {number} iterations
+ * @param {boolean} is_max_heap
+ * @returns {number}
+ */
+export function benchmark_heap_operations(operation, iterations, is_max_heap) {
+    const ptr0 = passStringToWasm0(operation, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.benchmark_heap_operations(ptr0, len0, iterations, is_max_heap);
+    return ret;
+}
+
+/**
+ * Stack utilities and algorithms
+ * Check if parentheses are balanced
+ * @param {string} expression
+ * @returns {boolean}
+ */
+export function is_balanced_parentheses(expression) {
+    const ptr0 = passStringToWasm0(expression, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.is_balanced_parentheses(ptr0, len0);
+    return ret !== 0;
+}
+
+function takeFromExternrefTable0(idx) {
+    const value = wasm.__wbindgen_export_2.get(idx);
+    wasm.__externref_table_dealloc(idx);
+    return value;
+}
+/**
+ * Evaluate postfix expression
+ * @param {string} expression
+ * @returns {number}
+ */
+export function evaluate_postfix(expression) {
+    const ptr0 = passStringToWasm0(expression, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.evaluate_postfix(ptr0, len0);
+    if (ret[2]) {
+        throw takeFromExternrefTable0(ret[1]);
+    }
+    return ret[0];
+}
+
+/**
+ * Convert infix to postfix notation
+ * @param {string} expression
+ * @returns {string}
+ */
+export function infix_to_postfix(expression) {
+    let deferred2_0;
+    let deferred2_1;
+    try {
+        const ptr0 = passStringToWasm0(expression, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.infix_to_postfix(ptr0, len0);
+        deferred2_0 = ret[0];
+        deferred2_1 = ret[1];
+        return getStringFromWasm0(ret[0], ret[1]);
+    } finally {
+        wasm.__wbindgen_free(deferred2_0, deferred2_1, 1);
+    }
+}
+
+/**
+ * Reverse a string using stack
+ * @param {string} input
+ * @returns {string}
+ */
+export function reverse_string(input) {
+    let deferred2_0;
+    let deferred2_1;
+    try {
+        const ptr0 = passStringToWasm0(input, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.reverse_string(ptr0, len0);
+        deferred2_0 = ret[0];
+        deferred2_1 = ret[1];
+        return getStringFromWasm0(ret[0], ret[1]);
+    } finally {
+        wasm.__wbindgen_free(deferred2_0, deferred2_1, 1);
+    }
+}
+
+/**
+ * Check if a string is palindrome using stack
+ * @param {string} input
+ * @returns {boolean}
+ */
+export function is_palindrome_stack(input) {
+    const ptr0 = passStringToWasm0(input, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.is_palindrome_stack(ptr0, len0);
+    return ret !== 0;
+}
+
+/**
+ * Next Greater Element using stack
+ * @param {Int32Array} arr
+ * @returns {Array<any>}
+ */
+export function next_greater_elements(arr) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.next_greater_elements(ptr0, len0);
+    return ret;
+}
+
+/**
+ * Stock span problem using stack
+ * @param {Int32Array} prices
+ * @returns {Array<any>}
+ */
+export function calculate_stock_spans(prices) {
+    const ptr0 = passArray32ToWasm0(prices, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.calculate_stock_spans(ptr0, len0);
+    return ret;
+}
+
+/**
+ * Largest rectangle in histogram using stack
+ * @param {Int32Array} heights
+ * @returns {number}
+ */
+export function largest_rectangle_area(heights) {
+    const ptr0 = passArray32ToWasm0(heights, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.largest_rectangle_area(ptr0, len0);
+    return ret;
+}
+
+/**
+ * Performance benchmark for stack operations
+ * @param {string} operation
+ * @param {number} iterations
+ * @returns {number}
+ */
+export function benchmark_stack_operations(operation, iterations) {
+    const ptr0 = passStringToWasm0(operation, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.benchmark_stack_operations(ptr0, len0, iterations);
+    return ret;
+}
+
+/**
+ * Hash function utilities
+ * @param {string} input
+ * @returns {bigint}
+ */
+export function hash_string(input) {
+    const ptr0 = passStringToWasm0(input, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.hash_string(ptr0, len0);
+    return BigInt.asUintN(64, ret);
+}
+
+/**
+ * @param {string} input
+ * @param {number} modulo
+ * @returns {number}
+ */
+export function hash_string_with_modulo(input, modulo) {
+    const ptr0 = passStringToWasm0(input, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.hash_string_with_modulo(ptr0, len0, modulo);
+    return ret >>> 0;
+}
+
+/**
+ * Simple hash function for demonstration
+ * @param {string} input
+ * @param {number} table_size
+ * @returns {number}
+ */
+export function simple_hash(input, table_size) {
+    const ptr0 = passStringToWasm0(input, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.simple_hash(ptr0, len0, table_size);
+    return ret >>> 0;
+}
+
+/**
+ * Performance test: hash operations
+ * @param {string} operation
+ * @param {number} iterations
+ * @returns {number}
+ */
+export function benchmark_hash_operations(operation, iterations) {
+    const ptr0 = passStringToWasm0(operation, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.benchmark_hash_operations(ptr0, len0, iterations);
+    return ret;
+}
+
+/**
+ * Fibonacci with memoization
+ * @param {number} n
+ * @returns {bigint}
+ */
+export function fibonacci_memo(n) {
+    const ret = wasm.fibonacci_memo(n);
+    return BigInt.asUintN(64, ret);
+}
+
+/**
+ * 0/1 Knapsack Problem
+ * @param {Array<any>} weights
+ * @param {Array<any>} values
+ * @param {number} capacity
+ * @returns {Array<any>}
+ */
+export function knapsack_01(weights, values, capacity) {
+    const ret = wasm.knapsack_01(weights, values, capacity);
+    return ret;
+}
+
+/**
+ * Longest Common Subsequence
+ * @param {string} text1
+ * @param {string} text2
+ * @returns {Array<any>}
+ */
+export function longest_common_subsequence(text1, text2) {
+    const ptr0 = passStringToWasm0(text1, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ptr1 = passStringToWasm0(text2, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len1 = WASM_VECTOR_LEN;
+    const ret = wasm.longest_common_subsequence(ptr0, len0, ptr1, len1);
+    return ret;
+}
+
+/**
+ * Coin Change Problem (minimum coins)
+ * @param {Array<any>} coins
+ * @param {number} amount
+ * @returns {Array<any>}
+ */
+export function coin_change_min(coins, amount) {
+    const ret = wasm.coin_change_min(coins, amount);
+    return ret;
+}
+
+/**
+ * Edit Distance (Levenshtein Distance)
+ * @param {string} word1
+ * @param {string} word2
+ * @returns {number}
+ */
+export function edit_distance(word1, word2) {
+    const ptr0 = passStringToWasm0(word1, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ptr1 = passStringToWasm0(word2, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len1 = WASM_VECTOR_LEN;
+    const ret = wasm.edit_distance(ptr0, len0, ptr1, len1);
+    return ret >>> 0;
+}
+
+/**
+ * Longest Increasing Subsequence
+ * @param {Array<any>} arr
+ * @returns {Array<any>}
+ */
+export function longest_increasing_subsequence(arr) {
+    const ret = wasm.longest_increasing_subsequence(arr);
+    return ret;
+}
+
+/**
+ * Maximum Subarray Sum (Kadane's Algorithm)
+ * @param {Array<any>} arr
+ * @returns {Array<any>}
+ */
+export function maximum_subarray_sum(arr) {
+    const ret = wasm.maximum_subarray_sum(arr);
+    return ret;
+}
+
+/**
+ * House Robber Problem
+ * @param {Array<any>} houses
+ * @returns {number}
+ */
+export function house_robber(houses) {
+    const ret = wasm.house_robber(houses);
+    return ret >>> 0;
+}
+
+/**
+ * Climbing Stairs Problem
+ * @param {number} n
+ * @returns {bigint}
+ */
+export function climbing_stairs(n) {
+    const ret = wasm.climbing_stairs(n);
+    return BigInt.asUintN(64, ret);
+}
+
+/**
+ * Unique Paths in Grid
+ * @param {number} m
+ * @param {number} n
+ * @returns {bigint}
+ */
+export function unique_paths(m, n) {
+    const ret = wasm.unique_paths(m, n);
+    return BigInt.asUintN(64, ret);
+}
+
+/**
+ * Word Break Problem
+ * @param {string} s
+ * @param {Array<any>} word_dict
+ * @returns {boolean}
+ */
+export function word_break(s, word_dict) {
+    const ptr0 = passStringToWasm0(s, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.word_break(ptr0, len0, word_dict);
+    return ret !== 0;
+}
+
+/**
+ * Palindrome Partitioning (minimum cuts)
+ * @param {string} s
+ * @returns {number}
+ */
+export function min_palindrome_cuts(s) {
+    const ptr0 = passStringToWasm0(s, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.min_palindrome_cuts(ptr0, len0);
+    return ret >>> 0;
+}
+
+/**
+ * Matrix Chain Multiplication
+ * @param {Array<any>} dimensions
+ * @returns {number}
+ */
+export function matrix_chain_multiplication(dimensions) {
+    const ret = wasm.matrix_chain_multiplication(dimensions);
+    return ret >>> 0;
+}
+
+/**
+ * Generate video frames with Ken Burns effect (pan and zoom)
+ * @param {Uint8Array} rgba_data
+ * @param {number} width
+ * @param {number} height
+ * @param {number} frames
+ * @param {number} zoom_factor
+ * @param {number} pan_x
+ * @param {number} pan_y
+ * @returns {Array<any>}
+ */
+export function bevy_generate_ken_burns(rgba_data, width, height, frames, zoom_factor, pan_x, pan_y) {
+    const ptr0 = passArray8ToWasm0(rgba_data, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.bevy_generate_ken_burns(ptr0, len0, width, height, frames, zoom_factor, pan_x, pan_y);
+    return ret;
+}
+
+/**
+ * Generate transition frames between two images
+ * @param {Uint8Array} rgba_data1
+ * @param {Uint8Array} rgba_data2
+ * @param {number} width
+ * @param {number} height
+ * @param {number} frames
+ * @param {string} transition_type
+ * @returns {Array<any>}
+ */
+export function bevy_generate_transition(rgba_data1, rgba_data2, width, height, frames, transition_type) {
+    const ptr0 = passArray8ToWasm0(rgba_data1, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ptr1 = passArray8ToWasm0(rgba_data2, wasm.__wbindgen_malloc);
+    const len1 = WASM_VECTOR_LEN;
+    const ptr2 = passStringToWasm0(transition_type, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len2 = WASM_VECTOR_LEN;
+    const ret = wasm.bevy_generate_transition(ptr0, len0, ptr1, len1, width, height, frames, ptr2, len2);
+    return ret;
+}
+
+/**
+ * Generate slideshow from multiple images with effects
+ * @param {Array<any>} images_data
+ * @param {number} frames_per_image
+ * @param {number} transition_frames
+ * @param {string} transition_type
+ * @returns {Array<any>}
+ */
+export function bevy_generate_slideshow(images_data, frames_per_image, transition_frames, transition_type) {
+    const ptr0 = passStringToWasm0(transition_type, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.bevy_generate_slideshow(images_data, frames_per_image, transition_frames, ptr0, len0);
+    return ret;
+}
+
+/**
+ * Generate parallax scrolling effect
+ * @param {Uint8Array} bg_data
+ * @param {Uint8Array} fg_data
+ * @param {number} width
+ * @param {number} height
+ * @param {number} frames
+ * @param {number} scroll_speed
+ * @returns {Array<any>}
+ */
+export function bevy_generate_parallax(bg_data, fg_data, width, height, frames, scroll_speed) {
+    const ptr0 = passArray8ToWasm0(bg_data, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ptr1 = passArray8ToWasm0(fg_data, wasm.__wbindgen_malloc);
+    const len1 = WASM_VECTOR_LEN;
+    const ret = wasm.bevy_generate_parallax(ptr0, len0, ptr1, len1, width, height, frames, scroll_speed);
+    return ret;
+}
+
+/**
+ * Bubble Sort - O(n²) time complexity
+ * @param {Int32Array} arr
+ * @returns {Array<any>}
+ */
+export function bubble_sort(arr) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.bubble_sort(ptr0, len0);
+    return ret;
+}
+
+/**
+ * Bubble Sort with step tracking
+ * @param {Int32Array} arr
+ * @returns {Array<any>}
+ */
+export function bubble_sort_with_steps(arr) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.bubble_sort_with_steps(ptr0, len0);
+    return ret;
+}
+
+/**
+ * Selection Sort - O(n²) time complexity
+ * @param {Int32Array} arr
+ * @returns {Array<any>}
+ */
+export function selection_sort(arr) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.selection_sort(ptr0, len0);
+    return ret;
+}
+
+/**
+ * Insertion Sort - O(n²) time complexity, good for small arrays
+ * @param {Int32Array} arr
+ * @returns {Array<any>}
+ */
+export function insertion_sort(arr) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.insertion_sort(ptr0, len0);
+    return ret;
+}
+
+/**
+ * Quick Sort - O(n log n) average, O(n²) worst case
+ * @param {Int32Array} arr
+ * @returns {Array<any>}
+ */
+export function quick_sort(arr) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.quick_sort(ptr0, len0);
+    return ret;
+}
+
+/**
+ * Merge Sort - O(n log n) time complexity, stable
+ * @param {Int32Array} arr
+ * @returns {Array<any>}
+ */
+export function merge_sort(arr) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.merge_sort(ptr0, len0);
+    return ret;
+}
+
+/**
+ * Heap Sort - O(n log n) time complexity, in-place
+ * @param {Int32Array} arr
+ * @returns {Array<any>}
+ */
+export function heap_sort(arr) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.heap_sort(ptr0, len0);
+    return ret;
+}
+
+/**
+ * Counting Sort - O(n + k) time complexity for small ranges
+ * @param {Int32Array} arr
+ * @returns {Array<any>}
+ */
+export function counting_sort(arr) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.counting_sort(ptr0, len0);
+    return ret;
+}
+
+/**
+ * Radix Sort - O(d * (n + k)) where d is number of digits
+ * @param {Int32Array} arr
+ * @returns {Array<any>}
+ */
+export function radix_sort(arr) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.radix_sort(ptr0, len0);
+    return ret;
+}
+
+let cachedFloat64ArrayMemory0 = null;
+
+function getFloat64ArrayMemory0() {
+    if (cachedFloat64ArrayMemory0 === null || cachedFloat64ArrayMemory0.byteLength === 0) {
+        cachedFloat64ArrayMemory0 = new Float64Array(wasm.memory.buffer);
+    }
+    return cachedFloat64ArrayMemory0;
+}
+
+function passArrayF64ToWasm0(arg, malloc) {
+    const ptr = malloc(arg.length * 8, 8) >>> 0;
+    getFloat64ArrayMemory0().set(arg, ptr / 8);
+    WASM_VECTOR_LEN = arg.length;
+    return ptr;
+}
+/**
+ * Bucket Sort - O(n + k) average case
+ * @param {Float64Array} arr
+ * @param {number} bucket_count
+ * @returns {Array<any>}
+ */
+export function bucket_sort(arr, bucket_count) {
+    const ptr0 = passArrayF64ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.bucket_sort(ptr0, len0, bucket_count);
+    return ret;
+}
+
+/**
+ * Shell Sort - O(n^1.5) average case
+ * @param {Int32Array} arr
+ * @returns {Array<any>}
+ */
+export function shell_sort(arr) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.shell_sort(ptr0, len0);
+    return ret;
+}
+
+/**
+ * Cocktail Shaker Sort (Bidirectional Bubble Sort)
+ * @param {Int32Array} arr
+ * @returns {Array<any>}
+ */
+export function cocktail_sort(arr) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.cocktail_sort(ptr0, len0);
+    return ret;
+}
+
+/**
+ * Utility functions for sorting analysis
+ * Check if array is sorted
+ * @param {Int32Array} arr
+ * @returns {boolean}
+ */
+export function is_sorted(arr) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.is_sorted(ptr0, len0);
+    return ret !== 0;
+}
+
+/**
+ * Generate different types of test arrays
+ * @param {number} size
+ * @param {number} max_value
+ * @returns {Array<any>}
+ */
+export function generate_random_array(size, max_value) {
+    const ret = wasm.generate_random_array(size, max_value);
+    return ret;
+}
+
+/**
+ * @param {number} size
+ * @returns {Array<any>}
+ */
+export function generate_sorted_array(size) {
+    const ret = wasm.generate_sorted_array(size);
+    return ret;
+}
+
+/**
+ * @param {number} size
+ * @returns {Array<any>}
+ */
+export function generate_reverse_sorted_array(size) {
+    const ret = wasm.generate_reverse_sorted_array(size);
+    return ret;
+}
+
+/**
+ * @param {number} size
+ * @param {number} swap_count
+ * @returns {Array<any>}
+ */
+export function generate_nearly_sorted_array(size, swap_count) {
+    const ret = wasm.generate_nearly_sorted_array(size, swap_count);
+    return ret;
+}
+
+/**
+ * Performance benchmark for sorting algorithms
+ * @param {string} algorithm
+ * @param {Int32Array} arr
+ * @returns {number}
+ */
+export function benchmark_sort(algorithm, arr) {
+    const ptr0 = passStringToWasm0(algorithm, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ptr1 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len1 = WASM_VECTOR_LEN;
+    const ret = wasm.benchmark_sort(ptr0, len0, ptr1, len1);
+    return ret;
+}
+
+/**
+ * Compare multiple sorting algorithms
+ * @param {Int32Array} arr
+ * @returns {Array<any>}
+ */
+export function compare_sorting_algorithms(arr) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.compare_sorting_algorithms(ptr0, len0);
+    return ret;
+}
+
+/**
+ * Queue algorithms and utilities
+ * Breadth-First Search using queue
+ * @param {Array<any>} adj_list
+ * @param {number} start
+ * @returns {Array<any>}
+ */
+export function bfs_traversal(adj_list, start) {
+    const ret = wasm.bfs_traversal(adj_list, start);
+    return ret;
+}
+
+/**
+ * Level order traversal of binary tree
+ * @param {Array<any>} tree_array
+ * @returns {Array<any>}
+ */
+export function level_order_traversal(tree_array) {
+    const ret = wasm.level_order_traversal(tree_array);
+    return ret;
+}
+
+/**
+ * Sliding window maximum using deque
+ * @param {Int32Array} arr
+ * @param {number} window_size
+ * @returns {Array<any>}
+ */
+export function sliding_window_maximum(arr, window_size) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.sliding_window_maximum(ptr0, len0, window_size);
+    return ret;
+}
+
+/**
+ * First negative integer in every window
+ * @param {Int32Array} arr
+ * @param {number} window_size
+ * @returns {Array<any>}
+ */
+export function first_negative_in_window(arr, window_size) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.first_negative_in_window(ptr0, len0, window_size);
+    return ret;
+}
+
+/**
+ * Performance benchmark for queue operations
+ * @param {string} operation
+ * @param {number} iterations
+ * @returns {number}
+ */
+export function benchmark_queue_operations(operation, iterations) {
+    const ptr0 = passStringToWasm0(operation, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.benchmark_queue_operations(ptr0, len0, iterations);
+    return ret;
+}
+
+function _assertClass(instance, klass) {
+    if (!(instance instanceof klass)) {
+        throw new Error(`expected instance of ${klass.name}`);
+    }
+}
+/**
+ * Utility functions for array operations
+ * @param {Int32Array} arr
+ * @returns {number}
+ */
+export function array_sum(arr) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.array_sum(ptr0, len0);
+    return ret;
+}
+
+/**
+ * @param {Int32Array} arr
+ * @returns {number | undefined}
+ */
+export function array_max(arr) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.array_max(ptr0, len0);
+    return ret === 0x100000001 ? undefined : ret;
+}
+
+/**
+ * @param {Int32Array} arr
+ * @returns {number | undefined}
+ */
+export function array_min(arr) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.array_min(ptr0, len0);
+    return ret === 0x100000001 ? undefined : ret;
+}
+
+/**
+ * @param {Int32Array} arr
+ * @returns {Array<any>}
+ */
+export function array_reverse(arr) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.array_reverse(ptr0, len0);
+    return ret;
+}
+
+/**
+ * @param {Int32Array} arr
+ * @param {number} start
+ * @param {number} end
+ * @returns {Array<any>}
+ */
+export function array_slice(arr, start, end) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.array_slice(ptr0, len0, start, end);
+    return ret;
+}
+
+/**
+ * Linear Search - O(n) time complexity
+ * @param {Int32Array} arr
+ * @param {number} target
+ * @returns {number | undefined}
+ */
+export function linear_search(arr, target) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.linear_search(ptr0, len0, target);
+    return ret === 0x100000001 ? undefined : ret;
+}
+
+/**
+ * Linear Search with step tracking
+ * @param {Int32Array} arr
+ * @param {number} target
+ * @returns {Array<any>}
+ */
+export function linear_search_with_steps(arr, target) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.linear_search_with_steps(ptr0, len0, target);
+    return ret;
+}
+
+/**
+ * Binary Search - O(log n) time complexity, requires sorted array
+ * @param {Int32Array} arr
+ * @param {number} target
+ * @returns {number | undefined}
+ */
+export function binary_search(arr, target) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.binary_search(ptr0, len0, target);
+    return ret === 0x100000001 ? undefined : ret;
+}
+
+/**
+ * Binary Search with step tracking
+ * @param {Int32Array} arr
+ * @param {number} target
+ * @returns {Array<any>}
+ */
+export function binary_search_with_steps(arr, target) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.binary_search_with_steps(ptr0, len0, target);
+    return ret;
+}
+
+/**
+ * Interpolation Search - O(log log n) for uniformly distributed data
+ * @param {Int32Array} arr
+ * @param {number} target
+ * @returns {number | undefined}
+ */
+export function interpolation_search(arr, target) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.interpolation_search(ptr0, len0, target);
+    return ret === 0x100000001 ? undefined : ret;
+}
+
+/**
+ * Jump Search - O(√n) time complexity
+ * @param {Int32Array} arr
+ * @param {number} target
+ * @returns {number | undefined}
+ */
+export function jump_search(arr, target) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.jump_search(ptr0, len0, target);
+    return ret === 0x100000001 ? undefined : ret;
+}
+
+/**
+ * Exponential Search - O(log n) time complexity
+ * @param {Int32Array} arr
+ * @param {number} target
+ * @returns {number | undefined}
+ */
+export function exponential_search(arr, target) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.exponential_search(ptr0, len0, target);
+    return ret === 0x100000001 ? undefined : ret;
+}
+
+/**
+ * Ternary Search - O(log₃ n) time complexity
+ * @param {Int32Array} arr
+ * @param {number} target
+ * @returns {number | undefined}
+ */
+export function ternary_search(arr, target) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.ternary_search(ptr0, len0, target);
+    return ret === 0x100000001 ? undefined : ret;
+}
+
+/**
+ * Fibonacci Search - O(log n) time complexity
+ * @param {Int32Array} arr
+ * @param {number} target
+ * @returns {number | undefined}
+ */
+export function fibonacci_search(arr, target) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.fibonacci_search(ptr0, len0, target);
+    return ret === 0x100000001 ? undefined : ret;
+}
+
+/**
+ * Find first occurrence of target in sorted array with duplicates
+ * @param {Int32Array} arr
+ * @param {number} target
+ * @returns {number | undefined}
+ */
+export function find_first_occurrence(arr, target) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.find_first_occurrence(ptr0, len0, target);
+    return ret === 0x100000001 ? undefined : ret;
+}
+
+/**
+ * Find last occurrence of target in sorted array with duplicates
+ * @param {Int32Array} arr
+ * @param {number} target
+ * @returns {number | undefined}
+ */
+export function find_last_occurrence(arr, target) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.find_last_occurrence(ptr0, len0, target);
+    return ret === 0x100000001 ? undefined : ret;
+}
+
+/**
+ * Count occurrences of target in sorted array
+ * @param {Int32Array} arr
+ * @param {number} target
+ * @returns {number}
+ */
+export function count_occurrences(arr, target) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.count_occurrences(ptr0, len0, target);
+    return ret >>> 0;
+}
+
+/**
+ * Find peak element in array (element that is greater than its neighbors)
+ * @param {Int32Array} arr
+ * @returns {number | undefined}
+ */
+export function find_peak_element(arr) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.find_peak_element(ptr0, len0);
+    return ret === 0x100000001 ? undefined : ret;
+}
+
+/**
+ * Search in rotated sorted array
+ * @param {Int32Array} arr
+ * @param {number} target
+ * @returns {number | undefined}
+ */
+export function search_rotated_array(arr, target) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.search_rotated_array(ptr0, len0, target);
+    return ret === 0x100000001 ? undefined : ret;
+}
+
+/**
+ * Find minimum element in rotated sorted array
+ * @param {Int32Array} arr
+ * @returns {number | undefined}
+ */
+export function find_min_rotated_array(arr) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.find_min_rotated_array(ptr0, len0);
+    return ret === 0x100000001 ? undefined : ret;
+}
+
+/**
+ * Search for target in 2D matrix (sorted row-wise and column-wise)
+ * @param {Array<any>} matrix
+ * @param {number} target
+ * @returns {Array<any>}
+ */
+export function search_2d_matrix(matrix, target) {
+    const ret = wasm.search_2d_matrix(matrix, target);
+    return ret;
+}
+
+/**
+ * Performance benchmark for searching algorithms
+ * @param {string} algorithm
+ * @param {Int32Array} arr
+ * @param {number} target
+ * @returns {number}
+ */
+export function benchmark_search(algorithm, arr, target) {
+    const ptr0 = passStringToWasm0(algorithm, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ptr1 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len1 = WASM_VECTOR_LEN;
+    const ret = wasm.benchmark_search(ptr0, len0, ptr1, len1, target);
+    return ret;
+}
+
+/**
+ * Compare multiple searching algorithms
+ * @param {Int32Array} arr
+ * @param {number} target
+ * @returns {Array<any>}
+ */
+export function compare_search_algorithms(arr, target) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.compare_search_algorithms(ptr0, len0, target);
+    return ret;
+}
+
+/**
+ * Utility functions
+ * Check if array is sorted (required for some search algorithms)
+ * @param {Int32Array} arr
+ * @returns {boolean}
+ */
+export function is_sorted_for_search(arr) {
+    const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.is_sorted(ptr0, len0);
+    return ret !== 0;
+}
+
+/**
+ * Generate test cases for searching
+ * @param {number} size
+ * @param {number} max_value
+ * @returns {Array<any>}
+ */
+export function generate_search_test_array(size, max_value) {
+    const ret = wasm.generate_search_test_array(size, max_value);
+    return ret;
+}
+
+/**
  * Get all available effect presets
  * @returns {Array<any>}
  */
@@ -602,88 +1659,253 @@ export function bevy_get_performance_metrics() {
     return ret;
 }
 
-/**
- * Generate video frames with Ken Burns effect (pan and zoom)
- * @param {Uint8Array} rgba_data
- * @param {number} width
- * @param {number} height
- * @param {number} frames
- * @param {number} zoom_factor
- * @param {number} pan_x
- * @param {number} pan_y
- * @returns {Array<any>}
- */
-export function bevy_generate_ken_burns(rgba_data, width, height, frames, zoom_factor, pan_x, pan_y) {
-    const ptr0 = passArray8ToWasm0(rgba_data, wasm.__wbindgen_malloc);
-    const len0 = WASM_VECTOR_LEN;
-    const ret = wasm.bevy_generate_ken_burns(ptr0, len0, width, height, frames, zoom_factor, pan_x, pan_y);
-    return ret;
-}
-
-/**
- * Generate transition frames between two images
- * @param {Uint8Array} rgba_data1
- * @param {Uint8Array} rgba_data2
- * @param {number} width
- * @param {number} height
- * @param {number} frames
- * @param {string} transition_type
- * @returns {Array<any>}
- */
-export function bevy_generate_transition(rgba_data1, rgba_data2, width, height, frames, transition_type) {
-    const ptr0 = passArray8ToWasm0(rgba_data1, wasm.__wbindgen_malloc);
-    const len0 = WASM_VECTOR_LEN;
-    const ptr1 = passArray8ToWasm0(rgba_data2, wasm.__wbindgen_malloc);
-    const len1 = WASM_VECTOR_LEN;
-    const ptr2 = passStringToWasm0(transition_type, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-    const len2 = WASM_VECTOR_LEN;
-    const ret = wasm.bevy_generate_transition(ptr0, len0, ptr1, len1, width, height, frames, ptr2, len2);
-    return ret;
-}
-
-/**
- * Generate slideshow from multiple images with effects
- * @param {Array<any>} images_data
- * @param {number} frames_per_image
- * @param {number} transition_frames
- * @param {string} transition_type
- * @returns {Array<any>}
- */
-export function bevy_generate_slideshow(images_data, frames_per_image, transition_frames, transition_type) {
-    const ptr0 = passStringToWasm0(transition_type, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-    const len0 = WASM_VECTOR_LEN;
-    const ret = wasm.bevy_generate_slideshow(images_data, frames_per_image, transition_frames, ptr0, len0);
-    return ret;
-}
-
-/**
- * Generate parallax scrolling effect
- * @param {Uint8Array} bg_data
- * @param {Uint8Array} fg_data
- * @param {number} width
- * @param {number} height
- * @param {number} frames
- * @param {number} scroll_speed
- * @returns {Array<any>}
- */
-export function bevy_generate_parallax(bg_data, fg_data, width, height, frames, scroll_speed) {
-    const ptr0 = passArray8ToWasm0(bg_data, wasm.__wbindgen_malloc);
-    const len0 = WASM_VECTOR_LEN;
-    const ptr1 = passArray8ToWasm0(fg_data, wasm.__wbindgen_malloc);
-    const len1 = WASM_VECTOR_LEN;
-    const ret = wasm.bevy_generate_parallax(ptr0, len0, ptr1, len1, width, height, frames, scroll_speed);
-    return ret;
-}
-
 function __wbg_adapter_26(arg0, arg1) {
     wasm.wasm_bindgen__convert__closures_____invoke__h357b077c0154e0d6(arg0, arg1);
+}
+
+const AVLTreeFinalization = (typeof FinalizationRegistry === 'undefined')
+    ? { register: () => {}, unregister: () => {} }
+    : new FinalizationRegistry(ptr => wasm.__wbg_avltree_free(ptr >>> 0, 1));
+/**
+ * AVL Tree (Self-balancing binary search tree)
+ */
+export class AVLTree {
+
+    __destroy_into_raw() {
+        const ptr = this.__wbg_ptr;
+        this.__wbg_ptr = 0;
+        AVLTreeFinalization.unregister(this);
+        return ptr;
+    }
+
+    free() {
+        const ptr = this.__destroy_into_raw();
+        wasm.__wbg_avltree_free(ptr, 0);
+    }
+    constructor() {
+        const ret = wasm.avltree_new();
+        this.__wbg_ptr = ret >>> 0;
+        AVLTreeFinalization.register(this, this.__wbg_ptr, this);
+        return this;
+    }
+    /**
+     * @param {number} value
+     */
+    insert(value) {
+        wasm.avltree_insert(this.__wbg_ptr, value);
+    }
+    /**
+     * @param {number} value
+     * @returns {boolean}
+     */
+    search(value) {
+        const ret = wasm.avltree_search(this.__wbg_ptr, value);
+        return ret !== 0;
+    }
+    /**
+     * @returns {number}
+     */
+    len() {
+        const ret = wasm.avltree_len(this.__wbg_ptr);
+        return ret >>> 0;
+    }
+    /**
+     * @returns {number}
+     */
+    height() {
+        const ret = wasm.avltree_height(this.__wbg_ptr);
+        return ret;
+    }
+    /**
+     * @returns {Array<any>}
+     */
+    inorder_traversal() {
+        const ret = wasm.avltree_inorder_traversal(this.__wbg_ptr);
+        return ret;
+    }
+}
+
+const BinaryHeapFinalization = (typeof FinalizationRegistry === 'undefined')
+    ? { register: () => {}, unregister: () => {} }
+    : new FinalizationRegistry(ptr => wasm.__wbg_binaryheap_free(ptr >>> 0, 1));
+/**
+ * Binary Heap implementation (Min-Heap by default)
+ */
+export class BinaryHeap {
+
+    static __wrap(ptr) {
+        ptr = ptr >>> 0;
+        const obj = Object.create(BinaryHeap.prototype);
+        obj.__wbg_ptr = ptr;
+        BinaryHeapFinalization.register(obj, obj.__wbg_ptr, obj);
+        return obj;
+    }
+
+    __destroy_into_raw() {
+        const ptr = this.__wbg_ptr;
+        this.__wbg_ptr = 0;
+        BinaryHeapFinalization.unregister(this);
+        return ptr;
+    }
+
+    free() {
+        const ptr = this.__destroy_into_raw();
+        wasm.__wbg_binaryheap_free(ptr, 0);
+    }
+    /**
+     * @param {boolean} is_max_heap
+     */
+    constructor(is_max_heap) {
+        const ret = wasm.binaryheap_new(is_max_heap);
+        this.__wbg_ptr = ret >>> 0;
+        BinaryHeapFinalization.register(this, this.__wbg_ptr, this);
+        return this;
+    }
+    /**
+     * @param {number} capacity
+     * @param {boolean} is_max_heap
+     * @returns {BinaryHeap}
+     */
+    static with_capacity(capacity, is_max_heap) {
+        const ret = wasm.binaryheap_with_capacity(capacity, is_max_heap);
+        return BinaryHeap.__wrap(ret);
+    }
+    /**
+     * @param {number} item
+     */
+    insert(item) {
+        wasm.binaryheap_insert(this.__wbg_ptr, item);
+    }
+    /**
+     * @returns {number | undefined}
+     */
+    extract() {
+        const ret = wasm.binaryheap_extract(this.__wbg_ptr);
+        return ret === 0x100000001 ? undefined : ret;
+    }
+    /**
+     * @returns {number | undefined}
+     */
+    peek() {
+        const ret = wasm.binaryheap_peek(this.__wbg_ptr);
+        return ret === 0x100000001 ? undefined : ret;
+    }
+    /**
+     * @returns {boolean}
+     */
+    is_empty() {
+        const ret = wasm.binaryheap_is_empty(this.__wbg_ptr);
+        return ret !== 0;
+    }
+    /**
+     * @returns {number}
+     */
+    len() {
+        const ret = wasm.binaryheap_len(this.__wbg_ptr);
+        return ret >>> 0;
+    }
+    /**
+     * @returns {number}
+     */
+    capacity() {
+        const ret = wasm.binaryheap_capacity(this.__wbg_ptr);
+        return ret >>> 0;
+    }
+    clear() {
+        wasm.binaryheap_clear(this.__wbg_ptr);
+    }
+    /**
+     * @returns {boolean}
+     */
+    is_max_heap() {
+        const ret = wasm.binaryheap_is_max_heap(this.__wbg_ptr);
+        return ret !== 0;
+    }
+    /**
+     * @param {boolean} is_max_heap
+     */
+    change_heap_type(is_max_heap) {
+        wasm.binaryheap_change_heap_type(this.__wbg_ptr, is_max_heap);
+    }
+    /**
+     * @param {Int32Array} arr
+     */
+    build_heap(arr) {
+        const ptr0 = passArray32ToWasm0(arr, wasm.__wbindgen_malloc);
+        const len0 = WASM_VECTOR_LEN;
+        wasm.binaryheap_build_heap(this.__wbg_ptr, ptr0, len0);
+    }
+    /**
+     * @returns {Array<any>}
+     */
+    to_array() {
+        const ret = wasm.binaryheap_to_array(this.__wbg_ptr);
+        return ret;
+    }
+    /**
+     * @param {Array<any>} arr
+     * @param {boolean} is_max_heap
+     * @returns {BinaryHeap}
+     */
+    static from_array(arr, is_max_heap) {
+        const ret = wasm.binaryheap_from_array(arr, is_max_heap);
+        return BinaryHeap.__wrap(ret);
+    }
+    /**
+     * @returns {boolean}
+     */
+    is_valid_heap() {
+        const ret = wasm.binaryheap_is_valid_heap(this.__wbg_ptr);
+        return ret !== 0;
+    }
+    /**
+     * @param {number} index
+     * @returns {number | undefined}
+     */
+    get_parent(index) {
+        const ret = wasm.binaryheap_get_parent(this.__wbg_ptr, index);
+        return ret === 0x100000001 ? undefined : ret;
+    }
+    /**
+     * @param {number} index
+     * @returns {number | undefined}
+     */
+    get_left_child(index) {
+        const ret = wasm.binaryheap_get_left_child(this.__wbg_ptr, index);
+        return ret === 0x100000001 ? undefined : ret;
+    }
+    /**
+     * @param {number} index
+     * @returns {number | undefined}
+     */
+    get_right_child(index) {
+        const ret = wasm.binaryheap_get_right_child(this.__wbg_ptr, index);
+        return ret === 0x100000001 ? undefined : ret;
+    }
+    /**
+     * @returns {number}
+     */
+    height() {
+        const ret = wasm.binaryheap_height(this.__wbg_ptr);
+        return ret;
+    }
 }
 
 const BinarySearchTreeFinalization = (typeof FinalizationRegistry === 'undefined')
     ? { register: () => {}, unregister: () => {} }
     : new FinalizationRegistry(ptr => wasm.__wbg_binarysearchtree_free(ptr >>> 0, 1));
-
+/**
+ * Binary Search Tree
+ */
 export class BinarySearchTree {
+
+    static __wrap(ptr) {
+        ptr = ptr >>> 0;
+        const obj = Object.create(BinarySearchTree.prototype);
+        obj.__wbg_ptr = ptr;
+        BinarySearchTreeFinalization.register(obj, obj.__wbg_ptr, obj);
+        return obj;
+    }
 
     __destroy_into_raw() {
         const ptr = this.__wbg_ptr;
@@ -697,7 +1919,7 @@ export class BinarySearchTree {
         wasm.__wbg_binarysearchtree_free(ptr, 0);
     }
     constructor() {
-        const ret = wasm.binarysearchtree_new();
+        const ret = wasm.avltree_new();
         this.__wbg_ptr = ret >>> 0;
         BinarySearchTreeFinalization.register(this, this.__wbg_ptr, this);
         return this;
@@ -717,10 +1939,368 @@ export class BinarySearchTree {
         return ret !== 0;
     }
     /**
+     * @param {number} value
+     * @returns {boolean}
+     */
+    remove(value) {
+        const ret = wasm.binarysearchtree_remove(this.__wbg_ptr, value);
+        return ret !== 0;
+    }
+    /**
+     * @returns {number | undefined}
+     */
+    find_min() {
+        const ret = wasm.binarysearchtree_find_min(this.__wbg_ptr);
+        return ret === 0x100000001 ? undefined : ret;
+    }
+    /**
+     * @returns {number | undefined}
+     */
+    find_max() {
+        const ret = wasm.binarysearchtree_find_max(this.__wbg_ptr);
+        return ret === 0x100000001 ? undefined : ret;
+    }
+    /**
+     * @returns {number}
+     */
+    height() {
+        const ret = wasm.binarysearchtree_height(this.__wbg_ptr);
+        return ret;
+    }
+    /**
+     * @returns {number}
+     */
+    len() {
+        const ret = wasm.binarysearchtree_len(this.__wbg_ptr);
+        return ret >>> 0;
+    }
+    /**
+     * @returns {boolean}
+     */
+    is_empty() {
+        const ret = wasm.binarysearchtree_is_empty(this.__wbg_ptr);
+        return ret !== 0;
+    }
+    clear() {
+        wasm.binarysearchtree_clear(this.__wbg_ptr);
+    }
+    /**
      * @returns {Array<any>}
      */
     inorder_traversal() {
         const ret = wasm.binarysearchtree_inorder_traversal(this.__wbg_ptr);
+        return ret;
+    }
+    /**
+     * @returns {Array<any>}
+     */
+    preorder_traversal() {
+        const ret = wasm.binarysearchtree_preorder_traversal(this.__wbg_ptr);
+        return ret;
+    }
+    /**
+     * @returns {Array<any>}
+     */
+    postorder_traversal() {
+        const ret = wasm.binarysearchtree_postorder_traversal(this.__wbg_ptr);
+        return ret;
+    }
+    /**
+     * @returns {Array<any>}
+     */
+    level_order_traversal() {
+        const ret = wasm.binarysearchtree_level_order_traversal(this.__wbg_ptr);
+        return ret;
+    }
+    /**
+     * @returns {boolean}
+     */
+    is_valid_bst() {
+        const ret = wasm.binarysearchtree_is_valid_bst(this.__wbg_ptr);
+        return ret !== 0;
+    }
+    /**
+     * @param {Array<any>} arr
+     * @returns {BinarySearchTree}
+     */
+    static from_array(arr) {
+        const ret = wasm.binarysearchtree_from_array(arr);
+        return BinarySearchTree.__wrap(ret);
+    }
+}
+
+const CircularQueueFinalization = (typeof FinalizationRegistry === 'undefined')
+    ? { register: () => {}, unregister: () => {} }
+    : new FinalizationRegistry(ptr => wasm.__wbg_circularqueue_free(ptr >>> 0, 1));
+/**
+ * Circular Queue with fixed capacity
+ */
+export class CircularQueue {
+
+    __destroy_into_raw() {
+        const ptr = this.__wbg_ptr;
+        this.__wbg_ptr = 0;
+        CircularQueueFinalization.unregister(this);
+        return ptr;
+    }
+
+    free() {
+        const ptr = this.__destroy_into_raw();
+        wasm.__wbg_circularqueue_free(ptr, 0);
+    }
+    /**
+     * @param {number} capacity
+     */
+    constructor(capacity) {
+        const ret = wasm.circularqueue_new(capacity);
+        this.__wbg_ptr = ret >>> 0;
+        CircularQueueFinalization.register(this, this.__wbg_ptr, this);
+        return this;
+    }
+    /**
+     * @param {number} item
+     * @returns {boolean}
+     */
+    enqueue(item) {
+        const ret = wasm.circularqueue_enqueue(this.__wbg_ptr, item);
+        return ret !== 0;
+    }
+    /**
+     * @returns {number | undefined}
+     */
+    dequeue() {
+        const ret = wasm.circularqueue_dequeue(this.__wbg_ptr);
+        return ret === 0x100000001 ? undefined : ret;
+    }
+    /**
+     * @returns {number | undefined}
+     */
+    front() {
+        const ret = wasm.circularqueue_front(this.__wbg_ptr);
+        return ret === 0x100000001 ? undefined : ret;
+    }
+    /**
+     * @returns {number | undefined}
+     */
+    rear() {
+        const ret = wasm.circularqueue_rear(this.__wbg_ptr);
+        return ret === 0x100000001 ? undefined : ret;
+    }
+    /**
+     * @returns {boolean}
+     */
+    is_empty() {
+        const ret = wasm.circularqueue_is_empty(this.__wbg_ptr);
+        return ret !== 0;
+    }
+    /**
+     * @returns {boolean}
+     */
+    is_full() {
+        const ret = wasm.circularqueue_is_full(this.__wbg_ptr);
+        return ret !== 0;
+    }
+    /**
+     * @returns {number}
+     */
+    len() {
+        const ret = wasm.circularqueue_len(this.__wbg_ptr);
+        return ret >>> 0;
+    }
+    /**
+     * @returns {number}
+     */
+    capacity() {
+        const ret = wasm.circularqueue_capacity(this.__wbg_ptr);
+        return ret >>> 0;
+    }
+    clear() {
+        wasm.circularqueue_clear(this.__wbg_ptr);
+    }
+    /**
+     * @returns {number}
+     */
+    get_front_index() {
+        const ret = wasm.circularqueue_get_front_index(this.__wbg_ptr);
+        return ret >>> 0;
+    }
+    /**
+     * @returns {number}
+     */
+    get_rear_index() {
+        const ret = wasm.circularqueue_get_rear_index(this.__wbg_ptr);
+        return ret >>> 0;
+    }
+    /**
+     * @returns {Array<any>}
+     */
+    to_array() {
+        const ret = wasm.circularqueue_to_array(this.__wbg_ptr);
+        return ret;
+    }
+    /**
+     * @returns {Array<any>}
+     */
+    get_raw_data() {
+        const ret = wasm.circularqueue_get_raw_data(this.__wbg_ptr);
+        return ret;
+    }
+}
+
+const DequeFinalization = (typeof FinalizationRegistry === 'undefined')
+    ? { register: () => {}, unregister: () => {} }
+    : new FinalizationRegistry(ptr => wasm.__wbg_deque_free(ptr >>> 0, 1));
+/**
+ * Deque (Double-ended queue)
+ */
+export class Deque {
+
+    __destroy_into_raw() {
+        const ptr = this.__wbg_ptr;
+        this.__wbg_ptr = 0;
+        DequeFinalization.unregister(this);
+        return ptr;
+    }
+
+    free() {
+        const ptr = this.__destroy_into_raw();
+        wasm.__wbg_deque_free(ptr, 0);
+    }
+    constructor() {
+        const ret = wasm.deque_new();
+        this.__wbg_ptr = ret >>> 0;
+        DequeFinalization.register(this, this.__wbg_ptr, this);
+        return this;
+    }
+    /**
+     * @param {number} item
+     */
+    push_front(item) {
+        wasm.deque_push_front(this.__wbg_ptr, item);
+    }
+    /**
+     * @param {number} item
+     */
+    push_back(item) {
+        wasm.deque_push_back(this.__wbg_ptr, item);
+    }
+    /**
+     * @returns {number | undefined}
+     */
+    pop_front() {
+        const ret = wasm.deque_pop_front(this.__wbg_ptr);
+        return ret === 0x100000001 ? undefined : ret;
+    }
+    /**
+     * @returns {number | undefined}
+     */
+    pop_back() {
+        const ret = wasm.deque_pop_back(this.__wbg_ptr);
+        return ret === 0x100000001 ? undefined : ret;
+    }
+    /**
+     * @returns {number | undefined}
+     */
+    front() {
+        const ret = wasm.deque_front(this.__wbg_ptr);
+        return ret === 0x100000001 ? undefined : ret;
+    }
+    /**
+     * @returns {number | undefined}
+     */
+    back() {
+        const ret = wasm.deque_back(this.__wbg_ptr);
+        return ret === 0x100000001 ? undefined : ret;
+    }
+    /**
+     * @returns {boolean}
+     */
+    is_empty() {
+        const ret = wasm.deque_is_empty(this.__wbg_ptr);
+        return ret !== 0;
+    }
+    /**
+     * @returns {number}
+     */
+    len() {
+        const ret = wasm.deque_len(this.__wbg_ptr);
+        return ret >>> 0;
+    }
+    clear() {
+        wasm.deque_clear(this.__wbg_ptr);
+    }
+    /**
+     * @returns {Array<any>}
+     */
+    to_array() {
+        const ret = wasm.deque_to_array(this.__wbg_ptr);
+        return ret;
+    }
+}
+
+const DoublyLinkedListFinalization = (typeof FinalizationRegistry === 'undefined')
+    ? { register: () => {}, unregister: () => {} }
+    : new FinalizationRegistry(ptr => wasm.__wbg_doublylinkedlist_free(ptr >>> 0, 1));
+/**
+ * Doubly Linked List
+ */
+export class DoublyLinkedList {
+
+    __destroy_into_raw() {
+        const ptr = this.__wbg_ptr;
+        this.__wbg_ptr = 0;
+        DoublyLinkedListFinalization.unregister(this);
+        return ptr;
+    }
+
+    free() {
+        const ptr = this.__destroy_into_raw();
+        wasm.__wbg_doublylinkedlist_free(ptr, 0);
+    }
+    constructor() {
+        const ret = wasm.doublylinkedlist_new();
+        this.__wbg_ptr = ret >>> 0;
+        DoublyLinkedListFinalization.register(this, this.__wbg_ptr, this);
+        return this;
+    }
+    /**
+     * @param {number} value
+     */
+    push_front(value) {
+        wasm.doublylinkedlist_push_front(this.__wbg_ptr, value);
+    }
+    /**
+     * @param {number} value
+     */
+    push_back(value) {
+        wasm.doublylinkedlist_push_back(this.__wbg_ptr, value);
+    }
+    /**
+     * @returns {number | undefined}
+     */
+    pop_front() {
+        const ret = wasm.doublylinkedlist_pop_front(this.__wbg_ptr);
+        return ret === 0x100000001 ? undefined : ret;
+    }
+    /**
+     * @returns {number}
+     */
+    len() {
+        const ret = wasm.doublylinkedlist_len(this.__wbg_ptr);
+        return ret >>> 0;
+    }
+    /**
+     * @returns {boolean}
+     */
+    is_empty() {
+        const ret = wasm.doublylinkedlist_is_empty(this.__wbg_ptr);
+        return ret !== 0;
+    }
+    /**
+     * @returns {Array<any>}
+     */
+    to_array() {
+        const ret = wasm.doublylinkedlist_to_array(this.__wbg_ptr);
         return ret;
     }
 }
@@ -728,7 +2308,9 @@ export class BinarySearchTree {
 const GraphFinalization = (typeof FinalizationRegistry === 'undefined')
     ? { register: () => {}, unregister: () => {} }
     : new FinalizationRegistry(ptr => wasm.__wbg_graph_free(ptr >>> 0, 1));
-
+/**
+ * Graph using adjacency list representation
+ */
 export class Graph {
 
     __destroy_into_raw() {
@@ -742,8 +2324,11 @@ export class Graph {
         const ptr = this.__destroy_into_raw();
         wasm.__wbg_graph_free(ptr, 0);
     }
-    constructor() {
-        const ret = wasm.graph_new();
+    /**
+     * @param {boolean} is_directed
+     */
+    constructor(is_directed) {
+        const ret = wasm.graph_new(is_directed);
         this.__wbg_ptr = ret >>> 0;
         GraphFinalization.register(this, this.__wbg_ptr, this);
         return this;
@@ -762,11 +2347,38 @@ export class Graph {
         wasm.graph_add_edge(this.__wbg_ptr, from, to);
     }
     /**
-     * @param {number} vertex1
-     * @param {number} vertex2
+     * @param {number} vertex
+     * @returns {boolean}
      */
-    add_undirected_edge(vertex1, vertex2) {
-        wasm.graph_add_undirected_edge(this.__wbg_ptr, vertex1, vertex2);
+    remove_vertex(vertex) {
+        const ret = wasm.graph_remove_vertex(this.__wbg_ptr, vertex);
+        return ret !== 0;
+    }
+    /**
+     * @param {number} from
+     * @param {number} to
+     * @returns {boolean}
+     */
+    remove_edge(from, to) {
+        const ret = wasm.graph_remove_edge(this.__wbg_ptr, from, to);
+        return ret !== 0;
+    }
+    /**
+     * @param {number} vertex
+     * @returns {boolean}
+     */
+    has_vertex(vertex) {
+        const ret = wasm.graph_has_vertex(this.__wbg_ptr, vertex);
+        return ret !== 0;
+    }
+    /**
+     * @param {number} from
+     * @param {number} to
+     * @returns {boolean}
+     */
+    has_edge(from, to) {
+        const ret = wasm.graph_has_edge(this.__wbg_ptr, from, to);
+        return ret !== 0;
     }
     /**
      * @param {number} vertex
@@ -783,13 +2395,364 @@ export class Graph {
         const ret = wasm.graph_get_vertices(this.__wbg_ptr);
         return ret;
     }
+    /**
+     * @returns {number}
+     */
+    vertex_count() {
+        const ret = wasm.graph_vertex_count(this.__wbg_ptr);
+        return ret >>> 0;
+    }
+    /**
+     * @returns {number}
+     */
+    edge_count() {
+        const ret = wasm.graph_edge_count(this.__wbg_ptr);
+        return ret >>> 0;
+    }
+    /**
+     * @param {number} vertex
+     * @returns {number | undefined}
+     */
+    degree(vertex) {
+        const ret = wasm.graph_degree(this.__wbg_ptr, vertex);
+        return ret === 0x100000001 ? undefined : ret;
+    }
+    /**
+     * @param {number} start
+     * @returns {Array<any>}
+     */
+    dfs_traversal(start) {
+        const ret = wasm.graph_dfs_traversal(this.__wbg_ptr, start);
+        return ret;
+    }
+    /**
+     * @param {number} start
+     * @returns {Array<any>}
+     */
+    bfs_traversal(start) {
+        const ret = wasm.graph_bfs_traversal(this.__wbg_ptr, start);
+        return ret;
+    }
+    /**
+     * @param {number} from
+     * @param {number} to
+     * @returns {boolean}
+     */
+    has_path(from, to) {
+        const ret = wasm.graph_has_path(this.__wbg_ptr, from, to);
+        return ret !== 0;
+    }
+    /**
+     * @param {number} from
+     * @param {number} to
+     * @returns {Array<any>}
+     */
+    shortest_path(from, to) {
+        const ret = wasm.graph_shortest_path(this.__wbg_ptr, from, to);
+        return ret;
+    }
+    /**
+     * @returns {boolean}
+     */
+    is_connected() {
+        const ret = wasm.graph_is_connected(this.__wbg_ptr);
+        return ret !== 0;
+    }
+    /**
+     * @returns {boolean}
+     */
+    has_cycle() {
+        const ret = wasm.graph_has_cycle(this.__wbg_ptr);
+        return ret !== 0;
+    }
+    /**
+     * @returns {Array<any>}
+     */
+    topological_sort() {
+        const ret = wasm.graph_topological_sort(this.__wbg_ptr);
+        return ret;
+    }
+}
+
+const HashTableFinalization = (typeof FinalizationRegistry === 'undefined')
+    ? { register: () => {}, unregister: () => {} }
+    : new FinalizationRegistry(ptr => wasm.__wbg_hashtable_free(ptr >>> 0, 1));
+/**
+ * Hash Table with chaining collision resolution
+ */
+export class HashTable {
+
+    __destroy_into_raw() {
+        const ptr = this.__wbg_ptr;
+        this.__wbg_ptr = 0;
+        HashTableFinalization.unregister(this);
+        return ptr;
+    }
+
+    free() {
+        const ptr = this.__destroy_into_raw();
+        wasm.__wbg_hashtable_free(ptr, 0);
+    }
+    /**
+     * @param {number} capacity
+     */
+    constructor(capacity) {
+        const ret = wasm.hashtable_new(capacity);
+        this.__wbg_ptr = ret >>> 0;
+        HashTableFinalization.register(this, this.__wbg_ptr, this);
+        return this;
+    }
+    /**
+     * @param {string} key
+     * @param {string} value
+     * @returns {boolean}
+     */
+    insert(key, value) {
+        const ptr0 = passStringToWasm0(key, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ptr1 = passStringToWasm0(value, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len1 = WASM_VECTOR_LEN;
+        const ret = wasm.hashtable_insert(this.__wbg_ptr, ptr0, len0, ptr1, len1);
+        return ret !== 0;
+    }
+    /**
+     * @param {string} key
+     * @returns {string | undefined}
+     */
+    get(key) {
+        const ptr0 = passStringToWasm0(key, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.hashtable_get(this.__wbg_ptr, ptr0, len0);
+        let v2;
+        if (ret[0] !== 0) {
+            v2 = getStringFromWasm0(ret[0], ret[1]).slice();
+            wasm.__wbindgen_free(ret[0], ret[1] * 1, 1);
+        }
+        return v2;
+    }
+    /**
+     * @param {string} key
+     * @returns {string | undefined}
+     */
+    remove(key) {
+        const ptr0 = passStringToWasm0(key, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.hashtable_remove(this.__wbg_ptr, ptr0, len0);
+        let v2;
+        if (ret[0] !== 0) {
+            v2 = getStringFromWasm0(ret[0], ret[1]).slice();
+            wasm.__wbindgen_free(ret[0], ret[1] * 1, 1);
+        }
+        return v2;
+    }
+    /**
+     * @param {string} key
+     * @returns {boolean}
+     */
+    contains_key(key) {
+        const ptr0 = passStringToWasm0(key, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.hashtable_contains_key(this.__wbg_ptr, ptr0, len0);
+        return ret !== 0;
+    }
+    /**
+     * @returns {number}
+     */
+    len() {
+        const ret = wasm.hashtable_len(this.__wbg_ptr);
+        return ret >>> 0;
+    }
+    /**
+     * @returns {number}
+     */
+    capacity() {
+        const ret = wasm.hashtable_capacity(this.__wbg_ptr);
+        return ret >>> 0;
+    }
+    /**
+     * @returns {boolean}
+     */
+    is_empty() {
+        const ret = wasm.hashtable_is_empty(this.__wbg_ptr);
+        return ret !== 0;
+    }
+    clear() {
+        wasm.hashtable_clear(this.__wbg_ptr);
+    }
+    /**
+     * @returns {number}
+     */
+    load_factor() {
+        const ret = wasm.hashtable_load_factor(this.__wbg_ptr);
+        return ret;
+    }
+    /**
+     * @returns {Array<any>}
+     */
+    keys() {
+        const ret = wasm.hashtable_keys(this.__wbg_ptr);
+        return ret;
+    }
+    /**
+     * @returns {Array<any>}
+     */
+    values() {
+        const ret = wasm.hashtable_values(this.__wbg_ptr);
+        return ret;
+    }
+    /**
+     * @returns {Array<any>}
+     */
+    entries() {
+        const ret = wasm.hashtable_entries(this.__wbg_ptr);
+        return ret;
+    }
+    /**
+     * @returns {Array<any>}
+     */
+    bucket_sizes() {
+        const ret = wasm.hashtable_bucket_sizes(this.__wbg_ptr);
+        return ret;
+    }
+    /**
+     * @returns {number}
+     */
+    max_bucket_size() {
+        const ret = wasm.hashtable_max_bucket_size(this.__wbg_ptr);
+        return ret >>> 0;
+    }
+}
+
+const IntHashMapFinalization = (typeof FinalizationRegistry === 'undefined')
+    ? { register: () => {}, unregister: () => {} }
+    : new FinalizationRegistry(ptr => wasm.__wbg_inthashmap_free(ptr >>> 0, 1));
+/**
+ * Integer HashMap for performance testing
+ */
+export class IntHashMap {
+
+    static __wrap(ptr) {
+        ptr = ptr >>> 0;
+        const obj = Object.create(IntHashMap.prototype);
+        obj.__wbg_ptr = ptr;
+        IntHashMapFinalization.register(obj, obj.__wbg_ptr, obj);
+        return obj;
+    }
+
+    __destroy_into_raw() {
+        const ptr = this.__wbg_ptr;
+        this.__wbg_ptr = 0;
+        IntHashMapFinalization.unregister(this);
+        return ptr;
+    }
+
+    free() {
+        const ptr = this.__destroy_into_raw();
+        wasm.__wbg_inthashmap_free(ptr, 0);
+    }
+    constructor() {
+        const ret = wasm.inthashmap_new();
+        this.__wbg_ptr = ret >>> 0;
+        IntHashMapFinalization.register(this, this.__wbg_ptr, this);
+        return this;
+    }
+    /**
+     * @param {number} key
+     * @param {number} value
+     * @returns {number | undefined}
+     */
+    insert(key, value) {
+        const ret = wasm.inthashmap_insert(this.__wbg_ptr, key, value);
+        return ret === 0x100000001 ? undefined : ret;
+    }
+    /**
+     * @param {number} key
+     * @returns {number | undefined}
+     */
+    get(key) {
+        const ret = wasm.inthashmap_get(this.__wbg_ptr, key);
+        return ret === 0x100000001 ? undefined : ret;
+    }
+    /**
+     * @param {number} key
+     * @returns {number | undefined}
+     */
+    remove(key) {
+        const ret = wasm.inthashmap_remove(this.__wbg_ptr, key);
+        return ret === 0x100000001 ? undefined : ret;
+    }
+    /**
+     * @param {number} key
+     * @returns {boolean}
+     */
+    contains_key(key) {
+        const ret = wasm.inthashmap_contains_key(this.__wbg_ptr, key);
+        return ret !== 0;
+    }
+    /**
+     * @returns {number}
+     */
+    len() {
+        const ret = wasm.inthashmap_len(this.__wbg_ptr);
+        return ret >>> 0;
+    }
+    /**
+     * @returns {boolean}
+     */
+    is_empty() {
+        const ret = wasm.inthashmap_is_empty(this.__wbg_ptr);
+        return ret !== 0;
+    }
+    clear() {
+        wasm.inthashmap_clear(this.__wbg_ptr);
+    }
+    /**
+     * @returns {Array<any>}
+     */
+    keys() {
+        const ret = wasm.inthashmap_keys(this.__wbg_ptr);
+        return ret;
+    }
+    /**
+     * @returns {Array<any>}
+     */
+    values() {
+        const ret = wasm.inthashmap_values(this.__wbg_ptr);
+        return ret;
+    }
+    /**
+     * @returns {Array<any>}
+     */
+    entries() {
+        const ret = wasm.inthashmap_entries(this.__wbg_ptr);
+        return ret;
+    }
+    /**
+     * @param {Array<any>} keys
+     * @param {Array<any>} values
+     * @returns {IntHashMap}
+     */
+    static from_arrays(keys, values) {
+        const ret = wasm.inthashmap_from_arrays(keys, values);
+        return IntHashMap.__wrap(ret);
+    }
 }
 
 const LinkedListFinalization = (typeof FinalizationRegistry === 'undefined')
     ? { register: () => {}, unregister: () => {} }
     : new FinalizationRegistry(ptr => wasm.__wbg_linkedlist_free(ptr >>> 0, 1));
-
+/**
+ * Singly Linked List
+ */
 export class LinkedList {
+
+    static __wrap(ptr) {
+        ptr = ptr >>> 0;
+        const obj = Object.create(LinkedList.prototype);
+        obj.__wbg_ptr = ptr;
+        LinkedListFinalization.register(obj, obj.__wbg_ptr, obj);
+        return obj;
+    }
 
     __destroy_into_raw() {
         const ptr = this.__wbg_ptr;
@@ -803,7 +2766,7 @@ export class LinkedList {
         wasm.__wbg_linkedlist_free(ptr, 0);
     }
     constructor() {
-        const ret = wasm.linkedlist_new();
+        const ret = wasm.avltree_new();
         this.__wbg_ptr = ret >>> 0;
         LinkedListFinalization.register(this, this.__wbg_ptr, this);
         return this;
@@ -815,10 +2778,64 @@ export class LinkedList {
         wasm.linkedlist_push_front(this.__wbg_ptr, value);
     }
     /**
+     * @param {number} value
+     */
+    push_back(value) {
+        wasm.linkedlist_push_back(this.__wbg_ptr, value);
+    }
+    /**
      * @returns {number | undefined}
      */
     pop_front() {
         const ret = wasm.linkedlist_pop_front(this.__wbg_ptr);
+        return ret === 0x100000001 ? undefined : ret;
+    }
+    /**
+     * @returns {number | undefined}
+     */
+    pop_back() {
+        const ret = wasm.linkedlist_pop_back(this.__wbg_ptr);
+        return ret === 0x100000001 ? undefined : ret;
+    }
+    /**
+     * @param {number} index
+     * @returns {number | undefined}
+     */
+    get(index) {
+        const ret = wasm.linkedlist_get(this.__wbg_ptr, index);
+        return ret === 0x100000001 ? undefined : ret;
+    }
+    /**
+     * @param {number} index
+     * @param {number} value
+     * @returns {boolean}
+     */
+    insert(index, value) {
+        const ret = wasm.linkedlist_insert(this.__wbg_ptr, index, value);
+        return ret !== 0;
+    }
+    /**
+     * @param {number} index
+     * @returns {number | undefined}
+     */
+    remove(index) {
+        const ret = wasm.linkedlist_remove(this.__wbg_ptr, index);
+        return ret === 0x100000001 ? undefined : ret;
+    }
+    /**
+     * @param {number} value
+     * @returns {boolean}
+     */
+    contains(value) {
+        const ret = wasm.linkedlist_contains(this.__wbg_ptr, value);
+        return ret !== 0;
+    }
+    /**
+     * @param {number} value
+     * @returns {number | undefined}
+     */
+    index_of(value) {
+        const ret = wasm.linkedlist_index_of(this.__wbg_ptr, value);
         return ret === 0x100000001 ? undefined : ret;
     }
     /**
@@ -829,38 +2846,507 @@ export class LinkedList {
         return ret >>> 0;
     }
     /**
+     * @returns {boolean}
+     */
+    is_empty() {
+        const ret = wasm.linkedlist_is_empty(this.__wbg_ptr);
+        return ret !== 0;
+    }
+    clear() {
+        wasm.linkedlist_clear(this.__wbg_ptr);
+    }
+    reverse() {
+        wasm.linkedlist_reverse(this.__wbg_ptr);
+    }
+    /**
      * @returns {Array<any>}
      */
     to_array() {
         const ret = wasm.linkedlist_to_array(this.__wbg_ptr);
         return ret;
     }
+    /**
+     * @param {Array<any>} arr
+     * @returns {LinkedList}
+     */
+    static from_array(arr) {
+        const ret = wasm.linkedlist_from_array(arr);
+        return LinkedList.__wrap(ret);
+    }
 }
 
-const ListNodeFinalization = (typeof FinalizationRegistry === 'undefined')
+const MedianFinderFinalization = (typeof FinalizationRegistry === 'undefined')
     ? { register: () => {}, unregister: () => {} }
-    : new FinalizationRegistry(ptr => wasm.__wbg_listnode_free(ptr >>> 0, 1));
-
-export class ListNode {
+    : new FinalizationRegistry(ptr => wasm.__wbg_medianfinder_free(ptr >>> 0, 1));
+/**
+ * Median Finder using two heaps
+ */
+export class MedianFinder {
 
     __destroy_into_raw() {
         const ptr = this.__wbg_ptr;
         this.__wbg_ptr = 0;
-        ListNodeFinalization.unregister(this);
+        MedianFinderFinalization.unregister(this);
         return ptr;
     }
 
     free() {
         const ptr = this.__destroy_into_raw();
-        wasm.__wbg_listnode_free(ptr, 0);
+        wasm.__wbg_medianfinder_free(ptr, 0);
+    }
+    constructor() {
+        const ret = wasm.medianfinder_new();
+        this.__wbg_ptr = ret >>> 0;
+        MedianFinderFinalization.register(this, this.__wbg_ptr, this);
+        return this;
+    }
+    /**
+     * @param {number} num
+     */
+    add_number(num) {
+        wasm.medianfinder_add_number(this.__wbg_ptr, num);
+    }
+    /**
+     * @returns {number}
+     */
+    find_median() {
+        const ret = wasm.medianfinder_find_median(this.__wbg_ptr);
+        return ret;
+    }
+    /**
+     * @returns {number}
+     */
+    len() {
+        const ret = wasm.medianfinder_len(this.__wbg_ptr);
+        return ret >>> 0;
+    }
+    /**
+     * @returns {boolean}
+     */
+    is_empty() {
+        const ret = wasm.medianfinder_is_empty(this.__wbg_ptr);
+        return ret !== 0;
+    }
+}
+
+const MinStackFinalization = (typeof FinalizationRegistry === 'undefined')
+    ? { register: () => {}, unregister: () => {} }
+    : new FinalizationRegistry(ptr => wasm.__wbg_minstack_free(ptr >>> 0, 1));
+/**
+ * Min Stack - maintains minimum element efficiently
+ */
+export class MinStack {
+
+    __destroy_into_raw() {
+        const ptr = this.__wbg_ptr;
+        this.__wbg_ptr = 0;
+        MinStackFinalization.unregister(this);
+        return ptr;
+    }
+
+    free() {
+        const ptr = this.__destroy_into_raw();
+        wasm.__wbg_minstack_free(ptr, 0);
+    }
+    constructor() {
+        const ret = wasm.minstack_new();
+        this.__wbg_ptr = ret >>> 0;
+        MinStackFinalization.register(this, this.__wbg_ptr, this);
+        return this;
+    }
+    /**
+     * @param {number} item
+     */
+    push(item) {
+        wasm.minstack_push(this.__wbg_ptr, item);
+    }
+    /**
+     * @returns {number | undefined}
+     */
+    pop() {
+        const ret = wasm.minstack_pop(this.__wbg_ptr);
+        return ret === 0x100000001 ? undefined : ret;
+    }
+    /**
+     * @returns {number | undefined}
+     */
+    peek() {
+        const ret = wasm.minstack_peek(this.__wbg_ptr);
+        return ret === 0x100000001 ? undefined : ret;
+    }
+    /**
+     * @returns {number | undefined}
+     */
+    get_min() {
+        const ret = wasm.minstack_get_min(this.__wbg_ptr);
+        return ret === 0x100000001 ? undefined : ret;
+    }
+    /**
+     * @returns {boolean}
+     */
+    is_empty() {
+        const ret = wasm.minstack_is_empty(this.__wbg_ptr);
+        return ret !== 0;
+    }
+    /**
+     * @returns {number}
+     */
+    len() {
+        const ret = wasm.minstack_len(this.__wbg_ptr);
+        return ret >>> 0;
+    }
+    /**
+     * @returns {Array<any>}
+     */
+    to_array() {
+        const ret = wasm.minstack_to_array(this.__wbg_ptr);
+        return ret;
+    }
+}
+
+const PriorityQueueFinalization = (typeof FinalizationRegistry === 'undefined')
+    ? { register: () => {}, unregister: () => {} }
+    : new FinalizationRegistry(ptr => wasm.__wbg_priorityqueue_free(ptr >>> 0, 1));
+/**
+ * Priority Queue (Min-Heap based)
+ */
+export class PriorityQueue {
+
+    __destroy_into_raw() {
+        const ptr = this.__wbg_ptr;
+        this.__wbg_ptr = 0;
+        PriorityQueueFinalization.unregister(this);
+        return ptr;
+    }
+
+    free() {
+        const ptr = this.__destroy_into_raw();
+        wasm.__wbg_priorityqueue_free(ptr, 0);
+    }
+    constructor() {
+        const ret = wasm.priorityqueue_new();
+        this.__wbg_ptr = ret >>> 0;
+        PriorityQueueFinalization.register(this, this.__wbg_ptr, this);
+        return this;
+    }
+    /**
+     * @param {number} value
+     * @param {number} priority
+     */
+    enqueue(value, priority) {
+        wasm.priorityqueue_enqueue(this.__wbg_ptr, value, priority);
+    }
+    /**
+     * @returns {number | undefined}
+     */
+    dequeue() {
+        const ret = wasm.priorityqueue_dequeue(this.__wbg_ptr);
+        return ret === 0x100000001 ? undefined : ret;
+    }
+    /**
+     * @returns {number | undefined}
+     */
+    peek() {
+        const ret = wasm.priorityqueue_peek(this.__wbg_ptr);
+        return ret === 0x100000001 ? undefined : ret;
+    }
+    /**
+     * @returns {number | undefined}
+     */
+    peek_priority() {
+        const ret = wasm.priorityqueue_peek_priority(this.__wbg_ptr);
+        return ret === 0x100000001 ? undefined : ret;
+    }
+    /**
+     * @returns {boolean}
+     */
+    is_empty() {
+        const ret = wasm.priorityqueue_is_empty(this.__wbg_ptr);
+        return ret !== 0;
+    }
+    /**
+     * @returns {number}
+     */
+    len() {
+        const ret = wasm.priorityqueue_len(this.__wbg_ptr);
+        return ret >>> 0;
+    }
+    clear() {
+        wasm.priorityqueue_clear(this.__wbg_ptr);
+    }
+    /**
+     * @returns {Array<any>}
+     */
+    to_array() {
+        const ret = wasm.priorityqueue_to_array(this.__wbg_ptr);
+        return ret;
+    }
+}
+
+const PriorityQueueHeapFinalization = (typeof FinalizationRegistry === 'undefined')
+    ? { register: () => {}, unregister: () => {} }
+    : new FinalizationRegistry(ptr => wasm.__wbg_priorityqueueheap_free(ptr >>> 0, 1));
+/**
+ * Priority Queue using Binary Heap
+ */
+export class PriorityQueueHeap {
+
+    __destroy_into_raw() {
+        const ptr = this.__wbg_ptr;
+        this.__wbg_ptr = 0;
+        PriorityQueueHeapFinalization.unregister(this);
+        return ptr;
+    }
+
+    free() {
+        const ptr = this.__destroy_into_raw();
+        wasm.__wbg_priorityqueueheap_free(ptr, 0);
+    }
+    /**
+     * @param {boolean} is_max_priority
+     */
+    constructor(is_max_priority) {
+        const ret = wasm.binaryheap_new(is_max_priority);
+        this.__wbg_ptr = ret >>> 0;
+        PriorityQueueHeapFinalization.register(this, this.__wbg_ptr, this);
+        return this;
+    }
+    /**
+     * @param {number} item
+     */
+    enqueue(item) {
+        wasm.binaryheap_insert(this.__wbg_ptr, item);
+    }
+    /**
+     * @returns {number | undefined}
+     */
+    dequeue() {
+        const ret = wasm.binaryheap_extract(this.__wbg_ptr);
+        return ret === 0x100000001 ? undefined : ret;
+    }
+    /**
+     * @returns {number | undefined}
+     */
+    peek() {
+        const ret = wasm.priorityqueueheap_peek(this.__wbg_ptr);
+        return ret === 0x100000001 ? undefined : ret;
+    }
+    /**
+     * @returns {boolean}
+     */
+    is_empty() {
+        const ret = wasm.priorityqueueheap_is_empty(this.__wbg_ptr);
+        return ret !== 0;
+    }
+    /**
+     * @returns {number}
+     */
+    len() {
+        const ret = wasm.priorityqueueheap_len(this.__wbg_ptr);
+        return ret >>> 0;
+    }
+    /**
+     * @returns {Array<any>}
+     */
+    to_array() {
+        const ret = wasm.priorityqueueheap_to_array(this.__wbg_ptr);
+        return ret;
+    }
+}
+
+const QueueFinalization = (typeof FinalizationRegistry === 'undefined')
+    ? { register: () => {}, unregister: () => {} }
+    : new FinalizationRegistry(ptr => wasm.__wbg_queue_free(ptr >>> 0, 1));
+/**
+ * Queue implementation using VecDeque
+ */
+export class Queue {
+
+    static __wrap(ptr) {
+        ptr = ptr >>> 0;
+        const obj = Object.create(Queue.prototype);
+        obj.__wbg_ptr = ptr;
+        QueueFinalization.register(obj, obj.__wbg_ptr, obj);
+        return obj;
+    }
+
+    __destroy_into_raw() {
+        const ptr = this.__wbg_ptr;
+        this.__wbg_ptr = 0;
+        QueueFinalization.unregister(this);
+        return ptr;
+    }
+
+    free() {
+        const ptr = this.__destroy_into_raw();
+        wasm.__wbg_queue_free(ptr, 0);
+    }
+    constructor() {
+        const ret = wasm.deque_new();
+        this.__wbg_ptr = ret >>> 0;
+        QueueFinalization.register(this, this.__wbg_ptr, this);
+        return this;
+    }
+    /**
+     * @param {number} capacity
+     * @returns {Queue}
+     */
+    static with_capacity(capacity) {
+        const ret = wasm.queue_with_capacity(capacity);
+        return Queue.__wrap(ret);
+    }
+    /**
+     * @param {number} item
+     */
+    enqueue(item) {
+        wasm.queue_enqueue(this.__wbg_ptr, item);
+    }
+    /**
+     * @returns {number | undefined}
+     */
+    dequeue() {
+        const ret = wasm.deque_pop_front(this.__wbg_ptr);
+        return ret === 0x100000001 ? undefined : ret;
+    }
+    /**
+     * @returns {number | undefined}
+     */
+    front() {
+        const ret = wasm.deque_front(this.__wbg_ptr);
+        return ret === 0x100000001 ? undefined : ret;
+    }
+    /**
+     * @returns {number | undefined}
+     */
+    back() {
+        const ret = wasm.deque_back(this.__wbg_ptr);
+        return ret === 0x100000001 ? undefined : ret;
+    }
+    /**
+     * @returns {boolean}
+     */
+    is_empty() {
+        const ret = wasm.deque_is_empty(this.__wbg_ptr);
+        return ret !== 0;
+    }
+    /**
+     * @returns {number}
+     */
+    len() {
+        const ret = wasm.deque_len(this.__wbg_ptr);
+        return ret >>> 0;
+    }
+    /**
+     * @returns {number}
+     */
+    capacity() {
+        const ret = wasm.binaryheap_capacity(this.__wbg_ptr);
+        return ret >>> 0;
+    }
+    clear() {
+        wasm.deque_clear(this.__wbg_ptr);
+    }
+    /**
+     * @param {number} item
+     * @returns {boolean}
+     */
+    contains(item) {
+        const ret = wasm.queue_contains(this.__wbg_ptr, item);
+        return ret !== 0;
+    }
+    /**
+     * @returns {Array<any>}
+     */
+    to_array() {
+        const ret = wasm.queue_to_array(this.__wbg_ptr);
+        return ret;
+    }
+    /**
+     * @param {Array<any>} arr
+     * @returns {Queue}
+     */
+    static from_array(arr) {
+        const ret = wasm.queue_from_array(arr);
+        return Queue.__wrap(ret);
+    }
+}
+
+const QueueUsingStacksFinalization = (typeof FinalizationRegistry === 'undefined')
+    ? { register: () => {}, unregister: () => {} }
+    : new FinalizationRegistry(ptr => wasm.__wbg_queueusingstacks_free(ptr >>> 0, 1));
+/**
+ * Queue using two stacks
+ */
+export class QueueUsingStacks {
+
+    __destroy_into_raw() {
+        const ptr = this.__wbg_ptr;
+        this.__wbg_ptr = 0;
+        QueueUsingStacksFinalization.unregister(this);
+        return ptr;
+    }
+
+    free() {
+        const ptr = this.__destroy_into_raw();
+        wasm.__wbg_queueusingstacks_free(ptr, 0);
+    }
+    constructor() {
+        const ret = wasm.minstack_new();
+        this.__wbg_ptr = ret >>> 0;
+        QueueUsingStacksFinalization.register(this, this.__wbg_ptr, this);
+        return this;
+    }
+    /**
+     * @param {number} item
+     */
+    enqueue(item) {
+        wasm.queueusingstacks_enqueue(this.__wbg_ptr, item);
+    }
+    /**
+     * @returns {number | undefined}
+     */
+    dequeue() {
+        const ret = wasm.queueusingstacks_dequeue(this.__wbg_ptr);
+        return ret === 0x100000001 ? undefined : ret;
+    }
+    /**
+     * @returns {number | undefined}
+     */
+    front() {
+        const ret = wasm.queueusingstacks_front(this.__wbg_ptr);
+        return ret === 0x100000001 ? undefined : ret;
+    }
+    /**
+     * @returns {boolean}
+     */
+    is_empty() {
+        const ret = wasm.queueusingstacks_is_empty(this.__wbg_ptr);
+        return ret !== 0;
+    }
+    /**
+     * @returns {number}
+     */
+    len() {
+        const ret = wasm.queueusingstacks_len(this.__wbg_ptr);
+        return ret >>> 0;
     }
 }
 
 const RustVectorFinalization = (typeof FinalizationRegistry === 'undefined')
     ? { register: () => {}, unregister: () => {} }
     : new FinalizationRegistry(ptr => wasm.__wbg_rustvector_free(ptr >>> 0, 1));
-
+/**
+ * Dynamic Array/Vector Implementation
+ */
 export class RustVector {
+
+    static __wrap(ptr) {
+        ptr = ptr >>> 0;
+        const obj = Object.create(RustVector.prototype);
+        obj.__wbg_ptr = ptr;
+        RustVectorFinalization.register(obj, obj.__wbg_ptr, obj);
+        return obj;
+    }
 
     __destroy_into_raw() {
         const ptr = this.__wbg_ptr;
@@ -874,10 +3360,18 @@ export class RustVector {
         wasm.__wbg_rustvector_free(ptr, 0);
     }
     constructor() {
-        const ret = wasm.rustvector_new();
+        const ret = wasm.priorityqueue_new();
         this.__wbg_ptr = ret >>> 0;
         RustVectorFinalization.register(this, this.__wbg_ptr, this);
         return this;
+    }
+    /**
+     * @param {number} capacity
+     * @returns {RustVector}
+     */
+    static with_capacity(capacity) {
+        const ret = wasm.rustvector_with_capacity(capacity);
+        return RustVector.__wrap(ret);
     }
     /**
      * @param {number} value
@@ -901,11 +3395,57 @@ export class RustVector {
         return ret === 0x100000001 ? undefined : ret;
     }
     /**
+     * @param {number} index
+     * @param {number} value
+     * @returns {boolean}
+     */
+    set(index, value) {
+        const ret = wasm.rustvector_set(this.__wbg_ptr, index, value);
+        return ret !== 0;
+    }
+    /**
+     * @param {number} index
+     * @param {number} value
+     * @returns {boolean}
+     */
+    insert(index, value) {
+        const ret = wasm.rustvector_insert(this.__wbg_ptr, index, value);
+        return ret !== 0;
+    }
+    /**
+     * @param {number} index
+     * @returns {number | undefined}
+     */
+    remove(index) {
+        const ret = wasm.rustvector_remove(this.__wbg_ptr, index);
+        return ret === 0x100000001 ? undefined : ret;
+    }
+    /**
      * @returns {number}
      */
     len() {
         const ret = wasm.rustvector_len(this.__wbg_ptr);
         return ret >>> 0;
+    }
+    /**
+     * @returns {number}
+     */
+    capacity() {
+        const ret = wasm.rustvector_capacity(this.__wbg_ptr);
+        return ret >>> 0;
+    }
+    /**
+     * @returns {boolean}
+     */
+    is_empty() {
+        const ret = wasm.rustvector_is_empty(this.__wbg_ptr);
+        return ret !== 0;
+    }
+    clear() {
+        wasm.rustvector_clear(this.__wbg_ptr);
+    }
+    reverse() {
+        wasm.rustvector_reverse(this.__wbg_ptr);
     }
     /**
      * @returns {Array<any>}
@@ -914,12 +3454,442 @@ export class RustVector {
         const ret = wasm.rustvector_to_array(this.__wbg_ptr);
         return ret;
     }
+    /**
+     * @param {Array<any>} arr
+     * @returns {RustVector}
+     */
+    static from_array(arr) {
+        const ret = wasm.rustvector_from_array(arr);
+        return RustVector.__wrap(ret);
+    }
+    /**
+     * @param {number} value
+     * @returns {boolean}
+     */
+    contains(value) {
+        const ret = wasm.rustvector_contains(this.__wbg_ptr, value);
+        return ret !== 0;
+    }
+    /**
+     * @param {number} value
+     * @returns {number | undefined}
+     */
+    index_of(value) {
+        const ret = wasm.rustvector_index_of(this.__wbg_ptr, value);
+        return ret === 0x100000001 ? undefined : ret;
+    }
+    /**
+     * @param {RustVector} other
+     */
+    extend(other) {
+        _assertClass(other, RustVector);
+        wasm.rustvector_extend(this.__wbg_ptr, other.__wbg_ptr);
+    }
+    /**
+     * @returns {RustVector}
+     */
+    clone_vector() {
+        const ret = wasm.rustvector_clone_vector(this.__wbg_ptr);
+        return RustVector.__wrap(ret);
+    }
+}
+
+const SimpleHashMapFinalization = (typeof FinalizationRegistry === 'undefined')
+    ? { register: () => {}, unregister: () => {} }
+    : new FinalizationRegistry(ptr => wasm.__wbg_simplehashmap_free(ptr >>> 0, 1));
+/**
+ * Simple HashMap wrapper for string-to-string mappings
+ */
+export class SimpleHashMap {
+
+    __destroy_into_raw() {
+        const ptr = this.__wbg_ptr;
+        this.__wbg_ptr = 0;
+        SimpleHashMapFinalization.unregister(this);
+        return ptr;
+    }
+
+    free() {
+        const ptr = this.__destroy_into_raw();
+        wasm.__wbg_simplehashmap_free(ptr, 0);
+    }
+    constructor() {
+        const ret = wasm.inthashmap_new();
+        this.__wbg_ptr = ret >>> 0;
+        SimpleHashMapFinalization.register(this, this.__wbg_ptr, this);
+        return this;
+    }
+    /**
+     * @param {string} key
+     * @param {string} value
+     * @returns {string | undefined}
+     */
+    insert(key, value) {
+        const ptr0 = passStringToWasm0(key, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ptr1 = passStringToWasm0(value, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len1 = WASM_VECTOR_LEN;
+        const ret = wasm.simplehashmap_insert(this.__wbg_ptr, ptr0, len0, ptr1, len1);
+        let v3;
+        if (ret[0] !== 0) {
+            v3 = getStringFromWasm0(ret[0], ret[1]).slice();
+            wasm.__wbindgen_free(ret[0], ret[1] * 1, 1);
+        }
+        return v3;
+    }
+    /**
+     * @param {string} key
+     * @returns {string | undefined}
+     */
+    get(key) {
+        const ptr0 = passStringToWasm0(key, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.simplehashmap_get(this.__wbg_ptr, ptr0, len0);
+        let v2;
+        if (ret[0] !== 0) {
+            v2 = getStringFromWasm0(ret[0], ret[1]).slice();
+            wasm.__wbindgen_free(ret[0], ret[1] * 1, 1);
+        }
+        return v2;
+    }
+    /**
+     * @param {string} key
+     * @returns {string | undefined}
+     */
+    remove(key) {
+        const ptr0 = passStringToWasm0(key, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.simplehashmap_remove(this.__wbg_ptr, ptr0, len0);
+        let v2;
+        if (ret[0] !== 0) {
+            v2 = getStringFromWasm0(ret[0], ret[1]).slice();
+            wasm.__wbindgen_free(ret[0], ret[1] * 1, 1);
+        }
+        return v2;
+    }
+    /**
+     * @param {string} key
+     * @returns {boolean}
+     */
+    contains_key(key) {
+        const ptr0 = passStringToWasm0(key, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.simplehashmap_contains_key(this.__wbg_ptr, ptr0, len0);
+        return ret !== 0;
+    }
+    /**
+     * @returns {number}
+     */
+    len() {
+        const ret = wasm.simplehashmap_len(this.__wbg_ptr);
+        return ret >>> 0;
+    }
+    /**
+     * @returns {boolean}
+     */
+    is_empty() {
+        const ret = wasm.simplehashmap_is_empty(this.__wbg_ptr);
+        return ret !== 0;
+    }
+    clear() {
+        wasm.simplehashmap_clear(this.__wbg_ptr);
+    }
+    /**
+     * @returns {Array<any>}
+     */
+    keys() {
+        const ret = wasm.simplehashmap_keys(this.__wbg_ptr);
+        return ret;
+    }
+    /**
+     * @returns {Array<any>}
+     */
+    values() {
+        const ret = wasm.simplehashmap_values(this.__wbg_ptr);
+        return ret;
+    }
+    /**
+     * @returns {Array<any>}
+     */
+    entries() {
+        const ret = wasm.simplehashmap_entries(this.__wbg_ptr);
+        return ret;
+    }
+}
+
+const StackFinalization = (typeof FinalizationRegistry === 'undefined')
+    ? { register: () => {}, unregister: () => {} }
+    : new FinalizationRegistry(ptr => wasm.__wbg_stack_free(ptr >>> 0, 1));
+/**
+ * Stack implementation using Vec
+ */
+export class Stack {
+
+    static __wrap(ptr) {
+        ptr = ptr >>> 0;
+        const obj = Object.create(Stack.prototype);
+        obj.__wbg_ptr = ptr;
+        StackFinalization.register(obj, obj.__wbg_ptr, obj);
+        return obj;
+    }
+
+    __destroy_into_raw() {
+        const ptr = this.__wbg_ptr;
+        this.__wbg_ptr = 0;
+        StackFinalization.unregister(this);
+        return ptr;
+    }
+
+    free() {
+        const ptr = this.__destroy_into_raw();
+        wasm.__wbg_stack_free(ptr, 0);
+    }
+    constructor() {
+        const ret = wasm.priorityqueue_new();
+        this.__wbg_ptr = ret >>> 0;
+        StackFinalization.register(this, this.__wbg_ptr, this);
+        return this;
+    }
+    /**
+     * @param {number} capacity
+     * @returns {Stack}
+     */
+    static with_capacity(capacity) {
+        const ret = wasm.stack_with_capacity(capacity);
+        return Stack.__wrap(ret);
+    }
+    /**
+     * @param {number} item
+     */
+    push(item) {
+        wasm.stack_push(this.__wbg_ptr, item);
+    }
+    /**
+     * @returns {number | undefined}
+     */
+    pop() {
+        const ret = wasm.rustvector_pop(this.__wbg_ptr);
+        return ret === 0x100000001 ? undefined : ret;
+    }
+    /**
+     * @returns {number | undefined}
+     */
+    peek() {
+        const ret = wasm.stack_peek(this.__wbg_ptr);
+        return ret === 0x100000001 ? undefined : ret;
+    }
+    /**
+     * @returns {boolean}
+     */
+    is_empty() {
+        const ret = wasm.rustvector_is_empty(this.__wbg_ptr);
+        return ret !== 0;
+    }
+    /**
+     * @returns {number}
+     */
+    len() {
+        const ret = wasm.rustvector_len(this.__wbg_ptr);
+        return ret >>> 0;
+    }
+    /**
+     * @returns {number}
+     */
+    capacity() {
+        const ret = wasm.rustvector_capacity(this.__wbg_ptr);
+        return ret >>> 0;
+    }
+    clear() {
+        wasm.rustvector_clear(this.__wbg_ptr);
+    }
+    /**
+     * @param {number} item
+     * @returns {boolean}
+     */
+    contains(item) {
+        const ret = wasm.rustvector_contains(this.__wbg_ptr, item);
+        return ret !== 0;
+    }
+    /**
+     * @returns {Array<any>}
+     */
+    to_array() {
+        const ret = wasm.stack_to_array(this.__wbg_ptr);
+        return ret;
+    }
+    /**
+     * @param {Array<any>} arr
+     * @returns {Stack}
+     */
+    static from_array(arr) {
+        const ret = wasm.stack_from_array(arr);
+        return Stack.__wrap(ret);
+    }
+    /**
+     * @returns {Stack}
+     */
+    clone_stack() {
+        const ret = wasm.rustvector_clone_vector(this.__wbg_ptr);
+        return Stack.__wrap(ret);
+    }
+}
+
+const StaticArrayFinalization = (typeof FinalizationRegistry === 'undefined')
+    ? { register: () => {}, unregister: () => {} }
+    : new FinalizationRegistry(ptr => wasm.__wbg_staticarray_free(ptr >>> 0, 1));
+/**
+ * Static Array with fixed size
+ */
+export class StaticArray {
+
+    __destroy_into_raw() {
+        const ptr = this.__wbg_ptr;
+        this.__wbg_ptr = 0;
+        StaticArrayFinalization.unregister(this);
+        return ptr;
+    }
+
+    free() {
+        const ptr = this.__destroy_into_raw();
+        wasm.__wbg_staticarray_free(ptr, 0);
+    }
+    /**
+     * @param {number} size
+     */
+    constructor(size) {
+        const ret = wasm.staticarray_new(size);
+        this.__wbg_ptr = ret >>> 0;
+        StaticArrayFinalization.register(this, this.__wbg_ptr, this);
+        return this;
+    }
+    /**
+     * @param {number} index
+     * @returns {number | undefined}
+     */
+    get(index) {
+        const ret = wasm.staticarray_get(this.__wbg_ptr, index);
+        return ret === 0x100000001 ? undefined : ret;
+    }
+    /**
+     * @param {number} index
+     * @param {number} value
+     * @returns {boolean}
+     */
+    set(index, value) {
+        const ret = wasm.staticarray_set(this.__wbg_ptr, index, value);
+        return ret !== 0;
+    }
+    /**
+     * @returns {number}
+     */
+    len() {
+        const ret = wasm.staticarray_len(this.__wbg_ptr);
+        return ret >>> 0;
+    }
+    /**
+     * @param {number} value
+     */
+    fill(value) {
+        wasm.staticarray_fill(this.__wbg_ptr, value);
+    }
+    /**
+     * @returns {Array<any>}
+     */
+    to_array() {
+        const ret = wasm.staticarray_to_array(this.__wbg_ptr);
+        return ret;
+    }
+}
+
+const StringStackFinalization = (typeof FinalizationRegistry === 'undefined')
+    ? { register: () => {}, unregister: () => {} }
+    : new FinalizationRegistry(ptr => wasm.__wbg_stringstack_free(ptr >>> 0, 1));
+/**
+ * String Stack for text operations
+ */
+export class StringStack {
+
+    __destroy_into_raw() {
+        const ptr = this.__wbg_ptr;
+        this.__wbg_ptr = 0;
+        StringStackFinalization.unregister(this);
+        return ptr;
+    }
+
+    free() {
+        const ptr = this.__destroy_into_raw();
+        wasm.__wbg_stringstack_free(ptr, 0);
+    }
+    constructor() {
+        const ret = wasm.priorityqueue_new();
+        this.__wbg_ptr = ret >>> 0;
+        StringStackFinalization.register(this, this.__wbg_ptr, this);
+        return this;
+    }
+    /**
+     * @param {string} item
+     */
+    push(item) {
+        const ptr0 = passStringToWasm0(item, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        wasm.stringstack_push(this.__wbg_ptr, ptr0, len0);
+    }
+    /**
+     * @returns {string | undefined}
+     */
+    pop() {
+        const ret = wasm.stringstack_pop(this.__wbg_ptr);
+        let v1;
+        if (ret[0] !== 0) {
+            v1 = getStringFromWasm0(ret[0], ret[1]).slice();
+            wasm.__wbindgen_free(ret[0], ret[1] * 1, 1);
+        }
+        return v1;
+    }
+    /**
+     * @returns {string | undefined}
+     */
+    peek() {
+        const ret = wasm.stringstack_peek(this.__wbg_ptr);
+        let v1;
+        if (ret[0] !== 0) {
+            v1 = getStringFromWasm0(ret[0], ret[1]).slice();
+            wasm.__wbindgen_free(ret[0], ret[1] * 1, 1);
+        }
+        return v1;
+    }
+    /**
+     * @returns {boolean}
+     */
+    is_empty() {
+        const ret = wasm.stringstack_is_empty(this.__wbg_ptr);
+        return ret !== 0;
+    }
+    /**
+     * @returns {number}
+     */
+    len() {
+        const ret = wasm.stringstack_len(this.__wbg_ptr);
+        return ret >>> 0;
+    }
+    clear() {
+        wasm.stringstack_clear(this.__wbg_ptr);
+    }
+    /**
+     * @returns {Array<any>}
+     */
+    to_array() {
+        const ret = wasm.stringstack_to_array(this.__wbg_ptr);
+        return ret;
+    }
 }
 
 const TreeNodeFinalization = (typeof FinalizationRegistry === 'undefined')
     ? { register: () => {}, unregister: () => {} }
     : new FinalizationRegistry(ptr => wasm.__wbg_treenode_free(ptr >>> 0, 1));
-
+/**
+ * Binary Tree Node
+ */
 export class TreeNode {
 
     __destroy_into_raw() {
@@ -947,6 +3917,87 @@ export class TreeNode {
      */
     get_value() {
         const ret = wasm.treenode_get_value(this.__wbg_ptr);
+        return ret;
+    }
+    /**
+     * @param {number} value
+     */
+    set_value(value) {
+        wasm.treenode_set_value(this.__wbg_ptr, value);
+    }
+}
+
+const WeightedGraphFinalization = (typeof FinalizationRegistry === 'undefined')
+    ? { register: () => {}, unregister: () => {} }
+    : new FinalizationRegistry(ptr => wasm.__wbg_weightedgraph_free(ptr >>> 0, 1));
+/**
+ * Weighted Graph for algorithms like Dijkstra
+ */
+export class WeightedGraph {
+
+    __destroy_into_raw() {
+        const ptr = this.__wbg_ptr;
+        this.__wbg_ptr = 0;
+        WeightedGraphFinalization.unregister(this);
+        return ptr;
+    }
+
+    free() {
+        const ptr = this.__destroy_into_raw();
+        wasm.__wbg_weightedgraph_free(ptr, 0);
+    }
+    /**
+     * @param {boolean} is_directed
+     */
+    constructor(is_directed) {
+        const ret = wasm.graph_new(is_directed);
+        this.__wbg_ptr = ret >>> 0;
+        WeightedGraphFinalization.register(this, this.__wbg_ptr, this);
+        return this;
+    }
+    /**
+     * @param {number} vertex
+     */
+    add_vertex(vertex) {
+        wasm.weightedgraph_add_vertex(this.__wbg_ptr, vertex);
+    }
+    /**
+     * @param {number} from
+     * @param {number} to
+     * @param {number} weight
+     */
+    add_edge(from, to, weight) {
+        wasm.weightedgraph_add_edge(this.__wbg_ptr, from, to, weight);
+    }
+    /**
+     * @param {number} start
+     * @returns {Array<any>}
+     */
+    dijkstra(start) {
+        const ret = wasm.weightedgraph_dijkstra(this.__wbg_ptr, start);
+        return ret;
+    }
+    /**
+     * @param {number} from
+     * @param {number} to
+     * @returns {Array<any>}
+     */
+    shortest_path_with_weights(from, to) {
+        const ret = wasm.weightedgraph_shortest_path_with_weights(this.__wbg_ptr, from, to);
+        return ret;
+    }
+    /**
+     * @returns {Array<any>}
+     */
+    get_vertices() {
+        const ret = wasm.weightedgraph_get_vertices(this.__wbg_ptr);
+        return ret;
+    }
+    /**
+     * @returns {Array<any>}
+     */
+    get_edges() {
+        const ret = wasm.weightedgraph_get_edges(this.__wbg_ptr);
         return ret;
     }
 }
@@ -1013,6 +4064,11 @@ export function __wbg_instanceof_Window_68f3f67bad1729c1(arg0) {
         result = false;
     }
     const ret = result;
+    return ret;
+};
+
+export function __wbg_isArray_5f090bed72bd4f89(arg0) {
+    const ret = Array.isArray(arg0);
     return ret;
 };
 
@@ -1147,13 +4203,9 @@ export function __wbindgen_cb_drop(arg0) {
     return ret;
 };
 
-export function __wbindgen_closure_wrapper379(arg0, arg1, arg2) {
+export function __wbindgen_closure_wrapper421(arg0, arg1, arg2) {
     const ret = makeMutClosure(arg0, arg1, 217, __wbg_adapter_26);
     return ret;
-};
-
-export function __wbindgen_copy_to_typed_array(arg0, arg1, arg2) {
-    new Uint8Array(arg2.buffer, arg2.byteOffset, arg2.byteLength).set(getArrayU8FromWasm0(arg0, arg1));
 };
 
 export function __wbindgen_debug_string(arg0, arg1) {
@@ -1195,6 +4247,15 @@ export function __wbindgen_number_get(arg0, arg1) {
 export function __wbindgen_number_new(arg0) {
     const ret = arg0;
     return ret;
+};
+
+export function __wbindgen_string_get(arg0, arg1) {
+    const obj = arg1;
+    const ret = typeof(obj) === 'string' ? obj : undefined;
+    var ptr1 = isLikeNone(ret) ? 0 : passStringToWasm0(ret, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    var len1 = WASM_VECTOR_LEN;
+    getDataViewMemory0().setInt32(arg0 + 4 * 1, len1, true);
+    getDataViewMemory0().setInt32(arg0 + 4 * 0, ptr1, true);
 };
 
 export function __wbindgen_string_new(arg0, arg1) {

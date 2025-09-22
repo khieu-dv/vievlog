@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Hash } from "lucide-react";
 import { MermaidDiagram } from "~/components/common/MermaidDiagram";
+import { initRustWasm } from "~/lib/rust-wasm-helper";
 
 interface HashEntry {
   key: string;
@@ -10,60 +11,135 @@ interface HashEntry {
 }
 
 export function HashTableSection() {
-  const [hashTable, setHashTable] = useState<Map<string, string>>(new Map());
+  const [rustHashTable, setRustHashTable] = useState<any>(null);
+  const [wasmReady, setWasmReady] = useState(false);
+  const [hashTableDisplay, setHashTableDisplay] = useState<Map<string, string>>(new Map());
   const [key, setKey] = useState("");
   const [value, setValue] = useState("");
   const [searchKey, setSearchKey] = useState("");
   const [result, setResult] = useState("");
+  const [wasm, setWasm] = useState<any>(null);
 
+  // Simple hash function for display
   const hashFunction = (key: string): number => {
     let hash = 0;
     for (let i = 0; i < key.length; i++) {
       const char = key.charCodeAt(i);
       hash = ((hash << 5) - hash) + char;
-      hash = hash & hash; // Convert to 32-bit integer
+      hash = hash & hash; // Convert to 32bit integer
     }
-    return Math.abs(hash) % 7; // Simple hash table with 7 buckets
+    return Math.abs(hash % 10);
+  };
+
+  // Initialize WASM
+  useEffect(() => {
+    async function init() {
+      try {
+        const wasmInstance = await initRustWasm();
+        const newHashTable = wasmInstance.dataStructures.createHashTable(10);
+        setRustHashTable(newHashTable);
+        setWasm(wasmInstance);
+        setWasmReady(true);
+        setResult("✅ Rust WASM Hash Table đã sẵn sàng!");
+      } catch (error) {
+        console.error("Failed to initialize WASM:", error);
+        setResult("❌ Không thể khởi tạo Rust WASM");
+      }
+    }
+    init();
+  }, []);
+
+  // Update display from Rust hash table
+  const updateDisplayFromRustHashTable = () => {
+    if (rustHashTable) {
+      try {
+        const keys = Array.from(rustHashTable.keys()) as string[];
+        const newMap = new Map();
+        keys.forEach((key: string) => {
+          const value = rustHashTable.get(key);
+          if (value !== null && value !== undefined) {
+            newMap.set(key, value);
+          }
+        });
+        setHashTableDisplay(newMap);
+      } catch (error) {
+        console.error("Error updating display:", error);
+      }
+    }
   };
 
   const insert = () => {
     if (key.trim() && value.trim()) {
-      const newTable = new Map(hashTable);
-      newTable.set(key.trim(), value.trim());
-      setHashTable(newTable);
-      setResult(`Đã thêm: ${key} = ${value} (Hash: ${hashFunction(key)})`);
-      setKey("");
-      setValue("");
+      if (wasmReady && rustHashTable) {
+        try {
+          rustHashTable.insert(key.trim(), value.trim());
+          const wasmSize = rustHashTable.len();
+          setResult(`🦀 Đã thêm: ${key} = ${value}. Kích thước: ${wasmSize}`);
+          updateDisplayFromRustHashTable();
+          setKey("");
+          setValue("");
+        } catch (error) {
+          setResult("❌ Rust WASM insert failed: " + error);
+        }
+      } else {
+        setResult("❌ WASM chưa sẵn sàng");
+      }
     }
   };
 
   const search = () => {
     if (searchKey.trim()) {
-      const found = hashTable.get(searchKey.trim());
-      if (found) {
-        setResult(`Tìm thấy: ${searchKey} = ${found} (Hash: ${hashFunction(searchKey)})`);
+      if (wasmReady && rustHashTable) {
+        try {
+          const found = rustHashTable.get(searchKey.trim());
+          if (found !== null && found !== undefined) {
+            setResult(`🦀 Tìm thấy: ${searchKey} = ${found}`);
+          } else {
+            setResult(`🦀 Không tìm thấy khóa: ${searchKey}`);
+          }
+        } catch (error) {
+          setResult("❌ Rust WASM search failed: " + error);
+        }
       } else {
-        setResult(`Không tìm thấy khóa: ${searchKey}`);
+        setResult("❌ WASM chưa sẵn sàng");
       }
     }
   };
 
   const remove = () => {
     if (searchKey.trim()) {
-      const newTable = new Map(hashTable);
-      const existed = newTable.delete(searchKey.trim());
-      setHashTable(newTable);
-      if (existed) {
-        setResult(`Đã xóa khóa: ${searchKey}`);
+      if (wasmReady && rustHashTable) {
+        try {
+          const existed = rustHashTable.remove(searchKey.trim());
+          const wasmSize = rustHashTable.len();
+          if (existed !== null && existed !== undefined) {
+            setResult(`🦀 Đã xóa khóa: ${searchKey}. Kích thước: ${wasmSize}`);
+            updateDisplayFromRustHashTable();
+          } else {
+            setResult(`🦀 Không tìm thấy khóa: ${searchKey}`);
+          }
+        } catch (error) {
+          setResult("❌ Rust WASM remove failed: " + error);
+        }
       } else {
-        setResult(`Không tìm thấy khóa: ${searchKey}`);
+        setResult("❌ WASM chưa sẵn sàng");
       }
     }
   };
 
   const clear = () => {
-    setHashTable(new Map());
-    setResult("Đã xóa toàn bộ hash table");
+    if (wasmReady && rustHashTable) {
+      try {
+        rustHashTable.clear();
+        const wasmSize = rustHashTable.len();
+        setResult(`🦀 Đã xóa toàn bộ hash table. Kích thước: ${wasmSize}`);
+        updateDisplayFromRustHashTable();
+      } catch (error) {
+        setResult("❌ Rust WASM clear failed: " + error);
+      }
+    } else {
+      setResult("❌ WASM chưa sẵn sàng");
+    }
   };
 
   return (
@@ -71,10 +147,10 @@ export function HashTableSection() {
       <div className="bg-white dark:bg-slate-800 rounded-lg p-6 border">
         <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
           <Hash className="h-5 w-5" />
-          Hash Table (Bảng Băm)
+          🦀 Rust WASM Hash Table (Bảng Băm)
         </h3>
         <p className="text-gray-600 dark:text-gray-300 mb-4">
-          Hash Table sử dụng hàm băm để ánh xạ khóa tới giá trị, cho phép truy cập dữ liệu với độ phức tạp O(1) trung bình.
+          Demo tương tác Hash Table sử dụng Rust WASM. Hash Table được tối ưu hóa với hàm băm để ánh xạ khóa tới giá trị, cho phép truy cập dữ liệu với độ phức tạp O(1) trung bình.
         </p>
 
         <div className="space-y-4">
@@ -135,7 +211,7 @@ export function HashTableSection() {
             </div>
 
             {result && (
-              <div className="mt-3 p-3 bg-blue-50 dark:bg-blue-900/20 rounded">
+              <div className="mt-3 p-3 bg-orange-50 dark:bg-orange-900/20 rounded">
                 <strong>Kết quả:</strong> {result}
               </div>
             )}
@@ -145,14 +221,14 @@ export function HashTableSection() {
             <h4 className="font-medium mb-2">Trạng Thái Hash Table:</h4>
             <div className="space-y-2">
               <p className="text-sm">
-                <strong>Số phần tử:</strong> {hashTable.size}
+                <strong>Số phần tử:</strong> {hashTableDisplay.size}
               </p>
               <div className="bg-white dark:bg-slate-800 p-3 rounded max-h-32 overflow-y-auto">
-                {hashTable.size === 0 ? (
+                {hashTableDisplay.size === 0 ? (
                   <p className="text-gray-500 text-sm">Hash table trống</p>
                 ) : (
                   <div className="space-y-1">
-                    {Array.from(hashTable.entries()).map(([k, v]) => (
+                    {Array.from(hashTableDisplay.entries()).map(([k, v]) => (
                       <div key={k} className="text-sm flex justify-between">
                         <span className="font-mono">"{k}" =&gt; "{v}"</span>
                         <span className="text-gray-500">Hash: {hashFunction(k)}</span>

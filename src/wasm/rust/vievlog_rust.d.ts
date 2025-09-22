@@ -1,17 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
 export function main(): void;
-export function bubble_sort(arr: Int32Array): void;
-export function bubble_sort_array(arr: Int32Array): Array<any>;
-export function quick_sort_array(arr: Int32Array): Array<any>;
-export function merge_sort_array(arr: Int32Array): Array<any>;
-export function binary_search(arr: Int32Array, target: number): number | undefined;
-export function binary_search_array(arr: Int32Array, target: number): any;
-export function linear_search(arr: Int32Array, target: number): number | undefined;
-export function linear_search_array(arr: Int32Array, target: number): any;
-export function generate_random_array(size: number, max_value: number): Array<any>;
-export function generate_sorted_array(size: number): Array<any>;
-export function benchmark_sort(algorithm: string, arr: Int32Array): number;
 /**
  * Process image with Bevy ECS system
  */
@@ -40,6 +29,354 @@ export function bevy_process_rgba_image(rgba_data: Uint8Array, width: number, he
  * Simple image resize function
  */
 export function bevy_resize_image(rgba_data: Uint8Array, old_width: number, old_height: number, new_width: number, new_height: number): Uint8Array;
+/**
+ * Dijkstra's shortest path algorithm
+ */
+export function dijkstra_shortest_path(vertices: Array<any>, edges: Array<any>, start: number, end: number): Array<any>;
+/**
+ * Breadth-First Search
+ */
+export function bfs_graph_traversal(adjacency_list: Array<any>, start: number): Array<any>;
+/**
+ * Depth-First Search
+ */
+export function dfs_graph_traversal(adjacency_list: Array<any>, start: number): Array<any>;
+/**
+ * Topological Sort (Kahn's algorithm)
+ */
+export function topological_sort(vertices: Array<any>, edges: Array<any>): Array<any>;
+/**
+ * Detect cycle in directed graph
+ */
+export function has_cycle_directed(vertices: Array<any>, edges: Array<any>): boolean;
+/**
+ * Find strongly connected components (Kosaraju's algorithm)
+ */
+export function strongly_connected_components(vertices: Array<any>, edges: Array<any>): Array<any>;
+/**
+ * Minimum Spanning Tree - Kruskal's algorithm
+ */
+export function minimum_spanning_tree_kruskal(vertices: Array<any>, edges: Array<any>): Array<any>;
+/**
+ * Heap Sort implementation from heaps module
+ */
+export function heap_sort_heaps(arr: Int32Array): Array<any>;
+/**
+ * K Largest Elements
+ */
+export function find_k_largest(arr: Int32Array, k: number): Array<any>;
+/**
+ * K Smallest Elements
+ */
+export function find_k_smallest(arr: Int32Array, k: number): Array<any>;
+/**
+ * Check if array represents a valid heap
+ */
+export function is_heap(arr: Int32Array, is_max_heap: boolean): boolean;
+/**
+ * Merge K Sorted Arrays using heap
+ */
+export function merge_k_sorted_arrays(arrays: Array<any>): Array<any>;
+/**
+ * Performance benchmark for heap operations
+ */
+export function benchmark_heap_operations(operation: string, iterations: number, is_max_heap: boolean): number;
+/**
+ * Stack utilities and algorithms
+ * Check if parentheses are balanced
+ */
+export function is_balanced_parentheses(expression: string): boolean;
+/**
+ * Evaluate postfix expression
+ */
+export function evaluate_postfix(expression: string): number;
+/**
+ * Convert infix to postfix notation
+ */
+export function infix_to_postfix(expression: string): string;
+/**
+ * Reverse a string using stack
+ */
+export function reverse_string(input: string): string;
+/**
+ * Check if a string is palindrome using stack
+ */
+export function is_palindrome_stack(input: string): boolean;
+/**
+ * Next Greater Element using stack
+ */
+export function next_greater_elements(arr: Int32Array): Array<any>;
+/**
+ * Stock span problem using stack
+ */
+export function calculate_stock_spans(prices: Int32Array): Array<any>;
+/**
+ * Largest rectangle in histogram using stack
+ */
+export function largest_rectangle_area(heights: Int32Array): number;
+/**
+ * Performance benchmark for stack operations
+ */
+export function benchmark_stack_operations(operation: string, iterations: number): number;
+/**
+ * Hash function utilities
+ */
+export function hash_string(input: string): bigint;
+export function hash_string_with_modulo(input: string, modulo: number): number;
+/**
+ * Simple hash function for demonstration
+ */
+export function simple_hash(input: string, table_size: number): number;
+/**
+ * Performance test: hash operations
+ */
+export function benchmark_hash_operations(operation: string, iterations: number): number;
+/**
+ * Fibonacci with memoization
+ */
+export function fibonacci_memo(n: number): bigint;
+/**
+ * 0/1 Knapsack Problem
+ */
+export function knapsack_01(weights: Array<any>, values: Array<any>, capacity: number): Array<any>;
+/**
+ * Longest Common Subsequence
+ */
+export function longest_common_subsequence(text1: string, text2: string): Array<any>;
+/**
+ * Coin Change Problem (minimum coins)
+ */
+export function coin_change_min(coins: Array<any>, amount: number): Array<any>;
+/**
+ * Edit Distance (Levenshtein Distance)
+ */
+export function edit_distance(word1: string, word2: string): number;
+/**
+ * Longest Increasing Subsequence
+ */
+export function longest_increasing_subsequence(arr: Array<any>): Array<any>;
+/**
+ * Maximum Subarray Sum (Kadane's Algorithm)
+ */
+export function maximum_subarray_sum(arr: Array<any>): Array<any>;
+/**
+ * House Robber Problem
+ */
+export function house_robber(houses: Array<any>): number;
+/**
+ * Climbing Stairs Problem
+ */
+export function climbing_stairs(n: number): bigint;
+/**
+ * Unique Paths in Grid
+ */
+export function unique_paths(m: number, n: number): bigint;
+/**
+ * Word Break Problem
+ */
+export function word_break(s: string, word_dict: Array<any>): boolean;
+/**
+ * Palindrome Partitioning (minimum cuts)
+ */
+export function min_palindrome_cuts(s: string): number;
+/**
+ * Matrix Chain Multiplication
+ */
+export function matrix_chain_multiplication(dimensions: Array<any>): number;
+/**
+ * Generate video frames with Ken Burns effect (pan and zoom)
+ */
+export function bevy_generate_ken_burns(rgba_data: Uint8Array, width: number, height: number, frames: number, zoom_factor: number, pan_x: number, pan_y: number): Array<any>;
+/**
+ * Generate transition frames between two images
+ */
+export function bevy_generate_transition(rgba_data1: Uint8Array, rgba_data2: Uint8Array, width: number, height: number, frames: number, transition_type: string): Array<any>;
+/**
+ * Generate slideshow from multiple images with effects
+ */
+export function bevy_generate_slideshow(images_data: Array<any>, frames_per_image: number, transition_frames: number, transition_type: string): Array<any>;
+/**
+ * Generate parallax scrolling effect
+ */
+export function bevy_generate_parallax(bg_data: Uint8Array, fg_data: Uint8Array, width: number, height: number, frames: number, scroll_speed: number): Array<any>;
+/**
+ * Bubble Sort - O(n²) time complexity
+ */
+export function bubble_sort(arr: Int32Array): Array<any>;
+/**
+ * Bubble Sort with step tracking
+ */
+export function bubble_sort_with_steps(arr: Int32Array): Array<any>;
+/**
+ * Selection Sort - O(n²) time complexity
+ */
+export function selection_sort(arr: Int32Array): Array<any>;
+/**
+ * Insertion Sort - O(n²) time complexity, good for small arrays
+ */
+export function insertion_sort(arr: Int32Array): Array<any>;
+/**
+ * Quick Sort - O(n log n) average, O(n²) worst case
+ */
+export function quick_sort(arr: Int32Array): Array<any>;
+/**
+ * Merge Sort - O(n log n) time complexity, stable
+ */
+export function merge_sort(arr: Int32Array): Array<any>;
+/**
+ * Heap Sort - O(n log n) time complexity, in-place
+ */
+export function heap_sort(arr: Int32Array): Array<any>;
+/**
+ * Counting Sort - O(n + k) time complexity for small ranges
+ */
+export function counting_sort(arr: Int32Array): Array<any>;
+/**
+ * Radix Sort - O(d * (n + k)) where d is number of digits
+ */
+export function radix_sort(arr: Int32Array): Array<any>;
+/**
+ * Bucket Sort - O(n + k) average case
+ */
+export function bucket_sort(arr: Float64Array, bucket_count: number): Array<any>;
+/**
+ * Shell Sort - O(n^1.5) average case
+ */
+export function shell_sort(arr: Int32Array): Array<any>;
+/**
+ * Cocktail Shaker Sort (Bidirectional Bubble Sort)
+ */
+export function cocktail_sort(arr: Int32Array): Array<any>;
+/**
+ * Utility functions for sorting analysis
+ * Check if array is sorted
+ */
+export function is_sorted(arr: Int32Array): boolean;
+/**
+ * Generate different types of test arrays
+ */
+export function generate_random_array(size: number, max_value: number): Array<any>;
+export function generate_sorted_array(size: number): Array<any>;
+export function generate_reverse_sorted_array(size: number): Array<any>;
+export function generate_nearly_sorted_array(size: number, swap_count: number): Array<any>;
+/**
+ * Performance benchmark for sorting algorithms
+ */
+export function benchmark_sort(algorithm: string, arr: Int32Array): number;
+/**
+ * Compare multiple sorting algorithms
+ */
+export function compare_sorting_algorithms(arr: Int32Array): Array<any>;
+/**
+ * Queue algorithms and utilities
+ * Breadth-First Search using queue
+ */
+export function bfs_traversal(adj_list: Array<any>, start: number): Array<any>;
+/**
+ * Level order traversal of binary tree
+ */
+export function level_order_traversal(tree_array: Array<any>): Array<any>;
+/**
+ * Sliding window maximum using deque
+ */
+export function sliding_window_maximum(arr: Int32Array, window_size: number): Array<any>;
+/**
+ * First negative integer in every window
+ */
+export function first_negative_in_window(arr: Int32Array, window_size: number): Array<any>;
+/**
+ * Performance benchmark for queue operations
+ */
+export function benchmark_queue_operations(operation: string, iterations: number): number;
+/**
+ * Utility functions for array operations
+ */
+export function array_sum(arr: Int32Array): number;
+export function array_max(arr: Int32Array): number | undefined;
+export function array_min(arr: Int32Array): number | undefined;
+export function array_reverse(arr: Int32Array): Array<any>;
+export function array_slice(arr: Int32Array, start: number, end: number): Array<any>;
+/**
+ * Linear Search - O(n) time complexity
+ */
+export function linear_search(arr: Int32Array, target: number): number | undefined;
+/**
+ * Linear Search with step tracking
+ */
+export function linear_search_with_steps(arr: Int32Array, target: number): Array<any>;
+/**
+ * Binary Search - O(log n) time complexity, requires sorted array
+ */
+export function binary_search(arr: Int32Array, target: number): number | undefined;
+/**
+ * Binary Search with step tracking
+ */
+export function binary_search_with_steps(arr: Int32Array, target: number): Array<any>;
+/**
+ * Interpolation Search - O(log log n) for uniformly distributed data
+ */
+export function interpolation_search(arr: Int32Array, target: number): number | undefined;
+/**
+ * Jump Search - O(√n) time complexity
+ */
+export function jump_search(arr: Int32Array, target: number): number | undefined;
+/**
+ * Exponential Search - O(log n) time complexity
+ */
+export function exponential_search(arr: Int32Array, target: number): number | undefined;
+/**
+ * Ternary Search - O(log₃ n) time complexity
+ */
+export function ternary_search(arr: Int32Array, target: number): number | undefined;
+/**
+ * Fibonacci Search - O(log n) time complexity
+ */
+export function fibonacci_search(arr: Int32Array, target: number): number | undefined;
+/**
+ * Find first occurrence of target in sorted array with duplicates
+ */
+export function find_first_occurrence(arr: Int32Array, target: number): number | undefined;
+/**
+ * Find last occurrence of target in sorted array with duplicates
+ */
+export function find_last_occurrence(arr: Int32Array, target: number): number | undefined;
+/**
+ * Count occurrences of target in sorted array
+ */
+export function count_occurrences(arr: Int32Array, target: number): number;
+/**
+ * Find peak element in array (element that is greater than its neighbors)
+ */
+export function find_peak_element(arr: Int32Array): number | undefined;
+/**
+ * Search in rotated sorted array
+ */
+export function search_rotated_array(arr: Int32Array, target: number): number | undefined;
+/**
+ * Find minimum element in rotated sorted array
+ */
+export function find_min_rotated_array(arr: Int32Array): number | undefined;
+/**
+ * Search for target in 2D matrix (sorted row-wise and column-wise)
+ */
+export function search_2d_matrix(matrix: Array<any>, target: number): Array<any>;
+/**
+ * Performance benchmark for searching algorithms
+ */
+export function benchmark_search(algorithm: string, arr: Int32Array, target: number): number;
+/**
+ * Compare multiple searching algorithms
+ */
+export function compare_search_algorithms(arr: Int32Array, target: number): Array<any>;
+/**
+ * Utility functions
+ * Check if array is sorted (required for some search algorithms)
+ */
+export function is_sorted_for_search(arr: Int32Array): boolean;
+/**
+ * Generate test cases for searching
+ */
+export function generate_search_test_array(size: number, max_value: number): Array<any>;
 /**
  * Get all available effect presets
  */
@@ -73,60 +410,390 @@ export function bevy_animate_preset(image_data: Uint8Array, preset_name: string,
  */
 export function bevy_get_performance_metrics(): object;
 /**
- * Generate video frames with Ken Burns effect (pan and zoom)
+ * AVL Tree (Self-balancing binary search tree)
  */
-export function bevy_generate_ken_burns(rgba_data: Uint8Array, width: number, height: number, frames: number, zoom_factor: number, pan_x: number, pan_y: number): Array<any>;
+export class AVLTree {
+  free(): void;
+  constructor();
+  insert(value: number): void;
+  search(value: number): boolean;
+  len(): number;
+  height(): number;
+  inorder_traversal(): Array<any>;
+}
 /**
- * Generate transition frames between two images
+ * Binary Heap implementation (Min-Heap by default)
  */
-export function bevy_generate_transition(rgba_data1: Uint8Array, rgba_data2: Uint8Array, width: number, height: number, frames: number, transition_type: string): Array<any>;
+export class BinaryHeap {
+  free(): void;
+  constructor(is_max_heap: boolean);
+  static with_capacity(capacity: number, is_max_heap: boolean): BinaryHeap;
+  insert(item: number): void;
+  extract(): number | undefined;
+  peek(): number | undefined;
+  is_empty(): boolean;
+  len(): number;
+  capacity(): number;
+  clear(): void;
+  is_max_heap(): boolean;
+  change_heap_type(is_max_heap: boolean): void;
+  build_heap(arr: Int32Array): void;
+  to_array(): Array<any>;
+  static from_array(arr: Array<any>, is_max_heap: boolean): BinaryHeap;
+  is_valid_heap(): boolean;
+  get_parent(index: number): number | undefined;
+  get_left_child(index: number): number | undefined;
+  get_right_child(index: number): number | undefined;
+  height(): number;
+}
 /**
- * Generate slideshow from multiple images with effects
+ * Binary Search Tree
  */
-export function bevy_generate_slideshow(images_data: Array<any>, frames_per_image: number, transition_frames: number, transition_type: string): Array<any>;
-/**
- * Generate parallax scrolling effect
- */
-export function bevy_generate_parallax(bg_data: Uint8Array, fg_data: Uint8Array, width: number, height: number, frames: number, scroll_speed: number): Array<any>;
 export class BinarySearchTree {
   free(): void;
   constructor();
   insert(value: number): void;
   search(value: number): boolean;
+  remove(value: number): boolean;
+  find_min(): number | undefined;
+  find_max(): number | undefined;
+  height(): number;
+  len(): number;
+  is_empty(): boolean;
+  clear(): void;
   inorder_traversal(): Array<any>;
+  preorder_traversal(): Array<any>;
+  postorder_traversal(): Array<any>;
+  level_order_traversal(): Array<any>;
+  is_valid_bst(): boolean;
+  static from_array(arr: Array<any>): BinarySearchTree;
 }
-export class Graph {
+/**
+ * Circular Queue with fixed capacity
+ */
+export class CircularQueue {
+  free(): void;
+  constructor(capacity: number);
+  enqueue(item: number): boolean;
+  dequeue(): number | undefined;
+  front(): number | undefined;
+  rear(): number | undefined;
+  is_empty(): boolean;
+  is_full(): boolean;
+  len(): number;
+  capacity(): number;
+  clear(): void;
+  get_front_index(): number;
+  get_rear_index(): number;
+  to_array(): Array<any>;
+  get_raw_data(): Array<any>;
+}
+/**
+ * Deque (Double-ended queue)
+ */
+export class Deque {
   free(): void;
   constructor();
+  push_front(item: number): void;
+  push_back(item: number): void;
+  pop_front(): number | undefined;
+  pop_back(): number | undefined;
+  front(): number | undefined;
+  back(): number | undefined;
+  is_empty(): boolean;
+  len(): number;
+  clear(): void;
+  to_array(): Array<any>;
+}
+/**
+ * Doubly Linked List
+ */
+export class DoublyLinkedList {
+  free(): void;
+  constructor();
+  push_front(value: number): void;
+  push_back(value: number): void;
+  pop_front(): number | undefined;
+  len(): number;
+  is_empty(): boolean;
+  to_array(): Array<any>;
+}
+/**
+ * Graph using adjacency list representation
+ */
+export class Graph {
+  free(): void;
+  constructor(is_directed: boolean);
   add_vertex(vertex: number): void;
   add_edge(from: number, to: number): void;
-  add_undirected_edge(vertex1: number, vertex2: number): void;
+  remove_vertex(vertex: number): boolean;
+  remove_edge(from: number, to: number): boolean;
+  has_vertex(vertex: number): boolean;
+  has_edge(from: number, to: number): boolean;
   get_neighbors(vertex: number): Array<any>;
   get_vertices(): Array<any>;
+  vertex_count(): number;
+  edge_count(): number;
+  degree(vertex: number): number | undefined;
+  dfs_traversal(start: number): Array<any>;
+  bfs_traversal(start: number): Array<any>;
+  has_path(from: number, to: number): boolean;
+  shortest_path(from: number, to: number): Array<any>;
+  is_connected(): boolean;
+  has_cycle(): boolean;
+  topological_sort(): Array<any>;
 }
+/**
+ * Hash Table with chaining collision resolution
+ */
+export class HashTable {
+  free(): void;
+  constructor(capacity: number);
+  insert(key: string, value: string): boolean;
+  get(key: string): string | undefined;
+  remove(key: string): string | undefined;
+  contains_key(key: string): boolean;
+  len(): number;
+  capacity(): number;
+  is_empty(): boolean;
+  clear(): void;
+  load_factor(): number;
+  keys(): Array<any>;
+  values(): Array<any>;
+  entries(): Array<any>;
+  bucket_sizes(): Array<any>;
+  max_bucket_size(): number;
+}
+/**
+ * Integer HashMap for performance testing
+ */
+export class IntHashMap {
+  free(): void;
+  constructor();
+  insert(key: number, value: number): number | undefined;
+  get(key: number): number | undefined;
+  remove(key: number): number | undefined;
+  contains_key(key: number): boolean;
+  len(): number;
+  is_empty(): boolean;
+  clear(): void;
+  keys(): Array<any>;
+  values(): Array<any>;
+  entries(): Array<any>;
+  static from_arrays(keys: Array<any>, values: Array<any>): IntHashMap;
+}
+/**
+ * Singly Linked List
+ */
 export class LinkedList {
   free(): void;
   constructor();
   push_front(value: number): void;
+  push_back(value: number): void;
   pop_front(): number | undefined;
+  pop_back(): number | undefined;
+  get(index: number): number | undefined;
+  insert(index: number, value: number): boolean;
+  remove(index: number): number | undefined;
+  contains(value: number): boolean;
+  index_of(value: number): number | undefined;
+  len(): number;
+  is_empty(): boolean;
+  clear(): void;
+  reverse(): void;
+  to_array(): Array<any>;
+  static from_array(arr: Array<any>): LinkedList;
+}
+/**
+ * Median Finder using two heaps
+ */
+export class MedianFinder {
+  free(): void;
+  constructor();
+  add_number(num: number): void;
+  find_median(): number;
+  len(): number;
+  is_empty(): boolean;
+}
+/**
+ * Min Stack - maintains minimum element efficiently
+ */
+export class MinStack {
+  free(): void;
+  constructor();
+  push(item: number): void;
+  pop(): number | undefined;
+  peek(): number | undefined;
+  get_min(): number | undefined;
+  is_empty(): boolean;
   len(): number;
   to_array(): Array<any>;
 }
-export class ListNode {
-  private constructor();
+/**
+ * Priority Queue (Min-Heap based)
+ */
+export class PriorityQueue {
   free(): void;
+  constructor();
+  enqueue(value: number, priority: number): void;
+  dequeue(): number | undefined;
+  peek(): number | undefined;
+  peek_priority(): number | undefined;
+  is_empty(): boolean;
+  len(): number;
+  clear(): void;
+  to_array(): Array<any>;
 }
+/**
+ * Priority Queue using Binary Heap
+ */
+export class PriorityQueueHeap {
+  free(): void;
+  constructor(is_max_priority: boolean);
+  enqueue(item: number): void;
+  dequeue(): number | undefined;
+  peek(): number | undefined;
+  is_empty(): boolean;
+  len(): number;
+  to_array(): Array<any>;
+}
+/**
+ * Queue implementation using VecDeque
+ */
+export class Queue {
+  free(): void;
+  constructor();
+  static with_capacity(capacity: number): Queue;
+  enqueue(item: number): void;
+  dequeue(): number | undefined;
+  front(): number | undefined;
+  back(): number | undefined;
+  is_empty(): boolean;
+  len(): number;
+  capacity(): number;
+  clear(): void;
+  contains(item: number): boolean;
+  to_array(): Array<any>;
+  static from_array(arr: Array<any>): Queue;
+}
+/**
+ * Queue using two stacks
+ */
+export class QueueUsingStacks {
+  free(): void;
+  constructor();
+  enqueue(item: number): void;
+  dequeue(): number | undefined;
+  front(): number | undefined;
+  is_empty(): boolean;
+  len(): number;
+}
+/**
+ * Dynamic Array/Vector Implementation
+ */
 export class RustVector {
   free(): void;
   constructor();
+  static with_capacity(capacity: number): RustVector;
   push(value: number): void;
   pop(): number | undefined;
   get(index: number): number | undefined;
+  set(index: number, value: number): boolean;
+  insert(index: number, value: number): boolean;
+  remove(index: number): number | undefined;
   len(): number;
+  capacity(): number;
+  is_empty(): boolean;
+  clear(): void;
+  reverse(): void;
+  to_array(): Array<any>;
+  static from_array(arr: Array<any>): RustVector;
+  contains(value: number): boolean;
+  index_of(value: number): number | undefined;
+  extend(other: RustVector): void;
+  clone_vector(): RustVector;
+}
+/**
+ * Simple HashMap wrapper for string-to-string mappings
+ */
+export class SimpleHashMap {
+  free(): void;
+  constructor();
+  insert(key: string, value: string): string | undefined;
+  get(key: string): string | undefined;
+  remove(key: string): string | undefined;
+  contains_key(key: string): boolean;
+  len(): number;
+  is_empty(): boolean;
+  clear(): void;
+  keys(): Array<any>;
+  values(): Array<any>;
+  entries(): Array<any>;
+}
+/**
+ * Stack implementation using Vec
+ */
+export class Stack {
+  free(): void;
+  constructor();
+  static with_capacity(capacity: number): Stack;
+  push(item: number): void;
+  pop(): number | undefined;
+  peek(): number | undefined;
+  is_empty(): boolean;
+  len(): number;
+  capacity(): number;
+  clear(): void;
+  contains(item: number): boolean;
+  to_array(): Array<any>;
+  static from_array(arr: Array<any>): Stack;
+  clone_stack(): Stack;
+}
+/**
+ * Static Array with fixed size
+ */
+export class StaticArray {
+  free(): void;
+  constructor(size: number);
+  get(index: number): number | undefined;
+  set(index: number, value: number): boolean;
+  len(): number;
+  fill(value: number): void;
   to_array(): Array<any>;
 }
+/**
+ * String Stack for text operations
+ */
+export class StringStack {
+  free(): void;
+  constructor();
+  push(item: string): void;
+  pop(): string | undefined;
+  peek(): string | undefined;
+  is_empty(): boolean;
+  len(): number;
+  clear(): void;
+  to_array(): Array<any>;
+}
+/**
+ * Binary Tree Node
+ */
 export class TreeNode {
   free(): void;
   constructor(value: number);
   get_value(): number;
+  set_value(value: number): void;
+}
+/**
+ * Weighted Graph for algorithms like Dijkstra
+ */
+export class WeightedGraph {
+  free(): void;
+  constructor(is_directed: boolean);
+  add_vertex(vertex: number): void;
+  add_edge(from: number, to: number, weight: number): void;
+  dijkstra(start: number): Array<any>;
+  shortest_path_with_weights(from: number, to: number): Array<any>;
+  get_vertices(): Array<any>;
+  get_edges(): Array<any>;
 }

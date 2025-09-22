@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { List } from "lucide-react";
 import { MermaidDiagram } from "~/components/common/MermaidDiagram";
+import { initRustWasm } from "~/lib/rust-wasm-helper";
 
 interface ListNode {
   value: number;
@@ -10,45 +11,142 @@ interface ListNode {
 }
 
 export function LinkedListsSection() {
-  const [list, setList] = useState<ListNode | null>(null);
+  const [rustLinkedList, setRustLinkedList] = useState<any>(null);
+  const [wasmReady, setWasmReady] = useState(false);
+  const [listDisplay, setListDisplay] = useState<number[]>([]);
   const [inputValue, setInputValue] = useState("");
+  const [result, setResult] = useState("");
+  const [wasm, setWasm] = useState<any>(null);
+
+  // Initialize WASM
+  useEffect(() => {
+    async function init() {
+      try {
+        const wasmInstance = await initRustWasm();
+        const newLinkedList = wasmInstance.dataStructures.createLinkedList();
+        setRustLinkedList(newLinkedList);
+        setWasm(wasmInstance);
+        setWasmReady(true);
+        setResult("✅ Rust WASM Linked List đã sẵn sàng!");
+      } catch (error) {
+        console.error("Failed to initialize WASM:", error);
+        setResult("❌ Không thể khởi tạo Rust WASM");
+      }
+    }
+    init();
+  }, []);
+
+  // Update display from Rust linked list
+  const updateDisplayFromRustList = () => {
+    if (rustLinkedList) {
+      try {
+        const listArray = Array.from(rustLinkedList.toArray()) as number[];
+        setListDisplay(listArray);
+      } catch (error) {
+        console.error("Error updating display:", error);
+      }
+    }
+  };
 
   const addToHead = () => {
     const value = parseInt(inputValue);
     if (!isNaN(value)) {
-      const newNode: ListNode = { value, next: list || undefined };
-      setList(newNode);
-      setInputValue("");
+      if (wasmReady && rustLinkedList) {
+        try {
+          rustLinkedList.pushFront(value);
+          const listSize = rustLinkedList.len();
+          setResult(`🦀 Đã thêm ${value} vào đầu danh sách. Kích thước: ${listSize}`);
+          updateDisplayFromRustList();
+          setInputValue("");
+        } catch (error) {
+          setResult("❌ Rust WASM addToHead failed: " + error);
+        }
+      } else {
+        setResult("❌ WASM chưa sẵn sàng");
+      }
+    }
+  };
+
+  const addToTail = () => {
+    const value = parseInt(inputValue);
+    if (!isNaN(value)) {
+      if (wasmReady && rustLinkedList) {
+        try {
+          rustLinkedList.pushBack(value);
+          const listSize = rustLinkedList.len();
+          setResult(`🦀 Đã thêm ${value} vào cuối danh sách. Kích thước: ${listSize}`);
+          updateDisplayFromRustList();
+          setInputValue("");
+        } catch (error) {
+          setResult("❌ Rust WASM addToTail failed: " + error);
+        }
+      } else {
+        setResult("❌ WASM chưa sẵn sàng");
+      }
     }
   };
 
   const removeHead = () => {
-    if (list) {
-      setList(list.next || null);
+    if (wasmReady && rustLinkedList) {
+      try {
+        const removed = rustLinkedList.popFront();
+        const listSize = rustLinkedList.len();
+        if (removed !== null && removed !== undefined) {
+          setResult(`🦀 Đã xóa phần tử đầu: ${removed}. Kích thước: ${listSize}`);
+        } else {
+          setResult(`🦀 Danh sách trống, không thể xóa`);
+        }
+        updateDisplayFromRustList();
+      } catch (error) {
+        setResult("❌ Rust WASM removeHead failed: " + error);
+      }
+    } else {
+      setResult("❌ WASM chưa sẵn sàng");
     }
   };
 
-  const listToArray = (node: ListNode | null): number[] => {
-    const result: number[] = [];
-    let current = node;
-    while (current) {
-      result.push(current.value);
-      current = current.next || null;
+  const removeTail = () => {
+    if (wasmReady && rustLinkedList) {
+      try {
+        const removed = rustLinkedList.popBack();
+        const listSize = rustLinkedList.len();
+        if (removed !== null && removed !== undefined) {
+          setResult(`🦀 Đã xóa phần tử cuối: ${removed}. Kích thước: ${listSize}`);
+        } else {
+          setResult(`🦀 Danh sách trống, không thể xóa`);
+        }
+        updateDisplayFromRustList();
+      } catch (error) {
+        setResult("❌ Rust WASM removeTail failed: " + error);
+      }
+    } else {
+      setResult("❌ WASM chưa sẵn sàng");
     }
-    return result;
   };
 
-  const listArray = listToArray(list);
+  const clear = () => {
+    if (wasmReady && rustLinkedList) {
+      try {
+        rustLinkedList.clear();
+        setResult("🦀 Đã xóa toàn bộ danh sách");
+        updateDisplayFromRustList();
+      } catch (error) {
+        setResult("❌ Rust WASM clear failed: " + error);
+      }
+    } else {
+      setResult("❌ WASM chưa sẵn sàng");
+    }
+  };
 
   return (
     <div className="space-y-6">
       <div className="bg-white dark:bg-slate-800 rounded-lg p-6 border">
         <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
           <List className="h-5 w-5" />
-          Danh Sách Liên Kết
+          🦀 Rust WASM Danh Sách Liên Kết
         </h3>
         <p className="text-gray-600 dark:text-gray-300 mb-4">
-          Danh sách liên kết là cấu trúc dữ liệu tuyến tính, trong đó các phần tử được lưu trữ trong các nút, và mỗi nút chứa dữ liệu và tham chiếu đến nút tiếp theo.
+          Demo tương tác Danh sách liên kết sử dụng Rust WASM. Danh sách liên kết được tối ưu hóa là cấu trúc dữ liệu tuyến tính, trong đó các phần tử được lưu trữ trong các nút với tham chiếu đến nút tiếp theo.
         </p>
 
         <div className="space-y-4">
@@ -77,7 +175,7 @@ export function LinkedListsSection() {
 
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
             <h4 className="font-medium mb-2">Danh Sách Tương Tác:</h4>
-            <div className="flex gap-2 mb-3">
+            <div className="flex gap-2 mb-3 flex-wrap">
               <input
                 type="number"
                 value={inputValue}
@@ -87,32 +185,61 @@ export function LinkedListsSection() {
               />
               <button
                 onClick={addToHead}
-                className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+                disabled={!wasmReady}
+                className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 disabled:opacity-50"
               >
-                Thêm vào đầu
+                🦀 Thêm vào đầu
+              </button>
+              <button
+                onClick={addToTail}
+                disabled={!wasmReady}
+                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50"
+              >
+                🦀 Thêm vào cuối
               </button>
               <button
                 onClick={removeHead}
-                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                disabled={!wasmReady}
+                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 disabled:opacity-50"
               >
-                Xóa đầu
+                🦀 Xóa đầu
+              </button>
+              <button
+                onClick={removeTail}
+                disabled={!wasmReady}
+                className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600 disabled:opacity-50"
+              >
+                🦀 Xóa cuối
+              </button>
+              <button
+                onClick={clear}
+                disabled={!wasmReady}
+                className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 disabled:opacity-50"
+              >
+                🧹 Xóa tất cả
               </button>
             </div>
+
+            {result && (
+              <div className="mb-3 p-3 bg-orange-50 dark:bg-orange-900/20 rounded">
+                <strong>Kết quả:</strong> {result}
+              </div>
+            )}
             <div className="flex items-center gap-2 text-sm overflow-x-auto">
-              {listArray.length === 0 ? (
+              {listDisplay.length === 0 ? (
                 <div className="text-gray-500 italic">Danh sách rỗng</div>
               ) : (
                 <>
-                  <div className="bg-blue-500 text-white px-2 py-1 rounded text-xs">HEAD</div>
-                  {listArray.map((value, index) => (
+                  <div className="bg-orange-500 text-white px-2 py-1 rounded text-xs">🦀 HEAD</div>
+                  {listDisplay.map((value, index) => (
                     <div key={index} className="flex items-center gap-2">
-                      <div className="border-2 border-blue-500 p-2 rounded bg-blue-50 dark:bg-blue-900">
+                      <div className="border-2 border-orange-500 p-2 rounded bg-orange-50 dark:bg-orange-900">
                         <div className="text-xs text-gray-600 dark:text-gray-300">Data: {value}</div>
                         <div className="text-xs text-gray-600 dark:text-gray-300">
-                          Next: {index < listArray.length - 1 ? "→" : "NULL"}
+                          Next: {index < listDisplay.length - 1 ? "→" : "NULL"}
                         </div>
                       </div>
-                      {index < listArray.length - 1 && <span className="text-blue-500">→</span>}
+                      {index < listDisplay.length - 1 && <span className="text-orange-500">→</span>}
                     </div>
                   ))}
                   <span className="text-red-500">NULL</span>
@@ -124,7 +251,7 @@ export function LinkedListsSection() {
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
             <h4 className="font-medium mb-2">Cài Đặt Rust:</h4>
             <pre className="text-sm bg-gray-900 text-green-400 p-3 rounded overflow-x-auto">
-{`#[derive(Debug)]
+              {`#[derive(Debug)]
 struct Node<T> {
     data: T,
     next: Option<Box<Node<T>>>,

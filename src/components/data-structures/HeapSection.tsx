@@ -1,75 +1,141 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { TrendingUp } from "lucide-react";
 import { MermaidDiagram } from "~/components/common/MermaidDiagram";
+import { initRustWasm } from "~/lib/rust-wasm-helper";
 
 export function HeapSection() {
-  const [heap, setHeap] = useState<number[]>([]);
+  const [rustHeap, setRustHeap] = useState<any>(null);
+  const [wasmReady, setWasmReady] = useState(false);
+  const [heapDisplay, setHeapDisplay] = useState<number[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [result, setResult] = useState("");
   const [heapType, setHeapType] = useState<"max" | "min">("max");
+  const [wasm, setWasm] = useState<any>(null);
+
+  // Initialize WASM
+  useEffect(() => {
+    async function init() {
+      try {
+        const wasmInstance = await initRustWasm();
+        const newHeap = wasmInstance.dataStructures.createBinaryHeap(heapType === "max");
+        setRustHeap(newHeap);
+        setWasm(wasmInstance);
+        setWasmReady(true);
+        setResult("✅ Rust WASM Heap đã sẵn sàng!");
+      } catch (error) {
+        console.error("Failed to initialize WASM:", error);
+        setResult("❌ Không thể khởi tạo Rust WASM");
+      }
+    }
+    init();
+  }, []);
+
+  // Update display from Rust heap
+  const updateDisplayFromRustHeap = () => {
+    if (rustHeap) {
+      try {
+        const heapArray = Array.from(rustHeap.to_array()) as number[];
+        setHeapDisplay(heapArray);
+      } catch (error) {
+        console.error("Error updating display:", error);
+      }
+    }
+  };
 
   const insert = () => {
     const value = parseInt(inputValue);
     if (!isNaN(value)) {
-      const newHeap = [...heap, value];
-      heapifyUp(newHeap, newHeap.length - 1);
-      setHeap(newHeap);
-      setResult(`Đã thêm ${value} vào ${heapType} heap. Kích thước: ${newHeap.length}`);
-      setInputValue("");
+      if (wasmReady && rustHeap) {
+        try {
+          rustHeap.insert(value);
+          const wasmSize = rustHeap.len();
+          setResult(`🦀 Đã thêm ${value} vào ${heapType} heap. Kích thước: ${wasmSize}`);
+          updateDisplayFromRustHeap();
+          setInputValue("");
+        } catch (error) {
+          setResult("❌ Rust WASM insert failed: " + error);
+        }
+      } else {
+        setResult("❌ WASM chưa sẵn sàng");
+      }
     } else {
       setResult("Vui lòng nhập một số hợp lệ");
     }
   };
 
   const extractTop = () => {
-    if (heap.length === 0) {
-      setResult("Heap trống, không thể extract");
-      return;
+    if (wasmReady && rustHeap) {
+      try {
+        const extractedValue = rustHeap.extract();
+        const wasmSize = rustHeap.len();
+        if (extractedValue !== null && extractedValue !== undefined) {
+          setResult(`🦀 Đã extract ${extractedValue} khỏi ${heapType} heap. Kích thước: ${wasmSize}`);
+        } else {
+          setResult("🦀 Heap trống, không thể extract");
+        }
+        updateDisplayFromRustHeap();
+      } catch (error) {
+        setResult("❌ Rust WASM extract failed: " + error);
+      }
+    } else {
+      setResult("❌ WASM chưa sẵn sàng");
     }
-
-    const newHeap = [...heap];
-    const top = newHeap[0];
-
-    if (newHeap.length === 1) {
-      setHeap([]);
-      setResult(`Đã extract ${top} (heap trống)`);
-      return;
-    }
-
-    // Move last element to root and heapify down
-    newHeap[0] = newHeap[newHeap.length - 1];
-    newHeap.pop();
-    heapifyDown(newHeap, 0);
-
-    setHeap(newHeap);
-    setResult(`Đã extract ${top} khỏi ${heapType} heap. Kích thước: ${newHeap.length}`);
   };
 
   const peek = () => {
-    if (heap.length > 0) {
-      const topValue = heap[0];
-      setResult(`Phần tử ${heapType === "max" ? "lớn nhất" : "nhỏ nhất"}: ${topValue}`);
+    if (wasmReady && rustHeap) {
+      try {
+        const topValue = rustHeap.peek();
+        if (topValue !== null && topValue !== undefined) {
+          setResult(`🦀 Phần tử ${heapType === "max" ? "lớn nhất" : "nhỏ nhất"}: ${topValue}`);
+        } else {
+          setResult("🦀 Heap trống");
+        }
+      } catch (error) {
+        setResult("❌ Rust WASM peek failed: " + error);
+      }
     } else {
-      setResult("Heap trống");
+      setResult("❌ WASM chưa sẵn sàng");
     }
   };
 
   const clear = () => {
-    setHeap([]);
-    setResult("Đã xóa toàn bộ heap");
+    if (wasmReady && rustHeap) {
+      try {
+        rustHeap.clear();
+        setResult("🦀 Đã xóa toàn bộ heap");
+        updateDisplayFromRustHeap();
+      } catch (error) {
+        setResult("❌ Rust WASM clear failed: " + error);
+      }
+    } else {
+      setResult("❌ WASM chưa sẵn sàng");
+    }
   };
 
-  const toggleHeapType = () => {
+  const toggleHeapType = async () => {
     const newType = heapType === "max" ? "min" : "max";
     setHeapType(newType);
-    if (heap.length > 0) {
-      // Rebuild heap with new type
-      const newHeap = [...heap];
-      buildHeap(newHeap);
-      setHeap(newHeap);
-      setResult(`Đã chuyển sang ${newType} heap`);
+
+    if (wasmReady && wasm) {
+      try {
+        // Create new heap with different type
+        const newHeap = wasm.dataStructures.createBinaryHeap(newType === "max");
+
+        // If old heap had elements, copy them to new heap
+        if (rustHeap && rustHeap.len() > 0) {
+          const oldElements = Array.from(rustHeap.to_array()) as number[];
+          oldElements.forEach((element: number) => newHeap.insert(element));
+        }
+
+        setRustHeap(newHeap);
+        setResult(`🦀 Đã chuyển sang ${newType} heap`);
+        updateDisplayFromRustHeap();
+      } catch (error) {
+        setResult("❌ Rust WASM toggle failed: " + error);
+      }
     }
   };
 
@@ -117,12 +183,19 @@ export function HeapSection() {
   };
 
   const heapSort = () => {
-    if (heap.length <= 1) {
-      setResult("Heap cần ít nhất 2 phần tử để sắp xếp");
-      return;
+    if (wasmReady && wasm && heapDisplay.length > 1) {
+      try {
+        const sortedArray = wasm.algorithms.heap.heapSortHeaps([...heapDisplay]);
+        const resultArray = Array.from(sortedArray);
+        setResult(`🦀 Kết quả heap sort: [${resultArray.join(', ')}]`);
+      } catch (error) {
+        setResult("❌ Rust WASM heap sort failed: " + error);
+      }
+    } else {
+      setResult("Heap cần ít nhất 2 phần tử để sắp xếp hoặc WASM chưa sẵn sàng");
     }
 
-    const sortedArray = [...heap];
+    const sortedArray = [...heapDisplay];
     const originalType = heapType;
 
     // Convert to max heap for sorting
@@ -165,18 +238,18 @@ export function HeapSection() {
   };
 
   const getTreeVisualization = () => {
-    if (heap.length === 0) return "Heap trống";
+    if (heapDisplay.length === 0) return "Heap trống";
 
     const levels: string[][] = [];
     let currentLevel = 0;
     let index = 0;
 
-    while (index < heap.length) {
+    while (index < heapDisplay.length) {
       const levelSize = Math.pow(2, currentLevel);
       const level: string[] = [];
 
-      for (let i = 0; i < levelSize && index < heap.length; i++, index++) {
-        level.push(heap[index].toString());
+      for (let i = 0; i < levelSize && index < heapDisplay.length; i++, index++) {
+        level.push(heapDisplay[index].toString());
       }
 
       levels.push(level);
@@ -208,10 +281,10 @@ export function HeapSection() {
       <div className="bg-white dark:bg-slate-800 rounded-lg p-6 border">
         <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
           <TrendingUp className="h-5 w-5" />
-          Heap (Đống)
+          🦀 Rust WASM Heap (Đống)
         </h3>
         <p className="text-gray-600 dark:text-gray-300 mb-4">
-          Heap là cây nhị phân hoàn chỉnh thỏa mãn tính chất heap: mỗi node cha lớn hơn (max-heap) hoặc nhỏ hơn (min-heap) các node con.
+          Demo tương tác Heap sử dụng Rust WASM. Heap là cây nhị phân hoàn chỉnh thỏa mãn tính chất heap: mỗi node cha lớn hơn (max-heap) hoặc nhỏ hơn (min-heap) các node con.
         </p>
 
         <div className="space-y-4">
@@ -290,15 +363,15 @@ export function HeapSection() {
                 <strong>Loại:</strong> {heapType.toUpperCase()} Heap
               </p>
               <p className="text-sm">
-                <strong>Kích thước:</strong> {heap.length}
+                <strong>Kích thước:</strong> {wasmReady && rustHeap ? rustHeap.len() : "Chưa khởi tạo"}
               </p>
               <p className="text-sm">
-                <strong>Mảng:</strong> [{heap.join(", ")}]
+                <strong>Mảng:</strong> [{heapDisplay.join(", ")}]
               </p>
               <div className="bg-white dark:bg-slate-800 p-3 rounded">
                 <h5 className="font-medium mb-2">Cây Heap:</h5>
                 <div className="min-h-[100px] flex flex-col justify-center">
-                  {heap.length > 0 ? getTreeVisualization() : (
+                  {heapDisplay.length > 0 ? getTreeVisualization() : (
                     <div className="text-gray-500 text-center">Heap trống</div>
                   )}
                 </div>

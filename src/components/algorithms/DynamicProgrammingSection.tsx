@@ -1,14 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Layers2 } from "lucide-react";
 import { MermaidDiagram } from "~/components/common/MermaidDiagram";
+import { initRustWasm } from "~/lib/rust-wasm-helper";
 
 export function DynamicProgrammingSection() {
+  const [rustDP, setRustDP] = useState<any>(null);
+  const [wasmReady, setWasmReady] = useState(false);
+  const [result, setResult] = useState("");
+  const [wasm, setWasm] = useState<any>(null);
+
   // Fibonacci section
   const [fibN, setFibN] = useState(10);
   const [fibResult, setFibResult] = useState<number>(0);
-  const [fibSteps, setFibSteps] = useState<string[]>([]);
 
   // Knapsack section
   const [knapsackCapacity, setKnapsackCapacity] = useState(10);
@@ -18,161 +23,103 @@ export function DynamicProgrammingSection() {
     { weight: 4, value: 5, name: "Item 3" },
     { weight: 5, value: 6, name: "Item 4" },
   ]);
-  const [knapsackResult, setKnapsackResult] = useState<{
-    maxValue: number;
-    selectedItems: boolean[];
-    table: number[][];
-  } | null>(null);
+  const [knapsackResult, setKnapsackResult] = useState<number>(0);
 
   // Longest Common Subsequence section
   const [lcsText1, setLcsText1] = useState("ABCDGH");
   const [lcsText2, setLcsText2] = useState("AEDFHR");
-  const [lcsResult, setLcsResult] = useState<{
-    length: number;
-    sequence: string;
-    table: number[][];
-  } | null>(null);
+  const [lcsResult, setLcsResult] = useState<number>(0);
+  const [lcsSequence, setLcsSequence] = useState<string>("");
 
   // Coin Change section
   const [coinAmount, setCoinAmount] = useState(11);
   const [coinDenominations, setCoinDenominations] = useState([1, 5, 10, 25]);
-  const [coinResult, setCoinResult] = useState<{
-    minCoins: number;
-    coins: number[];
-    table: number[];
-  } | null>(null);
+  const [coinResult, setCoinResult] = useState<{ minCoins: number; coins: number[] } | null>(null);
+
+  // Initialize WASM
+  useEffect(() => {
+    async function init() {
+      try {
+        const wasmInstance = await initRustWasm();
+        const newDP = wasmInstance.algorithms.dynamicProgramming;
+        setRustDP(newDP);
+        setWasm(wasmInstance);
+        setWasmReady(true);
+        setResult("✅ Rust WASM Dynamic Programming algorithms đã sẵn sàng!");
+      } catch (error) {
+        console.error("Failed to initialize WASM:", error);
+        setResult("❌ Không thể khởi tạo Rust WASM");
+      }
+    }
+    init();
+  }, []);
 
   const calculateFibonacci = () => {
-    if (fibN < 0 || fibN > 50) return;
+    if (fibN < 0 || fibN > 50) {
+      setResult("❌ Số không hợp lệ (0-50)");
+      return;
+    }
 
-    const memo: { [key: number]: number } = {};
-    const steps: string[] = [];
-
-    const fib = (n: number): number => {
-      if (n in memo) {
-        steps.push(`Fibonacci(${n}) = ${memo[n]} (đã tính trước)`);
-        return memo[n];
+    if (wasmReady && rustDP) {
+      try {
+        const result = rustDP.fibonacci(fibN);
+        setFibResult(result);
+        setResult(`🦀 Fibonacci(${fibN}) = ${result}`);
+      } catch (error) {
+        setResult("❌ Rust WASM Fibonacci failed: " + error);
       }
-
-      if (n <= 1) {
-        memo[n] = n;
-        steps.push(`Fibonacci(${n}) = ${n} (base case)`);
-        return n;
-      }
-
-      const result = fib(n - 1) + fib(n - 2);
-      memo[n] = result;
-      steps.push(`Fibonacci(${n}) = Fibonacci(${n-1}) + Fibonacci(${n-2}) = ${result}`);
-      return result;
-    };
-
-    const result = fib(fibN);
-    setFibResult(result);
-    setFibSteps(steps.slice(-10)); // Show last 10 steps
+    } else {
+      setResult("❌ WASM chưa sẵn sàng");
+    }
   };
 
   const solveKnapsack = () => {
-    const n = knapsackItems.length;
-    const W = knapsackCapacity;
-    const dp: number[][] = Array(n + 1).fill(null).map(() => Array(W + 1).fill(0));
-
-    // Build table
-    for (let i = 1; i <= n; i++) {
-      for (let w = 1; w <= W; w++) {
-        const item = knapsackItems[i - 1];
-        if (item.weight <= w) {
-          dp[i][w] = Math.max(
-            dp[i - 1][w], // Don't take item
-            dp[i - 1][w - item.weight] + item.value // Take item
-          );
-        } else {
-          dp[i][w] = dp[i - 1][w];
-        }
+    if (wasmReady && rustDP) {
+      try {
+        const weights = knapsackItems.map(item => item.weight);
+        const values = knapsackItems.map(item => item.value);
+        const result = rustDP.knapsack(weights, values, knapsackCapacity);
+        setKnapsackResult(result);
+        setResult(`🦀 Knapsack: Giá trị tối đa = ${result} với dung lượng ${knapsackCapacity}`);
+      } catch (error) {
+        setResult("❌ Rust WASM Knapsack failed: " + error);
       }
+    } else {
+      setResult("❌ WASM chưa sẵn sàng");
     }
-
-    // Backtrack to find selected items
-    const selectedItems: boolean[] = Array(n).fill(false);
-    let w = W;
-    for (let i = n; i > 0 && w > 0; i--) {
-      if (dp[i][w] !== dp[i - 1][w]) {
-        selectedItems[i - 1] = true;
-        w -= knapsackItems[i - 1].weight;
-      }
-    }
-
-    setKnapsackResult({
-      maxValue: dp[n][W],
-      selectedItems,
-      table: dp
-    });
   };
 
   const solveLCS = () => {
-    const m = lcsText1.length;
-    const n = lcsText2.length;
-    const dp: number[][] = Array(m + 1).fill(null).map(() => Array(n + 1).fill(0));
-
-    // Build table
-    for (let i = 1; i <= m; i++) {
-      for (let j = 1; j <= n; j++) {
-        if (lcsText1[i - 1] === lcsText2[j - 1]) {
-          dp[i][j] = dp[i - 1][j - 1] + 1;
-        } else {
-          dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
-        }
+    if (wasmReady && rustDP) {
+      try {
+        const result = rustDP.longestCommonSubsequence(lcsText1, lcsText2);
+        setLcsResult(result.length);
+        setLcsSequence(result.sequence);
+        setResult(`🦀 LCS: Độ dài = ${result.length}, Dãy = "${result.sequence}"`);
+      } catch (error) {
+        setResult("❌ Rust WASM LCS failed: " + error);
       }
+    } else {
+      setResult("❌ WASM chưa sẵn sàng");
     }
-
-    // Backtrack to find LCS
-    let lcs = "";
-    let i = m, j = n;
-    while (i > 0 && j > 0) {
-      if (lcsText1[i - 1] === lcsText2[j - 1]) {
-        lcs = lcsText1[i - 1] + lcs;
-        i--;
-        j--;
-      } else if (dp[i - 1][j] > dp[i][j - 1]) {
-        i--;
-      } else {
-        j--;
-      }
-    }
-
-    setLcsResult({
-      length: dp[m][n],
-      sequence: lcs,
-      table: dp
-    });
   };
 
   const solveCoinChange = () => {
-    const dp: number[] = Array(coinAmount + 1).fill(Infinity);
-    const coinUsed: number[] = Array(coinAmount + 1).fill(-1);
-    dp[0] = 0;
-
-    for (let amount = 1; amount <= coinAmount; amount++) {
-      for (const coin of coinDenominations) {
-        if (coin <= amount && dp[amount - coin] + 1 < dp[amount]) {
-          dp[amount] = dp[amount - coin] + 1;
-          coinUsed[amount] = coin;
+    if (wasmReady && rustDP) {
+      try {
+        const result = rustDP.coinChange(coinDenominations, coinAmount);
+        setCoinResult(result);
+        if (result && result.minCoins >= 0) {
+          setResult(`🦀 Coin Change: Số đồng xu tối thiểu = ${result.minCoins} để đổi ${coinAmount}`);
+        } else {
+          setResult(`🦀 Coin Change: Không thể đổi ${coinAmount} với các mệnh giá hiện có`);
         }
+      } catch (error) {
+        setResult("❌ Rust WASM Coin Change failed: " + error);
       }
+    } else {
+      setResult("❌ WASM chưa sẵn sàng");
     }
-
-    // Build coin combination
-    const coins: number[] = [];
-    let amount = coinAmount;
-    while (amount > 0 && coinUsed[amount] !== -1) {
-      coins.push(coinUsed[amount]);
-      amount -= coinUsed[amount];
-    }
-
-    setCoinResult({
-      minCoins: dp[coinAmount] === Infinity ? -1 : dp[coinAmount],
-      coins,
-      table: dp
-    });
   };
 
   return (
@@ -180,11 +127,17 @@ export function DynamicProgrammingSection() {
       <div className="bg-white dark:bg-slate-800 rounded-lg p-6 border">
         <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
           <Layers2 className="h-5 w-5" />
-          Dynamic Programming (Quy Hoạch Động)
+          🦀 Rust WASM Dynamic Programming (Quy Hoạch Động)
         </h3>
         <p className="text-gray-600 dark:text-gray-300 mb-4">
-          Dynamic Programming là kỹ thuật giải quyết bài toán bằng cách chia nhỏ thành các bài toán con và lưu trữ kết quả để tránh tính toán lặp lại.
+          Demo tương tác Dynamic Programming sử dụng Rust WASM. Quy hoạch động được tối ưu hóa là kỹ thuật giải quyết bài toán bằng cách chia nhỏ thành các bài toán con và lưu trữ kết quả để tránh tính toán lặp lại.
         </p>
+
+        {result && (
+          <div className="mb-4 p-3 bg-orange-50 dark:bg-orange-900/20 rounded">
+            <strong>Kết quả:</strong> {result}
+          </div>
+        )}
 
         <div className="space-y-6">
           {/* Fibonacci Section */}
@@ -202,23 +155,16 @@ export function DynamicProgrammingSection() {
               />
               <button
                 onClick={calculateFibonacci}
-                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                disabled={!wasmReady}
+                className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600 disabled:opacity-50"
               >
-                Tính Fibonacci({fibN})
+                🦀 Tính Fibonacci({fibN})
               </button>
             </div>
 
-            {fibResult !== null && (
+            {fibResult > 0 && (
               <div className="space-y-2">
-                <p className="font-medium">Kết quả: Fibonacci({fibN}) = {fibResult}</p>
-                {fibSteps.length > 0 && (
-                  <div className="bg-white dark:bg-slate-800 p-3 rounded max-h-32 overflow-y-auto">
-                    <h5 className="font-medium mb-2">Các bước tính (10 bước cuối):</h5>
-                    {fibSteps.map((step, index) => (
-                      <p key={index} className="text-sm">{step}</p>
-                    ))}
-                  </div>
-                )}
+                <p className="font-medium">🦀 Kết quả: Fibonacci({fibN}) = {fibResult}</p>
               </div>
             )}
           </div>
@@ -240,9 +186,10 @@ export function DynamicProgrammingSection() {
               <div>
                 <button
                   onClick={solveKnapsack}
-                  className="mt-6 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+                  disabled={!wasmReady}
+                  className="mt-6 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 disabled:opacity-50"
                 >
-                  Giải Knapsack
+                  🦀 Giải Knapsack
                 </button>
               </div>
             </div>
@@ -260,17 +207,13 @@ export function DynamicProgrammingSection() {
 
             {knapsackResult && (
               <div className="space-y-2">
-                <p className="font-medium">Giá trị tối đa: {knapsackResult.maxValue}</p>
+                <p className="font-medium">Giá trị tối đa: {knapsackResult}</p>
                 <div>
-                  <strong>Vật phẩm được chọn:</strong>
+                  <strong>Danh sách vật phẩm:</strong>
                   <div className="mt-1 space-y-1">
                     {knapsackItems.map((item, index) => (
-                      <div key={index} className={`text-sm p-2 rounded ${
-                        knapsackResult.selectedItems[index]
-                          ? 'bg-green-100 dark:bg-green-900/20 border border-green-300'
-                          : 'bg-gray-100 dark:bg-gray-700'
-                      }`}>
-                        {item.name} {knapsackResult.selectedItems[index] ? '✓' : '✗'}
+                      <div key={index} className="text-sm p-2 rounded bg-gray-100 dark:bg-gray-700">
+                        {item.name} (Trọng lượng: {item.weight}, Giá trị: {item.value})
                       </div>
                     ))}
                   </div>
@@ -299,43 +242,19 @@ export function DynamicProgrammingSection() {
               />
               <button
                 onClick={solveLCS}
-                className="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600"
+                disabled={!wasmReady}
+                className="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600 disabled:opacity-50"
               >
-                Tìm LCS
+                🦀 Tìm LCS
               </button>
             </div>
 
             {lcsResult && (
               <div className="space-y-2">
-                <p className="font-medium">Độ dài LCS: {lcsResult.length}</p>
-                <p className="font-medium">Chuỗi con chung dài nhất: "{lcsResult.sequence}"</p>
-                <div className="bg-white dark:bg-slate-800 p-3 rounded">
-                  <h5 className="font-medium mb-2">Bảng DP:</h5>
-                  <div className="overflow-x-auto">
-                    <table className="text-xs border-collapse">
-                      <thead>
-                        <tr>
-                          <th className="border p-1"></th>
-                          <th className="border p-1">""</th>
-                          {lcsText2.split('').map((char, index) => (
-                            <th key={index} className="border p-1">{char}</th>
-                          ))}
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {lcsResult.table.map((row, i) => (
-                          <tr key={i}>
-                            <th className="border p-1">
-                              {i === 0 ? '""' : lcsText1[i - 1]}
-                            </th>
-                            {row.map((cell, j) => (
-                              <td key={j} className="border p-1 text-center">{cell}</td>
-                            ))}
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
+                <p className="font-medium">Độ dài LCS: {lcsResult}</p>
+                <p className="font-medium">Chuỗi con chung dài nhất: "{lcsSequence}"</p>
+                <div className="bg-orange-50 dark:bg-orange-900/20 p-3 rounded">
+                  <p className="text-sm">Kết quả được tính toán bằng thuật toán Dynamic Programming từ Rust WASM.</p>
                 </div>
               </div>
             )}
@@ -365,9 +284,10 @@ export function DynamicProgrammingSection() {
               />
               <button
                 onClick={solveCoinChange}
-                className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600"
+                disabled={!wasmReady}
+                className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600 disabled:opacity-50"
               >
-                Đổi Tiền
+                🦀 Đổi Tiền
               </button>
             </div>
 

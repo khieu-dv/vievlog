@@ -1,112 +1,133 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { TreePine } from "lucide-react";
 import { MermaidDiagram } from "~/components/common/MermaidDiagram";
-
-class TreeNode {
-  value: number;
-  left: TreeNode | null = null;
-  right: TreeNode | null = null;
-
-  constructor(value: number) {
-    this.value = value;
-  }
-
-  insert(value: number): void {
-    if (value <= this.value) {
-      if (this.left) {
-        this.left.insert(value);
-      } else {
-        this.left = new TreeNode(value);
-      }
-    } else {
-      if (this.right) {
-        this.right.insert(value);
-      } else {
-        this.right = new TreeNode(value);
-      }
-    }
-  }
-
-  search(value: number): boolean {
-    if (value === this.value) return true;
-    if (value < this.value) {
-      return this.left ? this.left.search(value) : false;
-    } else {
-      return this.right ? this.right.search(value) : false;
-    }
-  }
-
-  inorderTraversal(): number[] {
-    const result: number[] = [];
-    if (this.left) result.push(...this.left.inorderTraversal());
-    result.push(this.value);
-    if (this.right) result.push(...this.right.inorderTraversal());
-    return result;
-  }
-}
+import { initRustWasm } from "~/lib/rust-wasm-helper";
 
 export function TreesSection() {
-  const [tree, setTree] = useState<TreeNode | null>(null);
+  const [rustBST, setRustBST] = useState<any>(null);
+  const [wasmReady, setWasmReady] = useState(false);
+  const [treeDisplay, setTreeDisplay] = useState<number[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [searchValue, setSearchValue] = useState("");
-  const [searchResult, setSearchResult] = useState<string>("");
+  const [result, setResult] = useState("");
+  const [wasm, setWasm] = useState<any>(null);
+
+  // Initialize WASM
+  useEffect(() => {
+    async function init() {
+      try {
+        const wasmInstance = await initRustWasm();
+        const newBST = wasmInstance.dataStructures.createBST();
+        setRustBST(newBST);
+        setWasm(wasmInstance);
+        setWasmReady(true);
+        setResult("✅ Rust WASM Binary Search Tree đã sẵn sàng!");
+      } catch (error) {
+        console.error("Failed to initialize WASM:", error);
+        setResult("❌ Không thể khởi tạo Rust WASM");
+      }
+    }
+    init();
+  }, []);
+
+  // Update display from Rust BST
+  const updateDisplayFromRustBST = () => {
+    if (rustBST) {
+      try {
+        const inorderArray = Array.from(rustBST.inorderTraversal()) as number[];
+        setTreeDisplay(inorderArray);
+      } catch (error) {
+        console.error("Error updating display:", error);
+      }
+    }
+  };
 
   const insertValue = () => {
     const value = parseInt(inputValue);
     if (!isNaN(value)) {
-      if (tree) {
-        tree.insert(value);
-        setTree(new TreeNode(tree.value)); // Force re-render
-        // Copy the tree structure
-        const newTree = new TreeNode(tree.value);
-        const copyTree = (original: TreeNode, copy: TreeNode) => {
-          if (original.left) {
-            copy.left = new TreeNode(original.left.value);
-            copyTree(original.left, copy.left);
-          }
-          if (original.right) {
-            copy.right = new TreeNode(original.right.value);
-            copyTree(original.right, copy.right);
-          }
-        };
-        copyTree(tree, newTree);
-        newTree.insert(value);
-        setTree(newTree);
+      if (wasmReady && rustBST) {
+        try {
+          rustBST.insert(value);
+          const treeSize = rustBST.size();
+          setResult(`🦀 Đã thêm ${value} vào cây. Kích thước: ${treeSize}`);
+          updateDisplayFromRustBST();
+          setInputValue("");
+        } catch (error) {
+          setResult("❌ Rust WASM insert failed: " + error);
+        }
       } else {
-        setTree(new TreeNode(value));
+        setResult("❌ WASM chưa sẵn sàng");
       }
-      setInputValue("");
     }
   };
 
   const searchInTree = () => {
     const value = parseInt(searchValue);
-    if (!isNaN(value) && tree) {
-      const found = tree.search(value);
-      setSearchResult(found ? `Tìm thấy ${value} trong cây` : `Không tìm thấy ${value} trong cây`);
-    } else {
-      setSearchResult("Cây rỗng hoặc giá trị không hợp lệ");
+    if (!isNaN(value)) {
+      if (wasmReady && rustBST) {
+        try {
+          const found = rustBST.search(value);
+          if (found) {
+            setResult(`🦀 Tìm thấy ${value} trong cây`);
+          } else {
+            setResult(`🦀 Không tìm thấy ${value} trong cây`);
+          }
+        } catch (error) {
+          setResult("❌ Rust WASM search failed: " + error);
+        }
+      } else {
+        setResult("❌ WASM chưa sẵn sàng");
+      }
     }
   };
 
-  const clearTree = () => {
-    setTree(null);
-    setSearchResult("");
+  const removeValue = () => {
+    const value = parseInt(searchValue);
+    if (!isNaN(value)) {
+      if (wasmReady && rustBST) {
+        try {
+          const removed = rustBST.remove(value);
+          const treeSize = rustBST.size();
+          if (removed) {
+            setResult(`🦀 Đã xóa ${value} khỏi cây. Kích thước: ${treeSize}`);
+          } else {
+            setResult(`🦀 Không tìm thấy ${value} để xóa`);
+          }
+          updateDisplayFromRustBST();
+        } catch (error) {
+          setResult("❌ Rust WASM remove failed: " + error);
+        }
+      } else {
+        setResult("❌ WASM chưa sẵn sàng");
+      }
+    }
   };
 
-  const inorderResult = tree ? tree.inorderTraversal() : [];
+  const clear = () => {
+    if (wasmReady && rustBST) {
+      try {
+        rustBST.clear();
+        setResult("🦀 Đã xóa toàn bộ cây");
+        updateDisplayFromRustBST();
+      } catch (error) {
+        setResult("❌ Rust WASM clear failed: " + error);
+      }
+    } else {
+      setResult("❌ WASM chưa sẵn sàng");
+    }
+  };
 
   return (
     <div className="space-y-6">
       <div className="bg-white dark:bg-slate-800 rounded-lg p-6 border">
         <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
           <TreePine className="h-5 w-5" />
-          Cây Nhị Phân
+          🦀 Rust WASM Cây Tìm Kiếm Nhị Phân
         </h3>
         <p className="text-gray-600 dark:text-gray-300 mb-4">
-          Cây nhị phân là cấu trúc dữ liệu phân cấp, trong đó mỗi nút có tối đa hai con, được gọi là con trái và con phải.
+          Demo tương tác Cây Tìm Kiếm Nhị Phân sử dụng Rust WASM. BST được tối ưu hóa là cấu trúc dữ liệu phân cấp cho phép tìm kiếm, thêm và xóa hiệu quả với độ phức tạp O(log n).
         </p>
 
         <div className="space-y-4">
@@ -150,7 +171,7 @@ export function TreesSection() {
 
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
             <h4 className="font-medium mb-2">Cây Tương Tác:</h4>
-            <div className="flex gap-2 mb-3">
+            <div className="flex gap-2 mb-3 flex-wrap">
               <input
                 type="number"
                 value={inputValue}
@@ -160,46 +181,53 @@ export function TreesSection() {
               />
               <button
                 onClick={insertValue}
-                className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+                disabled={!wasmReady}
+                className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 disabled:opacity-50"
               >
-                Thêm
+                🦀 Thêm
               </button>
-              <button
-                onClick={clearTree}
-                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-              >
-                Xóa hết
-              </button>
-            </div>
-
-            <div className="flex gap-2 mb-3">
               <input
                 type="number"
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
-                placeholder="Nhập số để tìm"
+                placeholder="Nhập số để tìm/xóa"
                 className="px-3 py-2 border rounded dark:bg-slate-600 dark:border-slate-500"
               />
               <button
                 onClick={searchInTree}
-                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                disabled={!wasmReady}
+                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50"
               >
-                Tìm kiếm
+                🦀 Tìm kiếm
+              </button>
+              <button
+                onClick={removeValue}
+                disabled={!wasmReady}
+                className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600 disabled:opacity-50"
+              >
+                🦀 Xóa
+              </button>
+              <button
+                onClick={clear}
+                disabled={!wasmReady}
+                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 disabled:opacity-50"
+              >
+                🧹 Xóa hết
               </button>
             </div>
 
-            {searchResult && (
-              <div className="mb-3 p-2 bg-gray-200 dark:bg-slate-600 rounded text-sm">
-                {searchResult}
+            {result && (
+              <div className="mb-3 p-3 bg-orange-50 dark:bg-orange-900/20 rounded">
+                <strong>Kết quả:</strong> {result}
               </div>
             )}
 
             <div className="mb-3">
-              <strong>Duyệt theo thứ tự (Inorder):</strong>
+              <strong>🦀 Duyệt theo thứ tự (Inorder):</strong>
               <div className="flex gap-1 flex-wrap mt-1">
-                {inorderResult.length > 0 ? (
-                  inorderResult.map((value, index) => (
-                    <span key={index} className="px-2 py-1 bg-blue-100 dark:bg-blue-900 rounded text-sm">
+                {treeDisplay.length > 0 ? (
+                  treeDisplay.map((value, index) => (
+                    <span key={index} className="px-2 py-1 bg-orange-100 dark:bg-orange-900 rounded text-sm">
                       {value}
                     </span>
                   ))

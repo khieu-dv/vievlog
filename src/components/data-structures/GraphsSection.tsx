@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Network } from "lucide-react";
 import { MermaidDiagram } from "~/components/common/MermaidDiagram";
+import { initRustWasm } from "~/lib/rust-wasm-helper";
 
 interface Edge {
   from: number;
@@ -10,150 +11,146 @@ interface Edge {
   weight?: number;
 }
 
-class Graph {
-  private adjacencyList: Map<number, number[]> = new Map();
-  private edges: Edge[] = [];
-
-  addVertex(vertex: number): void {
-    if (!this.adjacencyList.has(vertex)) {
-      this.adjacencyList.set(vertex, []);
-    }
-  }
-
-  addEdge(from: number, to: number, isDirected: boolean = false): void {
-    this.addVertex(from);
-    this.addVertex(to);
-
-    this.adjacencyList.get(from)!.push(to);
-    this.edges.push({ from, to });
-
-    if (!isDirected) {
-      this.adjacencyList.get(to)!.push(from);
-    }
-  }
-
-  getVertices(): number[] {
-    return Array.from(this.adjacencyList.keys()).sort((a, b) => a - b);
-  }
-
-  getNeighbors(vertex: number): number[] {
-    return this.adjacencyList.get(vertex) || [];
-  }
-
-  getEdges(): Edge[] {
-    return this.edges;
-  }
-
-  clear(): void {
-    this.adjacencyList.clear();
-    this.edges = [];
-  }
-
-  // BFS traversal
-  bfs(startVertex: number): number[] {
-    if (!this.adjacencyList.has(startVertex)) return [];
-
-    const visited = new Set<number>();
-    const queue: number[] = [startVertex];
-    const result: number[] = [];
-
-    while (queue.length > 0) {
-      const vertex = queue.shift()!;
-      if (!visited.has(vertex)) {
-        visited.add(vertex);
-        result.push(vertex);
-
-        const neighbors = this.getNeighbors(vertex);
-        for (const neighbor of neighbors) {
-          if (!visited.has(neighbor)) {
-            queue.push(neighbor);
-          }
-        }
-      }
-    }
-
-    return result;
-  }
-
-  // DFS traversal
-  dfs(startVertex: number): number[] {
-    if (!this.adjacencyList.has(startVertex)) return [];
-
-    const visited = new Set<number>();
-    const result: number[] = [];
-
-    const dfsHelper = (vertex: number) => {
-      visited.add(vertex);
-      result.push(vertex);
-
-      const neighbors = this.getNeighbors(vertex);
-      for (const neighbor of neighbors) {
-        if (!visited.has(neighbor)) {
-          dfsHelper(neighbor);
-        }
-      }
-    };
-
-    dfsHelper(startVertex);
-    return result;
-  }
-}
-
 export function GraphsSection() {
-  const [graph] = useState(new Graph());
+  const [rustGraph, setRustGraph] = useState<any>(null);
+  const [wasmReady, setWasmReady] = useState(false);
+  const [graphDisplay, setGraphDisplay] = useState<Edge[]>([]);
+  const [verticesDisplay, setVerticesDisplay] = useState<number[]>([]);
   const [fromVertex, setFromVertex] = useState("");
   const [toVertex, setToVertex] = useState("");
   const [isDirected, setIsDirected] = useState(false);
   const [startVertex, setStartVertex] = useState("");
-  const [traversalResult, setTraversalResult] = useState<string>("");
-  const [refreshKey, setRefreshKey] = useState(0);
+  const [result, setResult] = useState("");
+  const [wasm, setWasm] = useState<any>(null);
+
+  // Initialize WASM
+  useEffect(() => {
+    async function init() {
+      try {
+        const wasmInstance = await initRustWasm();
+        const newGraph = wasmInstance.dataStructures.createGraph(isDirected);
+        setRustGraph(newGraph);
+        setWasm(wasmInstance);
+        setWasmReady(true);
+        setResult("✅ Rust WASM Graph đã sẵn sàng!");
+      } catch (error) {
+        console.error("Failed to initialize WASM:", error);
+        setResult("❌ Không thể khởi tạo Rust WASM");
+      }
+    }
+    init();
+  }, [isDirected]);
+
+  // Update display from Rust graph
+  const updateDisplayFromRustGraph = () => {
+    if (rustGraph) {
+      try {
+        const edges = Array.from(rustGraph.getEdges()) as Edge[];
+        const vertices = Array.from(rustGraph.getVertices()) as number[];
+        setGraphDisplay(edges);
+        setVerticesDisplay(vertices);
+      } catch (error) {
+        console.error("Error updating display:", error);
+      }
+    }
+  };
 
   const addEdge = () => {
     const from = parseInt(fromVertex);
     const to = parseInt(toVertex);
 
     if (!isNaN(from) && !isNaN(to)) {
-      graph.addEdge(from, to, isDirected);
-      setFromVertex("");
-      setToVertex("");
-      setRefreshKey(prev => prev + 1); // Force re-render
+      if (wasmReady && rustGraph) {
+        try {
+          rustGraph.addEdge(from, to, isDirected);
+          const edgeCount = rustGraph.edgeCount();
+          setResult(`🦀 Đã thêm cạnh từ ${from} đến ${to}. Số cạnh: ${edgeCount}`);
+          updateDisplayFromRustGraph();
+          setFromVertex("");
+          setToVertex("");
+        } catch (error) {
+          setResult("❌ Rust WASM addEdge failed: " + error);
+        }
+      } else {
+        setResult("❌ WASM chưa sẵn sàng");
+      }
+    }
+  };
+
+  const addVertex = () => {
+    const vertex = parseInt(fromVertex);
+    if (!isNaN(vertex)) {
+      if (wasmReady && rustGraph) {
+        try {
+          rustGraph.addVertex(vertex);
+          const vertexCount = rustGraph.vertexCount();
+          setResult(`🦀 Đã thêm đỉnh ${vertex}. Số đỉnh: ${vertexCount}`);
+          updateDisplayFromRustGraph();
+          setFromVertex("");
+        } catch (error) {
+          setResult("❌ Rust WASM addVertex failed: " + error);
+        }
+      } else {
+        setResult("❌ WASM chưa sẵn sàng");
+      }
     }
   };
 
   const clearGraph = () => {
-    graph.clear();
-    setTraversalResult("");
-    setRefreshKey(prev => prev + 1);
+    if (wasmReady && rustGraph) {
+      try {
+        rustGraph.clear();
+        setResult("🦀 Đã xóa toàn bộ đồ thị");
+        updateDisplayFromRustGraph();
+      } catch (error) {
+        setResult("❌ Rust WASM clear failed: " + error);
+      }
+    } else {
+      setResult("❌ WASM chưa sẵn sàng");
+    }
   };
 
   const runBFS = () => {
     const start = parseInt(startVertex);
     if (!isNaN(start)) {
-      const result = graph.bfs(start);
-      setTraversalResult(`BFS từ đỉnh ${start}: ${result.join(" → ")}`);
+      if (wasmReady && rustGraph) {
+        try {
+          const traversalResult = Array.from(rustGraph.bfs(start));
+          setResult(`🦀 BFS từ đỉnh ${start}: ${traversalResult.join(" → ")}`);
+        } catch (error) {
+          setResult("❌ Rust WASM BFS failed: " + error);
+        }
+      } else {
+        setResult("❌ WASM chưa sẵn sàng");
+      }
     }
   };
 
   const runDFS = () => {
     const start = parseInt(startVertex);
     if (!isNaN(start)) {
-      const result = graph.dfs(start);
-      setTraversalResult(`DFS từ đỉnh ${start}: ${result.join(" → ")}`);
+      if (wasmReady && rustGraph) {
+        try {
+          const traversalResult = Array.from(rustGraph.dfs(start));
+          setResult(`🦀 DFS từ đỉnh ${start}: ${traversalResult.join(" → ")}`);
+        } catch (error) {
+          setResult("❌ Rust WASM DFS failed: " + error);
+        }
+      } else {
+        setResult("❌ WASM chưa sẵn sàng");
+      }
     }
   };
-
-  const vertices = graph.getVertices();
-  const edges = graph.getEdges();
 
   return (
     <div className="space-y-6">
       <div className="bg-white dark:bg-slate-800 rounded-lg p-6 border">
         <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
           <Network className="h-5 w-5" />
-          Đồ Thị
+          🦀 Rust WASM Đồ Thị
         </h3>
         <p className="text-gray-600 dark:text-gray-300 mb-4">
-          Đồ thị là tập hợp các đỉnh (nút) được kết nối bởi các cạnh. Đồ thị có thể biểu diễn mạng lưới, mối quan hệ và nhiều vấn đề thực tế.
+          Demo tương tác Đồ thị sử dụng Rust WASM. Đồ thị được tối ưu hóa là tập hợp các đỉnh (nút) được kết nối bởi các cạnh, hỗ trợ BFS, DFS và các thuật toán duyệt đồ thị hiệu quả.
         </p>
 
         <div className="space-y-4">
@@ -227,15 +224,24 @@ export function GraphsSection() {
                 <div className="flex gap-2">
                   <button
                     onClick={addEdge}
-                    className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 flex-1"
+                    disabled={!wasmReady}
+                    className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 flex-1 disabled:opacity-50"
                   >
-                    Thêm cạnh
+                    🦀 Thêm cạnh
+                  </button>
+                  <button
+                    onClick={addVertex}
+                    disabled={!wasmReady}
+                    className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 flex-1 disabled:opacity-50"
+                  >
+                    🦀 Thêm đỉnh
                   </button>
                   <button
                     onClick={clearGraph}
-                    className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 flex-1"
+                    disabled={!wasmReady}
+                    className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 flex-1 disabled:opacity-50"
                   >
-                    Xóa hết
+                    🧹 Xóa hết
                   </button>
                 </div>
               </div>
@@ -251,36 +257,38 @@ export function GraphsSection() {
                 <div className="flex gap-2">
                   <button
                     onClick={runBFS}
-                    className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 flex-1"
+                    disabled={!wasmReady}
+                    className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600 flex-1 disabled:opacity-50"
                   >
-                    BFS
+                    🦀 BFS
                   </button>
                   <button
                     onClick={runDFS}
-                    className="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600 flex-1"
+                    disabled={!wasmReady}
+                    className="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600 flex-1 disabled:opacity-50"
                   >
-                    DFS
+                    🦀 DFS
                   </button>
                 </div>
               </div>
             </div>
 
-            {traversalResult && (
-              <div className="mb-3 p-2 bg-gray-200 dark:bg-slate-600 rounded text-sm">
-                {traversalResult}
+            {result && (
+              <div className="mb-3 p-3 bg-orange-50 dark:bg-orange-900/20 rounded">
+                <strong>Kết quả:</strong> {result}
               </div>
             )}
 
             <div className="space-y-2">
               <div>
-                <strong>Đỉnh:</strong> {vertices.length > 0 ? vertices.join(", ") : "Không có"}
+                <strong>🦀 Đỉnh:</strong> {verticesDisplay.length > 0 ? verticesDisplay.join(", ") : "Không có"}
               </div>
               <div>
-                <strong>Cạnh:</strong>{" "}
-                {edges.length > 0 ? (
+                <strong>🦀 Cạnh:</strong>{" "}
+                {graphDisplay.length > 0 ? (
                   <div className="flex flex-wrap gap-1 mt-1">
-                    {edges.map((edge, index) => (
-                      <span key={index} className="px-2 py-1 bg-blue-100 dark:bg-blue-900 rounded text-xs">
+                    {graphDisplay.map((edge, index) => (
+                      <span key={index} className="px-2 py-1 bg-orange-100 dark:bg-orange-900 rounded text-xs">
                         {edge.from} {isDirected ? "→" : "↔"} {edge.to}
                       </span>
                     ))}
