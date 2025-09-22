@@ -36,7 +36,7 @@ export function RustCodeEditor({
           automaticLayout: true,
           padding: { top: 12, bottom: 12 },
           renderLineHighlight: "none",
-          occurrencesHighlight: false,
+          occurrencesHighlight: "off",
           selectionHighlight: false,
           contextmenu: false,
         }}
