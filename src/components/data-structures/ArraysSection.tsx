@@ -12,6 +12,14 @@ export function ArraysSection() {
   const [inputValue, setInputValue] = useState("");
   const [activeLanguageTab, setActiveLanguageTab] = useState("rust");
 
+  // Interactive visualization states
+  const [animationArray, setAnimationArray] = useState<number[]>([10, 25, 8, 42, 15, 33]);
+  const [searchValue, setSearchValue] = useState("");
+  const [accessIndex, setAccessIndex] = useState("");
+  const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null);
+  const [animationStep, setAnimationStep] = useState<string>("");
+  const [isAnimating, setIsAnimating] = useState(false);
+
   const handlePush = () => {
     const value = parseInt(inputValue);
     if (!isNaN(value)) {
@@ -22,6 +30,110 @@ export function ArraysSection() {
 
   const handlePop = () => {
     setVector(vector.slice(0, -1));
+  };
+
+  // Animation functions
+  const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
+  const animateAccess = async () => {
+    const index = parseInt(accessIndex);
+    if (isNaN(index) || index < 0 || index >= animationArray.length) {
+      setAnimationStep("❌ Chỉ số không hợp lệ!");
+      return;
+    }
+
+    setIsAnimating(true);
+    setAnimationStep(`🔍 Truy cập phần tử tại index ${index}...`);
+
+    // Highlight the accessed element
+    setHighlightedIndex(index);
+    await sleep(1000);
+
+    setAnimationStep(`✅ Giá trị tại index ${index} là: ${animationArray[index]} (Độ phức tạp: O(1))`);
+    await sleep(2000);
+
+    setHighlightedIndex(null);
+    setIsAnimating(false);
+  };
+
+  const animateSearch = async () => {
+    const searchVal = parseInt(searchValue);
+    if (isNaN(searchVal)) {
+      setAnimationStep("❌ Giá trị tìm kiếm không hợp lệ!");
+      return;
+    }
+
+    setIsAnimating(true);
+    setAnimationStep(`🔍 Bắt đầu tìm kiếm giá trị ${searchVal}...`);
+    await sleep(1000);
+
+    // Linear search animation
+    for (let i = 0; i < animationArray.length; i++) {
+      setHighlightedIndex(i);
+      setAnimationStep(`🔍 Kiểm tra index ${i}: ${animationArray[i]} ${animationArray[i] === searchVal ? '= ✅' : '≠'} ${searchVal}`);
+      await sleep(800);
+
+      if (animationArray[i] === searchVal) {
+        setAnimationStep(`🎉 Tìm thấy ${searchVal} tại index ${i}! (Độ phức tạp: O(n))`);
+        await sleep(2000);
+        setHighlightedIndex(null);
+        setIsAnimating(false);
+        return;
+      }
+    }
+
+    setAnimationStep(`❌ Không tìm thấy ${searchVal} trong mảng! (Đã kiểm tra ${animationArray.length} phần tử)`);
+    await sleep(2000);
+    setHighlightedIndex(null);
+    setIsAnimating(false);
+  };
+
+  const animateInsert = async () => {
+    const newValue = parseInt(inputValue);
+    if (isNaN(newValue)) return;
+
+    setIsAnimating(true);
+    setAnimationStep(`➕ Thêm ${newValue} vào cuối mảng...`);
+
+    // Show the new element being added
+    setAnimationArray([...animationArray, newValue]);
+    setHighlightedIndex(animationArray.length);
+    await sleep(1000);
+
+    setAnimationStep(`✅ Đã thêm ${newValue}! Kích thước mảng: ${animationArray.length + 1} (Độ phức tạp: O(1) amortized)`);
+    await sleep(2000);
+
+    setHighlightedIndex(null);
+    setIsAnimating(false);
+    setInputValue("");
+  };
+
+  const animateRemove = async () => {
+    if (animationArray.length === 0) {
+      setAnimationStep("❌ Mảng đã rỗng!");
+      return;
+    }
+
+    setIsAnimating(true);
+    const lastIndex = animationArray.length - 1;
+    const removedValue = animationArray[lastIndex];
+
+    setHighlightedIndex(lastIndex);
+    setAnimationStep(`➖ Xóa phần tử cuối: ${removedValue}...`);
+    await sleep(1000);
+
+    setAnimationArray(animationArray.slice(0, -1));
+    setAnimationStep(`✅ Đã xóa ${removedValue}! Kích thước mảng: ${animationArray.length - 1} (Độ phức tạp: O(1))`);
+    await sleep(2000);
+
+    setHighlightedIndex(null);
+    setIsAnimating(false);
+  };
+
+  const resetArray = () => {
+    setAnimationArray([10, 25, 8, 42, 15, 33]);
+    setHighlightedIndex(null);
+    setAnimationStep("");
   };
 
   return (
@@ -68,6 +180,178 @@ export function ArraysSection() {
         </div>
 
         <div className="space-y-4">
+          {/* Interactive Array Visualization */}
+          <div className="bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 p-6 rounded-lg border-2 border-purple-200 dark:border-purple-800">
+            <h4 className="font-semibold text-purple-800 dark:text-purple-300 mb-4 flex items-center gap-2">
+              🎮 Minh Họa Tương Tác - Thao Tác với Mảng
+            </h4>
+
+            {/* Array Visualization */}
+            <div className="mb-6">
+              <div className="flex items-center justify-center mb-4 overflow-x-auto">
+                <div className="flex items-center gap-1 min-w-max">
+                  {animationArray.map((value, index) => (
+                    <div key={`${index}-${value}`} className="flex flex-col items-center">
+                      {/* Index label */}
+                      <div className="text-xs text-gray-500 dark:text-gray-400 mb-1 h-4">
+                        {index}
+                      </div>
+                      {/* Array element */}
+                      <div
+                        className={`w-16 h-16 flex items-center justify-center rounded-lg border-2 transition-all duration-500 font-bold text-lg ${
+                          highlightedIndex === index
+                            ? "bg-yellow-400 border-red-500 scale-110 shadow-lg animate-pulse"
+                            : "bg-blue-100 dark:bg-blue-800 border-blue-300 dark:border-blue-600 hover:scale-105"
+                        }`}
+                      >
+                        {value}
+                      </div>
+                      {/* Arrow between elements */}
+                      {index < animationArray.length - 1 && (
+                        <div className="absolute mt-8 ml-16 text-gray-400">→</div>
+                      )}
+                    </div>
+                  ))}
+                  {animationArray.length === 0 && (
+                    <div className="text-gray-500 italic text-center p-8">
+                      Mảng rỗng - Hãy thêm phần tử để bắt đầu
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Animation status */}
+              {animationStep && (
+                <div className="bg-orange-100 dark:bg-orange-900/30 border border-orange-300 dark:border-orange-700 rounded-lg p-3 mb-4">
+                  <div className="font-medium text-orange-800 dark:text-orange-300">
+                    {animationStep}
+                  </div>
+                </div>
+              )}
+
+              {/* Array info */}
+              <div className="grid grid-cols-3 gap-4 text-sm text-gray-600 dark:text-gray-400 mb-4">
+                <div className="bg-white dark:bg-slate-800 p-3 rounded">
+                  <strong>Kích thước:</strong> {animationArray.length}
+                </div>
+                <div className="bg-white dark:bg-slate-800 p-3 rounded">
+                  <strong>Index từ:</strong> 0 đến {Math.max(0, animationArray.length - 1)}
+                </div>
+                <div className="bg-white dark:bg-slate-800 p-3 rounded">
+                  <strong>Bộ nhớ:</strong> {animationArray.length * 4} bytes (int)
+                </div>
+              </div>
+            </div>
+
+            {/* Interactive Controls */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {/* Access by Index */}
+              <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border">
+                <h5 className="font-medium text-green-600 dark:text-green-400 mb-2">🔍 Truy Cập (O(1))</h5>
+                <div className="space-y-2">
+                  <input
+                    type="number"
+                    value={accessIndex}
+                    onChange={(e) => setAccessIndex(e.target.value)}
+                    placeholder="Nhập index"
+                    min="0"
+                    max={animationArray.length - 1}
+                    className="w-full px-2 py-1 text-sm border rounded dark:bg-slate-700 dark:border-slate-600"
+                    disabled={isAnimating}
+                  />
+                  <button
+                    onClick={animateAccess}
+                    disabled={isAnimating}
+                    className="w-full px-3 py-2 text-sm bg-green-500 text-white rounded hover:bg-green-600 disabled:opacity-50"
+                  >
+                    Truy cập
+                  </button>
+                </div>
+              </div>
+
+              {/* Linear Search */}
+              <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border">
+                <h5 className="font-medium text-blue-600 dark:text-blue-400 mb-2">🔎 Tìm Kiếm (O(n))</h5>
+                <div className="space-y-2">
+                  <input
+                    type="number"
+                    value={searchValue}
+                    onChange={(e) => setSearchValue(e.target.value)}
+                    placeholder="Nhập giá trị"
+                    className="w-full px-2 py-1 text-sm border rounded dark:bg-slate-700 dark:border-slate-600"
+                    disabled={isAnimating}
+                  />
+                  <button
+                    onClick={animateSearch}
+                    disabled={isAnimating}
+                    className="w-full px-3 py-2 text-sm bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50"
+                  >
+                    Tìm kiếm
+                  </button>
+                </div>
+              </div>
+
+              {/* Insert */}
+              <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border">
+                <h5 className="font-medium text-purple-600 dark:text-purple-400 mb-2">➕ Thêm (O(1))</h5>
+                <div className="space-y-2">
+                  <input
+                    type="number"
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                    placeholder="Nhập giá trị"
+                    className="w-full px-2 py-1 text-sm border rounded dark:bg-slate-700 dark:border-slate-600"
+                    disabled={isAnimating}
+                  />
+                  <button
+                    onClick={animateInsert}
+                    disabled={isAnimating}
+                    className="w-full px-3 py-2 text-sm bg-purple-500 text-white rounded hover:bg-purple-600 disabled:opacity-50"
+                  >
+                    Thêm cuối
+                  </button>
+                </div>
+              </div>
+
+              {/* Remove and Reset */}
+              <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border">
+                <h5 className="font-medium text-red-600 dark:text-red-400 mb-2">🛠️ Điều Khiển</h5>
+                <div className="space-y-2">
+                  <button
+                    onClick={animateRemove}
+                    disabled={isAnimating}
+                    className="w-full px-3 py-2 text-sm bg-red-500 text-white rounded hover:bg-red-600 disabled:opacity-50"
+                  >
+                    ➖ Xóa cuối
+                  </button>
+                  <button
+                    onClick={resetArray}
+                    disabled={isAnimating}
+                    className="w-full px-3 py-2 text-sm bg-gray-500 text-white rounded hover:bg-gray-600 disabled:opacity-50"
+                  >
+                    🔄 Reset
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Operation Explanations */}
+            <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+              <div className="bg-green-50 dark:bg-green-900/20 p-3 rounded border border-green-200 dark:border-green-800">
+                <strong className="text-green-700 dark:text-green-300">Truy cập O(1):</strong>
+                <p className="text-gray-600 dark:text-gray-400 mt-1">
+                  Có thể truy cập trực tiếp bất kỳ phần tử nào thông qua index, không phụ thuộc vào kích thước mảng.
+                </p>
+              </div>
+              <div className="bg-blue-50 dark:bg-blue-900/20 p-3 rounded border border-blue-200 dark:border-blue-800">
+                <strong className="text-blue-700 dark:text-blue-300">Tìm kiếm O(n):</strong>
+                <p className="text-gray-600 dark:text-gray-400 mt-1">
+                  Phải duyệt từng phần tử một cho đến khi tìm thấy hoặc hết mảng. Trường hợp xấu nhất: n lần so sánh.
+                </p>
+              </div>
+            </div>
+          </div>
+
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
             <h4 className="font-medium mb-2">Cấu Trúc Mảng & Vector:</h4>
             <MermaidDiagram

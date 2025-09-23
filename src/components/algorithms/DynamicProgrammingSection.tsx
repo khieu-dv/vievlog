@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { Layers2 } from "lucide-react";
 import { MermaidDiagram } from "~/components/common/MermaidDiagram";
 import { RustCodeEditor } from "~/components/common/RustCodeEditor";
+import { CppCodeEditor } from "~/components/common/CppCodeEditor";
+import { PythonCodeEditor } from "~/components/common/PythonCodeEditor";
 import { initRustWasm } from "~/lib/rust-wasm-helper";
 
 export function DynamicProgrammingSection() {
@@ -11,6 +13,7 @@ export function DynamicProgrammingSection() {
   const [wasmReady, setWasmReady] = useState(false);
   const [result, setResult] = useState("");
   const [wasm, setWasm] = useState<any>(null);
+  const [activeLanguageTab, setActiveLanguageTab] = useState("rust");
 
   // Fibonacci section
   const [fibN, setFibN] = useState(10);
@@ -434,10 +437,51 @@ export function DynamicProgrammingSection() {
             </div>
           </div>
 
-          {/* Rust Implementation */}
+          {/* Multi-language Implementation */}
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
-            <h4 className="font-medium mb-2">Cài Đặt Rust:</h4>
-            <RustCodeEditor
+            <h4 className="font-medium mb-4">Cài Đặt:</h4>
+
+            {/* Language Tabs */}
+            <div className="mb-4">
+              <div className="border-b border-gray-200 dark:border-gray-600">
+                <nav className="-mb-px flex space-x-8">
+                  <button
+                    onClick={() => setActiveLanguageTab("rust")}
+                    className={`py-2 px-1 border-b-2 font-medium text-sm ${
+                      activeLanguageTab === "rust"
+                        ? "border-orange-500 text-orange-600 dark:text-orange-400"
+                        : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
+                    }`}
+                  >
+                    Rust
+                  </button>
+                  <button
+                    onClick={() => setActiveLanguageTab("cpp")}
+                    className={`py-2 px-1 border-b-2 font-medium text-sm ${
+                      activeLanguageTab === "cpp"
+                        ? "border-blue-500 text-blue-600 dark:text-blue-400"
+                        : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
+                    }`}
+                  >
+                    C++
+                  </button>
+                  <button
+                    onClick={() => setActiveLanguageTab("python")}
+                    className={`py-2 px-1 border-b-2 font-medium text-sm ${
+                      activeLanguageTab === "python"
+                        ? "border-green-500 text-green-600 dark:text-green-400"
+                        : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
+                    }`}
+                  >
+                    Python
+                  </button>
+                </nav>
+              </div>
+            </div>
+
+            {/* Language-specific Code */}
+            {activeLanguageTab === "rust" && (
+              <RustCodeEditor
               code={`use std::collections::HashMap;
 
 // 1. Fibonacci với Memoization
@@ -575,8 +619,337 @@ fn main() {
     // Edit Distance
     println!("Edit distance = {}", edit_distance("kitten", "sitting"));
 }`}
-              height="500px"
-            />
+                height="500px"
+              />
+            )}
+
+            {activeLanguageTab === "cpp" && (
+              <CppCodeEditor
+                code={`#include <iostream>
+#include <vector>
+#include <unordered_map>
+#include <algorithm>
+#include <climits>
+
+class DynamicProgramming {
+public:
+    // 1. Fibonacci với Memoization
+    static long long fibonacci(int n, std::unordered_map<int, long long>& memo) {
+        if (memo.find(n) != memo.end()) {
+            return memo[n];
+        }
+
+        long long result;
+        if (n <= 1) {
+            result = n;
+        } else {
+            result = fibonacci(n - 1, memo) + fibonacci(n - 2, memo);
+        }
+
+        memo[n] = result;
+        return result;
+    }
+
+    // 2. 0/1 Knapsack Problem
+    static int knapsack(const std::vector<int>& weights, const std::vector<int>& values, int capacity) {
+        int n = weights.size();
+        std::vector<std::vector<int>> dp(n + 1, std::vector<int>(capacity + 1, 0));
+
+        for (int i = 1; i <= n; i++) {
+            for (int w = 1; w <= capacity; w++) {
+                if (weights[i - 1] <= w) {
+                    dp[i][w] = std::max(
+                        dp[i - 1][w],
+                        dp[i - 1][w - weights[i - 1]] + values[i - 1]
+                    );
+                } else {
+                    dp[i][w] = dp[i - 1][w];
+                }
+            }
+        }
+
+        return dp[n][capacity];
+    }
+
+    // 3. Longest Common Subsequence
+    static int lcs(const std::string& text1, const std::string& text2) {
+        int m = text1.length();
+        int n = text2.length();
+        std::vector<std::vector<int>> dp(m + 1, std::vector<int>(n + 1, 0));
+
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+                if (text1[i - 1] == text2[j - 1]) {
+                    dp[i][j] = dp[i - 1][j - 1] + 1;
+                } else {
+                    dp[i][j] = std::max(dp[i - 1][j], dp[i][j - 1]);
+                }
+            }
+        }
+
+        return dp[m][n];
+    }
+
+    // 4. Coin Change
+    static int coinChange(const std::vector<int>& coins, int amount) {
+        std::vector<int> dp(amount + 1, INT_MAX);
+        dp[0] = 0;
+
+        for (int coin : coins) {
+            for (int i = coin; i <= amount; i++) {
+                if (dp[i - coin] != INT_MAX) {
+                    dp[i] = std::min(dp[i], dp[i - coin] + 1);
+                }
+            }
+        }
+
+        return dp[amount] == INT_MAX ? -1 : dp[amount];
+    }
+
+    // 5. Edit Distance
+    static int editDistance(const std::string& word1, const std::string& word2) {
+        int m = word1.length();
+        int n = word2.length();
+        std::vector<std::vector<int>> dp(m + 1, std::vector<int>(n + 1));
+
+        // Khởi tạo base cases
+        for (int i = 0; i <= m; i++) {
+            dp[i][0] = i;
+        }
+        for (int j = 0; j <= n; j++) {
+            dp[0][j] = j;
+        }
+
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+                if (word1[i - 1] == word2[j - 1]) {
+                    dp[i][j] = dp[i - 1][j - 1];
+                } else {
+                    dp[i][j] = 1 + std::min({dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]});
+                }
+            }
+        }
+
+        return dp[m][n];
+    }
+};
+
+// Sử dụng
+int main() {
+    // Fibonacci
+    std::unordered_map<int, long long> memo;
+    std::cout << "Fibonacci(10) = " << DynamicProgramming::fibonacci(10, memo) << std::endl;
+
+    // Knapsack
+    std::vector<int> weights = {2, 3, 4, 5};
+    std::vector<int> values = {3, 4, 5, 6};
+    std::cout << "Knapsack = " << DynamicProgramming::knapsack(weights, values, 10) << std::endl;
+
+    // LCS
+    std::cout << "LCS length = " << DynamicProgramming::lcs("ABCDGH", "AEDFHR") << std::endl;
+
+    // Coin Change
+    std::vector<int> coins = {1, 5, 10, 25};
+    std::cout << "Min coins = " << DynamicProgramming::coinChange(coins, 11) << std::endl;
+
+    // Edit Distance
+    std::cout << "Edit distance = " << DynamicProgramming::editDistance("kitten", "sitting") << std::endl;
+
+    return 0;
+}`}
+                height="500px"
+              />
+            )}
+
+            {activeLanguageTab === "python" && (
+              <PythonCodeEditor
+                code={`from functools import lru_cache
+from typing import List, Optional
+
+class DynamicProgramming:
+    """Các thuật toán Dynamic Programming cơ bản"""
+
+    @staticmethod
+    @lru_cache(maxsize=None)
+    def fibonacci(n: int) -> int:
+        """Fibonacci với memoization sử dụng decorator"""
+        if n <= 1:
+            return n
+        return DynamicProgramming.fibonacci(n - 1) + DynamicProgramming.fibonacci(n - 2)
+
+    @staticmethod
+    def fibonacci_iterative(n: int) -> int:
+        """Fibonacci bottom-up approach"""
+        if n <= 1:
+            return n
+
+        dp = [0] * (n + 1)
+        dp[1] = 1
+
+        for i in range(2, n + 1):
+            dp[i] = dp[i - 1] + dp[i - 2]
+
+        return dp[n]
+
+    @staticmethod
+    def knapsack(weights: List[int], values: List[int], capacity: int) -> int:
+        """0/1 Knapsack Problem"""
+        n = len(weights)
+        dp = [[0 for _ in range(capacity + 1)] for _ in range(n + 1)]
+
+        for i in range(1, n + 1):
+            for w in range(1, capacity + 1):
+                if weights[i - 1] <= w:
+                    dp[i][w] = max(
+                        dp[i - 1][w],
+                        dp[i - 1][w - weights[i - 1]] + values[i - 1]
+                    )
+                else:
+                    dp[i][w] = dp[i - 1][w]
+
+        return dp[n][capacity]
+
+    @staticmethod
+    def longest_common_subsequence(text1: str, text2: str) -> int:
+        """Longest Common Subsequence"""
+        m, n = len(text1), len(text2)
+        dp = [[0] * (n + 1) for _ in range(m + 1)]
+
+        for i in range(1, m + 1):
+            for j in range(1, n + 1):
+                if text1[i - 1] == text2[j - 1]:
+                    dp[i][j] = dp[i - 1][j - 1] + 1
+                else:
+                    dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
+
+        return dp[m][n]
+
+    @staticmethod
+    def coin_change(coins: List[int], amount: int) -> int:
+        """Coin Change - số xu tối thiểu"""
+        dp = [float('inf')] * (amount + 1)
+        dp[0] = 0
+
+        for coin in coins:
+            for i in range(coin, amount + 1):
+                if dp[i - coin] != float('inf'):
+                    dp[i] = min(dp[i], dp[i - coin] + 1)
+
+        return dp[amount] if dp[amount] != float('inf') else -1
+
+    @staticmethod
+    def coin_change_with_path(coins: List[int], amount: int) -> tuple:
+        """Coin Change trả về cả số xu và danh sách xu"""
+        dp = [float('inf')] * (amount + 1)
+        parent = [-1] * (amount + 1)
+        dp[0] = 0
+
+        for coin in coins:
+            for i in range(coin, amount + 1):
+                if dp[i - coin] + 1 < dp[i]:
+                    dp[i] = dp[i - coin] + 1
+                    parent[i] = coin
+
+        if dp[amount] == float('inf'):
+            return -1, []
+
+        # Reconstruct path
+        result_coins = []
+        current = amount
+        while current > 0:
+            coin = parent[current]
+            result_coins.append(coin)
+            current -= coin
+
+        return dp[amount], result_coins
+
+    @staticmethod
+    def edit_distance(word1: str, word2: str) -> int:
+        """Edit Distance (Levenshtein distance)"""
+        m, n = len(word1), len(word2)
+        dp = [[0] * (n + 1) for _ in range(m + 1)]
+
+        # Khởi tạo base cases
+        for i in range(m + 1):
+            dp[i][0] = i
+        for j in range(n + 1):
+            dp[0][j] = j
+
+        for i in range(1, m + 1):
+            for j in range(1, n + 1):
+                if word1[i - 1] == word2[j - 1]:
+                    dp[i][j] = dp[i - 1][j - 1]
+                else:
+                    dp[i][j] = 1 + min(
+                        dp[i - 1][j],     # delete
+                        dp[i][j - 1],     # insert
+                        dp[i - 1][j - 1]  # replace
+                    )
+
+        return dp[m][n]
+
+    @staticmethod
+    def max_subarray_sum(arr: List[int]) -> int:
+        """Maximum Subarray Sum (Kadane's Algorithm)"""
+        if not arr:
+            return 0
+
+        max_so_far = max_ending_here = arr[0]
+
+        for i in range(1, len(arr)):
+            max_ending_here = max(arr[i], max_ending_here + arr[i])
+            max_so_far = max(max_so_far, max_ending_here)
+
+        return max_so_far
+
+    @staticmethod
+    def longest_increasing_subsequence(nums: List[int]) -> int:
+        """Longest Increasing Subsequence"""
+        if not nums:
+            return 0
+
+        dp = [1] * len(nums)
+
+        for i in range(1, len(nums)):
+            for j in range(i):
+                if nums[i] > nums[j]:
+                    dp[i] = max(dp[i], dp[j] + 1)
+
+        return max(dp)
+
+# Sử dụng:
+if __name__ == "__main__":
+    dp = DynamicProgramming()
+
+    # Fibonacci
+    print(f"Fibonacci(10) = {dp.fibonacci(10)}")
+
+    # Knapsack
+    weights = [2, 3, 4, 5]
+    values = [3, 4, 5, 6]
+    print(f"Knapsack = {dp.knapsack(weights, values, 10)}")
+
+    # LCS
+    print(f"LCS length = {dp.longest_common_subsequence('ABCDGH', 'AEDFHR')}")
+
+    # Coin Change
+    coins = [1, 5, 10, 25]
+    min_coins, coin_list = dp.coin_change_with_path(coins, 11)
+    print(f"Min coins = {min_coins}, Coins = {coin_list}")
+
+    # Edit Distance
+    print(f"Edit distance = {dp.edit_distance('kitten', 'sitting')}")
+
+    # Max Subarray
+    arr = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
+    print(f"Max subarray sum = {dp.max_subarray_sum(arr)}")
+
+    # LIS
+    nums = [10, 9, 2, 5, 3, 7, 101, 18]
+    print(f"Longest increasing subsequence = {dp.longest_increasing_subsequence(nums)}")`}
+                height="500px"
+              />
+            )}
           </div>
         </div>
       </div>

@@ -19,6 +19,13 @@ export function StackSection() {
   const [balanceResult, setBalanceResult] = useState("");
   const [activeLanguageTab, setActiveLanguageTab] = useState("rust");
 
+  // Interactive visualization states
+  const [animationStack, setAnimationStack] = useState<number[]>([10, 25, 8]);
+  const [pushValue, setPushValue] = useState("");
+  const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null);
+  const [animationStep, setAnimationStep] = useState<string>("");
+  const [isAnimating, setIsAnimating] = useState(false);
+
   // Initialize WASM
   useEffect(() => {
     async function init() {
@@ -132,6 +139,78 @@ export function StackSection() {
     }
   };
 
+  // Animation functions
+  const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
+  const animatePush = async () => {
+    const newValue = parseInt(pushValue);
+    if (isNaN(newValue)) return;
+
+    setIsAnimating(true);
+    setAnimationStep(`➕ Đang push ${newValue} vào đỉnh stack...`);
+    await sleep(1000);
+
+    // Add to top of stack
+    setAnimationStack([...animationStack, newValue]);
+    setHighlightedIndex(animationStack.length);
+    setAnimationStep(`✅ Đã push ${newValue} vào stack! Kích thước: ${animationStack.length + 1} (Độ phức tạp: O(1))`);
+    await sleep(2000);
+
+    setHighlightedIndex(null);
+    setIsAnimating(false);
+    setPushValue("");
+  };
+
+  const animatePop = async () => {
+    if (animationStack.length === 0) {
+      setAnimationStep("❌ Stack rỗng, không thể pop!");
+      return;
+    }
+
+    setIsAnimating(true);
+    const topIndex = animationStack.length - 1;
+    const poppedValue = animationStack[topIndex];
+
+    setHighlightedIndex(topIndex);
+    setAnimationStep(`➖ Đang pop phần tử từ đỉnh stack: ${poppedValue}...`);
+    await sleep(1000);
+
+    setAnimationStack(animationStack.slice(0, -1));
+    setAnimationStep(`✅ Đã pop ${poppedValue} từ stack! Kích thước: ${animationStack.length - 1} (Độ phức tạp: O(1))`);
+    await sleep(2000);
+
+    setHighlightedIndex(null);
+    setIsAnimating(false);
+  };
+
+  const animatePeek = async () => {
+    if (animationStack.length === 0) {
+      setAnimationStep("❌ Stack rỗng, không có phần tử để peek!");
+      return;
+    }
+
+    setIsAnimating(true);
+    const topIndex = animationStack.length - 1;
+    const topValue = animationStack[topIndex];
+
+    setHighlightedIndex(topIndex);
+    setAnimationStep(`👁️ Peek: Phần tử trên đỉnh stack là ${topValue}`);
+    await sleep(2000);
+
+    setAnimationStep(`✅ Peek hoàn tất! TOP = ${topValue}, kích thước vẫn là ${animationStack.length} (Độ phức tạp: O(1))`);
+    await sleep(2000);
+
+    setHighlightedIndex(null);
+    setIsAnimating(false);
+  };
+
+  const resetStack = () => {
+    setAnimationStack([10, 25, 8]);
+    setHighlightedIndex(null);
+    setAnimationStep("");
+    setPushValue("");
+  };
+
   return (
     <div className="space-y-6">
       <div className="bg-white dark:bg-slate-800 rounded-lg p-6 border">
@@ -186,6 +265,191 @@ export function StackSection() {
         )}
 
         <div className="space-y-4">
+          {/* Interactive Stack Visualization */}
+          <div className="bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20 p-6 rounded-lg border-2 border-red-200 dark:border-red-800">
+            <h4 className="font-semibold text-red-800 dark:text-red-300 mb-4 flex items-center gap-2">
+              🎮 Minh Họa Tương Tác - Stack Operations (LIFO)
+            </h4>
+
+            {/* Stack Visualization */}
+            <div className="mb-6">
+              <div className="flex items-center justify-center mb-4">
+                <div className="flex flex-col items-center gap-1 min-h-96">
+                  {/* TOP indicator */}
+                  {animationStack.length > 0 && (
+                    <div className="bg-orange-500 text-white px-4 py-2 rounded font-bold text-sm mb-2">
+                      ← TOP (Đỉnh Stack)
+                    </div>
+                  )}
+
+                  {/* Stack Elements (displayed vertically, top to bottom) */}
+                  {animationStack.length === 0 ? (
+                    <div className="text-gray-500 italic text-center p-8 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg">
+                      Stack rỗng - Hãy Push phần tử để bắt đầu
+                    </div>
+                  ) : (
+                    <div className="flex flex-col-reverse gap-1">
+                      {animationStack.map((value, reverseIndex) => {
+                        const index = animationStack.length - 1 - reverseIndex;
+                        return (
+                          <div
+                            key={`${index}-${value}`}
+                            className={`w-32 h-16 flex items-center justify-center rounded-lg border-2 transition-all duration-500 font-bold text-lg relative ${
+                              highlightedIndex === index
+                                ? "bg-yellow-400 border-red-500 scale-110 shadow-lg animate-pulse"
+                                : index === animationStack.length - 1
+                                ? "bg-orange-100 dark:bg-orange-800 border-orange-500"
+                                : "bg-red-100 dark:bg-red-800 border-red-300 dark:border-red-600"
+                            }`}
+                          >
+                            <div className="text-center">
+                              <div className="font-bold text-lg">{value}</div>
+                              <div className="text-xs opacity-75">
+                                {index === animationStack.length - 1 ? "TOP" : `Pos ${index}`}
+                              </div>
+                            </div>
+                            {/* Arrow pointing to next element */}
+                            {index > 0 && (
+                              <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 text-red-500 text-xl">
+                                ↓
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+
+                  {/* BOTTOM indicator */}
+                  {animationStack.length > 0 && (
+                    <div className="bg-gray-500 text-white px-4 py-2 rounded font-bold text-sm mt-2">
+                      BOTTOM (Đáy Stack)
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Animation status */}
+              {animationStep && (
+                <div className="bg-orange-100 dark:bg-orange-900/30 border border-orange-300 dark:border-orange-700 rounded-lg p-3 mb-4">
+                  <div className="font-medium text-orange-800 dark:text-orange-300">
+                    {animationStep}
+                  </div>
+                </div>
+              )}
+
+              {/* Stack info */}
+              <div className="grid grid-cols-3 gap-4 text-sm text-gray-600 dark:text-gray-400 mb-4">
+                <div className="bg-white dark:bg-slate-800 p-3 rounded">
+                  <strong>Kích thước:</strong> {animationStack.length}
+                </div>
+                <div className="bg-white dark:bg-slate-800 p-3 rounded">
+                  <strong>TOP:</strong> {animationStack.length > 0 ? animationStack[animationStack.length - 1] : "NULL"}
+                </div>
+                <div className="bg-white dark:bg-slate-800 p-3 rounded">
+                  <strong>Trạng thái:</strong> {animationStack.length === 0 ? "Rỗng" : "Có dữ liệu"}
+                </div>
+              </div>
+            </div>
+
+            {/* Interactive Controls */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {/* Push */}
+              <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border">
+                <h5 className="font-medium text-green-600 dark:text-green-400 mb-2">➕ Push (O(1))</h5>
+                <div className="space-y-2">
+                  <input
+                    type="number"
+                    value={pushValue}
+                    onChange={(e) => setPushValue(e.target.value)}
+                    placeholder="Nhập giá trị"
+                    className="w-full px-2 py-1 text-sm border rounded dark:bg-slate-700 dark:border-slate-600"
+                    disabled={isAnimating}
+                  />
+                  <button
+                    onClick={animatePush}
+                    disabled={isAnimating || !pushValue}
+                    className="w-full px-3 py-2 text-sm bg-green-500 text-white rounded hover:bg-green-600 disabled:opacity-50"
+                  >
+                    Push vào Stack
+                  </button>
+                </div>
+              </div>
+
+              {/* Pop */}
+              <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border">
+                <h5 className="font-medium text-red-600 dark:text-red-400 mb-2">➖ Pop (O(1))</h5>
+                <div className="space-y-2">
+                  <button
+                    onClick={animatePop}
+                    disabled={isAnimating || animationStack.length === 0}
+                    className="w-full px-3 py-2 text-sm bg-red-500 text-white rounded hover:bg-red-600 disabled:opacity-50"
+                  >
+                    Pop từ Stack
+                  </button>
+                  <div className="text-xs text-gray-500 dark:text-gray-400 text-center">
+                    Lấy phần tử từ đỉnh
+                  </div>
+                </div>
+              </div>
+
+              {/* Peek */}
+              <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border">
+                <h5 className="font-medium text-blue-600 dark:text-blue-400 mb-2">👁️ Peek (O(1))</h5>
+                <div className="space-y-2">
+                  <button
+                    onClick={animatePeek}
+                    disabled={isAnimating || animationStack.length === 0}
+                    className="w-full px-3 py-2 text-sm bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50"
+                  >
+                    Xem TOP
+                  </button>
+                  <div className="text-xs text-gray-500 dark:text-gray-400 text-center">
+                    Xem không xóa
+                  </div>
+                </div>
+              </div>
+
+              {/* Reset */}
+              <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border">
+                <h5 className="font-medium text-gray-600 dark:text-gray-400 mb-2">🛠️ Điều Khiển</h5>
+                <div className="space-y-2">
+                  <button
+                    onClick={resetStack}
+                    disabled={isAnimating}
+                    className="w-full px-3 py-2 text-sm bg-gray-500 text-white rounded hover:bg-gray-600 disabled:opacity-50"
+                  >
+                    🔄 Reset Stack
+                  </button>
+                  <div className="text-xs text-gray-500 dark:text-gray-400 text-center">
+                    Khôi phục ban đầu
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Operation Explanations */}
+            <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+              <div className="bg-green-50 dark:bg-green-900/20 p-3 rounded border border-green-200 dark:border-green-800">
+                <strong className="text-green-700 dark:text-green-300">Push O(1):</strong>
+                <p className="text-gray-600 dark:text-gray-400 mt-1">
+                  Thêm phần tử vào đỉnh stack. Luôn nhanh không phụ thuộc kích thước.
+                </p>
+              </div>
+              <div className="bg-red-50 dark:bg-red-900/20 p-3 rounded border border-red-200 dark:border-red-800">
+                <strong className="text-red-700 dark:text-red-300">Pop O(1):</strong>
+                <p className="text-gray-600 dark:text-gray-400 mt-1">
+                  Lấy và xóa phần tử từ đỉnh. LIFO - Last In First Out.
+                </p>
+              </div>
+              <div className="bg-blue-50 dark:bg-blue-900/20 p-3 rounded border border-blue-200 dark:border-blue-800">
+                <strong className="text-blue-700 dark:text-blue-300">Peek O(1):</strong>
+                <p className="text-gray-600 dark:text-gray-400 mt-1">
+                  Xem phần tử trên đỉnh mà không xóa. Kiểm tra trước khi pop.
+                </p>
+              </div>
+            </div>
+          </div>
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
             <h4 className="font-medium mb-2">Stack Tương Tác:</h4>
             <div className="flex gap-2 mb-3">

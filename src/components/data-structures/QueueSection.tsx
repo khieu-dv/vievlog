@@ -143,6 +143,13 @@ export function QueueSection() {
   const [circularResult, setCircularResult] = useState("");
   const [activeLanguageTab, setActiveLanguageTab] = useState("rust");
 
+  // Interactive visualization states
+  const [animationQueue, setAnimationQueue] = useState<number[]>([10, 25, 8]);
+  const [enqueueValue, setEnqueueValue] = useState("");
+  const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null);
+  const [animationStep, setAnimationStep] = useState<string>("");
+  const [isAnimating, setIsAnimating] = useState(false);
+
   const circularEnqueue = () => {
     const value = parseInt(circularInput);
     if (!isNaN(value)) {
@@ -180,6 +187,97 @@ export function QueueSection() {
     setRearIndex(0);
     setCircularSize(0);
     setCircularResult("Đã xóa toàn bộ circular queue");
+  };
+
+  // Animation functions
+  const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
+  const animateEnqueue = async () => {
+    const newValue = parseInt(enqueueValue);
+    if (isNaN(newValue)) return;
+
+    setIsAnimating(true);
+    setAnimationStep(`⬆️ Đang enqueue ${newValue} vào cuối queue...`);
+    await sleep(1000);
+
+    // Add to rear of queue
+    setAnimationQueue([...animationQueue, newValue]);
+    setHighlightedIndex(animationQueue.length);
+    setAnimationStep(`✅ Đã enqueue ${newValue} vào queue! Kích thước: ${animationQueue.length + 1} (Độ phức tạp: O(1))`);
+    await sleep(2000);
+
+    setHighlightedIndex(null);
+    setIsAnimating(false);
+    setEnqueueValue("");
+  };
+
+  const animateDequeue = async () => {
+    if (animationQueue.length === 0) {
+      setAnimationStep("❌ Queue rỗng, không thể dequeue!");
+      return;
+    }
+
+    setIsAnimating(true);
+    const frontValue = animationQueue[0];
+
+    setHighlightedIndex(0);
+    setAnimationStep(`⬇️ Đang dequeue phần tử từ FRONT: ${frontValue}...`);
+    await sleep(1000);
+
+    setAnimationQueue(animationQueue.slice(1));
+    setAnimationStep(`✅ Đã dequeue ${frontValue} từ queue! Kích thước: ${animationQueue.length - 1} (Độ phức tạp: O(1))`);
+    await sleep(2000);
+
+    setHighlightedIndex(null);
+    setIsAnimating(false);
+  };
+
+  const animateFront = async () => {
+    if (animationQueue.length === 0) {
+      setAnimationStep("❌ Queue rỗng, không có phần tử FRONT!");
+      return;
+    }
+
+    setIsAnimating(true);
+    const frontValue = animationQueue[0];
+
+    setHighlightedIndex(0);
+    setAnimationStep(`👁️ Front: Phần tử đầu queue là ${frontValue}`);
+    await sleep(2000);
+
+    setAnimationStep(`✅ Front hoàn tất! FRONT = ${frontValue}, kích thước vẫn là ${animationQueue.length} (Độ phức tạp: O(1))`);
+    await sleep(2000);
+
+    setHighlightedIndex(null);
+    setIsAnimating(false);
+  };
+
+  const animateRear = async () => {
+    if (animationQueue.length === 0) {
+      setAnimationStep("❌ Queue rỗng, không có phần tử REAR!");
+      return;
+    }
+
+    setIsAnimating(true);
+    const rearIndex = animationQueue.length - 1;
+    const rearValue = animationQueue[rearIndex];
+
+    setHighlightedIndex(rearIndex);
+    setAnimationStep(`👁️ Rear: Phần tử cuối queue là ${rearValue}`);
+    await sleep(2000);
+
+    setAnimationStep(`✅ Rear hoàn tất! REAR = ${rearValue}, kích thước vẫn là ${animationQueue.length} (Độ phức tạp: O(1))`);
+    await sleep(2000);
+
+    setHighlightedIndex(null);
+    setIsAnimating(false);
+  };
+
+  const resetQueue = () => {
+    setAnimationQueue([10, 25, 8]);
+    setHighlightedIndex(null);
+    setAnimationStep("");
+    setEnqueueValue("");
   };
 
   return (
@@ -234,6 +332,213 @@ export function QueueSection() {
         </div>
 
         <div className="space-y-4">
+          {/* Interactive Queue Visualization */}
+          <div className="bg-gradient-to-r from-cyan-50 to-blue-50 dark:from-cyan-900/20 dark:to-blue-900/20 p-6 rounded-lg border-2 border-cyan-200 dark:border-cyan-800">
+            <h4 className="font-semibold text-cyan-800 dark:text-cyan-300 mb-4 flex items-center gap-2">
+              🎮 Minh Họa Tương Tác - Queue Operations (FIFO)
+            </h4>
+
+            {/* Queue Visualization */}
+            <div className="mb-6">
+              <div className="flex items-center justify-center mb-4 overflow-x-auto">
+                <div className="flex items-center gap-3 min-w-max">
+                  {/* FRONT pointer */}
+                  {animationQueue.length > 0 && (
+                    <div className="flex flex-col items-center">
+                      <div className="text-xs text-gray-500 dark:text-gray-400 mb-1 h-4">FRONT</div>
+                      <div className="bg-blue-500 text-white px-3 py-2 rounded font-bold text-sm">
+                        ↑
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Queue Elements (displayed horizontally, left to right) */}
+                  {animationQueue.length === 0 ? (
+                    <div className="text-gray-500 italic text-center p-8 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg">
+                      Queue rỗng - Hãy Enqueue phần tử để bắt đầu
+                    </div>
+                  ) : (
+                    <div className="flex items-center gap-2">
+                      {animationQueue.map((value, index) => (
+                        <div key={`${index}-${value}`} className="flex flex-col items-center gap-1">
+                          {/* Queue element */}
+                          <div
+                            className={`w-20 h-16 flex items-center justify-center rounded-lg border-2 transition-all duration-500 font-bold text-lg ${
+                              highlightedIndex === index
+                                ? "bg-yellow-400 border-red-500 scale-110 shadow-lg animate-pulse"
+                                : index === 0
+                                ? "bg-blue-100 dark:bg-blue-800 border-blue-500"
+                                : index === animationQueue.length - 1
+                                ? "bg-cyan-100 dark:bg-cyan-800 border-cyan-500"
+                                : "bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-600"
+                            }`}
+                          >
+                            <div className="text-center">
+                              <div className="font-bold text-lg">{value}</div>
+                              <div className="text-xs opacity-75">
+                                {index === 0 ? "FRONT" : index === animationQueue.length - 1 ? "REAR" : `${index}`}
+                              </div>
+                            </div>
+                          </div>
+                          {/* Arrow to next element */}
+                          {index < animationQueue.length - 1 && (
+                            <div className="text-cyan-500 text-xl">→</div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* REAR pointer */}
+                  {animationQueue.length > 0 && (
+                    <div className="flex flex-col items-center">
+                      <div className="text-xs text-gray-500 dark:text-gray-400 mb-1 h-4">REAR</div>
+                      <div className="bg-cyan-500 text-white px-3 py-2 rounded font-bold text-sm">
+                        ↑
+                      </div>
+                    </div>
+                  )}
+
+                  {/* OUT indicator */}
+                  {animationQueue.length > 0 && (
+                    <div className="flex flex-col items-center ml-4">
+                      <div className="text-xs text-gray-500 dark:text-gray-400 mb-1 h-4">OUT</div>
+                      <div className="bg-red-500 text-white px-3 py-2 rounded font-bold text-sm">
+                        →
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Animation status */}
+              {animationStep && (
+                <div className="bg-orange-100 dark:bg-orange-900/30 border border-orange-300 dark:border-orange-700 rounded-lg p-3 mb-4">
+                  <div className="font-medium text-orange-800 dark:text-orange-300">
+                    {animationStep}
+                  </div>
+                </div>
+              )}
+
+              {/* Queue info */}
+              <div className="grid grid-cols-4 gap-4 text-sm text-gray-600 dark:text-gray-400 mb-4">
+                <div className="bg-white dark:bg-slate-800 p-3 rounded">
+                  <strong>Kích thước:</strong> {animationQueue.length}
+                </div>
+                <div className="bg-white dark:bg-slate-800 p-3 rounded">
+                  <strong>FRONT:</strong> {animationQueue.length > 0 ? animationQueue[0] : "NULL"}
+                </div>
+                <div className="bg-white dark:bg-slate-800 p-3 rounded">
+                  <strong>REAR:</strong> {animationQueue.length > 0 ? animationQueue[animationQueue.length - 1] : "NULL"}
+                </div>
+                <div className="bg-white dark:bg-slate-800 p-3 rounded">
+                  <strong>Trạng thái:</strong> {animationQueue.length === 0 ? "Rỗng" : "Có dữ liệu"}
+                </div>
+              </div>
+            </div>
+
+            {/* Interactive Controls */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {/* Enqueue */}
+              <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border">
+                <h5 className="font-medium text-green-600 dark:text-green-400 mb-2">⬆️ Enqueue (O(1))</h5>
+                <div className="space-y-2">
+                  <input
+                    type="number"
+                    value={enqueueValue}
+                    onChange={(e) => setEnqueueValue(e.target.value)}
+                    placeholder="Nhập giá trị"
+                    className="w-full px-2 py-1 text-sm border rounded dark:bg-slate-700 dark:border-slate-600"
+                    disabled={isAnimating}
+                  />
+                  <button
+                    onClick={animateEnqueue}
+                    disabled={isAnimating || !enqueueValue}
+                    className="w-full px-3 py-2 text-sm bg-green-500 text-white rounded hover:bg-green-600 disabled:opacity-50"
+                  >
+                    Enqueue vào cuối
+                  </button>
+                </div>
+              </div>
+
+              {/* Dequeue */}
+              <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border">
+                <h5 className="font-medium text-red-600 dark:text-red-400 mb-2">⬇️ Dequeue (O(1))</h5>
+                <div className="space-y-2">
+                  <button
+                    onClick={animateDequeue}
+                    disabled={isAnimating || animationQueue.length === 0}
+                    className="w-full px-3 py-2 text-sm bg-red-500 text-white rounded hover:bg-red-600 disabled:opacity-50"
+                  >
+                    Dequeue từ đầu
+                  </button>
+                  <div className="text-xs text-gray-500 dark:text-gray-400 text-center">
+                    Lấy phần tử từ FRONT
+                  </div>
+                </div>
+              </div>
+
+              {/* Front/Rear */}
+              <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border">
+                <h5 className="font-medium text-blue-600 dark:text-blue-400 mb-2">👁️ Front/Rear</h5>
+                <div className="space-y-2">
+                  <button
+                    onClick={animateFront}
+                    disabled={isAnimating || animationQueue.length === 0}
+                    className="w-full px-3 py-2 text-sm bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50"
+                  >
+                    Xem FRONT
+                  </button>
+                  <button
+                    onClick={animateRear}
+                    disabled={isAnimating || animationQueue.length === 0}
+                    className="w-full px-3 py-2 text-sm bg-cyan-500 text-white rounded hover:bg-cyan-600 disabled:opacity-50"
+                  >
+                    Xem REAR
+                  </button>
+                </div>
+              </div>
+
+              {/* Reset */}
+              <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border">
+                <h5 className="font-medium text-gray-600 dark:text-gray-400 mb-2">🛠️ Điều Khiển</h5>
+                <div className="space-y-2">
+                  <button
+                    onClick={resetQueue}
+                    disabled={isAnimating}
+                    className="w-full px-3 py-2 text-sm bg-gray-500 text-white rounded hover:bg-gray-600 disabled:opacity-50"
+                  >
+                    🔄 Reset Queue
+                  </button>
+                  <div className="text-xs text-gray-500 dark:text-gray-400 text-center">
+                    Khôi phục ban đầu
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Operation Explanations */}
+            <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+              <div className="bg-green-50 dark:bg-green-900/20 p-3 rounded border border-green-200 dark:border-green-800">
+                <strong className="text-green-700 dark:text-green-300">Enqueue O(1):</strong>
+                <p className="text-gray-600 dark:text-gray-400 mt-1">
+                  Thêm phần tử vào cuối queue (REAR). FIFO - First In First Out.
+                </p>
+              </div>
+              <div className="bg-red-50 dark:bg-red-900/20 p-3 rounded border border-red-200 dark:border-red-800">
+                <strong className="text-red-700 dark:text-red-300">Dequeue O(1):</strong>
+                <p className="text-gray-600 dark:text-gray-400 mt-1">
+                  Lấy và xóa phần tử từ đầu queue (FRONT). Phần tử đầu tiên vào sẽ ra trước.
+                </p>
+              </div>
+              <div className="bg-blue-50 dark:bg-blue-900/20 p-3 rounded border border-blue-200 dark:border-blue-800">
+                <strong className="text-blue-700 dark:text-blue-300">Front/Rear O(1):</strong>
+                <p className="text-gray-600 dark:text-gray-400 mt-1">
+                  Xem phần tử đầu hoặc cuối mà không xóa. Kiểm tra trước khi dequeue.
+                </p>
+              </div>
+            </div>
+          </div>
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
             <h4 className="font-medium mb-2">Thao Tác Queue Cơ Bản:</h4>
             <div className="flex gap-2 mb-3 flex-wrap">

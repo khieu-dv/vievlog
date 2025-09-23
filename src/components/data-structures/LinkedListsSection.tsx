@@ -22,6 +22,14 @@ export function LinkedListsSection() {
   const [wasm, setWasm] = useState<any>(null);
   const [activeLanguageTab, setActiveLanguageTab] = useState("rust");
 
+  // Interactive visualization states
+  const [animationList, setAnimationList] = useState<number[]>([10, 25, 8]);
+  const [searchValue, setSearchValue] = useState("");
+  const [insertValue, setInsertValue] = useState("");
+  const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null);
+  const [animationStep, setAnimationStep] = useState<string>("");
+  const [isAnimating, setIsAnimating] = useState(false);
+
   // Initialize WASM
   useEffect(() => {
     async function init() {
@@ -142,6 +150,139 @@ export function LinkedListsSection() {
     }
   };
 
+  // Animation functions for interactive visualization
+  const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
+  const animateSearch = async () => {
+    const searchVal = parseInt(searchValue);
+    if (isNaN(searchVal)) {
+      setAnimationStep("❌ Giá trị tìm kiếm không hợp lệ!");
+      return;
+    }
+
+    setIsAnimating(true);
+    setAnimationStep(`🔍 Bắt đầu tìm kiếm giá trị ${searchVal} trong linked list...`);
+    await sleep(1000);
+
+    // Traverse the linked list
+    for (let i = 0; i < animationList.length; i++) {
+      setHighlightedIndex(i);
+      setAnimationStep(`🔍 Node ${i}: ${animationList[i]} ${animationList[i] === searchVal ? '= ✅' : '≠'} ${searchVal}`);
+      await sleep(1200);
+
+      if (animationList[i] === searchVal) {
+        setAnimationStep(`🎉 Tìm thấy ${searchVal} tại node ${i}! (Độ phức tạp: O(n))`);
+        await sleep(2000);
+        setHighlightedIndex(null);
+        setIsAnimating(false);
+        return;
+      }
+    }
+
+    setAnimationStep(`❌ Không tìm thấy ${searchVal} trong linked list! (Đã duyệt ${animationList.length} nodes)`);
+    await sleep(2000);
+    setHighlightedIndex(null);
+    setIsAnimating(false);
+  };
+
+  const animateInsertHead = async () => {
+    const newValue = parseInt(insertValue);
+    if (isNaN(newValue)) return;
+
+    setIsAnimating(true);
+    setAnimationStep(`➕ Thêm ${newValue} vào đầu linked list...`);
+    await sleep(1000);
+
+    setAnimationList([newValue, ...animationList]);
+    setHighlightedIndex(0);
+    setAnimationStep(`✅ Đã thêm ${newValue} vào đầu! Kích thước: ${animationList.length + 1} (Độ phức tạp: O(1))`);
+    await sleep(2000);
+
+    setHighlightedIndex(null);
+    setIsAnimating(false);
+    setInsertValue("");
+  };
+
+  const animateInsertTail = async () => {
+    const newValue = parseInt(insertValue);
+    if (isNaN(newValue)) return;
+
+    setIsAnimating(true);
+    setAnimationStep(`➕ Thêm ${newValue} vào cuối linked list...`);
+
+    // Show traversal to end
+    for (let i = 0; i < animationList.length; i++) {
+      setHighlightedIndex(i);
+      setAnimationStep(`🚶 Duyệt đến node ${i} để tìm cuối list...`);
+      await sleep(600);
+    }
+
+    setAnimationList([...animationList, newValue]);
+    setHighlightedIndex(animationList.length);
+    setAnimationStep(`✅ Đã thêm ${newValue} vào cuối! Kích thước: ${animationList.length + 1} (Độ phức tạp: O(n))`);
+    await sleep(2000);
+
+    setHighlightedIndex(null);
+    setIsAnimating(false);
+    setInsertValue("");
+  };
+
+  const animateRemoveHead = async () => {
+    if (animationList.length === 0) {
+      setAnimationStep("❌ Linked list đã rỗng!");
+      return;
+    }
+
+    setIsAnimating(true);
+    const removedValue = animationList[0];
+
+    setHighlightedIndex(0);
+    setAnimationStep(`➖ Xóa node đầu: ${removedValue}...`);
+    await sleep(1000);
+
+    setAnimationList(animationList.slice(1));
+    setAnimationStep(`✅ Đã xóa ${removedValue}! Kích thước: ${animationList.length - 1} (Độ phức tạp: O(1))`);
+    await sleep(2000);
+
+    setHighlightedIndex(null);
+    setIsAnimating(false);
+  };
+
+  const animateRemoveTail = async () => {
+    if (animationList.length === 0) {
+      setAnimationStep("❌ Linked list đã rỗng!");
+      return;
+    }
+
+    setIsAnimating(true);
+    const lastIndex = animationList.length - 1;
+    const removedValue = animationList[lastIndex];
+
+    // Show traversal to find the second-to-last node
+    for (let i = 0; i < lastIndex; i++) {
+      setHighlightedIndex(i);
+      setAnimationStep(`🚶 Duyệt đến node ${i} để tìm node cuối...`);
+      await sleep(600);
+    }
+
+    setHighlightedIndex(lastIndex);
+    setAnimationStep(`➖ Xóa node cuối: ${removedValue}...`);
+    await sleep(1000);
+
+    setAnimationList(animationList.slice(0, -1));
+    setAnimationStep(`✅ Đã xóa ${removedValue}! Kích thước: ${animationList.length - 1} (Độ phức tạp: O(n))`);
+    await sleep(2000);
+
+    setHighlightedIndex(null);
+    setIsAnimating(false);
+  };
+
+  const resetLinkedList = () => {
+    setAnimationList([10, 25, 8]);
+    setHighlightedIndex(null);
+    setAnimationStep("");
+  };
+
   return (
     <div className="space-y-6">
       <div className="bg-white dark:bg-slate-800 rounded-lg p-6 border">
@@ -202,6 +343,218 @@ export function LinkedListsSection() {
         </div>
 
         <div className="space-y-4">
+          {/* Interactive Linked List Visualization */}
+          <div className="bg-gradient-to-r from-green-50 to-teal-50 dark:from-green-900/20 dark:to-teal-900/20 p-6 rounded-lg border-2 border-green-200 dark:border-green-800">
+            <h4 className="font-semibold text-green-800 dark:text-green-300 mb-4 flex items-center gap-2">
+              🎮 Minh Họa Tương Tác - Linked List Operations
+            </h4>
+
+            {/* Linked List Visualization */}
+            <div className="mb-6">
+              <div className="flex items-center justify-center mb-4 overflow-x-auto">
+                <div className="flex items-center gap-4 min-w-max">
+                  {/* HEAD pointer */}
+                  {animationList.length > 0 && (
+                    <div className="flex flex-col items-center">
+                      <div className="text-xs text-gray-500 dark:text-gray-400 mb-1 h-4">HEAD</div>
+                      <div className="bg-orange-500 text-white px-3 py-2 rounded font-bold text-sm">
+                        →
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Linked List Nodes */}
+                  {animationList.map((value, index) => (
+                    <div key={`${index}-${value}`} className="flex items-center gap-2">
+                      {/* Node */}
+                      <div className="flex flex-col items-center">
+                        <div className="text-xs text-gray-500 dark:text-gray-400 mb-1 h-4">
+                          Node {index}
+                        </div>
+                        <div
+                          className={`flex items-center border-2 rounded-lg transition-all duration-500 ${
+                            highlightedIndex === index
+                              ? "border-red-500 scale-110 shadow-lg"
+                              : "border-green-300 dark:border-green-600"
+                          }`}
+                        >
+                          {/* Data part */}
+                          <div
+                            className={`px-4 py-3 rounded-l-lg font-bold text-lg ${
+                              highlightedIndex === index
+                                ? "bg-yellow-400 animate-pulse"
+                                : "bg-green-100 dark:bg-green-800"
+                            }`}
+                          >
+                            {value}
+                          </div>
+                          {/* Pointer part */}
+                          <div
+                            className={`px-2 py-3 rounded-r-lg text-sm font-mono ${
+                              highlightedIndex === index
+                                ? "bg-yellow-300"
+                                : "bg-green-200 dark:bg-green-700"
+                            }`}
+                          >
+                            {index < animationList.length - 1 ? "→" : "∅"}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Arrow between nodes */}
+                      {index < animationList.length - 1 && (
+                        <div className="text-green-500 text-2xl">→</div>
+                      )}
+                    </div>
+                  ))}
+
+                  {/* NULL at the end */}
+                  {animationList.length > 0 && (
+                    <div className="flex flex-col items-center">
+                      <div className="text-xs text-gray-500 dark:text-gray-400 mb-1 h-4">NULL</div>
+                      <div className="bg-red-500 text-white px-3 py-2 rounded font-bold text-sm">
+                        ∅
+                      </div>
+                    </div>
+                  )}
+
+                  {animationList.length === 0 && (
+                    <div className="text-gray-500 italic text-center p-8">
+                      Linked List rỗng - Hãy thêm node để bắt đầu
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Animation status */}
+              {animationStep && (
+                <div className="bg-orange-100 dark:bg-orange-900/30 border border-orange-300 dark:border-orange-700 rounded-lg p-3 mb-4">
+                  <div className="font-medium text-orange-800 dark:text-orange-300">
+                    {animationStep}
+                  </div>
+                </div>
+              )}
+
+              {/* List info */}
+              <div className="grid grid-cols-3 gap-4 text-sm text-gray-600 dark:text-gray-400 mb-4">
+                <div className="bg-white dark:bg-slate-800 p-3 rounded">
+                  <strong>Nodes:</strong> {animationList.length}
+                </div>
+                <div className="bg-white dark:bg-slate-800 p-3 rounded">
+                  <strong>Head:</strong> {animationList.length > 0 ? animationList[0] : "NULL"}
+                </div>
+                <div className="bg-white dark:bg-slate-800 p-3 rounded">
+                  <strong>Tail:</strong> {animationList.length > 0 ? animationList[animationList.length - 1] : "NULL"}
+                </div>
+              </div>
+            </div>
+
+            {/* Interactive Controls */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {/* Search */}
+              <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border">
+                <h5 className="font-medium text-blue-600 dark:text-blue-400 mb-2">🔍 Tìm Kiếm (O(n))</h5>
+                <div className="space-y-2">
+                  <input
+                    type="number"
+                    value={searchValue}
+                    onChange={(e) => setSearchValue(e.target.value)}
+                    placeholder="Nhập giá trị"
+                    className="w-full px-2 py-1 text-sm border rounded dark:bg-slate-700 dark:border-slate-600"
+                    disabled={isAnimating}
+                  />
+                  <button
+                    onClick={animateSearch}
+                    disabled={isAnimating}
+                    className="w-full px-3 py-2 text-sm bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50"
+                  >
+                    Tìm kiếm
+                  </button>
+                </div>
+              </div>
+
+              {/* Insert at Head */}
+              <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border">
+                <h5 className="font-medium text-green-600 dark:text-green-400 mb-2">➕ Thêm Đầu (O(1))</h5>
+                <div className="space-y-2">
+                  <input
+                    type="number"
+                    value={insertValue}
+                    onChange={(e) => setInsertValue(e.target.value)}
+                    placeholder="Nhập giá trị"
+                    className="w-full px-2 py-1 text-sm border rounded dark:bg-slate-700 dark:border-slate-600"
+                    disabled={isAnimating}
+                  />
+                  <button
+                    onClick={animateInsertHead}
+                    disabled={isAnimating}
+                    className="w-full px-3 py-2 text-sm bg-green-500 text-white rounded hover:bg-green-600 disabled:opacity-50"
+                  >
+                    Thêm đầu
+                  </button>
+                </div>
+              </div>
+
+              {/* Insert at Tail */}
+              <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border">
+                <h5 className="font-medium text-purple-600 dark:text-purple-400 mb-2">➕ Thêm Cuối (O(n))</h5>
+                <div className="space-y-2">
+                  <button
+                    onClick={animateInsertTail}
+                    disabled={isAnimating || !insertValue}
+                    className="w-full px-3 py-2 text-sm bg-purple-500 text-white rounded hover:bg-purple-600 disabled:opacity-50"
+                  >
+                    Thêm cuối
+                  </button>
+                  <button
+                    onClick={animateRemoveHead}
+                    disabled={isAnimating}
+                    className="w-full px-3 py-2 text-sm bg-red-500 text-white rounded hover:bg-red-600 disabled:opacity-50"
+                  >
+                    ➖ Xóa đầu
+                  </button>
+                </div>
+              </div>
+
+              {/* Remove and Reset */}
+              <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border">
+                <h5 className="font-medium text-red-600 dark:text-red-400 mb-2">🛠️ Điều Khiển</h5>
+                <div className="space-y-2">
+                  <button
+                    onClick={animateRemoveTail}
+                    disabled={isAnimating}
+                    className="w-full px-3 py-2 text-sm bg-orange-500 text-white rounded hover:bg-orange-600 disabled:opacity-50"
+                  >
+                    ➖ Xóa cuối
+                  </button>
+                  <button
+                    onClick={resetLinkedList}
+                    disabled={isAnimating}
+                    className="w-full px-3 py-2 text-sm bg-gray-500 text-white rounded hover:bg-gray-600 disabled:opacity-50"
+                  >
+                    🔄 Reset
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Operation Explanations */}
+            <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+              <div className="bg-green-50 dark:bg-green-900/20 p-3 rounded border border-green-200 dark:border-green-800">
+                <strong className="text-green-700 dark:text-green-300">Thêm vào đầu O(1):</strong>
+                <p className="text-gray-600 dark:text-gray-400 mt-1">
+                  Chỉ cần tạo node mới và cập nhật pointer HEAD, không phụ thuộc vào kích thước list.
+                </p>
+              </div>
+              <div className="bg-blue-50 dark:bg-blue-900/20 p-3 rounded border border-blue-200 dark:border-blue-800">
+                <strong className="text-blue-700 dark:text-blue-300">Tìm kiếm/Thêm cuối O(n):</strong>
+                <p className="text-gray-600 dark:text-gray-400 mt-1">
+                  Phải duyệt từ đầu đến cuối để tìm vị trí cần thiết. Trường hợp xấu nhất: n lần duyệt.
+                </p>
+              </div>
+            </div>
+          </div>
+
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
             <h4 className="font-medium mb-2">Cấu Trúc Danh Sách Liên Kết:</h4>
             <MermaidDiagram
