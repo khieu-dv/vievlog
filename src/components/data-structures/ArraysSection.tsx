@@ -4,10 +4,13 @@ import { useState } from "react";
 import { Layout } from "lucide-react";
 import { MermaidDiagram } from "~/components/common/MermaidDiagram";
 import { RustCodeEditor } from "~/components/common/RustCodeEditor";
+import { CppCodeEditor } from "~/components/common/CppCodeEditor";
+import { PythonCodeEditor } from "~/components/common/PythonCodeEditor";
 
 export function ArraysSection() {
   const [vector, setVector] = useState<number[]>([]);
   const [inputValue, setInputValue] = useState("");
+  const [activeLanguageTab, setActiveLanguageTab] = useState("rust");
 
   const handlePush = () => {
     const value = parseInt(inputValue);
@@ -125,9 +128,50 @@ export function ArraysSection() {
           </div>
 
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
-            <h4 className="font-medium mb-2">Cài Đặt Rust:</h4>
-            <RustCodeEditor
-              code={`// Các thao tác với Vector trong Rust
+            <h4 className="font-medium mb-4">Cài Đặt:</h4>
+
+            {/* Language Tabs */}
+            <div className="mb-4">
+              <div className="border-b border-gray-200 dark:border-gray-600">
+                <nav className="-mb-px flex space-x-8">
+                  <button
+                    onClick={() => setActiveLanguageTab("rust")}
+                    className={`py-2 px-1 border-b-2 font-medium text-sm ${
+                      activeLanguageTab === "rust"
+                        ? "border-orange-500 text-orange-600 dark:text-orange-400"
+                        : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
+                    }`}
+                  >
+                    Rust
+                  </button>
+                  <button
+                    onClick={() => setActiveLanguageTab("cpp")}
+                    className={`py-2 px-1 border-b-2 font-medium text-sm ${
+                      activeLanguageTab === "cpp"
+                        ? "border-blue-500 text-blue-600 dark:text-blue-400"
+                        : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
+                    }`}
+                  >
+                    C++
+                  </button>
+                  <button
+                    onClick={() => setActiveLanguageTab("python")}
+                    className={`py-2 px-1 border-b-2 font-medium text-sm ${
+                      activeLanguageTab === "python"
+                        ? "border-green-500 text-green-600 dark:text-green-400"
+                        : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
+                    }`}
+                  >
+                    Python
+                  </button>
+                </nav>
+              </div>
+            </div>
+
+            {/* Language-specific Code */}
+            {activeLanguageTab === "rust" && (
+              <RustCodeEditor
+                code={`// Các thao tác với Vector trong Rust
 let mut vec = Vec::new();
 vec.push(1);
 vec.push(2);
@@ -142,8 +186,69 @@ let second = vec.get(1); // Trả về Option<&T>
 for item in &vec {
     println!("{}", item);
 }`}
-              height="200px"
-            />
+                height="200px"
+              />
+            )}
+
+            {activeLanguageTab === "cpp" && (
+              <CppCodeEditor
+                code={`// Các thao tác với Vector trong C++
+#include <vector>
+#include <iostream>
+
+std::vector<int> vec;
+vec.push_back(1);
+vec.push_back(2);
+vec.push_back(3);
+vec.pop_back(); // Xóa phần tử cuối
+
+// Truy cập theo chỉ số
+int first = vec[0];
+int second = vec.at(1); // An toàn hơn với kiểm tra bounds
+
+// Duyệt qua các phần tử
+for (const auto& item : vec) {
+    std::cout << item << " ";
+}
+
+// Hoặc dùng iterator
+for (auto it = vec.begin(); it != vec.end(); ++it) {
+    std::cout << *it << " ";
+}`}
+                height="200px"
+              />
+            )}
+
+            {activeLanguageTab === "python" && (
+              <PythonCodeEditor
+                code={`# Các thao tác với List trong Python
+vec = []
+vec.append(1)
+vec.append(2)
+vec.append(3)
+last = vec.pop()  # Xóa và trả về phần tử cuối
+
+# Truy cập theo chỉ số
+first = vec[0]
+second = vec[1]
+
+# Duyệt qua các phần tử
+for item in vec:
+    print(item)
+
+# List comprehension
+squared = [x**2 for x in vec]
+
+# Slicing
+subset = vec[0:2]  # Lấy từ index 0 đến 1
+
+# Thêm nhiều phần tử
+vec.extend([4, 5, 6])
+# Hoặc
+vec += [7, 8, 9]`}
+                height="200px"
+              />
+            )}
           </div>
 
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">

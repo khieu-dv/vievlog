@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { Network } from "lucide-react";
 import { MermaidDiagram } from "~/components/common/MermaidDiagram";
 import { RustCodeEditor } from "~/components/common/RustCodeEditor";
+import { CppCodeEditor } from "~/components/common/CppCodeEditor";
+import { PythonCodeEditor } from "~/components/common/PythonCodeEditor";
 import { initRustWasm } from "~/lib/rust-wasm-helper";
 
 interface Edge {
@@ -23,6 +25,7 @@ export function GraphsSection() {
   const [startVertex, setStartVertex] = useState("");
   const [result, setResult] = useState("");
   const [wasm, setWasm] = useState<any>(null);
+  const [activeLanguageTab, setActiveLanguageTab] = useState("rust");
 
   // Initialize WASM
   useEffect(() => {
@@ -414,19 +417,62 @@ export function GraphsSection() {
           </div>
 
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
-            <h4 className="font-medium mb-2">Cài Đặt Rust:</h4>
-            <RustCodeEditor
-              code={`use std::collections::HashMap;
+            <h4 className="font-medium mb-4">Cài Đặt:</h4>
+
+            {/* Language Tabs */}
+            <div className="mb-4">
+              <div className="border-b border-gray-200 dark:border-gray-600">
+                <nav className="-mb-px flex space-x-8">
+                  <button
+                    onClick={() => setActiveLanguageTab("rust")}
+                    className={`py-2 px-1 border-b-2 font-medium text-sm ${
+                      activeLanguageTab === "rust"
+                        ? "border-orange-500 text-orange-600 dark:text-orange-400"
+                        : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
+                    }`}
+                  >
+                    Rust
+                  </button>
+                  <button
+                    onClick={() => setActiveLanguageTab("cpp")}
+                    className={`py-2 px-1 border-b-2 font-medium text-sm ${
+                      activeLanguageTab === "cpp"
+                        ? "border-blue-500 text-blue-600 dark:text-blue-400"
+                        : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
+                    }`}
+                  >
+                    C++
+                  </button>
+                  <button
+                    onClick={() => setActiveLanguageTab("python")}
+                    className={`py-2 px-1 border-b-2 font-medium text-sm ${
+                      activeLanguageTab === "python"
+                        ? "border-green-500 text-green-600 dark:text-green-400"
+                        : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
+                    }`}
+                  >
+                    Python
+                  </button>
+                </nav>
+              </div>
+            </div>
+
+            {/* Language-specific Code */}
+            {activeLanguageTab === "rust" && (
+              <RustCodeEditor
+                code={`use std::collections::{HashMap, HashSet, VecDeque};
 
 #[derive(Debug)]
 struct Graph<T> {
     adjacency_list: HashMap<T, Vec<T>>,
+    is_directed: bool,
 }
 
 impl<T: Clone + Eq + std::hash::Hash> Graph<T> {
-    fn new() -> Self {
+    fn new(directed: bool) -> Self {
         Graph {
             adjacency_list: HashMap::new(),
+            is_directed: directed,
         }
     }
 
@@ -440,19 +486,334 @@ impl<T: Clone + Eq + std::hash::Hash> Graph<T> {
             .or_insert(Vec::new())
             .push(to.clone());
 
-        // Cho đồ thị vô hướng, thêm cạnh ngược
-        self.adjacency_list
-            .entry(to)
-            .or_insert(Vec::new())
-            .push(from);
+        // Nếu là đồ thị vô hướng, thêm cạnh ngược
+        if !self.is_directed {
+            self.adjacency_list
+                .entry(to)
+                .or_insert(Vec::new())
+                .push(from);
+        }
     }
 
     fn get_neighbors(&self, vertex: &T) -> Option<&Vec<T>> {
         self.adjacency_list.get(vertex)
     }
+
+    // BFS Traversal
+    fn bfs(&self, start: &T) -> Vec<T> {
+        let mut visited = HashSet::new();
+        let mut queue = VecDeque::new();
+        let mut result = Vec::new();
+
+        queue.push_back(start.clone());
+        visited.insert(start.clone());
+
+        while let Some(vertex) = queue.pop_front() {
+            result.push(vertex.clone());
+
+            if let Some(neighbors) = self.get_neighbors(&vertex) {
+                for neighbor in neighbors {
+                    if !visited.contains(neighbor) {
+                        visited.insert(neighbor.clone());
+                        queue.push_back(neighbor.clone());
+                    }
+                }
+            }
+        }
+        result
+    }
+
+    // DFS Traversal (recursive)
+    fn dfs(&self, start: &T) -> Vec<T> {
+        let mut visited = HashSet::new();
+        let mut result = Vec::new();
+        self.dfs_helper(start, &mut visited, &mut result);
+        result
+    }
+
+    fn dfs_helper(&self, vertex: &T, visited: &mut HashSet<T>, result: &mut Vec<T>) {
+        visited.insert(vertex.clone());
+        result.push(vertex.clone());
+
+        if let Some(neighbors) = self.get_neighbors(vertex) {
+            for neighbor in neighbors {
+                if !visited.contains(neighbor) {
+                    self.dfs_helper(neighbor, visited, result);
+                }
+            }
+        }
+    }
 }`}
-              height="350px"
-            />
+                height="400px"
+              />
+            )}
+
+            {activeLanguageTab === "cpp" && (
+              <CppCodeEditor
+                code={`#include <unordered_map>
+#include <vector>
+#include <queue>
+#include <unordered_set>
+#include <stack>
+#include <iostream>
+
+template<typename T>
+class Graph {
+private:
+    std::unordered_map<T, std::vector<T>> adjacencyList;
+    bool isDirected;
+
+public:
+    Graph(bool directed = false) : isDirected(directed) {}
+
+    void addVertex(const T& vertex) {
+        if (adjacencyList.find(vertex) == adjacencyList.end()) {
+            adjacencyList[vertex] = std::vector<T>();
+        }
+    }
+
+    void addEdge(const T& from, const T& to) {
+        addVertex(from);
+        addVertex(to);
+
+        adjacencyList[from].push_back(to);
+
+        // Nếu là đồ thị vô hướng, thêm cạnh ngược
+        if (!isDirected) {
+            adjacencyList[to].push_back(from);
+        }
+    }
+
+    std::vector<T> getNeighbors(const T& vertex) const {
+        auto it = adjacencyList.find(vertex);
+        if (it != adjacencyList.end()) {
+            return it->second;
+        }
+        return std::vector<T>();
+    }
+
+    // BFS Traversal
+    std::vector<T> bfs(const T& start) const {
+        std::vector<T> result;
+        std::unordered_set<T> visited;
+        std::queue<T> queue;
+
+        queue.push(start);
+        visited.insert(start);
+
+        while (!queue.empty()) {
+            T vertex = queue.front();
+            queue.pop();
+            result.push_back(vertex);
+
+            auto neighbors = getNeighbors(vertex);
+            for (const auto& neighbor : neighbors) {
+                if (visited.find(neighbor) == visited.end()) {
+                    visited.insert(neighbor);
+                    queue.push(neighbor);
+                }
+            }
+        }
+        return result;
+    }
+
+    // DFS Traversal (iterative)
+    std::vector<T> dfs(const T& start) const {
+        std::vector<T> result;
+        std::unordered_set<T> visited;
+        std::stack<T> stack;
+
+        stack.push(start);
+
+        while (!stack.empty()) {
+            T vertex = stack.top();
+            stack.pop();
+
+            if (visited.find(vertex) == visited.end()) {
+                visited.insert(vertex);
+                result.push_back(vertex);
+
+                auto neighbors = getNeighbors(vertex);
+                // Thêm ngược lại để giữ thứ tự gốc
+                for (auto it = neighbors.rbegin(); it != neighbors.rend(); ++it) {
+                    if (visited.find(*it) == visited.end()) {
+                        stack.push(*it);
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+    void printGraph() const {
+        for (const auto& pair : adjacencyList) {
+            std::cout << pair.first << ": ";
+            for (const auto& neighbor : pair.second) {
+                std::cout << neighbor << " ";
+            }
+            std::cout << std::endl;
+        }
+    }
+
+    size_t vertexCount() const {
+        return adjacencyList.size();
+    }
+
+    size_t edgeCount() const {
+        size_t count = 0;
+        for (const auto& pair : adjacencyList) {
+            count += pair.second.size();
+        }
+        return isDirected ? count : count / 2;
+    }
+};`}
+                height="400px"
+              />
+            )}
+
+            {activeLanguageTab === "python" && (
+              <PythonCodeEditor
+                code={`from collections import defaultdict, deque
+
+class Graph:
+    def __init__(self, directed=False):
+        """Khởi tạo đồ thị"""
+        self.adjacency_list = defaultdict(list)
+        self.is_directed = directed
+        self.vertices = set()
+
+    def add_vertex(self, vertex):
+        """Thêm đỉnh vào đồ thị"""
+        self.vertices.add(vertex)
+        if vertex not in self.adjacency_list:
+            self.adjacency_list[vertex] = []
+
+    def add_edge(self, from_vertex, to_vertex):
+        """Thêm cạnh vào đồ thị"""
+        self.add_vertex(from_vertex)
+        self.add_vertex(to_vertex)
+
+        self.adjacency_list[from_vertex].append(to_vertex)
+
+        # Nếu là đồ thị vô hướng, thêm cạnh ngược
+        if not self.is_directed:
+            self.adjacency_list[to_vertex].append(from_vertex)
+
+    def get_neighbors(self, vertex):
+        """Lấy danh sách các đỉnh kề của một đỉnh"""
+        return self.adjacency_list.get(vertex, [])
+
+    def bfs(self, start_vertex):
+        """Duyệt theo chiều rộng (BFS)"""
+        if start_vertex not in self.vertices:
+            return []
+
+        visited = set()
+        queue = deque([start_vertex])
+        result = []
+
+        visited.add(start_vertex)
+
+        while queue:
+            vertex = queue.popleft()
+            result.append(vertex)
+
+            for neighbor in self.get_neighbors(vertex):
+                if neighbor not in visited:
+                    visited.add(neighbor)
+                    queue.append(neighbor)
+
+        return result
+
+    def dfs(self, start_vertex):
+        """Duyệt theo chiều sâu (DFS) - phương pháp đệ quy"""
+        if start_vertex not in self.vertices:
+            return []
+
+        visited = set()
+        result = []
+
+        def dfs_helper(vertex):
+            visited.add(vertex)
+            result.append(vertex)
+
+            for neighbor in self.get_neighbors(vertex):
+                if neighbor not in visited:
+                    dfs_helper(neighbor)
+
+        dfs_helper(start_vertex)
+        return result
+
+    def dfs_iterative(self, start_vertex):
+        """Duyệt theo chiều sâu (DFS) - phương pháp lặp"""
+        if start_vertex not in self.vertices:
+            return []
+
+        visited = set()
+        stack = [start_vertex]
+        result = []
+
+        while stack:
+            vertex = stack.pop()
+
+            if vertex not in visited:
+                visited.add(vertex)
+                result.append(vertex)
+
+                # Thêm các đỉnh kề vào stack (ngược lại để giữ thứ tự)
+                neighbors = self.get_neighbors(vertex)
+                for neighbor in reversed(neighbors):
+                    if neighbor not in visited:
+                        stack.append(neighbor)
+
+        return result
+
+    def has_path(self, start, end):
+        """Kiểm tra xem có đường đi từ start đến end không"""
+        if start not in self.vertices or end not in self.vertices:
+            return False
+
+        visited = set()
+        queue = deque([start])
+
+        while queue:
+            vertex = queue.popleft()
+            if vertex == end:
+                return True
+
+            if vertex not in visited:
+                visited.add(vertex)
+                for neighbor in self.get_neighbors(vertex):
+                    if neighbor not in visited:
+                        queue.append(neighbor)
+
+        return False
+
+    def print_graph(self):
+        """In đồ thị"""
+        for vertex in self.vertices:
+            neighbors = self.get_neighbors(vertex)
+            print(f"{vertex}: {neighbors}")
+
+    def vertex_count(self):
+        """Số đỉnh"""
+        return len(self.vertices)
+
+    def edge_count(self):
+        """Số cạnh"""
+        count = sum(len(neighbors) for neighbors in self.adjacency_list.values())
+        return count if self.is_directed else count // 2
+
+# Sử dụng:
+# graph = Graph(directed=False)
+# graph.add_edge(1, 2)
+# graph.add_edge(2, 3)
+# graph.add_edge(3, 4)
+# print("BFS:", graph.bfs(1))
+# print("DFS:", graph.dfs(1))`}
+                height="400px"
+              />
+            )}
           </div>
 
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">

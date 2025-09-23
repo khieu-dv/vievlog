@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { Hash } from "lucide-react";
 import { MermaidDiagram } from "~/components/common/MermaidDiagram";
 import { RustCodeEditor } from "~/components/common/RustCodeEditor";
+import { CppCodeEditor } from "~/components/common/CppCodeEditor";
+import { PythonCodeEditor } from "~/components/common/PythonCodeEditor";
 import { initRustWasm } from "~/lib/rust-wasm-helper";
 
 interface HashEntry {
@@ -20,6 +22,7 @@ export function HashTableSection() {
   const [searchKey, setSearchKey] = useState("");
   const [result, setResult] = useState("");
   const [wasm, setWasm] = useState<any>(null);
+  const [activeLanguageTab, setActiveLanguageTab] = useState("rust");
 
   // Simple hash function for display
   const hashFunction = (key: string): number => {
@@ -353,9 +356,50 @@ export function HashTableSection() {
           </div>
 
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
-            <h4 className="font-medium mb-2">Cài Đặt Rust:</h4>
-            <RustCodeEditor
-              code={`use std::collections::HashMap;
+            <h4 className="font-medium mb-4">Cài Đặt:</h4>
+
+            {/* Language Tabs */}
+            <div className="mb-4">
+              <div className="border-b border-gray-200 dark:border-gray-600">
+                <nav className="-mb-px flex space-x-8">
+                  <button
+                    onClick={() => setActiveLanguageTab("rust")}
+                    className={`py-2 px-1 border-b-2 font-medium text-sm ${
+                      activeLanguageTab === "rust"
+                        ? "border-orange-500 text-orange-600 dark:text-orange-400"
+                        : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
+                    }`}
+                  >
+                    Rust
+                  </button>
+                  <button
+                    onClick={() => setActiveLanguageTab("cpp")}
+                    className={`py-2 px-1 border-b-2 font-medium text-sm ${
+                      activeLanguageTab === "cpp"
+                        ? "border-blue-500 text-blue-600 dark:text-blue-400"
+                        : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
+                    }`}
+                  >
+                    C++
+                  </button>
+                  <button
+                    onClick={() => setActiveLanguageTab("python")}
+                    className={`py-2 px-1 border-b-2 font-medium text-sm ${
+                      activeLanguageTab === "python"
+                        ? "border-green-500 text-green-600 dark:text-green-400"
+                        : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
+                    }`}
+                  >
+                    Python
+                  </button>
+                </nav>
+              </div>
+            </div>
+
+            {/* Language-specific Code */}
+            {activeLanguageTab === "rust" && (
+              <RustCodeEditor
+                code={`use std::collections::HashMap;
 use std::hash::{Hash, Hasher};
 use std::collections::hash_map::DefaultHasher;
 
@@ -452,8 +496,315 @@ fn hash_map_example() {
         println!("{}: {}", key, value);
     }
 }`}
-              height="400px"
-            />
+                height="400px"
+              />
+            )}
+
+            {activeLanguageTab === "cpp" && (
+              <CppCodeEditor
+                code={`#include <vector>
+#include <list>
+#include <functional>
+#include <unordered_map>
+#include <iostream>
+
+template<typename K, typename V>
+class HashTable {
+private:
+    struct KeyValue {
+        K key;
+        V value;
+        KeyValue(const K& k, const V& v) : key(k), value(v) {}
+    };
+
+    std::vector<std::list<KeyValue>> buckets;
+    size_t bucket_count;
+    size_t size;
+
+    size_t hash(const K& key) const {
+        return std::hash<K>{}(key) % bucket_count;
+    }
+
+public:
+    HashTable(size_t capacity = 10)
+        : buckets(capacity), bucket_count(capacity), size(0) {}
+
+    void insert(const K& key, const V& value) {
+        size_t index = hash(key);
+        auto& bucket = buckets[index];
+
+        // Kiểm tra xem key đã tồn tại chưa
+        for (auto& kv : bucket) {
+            if (kv.key == key) {
+                kv.value = value;
+                return;
+            }
+        }
+
+        // Thêm cặp key-value mới
+        bucket.emplace_back(key, value);
+        size++;
+    }
+
+    bool get(const K& key, V& value) const {
+        size_t index = hash(key);
+        const auto& bucket = buckets[index];
+
+        for (const auto& kv : bucket) {
+            if (kv.key == key) {
+                value = kv.value;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    V* find(const K& key) {
+        size_t index = hash(key);
+        auto& bucket = buckets[index];
+
+        for (auto& kv : bucket) {
+            if (kv.key == key) {
+                return &kv.value;
+            }
+        }
+        return nullptr;
+    }
+
+    bool remove(const K& key) {
+        size_t index = hash(key);
+        auto& bucket = buckets[index];
+
+        for (auto it = bucket.begin(); it != bucket.end(); ++it) {
+            if (it->key == key) {
+                bucket.erase(it);
+                size--;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    size_t getSize() const {
+        return size;
+    }
+
+    bool empty() const {
+        return size == 0;
+    }
+
+    void clear() {
+        for (auto& bucket : buckets) {
+            bucket.clear();
+        }
+        size = 0;
+    }
+
+    // In tất cả các cặp key-value
+    void print() const {
+        for (size_t i = 0; i < bucket_count; ++i) {
+            std::cout << "Bucket " << i << ": ";
+            for (const auto& kv : buckets[i]) {
+                std::cout << "(" << kv.key << ", " << kv.value << ") ";
+            }
+            std::cout << std::endl;
+        }
+    }
+};
+
+// Sử dụng unordered_map có sẵn trong C++
+void unordered_map_example() {
+    std::unordered_map<std::string, std::string> map;
+
+    // Thêm dữ liệu
+    map["name"] = "John";
+    map["age"] = "25";
+    map["city"] = "Hanoi";
+
+    // Tìm kiếm
+    auto it = map.find("name");
+    if (it != map.end()) {
+        std::cout << "Name: " << it->second << std::endl;
+    }
+
+    // Xóa
+    map.erase("age");
+
+    // Duyệt qua tất cả
+    for (const auto& pair : map) {
+        std::cout << pair.first << ": " << pair.second << std::endl;
+    }
+}`}
+                height="400px"
+              />
+            )}
+
+            {activeLanguageTab === "python" && (
+              <PythonCodeEditor
+                code={`class HashTable:
+    def __init__(self, capacity=10):
+        """Khởi tạo hash table với capacity cho trước"""
+        self.capacity = capacity
+        self.size = 0
+        self.buckets = [[] for _ in range(capacity)]
+
+    def _hash(self, key):
+        """Hàm băm cơ bản"""
+        return hash(key) % self.capacity
+
+    def insert(self, key, value):
+        """Thêm hoặc cập nhật cặp key-value"""
+        index = self._hash(key)
+        bucket = self.buckets[index]
+
+        # Kiểm tra xem key đã tồn tại chưa
+        for i, (k, v) in enumerate(bucket):
+            if k == key:
+                bucket[i] = (key, value)  # Cập nhật giá trị
+                return
+
+        # Thêm cặp key-value mới
+        bucket.append((key, value))
+        self.size += 1
+
+    def get(self, key):
+        """Lấy giá trị theo key"""
+        index = self._hash(key)
+        bucket = self.buckets[index]
+
+        for k, v in bucket:
+            if k == key:
+                return v
+
+        raise KeyError(f"Key '{key}' not found")
+
+    def get_safe(self, key, default=None):
+        """Lấy giá trị theo key, trả về default nếu không tìm thấy"""
+        try:
+            return self.get(key)
+        except KeyError:
+            return default
+
+    def remove(self, key):
+        """Xóa cặp key-value"""
+        index = self._hash(key)
+        bucket = self.buckets[index]
+
+        for i, (k, v) in enumerate(bucket):
+            if k == key:
+                del bucket[i]
+                self.size -= 1
+                return v
+
+        raise KeyError(f"Key '{key}' not found")
+
+    def contains(self, key):
+        """Kiểm tra xem key có tồn tại không"""
+        index = self._hash(key)
+        bucket = self.buckets[index]
+
+        for k, v in bucket:
+            if k == key:
+                return True
+        return False
+
+    def keys(self):
+        """Trả về tất cả các key"""
+        keys = []
+        for bucket in self.buckets:
+            for k, v in bucket:
+                keys.append(k)
+        return keys
+
+    def values(self):
+        """Trả về tất cả các value"""
+        values = []
+        for bucket in self.buckets:
+            for k, v in bucket:
+                values.append(v)
+        return values
+
+    def items(self):
+        """Trả về tất cả các cặp (key, value)"""
+        items = []
+        for bucket in self.buckets:
+            for k, v in bucket:
+                items.append((k, v))
+        return items
+
+    def clear(self):
+        """Xóa tất cả"""
+        self.buckets = [[] for _ in range(self.capacity)]
+        self.size = 0
+
+    def get_size(self):
+        """Lấy số phần tử"""
+        return self.size
+
+    def is_empty(self):
+        """Kiểm tra rỗng"""
+        return self.size == 0
+
+    def load_factor(self):
+        """Tính load factor (tỉ lệ tải)"""
+        return self.size / self.capacity
+
+    def print_table(self):
+        """In toàn bộ hash table"""
+        for i, bucket in enumerate(self.buckets):
+            print(f"Bucket {i}: {bucket}")
+
+    # Để sử dụng giống dict của Python
+    def __getitem__(self, key):
+        return self.get(key)
+
+    def __setitem__(self, key, value):
+        self.insert(key, value)
+
+    def __delitem__(self, key):
+        self.remove(key)
+
+    def __contains__(self, key):
+        return self.contains(key)
+
+    def __len__(self):
+        return self.size
+
+    def __str__(self):
+        items = self.items()
+        return '{' + ', '.join(f"'{k}': '{v}'" for k, v in items) + '}'
+
+# Sử dụng dict có sẵn trong Python
+def dict_example():
+    # Tạo dictionary
+    data = {}
+
+    # Thêm dữ liệu
+    data["name"] = "John"
+    data["age"] = "25"
+    data["city"] = "Hanoi"
+
+    # Tìm kiếm
+    if "name" in data:
+        print(f"Name: {data['name']}")
+
+    # Xóa
+    del data["age"]
+
+    # Duyệt qua tất cả
+    for key, value in data.items():
+        print(f"{key}: {value}")
+
+# Ví dụ sử dụng:
+# ht = HashTable()
+# ht["name"] = "John"
+# ht["age"] = 25
+# print(ht["name"])  # John
+# print("name" in ht)  # True
+# print(len(ht))  # 2`}
+                height="400px"
+              />
+            )}
           </div>
         </div>
       </div>

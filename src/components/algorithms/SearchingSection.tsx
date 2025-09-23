@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { Search } from "lucide-react";
 import { MermaidDiagram } from "~/components/common/MermaidDiagram";
 import { RustCodeEditor } from "~/components/common/RustCodeEditor";
+import { CppCodeEditor } from "~/components/common/CppCodeEditor";
+import { PythonCodeEditor } from "~/components/common/PythonCodeEditor";
 import { initRustWasm } from "~/lib/rust-wasm-helper";
 
 export function SearchingSection() {
@@ -14,6 +16,7 @@ export function SearchingSection() {
   const [algorithm, setAlgorithm] = useState<"linear" | "binary" | "interpolation" | "jump" | "exponential" | "ternary">("binary");
   const [wasm, setWasm] = useState<any>(null);
   const [wasmReady, setWasmReady] = useState(false);
+  const [activeLanguageTab, setActiveLanguageTab] = useState("rust");
 
   // Initialize WASM
   useEffect(() => {
@@ -327,9 +330,50 @@ export function SearchingSection() {
           </div>
 
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
-            <h4 className="font-medium mb-2">Cài Đặt Rust:</h4>
-            <RustCodeEditor
-              code={`// Binary Search - O(log n) - yêu cầu mảng đã sắp xếp
+            <h4 className="font-medium mb-4">Cài Đặt:</h4>
+
+            {/* Language Tabs */}
+            <div className="mb-4">
+              <div className="border-b border-gray-200 dark:border-gray-600">
+                <nav className="-mb-px flex space-x-8">
+                  <button
+                    onClick={() => setActiveLanguageTab("rust")}
+                    className={`py-2 px-1 border-b-2 font-medium text-sm ${
+                      activeLanguageTab === "rust"
+                        ? "border-orange-500 text-orange-600 dark:text-orange-400"
+                        : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
+                    }`}
+                  >
+                    Rust
+                  </button>
+                  <button
+                    onClick={() => setActiveLanguageTab("cpp")}
+                    className={`py-2 px-1 border-b-2 font-medium text-sm ${
+                      activeLanguageTab === "cpp"
+                        ? "border-blue-500 text-blue-600 dark:text-blue-400"
+                        : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
+                    }`}
+                  >
+                    C++
+                  </button>
+                  <button
+                    onClick={() => setActiveLanguageTab("python")}
+                    className={`py-2 px-1 border-b-2 font-medium text-sm ${
+                      activeLanguageTab === "python"
+                        ? "border-green-500 text-green-600 dark:text-green-400"
+                        : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
+                    }`}
+                  >
+                    Python
+                  </button>
+                </nav>
+              </div>
+            </div>
+
+            {/* Language-specific Code */}
+            {activeLanguageTab === "rust" && (
+              <RustCodeEditor
+                code={`// Binary Search - O(log n) - yêu cầu mảng đã sắp xếp
 fn binary_search<T: Ord>(arr: &[T], target: &T) -> Option<usize> {
     let mut left = 0;
     let mut right = arr.len().saturating_sub(1);
@@ -381,9 +425,691 @@ fn interpolation_search(arr: &[i32], target: i32) -> Option<usize> {
         }
     }
     None
+}
+
+// Jump Search - O(√n) - tốt cho mảng đã sắp xếp
+fn jump_search<T: Ord>(arr: &[T], target: &T) -> Option<usize> {
+    let n = arr.len();
+    let step = (n as f64).sqrt() as usize;
+    let mut prev = 0;
+
+    // Tìm block chứa target
+    while prev < n && arr[(step.min(n) - 1).min(prev + step - 1)] < *target {
+        prev += step;
+        if prev >= n {
+            return None;
+        }
+    }
+
+    // Linear search trong block
+    for i in prev..step.min(n).min(prev + step) {
+        if arr[i] == *target {
+            return Some(i);
+        }
+    }
+    None
+}
+
+// Exponential Search - O(log n)
+fn exponential_search<T: Ord>(arr: &[T], target: &T) -> Option<usize> {
+    let n = arr.len();
+    if n == 0 {
+        return None;
+    }
+
+    if arr[0] == *target {
+        return Some(0);
+    }
+
+    // Tìm range cho binary search
+    let mut i = 1;
+    while i < n && arr[i] <= *target {
+        i *= 2;
+    }
+
+    // Binary search trong range [i/2, min(i, n-1)]
+    binary_search_range(arr, target, i / 2, i.min(n - 1))
+}
+
+fn binary_search_range<T: Ord>(arr: &[T], target: &T, mut left: usize, mut right: usize) -> Option<usize> {
+    while left <= right {
+        let mid = left + (right - left) / 2;
+
+        match arr[mid].cmp(target) {
+            std::cmp::Ordering::Equal => return Some(mid),
+            std::cmp::Ordering::Less => left = mid + 1,
+            std::cmp::Ordering::Greater => {
+                if mid == 0 { break; }
+                right = mid - 1;
+            }
+        }
+    }
+    None
+}
+
+// Ternary Search - O(log₃ n)
+fn ternary_search<T: Ord>(arr: &[T], target: &T) -> Option<usize> {
+    let mut left = 0;
+    let mut right = arr.len().saturating_sub(1);
+
+    while left <= right {
+        let mid1 = left + (right - left) / 3;
+        let mid2 = right - (right - left) / 3;
+
+        if arr[mid1] == *target {
+            return Some(mid1);
+        }
+        if arr[mid2] == *target {
+            return Some(mid2);
+        }
+
+        if *target < arr[mid1] {
+            if mid1 == 0 { break; }
+            right = mid1 - 1;
+        } else if *target > arr[mid2] {
+            left = mid2 + 1;
+        } else {
+            left = mid1 + 1;
+            if mid2 == 0 { break; }
+            right = mid2 - 1;
+        }
+    }
+    None
+}
+
+// Sử dụng
+fn main() {
+    let arr = vec![1, 3, 5, 7, 9, 11, 13, 15, 17, 19];
+    let target = 7;
+
+    if let Some(index) = binary_search(&arr, &target) {
+        println!("Binary search: Found {} at index {}", target, index);
+    }
+
+    if let Some(index) = linear_search(&arr, &target) {
+        println!("Linear search: Found {} at index {}", target, index);
+    }
+
+    if let Some(index) = jump_search(&arr, &target) {
+        println!("Jump search: Found {} at index {}", target, index);
+    }
 }`}
-              height="400px"
-            />
+                height="400px"
+              />
+            )}
+
+            {activeLanguageTab === "cpp" && (
+              <CppCodeEditor
+                code={`#include <vector>
+#include <iostream>
+#include <cmath>
+#include <algorithm>
+
+// Binary Search - O(log n)
+template<typename T>
+int binarySearch(const std::vector<T>& arr, const T& target) {
+    int left = 0;
+    int right = arr.size() - 1;
+
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+
+        if (arr[mid] == target) {
+            return mid;
+        } else if (arr[mid] < target) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+    return -1; // Not found
+}
+
+// Linear Search - O(n)
+template<typename T>
+int linearSearch(const std::vector<T>& arr, const T& target) {
+    for (int i = 0; i < arr.size(); i++) {
+        if (arr[i] == target) {
+            return i;
+        }
+    }
+    return -1; // Not found
+}
+
+// Interpolation Search - O(log log n) cho dữ liệu phân bố đều
+int interpolationSearch(const std::vector<int>& arr, int target) {
+    int left = 0;
+    int right = arr.size() - 1;
+
+    while (left <= right && target >= arr[left] && target <= arr[right]) {
+        if (left == right) {
+            return (arr[left] == target) ? left : -1;
+        }
+
+        // Tính vị trí interpolation
+        int pos = left + ((double)(target - arr[left]) / (arr[right] - arr[left])) * (right - left);
+
+        if (arr[pos] == target) {
+            return pos;
+        } else if (arr[pos] < target) {
+            left = pos + 1;
+        } else {
+            right = pos - 1;
+        }
+    }
+    return -1;
+}
+
+// Jump Search - O(√n)
+template<typename T>
+int jumpSearch(const std::vector<T>& arr, const T& target) {
+    int n = arr.size();
+    int step = sqrt(n);
+    int prev = 0;
+
+    // Tìm block chứa target
+    while (arr[std::min(step, n) - 1] < target) {
+        prev = step;
+        step += sqrt(n);
+        if (prev >= n) {
+            return -1;
+        }
+    }
+
+    // Linear search trong block
+    while (arr[prev] < target) {
+        prev++;
+        if (prev == std::min(step, n)) {
+            return -1;
+        }
+    }
+
+    return (arr[prev] == target) ? prev : -1;
+}
+
+// Exponential Search - O(log n)
+template<typename T>
+int exponentialSearch(const std::vector<T>& arr, const T& target) {
+    int n = arr.size();
+    if (n == 0) return -1;
+    if (arr[0] == target) return 0;
+
+    // Tìm range cho binary search
+    int i = 1;
+    while (i < n && arr[i] <= target) {
+        i *= 2;
+    }
+
+    // Binary search trong range [i/2, min(i, n-1)]
+    int left = i / 2;
+    int right = std::min(i, n - 1);
+
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (arr[mid] == target) {
+            return mid;
+        } else if (arr[mid] < target) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+    return -1;
+}
+
+// Ternary Search - O(log₃ n)
+template<typename T>
+int ternarySearch(const std::vector<T>& arr, const T& target) {
+    int left = 0;
+    int right = arr.size() - 1;
+
+    while (left <= right) {
+        int mid1 = left + (right - left) / 3;
+        int mid2 = right - (right - left) / 3;
+
+        if (arr[mid1] == target) return mid1;
+        if (arr[mid2] == target) return mid2;
+
+        if (target < arr[mid1]) {
+            right = mid1 - 1;
+        } else if (target > arr[mid2]) {
+            left = mid2 + 1;
+        } else {
+            left = mid1 + 1;
+            right = mid2 - 1;
+        }
+    }
+    return -1;
+}
+
+// Fibonacci Search - O(log n)
+template<typename T>
+int fibonacciSearch(const std::vector<T>& arr, const T& target) {
+    int n = arr.size();
+    int fib2 = 0;   // (m-2)'th Fibonacci number
+    int fib1 = 1;   // (m-1)'th Fibonacci number
+    int fib = fib2 + fib1; // m'th Fibonacci number
+
+    // fib sẽ là Fibonacci nhỏ nhất >= n
+    while (fib < n) {
+        fib2 = fib1;
+        fib1 = fib;
+        fib = fib2 + fib1;
+    }
+
+    int offset = -1;
+
+    while (fib > 1) {
+        int i = std::min(offset + fib2, n - 1);
+
+        if (arr[i] < target) {
+            fib = fib1;
+            fib1 = fib2;
+            fib2 = fib - fib1;
+            offset = i;
+        } else if (arr[i] > target) {
+            fib = fib2;
+            fib1 = fib1 - fib2;
+            fib2 = fib - fib1;
+        } else {
+            return i;
+        }
+    }
+
+    if (fib1 && offset + 1 < n && arr[offset + 1] == target) {
+        return offset + 1;
+    }
+
+    return -1;
+}
+
+// Hàm tiện ích để test
+void testSearchAlgorithms() {
+    std::vector<int> arr = {1, 3, 5, 7, 9, 11, 13, 15, 17, 19};
+    int target = 7;
+
+    std::cout << "Array: ";
+    for (int x : arr) std::cout << x << " ";
+    std::cout << "\nSearching for: " << target << "\n\n";
+
+    int result;
+
+    result = binarySearch(arr, target);
+    std::cout << "Binary Search: " << (result != -1 ? "Found at index " + std::to_string(result) : "Not found") << "\n";
+
+    result = linearSearch(arr, target);
+    std::cout << "Linear Search: " << (result != -1 ? "Found at index " + std::to_string(result) : "Not found") << "\n";
+
+    result = interpolationSearch(arr, target);
+    std::cout << "Interpolation Search: " << (result != -1 ? "Found at index " + std::to_string(result) : "Not found") << "\n";
+
+    result = jumpSearch(arr, target);
+    std::cout << "Jump Search: " << (result != -1 ? "Found at index " + std::to_string(result) : "Not found") << "\n";
+
+    result = exponentialSearch(arr, target);
+    std::cout << "Exponential Search: " << (result != -1 ? "Found at index " + std::to_string(result) : "Not found") << "\n";
+
+    result = ternarySearch(arr, target);
+    std::cout << "Ternary Search: " << (result != -1 ? "Found at index " + std::to_string(result) : "Not found") << "\n";
+
+    result = fibonacciSearch(arr, target);
+    std::cout << "Fibonacci Search: " << (result != -1 ? "Found at index " + std::to_string(result) : "Not found") << "\n";
+}
+
+int main() {
+    testSearchAlgorithms();
+
+    // Sử dụng STL binary_search
+    std::vector<int> arr = {1, 3, 5, 7, 9, 11, 13, 15, 17, 19};
+    int target = 7;
+
+    // Kiểm tra tồn tại
+    bool found = std::binary_search(arr.begin(), arr.end(), target);
+    std::cout << "\nSTL binary_search: " << (found ? "Found" : "Not found") << "\n";
+
+    // Tìm vị trí
+    auto it = std::lower_bound(arr.begin(), arr.end(), target);
+    if (it != arr.end() && *it == target) {
+        int index = std::distance(arr.begin(), it);
+        std::cout << "STL lower_bound: Found at index " << index << "\n";
+    }
+
+    return 0;
+}`}
+                height="400px"
+              />
+            )}
+
+            {activeLanguageTab === "python" && (
+              <PythonCodeEditor
+                code={`import math
+import bisect
+from typing import List, Optional
+
+def binary_search(arr: List[int], target: int) -> Optional[int]:
+    """Binary Search - O(log n)"""
+    left, right = 0, len(arr) - 1
+
+    while left <= right:
+        mid = left + (right - left) // 2
+
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+
+    return None
+
+def linear_search(arr: List[int], target: int) -> Optional[int]:
+    """Linear Search - O(n)"""
+    for i, value in enumerate(arr):
+        if value == target:
+            return i
+    return None
+
+def interpolation_search(arr: List[int], target: int) -> Optional[int]:
+    """Interpolation Search - O(log log n) cho dữ liệu phân bố đều"""
+    left, right = 0, len(arr) - 1
+
+    while left <= right and target >= arr[left] and target <= arr[right]:
+        if left == right:
+            return left if arr[left] == target else None
+
+        # Tính vị trí interpolation
+        pos = left + int(((target - arr[left]) / (arr[right] - arr[left])) * (right - left))
+
+        if arr[pos] == target:
+            return pos
+        elif arr[pos] < target:
+            left = pos + 1
+        else:
+            right = pos - 1
+
+    return None
+
+def jump_search(arr: List[int], target: int) -> Optional[int]:
+    """Jump Search - O(√n)"""
+    n = len(arr)
+    step = int(math.sqrt(n))
+    prev = 0
+
+    # Tìm block chứa target
+    while arr[min(step, n) - 1] < target:
+        prev = step
+        step += int(math.sqrt(n))
+        if prev >= n:
+            return None
+
+    # Linear search trong block
+    while arr[prev] < target:
+        prev += 1
+        if prev == min(step, n):
+            return None
+
+    return prev if arr[prev] == target else None
+
+def exponential_search(arr: List[int], target: int) -> Optional[int]:
+    """Exponential Search - O(log n)"""
+    n = len(arr)
+    if n == 0:
+        return None
+    if arr[0] == target:
+        return 0
+
+    # Tìm range cho binary search
+    i = 1
+    while i < n and arr[i] <= target:
+        i *= 2
+
+    # Binary search trong range [i//2, min(i, n-1)]
+    return binary_search_range(arr, target, i // 2, min(i, n - 1))
+
+def binary_search_range(arr: List[int], target: int, left: int, right: int) -> Optional[int]:
+    """Binary search trong một range cụ thể"""
+    while left <= right:
+        mid = left + (right - left) // 2
+
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+
+    return None
+
+def ternary_search(arr: List[int], target: int) -> Optional[int]:
+    """Ternary Search - O(log₃ n)"""
+    left, right = 0, len(arr) - 1
+
+    while left <= right:
+        mid1 = left + (right - left) // 3
+        mid2 = right - (right - left) // 3
+
+        if arr[mid1] == target:
+            return mid1
+        if arr[mid2] == target:
+            return mid2
+
+        if target < arr[mid1]:
+            right = mid1 - 1
+        elif target > arr[mid2]:
+            left = mid2 + 1
+        else:
+            left = mid1 + 1
+            right = mid2 - 1
+
+    return None
+
+def fibonacci_search(arr: List[int], target: int) -> Optional[int]:
+    """Fibonacci Search - O(log n)"""
+    n = len(arr)
+    fib2, fib1 = 0, 1  # Fibonacci numbers
+    fib = fib2 + fib1
+
+    # Tìm Fibonacci nhỏ nhất >= n
+    while fib < n:
+        fib2, fib1 = fib1, fib
+        fib = fib2 + fib1
+
+    offset = -1
+
+    while fib > 1:
+        i = min(offset + fib2, n - 1)
+
+        if arr[i] < target:
+            fib, fib1, fib2 = fib1, fib2, fib - fib1
+            offset = i
+        elif arr[i] > target:
+            fib, fib1, fib2 = fib2, fib1 - fib2, fib - fib1
+        else:
+            return i
+
+    # Kiểm tra phần tử cuối cùng
+    if fib1 and offset + 1 < n and arr[offset + 1] == target:
+        return offset + 1
+
+    return None
+
+def sentinal_search(arr: List[int], target: int) -> Optional[int]:
+    """Sentinal Linear Search - O(n) nhưng ít so sánh hơn"""
+    n = len(arr)
+    if n == 0:
+        return None
+
+    # Lưu giá trị cuối cùng
+    last = arr[n - 1]
+
+    # Đặt sentinal
+    arr[n - 1] = target
+
+    i = 0
+    while arr[i] != target:
+        i += 1
+
+    # Khôi phục giá trị cuối cùng
+    arr[n - 1] = last
+
+    # Kiểm tra kết quả
+    if i < n - 1 or arr[n - 1] == target:
+        return i
+    else:
+        return None
+
+def meta_binary_search(arr: List[int], target: int) -> Optional[int]:
+    """Meta Binary Search - sử dụng bit manipulation"""
+    n = len(arr)
+    if n == 0:
+        return None
+
+    # Tìm power of 2 lớn nhất <= n
+    lg = 0
+    while (1 << lg) <= n:
+        lg += 1
+    lg -= 1
+
+    pos = 0
+    for i in range(lg, -1, -1):
+        if pos + (1 << i) < n and arr[pos + (1 << i)] <= target:
+            pos += (1 << i)
+
+    return pos if arr[pos] == target else None
+
+def hash_search(arr: List[int], target: int) -> Optional[int]:
+    """Hash-based search - O(1) average, O(n) worst case"""
+    # Tạo hash table từ mảng
+    hash_table = {value: index for index, value in enumerate(arr)}
+    return hash_table.get(target)
+
+def benchmark_search_algorithms(arr: List[int], target: int):
+    """So sánh hiệu suất các thuật toán tìm kiếm"""
+    import time
+
+    algorithms = [
+        ("Linear Search", linear_search),
+        ("Binary Search", binary_search),
+        ("Interpolation Search", interpolation_search),
+        ("Jump Search", jump_search),
+        ("Exponential Search", exponential_search),
+        ("Ternary Search", ternary_search),
+        ("Fibonacci Search", fibonacci_search),
+        ("Hash Search", hash_search),
+    ]
+
+    results = []
+
+    for name, func in algorithms:
+        start_time = time.time()
+        result = func(arr.copy(), target)  # Copy để tránh thay đổi mảng gốc
+        end_time = time.time()
+
+        duration = (end_time - start_time) * 1000000  # microseconds
+        results.append((name, result, duration))
+
+    return results
+
+# Ví dụ sử dụng
+if __name__ == "__main__":
+    arr = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
+    target = 7
+
+    print(f"Array: {arr}")
+    print(f"Searching for: {target}\n")
+
+    # Test các thuật toán
+    algorithms = [
+        ("Binary Search", binary_search),
+        ("Linear Search", linear_search),
+        ("Interpolation Search", interpolation_search),
+        ("Jump Search", jump_search),
+        ("Exponential Search", exponential_search),
+        ("Ternary Search", ternary_search),
+        ("Fibonacci Search", fibonacci_search),
+        ("Hash Search", hash_search),
+    ]
+
+    for name, func in algorithms:
+        result = func(arr, target)
+        print(f"{name}: {f'Found at index {result}' if result is not None else 'Not found'}")
+
+    # Sử dụng bisect module của Python
+    print("\nUsing Python's bisect module:")
+    index = bisect.bisect_left(arr, target)
+    if index < len(arr) and arr[index] == target:
+        print(f"bisect_left: Found at index {index}")
+    else:
+        print("bisect_left: Not found")
+
+    # Benchmark
+    print("\nBenchmark results:")
+    results = benchmark_search_algorithms(arr, target)
+    for name, result, duration in results:
+        status = f"Found at index {result}" if result is not None else "Not found"
+        print(f"{name}: {status} ({duration:.2f} μs)")
+
+    # Tìm kiếm với từ khóa trong chuỗi
+    def string_search_example():
+        text = "Hello, this is a sample text for searching"
+        pattern = "sample"
+
+        # Boyer-Moore-like approach
+        def simple_string_search(text: str, pattern: str) -> List[int]:
+            positions = []
+            start = 0
+            while True:
+                pos = text.find(pattern, start)
+                if pos != -1:
+                    positions.append(pos)
+                    start = pos + 1
+                else:
+                    break
+            return positions
+
+        positions = simple_string_search(text, pattern)
+        print(f"\nString search example:")
+        print(f"Text: {text}")
+        print(f"Pattern: '{pattern}'")
+        print(f"Found at positions: {positions}")
+
+    string_search_example()
+
+    # Tìm kiếm 2D
+    def search_2d_matrix(matrix: List[List[int]], target: int) -> bool:
+        """Tìm kiếm trong ma trận đã sắp xếp"""
+        if not matrix or not matrix[0]:
+            return False
+
+        m, n = len(matrix), len(matrix[0])
+        left, right = 0, m * n - 1
+
+        while left <= right:
+            mid = (left + right) // 2
+            mid_value = matrix[mid // n][mid % n]
+
+            if mid_value == target:
+                return True
+            elif mid_value < target:
+                left = mid + 1
+            else:
+                right = mid - 1
+
+        return False
+
+    # Test 2D search
+    matrix = [
+        [1,  4,  7,  11],
+        [2,  5,  8,  12],
+        [3,  6,  9,  16],
+        [10, 13, 14, 17]
+    ]
+    target_2d = 5
+    found_2d = search_2d_matrix(matrix, target_2d)
+    print(f"\n2D Matrix search for {target_2d}: {'Found' if found_2d else 'Not found'}")`}
+                height="400px"
+              />
+            )}
           </div>
         </div>
       </div>
