@@ -27,7 +27,12 @@ import {
   Video,
   Waypoints,
   Workflow,
-  ArrowRight
+  ArrowRight,
+  Binary,
+  TreePine,
+  Network,
+  Hash,
+  SortAsc
 } from 'lucide-react';
 import Link from "next/link";
 import { useEffect, useState, useCallback } from "react";
@@ -59,9 +64,9 @@ export default function HomePage() {
               Master Modern Development
             </h2>
             <p className="mb-6 text-sm text-gray-600 dark:text-gray-400 sm:text-base">
-              Focus on four powerful technologies that will define the future of software development.
+              Focus on five powerful technologies that will define the future of software development.
             </p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
               <Link
                 href="/desktop-docs/soft-skills/rust/bai-0"
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-orange-600 px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-orange-700"
@@ -75,6 +80,13 @@ export default function HomePage() {
               >
                 <Server className="size-4" />
                 🐹 Go
+              </Link>
+              <Link
+                href="/data-structures"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-purple-600 px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-purple-700"
+              >
+                <Binary className="size-4" />
+                🧠 DSA
               </Link>
               <Link
                 href="/desktop-docs/soft-skills/nextjs/bai-0"
@@ -110,7 +122,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-4">
+          <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
             <RoadmapCard
               icon={Braces}
               title="Systems Programming"
@@ -122,6 +134,12 @@ export default function HomePage() {
               title="Backend & Cloud"
               link="/desktop-docs/soft-skills/golang/bai-0"
               description="Create scalable backends and cloud services with Go's simplicity and concurrency."
+            />
+            <RoadmapCard
+              icon={Binary}
+              title="Data Structures & Algorithms"
+              link="/data-structures"
+              description="Master CS fundamentals with interactive examples and Rust implementations."
             />
             <RoadmapCard
               icon={Globe2}
@@ -251,6 +269,35 @@ export default function HomePage() {
         />
       </RoleRoadmaps>
 
+      {/* Data Structures & Algorithms */}
+      <RoleRoadmaps
+        badge="Computer Science"
+        title="Master Data Structures & Algorithms?"
+        description="Build strong foundations in computer science with interactive examples and Rust implementations."
+      >
+        <RoadmapCard
+          icon={Binary}
+          title="Data Structures"
+          link="/data-structures"
+          description="Master arrays, linked lists, trees, graphs, hash tables with visual examples."
+        />
+        <RoadmapCard
+          icon={SortAsc}
+          title="Algorithms"
+          link="/data-structures"
+          description="Learn sorting, searching, graph algorithms with step-by-step implementations."
+        />
+        <RoadmapMultiCard
+          roadmaps={[
+            { title: "Trees & Graphs", link: "/data-structures" },
+            { title: "Hash Tables", link: "/data-structures" },
+          ]}
+          description="Advanced data structures for efficient data management and retrieval."
+          secondaryRoadmaps={[{ title: "Dynamic Programming", link: "/data-structures" }]}
+          secondaryDescription="Master complex algorithmic techniques with practical examples."
+        />
+      </RoleRoadmaps>
+
       {/* Next.js Ecosystem */}
       <RoleRoadmaps
         badge="Next.js Ecosystem"
@@ -329,7 +376,6 @@ export default function HomePage() {
         />
       </RoleRoadmaps>
 
-
       {/* Explore More Section */}
       <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="-mt-5 mb-12 rounded-3xl bg-black p-5 dark:bg-gray-950">
@@ -340,7 +386,7 @@ export default function HomePage() {
             Ready to dive deep into modern development technologies?
           </p>
 
-          <div className="my-4 grid grid-cols-1 gap-2 sm:my-5 sm:grid-cols-2 sm:gap-3 md:grid-cols-4">
+          <div className="my-4 grid grid-cols-1 gap-2 sm:my-5 sm:grid-cols-2 sm:gap-3 md:grid-cols-3 lg:grid-cols-5">
             <Link
               href="/desktop-docs/soft-skills/rust/bai-0"
               className="grow rounded-lg bg-gradient-to-br from-orange-700 to-orange-600 p-4 text-sm text-white transition-all hover:from-orange-600 hover:to-orange-600 sm:text-base"
@@ -354,6 +400,13 @@ export default function HomePage() {
             >
               <Server className="mb-3 h-5 w-5 text-cyan-200 sm:mb-2" />
               🐹 Go Development
+            </Link>
+            <Link
+              href="/data-structures"
+              className="grow rounded-lg bg-gradient-to-br from-purple-700 to-purple-600 p-4 text-sm text-white transition-all hover:from-purple-600 hover:to-purple-600 sm:text-base"
+            >
+              <Binary className="mb-3 h-5 w-5 text-purple-200 sm:mb-2" />
+              🧠 DSA Mastery
             </Link>
             <Link
               href="/desktop-docs/soft-skills/nextjs/bai-0"
