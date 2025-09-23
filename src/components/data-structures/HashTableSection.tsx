@@ -24,6 +24,23 @@ export function HashTableSection() {
   const [wasm, setWasm] = useState<any>(null);
   const [activeLanguageTab, setActiveLanguageTab] = useState("rust");
 
+  // Interactive visualization states
+  interface HashBucket {
+    entries: { key: string; value: string }[];
+  }
+
+  const [animationHashTable, setAnimationHashTable] = useState<HashBucket[]>(
+    Array(8).fill(null).map(() => ({ entries: [] }))
+  );
+  const [insertKey, setInsertKey] = useState("");
+  const [insertVal, setInsertVal] = useState("");
+  const [searchHashKey, setSearchHashKey] = useState("");
+  const [highlightedBucket, setHighlightedBucket] = useState<number | null>(null);
+  const [highlightedEntry, setHighlightedEntry] = useState<{bucket: number, entry: number} | null>(null);
+  const [animationStep, setAnimationStep] = useState<string>("");
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [hashCalculation, setHashCalculation] = useState<string>("");
+
   // Simple hash function for display
   const hashFunction = (key: string): number => {
     let hash = 0;
@@ -146,6 +163,199 @@ export function HashTableSection() {
     }
   };
 
+  // Animation functions
+  const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
+  const animationHashFunction = (key: string): number => {
+    let hash = 0;
+    for (let i = 0; i < key.length; i++) {
+      const char = key.charCodeAt(i);
+      hash = ((hash << 5) - hash) + char;
+      hash = hash & hash; // Convert to 32bit integer
+    }
+    return Math.abs(hash % 8);
+  };
+
+  const animateHashInsert = async () => {
+    if (!insertKey.trim() || !insertVal.trim()) return;
+
+    setIsAnimating(true);
+    const key = insertKey.trim();
+    const value = insertVal.trim();
+
+    // Step 1: Calculate hash
+    setAnimationStep(`🧮 Bước 1: Tính toán hash cho key "${key}"...`);
+    await sleep(1000);
+
+    const hashValue = animationHashFunction(key);
+    setHashCalculation(`hash("${key}") = ${hashValue}`);
+    setAnimationStep(`🧮 Hash function: hash("${key}") = ${hashValue}`);
+    await sleep(1500);
+
+    // Step 2: Highlight target bucket
+    setHighlightedBucket(hashValue);
+    setAnimationStep(`🎯 Bước 2: Chọn bucket ${hashValue} để lưu trữ...`);
+    await sleep(1000);
+
+    // Step 3: Check for existing key (collision detection)
+    const bucket = animationHashTable[hashValue];
+    const existingIndex = bucket.entries.findIndex(entry => entry.key === key);
+
+    if (existingIndex !== -1) {
+      setHighlightedEntry({ bucket: hashValue, entry: existingIndex });
+      setAnimationStep(`🔄 Key "${key}" đã tồn tại! Cập nhật giá trị từ "${bucket.entries[existingIndex].value}" thành "${value}"`);
+      await sleep(1500);
+
+      // Update existing entry
+      const newHashTable = [...animationHashTable];
+      newHashTable[hashValue].entries[existingIndex].value = value;
+      setAnimationHashTable(newHashTable);
+    } else {
+      // Check for collision
+      if (bucket.entries.length > 0) {
+        setAnimationStep(`⚠️ Collision! Bucket ${hashValue} đã có ${bucket.entries.length} entry. Sử dụng chaining...`);
+        await sleep(1500);
+      }
+
+      // Insert new entry
+      const newHashTable = [...animationHashTable];
+      newHashTable[hashValue].entries.push({ key, value });
+      setAnimationHashTable(newHashTable);
+      setHighlightedEntry({ bucket: hashValue, entry: newHashTable[hashValue].entries.length - 1 });
+    }
+
+    setAnimationStep(`✅ Đã lưu "${key}" = "${value}" vào bucket ${hashValue}! (Độ phức tạp: O(1) average)`);
+    await sleep(2000);
+
+    setHighlightedBucket(null);
+    setHighlightedEntry(null);
+    setHashCalculation("");
+    setIsAnimating(false);
+    setInsertKey("");
+    setInsertVal("");
+  };
+
+  const animateHashSearch = async () => {
+    if (!searchHashKey.trim()) return;
+
+    setIsAnimating(true);
+    const key = searchHashKey.trim();
+
+    // Step 1: Calculate hash
+    setAnimationStep(`🔍 Bước 1: Tính toán hash cho key "${key}"...`);
+    await sleep(1000);
+
+    const hashValue = animationHashFunction(key);
+    setHashCalculation(`hash("${key}") = ${hashValue}`);
+    setAnimationStep(`🧮 Hash function: hash("${key}") = ${hashValue}`);
+    await sleep(1500);
+
+    // Step 2: Highlight target bucket
+    setHighlightedBucket(hashValue);
+    setAnimationStep(`🎯 Bước 2: Kiểm tra bucket ${hashValue}...`);
+    await sleep(1000);
+
+    // Step 3: Search in bucket
+    const bucket = animationHashTable[hashValue];
+    let found = false;
+
+    for (let i = 0; i < bucket.entries.length; i++) {
+      setHighlightedEntry({ bucket: hashValue, entry: i });
+      const entry = bucket.entries[i];
+
+      if (entry.key === key) {
+        found = true;
+        setAnimationStep(`🎉 Tìm thấy! "${key}" = "${entry.value}" tại bucket ${hashValue}`);
+        await sleep(2000);
+        break;
+      } else {
+        setAnimationStep(`🔍 Kiểm tra "${entry.key}" ≠ "${key}", tiếp tục...`);
+        await sleep(800);
+      }
+    }
+
+    if (!found) {
+      setAnimationStep(`❌ Không tìm thấy "${key}" trong bucket ${hashValue}!`);
+      await sleep(2000);
+    }
+
+    setHighlightedBucket(null);
+    setHighlightedEntry(null);
+    setHashCalculation("");
+    setIsAnimating(false);
+  };
+
+  const animateHashRemove = async () => {
+    if (!searchHashKey.trim()) return;
+
+    setIsAnimating(true);
+    const key = searchHashKey.trim();
+
+    // Similar to search, but remove if found
+    const hashValue = animationHashFunction(key);
+    setHashCalculation(`hash("${key}") = ${hashValue}`);
+    setHighlightedBucket(hashValue);
+    setAnimationStep(`🗑️ Đang xóa "${key}" từ bucket ${hashValue}...`);
+    await sleep(1500);
+
+    const bucket = animationHashTable[hashValue];
+    const entryIndex = bucket.entries.findIndex(entry => entry.key === key);
+
+    if (entryIndex !== -1) {
+      setHighlightedEntry({ bucket: hashValue, entry: entryIndex });
+      const removedValue = bucket.entries[entryIndex].value;
+      setAnimationStep(`✅ Tìm thấy "${key}" = "${removedValue}", xóa khỏi bucket...`);
+      await sleep(1500);
+
+      const newHashTable = [...animationHashTable];
+      newHashTable[hashValue].entries.splice(entryIndex, 1);
+      setAnimationHashTable(newHashTable);
+
+      setAnimationStep(`✅ Đã xóa "${key}" khỏi hash table!`);
+    } else {
+      setAnimationStep(`❌ Không tìm thấy "${key}" để xóa!`);
+    }
+
+    await sleep(2000);
+    setHighlightedBucket(null);
+    setHighlightedEntry(null);
+    setHashCalculation("");
+    setIsAnimating(false);
+  };
+
+  const resetHashTable = () => {
+    // Add some sample data
+    const newHashTable: HashBucket[] = Array(8).fill(null).map(() => ({ entries: [] }));
+    const sampleData = [{ key: "name", value: "John" }, { key: "age", value: "25" }, { key: "city", value: "HN" }];
+
+    sampleData.forEach(({key, value}) => {
+      const hash = animationHashFunction(key);
+      newHashTable[hash].entries.push({ key, value });
+    });
+
+    setAnimationHashTable(newHashTable);
+    setHighlightedBucket(null);
+    setHighlightedEntry(null);
+    setAnimationStep("");
+    setInsertKey("");
+    setInsertVal("");
+    setSearchHashKey("");
+    setHashCalculation("");
+  };
+
+  const getTotalEntries = () => {
+    return animationHashTable.reduce((total, bucket) => total + bucket.entries.length, 0);
+  };
+
+  const getLoadFactor = () => {
+    return (getTotalEntries() / animationHashTable.length).toFixed(2);
+  };
+
+  // Initialize with sample data
+  useEffect(() => {
+    resetHashTable();
+  }, []);
+
   return (
     <div className="space-y-6">
       <div className="bg-white dark:bg-slate-800 rounded-lg p-6 border">
@@ -195,6 +405,206 @@ export function HashTableSection() {
         </div>
 
         <div className="space-y-4">
+          {/* Interactive Hash Table Visualization */}
+          <div className="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 p-6 rounded-lg border-2 border-purple-200 dark:border-purple-800">
+            <h4 className="font-semibold text-purple-800 dark:text-purple-300 mb-4 flex items-center gap-2">
+              🎮 Minh Họa Tương Tác - Hash Table Operations
+            </h4>
+
+            {/* Hash Table Visualization */}
+            <div className="mb-6">
+              {/* Hash calculation display */}
+              {hashCalculation && (
+                <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-lg p-3 mb-4">
+                  <div className="font-mono text-blue-800 dark:text-blue-300">
+                    🧮 Hash Calculation: {hashCalculation}
+                  </div>
+                </div>
+              )}
+
+              {/* Hash table buckets */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+                {animationHashTable.map((bucket, index) => (
+                  <div
+                    key={index}
+                    className={`border-2 rounded-lg p-3 transition-all duration-500 ${
+                      highlightedBucket === index
+                        ? "border-red-500 bg-yellow-100 dark:bg-yellow-900/30 scale-105 shadow-lg"
+                        : "border-purple-300 dark:border-purple-600 bg-white dark:bg-slate-800"
+                    }`}
+                  >
+                    <div className="text-sm font-bold text-purple-600 dark:text-purple-400 mb-2">
+                      Bucket {index}
+                    </div>
+
+                    {bucket.entries.length === 0 ? (
+                      <div className="text-xs text-gray-400 italic">Empty</div>
+                    ) : (
+                      <div className="space-y-1">
+                        {bucket.entries.map((entry, entryIndex) => (
+                          <div
+                            key={entryIndex}
+                            className={`text-xs p-2 rounded border transition-all duration-300 ${
+                              highlightedEntry?.bucket === index && highlightedEntry?.entry === entryIndex
+                                ? "bg-yellow-300 border-red-400 animate-pulse"
+                                : "bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                            }`}
+                          >
+                            <div className="font-mono">
+                              <span className="text-blue-600 dark:text-blue-400">"{entry.key}"</span>
+                              <span className="text-gray-500"> → </span>
+                              <span className="text-green-600 dark:text-green-400">"{entry.value}"</span>
+                            </div>
+                          </div>
+                        ))}
+                        {bucket.entries.length > 1 && (
+                          <div className="text-xs text-orange-600 dark:text-orange-400 font-semibold">
+                            Collision: {bucket.entries.length} entries
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              {/* Animation status */}
+              {animationStep && (
+                <div className="bg-orange-100 dark:bg-orange-900/30 border border-orange-300 dark:border-orange-700 rounded-lg p-3 mb-4">
+                  <div className="font-medium text-orange-800 dark:text-orange-300">
+                    {animationStep}
+                  </div>
+                </div>
+              )}
+
+              {/* Hash table stats */}
+              <div className="grid grid-cols-4 gap-4 text-sm text-gray-600 dark:text-gray-400 mb-4">
+                <div className="bg-white dark:bg-slate-800 p-3 rounded">
+                  <strong>Buckets:</strong> {animationHashTable.length}
+                </div>
+                <div className="bg-white dark:bg-slate-800 p-3 rounded">
+                  <strong>Entries:</strong> {getTotalEntries()}
+                </div>
+                <div className="bg-white dark:bg-slate-800 p-3 rounded">
+                  <strong>Load Factor:</strong> {getLoadFactor()}
+                </div>
+                <div className="bg-white dark:bg-slate-800 p-3 rounded">
+                  <strong>Collisions:</strong> {animationHashTable.filter(b => b.entries.length > 1).length}
+                </div>
+              </div>
+            </div>
+
+            {/* Interactive Controls */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {/* Insert */}
+              <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border">
+                <h5 className="font-medium text-green-600 dark:text-green-400 mb-2">➕ Insert (O(1))</h5>
+                <div className="space-y-2">
+                  <input
+                    type="text"
+                    value={insertKey}
+                    onChange={(e) => setInsertKey(e.target.value)}
+                    placeholder="Key"
+                    className="w-full px-2 py-1 text-sm border rounded dark:bg-slate-700 dark:border-slate-600"
+                    disabled={isAnimating}
+                  />
+                  <input
+                    type="text"
+                    value={insertVal}
+                    onChange={(e) => setInsertVal(e.target.value)}
+                    placeholder="Value"
+                    className="w-full px-2 py-1 text-sm border rounded dark:bg-slate-700 dark:border-slate-600"
+                    disabled={isAnimating}
+                  />
+                  <button
+                    onClick={animateHashInsert}
+                    disabled={isAnimating || !insertKey || !insertVal}
+                    className="w-full px-3 py-2 text-sm bg-green-500 text-white rounded hover:bg-green-600 disabled:opacity-50"
+                  >
+                    Thêm vào Hash Table
+                  </button>
+                </div>
+              </div>
+
+              {/* Search */}
+              <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border">
+                <h5 className="font-medium text-blue-600 dark:text-blue-400 mb-2">🔍 Search (O(1))</h5>
+                <div className="space-y-2">
+                  <input
+                    type="text"
+                    value={searchHashKey}
+                    onChange={(e) => setSearchHashKey(e.target.value)}
+                    placeholder="Nhập key tìm kiếm"
+                    className="w-full px-2 py-1 text-sm border rounded dark:bg-slate-700 dark:border-slate-600"
+                    disabled={isAnimating}
+                  />
+                  <button
+                    onClick={animateHashSearch}
+                    disabled={isAnimating || !searchHashKey}
+                    className="w-full px-3 py-2 text-sm bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50"
+                  >
+                    Tìm kiếm
+                  </button>
+                </div>
+              </div>
+
+              {/* Remove */}
+              <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border">
+                <h5 className="font-medium text-red-600 dark:text-red-400 mb-2">🗑️ Remove (O(1))</h5>
+                <div className="space-y-2">
+                  <button
+                    onClick={animateHashRemove}
+                    disabled={isAnimating || !searchHashKey}
+                    className="w-full px-3 py-2 text-sm bg-red-500 text-white rounded hover:bg-red-600 disabled:opacity-50"
+                  >
+                    Xóa Key
+                  </button>
+                  <div className="text-xs text-gray-500 dark:text-gray-400 text-center">
+                    Xóa key từ hash table
+                  </div>
+                </div>
+              </div>
+
+              {/* Reset */}
+              <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border">
+                <h5 className="font-medium text-gray-600 dark:text-gray-400 mb-2">🛠️ Điều Khiển</h5>
+                <div className="space-y-2">
+                  <button
+                    onClick={resetHashTable}
+                    disabled={isAnimating}
+                    className="w-full px-3 py-2 text-sm bg-gray-500 text-white rounded hover:bg-gray-600 disabled:opacity-50"
+                  >
+                    🔄 Reset
+                  </button>
+                  <div className="text-xs text-gray-500 dark:text-gray-400 text-center">
+                    Khôi phục dữ liệu mẫu
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Operation Explanations */}
+            <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+              <div className="bg-green-50 dark:bg-green-900/20 p-3 rounded border border-green-200 dark:border-green-800">
+                <strong className="text-green-700 dark:text-green-300">Hash Function:</strong>
+                <p className="text-gray-600 dark:text-gray-400 mt-1">
+                  Chuyển đổi key thành index của bucket. Hàm tốt giảm thiểu collision.
+                </p>
+              </div>
+              <div className="bg-blue-50 dark:bg-blue-900/20 p-3 rounded border border-blue-200 dark:border-blue-800">
+                <strong className="text-blue-700 dark:text-blue-300">Collision Handling:</strong>
+                <p className="text-gray-600 dark:text-gray-400 mt-1">
+                  Chaining: Mỗi bucket là 1 danh sách, nhiều entry có thể cùng bucket.
+                </p>
+              </div>
+              <div className="bg-purple-50 dark:bg-purple-900/20 p-3 rounded border border-purple-200 dark:border-purple-800">
+                <strong className="text-purple-700 dark:text-purple-300">Load Factor:</strong>
+                <p className="text-gray-600 dark:text-gray-400 mt-1">
+                  Tỉ lệ entries/buckets. Cao quá → nhiều collision, cần resize.
+                </p>
+              </div>
+            </div>
+          </div>
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
             <h4 className="font-medium mb-2">Thao Tác Hash Table:</h4>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

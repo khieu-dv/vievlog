@@ -18,6 +18,33 @@ export function TreesSection() {
   const [wasm, setWasm] = useState<any>(null);
   const [activeLanguageTab, setActiveLanguageTab] = useState("rust");
 
+  // Interactive visualization states
+  interface TreeNode {
+    value: number;
+    left?: TreeNode;
+    right?: TreeNode;
+  }
+
+  const [animationTree, setAnimationTree] = useState<TreeNode | null>({
+    value: 50,
+    left: {
+      value: 30,
+      left: { value: 20 },
+      right: { value: 40 }
+    },
+    right: {
+      value: 70,
+      left: { value: 60 },
+      right: { value: 80 }
+    }
+  });
+  const [insertValue, setInsertValue] = useState("");
+  const [searchTreeValue, setSearchTreeValue] = useState("");
+  const [highlightedNode, setHighlightedNode] = useState<number | null>(null);
+  const [animationStep, setAnimationStep] = useState<string>("");
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [traversalPath, setTraversalPath] = useState<number[]>([]);
+
   // Initialize WASM
   useEffect(() => {
     async function init() {
@@ -48,7 +75,7 @@ export function TreesSection() {
     }
   };
 
-  const insertValue = () => {
+  const insertValueWasm = () => {
     const value = parseInt(inputValue);
     if (!isNaN(value)) {
       if (wasmReady && rustBST) {
@@ -123,6 +150,307 @@ export function TreesSection() {
     }
   };
 
+  // Animation functions
+  const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
+  const insertIntoTree = (node: TreeNode | null, value: number): TreeNode => {
+    if (!node) {
+      return { value };
+    }
+
+    if (value <= node.value) {
+      return { ...node, left: insertIntoTree(node.left || null, value) };
+    } else {
+      return { ...node, right: insertIntoTree(node.right || null, value) };
+    }
+  };
+
+  const animateTreeInsert = async () => {
+    const newValue = parseInt(insertValue);
+    if (isNaN(newValue)) return;
+
+    setIsAnimating(true);
+    setAnimationStep(`➕ Đang thêm ${newValue} vào BST...`);
+    setTraversalPath([]);
+    await sleep(1000);
+
+    // Show traversal path to find insertion point
+    const path: number[] = [];
+    let current = animationTree;
+
+    while (current) {
+      path.push(current.value);
+      setTraversalPath([...path]);
+      setHighlightedNode(current.value);
+
+      if (newValue <= current.value) {
+        setAnimationStep(`🔍 ${newValue} ≤ ${current.value}, đi xuống trái...`);
+        await sleep(800);
+        current = current.left || null;
+      } else {
+        setAnimationStep(`🔍 ${newValue} > ${current.value}, đi xuống phải...`);
+        await sleep(800);
+        current = current.right || null;
+      }
+
+      if (!current) {
+        setAnimationStep(`📍 Tìm thấy vị trí để chèn ${newValue}!`);
+        await sleep(1000);
+      }
+    }
+
+    // Insert the value
+    setAnimationTree(insertIntoTree(animationTree, newValue));
+    setHighlightedNode(newValue);
+    setAnimationStep(`✅ Đã thêm ${newValue} vào BST! Độ phức tạp: O(log n)`);
+    await sleep(2000);
+
+    setHighlightedNode(null);
+    setTraversalPath([]);
+    setIsAnimating(false);
+    setInsertValue("");
+  };
+
+  const animateTreeSearch = async () => {
+    const searchVal = parseInt(searchTreeValue);
+    if (isNaN(searchVal)) return;
+
+    setIsAnimating(true);
+    setAnimationStep(`🔍 Đang tìm kiếm ${searchVal} trong BST...`);
+    setTraversalPath([]);
+    await sleep(1000);
+
+    // Show search path
+    const path: number[] = [];
+    let current = animationTree;
+    let found = false;
+
+    while (current && !found) {
+      path.push(current.value);
+      setTraversalPath([...path]);
+      setHighlightedNode(current.value);
+
+      if (searchVal === current.value) {
+        found = true;
+        setAnimationStep(`🎉 Tìm thấy ${searchVal} trong BST!`);
+        await sleep(2000);
+      } else if (searchVal < current.value) {
+        setAnimationStep(`🔍 ${searchVal} < ${current.value}, tìm ở cây con trái...`);
+        await sleep(800);
+        current = current.left || null;
+      } else {
+        setAnimationStep(`🔍 ${searchVal} > ${current.value}, tìm ở cây con phải...`);
+        await sleep(800);
+        current = current.right || null;
+      }
+    }
+
+    if (!found) {
+      setAnimationStep(`❌ Không tìm thấy ${searchVal} trong BST! Đã duyệt ${path.length} nút.`);
+      await sleep(2000);
+    }
+
+    setHighlightedNode(null);
+    setTraversalPath([]);
+    setIsAnimating(false);
+  };
+
+  const animateInorderTraversal = async () => {
+    setIsAnimating(true);
+    setAnimationStep("🚶 Bắt đầu duyệt Inorder (Trái → Gốc → Phải)...");
+    setTraversalPath([]);
+    await sleep(1000);
+
+    const inorderSequence: number[] = [];
+
+    const inorderHelper = async (node: TreeNode | null): Promise<void> => {
+      if (!node) return;
+
+      // Visit left
+      if (node.left) {
+        await inorderHelper(node.left);
+      }
+
+      // Visit root
+      setHighlightedNode(node.value);
+      inorderSequence.push(node.value);
+      setAnimationStep(`📝 Thăm nút ${node.value} - Dãy hiện tại: [${inorderSequence.join(', ')}]`);
+      setTraversalPath([...inorderSequence]);
+      await sleep(1000);
+
+      // Visit right
+      if (node.right) {
+        await inorderHelper(node.right);
+      }
+    };
+
+    await inorderHelper(animationTree);
+
+    setAnimationStep(`✅ Hoàn thành Inorder traversal! Dãy đã sắp xếp: [${inorderSequence.join(', ')}]`);
+    await sleep(2000);
+
+    setHighlightedNode(null);
+    setIsAnimating(false);
+  };
+
+  const resetTree = () => {
+    setAnimationTree({
+      value: 50,
+      left: {
+        value: 30,
+        left: { value: 20 },
+        right: { value: 40 }
+      },
+      right: {
+        value: 70,
+        left: { value: 60 },
+        right: { value: 80 }
+      }
+    });
+    setHighlightedNode(null);
+    setAnimationStep("");
+    setInsertValue("");
+    setSearchTreeValue("");
+    setTraversalPath([]);
+  };
+
+  const countNodes = (node: TreeNode | null): number => {
+    if (!node) return 0;
+    return 1 + countNodes(node.left || null) + countNodes(node.right || null);
+  };
+
+  const getTreeHeight = (node: TreeNode | null): number => {
+    if (!node) return 0;
+    return 1 + Math.max(getTreeHeight(node.left || null), getTreeHeight(node.right || null));
+  };
+
+  const renderTreeNode = (node: TreeNode | null, level: number = 0, position: 'root' | 'left' | 'right' = 'root'): React.ReactNode => {
+    if (!node) return null;
+
+    const isHighlighted = highlightedNode === node.value;
+    const isInPath = traversalPath.includes(node.value);
+
+    return (
+      <div key={node.value} className="flex flex-col items-center relative">
+        {/* Node Circle */}
+        <div
+          className={`w-16 h-16 rounded-full border-2 flex items-center justify-center font-bold text-lg transition-all duration-500 relative z-10 ${
+            isHighlighted
+              ? "bg-yellow-400 border-red-500 scale-125 shadow-lg animate-pulse"
+              : isInPath
+              ? "bg-orange-200 dark:bg-orange-800 border-orange-500 scale-110 shadow-md"
+              : "bg-green-100 dark:bg-green-800 border-green-500 hover:scale-105 hover:shadow-md"
+          }`}
+        >
+          {node.value}
+
+          {/* Glow effect khi highlighted */}
+          {isHighlighted && (
+            <div className="absolute inset-0 rounded-full bg-yellow-400 opacity-30 animate-ping"></div>
+          )}
+        </div>
+
+        {/* Children Container */}
+        {(node.left || node.right) && (
+          <div className="flex justify-center items-start mt-8 relative" style={{ minWidth: '200px' }}>
+            {/* Left Child */}
+            <div className="flex flex-col items-center" style={{ minWidth: '100px' }}>
+              {node.left ? (
+                <>
+                  {/* Left connecting line - vertical then diagonal */}
+                  <svg
+                    className="absolute"
+                    style={{
+                      top: '-24px',
+                      left: '50%',
+                      transform: 'translateX(-50%)',
+                      width: '100px',
+                      height: '32px',
+                      overflow: 'visible'
+                    }}
+                  >
+                    <path
+                      d={`M 50 0 L 50 16 L 25 32`}
+                      stroke={isHighlighted || isInPath ? "#f97316" : "#22c55e"}
+                      strokeWidth={isHighlighted || isInPath ? "3" : "2"}
+                      fill="none"
+                      className="transition-all duration-300"
+                      strokeDasharray={isHighlighted ? "5,5" : "none"}
+                    />
+                    {isHighlighted && (
+                      <path
+                        d={`M 50 0 L 50 16 L 25 32`}
+                        stroke="#fbbf24"
+                        strokeWidth="1"
+                        fill="none"
+                        className="animate-pulse opacity-60"
+                      />
+                    )}
+                  </svg>
+                  <div className="mt-4">
+                    {renderTreeNode(node.left, level + 1, 'left')}
+                  </div>
+                </>
+              ) : (
+                <div style={{ minWidth: '100px' }}></div>
+              )}
+            </div>
+
+            {/* Right Child */}
+            <div className="flex flex-col items-center" style={{ minWidth: '100px' }}>
+              {node.right ? (
+                <>
+                  {/* Right connecting line - vertical then diagonal */}
+                  <svg
+                    className="absolute"
+                    style={{
+                      top: '-24px',
+                      right: '50%',
+                      transform: 'translateX(50%)',
+                      width: '100px',
+                      height: '32px',
+                      overflow: 'visible'
+                    }}
+                  >
+                    <path
+                      d={`M 50 0 L 50 16 L 75 32`}
+                      stroke={isHighlighted || isInPath ? "#f97316" : "#22c55e"}
+                      strokeWidth={isHighlighted || isInPath ? "3" : "2"}
+                      fill="none"
+                      className="transition-all duration-300"
+                      strokeDasharray={isHighlighted ? "5,5" : "none"}
+                    />
+                    {isHighlighted && (
+                      <path
+                        d={`M 50 0 L 50 16 L 75 32`}
+                        stroke="#fbbf24"
+                        strokeWidth="1"
+                        fill="none"
+                        className="animate-pulse opacity-60"
+                      />
+                    )}
+                  </svg>
+                  <div className="mt-4">
+                    {renderTreeNode(node.right, level + 1, 'right')}
+                  </div>
+                </>
+              ) : (
+                <div style={{ minWidth: '100px' }}></div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Enhanced styling for different positions */}
+        {level === 0 && (
+          <div className="absolute -top-8 text-xs text-green-600 dark:text-green-400 font-semibold">
+            ROOT
+          </div>
+        )}
+      </div>
+    );
+  };
+
   return (
     <div className="space-y-6">
       <div className="bg-white dark:bg-slate-800 rounded-lg p-6 border">
@@ -179,6 +507,163 @@ export function TreesSection() {
         </div>
 
         <div className="space-y-4">
+          {/* Interactive BST Visualization */}
+          <div className="bg-gradient-to-r from-green-50 to-teal-50 dark:from-green-900/20 dark:to-teal-900/20 p-6 rounded-lg border-2 border-green-200 dark:border-green-800">
+            <h4 className="font-semibold text-green-800 dark:text-green-300 mb-4 flex items-center gap-2">
+              🎮 Minh Họa Tương Tác - Binary Search Tree Operations
+            </h4>
+
+            {/* BST Visualization */}
+            <div className="mb-6">
+              <div className="flex items-start justify-center mb-4 min-h-96 overflow-x-auto p-8 bg-gradient-to-b from-green-50 to-white dark:from-green-900/10 dark:to-slate-800 rounded-xl border border-green-200 dark:border-green-800">
+                <div className="flex flex-col items-center w-full">
+                  {animationTree ? (
+                    <div className="scale-90 md:scale-100 transition-transform">
+                      {renderTreeNode(animationTree)}
+                    </div>
+                  ) : (
+                    <div className="text-gray-500 italic text-center p-8 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg">
+                      BST rỗng - Hãy thêm nút để bắt đầu
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Animation status */}
+              {animationStep && (
+                <div className="bg-orange-100 dark:bg-orange-900/30 border border-orange-300 dark:border-orange-700 rounded-lg p-3 mb-4">
+                  <div className="font-medium text-orange-800 dark:text-orange-300">
+                    {animationStep}
+                  </div>
+                </div>
+              )}
+
+              {/* Traversal path */}
+              {traversalPath.length > 0 && (
+                <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-lg p-3 mb-4">
+                  <div className="font-medium text-blue-800 dark:text-blue-300">
+                    🛤️ Đường dẫn: {traversalPath.join(' → ')}
+                  </div>
+                </div>
+              )}
+
+              {/* Tree info */}
+              <div className="grid grid-cols-3 gap-4 text-sm text-gray-600 dark:text-gray-400 mb-4">
+                <div className="bg-white dark:bg-slate-800 p-3 rounded">
+                  <strong>Root:</strong> {animationTree ? animationTree.value : "NULL"}
+                </div>
+                <div className="bg-white dark:bg-slate-800 p-3 rounded">
+                  <strong>Nodes:</strong> {animationTree ? countNodes(animationTree) : 0}
+                </div>
+                <div className="bg-white dark:bg-slate-800 p-3 rounded">
+                  <strong>Height:</strong> {animationTree ? getTreeHeight(animationTree) : 0}
+                </div>
+              </div>
+            </div>
+
+            {/* Interactive Controls */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {/* Insert */}
+              <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border">
+                <h5 className="font-medium text-green-600 dark:text-green-400 mb-2">➕ Insert (O(log n))</h5>
+                <div className="space-y-2">
+                  <input
+                    type="number"
+                    value={insertValue}
+                    onChange={(e) => setInsertValue(e.target.value)}
+                    placeholder="Nhập giá trị"
+                    className="w-full px-2 py-1 text-sm border rounded dark:bg-slate-700 dark:border-slate-600"
+                    disabled={isAnimating}
+                  />
+                  <button
+                    onClick={animateTreeInsert}
+                    disabled={isAnimating || !insertValue}
+                    className="w-full px-3 py-2 text-sm bg-green-500 text-white rounded hover:bg-green-600 disabled:opacity-50"
+                  >
+                    Thêm vào BST
+                  </button>
+                </div>
+              </div>
+
+              {/* Search */}
+              <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border">
+                <h5 className="font-medium text-blue-600 dark:text-blue-400 mb-2">🔍 Search (O(log n))</h5>
+                <div className="space-y-2">
+                  <input
+                    type="number"
+                    value={searchTreeValue}
+                    onChange={(e) => setSearchTreeValue(e.target.value)}
+                    placeholder="Nhập giá trị"
+                    className="w-full px-2 py-1 text-sm border rounded dark:bg-slate-700 dark:border-slate-600"
+                    disabled={isAnimating}
+                  />
+                  <button
+                    onClick={animateTreeSearch}
+                    disabled={isAnimating || !searchTreeValue}
+                    className="w-full px-3 py-2 text-sm bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50"
+                  >
+                    Tìm kiếm
+                  </button>
+                </div>
+              </div>
+
+              {/* Traversal */}
+              <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border">
+                <h5 className="font-medium text-purple-600 dark:text-purple-400 mb-2">🚶 Traversal</h5>
+                <div className="space-y-2">
+                  <button
+                    onClick={animateInorderTraversal}
+                    disabled={isAnimating}
+                    className="w-full px-3 py-2 text-sm bg-purple-500 text-white rounded hover:bg-purple-600 disabled:opacity-50"
+                  >
+                    Inorder (L→N→R)
+                  </button>
+                  <div className="text-xs text-gray-500 dark:text-gray-400 text-center">
+                    Duyệt theo thứ tự
+                  </div>
+                </div>
+              </div>
+
+              {/* Reset */}
+              <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border">
+                <h5 className="font-medium text-gray-600 dark:text-gray-400 mb-2">🛠️ Điều Khiển</h5>
+                <div className="space-y-2">
+                  <button
+                    onClick={resetTree}
+                    disabled={isAnimating}
+                    className="w-full px-3 py-2 text-sm bg-gray-500 text-white rounded hover:bg-gray-600 disabled:opacity-50"
+                  >
+                    🔄 Reset Tree
+                  </button>
+                  <div className="text-xs text-gray-500 dark:text-gray-400 text-center">
+                    Khôi phục cây mẫu
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Operation Explanations */}
+            <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+              <div className="bg-green-50 dark:bg-green-900/20 p-3 rounded border border-green-200 dark:border-green-800">
+                <strong className="text-green-700 dark:text-green-300">Insert O(log n):</strong>
+                <p className="text-gray-600 dark:text-gray-400 mt-1">
+                  So sánh với nút hiện tại, đi trái nếu nhỏ hơn, phải nếu lớn hơn cho đến khi tìm được vị trí.
+                </p>
+              </div>
+              <div className="bg-blue-50 dark:bg-blue-900/20 p-3 rounded border border-blue-200 dark:border-blue-800">
+                <strong className="text-blue-700 dark:text-blue-300">Search O(log n):</strong>
+                <p className="text-gray-600 dark:text-gray-400 mt-1">
+                  Tìm kiếm hiệu quả nhờ tính chất BST. Mỗi bước loại bỏ một nửa không gian tìm kiếm.
+                </p>
+              </div>
+              <div className="bg-purple-50 dark:bg-purple-900/20 p-3 rounded border border-purple-200 dark:border-purple-800">
+                <strong className="text-purple-700 dark:text-purple-300">Inorder Traversal:</strong>
+                <p className="text-gray-600 dark:text-gray-400 mt-1">
+                  Duyệt Trái → Gốc → Phải cho kết quả đã sắp xếp tăng dần.
+                </p>
+              </div>
+            </div>
+          </div>
           <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
             <h4 className="font-medium mb-2">Cấu Trúc Cây Nhị Phân:</h4>
             <MermaidDiagram
@@ -228,7 +713,7 @@ export function TreesSection() {
                 className="px-3 py-2 border rounded dark:bg-slate-600 dark:border-slate-500"
               />
               <button
-                onClick={insertValue}
+                onClick={insertValueWasm}
                 disabled={!wasmReady}
                 className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 disabled:opacity-50"
               >
