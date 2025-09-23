@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import { Header } from "~/components/common/Header";
 import { Footer } from "~/components/common/Footer";
-import { ArraysSection, LinkedListsSection, TreesSection, GraphsSection, HashTableSection, StackSection, QueueSection, HeapSection } from "~/components/data-structures";
+import { OverviewSection, ArraysSection, LinkedListsSection, TreesSection, GraphsSection, HashTableSection, StackSection, QueueSection, HeapSection } from "~/components/data-structures";
 import { SortingSection, SearchingSection, ComplexitySection, DijkstraSection, DynamicProgrammingSection } from "~/components/algorithms";
 
 interface TabProps {
@@ -29,6 +29,12 @@ interface TabProps {
 }
 
 const tabs: TabProps[] = [
+  {
+    id: "overview",
+    title: "Tổng quan",
+    icon: Binary,
+    content: null // Will be set dynamically with setActiveTab
+  },
   {
     id: "arrays",
     title: "Mảng & Vector",
@@ -104,7 +110,7 @@ const tabs: TabProps[] = [
 ];
 
 export default function DataStructuresPage() {
-  const [activeTab, setActiveTab] = useState("arrays");
+  const [activeTab, setActiveTab] = useState("overview");
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-slate-900">
@@ -148,7 +154,11 @@ export default function DataStructuresPage() {
 
         {/* Tab Content */}
         <div className="min-h-[600px]">
-          {tabs.find(tab => tab.id === activeTab)?.content}
+          {activeTab === "overview" ? (
+            <OverviewSection setActiveTab={setActiveTab} />
+          ) : (
+            tabs.find(tab => tab.id === activeTab)?.content
+          )}
         </div>
 
         {/* Performance Comparison */}
