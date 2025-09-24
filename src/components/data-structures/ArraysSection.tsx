@@ -6,6 +6,8 @@ import { MermaidDiagram } from "~/components/common/MermaidDiagram";
 import { RustCodeEditor } from "~/components/common/RustCodeEditor";
 import { CppCodeEditor } from "~/components/common/CppCodeEditor";
 import { PythonCodeEditor } from "~/components/common/PythonCodeEditor";
+import { SmartCodeRunner } from "~/components/common/SmartCodeRunner";
+import { EditableCodeEditor } from "~/components/common/EditableCodeEditor";
 
 export function ArraysSection() {
   const [vector, setVector] = useState<number[]>([]);
@@ -20,6 +22,195 @@ export function ArraysSection() {
   const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null);
   const [animationStep, setAnimationStep] = useState<string>("");
   const [isAnimating, setIsAnimating] = useState(false);
+
+  // Code running states
+  const [isRunningCode, setIsRunningCode] = useState(false);
+  const [codeOutput, setCodeOutput] = useState<string>("");
+  const [showOutput, setShowOutput] = useState(false);
+
+  // Code storage for different languages
+  const [codeState, setCodeState] = useState({
+    rust: `fn main() {
+    println!("=== Vector Demo trong Rust ===");
+
+    // Vector trong Rust - An toàn bộ nhớ và nhanh chóng
+    let mut vec = Vec::new();
+
+    // Thêm phần tử
+    println!("Thêm các phần tử: 1, 2, 3");
+    vec.push(1);
+    vec.push(2);
+    vec.push(3);
+
+    println!("Vector ban đầu: {:?}", vec);
+    println!("Kích thước: {}", vec.len());
+
+    // Truy cập an toàn
+    match vec.get(0) {
+        Some(value) => println!("Phần tử đầu: {}", value),
+        None => println!("Index không tồn tại"),
+    }
+
+    // Tìm kiếm phần tử
+    let target = 2;
+    match vec.iter().position(|&x| x == target) {
+        Some(index) => println!("Tìm thấy phần tử {} tại vị trí: {}", target, index),
+        None => println!("Không tìm thấy phần tử {}", target),
+    }
+
+    // Duyệt qua vector
+    println!("Duyệt vector:");
+    for (index, value) in vec.iter().enumerate() {
+        println!("  vec[{}] = {}", index, value);
+    }
+
+    // Xóa phần tử cuối
+    if let Some(last) = vec.pop() {
+        println!("Đã xóa phần tử cuối: {}", last);
+    }
+
+    println!("Vector sau khi xóa: {:?}", vec);
+    println!("Kích thước sau khi xóa: {}", vec.len());
+
+    // Thêm thêm phần tử
+    vec.push(0);
+    println!("Thêm phần tử 0 vào cuối:");
+    println!("Vector cuối cùng: {:?}", vec);
+
+    // Vector với dung lượng định trước
+    let vec_with_capacity = Vec::with_capacity(10);
+    println!("Vector với capacity 10: {:?}", vec_with_capacity);
+    println!("Kích thước: {}, Capacity: {}", vec_with_capacity.len(), vec_with_capacity.capacity());
+}`,
+    cpp: `#include <vector>
+#include <iostream>
+#include <algorithm>
+
+int main() {
+    std::cout << "=== Vector Demo trong C++ ===" << std::endl;
+
+    // Vector trong C++ - Hiệu quả và linh hoạt
+    std::vector<int> vec;
+
+    // Thêm phần tử
+    std::cout << "Thêm các phần tử: 1, 2, 3" << std::endl;
+    vec.push_back(1);
+    vec.push_back(2);
+    vec.push_back(3);
+
+    std::cout << "Vector ban đầu: ";
+    for (const auto& value : vec) {
+        std::cout << value << " ";
+    }
+    std::cout << std::endl;
+    std::cout << "Kích thước: " << vec.size() << std::endl;
+
+    // Truy cập an toàn
+    if (vec.size() > 0) {
+        std::cout << "Phần tử đầu: " << vec[0] << std::endl;
+    }
+
+    // Tìm kiếm phần tử
+    int target = 2;
+    auto it = std::find(vec.begin(), vec.end(), target);
+    if (it != vec.end()) {
+        std::cout << "Tìm thấy phần tử " << target << " tại vị trí: " << std::distance(vec.begin(), it) << std::endl;
+    } else {
+        std::cout << "Không tìm thấy phần tử " << target << std::endl;
+    }
+
+    // Duyệt qua vector
+    std::cout << "Duyệt vector:" << std::endl;
+    for (size_t i = 0; i < vec.size(); ++i) {
+        std::cout << "  vec[" << i << "] = " << vec[i] << std::endl;
+    }
+
+    // Xóa phần tử cuối
+    if (!vec.empty()) {
+        int last = vec.back();
+        vec.pop_back();
+        std::cout << "Đã xóa phần tử cuối: " << last << std::endl;
+    }
+
+    std::cout << "Vector sau khi xóa: ";
+    for (const auto& value : vec) {
+        std::cout << value << " ";
+    }
+    std::cout << std::endl;
+    std::cout << "Kích thước sau khi xóa: " << vec.size() << std::endl;
+
+    // Thêm thêm phần tử
+    vec.push_back(0);
+    std::cout << "Thêm phần tử 0 vào cuối:" << std::endl;
+    std::cout << "Vector cuối cùng: ";
+    for (const auto& value : vec) {
+        std::cout << value << " ";
+    }
+    std::cout << std::endl;
+
+    // Vector với capacity định trước
+    std::vector<int> vec_with_capacity;
+    vec_with_capacity.reserve(10);
+    std::cout << "Vector với capacity 10: ";
+    for (const auto& value : vec_with_capacity) {
+        std::cout << value << " ";
+    }
+    if (vec_with_capacity.empty()) std::cout << "(rỗng)";
+    std::cout << std::endl;
+    std::cout << "Kích thước: " << vec_with_capacity.size() << ", Capacity: " << vec_with_capacity.capacity() << std::endl;
+
+    return 0;
+}`,
+    python: `# List trong Python - Linh hoạt và dễ sử dụng
+
+def main():
+    vec = []
+
+    # Thêm phần tử
+    vec.append(1)
+    vec.append(2)
+    vec.append(3)
+
+    print(f"List ban đầu: {vec}")
+
+    # Truy cập phần tử
+    if len(vec) > 0:
+        print(f"Phần tử đầu: {vec[0]}")
+        print(f"Phần tử cuối: {vec[-1]}")  # Python hỗ trợ index âm
+
+    # Duyệt list với enumerate
+    print("Duyệt list:")
+    for index, value in enumerate(vec):
+        print(f"  vec[{index}] = {value}")
+
+    # List comprehension - tính năng mạnh mẽ của Python
+    squares = [x**2 for x in vec]
+    print(f"Bình phương các phần tử: {squares}")
+
+    # Slicing - cắt list
+    if len(vec) >= 2:
+        subset = vec[0:2]  # Lấy phần tử từ 0 đến 1
+        print(f"Subset (2 phần tử đầu): {subset}")
+
+    # Thêm nhiều phần tử
+    vec.extend([4, 5])
+    print(f"Sau khi extend [4, 5]: {vec}")
+
+    # Xóa phần tử cuối
+    if vec:
+        last = vec.pop()
+        print(f"Đã xóa phần tử cuối: {last}")
+
+    print(f"List cuối cùng: {vec}")
+    print(f"Kích thước list: {len(vec)}")
+
+    # Tạo list với list comprehension
+    numbers = [i * 2 for i in range(5)]
+    print(f"List tạo bằng comprehension: {numbers}")
+
+if __name__ == "__main__":
+    main()`
+  });
 
   const handlePush = () => {
     const value = parseInt(inputValue);
@@ -135,6 +326,61 @@ export function ArraysSection() {
     setAnimationArray([10, 25, 8, 42, 15, 33]);
     setHighlightedIndex(null);
     setAnimationStep("");
+  };
+
+  // Code running functions
+  const getLanguageId = (lang: string): number => {
+    const languageMap: Record<string, number> = {
+      rust: 73,
+      cpp: 54,
+      python: 71,
+    };
+    return languageMap[lang] || 54;
+  };
+
+  const getCurrentCode = (): string => {
+    return codeState[activeLanguageTab as keyof typeof codeState] || "";
+  };
+
+  const updateCode = (newCode: string) => {
+    setCodeState(prev => ({
+      ...prev,
+      [activeLanguageTab]: newCode
+    }));
+  };
+
+  const handleRunCode = async (input: string) => {
+    setIsRunningCode(true);
+    setCodeOutput("Đang chạy code...");
+    setShowOutput(true);
+
+    try {
+      const response = await fetch('/api/run-code', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          code: getCurrentCode(),
+          language_id: getLanguageId(activeLanguageTab),
+          stdin: input
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.error) {
+        setCodeOutput(`Lỗi: ${result.error}`);
+      } else if (result.logs && result.logs.length > 0) {
+        setCodeOutput(result.logs.join('\n'));
+      } else {
+        setCodeOutput('Code chạy thành công nhưng không có output.');
+      }
+    } catch (error) {
+      setCodeOutput(`Lỗi kết nối: ${error instanceof Error ? error.message : 'Lỗi không xác định'}`);
+    } finally {
+      setIsRunningCode(false);
+    }
   };
 
   return (
@@ -662,8 +908,8 @@ export function ArraysSection() {
               </div>
             </div>
 
-            {/* Language Tabs */}
-            <div className="mb-4">
+            {/* Language Tabs and Run Button */}
+            <div className="mb-4 flex items-center justify-between">
               <div className="flex bg-gray-100 dark:bg-slate-700 rounded-lg p-1 w-fit">
                 <button
                   onClick={() => setActiveLanguageTab("rust")}
@@ -696,146 +942,110 @@ export function ArraysSection() {
                   🐍 Python
                 </button>
               </div>
+
+              {/* Play Button */}
+              <SmartCodeRunner
+                code={getCurrentCode()}
+                language={activeLanguageTab}
+                onRun={handleRunCode}
+                isRunning={isRunningCode}
+                className="px-4 py-2 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600"
+                buttonText="▶️ Chạy Code"
+              />
             </div>
 
-            {/* Language-specific Code */}
+            {/* Editable Code */}
             <div className="bg-gray-50 dark:bg-slate-700 rounded-xl p-6 border">
-              {activeLanguageTab === "rust" && (
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2 bg-orange-100 dark:bg-orange-900/30 rounded">🦀</div>
-                    <h5 className="text-lg font-bold text-orange-700 dark:text-orange-300">Vector trong Rust</h5>
+              <div className="space-y-4">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className={`p-2 rounded ${
+                    activeLanguageTab === "rust" ? "bg-orange-100 dark:bg-orange-900/30" :
+                    activeLanguageTab === "cpp" ? "bg-blue-100 dark:bg-blue-900/30" :
+                    "bg-green-100 dark:bg-green-900/30"
+                  }`}>
+                    {activeLanguageTab === "rust" ? "🦀" :
+                     activeLanguageTab === "cpp" ? "⚡" : "🐍"}
                   </div>
-                  <RustCodeEditor
-                    code={`// Vector trong Rust - An toàn bộ nhớ và nhanh chóng
-let mut vec = Vec::new();
-
-// Thêm phần tử
-vec.push(1);
-vec.push(2);
-vec.push(3);
-
-// Truy cập an toàn
-match vec.get(0) {
-    Some(value) => println!("Phần tử đầu: {}", value),
-    None => println!("Index không tồn tại"),
-}
-
-// Duyệt qua vector
-for (index, value) in vec.iter().enumerate() {
-    println!("vec[{}] = {}", index, value);
-}
-
-// Xóa phần tử cuối
-if let Some(last) = vec.pop() {
-    println!("Đã xóa: {}", last);
-}
-
-// Vector với dung lượng định trước
-let mut vec_with_capacity = Vec::with_capacity(10);
-vec_with_capacity.push(42);`}
-                    height="300px"
-                  />
+                  <h5 className={`text-lg font-bold ${
+                    activeLanguageTab === "rust" ? "text-orange-700 dark:text-orange-300" :
+                    activeLanguageTab === "cpp" ? "text-blue-700 dark:text-blue-300" :
+                    "text-green-700 dark:text-green-300"
+                  }`}>
+                    {activeLanguageTab === "rust" ? "Vector trong Rust" :
+                     activeLanguageTab === "cpp" ? "Vector trong C++" :
+                     "List trong Python"}
+                  </h5>
                 </div>
-              )}
 
-              {activeLanguageTab === "cpp" && (
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded">⚡</div>
-                    <h5 className="text-lg font-bold text-blue-700 dark:text-blue-300">Vector trong C++</h5>
+                {/* Monaco Editor */}
+                <div className="relative">
+                  <EditableCodeEditor
+                    code={getCurrentCode()}
+                    onChange={updateCode}
+                    language={activeLanguageTab}
+                    height="400px"
+                    theme="vs-dark"
+                  />
+                  <div className="absolute top-2 right-2 text-xs text-white bg-blue-600 px-3 py-1 rounded-full shadow-lg z-10">
+                    {activeLanguageTab.toUpperCase()} - Có thể chỉnh sửa
                   </div>
-                  <CppCodeEditor
-                    code={`#include <vector>
-#include <iostream>
-
-int main() {
-    // Khởi tạo vector
-    std::vector<int> vec;
-
-    // Thêm phần tử
-    vec.push_back(1);
-    vec.push_back(2);
-    vec.push_back(3);
-
-    // Truy cập với kiểm tra bounds
-    try {
-        std::cout << "Phần tử đầu: " << vec.at(0) << std::endl;
-    } catch (const std::out_of_range& e) {
-        std::cout << "Index ngoài phạm vi!" << std::endl;
-    }
-
-    // Duyệt vector với range-based loop (C++11+)
-    for (const auto& value : vec) {
-        std::cout << value << " ";
-    }
-    std::cout << std::endl;
-
-    // Xóa phần tử cuối
-    if (!vec.empty()) {
-        vec.pop_back();
-    }
-
-    // Vector với kích thước và giá trị khởi tạo
-    std::vector<int> vec2(5, 10); // 5 phần tử, mỗi phần tử = 10
-
-    return 0;
-}`}
-                    height="300px"
-                  />
                 </div>
-              )}
 
-              {activeLanguageTab === "python" && (
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2 bg-green-100 dark:bg-green-900/30 rounded">🐍</div>
-                    <h5 className="text-lg font-bold text-green-700 dark:text-green-300">List trong Python</h5>
+                {/* Code Templates */}
+                <div className="flex gap-2 flex-wrap">
+                  <button
+                    onClick={() => {
+                      const defaultCode = codeState[activeLanguageTab as keyof typeof codeState];
+                      updateCode(defaultCode);
+                    }}
+                    className="px-3 py-1 text-xs bg-gray-600 hover:bg-gray-500 text-white rounded transition-colors"
+                  >
+                    🔄 Reset về mẫu gốc
+                  </button>
+                  <button
+                    onClick={() => updateCode("")}
+                    className="px-3 py-1 text-xs bg-red-600 hover:bg-red-500 text-white rounded transition-colors"
+                  >
+                    🗑️ Xóa tất cả
+                  </button>
+                  <div className="text-xs text-gray-500 flex items-center">
+                    💡 Mẹo: Chỉnh sửa code và nhấn "Chạy Code" để xem kết quả
                   </div>
-                  <PythonCodeEditor
-                    code={`# List trong Python - Linh hoạt và dễ sử dụng
-vec = []
-
-# Thêm phần tử
-vec.append(1)
-vec.append(2)
-vec.append(3)
-
-# Truy cập với xử lý exception
-try:
-    print(f"Phần tử đầu: {vec[0]}")
-    print(f"Phần tử cuối: {vec[-1]}")  # Python hỗ trợ index âm
-except IndexError:
-    print("Index ngoài phạm vi!")
-
-# Duyệt list với enumerate
-for index, value in enumerate(vec):
-    print(f"vec[{index}] = {value}")
-
-# List comprehension - tính năng mạnh mẽ của Python
-squares = [x**2 for x in vec]
-print(f"Bình phương: {squares}")
-
-# Slicing - cắt list
-subset = vec[0:2]  # Lấy phần tử từ 0 đến 1
-print(f"Subset: {subset}")
-
-# Thêm nhiều phần tử
-vec.extend([4, 5, 6])
-# Hoặc dùng operator
-vec += [7, 8, 9]
-
-# Xóa phần tử cuối
-if vec:
-    last = vec.pop()
-    print(f"Đã xóa: {last}")
-
-print(f"List cuối: {vec}")`}
-                    height="300px"
-                  />
                 </div>
-              )}
+              </div>
             </div>
+
+            {/* Output Section */}
+            {showOutput && (
+              <div className="mt-6 bg-slate-900 dark:bg-slate-800 rounded-xl p-6 border border-slate-600 shadow-lg">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-2 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full text-white">
+                    📺
+                  </div>
+                  <div className="flex-1">
+                    <h5 className="text-lg font-bold text-white">Kết quả chạy</h5>
+                    <p className="text-gray-400 text-sm">Output từ {activeLanguageTab} code</p>
+                  </div>
+                  <button
+                    onClick={() => setShowOutput(false)}
+                    className="text-gray-400 hover:text-white transition-colors text-xl"
+                  >
+                    ✕
+                  </button>
+                </div>
+                <div className="bg-black rounded-lg p-4 border border-gray-600">
+                  <pre className="text-green-400 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
+                    {codeOutput || "Chưa có output..."}
+                  </pre>
+                </div>
+                {isRunningCode && (
+                  <div className="mt-3 flex items-center gap-2 text-yellow-400">
+                    <div className="animate-spin">⚙️</div>
+                    <span className="text-sm">Đang thực thi code...</span>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
       )}

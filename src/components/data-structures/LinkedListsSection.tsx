@@ -6,6 +6,8 @@ import { MermaidDiagram } from "~/components/common/MermaidDiagram";
 import { RustCodeEditor } from "~/components/common/RustCodeEditor";
 import { CppCodeEditor } from "~/components/common/CppCodeEditor";
 import { PythonCodeEditor } from "~/components/common/PythonCodeEditor";
+import { SmartCodeRunner } from "~/components/common/SmartCodeRunner";
+import { EditableCodeEditor } from "~/components/common/EditableCodeEditor";
 import { initRustWasm } from "~/lib/rust-wasm-helper";
 
 interface ListNode {
@@ -30,6 +32,324 @@ export function LinkedListsSection() {
   const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null);
   const [animationStep, setAnimationStep] = useState<string>("");
   const [isAnimating, setIsAnimating] = useState(false);
+
+  // Code running states
+  const [isRunningCode, setIsRunningCode] = useState(false);
+  const [codeOutput, setCodeOutput] = useState<string>("");
+  const [showOutput, setShowOutput] = useState(false);
+
+  // Code storage for different languages
+  const [codeState, setCodeState] = useState({
+    rust: `#[derive(Debug)]
+struct ListNode<T> {
+    data: T,
+    next: Option<Box<ListNode<T>>>,
+}
+
+#[derive(Debug)]
+struct LinkedList<T>
+where
+    T: std::fmt::Debug + Copy + PartialEq,
+{
+    head: Option<Box<ListNode<T>>>,
+    size: usize,
+}
+
+impl<T> LinkedList<T>
+where
+    T: std::fmt::Debug + Copy + PartialEq,
+{
+    fn new() -> Self {
+        LinkedList { head: None, size: 0 }
+    }
+
+    fn push_front(&mut self, data: T) {
+        let new_node = Box::new(ListNode {
+            data,
+            next: self.head.take(),
+        });
+        self.head = Some(new_node);
+        self.size += 1;
+    }
+
+    fn pop_front(&mut self) -> Option<T> {
+        if let Some(old_head) = self.head.take() {
+            self.head = old_head.next;
+            self.size -= 1;
+            Some(old_head.data)
+        } else {
+            None
+        }
+    }
+
+    fn display(&self) {
+        let mut current = &self.head;
+        print!("LinkedList: ");
+        while let Some(node) = current {
+            print!("{:?} -> ", node.data);
+            current = &node.next;
+        }
+        println!("null");
+    }
+
+    fn search(&self, target: T) -> Option<usize>
+    where
+        T: PartialEq,
+    {
+        let mut current = &self.head;
+        let mut index = 0;
+        while let Some(node) = current {
+            if node.data == target {
+                return Some(index);
+            }
+            current = &node.next;
+            index += 1;
+        }
+        None
+    }
+}
+
+fn main() {
+    let mut list = LinkedList::new();
+
+    println!("=== Linked List Demo trong Rust ===");
+
+    // Thêm phần tử
+    println!("Thêm các phần tử: 1, 2, 3");
+    list.push_front(3);
+    list.push_front(2);
+    list.push_front(1);
+
+    list.display();
+    println!("Kích thước: {}", list.size);
+
+    // Tìm kiếm phần tử
+    if let Some(index) = list.search(2) {
+        println!("Tìm thấy phần tử 2 tại vị trí: {}", index);
+    } else {
+        println!("Không tìm thấy phần tử 2");
+    }
+
+    // Xóa phần tử
+    if let Some(value) = list.pop_front() {
+        println!("Đã xóa phần tử đầu: {:?}", value);
+    }
+
+    list.display();
+    println!("Kích thước sau khi xóa: {}", list.size);
+
+    // Thêm thêm phần tử
+    list.push_front(0);
+    println!("Thêm phần tử 0 vào đầu:");
+    list.display();
+}`,
+    cpp: `#include <iostream>
+
+struct Node {
+    int data;
+    Node* next;
+
+    Node(int value) : data(value), next(nullptr) {}
+};
+
+class LinkedList {
+private:
+    Node* head;
+    size_t size;
+
+public:
+    LinkedList() : head(nullptr), size(0) {}
+
+    ~LinkedList() {
+        while (head) {
+            Node* temp = head;
+            head = head->next;
+            delete temp;
+        }
+    }
+
+    void push_front(int data) {
+        Node* new_node = new Node(data);
+        new_node->next = head;
+        head = new_node;
+        size++;
+    }
+
+    bool pop_front() {
+        if (!head) return false;
+
+        int removed_data = head->data;
+        Node* temp = head;
+        head = head->next;
+        delete temp;
+        size--;
+
+        std::cout << "Đã xóa phần tử đầu: " << removed_data << std::endl;
+        return true;
+    }
+
+    void display() const {
+        std::cout << "LinkedList: ";
+        Node* current = head;
+        while (current) {
+            std::cout << current->data << " -> ";
+            current = current->next;
+        }
+        std::cout << "null" << std::endl;
+    }
+
+    int search(int target) const {
+        Node* current = head;
+        int index = 0;
+        while (current) {
+            if (current->data == target) {
+                return index;
+            }
+            current = current->next;
+            index++;
+        }
+        return -1; // Không tìm thấy
+    }
+
+    size_t get_size() const { return size; }
+    bool is_empty() const { return head == nullptr; }
+};
+
+int main() {
+    LinkedList list;
+
+    std::cout << "=== Linked List Demo trong C++ ===" << std::endl;
+
+    // Thêm phần tử
+    std::cout << "Thêm các phần tử: 1, 2, 3" << std::endl;
+    list.push_front(3);
+    list.push_front(2);
+    list.push_front(1);
+
+    list.display();
+    std::cout << "Kích thước: " << list.get_size() << std::endl;
+
+    // Tìm kiếm phần tử
+    int search_target = 2;
+    int index = list.search(search_target);
+    if (index != -1) {
+        std::cout << "Tìm thấy phần tử " << search_target << " tại vị trí: " << index << std::endl;
+    } else {
+        std::cout << "Không tìm thấy phần tử " << search_target << std::endl;
+    }
+
+    // Xóa phần tử
+    list.pop_front();
+    list.display();
+    std::cout << "Kích thước sau khi xóa: " << list.get_size() << std::endl;
+
+    // Thêm phần tử mới
+    list.push_front(0);
+    std::cout << "Thêm phần tử 0 vào đầu:" << std::endl;
+    list.display();
+
+    return 0;
+}`,
+    python: `class ListNode:
+    """Node của Linked List"""
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class LinkedList:
+    """Cài đặt Linked List đơn giản"""
+    def __init__(self):
+        self.head = None
+        self.size = 0
+
+    def push_front(self, data):
+        """Thêm phần tử vào đầu danh sách"""
+        new_node = ListNode(data)
+        new_node.next = self.head
+        self.head = new_node
+        self.size += 1
+
+    def pop_front(self):
+        """Xóa phần tử đầu danh sách"""
+        if not self.head:
+            return None
+
+        data = self.head.data
+        self.head = self.head.next
+        self.size -= 1
+        return data
+
+    def display(self):
+        """Hiển thị toàn bộ danh sách"""
+        elements = []
+        current = self.head
+        while current:
+            elements.append(str(current.data))
+            current = current.next
+        return " -> ".join(elements) + " -> null"
+
+    def search(self, target):
+        """Tìm kiếm phần tử trong danh sách"""
+        current = self.head
+        index = 0
+        while current:
+            if current.data == target:
+                return index
+            current = current.next
+            index += 1
+        return -1
+
+    def is_empty(self):
+        """Kiểm tra danh sách có rỗng không"""
+        return self.head is None
+
+    def get_size(self):
+        """Trả về kích thước danh sách"""
+        return self.size
+
+def main():
+    """Hàm chính để demo LinkedList"""
+    linked_list = LinkedList()
+
+    print("=== Linked List Demo trong Python ===")
+
+    # Thêm phần tử
+    print("Thêm các phần tử: 1, 2, 3")
+    linked_list.push_front(3)
+    linked_list.push_front(2)
+    linked_list.push_front(1)
+
+    print(f"LinkedList: {linked_list.display()}")
+    print(f"Kích thước: {linked_list.get_size()}")
+
+    # Tìm kiếm
+    search_target = 2
+    index = linked_list.search(search_target)
+    if index != -1:
+        print(f"Tìm thấy {search_target} tại vị trí: {index}")
+    else:
+        print(f"Không tìm thấy {search_target}")
+
+    # Xóa phần tử
+    removed = linked_list.pop_front()
+    if removed is not None:
+        print(f"Đã xóa phần tử đầu: {removed}")
+
+    print(f"LinkedList sau khi xóa: {linked_list.display()}")
+    print(f"Kích thước: {linked_list.get_size()}")
+
+    # Thêm phần tử mới
+    linked_list.push_front(0)
+    print("Thêm phần tử 0 vào đầu:")
+    print(f"LinkedList: {linked_list.display()}")
+
+    # Hiển thị thông tin cuối cùng
+    print(f"Danh sách có rỗng không? {linked_list.is_empty()}")
+    print(f"Kích thước cuối cùng: {linked_list.get_size()}")
+
+if __name__ == "__main__":
+    main()`
+  });
 
   // Initialize WASM
   useEffect(() => {
@@ -282,6 +602,61 @@ export function LinkedListsSection() {
     setAnimationList([10, 25, 8]);
     setHighlightedIndex(null);
     setAnimationStep("");
+  };
+
+  // Code running functions
+  const getLanguageId = (lang: string): number => {
+    const languageMap: Record<string, number> = {
+      rust: 73,
+      cpp: 54,
+      python: 71,
+    };
+    return languageMap[lang] || 54;
+  };
+
+  const getCurrentCode = (): string => {
+    return codeState[activeLanguageTab as keyof typeof codeState] || "";
+  };
+
+  const updateCode = (newCode: string) => {
+    setCodeState(prev => ({
+      ...prev,
+      [activeLanguageTab]: newCode
+    }));
+  };
+
+  const handleRunCode = async (input: string) => {
+    setIsRunningCode(true);
+    setCodeOutput("Đang chạy code...");
+    setShowOutput(true);
+
+    try {
+      const response = await fetch('/api/run-code', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          code: getCurrentCode(),
+          language_id: getLanguageId(activeLanguageTab),
+          stdin: input
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.error) {
+        setCodeOutput(`Lỗi: ${result.error}`);
+      } else if (result.logs && result.logs.length > 0) {
+        setCodeOutput(result.logs.join('\n'));
+      } else {
+        setCodeOutput('Code chạy thành công nhưng không có output.');
+      }
+    } catch (error) {
+      setCodeOutput(`Lỗi kết nối: ${error instanceof Error ? error.message : 'Lỗi không xác định'}`);
+    } finally {
+      setIsRunningCode(false);
+    }
   };
 
   return (
@@ -857,8 +1232,8 @@ export function LinkedListsSection() {
               </div>
             </div>
 
-            {/* Language Tabs */}
-            <div className="mb-4">
+            {/* Language Tabs and Run Button */}
+            <div className="mb-4 flex items-center justify-between">
               <div className="flex bg-gray-100 dark:bg-slate-700 rounded-lg p-1 w-fit">
                 <button
                   onClick={() => setActiveLanguageTab("rust")}
@@ -891,262 +1266,111 @@ export function LinkedListsSection() {
                   🐍 Python
                 </button>
               </div>
+
+              {/* Play Button */}
+              <SmartCodeRunner
+                code={getCurrentCode()}
+                language={activeLanguageTab}
+                onRun={handleRunCode}
+                isRunning={isRunningCode}
+                className="px-4 py-2 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600"
+                buttonText="▶️ Chạy Code"
+              />
             </div>
 
             <div className="bg-gray-50 dark:bg-slate-700 rounded-xl p-6 border">
 
-              {/* Language-specific Code */}
-              {activeLanguageTab === "rust" && (
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2 bg-orange-100 dark:bg-orange-900/30 rounded">🦀</div>
-                    <h5 className="text-lg font-bold text-orange-700 dark:text-orange-300">LinkedList trong Rust</h5>
+              <div className="space-y-4">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className={`p-2 rounded ${
+                    activeLanguageTab === "rust" ? "bg-orange-100 dark:bg-orange-900/30" :
+                    activeLanguageTab === "cpp" ? "bg-blue-100 dark:bg-blue-900/30" :
+                    "bg-green-100 dark:bg-green-900/30"
+                  }`}>
+                    {activeLanguageTab === "rust" ? "🦀" :
+                     activeLanguageTab === "cpp" ? "⚡" : "🐍"}
                   </div>
-                  <RustCodeEditor
-              code={`#[derive(Debug)]
-struct Node<T> {
-    data: T,
-    next: Option<Box<Node<T>>>,
-}
-
-#[derive(Debug)]
-struct LinkedList<T> {
-    head: Option<Box<Node<T>>>,
-    size: usize,
-}
-
-impl<T> LinkedList<T> {
-    fn new() -> Self {
-        LinkedList { head: None, size: 0 }
-    }
-
-    fn push_front(&mut self, data: T) {
-        let new_node = Box::new(Node {
-            data,
-            next: self.head.take(),
-        });
-        self.head = Some(new_node);
-        self.size += 1;
-    }
-
-    fn pop_front(&mut self) -> Option<T> {
-        self.head.take().map(|node| {
-            self.head = node.next;
-            self.size -= 1;
-            node.data
-        })
-    }
-
-    fn push_back(&mut self, data: T) {
-        let new_node = Box::new(Node {
-            data,
-            next: None,
-        });
-
-        if self.head.is_none() {
-            self.head = Some(new_node);
-        } else {
-            let mut current = self.head.as_mut().unwrap();
-            while current.next.is_some() {
-                current = current.next.as_mut().unwrap();
-            }
-            current.next = Some(new_node);
-        }
-        self.size += 1;
-    }
-
-    fn display(&self) -> Vec<&T> {
-        let mut result = Vec::new();
-        let mut current = &self.head;
-
-        while let Some(node) = current {
-            result.push(&node.data);
-            current = &node.next;
-        }
-
-        result
-    }
-}`}
-                    height="300px"
-                  />
+                  <h5 className={`text-lg font-bold ${
+                    activeLanguageTab === "rust" ? "text-orange-700 dark:text-orange-300" :
+                    activeLanguageTab === "cpp" ? "text-blue-700 dark:text-blue-300" :
+                    "text-green-700 dark:text-green-300"
+                  }`}>
+                    {activeLanguageTab === "rust" ? "LinkedList trong Rust" :
+                     activeLanguageTab === "cpp" ? "LinkedList trong C++" :
+                     "LinkedList trong Python"}
+                  </h5>
                 </div>
-              )}
 
-              {activeLanguageTab === "cpp" && (
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded">⚡</div>
-                    <h5 className="text-lg font-bold text-blue-700 dark:text-blue-300">LinkedList trong C++</h5>
+                {/* Monaco Editor */}
+                <div className="relative">
+                  <EditableCodeEditor
+                    code={getCurrentCode()}
+                    onChange={updateCode}
+                    language={activeLanguageTab}
+                    height="400px"
+                    theme="vs-dark"
+                  />
+                  <div className="absolute top-2 right-2 text-xs text-white bg-blue-600 px-3 py-1 rounded-full shadow-lg z-10">
+                    {activeLanguageTab.toUpperCase()} - Có thể chỉnh sửa
                   </div>
-                  <CppCodeEditor
-                code={`#include <iostream>
-#include <memory>
-
-template<typename T>
-class LinkedList {
-private:
-    struct Node {
-        T data;
-        std::unique_ptr<Node> next;
-
-        Node(const T& value) : data(value), next(nullptr) {}
-    };
-
-    std::unique_ptr<Node> head;
-    size_t size;
-
-public:
-    LinkedList() : head(nullptr), size(0) {}
-
-    // Thêm vào đầu danh sách
-    void push_front(const T& data) {
-        auto new_node = std::make_unique<Node>(data);
-        new_node->next = std::move(head);
-        head = std::move(new_node);
-        size++;
-    }
-
-    // Xóa phần tử đầu
-    void pop_front() {
-        if (head) {
-            head = std::move(head->next);
-            size--;
-        }
-    }
-
-    // Thêm vào cuối danh sách
-    void push_back(const T& data) {
-        auto new_node = std::make_unique<Node>(data);
-
-        if (!head) {
-            head = std::move(new_node);
-        } else {
-            Node* current = head.get();
-            while (current->next) {
-                current = current->next.get();
-            }
-            current->next = std::move(new_node);
-        }
-        size++;
-    }
-
-    // Hiển thị danh sách
-    void display() const {
-        Node* current = head.get();
-        std::cout << "HEAD -> ";
-        while (current) {
-            std::cout << current->data << " -> ";
-            current = current->next.get();
-        }
-        std::cout << "NULL" << std::endl;
-    }
-
-    bool empty() const { return head == nullptr; }
-    size_t length() const { return size; }
-};`}
-                    height="300px"
-                  />
                 </div>
-              )}
 
-              {activeLanguageTab === "python" && (
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2 bg-green-100 dark:bg-green-900/30 rounded">🐍</div>
-                    <h5 className="text-lg font-bold text-green-700 dark:text-green-300">LinkedList trong Python</h5>
+                {/* Code Templates */}
+                <div className="flex gap-2 flex-wrap">
+                  <button
+                    onClick={() => {
+                      const defaultCode = codeState[activeLanguageTab as keyof typeof codeState];
+                      updateCode(defaultCode);
+                    }}
+                    className="px-3 py-1 text-xs bg-gray-600 hover:bg-gray-500 text-white rounded transition-colors"
+                  >
+                    🔄 Reset về mẫu gốc
+                  </button>
+                  <button
+                    onClick={() => updateCode("")}
+                    className="px-3 py-1 text-xs bg-red-600 hover:bg-red-500 text-white rounded transition-colors"
+                  >
+                    🗑️ Xóa tất cả
+                  </button>
+                  <div className="text-xs text-gray-500 flex items-center">
+                    💡 Mẹo: Chỉnh sửa code và nhấn "Chạy Code" để xem kết quả
                   </div>
-                  <PythonCodeEditor
-                code={`class Node:
-    """Node class cho Linked List"""
-    def __init__(self, data):
-        self.data = data
-        self.next = None
-
-class LinkedList:
-    """Cài đặt Linked List đơn giản"""
-
-    def __init__(self):
-        self.head = None
-        self.size = 0
-
-    def push_front(self, data):
-        """Thêm phần tử vào đầu danh sách"""
-        new_node = Node(data)
-        new_node.next = self.head
-        self.head = new_node
-        self.size += 1
-
-    def pop_front(self):
-        """Xóa và trả về phần tử đầu"""
-        if not self.head:
-            return None
-
-        data = self.head.data
-        self.head = self.head.next
-        self.size -= 1
-        return data
-
-    def push_back(self, data):
-        """Thêm phần tử vào cuối danh sách"""
-        new_node = Node(data)
-
-        if not self.head:
-            self.head = new_node
-        else:
-            current = self.head
-            while current.next:
-                current = current.next
-            current.next = new_node
-
-        self.size += 1
-
-    def pop_back(self):
-        """Xóa và trả về phần tử cuối"""
-        if not self.head:
-            return None
-
-        if not self.head.next:
-            data = self.head.data
-            self.head = None
-            self.size -= 1
-            return data
-
-        current = self.head
-        while current.next.next:
-            current = current.next
-
-        data = current.next.data
-        current.next = None
-        self.size -= 1
-        return data
-
-    def display(self):
-        """Hiển thị danh sách"""
-        result = []
-        current = self.head
-
-        while current:
-            result.append(current.data)
-            current = current.next
-
-        return result
-
-    def is_empty(self):
-        return self.head is None
-
-    def __len__(self):
-        return self.size
-
-# Sử dụng:
-# ll = LinkedList()
-# ll.push_front(1)
-# ll.push_back(2)
-# print(ll.display())  # [1, 2]`}
-                    height="300px"
-                  />
                 </div>
-              )}
+              </div>
             </div>
+
+            {/* Output Section */}
+            {showOutput && (
+              <div className="mt-6 bg-slate-900 dark:bg-slate-800 rounded-xl p-6 border border-slate-600 shadow-lg">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-2 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full text-white">
+                    📺
+                  </div>
+                  <div className="flex-1">
+                    <h5 className="text-lg font-bold text-white">Kết quả chạy</h5>
+                    <p className="text-gray-400 text-sm">Output từ {activeLanguageTab} code</p>
+                  </div>
+                  <button
+                    onClick={() => setShowOutput(false)}
+                    className="text-gray-400 hover:text-white transition-colors text-xl"
+                  >
+                    ✕
+                  </button>
+                </div>
+                <div className="bg-black rounded-lg p-4 border border-gray-600">
+                  <pre className="text-green-400 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
+                    {codeOutput || "Chưa có output..."}
+                  </pre>
+                </div>
+                {isRunningCode && (
+                  <div className="mt-3 flex items-center gap-2 text-yellow-400">
+                    <div className="animate-spin">⚙️</div>
+                    <span className="text-sm">Đang thực thi code...</span>
+                  </div>
+                )}
+              </div>
+            )}
+
           </div>
         </div>
       )}
