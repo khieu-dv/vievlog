@@ -1316,25 +1316,38 @@ if __name__ == "__main__":
                 </div>
 
                 {/* Code Templates */}
-                <div className="flex gap-2 flex-wrap">
-                  <button
-                    onClick={() => {
-                      const defaultCode = codeState[activeLanguageTab as keyof typeof codeState];
-                      updateCode(defaultCode);
-                    }}
-                    className="px-3 py-1 text-xs bg-gray-600 hover:bg-gray-500 text-white rounded transition-colors"
-                  >
-                    🔄 Reset về mẫu gốc
-                  </button>
-                  <button
-                    onClick={() => updateCode("")}
-                    className="px-3 py-1 text-xs bg-red-600 hover:bg-red-500 text-white rounded transition-colors"
-                  >
-                    🗑️ Xóa tất cả
-                  </button>
-                  <div className="text-xs text-gray-500 flex items-center">
-                    💡 Mẹo: Chỉnh sửa code và nhấn "Chạy Code" để xem kết quả
+                <div className="flex gap-2 flex-wrap items-center justify-between">
+                  <div className="flex gap-2 items-center">
+                    <button
+                      onClick={() => {
+                        const defaultCode = codeState[activeLanguageTab as keyof typeof codeState];
+                        updateCode(defaultCode);
+                      }}
+                      className="px-3 py-1 text-xs bg-gray-600 hover:bg-gray-500 text-white rounded transition-colors"
+                    >
+                      🔄 Reset về mẫu gốc
+                    </button>
+                    <button
+                      onClick={() => updateCode("")}
+                      className="px-3 py-1 text-xs bg-red-600 hover:bg-red-500 text-white rounded transition-colors"
+                    >
+                      🗑️ Xóa tất cả
+                    </button>
+
+                    <div className="text-xs text-gray-500 flex items-center">
+                      💡 Mẹo: Chỉnh sửa code và nhấn "▶️ Chạy Code" để xem kết quả
+                    </div>
                   </div>
+
+                  {/* Play Button */}
+                  <SmartCodeRunner
+                    code={getCurrentCode()}
+                    language={activeLanguageTab}
+                    onRun={handleRunCode}
+                    isRunning={isRunningCode}
+                    className="px-3 py-1 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-xs"
+                    buttonText="▶️ Chạy Code"
+                  />
                 </div>
               </div>
             </div>

@@ -78,7 +78,7 @@ export function ArraysSection() {
     println!("Vector cuối cùng: {:?}", vec);
 
     // Vector với dung lượng định trước
-    let vec_with_capacity = Vec::with_capacity(10);
+    let vec_with_capacity: Vec<i32> = Vec::with_capacity(10);
     println!("Vector với capacity 10: {:?}", vec_with_capacity);
     println!("Kích thước: {}, Capacity: {}", vec_with_capacity.len(), vec_with_capacity.capacity());
 }`,
@@ -161,52 +161,67 @@ int main() {
 
     return 0;
 }`,
-    python: `# List trong Python - Linh hoạt và dễ sử dụng
+    python: `def main():
+    print("=== List Demo trong Python ===")
 
-def main():
+    # List trong Python - Linh hoạt và dễ sử dụng
     vec = []
 
     # Thêm phần tử
+    print("Thêm các phần tử: 1, 2, 3")
     vec.append(1)
     vec.append(2)
     vec.append(3)
 
     print(f"List ban đầu: {vec}")
+    print(f"Kích thước: {len(vec)}")
 
-    # Truy cập phần tử
+    # Truy cập an toàn
     if len(vec) > 0:
         print(f"Phần tử đầu: {vec[0]}")
-        print(f"Phần tử cuối: {vec[-1]}")  # Python hỗ trợ index âm
 
-    # Duyệt list với enumerate
+    # Tìm kiếm phần tử
+    target = 2
+    try:
+        index = vec.index(target)
+        print(f"Tìm thấy phần tử {target} tại vị trí: {index}")
+    except ValueError:
+        print(f"Không tìm thấy phần tử {target}")
+
+    # Duyệt qua list
     print("Duyệt list:")
     for index, value in enumerate(vec):
         print(f"  vec[{index}] = {value}")
-
-    # List comprehension - tính năng mạnh mẽ của Python
-    squares = [x**2 for x in vec]
-    print(f"Bình phương các phần tử: {squares}")
-
-    # Slicing - cắt list
-    if len(vec) >= 2:
-        subset = vec[0:2]  # Lấy phần tử từ 0 đến 1
-        print(f"Subset (2 phần tử đầu): {subset}")
-
-    # Thêm nhiều phần tử
-    vec.extend([4, 5])
-    print(f"Sau khi extend [4, 5]: {vec}")
 
     # Xóa phần tử cuối
     if vec:
         last = vec.pop()
         print(f"Đã xóa phần tử cuối: {last}")
 
-    print(f"List cuối cùng: {vec}")
-    print(f"Kích thước list: {len(vec)}")
+    print(f"List sau khi xóa: {vec}")
+    print(f"Kích thước sau khi xóa: {len(vec)}")
 
-    # Tạo list với list comprehension
-    numbers = [i * 2 for i in range(5)]
-    print(f"List tạo bằng comprehension: {numbers}")
+    # Thêm thêm phần tử
+    vec.append(0)
+    print("Thêm phần tử 0 vào cuối:")
+    print(f"List cuối cùng: {vec}")
+
+    # List với capacity (pre-allocation)
+    vec_with_capacity = [None] * 10  # Pre-allocate 10 elements
+    vec_with_capacity = []  # Reset to empty
+    print(f"List với pre-allocation: {vec_with_capacity}")
+    print(f"Kích thước: {len(vec_with_capacity)}, Capacity: (dynamic)")
+
+    # Tính năng đặc biệt của Python
+    print("\\nTính năng mạnh mẽ của Python:")
+    # List comprehension
+    squares = [x**2 for x in vec]
+    print(f"Bình phương các phần tử: {squares}")
+
+    # Slicing
+    if len(vec) >= 2:
+        subset = vec[0:2]
+        print(f"Slice [0:2]: {subset}")
 
 if __name__ == "__main__":
     main()`
@@ -908,8 +923,8 @@ if __name__ == "__main__":
               </div>
             </div>
 
-            {/* Language Tabs and Run Button */}
-            <div className="mb-4 flex items-center justify-between">
+            {/* Language Tabs */}
+            <div className="mb-4">
               <div className="flex bg-gray-100 dark:bg-slate-700 rounded-lg p-1 w-fit">
                 <button
                   onClick={() => setActiveLanguageTab("rust")}
@@ -942,16 +957,6 @@ if __name__ == "__main__":
                   🐍 Python
                 </button>
               </div>
-
-              {/* Play Button */}
-              <SmartCodeRunner
-                code={getCurrentCode()}
-                language={activeLanguageTab}
-                onRun={handleRunCode}
-                isRunning={isRunningCode}
-                className="px-4 py-2 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600"
-                buttonText="▶️ Chạy Code"
-              />
             </div>
 
             {/* Editable Code */}
@@ -992,25 +997,38 @@ if __name__ == "__main__":
                 </div>
 
                 {/* Code Templates */}
-                <div className="flex gap-2 flex-wrap">
-                  <button
-                    onClick={() => {
-                      const defaultCode = codeState[activeLanguageTab as keyof typeof codeState];
-                      updateCode(defaultCode);
-                    }}
-                    className="px-3 py-1 text-xs bg-gray-600 hover:bg-gray-500 text-white rounded transition-colors"
-                  >
-                    🔄 Reset về mẫu gốc
-                  </button>
-                  <button
-                    onClick={() => updateCode("")}
-                    className="px-3 py-1 text-xs bg-red-600 hover:bg-red-500 text-white rounded transition-colors"
-                  >
-                    🗑️ Xóa tất cả
-                  </button>
-                  <div className="text-xs text-gray-500 flex items-center">
-                    💡 Mẹo: Chỉnh sửa code và nhấn "Chạy Code" để xem kết quả
+                <div className="flex gap-2 flex-wrap items-center justify-between">
+                  <div className="flex gap-2 items-center">
+                    <button
+                      onClick={() => {
+                        const defaultCode = codeState[activeLanguageTab as keyof typeof codeState];
+                        updateCode(defaultCode);
+                      }}
+                      className="px-3 py-1 text-xs bg-gray-600 hover:bg-gray-500 text-white rounded transition-colors"
+                    >
+                      🔄 Reset về mẫu gốc
+                    </button>
+                    <button
+                      onClick={() => updateCode("")}
+                      className="px-3 py-1 text-xs bg-red-600 hover:bg-red-500 text-white rounded transition-colors"
+                    >
+                      🗑️ Xóa tất cả
+                    </button>
+
+                    <div className="text-xs text-gray-500 flex items-center">
+                      💡 Mẹo: Chỉnh sửa code và nhấn "▶️ Chạy Code" để xem kết quả
+                    </div>
                   </div>
+
+                  {/* Play Button */}
+                  <SmartCodeRunner
+                    code={getCurrentCode()}
+                    language={activeLanguageTab}
+                    onRun={handleRunCode}
+                    isRunning={isRunningCode}
+                    className="px-3 py-1 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-xs"
+                    buttonText="▶️ Chạy Code"
+                  />
                 </div>
               </div>
             </div>
