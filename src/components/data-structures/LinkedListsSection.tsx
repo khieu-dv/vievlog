@@ -21,6 +21,7 @@ export function LinkedListsSection() {
   const [result, setResult] = useState("");
   const [wasm, setWasm] = useState<any>(null);
   const [activeLanguageTab, setActiveLanguageTab] = useState("rust");
+  const [activeSection, setActiveSection] = useState<"overview" | "interactive" | "implementation">("overview");
 
   // Interactive visualization states
   const [animationList, setAnimationList] = useState<number[]>([10, 25, 8]);
@@ -284,80 +285,193 @@ export function LinkedListsSection() {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="bg-white dark:bg-slate-800 rounded-lg p-6 border">
-        <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-          <List className="h-5 w-5" />
-          🦀 Rust WASM Danh Sách Liên Kết
-        </h3>
+    <div className="max-w-7xl mx-auto space-y-6">
+      {/* Header Section with Navigation Pills */}
+      <div className="bg-gradient-to-br from-green-50 via-teal-50 to-emerald-50 dark:from-slate-800 dark:via-slate-800 dark:to-slate-700 rounded-xl p-6 border border-green-100 dark:border-slate-600 shadow-md">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+          <div>
+            <h3 className="text-2xl font-bold mb-2 flex items-center gap-2 bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent">
+              <List className="h-6 w-6 text-green-500" />
+              Danh Sách Liên Kết
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed max-w-2xl">
+              Khám phá cấu trúc dữ liệu động với các node liên kết thông qua pointer.
+            </p>
+          </div>
 
-        {/* Định nghĩa và giải thích cơ bản */}
-        <div className="bg-lime-50 dark:bg-lime-900/20 p-4 rounded-lg mb-4 border-l-4 border-lime-500">
-          <h4 className="font-semibold text-lime-800 dark:text-lime-300 mb-2">🔗 Danh Sách Liên Kết là gì?</h4>
-          <p className="text-gray-700 dark:text-gray-300 mb-3">
-            <strong>Linked List (Danh Sách Liên Kết)</strong> là cấu trúc dữ liệu tuyến tính trong đó các phần tử (node) được lưu trữ trong các vị trí bộ nhớ không liên tiếp.
-            Mỗi node chứa dữ liệu và pointer trỏ đến node tiếp theo.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
-            <div className="bg-white dark:bg-slate-800 p-3 rounded">
-              <strong className="text-green-600 dark:text-green-400">✅ Ưu điểm:</strong>
-              <ul className="mt-1 list-disc list-inside text-gray-600 dark:text-gray-300">
-                <li>Kích thước động</li>
-                <li>Thêm/xóa đầu nhanh O(1)</li>
-                <li>Sử dụng bộ nhớ hiệu quả</li>
-                <li>Không cần biết trước kích thước</li>
-              </ul>
+          {/* Navigation Pills */}
+          <div className="flex bg-white dark:bg-slate-800 rounded-lg p-1 shadow-sm border border-gray-200 dark:border-slate-600">
+            <button
+              onClick={() => setActiveSection("overview")}
+              className={`px-4 py-2 rounded-md font-medium text-sm transition-all duration-200 ${
+                activeSection === "overview"
+                  ? "bg-green-500 text-white shadow-sm"
+                  : "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700"
+              }`}
+            >
+              📚 Tổng quan
+            </button>
+            <button
+              onClick={() => setActiveSection("interactive")}
+              className={`px-4 py-2 rounded-md font-medium text-sm transition-all duration-200 ${
+                activeSection === "interactive"
+                  ? "bg-teal-500 text-white shadow-sm"
+                  : "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700"
+              }`}
+            >
+              🎮 Tương tác
+            </button>
+            <button
+              onClick={() => setActiveSection("implementation")}
+              className={`px-4 py-2 rounded-md font-medium text-sm transition-all duration-200 ${
+                activeSection === "implementation"
+                  ? "bg-emerald-500 text-white shadow-sm"
+                  : "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700"
+              }`}
+            >
+              💻 Cài đặt
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Overview Section */}
+      {activeSection === "overview" && (
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Linked List Definition */}
+          <div className="bg-white dark:bg-slate-800 rounded-xl p-5 border border-green-200 dark:border-slate-600 shadow-md hover:shadow-lg transition-shadow">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="p-1.5 bg-green-100 dark:bg-green-900/30 rounded-lg">
+                🔗
+              </div>
+              <h4 className="text-lg font-bold text-green-800 dark:text-green-300">Danh Sách Liên Kết</h4>
             </div>
-            <div className="bg-white dark:bg-slate-800 p-3 rounded">
-              <strong className="text-red-600 dark:text-red-400">❌ Nhược điểm:</strong>
-              <ul className="mt-1 list-disc list-inside text-gray-600 dark:text-gray-300">
-                <li>Truy cập chậm O(n)</li>
-                <li>Tốn bộ nhớ cho pointer</li>
-                <li>Không cache-friendly</li>
-                <li>Không thể binary search</li>
-              </ul>
+            <p className="text-gray-700 dark:text-gray-300 mb-3 text-sm leading-relaxed">
+              Cấu trúc dữ liệu tuyến tính với các node được lưu trữ không liên tiếp trong bộ nhớ.
+              Mỗi node chứa dữ liệu và pointer đến node tiếp theo.
+            </p>
+
+            <div className="space-y-2">
+              <div className="bg-green-50 dark:bg-green-900/20 p-3 rounded-lg border border-green-200 dark:border-green-800">
+                <h5 className="font-semibold text-green-700 dark:text-green-300 mb-2 flex items-center gap-2">
+                  ✅ Ưu điểm
+                </h5>
+                <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-300">
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
+                    Kích thước động
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
+                    Thêm/xóa đầu nhanh O(1)
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
+                    Không cần biết trước kích thước
+                  </li>
+                </ul>
+              </div>
+
+              <div className="bg-red-50 dark:bg-red-900/20 p-3 rounded-lg border border-red-200 dark:border-red-800">
+                <h5 className="font-semibold text-red-700 dark:text-red-300 mb-2 flex items-center gap-2">
+                  ❌ Nhược điểm
+                </h5>
+                <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-300">
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 bg-red-500 rounded-full"></span>
+                    Truy cập chậm O(n)
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 bg-red-500 rounded-full"></span>
+                    Tốn bộ nhớ cho pointer
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 bg-red-500 rounded-full"></span>
+                    Không cache-friendly
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Use Cases & Applications */}
+          <div className="bg-white dark:bg-slate-800 rounded-xl p-5 border border-teal-200 dark:border-slate-600 shadow-md hover:shadow-lg transition-shadow">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="p-1.5 bg-teal-100 dark:bg-teal-900/30 rounded-lg">
+                🎯
+              </div>
+              <h4 className="text-lg font-bold text-teal-800 dark:text-teal-300">Ứng Dụng Thực Tế</h4>
+            </div>
+            <p className="text-gray-700 dark:text-gray-300 mb-3 text-sm leading-relaxed">
+              Linked List phù hợp cho các trường hợp cần thêm/xóa thường xuyên và không cần truy cập ngẫu nhiên.
+            </p>
+
+            <div className="space-y-3">
+              <div className="bg-blue-50 dark:bg-blue-900/20 p-3 rounded-lg border border-blue-200 dark:border-blue-800">
+                <h6 className="font-semibold text-blue-700 dark:text-blue-300 mb-2">🎪 Ứng dụng phổ biến</h6>
+                <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-300">
+                  <li>• Undo/Redo trong text editor</li>
+                  <li>• Browser history navigation</li>
+                  <li>• Music playlist management</li>
+                  <li>• Implement Stack/Queue</li>
+                </ul>
+              </div>
+
+              {/* Complexity Comparison */}
+              <div className="bg-gray-50 dark:bg-slate-700 rounded-lg p-3 border">
+                <h5 className="font-medium mb-2 text-gray-800 dark:text-gray-200 text-sm">So với Array</h5>
+                <div className="grid grid-cols-2 gap-2 text-xs">
+                  <div className="flex justify-between items-center p-2 bg-white dark:bg-slate-800 rounded border">
+                    <span>Truy cập:</span>
+                    <span className="font-mono bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 px-2 py-1 rounded">O(n)</span>
+                  </div>
+                  <div className="flex justify-between items-center p-2 bg-white dark:bg-slate-800 rounded border">
+                    <span>Tìm kiếm:</span>
+                    <span className="font-mono bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 px-2 py-1 rounded">O(n)</span>
+                  </div>
+                  <div className="flex justify-between items-center p-2 bg-white dark:bg-slate-800 rounded border">
+                    <span>Thêm đầu:</span>
+                    <span className="font-mono bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-2 py-1 rounded">O(1)</span>
+                  </div>
+                  <div className="flex justify-between items-center p-2 bg-white dark:bg-slate-800 rounded border">
+                    <span>Xóa đầu:</span>
+                    <span className="font-mono bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-2 py-1 rounded">O(1)</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+      )}
 
-        <div className="bg-fuchsia-50 dark:bg-fuchsia-900/20 p-4 rounded-lg mb-4 border-l-4 border-fuchsia-500">
-          <h4 className="font-semibold text-fuchsia-800 dark:text-fuchsia-300 mb-2">🎯 Khi nào dùng Linked List?</h4>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
-            <div>
-              <strong className="text-blue-600 dark:text-blue-400">🎪 Ứng dụng thực tế:</strong>
-              <ul className="mt-1 text-gray-600 dark:text-gray-300">
-                <li>• Undo/Redo trong editor</li>
-                <li>• Browser history</li>
-                <li>• Music playlist</li>
-                <li>• Implement Stack/Queue</li>
-              </ul>
-            </div>
-            <div>
-              <strong className="text-purple-600 dark:text-purple-400">⚡ So với Array:</strong>
-              <ul className="mt-1 text-gray-600 dark:text-gray-300">
-                <li>• Array: Truy cập nhanh, thêm/xóa chậm</li>
-                <li>• Linked List: Truy cập chậm, thêm/xóa nhanh</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div className="space-y-4">
+      {/* Interactive Section */}
+      {activeSection === "interactive" && (
+        <div className="space-y-6">
           {/* Interactive Linked List Visualization */}
-          <div className="bg-gradient-to-r from-green-50 to-teal-50 dark:from-green-900/20 dark:to-teal-900/20 p-6 rounded-lg border-2 border-green-200 dark:border-green-800">
-            <h4 className="font-semibold text-green-800 dark:text-green-300 mb-4 flex items-center gap-2">
-              🎮 Minh Họa Tương Tác - Linked List Operations
-            </h4>
+          <div className="bg-gradient-to-br from-green-50 via-teal-50 to-emerald-50 dark:from-green-900/20 dark:via-teal-900/20 dark:to-emerald-900/20 rounded-xl p-6 border border-green-200 dark:border-green-800 shadow-md">
+            <div className="flex items-center gap-2 mb-4">
+              <div className="p-2 bg-gradient-to-r from-green-500 to-teal-500 rounded-full text-white text-sm">
+                🎮
+              </div>
+              <div>
+                <h4 className="text-lg font-bold text-green-800 dark:text-green-300">
+                  Minh Họa Tương Tác
+                </h4>
+                <p className="text-gray-600 dark:text-gray-400 text-sm">
+                  Thao tác trực tiếp với linked list để hiểu rõ cách hoạt động
+                </p>
+              </div>
+            </div>
 
             {/* Linked List Visualization */}
             <div className="mb-6">
-              <div className="flex items-center justify-center mb-4 overflow-x-auto">
-                <div className="flex items-center gap-4 min-w-max">
+              <div className="flex items-center justify-center mb-6 overflow-x-auto pb-4">
+                <div className="flex items-center gap-3 min-w-max">
                   {/* HEAD pointer */}
                   {animationList.length > 0 && (
                     <div className="flex flex-col items-center">
                       <div className="text-xs text-gray-500 dark:text-gray-400 mb-1 h-4">HEAD</div>
-                      <div className="bg-orange-500 text-white px-3 py-2 rounded font-bold text-sm">
+                      <div className="bg-orange-500 text-white px-2 py-2 rounded font-bold text-sm">
                         →
                       </div>
                     </div>
@@ -367,33 +481,33 @@ export function LinkedListsSection() {
                   {animationList.map((value, index) => (
                     <div key={`${index}-${value}`} className="flex items-center gap-2">
                       {/* Node */}
-                      <div className="flex flex-col items-center">
-                        <div className="text-xs text-gray-500 dark:text-gray-400 mb-1 h-4">
+                      <div className="flex flex-col items-center group">
+                        <div className="text-xs font-medium text-gray-600 dark:text-gray-400 mb-1 h-4">
                           Node {index}
                         </div>
                         <div
                           className={`flex items-center border-2 rounded-lg transition-all duration-500 ${
                             highlightedIndex === index
-                              ? "border-red-500 scale-110 shadow-lg"
-                              : "border-green-300 dark:border-green-600"
+                              ? "border-red-500 scale-110 shadow-xl"
+                              : "border-green-300 dark:border-green-600 hover:scale-105"
                           }`}
                         >
                           {/* Data part */}
                           <div
-                            className={`px-4 py-3 rounded-l-lg font-bold text-lg ${
+                            className={`px-3 py-2 rounded-l-lg font-bold text-base ${
                               highlightedIndex === index
-                                ? "bg-yellow-400 animate-pulse"
-                                : "bg-green-100 dark:bg-green-800"
+                                ? "bg-yellow-400 animate-pulse text-black"
+                                : "bg-green-100 dark:bg-green-800 group-hover:bg-green-200 dark:group-hover:bg-green-700"
                             }`}
                           >
                             {value}
                           </div>
                           {/* Pointer part */}
                           <div
-                            className={`px-2 py-3 rounded-r-lg text-sm font-mono ${
+                            className={`px-2 py-2 rounded-r-lg text-sm font-mono ${
                               highlightedIndex === index
-                                ? "bg-yellow-300"
-                                : "bg-green-200 dark:bg-green-700"
+                                ? "bg-yellow-300 text-black"
+                                : "bg-green-200 dark:bg-green-700 group-hover:bg-green-300 dark:group-hover:bg-green-600"
                             }`}
                           >
                             {index < animationList.length - 1 ? "→" : "∅"}
@@ -403,7 +517,7 @@ export function LinkedListsSection() {
 
                       {/* Arrow between nodes */}
                       {index < animationList.length - 1 && (
-                        <div className="text-green-500 text-2xl">→</div>
+                        <div className="text-green-500 text-xl">→</div>
                       )}
                     </div>
                   ))}
@@ -412,15 +526,17 @@ export function LinkedListsSection() {
                   {animationList.length > 0 && (
                     <div className="flex flex-col items-center">
                       <div className="text-xs text-gray-500 dark:text-gray-400 mb-1 h-4">NULL</div>
-                      <div className="bg-red-500 text-white px-3 py-2 rounded font-bold text-sm">
+                      <div className="bg-red-500 text-white px-2 py-2 rounded font-bold text-sm">
                         ∅
                       </div>
                     </div>
                   )}
 
                   {animationList.length === 0 && (
-                    <div className="text-gray-500 italic text-center p-8">
-                      Linked List rỗng - Hãy thêm node để bắt đầu
+                    <div className="text-gray-500 italic text-center p-8 bg-gray-50 dark:bg-slate-700 rounded-xl border-2 border-dashed border-gray-300 dark:border-gray-600">
+                      <div className="text-2xl mb-1">🔗</div>
+                      <div className="text-sm font-semibold mb-1">Linked List rỗng</div>
+                      <div className="text-xs">Hãy thêm node để bắt đầu</div>
                     </div>
                   )}
                 </div>
@@ -428,88 +544,137 @@ export function LinkedListsSection() {
 
               {/* Animation status */}
               {animationStep && (
-                <div className="bg-orange-100 dark:bg-orange-900/30 border border-orange-300 dark:border-orange-700 rounded-lg p-3 mb-4">
-                  <div className="font-medium text-orange-800 dark:text-orange-300">
-                    {animationStep}
+                <div className="bg-gradient-to-r from-orange-100 to-yellow-100 dark:from-orange-900/30 dark:to-yellow-900/30 border-2 border-orange-300 dark:border-orange-700 rounded-xl p-4 mb-6 shadow-md">
+                  <div className="flex items-center gap-3">
+                    <div className={isAnimating ? "animate-spin" : ""}>⚡</div>
+                    <div className="font-semibold text-orange-800 dark:text-orange-300 text-lg">
+                      {animationStep}
+                    </div>
                   </div>
                 </div>
               )}
 
               {/* List info */}
-              <div className="grid grid-cols-3 gap-4 text-sm text-gray-600 dark:text-gray-400 mb-4">
-                <div className="bg-white dark:bg-slate-800 p-3 rounded">
-                  <strong>Nodes:</strong> {animationList.length}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                <div className="bg-white dark:bg-slate-800 p-4 rounded-xl border border-gray-200 dark:border-slate-600 shadow-sm">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg">🔗</div>
+                    <div>
+                      <div className="text-sm text-gray-600 dark:text-gray-400">Nodes</div>
+                      <div className="text-xl font-bold text-blue-600 dark:text-blue-400">{animationList.length}</div>
+                    </div>
+                  </div>
                 </div>
-                <div className="bg-white dark:bg-slate-800 p-3 rounded">
-                  <strong>Head:</strong> {animationList.length > 0 ? animationList[0] : "NULL"}
+                <div className="bg-white dark:bg-slate-800 p-4 rounded-xl border border-gray-200 dark:border-slate-600 shadow-sm">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-green-100 dark:bg-green-900/30 rounded-lg">📍</div>
+                    <div>
+                      <div className="text-sm text-gray-600 dark:text-gray-400">Head</div>
+                      <div className="text-xl font-bold text-green-600 dark:text-green-400">
+                        {animationList.length > 0 ? animationList[0] : "NULL"}
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div className="bg-white dark:bg-slate-800 p-3 rounded">
-                  <strong>Tail:</strong> {animationList.length > 0 ? animationList[animationList.length - 1] : "NULL"}
+                <div className="bg-white dark:bg-slate-800 p-4 rounded-xl border border-gray-200 dark:border-slate-600 shadow-sm">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-red-100 dark:bg-red-900/30 rounded-lg">🎯</div>
+                    <div>
+                      <div className="text-sm text-gray-600 dark:text-gray-400">Tail</div>
+                      <div className="text-xl font-bold text-red-600 dark:text-red-400">
+                        {animationList.length > 0 ? animationList[animationList.length - 1] : "NULL"}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* Interactive Controls */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
               {/* Search */}
-              <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border">
-                <h5 className="font-medium text-blue-600 dark:text-blue-400 mb-2">🔍 Tìm Kiếm (O(n))</h5>
+              <div className="bg-white dark:bg-slate-800 p-4 rounded-xl border border-blue-200 dark:border-slate-600 shadow-md hover:shadow-lg transition-all group">
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="p-1.5 bg-blue-100 dark:bg-blue-900/30 rounded-lg group-hover:scale-110 transition-transform">
+                    🔍
+                  </div>
+                  <div>
+                    <h5 className="font-bold text-blue-700 dark:text-blue-400 text-sm">Tìm Kiếm</h5>
+                    <p className="text-xs text-blue-600 dark:text-blue-500 font-mono">O(n)</p>
+                  </div>
+                </div>
                 <div className="space-y-2">
                   <input
                     type="number"
                     value={searchValue}
                     onChange={(e) => setSearchValue(e.target.value)}
-                    placeholder="Nhập giá trị"
-                    className="w-full px-2 py-1 text-sm border rounded dark:bg-slate-700 dark:border-slate-600"
+                    placeholder="Nhập giá trị cần tìm"
+                    className="w-full px-3 py-2 border-2 border-blue-200 dark:border-blue-700 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 dark:bg-slate-700 transition-all"
                     disabled={isAnimating}
                   />
                   <button
                     onClick={animateSearch}
-                    disabled={isAnimating}
-                    className="w-full px-3 py-2 text-sm bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50"
+                    disabled={isAnimating || animationList.length === 0}
+                    className="w-full px-3 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-medium text-sm rounded-md hover:from-blue-600 hover:to-cyan-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
                   >
-                    Tìm kiếm
+                    🔍 Tìm kiếm
                   </button>
                 </div>
               </div>
 
               {/* Insert at Head */}
-              <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border">
-                <h5 className="font-medium text-green-600 dark:text-green-400 mb-2">➕ Thêm Đầu (O(1))</h5>
+              <div className="bg-white dark:bg-slate-800 p-4 rounded-xl border border-green-200 dark:border-slate-600 shadow-md hover:shadow-lg transition-all group">
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="p-1.5 bg-green-100 dark:bg-green-900/30 rounded-lg group-hover:scale-110 transition-transform">
+                    ➕
+                  </div>
+                  <div>
+                    <h5 className="font-bold text-green-700 dark:text-green-400 text-sm">Thêm Đầu</h5>
+                    <p className="text-xs text-green-600 dark:text-green-500 font-mono">O(1)</p>
+                  </div>
+                </div>
                 <div className="space-y-2">
                   <input
                     type="number"
                     value={insertValue}
                     onChange={(e) => setInsertValue(e.target.value)}
-                    placeholder="Nhập giá trị"
-                    className="w-full px-2 py-1 text-sm border rounded dark:bg-slate-700 dark:border-slate-600"
+                    placeholder="Nhập giá trị mới"
+                    className="w-full px-3 py-2 border-2 border-green-200 dark:border-green-700 rounded-lg focus:border-green-500 focus:ring-2 focus:ring-green-200 dark:bg-slate-700 transition-all"
                     disabled={isAnimating}
                   />
                   <button
                     onClick={animateInsertHead}
                     disabled={isAnimating}
-                    className="w-full px-3 py-2 text-sm bg-green-500 text-white rounded hover:bg-green-600 disabled:opacity-50"
+                    className="w-full px-3 py-2 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-medium text-sm rounded-md hover:from-green-600 hover:to-emerald-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
                   >
-                    Thêm đầu
+                    ➕ Thêm đầu
                   </button>
                 </div>
               </div>
 
               {/* Insert at Tail */}
-              <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border">
-                <h5 className="font-medium text-purple-600 dark:text-purple-400 mb-2">➕ Thêm Cuối (O(n))</h5>
+              <div className="bg-white dark:bg-slate-800 p-4 rounded-xl border border-purple-200 dark:border-slate-600 shadow-md hover:shadow-lg transition-all group">
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="p-1.5 bg-purple-100 dark:bg-purple-900/30 rounded-lg group-hover:scale-110 transition-transform">
+                    ➕
+                  </div>
+                  <div>
+                    <h5 className="font-bold text-purple-700 dark:text-purple-400 text-sm">Thêm Cuối</h5>
+                    <p className="text-xs text-purple-600 dark:text-purple-500 font-mono">O(n)</p>
+                  </div>
+                </div>
                 <div className="space-y-2">
                   <button
                     onClick={animateInsertTail}
                     disabled={isAnimating || !insertValue}
-                    className="w-full px-3 py-2 text-sm bg-purple-500 text-white rounded hover:bg-purple-600 disabled:opacity-50"
+                    className="w-full px-3 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-medium text-sm rounded-md hover:from-purple-600 hover:to-pink-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
                   >
-                    Thêm cuối
+                    ➕ Thêm cuối
                   </button>
                   <button
                     onClick={animateRemoveHead}
-                    disabled={isAnimating}
-                    className="w-full px-3 py-2 text-sm bg-red-500 text-white rounded hover:bg-red-600 disabled:opacity-50"
+                    disabled={isAnimating || animationList.length === 0}
+                    className="w-full px-3 py-2 bg-gradient-to-r from-red-500 to-rose-500 text-white font-medium text-sm rounded-md hover:from-red-600 hover:to-rose-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
                   >
                     ➖ Xóa đầu
                   </button>
@@ -517,20 +682,28 @@ export function LinkedListsSection() {
               </div>
 
               {/* Remove and Reset */}
-              <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border">
-                <h5 className="font-medium text-red-600 dark:text-red-400 mb-2">🛠️ Điều Khiển</h5>
+              <div className="bg-white dark:bg-slate-800 p-4 rounded-xl border border-orange-200 dark:border-slate-600 shadow-md hover:shadow-lg transition-all group">
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="p-1.5 bg-orange-100 dark:bg-orange-900/30 rounded-lg group-hover:scale-110 transition-transform">
+                    🛠️
+                  </div>
+                  <div>
+                    <h5 className="font-bold text-orange-700 dark:text-orange-400 text-sm">Điều Khiển</h5>
+                    <p className="text-xs text-orange-600 dark:text-orange-500">Quản lý list</p>
+                  </div>
+                </div>
                 <div className="space-y-2">
                   <button
                     onClick={animateRemoveTail}
-                    disabled={isAnimating}
-                    className="w-full px-3 py-2 text-sm bg-orange-500 text-white rounded hover:bg-orange-600 disabled:opacity-50"
+                    disabled={isAnimating || animationList.length === 0}
+                    className="w-full px-3 py-2 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-medium text-sm rounded-md hover:from-orange-600 hover:to-amber-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
                   >
                     ➖ Xóa cuối
                   </button>
                   <button
                     onClick={resetLinkedList}
                     disabled={isAnimating}
-                    className="w-full px-3 py-2 text-sm bg-gray-500 text-white rounded hover:bg-gray-600 disabled:opacity-50"
+                    className="w-full px-3 py-2 bg-gradient-to-r from-gray-500 to-slate-500 text-white font-medium text-sm rounded-md hover:from-gray-600 hover:to-slate-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
                   >
                     🔄 Reset
                   </button>
@@ -539,164 +712,197 @@ export function LinkedListsSection() {
             </div>
 
             {/* Operation Explanations */}
-            <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-              <div className="bg-green-50 dark:bg-green-900/20 p-3 rounded border border-green-200 dark:border-green-800">
-                <strong className="text-green-700 dark:text-green-300">Thêm vào đầu O(1):</strong>
-                <p className="text-gray-600 dark:text-gray-400 mt-1">
+            <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 p-6 rounded-xl border border-green-200 dark:border-green-800 shadow-md">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="p-2 bg-green-100 dark:bg-green-900/50 rounded-lg">
+                    ⚡
+                  </div>
+                  <h6 className="font-bold text-green-700 dark:text-green-300">Thêm vào đầu O(1)</h6>
+                </div>
+                <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
                   Chỉ cần tạo node mới và cập nhật pointer HEAD, không phụ thuộc vào kích thước list.
+                  Thao tác này luôn nhanh và hiệu quả.
                 </p>
               </div>
-              <div className="bg-blue-50 dark:bg-blue-900/20 p-3 rounded border border-blue-200 dark:border-blue-800">
-                <strong className="text-blue-700 dark:text-blue-300">Tìm kiếm/Thêm cuối O(n):</strong>
-                <p className="text-gray-600 dark:text-gray-400 mt-1">
-                  Phải duyệt từ đầu đến cuối để tìm vị trí cần thiết. Trường hợp xấu nhất: n lần duyệt.
+              <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 p-6 rounded-xl border border-blue-200 dark:border-blue-800 shadow-md">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="p-2 bg-blue-100 dark:bg-blue-900/50 rounded-lg">
+                    🔍
+                  </div>
+                  <h6 className="font-bold text-blue-700 dark:text-blue-300">Tìm kiếm/Thêm cuối O(n)</h6>
+                </div>
+                <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                  Phải duyệt từ đầu đến cuối để tìm vị trí cần thiết.
+                  Trường hợp xấu nhất: kiểm tra tất cả n node.
                 </p>
               </div>
             </div>
           </div>
+        </div>
+      )}
 
-          <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
-            <h4 className="font-medium mb-2">Cấu Trúc Danh Sách Liên Kết:</h4>
-            <MermaidDiagram
-              chart={`
-                graph LR
-                    subgraph "Danh Sách Liên Kết Đơn"
-                        HEAD["HEAD"] --> A
-                        A["Node 1<br/>Data: 10<br/>Next: →"] --> B["Node 2<br/>Data: 20<br/>Next: →"]
-                        B --> C["Node 3<br/>Data: 30<br/>Next: NULL"]
-                        C --> NULL1[NULL]
-                        style NULL1 fill:#ffcdd2
-                    end
-
-                    subgraph "Các Thao Tác"
-                        INSERT["Thêm vào đầu"] -.-> HEAD
-                        DELETE["Xóa node"] -.-> B
-                        SEARCH["Tìm kiếm"] -.-> A
-                    end
-              `}
-              className="mb-4"
-            />
-          </div>
-
-          <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
-            <h4 className="font-medium mb-2">Danh Sách Tương Tác:</h4>
-            <div className="flex gap-2 mb-3 flex-wrap">
-              <input
-                type="number"
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                placeholder="Nhập số"
-                className="px-3 py-2 border rounded dark:bg-slate-600 dark:border-slate-500"
-              />
-              <button
-                onClick={addToHead}
-                disabled={!wasmReady}
-                className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 disabled:opacity-50"
-              >
-                🦀 Thêm vào đầu
-              </button>
-              <button
-                onClick={addToTail}
-                disabled={!wasmReady}
-                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50"
-              >
-                🦀 Thêm vào cuối
-              </button>
-              <button
-                onClick={removeHead}
-                disabled={!wasmReady}
-                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 disabled:opacity-50"
-              >
-                🦀 Xóa đầu
-              </button>
-              <button
-                onClick={removeTail}
-                disabled={!wasmReady}
-                className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600 disabled:opacity-50"
-              >
-                🦀 Xóa cuối
-              </button>
-              <button
-                onClick={clear}
-                disabled={!wasmReady}
-                className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 disabled:opacity-50"
-              >
-                🧹 Xóa tất cả
-              </button>
+      {/* Implementation Section */}
+      {activeSection === "implementation" && (
+        <div className="space-y-6">
+          {/* WASM LinkedList Demo */}
+          <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-gray-200 dark:border-slate-600 shadow-md">
+            <div className="flex items-center gap-2 mb-4">
+              <div className="p-2 bg-gradient-to-r from-orange-500 to-amber-500 rounded-full text-white text-sm">
+                🦀
+              </div>
+              <div>
+                <h4 className="text-lg font-bold text-orange-800 dark:text-orange-300">
+                  Rust WASM LinkedList
+                </h4>
+                <p className="text-gray-600 dark:text-gray-400 text-sm">
+                  Demo tương tác với Rust WebAssembly
+                </p>
+              </div>
             </div>
 
-            {result && (
-              <div className="mb-3 p-3 bg-orange-50 dark:bg-orange-900/20 rounded">
-                <strong>Kết quả:</strong> {result}
+            <div className="bg-orange-50 dark:bg-orange-900/20 p-4 rounded-xl border border-orange-200 dark:border-orange-800">
+              <div className="flex gap-3 mb-4 flex-wrap">
+                <input
+                  type="number"
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  placeholder="Nhập số"
+                  className="flex-1 min-w-[120px] px-4 py-2 border-2 border-orange-200 dark:border-orange-700 rounded-lg focus:border-orange-500 focus:ring-2 focus:ring-orange-200 dark:bg-slate-700 transition-all"
+                />
+                <button
+                  onClick={addToHead}
+                  disabled={!wasmReady}
+                  className="px-4 py-2 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-medium text-sm rounded-md hover:from-green-600 hover:to-emerald-600 disabled:opacity-50 transition-all"
+                >
+                  🦀 Thêm đầu
+                </button>
+                <button
+                  onClick={addToTail}
+                  disabled={!wasmReady}
+                  className="px-4 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-medium text-sm rounded-md hover:from-blue-600 hover:to-cyan-600 disabled:opacity-50 transition-all"
+                >
+                  🦀 Thêm cuối
+                </button>
+                <button
+                  onClick={removeHead}
+                  disabled={!wasmReady}
+                  className="px-4 py-2 bg-gradient-to-r from-red-500 to-rose-500 text-white font-medium text-sm rounded-md hover:from-red-600 hover:to-rose-600 disabled:opacity-50 transition-all"
+                >
+                  🦀 Xóa đầu
+                </button>
+                <button
+                  onClick={removeTail}
+                  disabled={!wasmReady}
+                  className="px-4 py-2 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-medium text-sm rounded-md hover:from-orange-600 hover:to-amber-600 disabled:opacity-50 transition-all"
+                >
+                  🦀 Xóa cuối
+                </button>
+                <button
+                  onClick={clear}
+                  disabled={!wasmReady}
+                  className="px-4 py-2 bg-gradient-to-r from-gray-500 to-slate-500 text-white font-medium text-sm rounded-md hover:from-gray-600 hover:to-slate-600 disabled:opacity-50 transition-all"
+                >
+                  🧹 Xóa tất cả
+                </button>
               </div>
-            )}
-            <div className="flex items-center gap-2 text-sm overflow-x-auto">
-              {listDisplay.length === 0 ? (
-                <div className="text-gray-500 italic">Danh sách rỗng</div>
-              ) : (
-                <>
-                  <div className="bg-orange-500 text-white px-2 py-1 rounded text-xs">🦀 HEAD</div>
-                  {listDisplay.map((value, index) => (
-                    <div key={index} className="flex items-center gap-2">
-                      <div className="border-2 border-orange-500 p-2 rounded bg-orange-50 dark:bg-orange-900">
-                        <div className="text-xs text-gray-600 dark:text-gray-300">Data: {value}</div>
-                        <div className="text-xs text-gray-600 dark:text-gray-300">
-                          Next: {index < listDisplay.length - 1 ? "→" : "NULL"}
-                        </div>
-                      </div>
-                      {index < listDisplay.length - 1 && <span className="text-orange-500">→</span>}
-                    </div>
-                  ))}
-                  <span className="text-red-500">NULL</span>
-                </>
+
+              {result && (
+                <div className="mb-4 p-3 bg-orange-100 dark:bg-orange-900/30 rounded-lg border border-orange-200 dark:border-orange-700">
+                  <strong>Kết quả:</strong> {result}
+                </div>
               )}
+
+              <div className="flex items-center gap-2 text-sm overflow-x-auto min-h-[60px] items-center">
+                {listDisplay.length === 0 ? (
+                  <div className="text-gray-500 italic text-center flex-1 py-4">
+                    🔗 LinkedList rỗng - Hãy thêm node
+                  </div>
+                ) : (
+                  <>
+                    <div className="bg-orange-500 text-white px-2 py-1 rounded text-xs font-bold">🦀 HEAD</div>
+                    {listDisplay.map((value, index) => (
+                      <div key={index} className="flex items-center gap-2">
+                        <div className="border-2 border-orange-500 rounded-lg bg-white dark:bg-slate-800 shadow-sm hover:shadow-md transition-shadow">
+                          <div className="p-2">
+                            <div className="text-xs text-gray-600 dark:text-gray-300 font-semibold">Data: {value}</div>
+                            <div className="text-xs text-gray-600 dark:text-gray-300">
+                              Next: {index < listDisplay.length - 1 ? "→" : "NULL"}
+                            </div>
+                          </div>
+                        </div>
+                        {index < listDisplay.length - 1 && <span className="text-orange-500 text-lg">→</span>}
+                      </div>
+                    ))}
+                    <span className="text-red-500 font-bold">NULL</span>
+                  </>
+                )}
+              </div>
             </div>
           </div>
 
-          <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
-            <h4 className="font-medium mb-4">Cài Đặt:</h4>
+          {/* Code Implementation */}
+          <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-gray-200 dark:border-slate-600 shadow-md">
+            <div className="flex items-center gap-2 mb-4">
+              <div className="p-2 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full text-white text-sm">
+                💻
+              </div>
+              <div>
+                <h4 className="text-lg font-bold text-emerald-800 dark:text-emerald-300">
+                  Cài Đặt Chi Tiết
+                </h4>
+                <p className="text-gray-600 dark:text-gray-400 text-sm">
+                  Mã nguồn trong các ngôn ngữ phổ biến
+                </p>
+              </div>
+            </div>
 
             {/* Language Tabs */}
             <div className="mb-4">
-              <div className="border-b border-gray-200 dark:border-gray-600">
-                <nav className="-mb-px flex space-x-8">
-                  <button
-                    onClick={() => setActiveLanguageTab("rust")}
-                    className={`py-2 px-1 border-b-2 font-medium text-sm ${
-                      activeLanguageTab === "rust"
-                        ? "border-orange-500 text-orange-600 dark:text-orange-400"
-                        : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
-                    }`}
-                  >
-                    Rust
-                  </button>
-                  <button
-                    onClick={() => setActiveLanguageTab("cpp")}
-                    className={`py-2 px-1 border-b-2 font-medium text-sm ${
-                      activeLanguageTab === "cpp"
-                        ? "border-blue-500 text-blue-600 dark:text-blue-400"
-                        : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
-                    }`}
-                  >
-                    C++
-                  </button>
-                  <button
-                    onClick={() => setActiveLanguageTab("python")}
-                    className={`py-2 px-1 border-b-2 font-medium text-sm ${
-                      activeLanguageTab === "python"
-                        ? "border-green-500 text-green-600 dark:text-green-400"
-                        : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
-                    }`}
-                  >
-                    Python
-                  </button>
-                </nav>
+              <div className="flex bg-gray-100 dark:bg-slate-700 rounded-lg p-1 w-fit">
+                <button
+                  onClick={() => setActiveLanguageTab("rust")}
+                  className={`px-4 py-2 rounded-md font-medium text-sm transition-all ${
+                    activeLanguageTab === "rust"
+                      ? "bg-orange-500 text-white shadow-sm"
+                      : "text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-slate-600"
+                  }`}
+                >
+                  🦀 Rust
+                </button>
+                <button
+                  onClick={() => setActiveLanguageTab("cpp")}
+                  className={`px-4 py-2 rounded-md font-medium text-sm transition-all ${
+                    activeLanguageTab === "cpp"
+                      ? "bg-blue-500 text-white shadow-sm"
+                      : "text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-slate-600"
+                  }`}
+                >
+                  ⚡ C++
+                </button>
+                <button
+                  onClick={() => setActiveLanguageTab("python")}
+                  className={`px-4 py-2 rounded-md font-medium text-sm transition-all ${
+                    activeLanguageTab === "python"
+                      ? "bg-green-500 text-white shadow-sm"
+                      : "text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-slate-600"
+                  }`}
+                >
+                  🐍 Python
+                </button>
               </div>
             </div>
 
-            {/* Language-specific Code */}
-            {activeLanguageTab === "rust" && (
-              <RustCodeEditor
+            <div className="bg-gray-50 dark:bg-slate-700 rounded-xl p-6 border">
+
+              {/* Language-specific Code */}
+              {activeLanguageTab === "rust" && (
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="p-2 bg-orange-100 dark:bg-orange-900/30 rounded">🦀</div>
+                    <h5 className="text-lg font-bold text-orange-700 dark:text-orange-300">LinkedList trong Rust</h5>
+                  </div>
+                  <RustCodeEditor
               code={`#[derive(Debug)]
 struct Node<T> {
     data: T,
@@ -761,12 +967,18 @@ impl<T> LinkedList<T> {
         result
     }
 }`}
-                height="350px"
-              />
-            )}
+                    height="300px"
+                  />
+                </div>
+              )}
 
-            {activeLanguageTab === "cpp" && (
-              <CppCodeEditor
+              {activeLanguageTab === "cpp" && (
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded">⚡</div>
+                    <h5 className="text-lg font-bold text-blue-700 dark:text-blue-300">LinkedList trong C++</h5>
+                  </div>
+                  <CppCodeEditor
                 code={`#include <iostream>
 #include <memory>
 
@@ -832,12 +1044,18 @@ public:
     bool empty() const { return head == nullptr; }
     size_t length() const { return size; }
 };`}
-                height="350px"
-              />
-            )}
+                    height="300px"
+                  />
+                </div>
+              )}
 
-            {activeLanguageTab === "python" && (
-              <PythonCodeEditor
+              {activeLanguageTab === "python" && (
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="p-2 bg-green-100 dark:bg-green-900/30 rounded">🐍</div>
+                    <h5 className="text-lg font-bold text-green-700 dark:text-green-300">LinkedList trong Python</h5>
+                  </div>
+                  <PythonCodeEditor
                 code={`class Node:
     """Node class cho Linked List"""
     def __init__(self, data):
@@ -924,36 +1142,14 @@ class LinkedList:
 # ll.push_front(1)
 # ll.push_back(2)
 # print(ll.display())  # [1, 2]`}
-                height="350px"
-              />
-            )}
-          </div>
-
-          <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
-            <h4 className="font-medium mb-2">Độ Phức Tạp:</h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-              <div>
-                <strong>Truy cập:</strong> O(n)
-              </div>
-              <div>
-                <strong>Tìm kiếm:</strong> O(n)
-              </div>
-              <div>
-                <strong>Thêm vào đầu:</strong> O(1)
-              </div>
-              <div>
-                <strong>Xóa đầu:</strong> O(1)
-              </div>
-              <div>
-                <strong>Thêm vào giữa:</strong> O(n)
-              </div>
-              <div>
-                <strong>Xóa ở giữa:</strong> O(n)
-              </div>
+                    height="300px"
+                  />
+                </div>
+              )}
             </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

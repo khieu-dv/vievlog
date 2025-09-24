@@ -17,6 +17,7 @@ export function TreesSection() {
   const [result, setResult] = useState("");
   const [wasm, setWasm] = useState<any>(null);
   const [activeLanguageTab, setActiveLanguageTab] = useState("rust");
+  const [activeSection, setActiveSection] = useState<"overview" | "interactive" | "implementation">("overview");
 
   // Interactive visualization states
   interface TreeNode {
