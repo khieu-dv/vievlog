@@ -282,21 +282,21 @@ export function QueueSection() {
 
   return (
     <div className="space-y-6">
-      <div className="bg-white dark:bg-slate-800 rounded-lg p-6 border">
-        <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+      <div className="bg-card rounded-lg p-6 border">
+        <h3 className="text-lg font-semibold mb-6 flex items-center gap-2">
           <ArrowRight className="h-5 w-5" />
           🦀 Rust WASM Queue (Hàng Đợi)
         </h3>
 
         {/* Định nghĩa và giải thích cơ bản */}
-        <div className="bg-cyan-50 dark:bg-cyan-900/20 p-4 rounded-lg mb-4 border-l-4 border-cyan-500">
+        <div className="bg-cyan-50 dark:bg-cyan-950/50 p-6 rounded-lg mb-6 border-l-4 border-cyan-500">
           <h4 className="font-semibold text-cyan-800 dark:text-cyan-300 mb-2">🚶‍♂️ Queue là gì?</h4>
           <p className="text-gray-700 dark:text-gray-300 mb-3">
             <strong>Queue (Hàng Đợi)</strong> là cấu trúc dữ liệu tuân theo nguyên tắc <strong>FIFO (First In, First Out)</strong>.
             Giống như xếp hàng mua vé: người đến trước sẽ được phục vụ trước.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
-            <div className="bg-white dark:bg-slate-800 p-3 rounded">
+            <div className="bg-card p-3 rounded">
               <strong className="text-blue-600 dark:text-blue-400">🎯 Ứng dụng thực tế:</strong>
               <ul className="mt-1 text-gray-600 dark:text-gray-300">
                 <li>• Hàng đợi in ấn (Print Queue)</li>
@@ -305,7 +305,7 @@ export function QueueSection() {
                 <li>• Buffer cho streaming</li>
               </ul>
             </div>
-            <div className="bg-white dark:bg-slate-800 p-3 rounded">
+            <div className="bg-card p-3 rounded">
               <strong className="text-green-600 dark:text-green-400">⚡ Thao tác chính:</strong>
               <ul className="mt-1 text-gray-600 dark:text-gray-300">
                 <li>• <strong>Enqueue:</strong> Thêm vào cuối</li>
@@ -317,7 +317,7 @@ export function QueueSection() {
           </div>
         </div>
 
-        <div className="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg mb-4 border-l-4 border-amber-500">
+        <div className="bg-amber-50 dark:bg-amber-950/50 p-6 rounded-lg mb-6 border-l-4 border-amber-500">
           <h4 className="font-semibold text-amber-800 dark:text-amber-300 mb-2">🔄 Queue vs Stack:</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
             <div>
@@ -333,7 +333,7 @@ export function QueueSection() {
 
         <div className="space-y-4">
           {/* Interactive Queue Visualization */}
-          <div className="bg-gradient-to-r from-cyan-50 to-blue-50 dark:from-cyan-900/20 dark:to-blue-900/20 p-6 rounded-lg border-2 border-cyan-200 dark:border-cyan-800">
+          <div className="bg-gradient-to-r from-cyan-50 to-blue-50 dark:from-cyan-950/20 dark:to-blue-950/20 p-6 rounded-lg border border-cyan-200 dark:border-cyan-800">
             <h4 className="font-semibold text-cyan-800 dark:text-cyan-300 mb-4 flex items-center gap-2">
               🎮 Minh Họa Tương Tác - Queue Operations (FIFO)
             </h4>
@@ -422,16 +422,16 @@ export function QueueSection() {
 
               {/* Queue info */}
               <div className="grid grid-cols-4 gap-4 text-sm text-gray-600 dark:text-gray-400 mb-4">
-                <div className="bg-white dark:bg-slate-800 p-3 rounded">
+                <div className="bg-card p-3 rounded">
                   <strong>Kích thước:</strong> {animationQueue.length}
                 </div>
-                <div className="bg-white dark:bg-slate-800 p-3 rounded">
+                <div className="bg-card p-3 rounded">
                   <strong>FRONT:</strong> {animationQueue.length > 0 ? animationQueue[0] : "NULL"}
                 </div>
-                <div className="bg-white dark:bg-slate-800 p-3 rounded">
+                <div className="bg-card p-3 rounded">
                   <strong>REAR:</strong> {animationQueue.length > 0 ? animationQueue[animationQueue.length - 1] : "NULL"}
                 </div>
-                <div className="bg-white dark:bg-slate-800 p-3 rounded">
+                <div className="bg-card p-3 rounded">
                   <strong>Trạng thái:</strong> {animationQueue.length === 0 ? "Rỗng" : "Có dữ liệu"}
                 </div>
               </div>
@@ -539,15 +539,15 @@ export function QueueSection() {
               </div>
             </div>
           </div>
-          <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
-            <h4 className="font-medium mb-2">Thao Tác Queue Cơ Bản:</h4>
+          <div className="bg-muted/50 p-6 rounded-lg border">
+            <h4 className="font-semibold mb-4">Thao Tác Queue Cơ Bản:</h4>
             <div className="flex gap-2 mb-3 flex-wrap">
               <input
                 type="number"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Nhập số"
-                className="px-3 py-2 border rounded dark:bg-slate-600 dark:border-slate-500"
+                className="px-3 py-2 border rounded dark:bg-background dark:border-border"
               />
               <button
                 onClick={enqueue}
@@ -582,13 +582,13 @@ export function QueueSection() {
             </div>
 
             {result && (
-              <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-900/20 rounded">
+              <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/50 rounded border border-blue-200 dark:border-blue-800">
                 <strong>Kết quả:</strong> {result}
               </div>
             )}
           </div>
 
-          <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
+          <div className="bg-muted/50 p-6 rounded-lg border">
             <h4 className="font-medium mb-2">Trạng Thái Queue:</h4>
             <div className="space-y-2">
               <p className="text-sm">
@@ -600,10 +600,10 @@ export function QueueSection() {
               <p className="text-sm">
                 <strong>Rear:</strong> {queueDisplay.length > 0 ? queueDisplay[queueDisplay.length - 1] : "Queue trống"}
               </p>
-              <div className="bg-white dark:bg-slate-800 p-3 rounded">
+              <div className="bg-card p-3 rounded">
                 <div className="font-mono text-sm">
                   {queueDisplay.length === 0 ? (
-                    <div className="text-gray-500 text-center py-4">Queue trống</div>
+                    <div className="text-muted-foreground text-center py-4">Queue trống</div>
                   ) : (
                     <div className="flex gap-2 overflow-x-auto">
                       {queueDisplay.map((value, index) => (
@@ -622,7 +622,7 @@ export function QueueSection() {
                           {index === queueDisplay.length - 1 && <div className="text-xs text-green-600">REAR</div>}
                         </div>
                       ))}
-                      <div className="flex items-center text-gray-500">→ OUT</div>
+                      <div className="flex items-center text-muted-foreground">→ OUT</div>
                     </div>
                   )}
                 </div>
@@ -630,7 +630,7 @@ export function QueueSection() {
             </div>
           </div>
 
-          <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
+          <div className="bg-muted/50 p-6 rounded-lg border">
             <h4 className="font-medium mb-2">Circular Queue (Hàng Đợi Vòng):</h4>
             <div className="flex gap-2 mb-3 flex-wrap">
               <input
@@ -638,7 +638,7 @@ export function QueueSection() {
                 value={circularInput}
                 onChange={(e) => setCircularInput(e.target.value)}
                 placeholder="Nhập số"
-                className="px-3 py-2 border rounded dark:bg-slate-600 dark:border-slate-500"
+                className="px-3 py-2 border rounded dark:bg-background dark:border-border"
               />
               <button
                 onClick={circularEnqueue}
@@ -661,12 +661,12 @@ export function QueueSection() {
             </div>
 
             {circularResult && (
-              <div className="mb-3 p-3 bg-green-50 dark:bg-green-900/20 rounded">
+              <div className="mb-3 p-3 bg-green-50 dark:bg-green-950/50 rounded border border-green-200 dark:border-green-800">
                 <strong>Kết quả:</strong> {circularResult}
               </div>
             )}
 
-            <div className="bg-white dark:bg-slate-800 p-3 rounded">
+            <div className="bg-card p-3 rounded">
               <div className="text-sm mb-2">
                 <strong>Capacity:</strong> 5, <strong>Size:</strong> {circularSize}, <strong>Front:</strong> {frontIndex}, <strong>Rear:</strong> {rearIndex}
               </div>
@@ -694,7 +694,7 @@ export function QueueSection() {
             </div>
           </div>
 
-          <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
+          <div className="bg-muted/50 p-6 rounded-lg border">
             <h4 className="font-medium mb-2">Cấu Trúc Queue:</h4>
             <MermaidDiagram
               chart={`
@@ -737,7 +737,7 @@ export function QueueSection() {
             />
           </div>
 
-          <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
+          <div className="bg-muted/50 p-6 rounded-lg border">
             <h4 className="font-medium mb-2">So Sánh Loại Queue:</h4>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
@@ -779,19 +779,19 @@ export function QueueSection() {
             </div>
           </div>
 
-          <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
+          <div className="bg-muted/50 p-6 rounded-lg border">
             <h4 className="font-medium mb-4">Cài Đặt:</h4>
 
             {/* Language Tabs */}
             <div className="mb-4">
-              <div className="border-b border-gray-200 dark:border-gray-600">
+              <div className="border-b border-border">
                 <nav className="-mb-px flex space-x-8">
                   <button
                     onClick={() => setActiveLanguageTab("rust")}
                     className={`py-2 px-1 border-b-2 font-medium text-sm ${
                       activeLanguageTab === "rust"
                         ? "border-orange-500 text-orange-600 dark:text-orange-400"
-                        : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
+                        : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"
                     }`}
                   >
                     Rust
@@ -801,7 +801,7 @@ export function QueueSection() {
                     className={`py-2 px-1 border-b-2 font-medium text-sm ${
                       activeLanguageTab === "cpp"
                         ? "border-blue-500 text-blue-600 dark:text-blue-400"
-                        : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
+                        : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"
                     }`}
                   >
                     C++
@@ -811,7 +811,7 @@ export function QueueSection() {
                     className={`py-2 px-1 border-b-2 font-medium text-sm ${
                       activeLanguageTab === "python"
                         ? "border-green-500 text-green-600 dark:text-green-400"
-                        : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
+                        : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"
                     }`}
                   >
                     Python

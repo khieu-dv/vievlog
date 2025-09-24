@@ -399,48 +399,48 @@ if __name__ == "__main__":
   };
 
   return (
-    <div className="max-w-7xl mx-auto space-y-8">
+    <div className="space-y-6">
       {/* Header Section with Navigation Pills */}
-      <div className="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-slate-800 dark:via-slate-800 dark:to-slate-700 rounded-xl p-6 border border-blue-100 dark:border-slate-600 shadow-md">
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+      <div className="rounded-lg bg-gradient-to-br from-blue-50/50 to-indigo-50/50 dark:from-blue-950/20 dark:to-indigo-950/20 border p-6">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div>
-            <h3 className="text-2xl font-bold mb-2 flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              <Layout className="h-6 w-6 text-blue-500" />
+            <h3 className="text-xl font-semibold mb-2 flex items-center gap-2">
+              <Layout className="h-5 w-5 text-blue-500" />
               Mảng & Vector
             </h3>
-            <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed max-w-2xl">
+            <p className="text-muted-foreground max-w-2xl">
               Khám phá cấu trúc dữ liệu cơ bản nhất - từ mảng tĩnh đến vector động với các minh họa tương tác.
             </p>
           </div>
 
           {/* Navigation Pills */}
-          <div className="flex bg-white dark:bg-slate-800 rounded-lg p-1 shadow-sm border border-gray-200 dark:border-slate-600">
+          <div className="inline-flex rounded-lg border bg-card p-1">
             <button
               onClick={() => setActiveSection("overview")}
-              className={`px-4 py-2 rounded-md font-medium text-sm transition-all duration-200 ${
+              className={`inline-flex items-center justify-center rounded-md px-3 py-2 text-sm font-medium transition-colors ${
                 activeSection === "overview"
-                  ? "bg-blue-500 text-white shadow-sm"
-                  : "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700"
+                  ? "bg-primary text-primary-foreground shadow-sm"
+                  : "hover:bg-muted text-muted-foreground hover:text-foreground"
               }`}
             >
               📚 Tổng quan
             </button>
             <button
               onClick={() => setActiveSection("interactive")}
-              className={`px-4 py-2 rounded-md font-medium text-sm transition-all duration-200 ${
+              className={`inline-flex items-center justify-center rounded-md px-3 py-2 text-sm font-medium transition-colors ${
                 activeSection === "interactive"
-                  ? "bg-purple-500 text-white shadow-sm"
-                  : "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700"
+                  ? "bg-primary text-primary-foreground shadow-sm"
+                  : "hover:bg-muted text-muted-foreground hover:text-foreground"
               }`}
             >
               🎮 Tương tác
             </button>
             <button
               onClick={() => setActiveSection("implementation")}
-              className={`px-4 py-2 rounded-md font-medium text-sm transition-all duration-200 ${
+              className={`inline-flex items-center justify-center rounded-md px-3 py-2 text-sm font-medium transition-colors ${
                 activeSection === "implementation"
-                  ? "bg-green-500 text-white shadow-sm"
-                  : "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700"
+                  ? "bg-primary text-primary-foreground shadow-sm"
+                  : "hover:bg-muted text-muted-foreground hover:text-foreground"
               }`}
             >
               💻 Cài đặt
@@ -453,14 +453,14 @@ if __name__ == "__main__":
       {activeSection === "overview" && (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Array Definition */}
-          <div className="bg-white dark:bg-slate-800 rounded-xl p-5 border border-blue-200 dark:border-slate-600 shadow-md hover:shadow-lg transition-shadow">
-            <div className="flex items-center gap-2 mb-3">
-              <div className="p-1.5 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
+          <div className="rounded-lg border bg-card p-5 hover:shadow-sm transition-shadow">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="rounded-lg bg-blue-50 dark:bg-blue-950/50 p-2">
                 📊
               </div>
-              <h4 className="text-lg font-bold text-blue-800 dark:text-blue-300">Mảng (Array)</h4>
+              <h4 className="text-lg font-semibold text-blue-600 dark:text-blue-400">Mảng (Array)</h4>
             </div>
-            <p className="text-gray-700 dark:text-gray-300 mb-3 text-sm leading-relaxed">
+            <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
               Cấu trúc dữ liệu cơ bản nhất, lưu trữ các phần tử cùng kiểu trong bộ nhớ liên tiếp.
               Mỗi phần tử có một chỉ số (index) bắt đầu từ 0.
             </p>

@@ -213,21 +213,21 @@ export function StackSection() {
 
   return (
     <div className="space-y-6">
-      <div className="bg-white dark:bg-slate-800 rounded-lg p-6 border">
-        <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+      <div className="bg-card rounded-lg p-6 border">
+        <h3 className="text-lg font-semibold mb-6 flex items-center gap-2">
           <Layers className="h-5 w-5" />
           🦀 Rust WASM Stack (Ngăn Xếp)
         </h3>
 
         {/* Định nghĩa và giải thích cơ bản */}
-        <div className="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg mb-4 border-l-4 border-red-500">
+        <div className="bg-red-50 dark:bg-red-950/50 p-6 rounded-lg mb-6 border-l-4 border-red-500">
           <h4 className="font-semibold text-red-800 dark:text-red-300 mb-2">📚 Stack là gì?</h4>
           <p className="text-gray-700 dark:text-gray-300 mb-3">
             <strong>Stack (Ngăn Xếp)</strong> là cấu trúc dữ liệu tuân theo nguyên tắc <strong>LIFO (Last In, First Out)</strong>.
             Giống như chồng sách: sách cuối cùng đặt lên sẽ là sách đầu tiên được lấy ra.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
-            <div className="bg-white dark:bg-slate-800 p-3 rounded">
+            <div className="bg-card p-3 rounded">
               <strong className="text-blue-600 dark:text-blue-400">🎯 Ứng dụng thực tế:</strong>
               <ul className="mt-1 text-gray-600 dark:text-gray-300">
                 <li>• Undo/Redo trong editor</li>
@@ -236,7 +236,7 @@ export function StackSection() {
                 <li>• Kiểm tra ngoặc cân bằng</li>
               </ul>
             </div>
-            <div className="bg-white dark:bg-slate-800 p-3 rounded">
+            <div className="bg-card p-3 rounded">
               <strong className="text-green-600 dark:text-green-400">⚡ Thao tác chính:</strong>
               <ul className="mt-1 text-gray-600 dark:text-gray-300">
                 <li>• <strong>Push:</strong> Thêm vào đỉnh</li>
@@ -248,7 +248,7 @@ export function StackSection() {
           </div>
         </div>
 
-        <div className="bg-pink-50 dark:bg-pink-900/20 p-4 rounded-lg mb-4 border-l-4 border-pink-500">
+        <div className="bg-pink-50 dark:bg-pink-950/50 p-6 rounded-lg mb-6 border-l-4 border-pink-500">
           <h4 className="font-semibold text-pink-800 dark:text-pink-300 mb-2">💡 Tại sao dùng Stack?</h4>
           <div className="text-sm text-gray-700 dark:text-gray-300">
             <strong>Stack rất hiệu quả cho các bài toán cần "quay lại trạng thái trước":</strong>
@@ -259,14 +259,14 @@ export function StackSection() {
         </div>
 
         {result && (
-          <div className="mb-4 p-3 bg-orange-50 dark:bg-orange-900/20 rounded">
+          <div className="mb-4 p-3 bg-orange-50 dark:bg-orange-950/50 rounded border border-orange-200 dark:border-orange-800">
             <strong>Kết quả:</strong> {result}
           </div>
         )}
 
         <div className="space-y-4">
           {/* Interactive Stack Visualization */}
-          <div className="bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20 p-6 rounded-lg border-2 border-red-200 dark:border-red-800">
+          <div className="bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-950/20 dark:to-orange-950/20 p-6 rounded-lg border border-red-200 dark:border-red-800">
             <h4 className="font-semibold text-red-800 dark:text-red-300 mb-4 flex items-center gap-2">
               🎮 Minh Họa Tương Tác - Stack Operations (LIFO)
             </h4>
@@ -284,7 +284,7 @@ export function StackSection() {
 
                   {/* Stack Elements (displayed vertically, top to bottom) */}
                   {animationStack.length === 0 ? (
-                    <div className="text-gray-500 italic text-center p-8 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg">
+                    <div className="text-muted-foreground italic text-center p-8 border-2 border-dashed border-border rounded-lg">
                       Stack rỗng - Hãy Push phần tử để bắt đầu
                     </div>
                   ) : (
@@ -340,13 +340,13 @@ export function StackSection() {
 
               {/* Stack info */}
               <div className="grid grid-cols-3 gap-4 text-sm text-gray-600 dark:text-gray-400 mb-4">
-                <div className="bg-white dark:bg-slate-800 p-3 rounded">
+                <div className="bg-card p-3 rounded">
                   <strong>Kích thước:</strong> {animationStack.length}
                 </div>
-                <div className="bg-white dark:bg-slate-800 p-3 rounded">
+                <div className="bg-card p-3 rounded">
                   <strong>TOP:</strong> {animationStack.length > 0 ? animationStack[animationStack.length - 1] : "NULL"}
                 </div>
-                <div className="bg-white dark:bg-slate-800 p-3 rounded">
+                <div className="bg-card p-3 rounded">
                   <strong>Trạng thái:</strong> {animationStack.length === 0 ? "Rỗng" : "Có dữ liệu"}
                 </div>
               </div>
@@ -450,15 +450,15 @@ export function StackSection() {
               </div>
             </div>
           </div>
-          <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
-            <h4 className="font-medium mb-2">Stack Tương Tác:</h4>
+          <div className="bg-muted/50 p-6 rounded-lg border">
+            <h4 className="font-semibold mb-4">Stack Tương Tác:</h4>
             <div className="flex gap-2 mb-3">
               <input
                 type="number"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Nhập số"
-                className="px-3 py-2 border rounded dark:bg-slate-600 dark:border-slate-500"
+                className="px-3 py-2 border rounded dark:bg-background dark:border-border"
               />
               <button
                 onClick={push}
@@ -494,7 +494,7 @@ export function StackSection() {
               <h5 className="font-medium mb-2">🦀 Stack hiện tại (đỉnh ở bên phải):</h5>
               <div className="flex items-end gap-1 min-h-16 p-3 bg-white dark:bg-slate-800 rounded border">
                 {stackDisplay.length === 0 ? (
-                  <div className="text-gray-500 italic">Stack rỗng</div>
+                  <div className="text-muted-foreground italic">Stack rỗng</div>
                 ) : (
                   stackDisplay.map((value, index) => (
                     <div
@@ -514,7 +514,7 @@ export function StackSection() {
             </div>
           </div>
 
-          <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
+          <div className="bg-muted/50 p-6 rounded-lg border">
             <h4 className="font-medium mb-2">Kiểm Tra Dấu Ngoặc Cân Bằng:</h4>
             <div className="flex gap-2 mb-3">
               <input
@@ -533,14 +533,14 @@ export function StackSection() {
               </button>
             </div>
             {balanceResult && (
-              <div className="p-3 bg-orange-50 dark:bg-orange-900/20 rounded">
+              <div className="p-3 bg-orange-50 dark:bg-orange-950/50 rounded border border-orange-200 dark:border-orange-800">
                 <strong>Kết quả:</strong> {balanceResult}
               </div>
             )}
           </div>
 
-          <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
-            <h4 className="font-medium mb-2">Cấu Trúc Stack:</h4>
+          <div className="bg-muted/50 p-6 rounded-lg border">
+            <h4 className="font-semibold mb-2">Cấu Trúc Stack:</h4>
             <MermaidDiagram
               chart={`
                 graph TD
@@ -564,8 +564,8 @@ export function StackSection() {
             />
           </div>
 
-          <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
-            <h4 className="font-medium mb-2">Độ Phức Tạp Stack:</h4>
+          <div className="bg-muted/50 p-6 rounded-lg border">
+            <h4 className="font-semibold mb-2">Độ Phức Tạp Stack:</h4>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
@@ -601,19 +601,19 @@ export function StackSection() {
             </div>
           </div>
 
-          <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
-            <h4 className="font-medium mb-4">Cài Đặt:</h4>
+          <div className="bg-muted/50 p-6 rounded-lg border">
+            <h4 className="font-semibold mb-4">Cài Đặt:</h4>
 
             {/* Language Tabs */}
             <div className="mb-4">
-              <div className="border-b border-gray-200 dark:border-gray-600">
+              <div className="border-b border-border">
                 <nav className="-mb-px flex space-x-8">
                   <button
                     onClick={() => setActiveLanguageTab("rust")}
                     className={`py-2 px-1 border-b-2 font-medium text-sm ${
                       activeLanguageTab === "rust"
                         ? "border-orange-500 text-orange-600 dark:text-orange-400"
-                        : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
+                        : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"
                     }`}
                   >
                     Rust
@@ -623,7 +623,7 @@ export function StackSection() {
                     className={`py-2 px-1 border-b-2 font-medium text-sm ${
                       activeLanguageTab === "cpp"
                         ? "border-blue-500 text-blue-600 dark:text-blue-400"
-                        : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
+                        : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"
                     }`}
                   >
                     C++
@@ -633,7 +633,7 @@ export function StackSection() {
                     className={`py-2 px-1 border-b-2 font-medium text-sm ${
                       activeLanguageTab === "python"
                         ? "border-green-500 text-green-600 dark:text-green-400"
-                        : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
+                        : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"
                     }`}
                   >
                     Python

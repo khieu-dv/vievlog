@@ -163,21 +163,21 @@ export function GraphsSection() {
 
   return (
     <div className="space-y-6">
-      <div className="bg-white dark:bg-slate-800 rounded-lg p-6 border">
-        <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+      <div className="bg-card rounded-lg p-6 border">
+        <h3 className="text-lg font-semibold mb-6 flex items-center gap-2">
           <Network className="h-5 w-5" />
           🦀 Rust WASM Đồ Thị
         </h3>
 
         {/* Định nghĩa và giải thích cơ bản */}
-        <div className="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg mb-4 border-l-4 border-indigo-500">
+        <div className="bg-indigo-50 dark:bg-indigo-950/50 p-6 rounded-lg mb-6 border-l-4 border-indigo-500">
           <h4 className="font-semibold text-indigo-800 dark:text-indigo-300 mb-2">🕸️ Đồ Thị là gì?</h4>
           <p className="text-gray-700 dark:text-gray-300 mb-3">
             <strong>Đồ Thị (Graph)</strong> là tập hợp các đỉnh (vertex/node) được kết nối bởi các cạnh (edge).
             Mô tả mối quan hệ giữa các đối tượng: mạng xã hội, bản đồ đường, internet...
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
-            <div className="bg-white dark:bg-slate-800 p-3 rounded">
+            <div className="bg-card p-3 rounded">
               <strong className="text-blue-600 dark:text-blue-400">📝 Thành phần:</strong>
               <ul className="mt-1 text-gray-600 dark:text-gray-300">
                 <li>• <strong>Vertex (Đỉnh):</strong> Các nút</li>
@@ -186,7 +186,7 @@ export function GraphsSection() {
                 <li>• <strong>Path:</strong> Đường đi</li>
               </ul>
             </div>
-            <div className="bg-white dark:bg-slate-800 p-3 rounded">
+            <div className="bg-card p-3 rounded">
               <strong className="text-green-600 dark:text-green-400">🎯 Ứng dụng:</strong>
               <ul className="mt-1 text-gray-600 dark:text-gray-300">
                 <li>• Mạng xã hội (Facebook)</li>
@@ -198,7 +198,7 @@ export function GraphsSection() {
           </div>
         </div>
 
-        <div className="bg-teal-50 dark:bg-teal-900/20 p-4 rounded-lg mb-4 border-l-4 border-teal-500">
+        <div className="bg-teal-50 dark:bg-teal-950/50 p-6 rounded-lg mb-6 border-l-4 border-teal-500">
           <h4 className="font-semibold text-teal-800 dark:text-teal-300 mb-2">🔄 Loại Đồ Thị</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
             <div>
@@ -213,8 +213,8 @@ export function GraphsSection() {
         </div>
 
         <div className="space-y-4">
-          <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
-            <h4 className="font-medium mb-2">Các Loại Đồ Thị:</h4>
+          <div className="bg-muted/50 p-6 rounded-lg border">
+            <h4 className="font-semibold mb-2">Các Loại Đồ Thị:</h4>
             <MermaidDiagram
               chart={`
                 graph TD
@@ -244,11 +244,11 @@ export function GraphsSection() {
             />
           </div>
 
-          <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
-            <h4 className="font-medium mb-4">Điều Khiển Đồ Thị:</h4>
+          <div className="bg-muted/50 p-6 rounded-lg border">
+            <h4 className="font-semibold mb-4">Điều Khiển Đồ Thị:</h4>
 
             {/* Graph Type Selection */}
-            <div className="mb-4 p-3 bg-white dark:bg-slate-800 rounded border">
+            <div className="mb-4 p-3 bg-card rounded border">
               <label className="flex items-center gap-2 text-sm font-medium">
                 <input
                   type="checkbox"
@@ -272,14 +272,14 @@ export function GraphsSection() {
                     value={fromVertex}
                     onChange={(e) => setFromVertex(e.target.value)}
                     placeholder="Từ đỉnh"
-                    className="px-3 py-2 border rounded dark:bg-slate-600 dark:border-slate-500 flex-1 text-sm"
+                    className="px-3 py-2 border rounded dark:bg-background dark:border-border flex-1 text-sm"
                   />
                   <input
                     type="number"
                     value={toVertex}
                     onChange={(e) => setToVertex(e.target.value)}
                     placeholder="Đến đỉnh"
-                    className="px-3 py-2 border rounded dark:bg-slate-600 dark:border-slate-500 flex-1 text-sm"
+                    className="px-3 py-2 border rounded dark:bg-background dark:border-border flex-1 text-sm"
                   />
                 </div>
                 <div className="grid grid-cols-3 gap-2">
@@ -315,7 +315,7 @@ export function GraphsSection() {
                   value={startVertex}
                   onChange={(e) => setStartVertex(e.target.value)}
                   placeholder="Đỉnh bắt đầu duyệt"
-                  className="px-3 py-2 border rounded dark:bg-slate-600 dark:border-slate-500 w-full text-sm"
+                  className="px-3 py-2 border rounded dark:bg-background dark:border-border w-full text-sm"
                 />
                 <div className="grid grid-cols-2 gap-2">
                   <button
@@ -337,13 +337,13 @@ export function GraphsSection() {
             </div>
 
             {result && (
-              <div className="mb-3 p-3 bg-orange-50 dark:bg-orange-900/20 rounded">
+              <div className="mb-3 p-3 bg-orange-50 dark:bg-orange-950/50 rounded border border-orange-200 dark:border-orange-800">
                 <strong>Kết quả:</strong> {result}
               </div>
             )}
 
             {/* Visual Graph Display */}
-            <div className="bg-white dark:bg-slate-800 p-4 rounded border">
+            <div className="bg-card p-4 rounded border">
               <h5 className="font-medium mb-3">🦀 Biểu Diễn Đồ Thị</h5>
               <div className="min-h-32 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-4">
                 {verticesDisplay.length === 0 ? (
@@ -353,7 +353,7 @@ export function GraphsSection() {
                 ) : (
                   <div className="space-y-3">
                     {/* Graph Statistics */}
-                    <div className="flex gap-4 text-sm bg-gray-50 dark:bg-slate-700 p-2 rounded">
+                    <div className="flex gap-4 text-sm bg-muted/50 p-2 rounded">
                       <span className="font-medium">Đỉnh: <span className="text-blue-600 dark:text-blue-400">{verticesDisplay.length}</span></span>
                       <span className="font-medium">Cạnh: <span className="text-green-600 dark:text-green-400">{graphDisplay.length}</span></span>
                       <span className="font-medium">Loại: <span className="text-purple-600 dark:text-purple-400">{isDirected ? "Có hướng" : "Vô hướng"}</span></span>
@@ -377,11 +377,11 @@ export function GraphsSection() {
                         <div className="text-sm font-medium mb-2">Cạnh:</div>
                         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
                           {graphDisplay.map((edge, index) => (
-                            <div key={index} className="flex items-center gap-1 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-xs">
+                            <div key={index} className="flex items-center gap-1 bg-muted px-2 py-1 rounded text-xs">
                               <span className="w-5 h-5 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs">
                                 {edge.from}
                               </span>
-                              <span className="text-gray-600 dark:text-gray-300">
+                              <span className="text-muted-foreground">
                                 {isDirected ? "→" : "↔"}
                               </span>
                               <span className="w-5 h-5 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs">
@@ -398,8 +398,8 @@ export function GraphsSection() {
             </div>
           </div>
 
-          <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
-            <h4 className="font-medium mb-2">Loại Đồ Thị:</h4>
+          <div className="bg-muted/50 p-6 rounded-lg border">
+            <h4 className="font-semibold mb-2">Loại Đồ Thị:</h4>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
               <div>
                 <strong>Đồ Thị Có Hướng:</strong> Cạnh có hướng (A → B)
@@ -416,19 +416,19 @@ export function GraphsSection() {
             </div>
           </div>
 
-          <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
-            <h4 className="font-medium mb-4">Cài Đặt:</h4>
+          <div className="bg-muted/50 p-6 rounded-lg border">
+            <h4 className="font-semibold mb-4">Cài Đặt:</h4>
 
             {/* Language Tabs */}
             <div className="mb-4">
-              <div className="border-b border-gray-200 dark:border-gray-600">
+              <div className="border-b border-border">
                 <nav className="-mb-px flex space-x-8">
                   <button
                     onClick={() => setActiveLanguageTab("rust")}
                     className={`py-2 px-1 border-b-2 font-medium text-sm ${
                       activeLanguageTab === "rust"
                         ? "border-orange-500 text-orange-600 dark:text-orange-400"
-                        : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
+                        : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"
                     }`}
                   >
                     Rust
@@ -438,7 +438,7 @@ export function GraphsSection() {
                     className={`py-2 px-1 border-b-2 font-medium text-sm ${
                       activeLanguageTab === "cpp"
                         ? "border-blue-500 text-blue-600 dark:text-blue-400"
-                        : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
+                        : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"
                     }`}
                   >
                     C++
@@ -448,7 +448,7 @@ export function GraphsSection() {
                     className={`py-2 px-1 border-b-2 font-medium text-sm ${
                       activeLanguageTab === "python"
                         ? "border-green-500 text-green-600 dark:text-green-400"
-                        : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
+                        : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"
                     }`}
                   >
                     Python
@@ -816,8 +816,8 @@ class Graph:
             )}
           </div>
 
-          <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
-            <h4 className="font-medium mb-2">Độ Phức Tạp:</h4>
+          <div className="bg-muted/50 p-6 rounded-lg border">
+            <h4 className="font-semibold mb-2">Độ Phức Tạp:</h4>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
               <div>
                 <strong>Thêm đỉnh:</strong> O(1)

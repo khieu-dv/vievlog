@@ -113,34 +113,39 @@ export default function DataStructuresPage() {
   const [activeTab, setActiveTab] = useState("overview");
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-slate-900">
+    <div className="min-h-screen bg-background">
       <Header />
 
-      <div className="container max-w-6xl mx-auto px-4 py-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-4 flex items-center gap-3">
-            <Binary className="h-8 w-8 text-blue-500" />
+      <div className="container mx-auto max-w-4xl px-6 py-12">
+        {/* Header Section */}
+        <div className="mb-12 text-center">
+          <div className="mb-4 flex justify-center">
+            <div className="rounded-lg bg-primary/10 p-3">
+              <Binary className="h-8 w-8 text-primary" />
+            </div>
+          </div>
+          <h1 className="mb-3 text-3xl font-bold tracking-tight">
             Cấu Trúc Dữ Liệu & Giải Thuật
           </h1>
-          <p className="text-gray-600 dark:text-gray-300 text-lg">
+          <p className="text-muted-foreground max-w-2xl mx-auto">
             Các ví dụ tương tác và cài đặt Rust cho các cấu trúc dữ liệu và giải thuật cơ bản.
           </p>
         </div>
 
         {/* Tab Navigation */}
-        <div className="mb-6">
-          <div className="border-b border-gray-200 dark:border-gray-700">
-            <nav className="-mb-px flex space-x-8 overflow-x-auto">
+        <div className="mb-8">
+          <div className="border-b border-border">
+            <nav className="-mb-px flex space-x-6 overflow-x-auto scrollbar-hide">
               {tabs.map((tab) => {
                 const Icon = tab.icon;
                 return (
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`flex items-center gap-2 py-4 px-1 border-b-2 font-medium text-sm whitespace-nowrap ${
+                    className={`flex items-center gap-2 py-3 px-1 border-b-2 font-medium text-sm whitespace-nowrap transition-colors ${
                       activeTab === tab.id
-                        ? "border-blue-500 text-blue-600 dark:text-blue-400"
-                        : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
+                        ? "border-primary text-primary"
+                        : "border-transparent text-muted-foreground hover:text-foreground hover:border-muted-foreground/50"
                     }`}
                   >
                     <Icon className="h-4 w-4" />
@@ -153,16 +158,20 @@ export default function DataStructuresPage() {
         </div>
 
         {/* Tab Content */}
-        <div className="min-h-[600px]">
-          {activeTab === "overview" ? (
-            <OverviewSection setActiveTab={setActiveTab} />
-          ) : (
-            tabs.find(tab => tab.id === activeTab)?.content
-          )}
+        <div className="rounded-lg border bg-card">
+          <div className="p-6">
+            {activeTab === "overview" ? (
+              <OverviewSection setActiveTab={setActiveTab} />
+            ) : (
+              tabs.find(tab => tab.id === activeTab)?.content
+            )}
+          </div>
         </div>
 
         {/* Performance Comparison */}
-        <ComplexitySection />
+        <div className="mt-8 rounded-lg border bg-card p-6">
+          <ComplexitySection />
+        </div>
       </div>
 
       <Footer />

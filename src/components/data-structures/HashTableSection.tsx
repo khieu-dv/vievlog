@@ -358,21 +358,21 @@ export function HashTableSection() {
 
   return (
     <div className="space-y-6">
-      <div className="bg-white dark:bg-slate-800 rounded-lg p-6 border">
-        <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+      <div className="bg-card rounded-lg p-6 border">
+        <h3 className="text-lg font-semibold mb-6 flex items-center gap-2">
           <Hash className="h-5 w-5" />
           🦀 Rust WASM Hash Table (Bảng Băm)
         </h3>
 
         {/* Định nghĩa và giải thích cơ bản */}
-        <div className="bg-orange-50 dark:bg-orange-900/20 p-4 rounded-lg mb-4 border-l-4 border-orange-500">
+        <div className="bg-orange-50 dark:bg-orange-950/50 p-6 rounded-lg mb-6 border-l-4 border-orange-500">
           <h4 className="font-semibold text-orange-800 dark:text-orange-300 mb-2">🔗 Hash Table là gì?</h4>
           <p className="text-gray-700 dark:text-gray-300 mb-3">
             <strong>Hash Table (Bảng Băm)</strong> là cấu trúc dữ liệu sử dụng hàm băm để ánh xạ khóa (key) tới vị trí lưu trữ giá trị (value).
             Giống như từ điển: biết từ khóa → tìm thấy nghĩa ngay lập tức.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
-            <div className="bg-white dark:bg-slate-800 p-3 rounded">
+            <div className="bg-card p-3 rounded">
               <strong className="text-green-600 dark:text-green-400">✅ Ưu điểm:</strong>
               <ul className="mt-1 list-disc list-inside text-gray-600 dark:text-gray-300">
                 <li>Truy cập cực nhanh O(1)</li>
@@ -381,7 +381,7 @@ export function HashTableSection() {
                 <li>Phù hợp lưu cache</li>
               </ul>
             </div>
-            <div className="bg-white dark:bg-slate-800 p-3 rounded">
+            <div className="bg-card p-3 rounded">
               <strong className="text-red-600 dark:text-red-400">❌ Nhược điểm:</strong>
               <ul className="mt-1 list-disc list-inside text-gray-600 dark:text-gray-300">
                 <li>Collision (xung đột)</li>
@@ -393,7 +393,7 @@ export function HashTableSection() {
           </div>
         </div>
 
-        <div className="bg-cyan-50 dark:bg-cyan-900/20 p-4 rounded-lg mb-4 border-l-4 border-cyan-500">
+        <div className="bg-cyan-50 dark:bg-cyan-950/50 p-6 rounded-lg mb-6 border-l-4 border-cyan-500">
           <h4 className="font-semibold text-cyan-800 dark:text-cyan-300 mb-2">⚡ Hash Function (Hàm Băm)</h4>
           <p className="text-gray-700 dark:text-gray-300 mb-2">
             <strong>Hàm băm</strong> chuyển đổi key thành index:
@@ -406,7 +406,7 @@ export function HashTableSection() {
 
         <div className="space-y-4">
           {/* Interactive Hash Table Visualization */}
-          <div className="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 p-6 rounded-lg border-2 border-purple-200 dark:border-purple-800">
+          <div className="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-950/20 dark:to-pink-950/20 p-6 rounded-lg border border-purple-200 dark:border-purple-800">
             <h4 className="font-semibold text-purple-800 dark:text-purple-300 mb-4 flex items-center gap-2">
               🎮 Minh Họa Tương Tác - Hash Table Operations
             </h4>
@@ -430,7 +430,7 @@ export function HashTableSection() {
                     className={`border-2 rounded-lg p-3 transition-all duration-500 ${
                       highlightedBucket === index
                         ? "border-red-500 bg-yellow-100 dark:bg-yellow-900/30 scale-105 shadow-lg"
-                        : "border-purple-300 dark:border-purple-600 bg-white dark:bg-slate-800"
+                        : "border-purple-300 dark:border-purple-600 bg-card"
                     }`}
                   >
                     <div className="text-sm font-bold text-purple-600 dark:text-purple-400 mb-2">
@@ -447,7 +447,7 @@ export function HashTableSection() {
                             className={`text-xs p-2 rounded border transition-all duration-300 ${
                               highlightedEntry?.bucket === index && highlightedEntry?.entry === entryIndex
                                 ? "bg-yellow-300 border-red-400 animate-pulse"
-                                : "bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                                : "bg-muted border-border"
                             }`}
                           >
                             <div className="font-mono">
@@ -479,16 +479,16 @@ export function HashTableSection() {
 
               {/* Hash table stats */}
               <div className="grid grid-cols-4 gap-4 text-sm text-gray-600 dark:text-gray-400 mb-4">
-                <div className="bg-white dark:bg-slate-800 p-3 rounded">
+                <div className="bg-card p-3 rounded">
                   <strong>Buckets:</strong> {animationHashTable.length}
                 </div>
-                <div className="bg-white dark:bg-slate-800 p-3 rounded">
+                <div className="bg-card p-3 rounded">
                   <strong>Entries:</strong> {getTotalEntries()}
                 </div>
-                <div className="bg-white dark:bg-slate-800 p-3 rounded">
+                <div className="bg-card p-3 rounded">
                   <strong>Load Factor:</strong> {getLoadFactor()}
                 </div>
-                <div className="bg-white dark:bg-slate-800 p-3 rounded">
+                <div className="bg-card p-3 rounded">
                   <strong>Collisions:</strong> {animationHashTable.filter(b => b.entries.length > 1).length}
                 </div>
               </div>
@@ -497,7 +497,7 @@ export function HashTableSection() {
             {/* Interactive Controls */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               {/* Insert */}
-              <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border">
+              <div className="bg-card p-4 rounded border">
                 <h5 className="font-medium text-green-600 dark:text-green-400 mb-2">➕ Insert (O(1))</h5>
                 <div className="space-y-2">
                   <input
@@ -505,7 +505,7 @@ export function HashTableSection() {
                     value={insertKey}
                     onChange={(e) => setInsertKey(e.target.value)}
                     placeholder="Key"
-                    className="w-full px-2 py-1 text-sm border rounded dark:bg-slate-700 dark:border-slate-600"
+                    className="w-full px-2 py-1 text-sm border rounded dark:bg-background dark:border-border"
                     disabled={isAnimating}
                   />
                   <input
@@ -513,7 +513,7 @@ export function HashTableSection() {
                     value={insertVal}
                     onChange={(e) => setInsertVal(e.target.value)}
                     placeholder="Value"
-                    className="w-full px-2 py-1 text-sm border rounded dark:bg-slate-700 dark:border-slate-600"
+                    className="w-full px-2 py-1 text-sm border rounded dark:bg-background dark:border-border"
                     disabled={isAnimating}
                   />
                   <button
@@ -527,7 +527,7 @@ export function HashTableSection() {
               </div>
 
               {/* Search */}
-              <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border">
+              <div className="bg-card p-4 rounded border">
                 <h5 className="font-medium text-blue-600 dark:text-blue-400 mb-2">🔍 Search (O(1))</h5>
                 <div className="space-y-2">
                   <input
@@ -535,7 +535,7 @@ export function HashTableSection() {
                     value={searchHashKey}
                     onChange={(e) => setSearchHashKey(e.target.value)}
                     placeholder="Nhập key tìm kiếm"
-                    className="w-full px-2 py-1 text-sm border rounded dark:bg-slate-700 dark:border-slate-600"
+                    className="w-full px-2 py-1 text-sm border rounded dark:bg-background dark:border-border"
                     disabled={isAnimating}
                   />
                   <button
@@ -549,7 +549,7 @@ export function HashTableSection() {
               </div>
 
               {/* Remove */}
-              <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border">
+              <div className="bg-card p-4 rounded border">
                 <h5 className="font-medium text-red-600 dark:text-red-400 mb-2">🗑️ Remove (O(1))</h5>
                 <div className="space-y-2">
                   <button
@@ -566,7 +566,7 @@ export function HashTableSection() {
               </div>
 
               {/* Reset */}
-              <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border">
+              <div className="bg-card p-4 rounded border">
                 <h5 className="font-medium text-gray-600 dark:text-gray-400 mb-2">🛠️ Điều Khiển</h5>
                 <div className="space-y-2">
                   <button
@@ -605,8 +605,8 @@ export function HashTableSection() {
               </div>
             </div>
           </div>
-          <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
-            <h4 className="font-medium mb-2">Thao Tác Hash Table:</h4>
+          <div className="bg-muted/50 p-6 rounded-lg border">
+            <h4 className="font-semibold mb-4">Thao Tác Hash Table:</h4>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <input
@@ -614,14 +614,14 @@ export function HashTableSection() {
                   value={key}
                   onChange={(e) => setKey(e.target.value)}
                   placeholder="Nhập khóa (key)"
-                  className="w-full px-3 py-2 border rounded dark:bg-slate-600 dark:border-slate-500"
+                  className="w-full px-3 py-2 border rounded dark:bg-background dark:border-border"
                 />
                 <input
                   type="text"
                   value={value}
                   onChange={(e) => setValue(e.target.value)}
                   placeholder="Nhập giá trị (value)"
-                  className="w-full px-3 py-2 border rounded dark:bg-slate-600 dark:border-slate-500"
+                  className="w-full px-3 py-2 border rounded dark:bg-background dark:border-border"
                 />
                 <button
                   onClick={insert}
@@ -636,7 +636,7 @@ export function HashTableSection() {
                   value={searchKey}
                   onChange={(e) => setSearchKey(e.target.value)}
                   placeholder="Nhập khóa để tìm/xóa"
-                  className="w-full px-3 py-2 border rounded dark:bg-slate-600 dark:border-slate-500"
+                  className="w-full px-3 py-2 border rounded dark:bg-background dark:border-border"
                 />
                 <div className="grid grid-cols-2 gap-2">
                   <button
@@ -662,27 +662,27 @@ export function HashTableSection() {
             </div>
 
             {result && (
-              <div className="mt-3 p-3 bg-orange-50 dark:bg-orange-900/20 rounded">
+              <div className="mt-3 p-3 bg-orange-50 dark:bg-orange-950/50 rounded border border-orange-200 dark:border-orange-800">
                 <strong>Kết quả:</strong> {result}
               </div>
             )}
           </div>
 
-          <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
+          <div className="bg-muted/50 p-6 rounded-lg border">
             <h4 className="font-medium mb-2">Trạng Thái Hash Table:</h4>
             <div className="space-y-2">
               <p className="text-sm">
                 <strong>Số phần tử:</strong> {hashTableDisplay.size}
               </p>
-              <div className="bg-white dark:bg-slate-800 p-3 rounded max-h-32 overflow-y-auto">
+              <div className="bg-card p-3 rounded max-h-32 overflow-y-auto border">
                 {hashTableDisplay.size === 0 ? (
-                  <p className="text-gray-500 text-sm">Hash table trống</p>
+                  <p className="text-muted-foreground text-sm">Hash table trống</p>
                 ) : (
                   <div className="space-y-1">
                     {Array.from(hashTableDisplay.entries()).map(([k, v]) => (
                       <div key={k} className="text-sm flex justify-between">
                         <span className="font-mono">"{k}" =&gt; "{v}"</span>
-                        <span className="text-gray-500">Hash: {hashFunction(k)}</span>
+                        <span className="text-muted-foreground">Hash: {hashFunction(k)}</span>
                       </div>
                     ))}
                   </div>
@@ -691,8 +691,8 @@ export function HashTableSection() {
             </div>
           </div>
 
-          <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
-            <h4 className="font-medium mb-2">Cấu Trúc Hash Table:</h4>
+          <div className="bg-muted/50 p-6 rounded-lg border">
+            <h4 className="font-semibold mb-2">Cấu Trúc Hash Table:</h4>
             <MermaidDiagram
               chart={`
                 graph TD
@@ -729,8 +729,8 @@ export function HashTableSection() {
             />
           </div>
 
-          <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
-            <h4 className="font-medium mb-2">So Sánh Hash Table:</h4>
+          <div className="bg-muted/50 p-6 rounded-lg border">
+            <h4 className="font-semibold mb-2">So Sánh Hash Table:</h4>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
@@ -765,19 +765,19 @@ export function HashTableSection() {
             </div>
           </div>
 
-          <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
-            <h4 className="font-medium mb-4">Cài Đặt:</h4>
+          <div className="bg-muted/50 p-6 rounded-lg border">
+            <h4 className="font-semibold mb-4">Cài Đặt:</h4>
 
             {/* Language Tabs */}
             <div className="mb-4">
-              <div className="border-b border-gray-200 dark:border-gray-600">
+              <div className="border-b border-border">
                 <nav className="-mb-px flex space-x-8">
                   <button
                     onClick={() => setActiveLanguageTab("rust")}
                     className={`py-2 px-1 border-b-2 font-medium text-sm ${
                       activeLanguageTab === "rust"
                         ? "border-orange-500 text-orange-600 dark:text-orange-400"
-                        : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
+                        : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"
                     }`}
                   >
                     Rust
@@ -787,7 +787,7 @@ export function HashTableSection() {
                     className={`py-2 px-1 border-b-2 font-medium text-sm ${
                       activeLanguageTab === "cpp"
                         ? "border-blue-500 text-blue-600 dark:text-blue-400"
-                        : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
+                        : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"
                     }`}
                   >
                     C++
@@ -797,7 +797,7 @@ export function HashTableSection() {
                     className={`py-2 px-1 border-b-2 font-medium text-sm ${
                       activeLanguageTab === "python"
                         ? "border-green-500 text-green-600 dark:text-green-400"
-                        : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
+                        : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"
                     }`}
                   >
                     Python
