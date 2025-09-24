@@ -131,8 +131,8 @@ export function SortingSection() {
 
         {/* Định nghĩa và giải thích cơ bản */}
         <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg mb-4 border-l-4 border-purple-500">
-          <h4 className="font-semibold text-purple-800 dark:text-purple-300 mb-2">📊 Sắp Xếp là gì?</h4>
-          <p className="text-gray-700 dark:text-gray-300 mb-3">
+          <h4 className="font-semibold text-purple-700 mb-2">📊 Sắp Xếp là gì?</h4>
+          <p className="text-muted-foreground mb-3">
             <strong>Sắp xếp (Sorting)</strong> là quá trình sắp đặt các phần tử theo thứ tự nhất định (tăng dần hoặc giảm dần).
             Là một trong những vấn đề cơ bản nhất trong khoa học máy tính.
           </p>

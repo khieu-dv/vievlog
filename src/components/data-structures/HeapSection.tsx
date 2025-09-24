@@ -282,32 +282,32 @@ export function HeapSection() {
 
   return (
     <div className="space-y-6">
-      <div className="bg-white dark:bg-slate-800 rounded-lg p-6 border">
-        <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+      <div className="bg-card rounded-lg p-6 border">
+        <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
           <TrendingUp className="h-5 w-5" />
           🦀 Rust WASM Heap (Đống)
         </h3>
 
         {/* Định nghĩa và giải thích cơ bản */}
-        <div className="bg-rose-50 dark:bg-rose-900/20 p-4 rounded-lg mb-4 border-l-4 border-rose-500">
-          <h4 className="font-semibold text-rose-800 dark:text-rose-300 mb-2">🏔️ Heap là gì?</h4>
-          <p className="text-gray-700 dark:text-gray-300 mb-3">
+        <div className="bg-muted/50 p-4 rounded-lg mb-4 border-l-4 border-rose-500">
+          <h4 className="font-semibold text-rose-700 mb-2">🏔️ Heap là gì?</h4>
+          <p className="text-muted-foreground mb-3">
             <strong>Heap (Đống)</strong> là cây nhị phân hoàn chỉnh đặc biệt thỏa mãn <strong>tính chất heap</strong>:
             Node cha luôn lớn hơn (Max-Heap) hoặc nhỏ hơn (Min-Heap) tất cả các node con.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
-            <div className="bg-white dark:bg-slate-800 p-3 rounded">
-              <strong className="text-blue-600 dark:text-blue-400">🎯 Ứng dụng thực tế:</strong>
-              <ul className="mt-1 text-gray-600 dark:text-gray-300">
+            <div className="bg-background p-3 rounded border">
+              <strong className="text-blue-600">🎯 Ứng dụng thực tế:</strong>
+              <ul className="mt-1 text-muted-foreground">
                 <li>• Priority Queue (hàng đợi ưu tiên)</li>
                 <li>• Heap Sort (sắp xếp đống)</li>
                 <li>• Dijkstra's algorithm</li>
                 <li>• Memory management</li>
               </ul>
             </div>
-            <div className="bg-white dark:bg-slate-800 p-3 rounded">
-              <strong className="text-green-600 dark:text-green-400">⚡ Tính chất quan trọng:</strong>
-              <ul className="mt-1 text-gray-600 dark:text-gray-300">
+            <div className="bg-background p-3 rounded border">
+              <strong className="text-green-600">⚡ Tính chất quan trọng:</strong>
+              <ul className="mt-1 text-muted-foreground">
                 <li>• Cây nhị phân hoàn chỉnh</li>
                 <li>• Insert/Delete: O(log n)</li>
                 <li>• Find min/max: O(1)</li>
@@ -317,22 +317,22 @@ export function HeapSection() {
           </div>
         </div>
 
-        <div className="bg-violet-50 dark:bg-violet-900/20 p-4 rounded-lg mb-4 border-l-4 border-violet-500">
-          <h4 className="font-semibold text-violet-800 dark:text-violet-300 mb-2">🔺 Max-Heap vs Min-Heap:</h4>
+        <div className="bg-muted/50 p-4 rounded-lg mb-4 border-l-4 border-violet-500">
+          <h4 className="font-semibold text-violet-700 mb-2">🔺 Max-Heap vs Min-Heap:</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
             <div>
               <strong>Max-Heap:</strong> Cha ≥ Con
-              <br/><span className="text-gray-600 dark:text-gray-400">→ Root = phần tử lớn nhất</span>
+              <br/><span className="text-muted-foreground">→ Root = phần tử lớn nhất</span>
             </div>
             <div>
               <strong>Min-Heap:</strong> Cha ≤ Con
-              <br/><span className="text-gray-600 dark:text-gray-400">→ Root = phần tử nhỏ nhất</span>
+              <br/><span className="text-muted-foreground">→ Root = phần tử nhỏ nhất</span>
             </div>
           </div>
         </div>
 
         <div className="space-y-4">
-          <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
+          <div className="bg-muted/50 p-4 rounded-lg border">
             <h4 className="font-medium mb-2">Cấu Hình Heap:</h4>
             <div className="flex gap-2 mb-3">
               <button
@@ -345,13 +345,13 @@ export function HeapSection() {
               >
                 {heapType.toUpperCase()} HEAP
               </button>
-              <span className="flex items-center text-sm text-gray-600 dark:text-gray-300">
+              <span className="flex items-center text-sm text-muted-foreground">
                 {heapType === "max" ? "Phần tử lớn nhất ở gốc" : "Phần tử nhỏ nhất ở gốc"}
               </span>
             </div>
           </div>
 
-          <div className="bg-gray-50 dark:bg-slate-700 p-4 rounded border">
+          <div className="bg-muted/50 p-4 rounded-lg border">
             <h4 className="font-medium mb-2">Thao Tác Heap:</h4>
             <div className="flex gap-2 mb-3 flex-wrap">
               <input
@@ -359,35 +359,35 @@ export function HeapSection() {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Nhập số"
-                className="px-3 py-2 border rounded dark:bg-slate-600 dark:border-slate-500"
+                className="px-3 py-2 border rounded bg-background border-border"
               />
               <button
                 onClick={insert}
-                className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+                className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors"
               >
                 Insert
               </button>
               <button
                 onClick={extractTop}
-                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
               >
                 Extract {heapType === "max" ? "Max" : "Min"}
               </button>
               <button
                 onClick={peek}
-                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
               >
                 Peek
               </button>
               <button
                 onClick={heapSort}
-                className="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600"
+                className="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600 transition-colors"
               >
                 Heap Sort
               </button>
               <button
                 onClick={clear}
-                className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
+                className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors"
               >
                 Clear
               </button>
@@ -473,7 +473,7 @@ export function HeapSection() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <h5 className="font-medium">Priority Queue:</h5>
-                <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-1">
+                <ul className="text-sm text-muted-foreground space-y-1">
                   <li>• Task scheduling</li>
                   <li>• Dijkstra's algorithm</li>
                   <li>• A* search algorithm</li>
@@ -482,7 +482,7 @@ export function HeapSection() {
               </div>
               <div className="space-y-2">
                 <h5 className="font-medium">Heap Sort:</h5>
-                <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-1">
+                <ul className="text-sm text-muted-foreground space-y-1">
                   <li>• O(n log n) guaranteed</li>
                   <li>• In-place sorting</li>
                   <li>• Memory efficient</li>

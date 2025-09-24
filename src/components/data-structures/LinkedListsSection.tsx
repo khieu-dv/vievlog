@@ -662,46 +662,46 @@ if __name__ == "__main__":
   return (
     <div className="max-w-7xl mx-auto space-y-6">
       {/* Header Section with Navigation Pills */}
-      <div className="bg-gradient-to-br from-green-50 via-teal-50 to-emerald-50 dark:from-slate-800 dark:via-slate-800 dark:to-slate-700 rounded-xl p-6 border border-green-100 dark:border-slate-600 shadow-md">
+      <div className="bg-muted/50 rounded-lg p-6 border shadow-sm">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
           <div>
-            <h3 className="text-2xl font-bold mb-2 flex items-center gap-2 bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent">
-              <List className="h-6 w-6 text-green-500" />
+            <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
+              <List className="h-5 w-5" />
               Danh Sách Liên Kết
             </h3>
-            <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed max-w-2xl">
+            <p className="text-muted-foreground text-base leading-relaxed max-w-2xl">
               Khám phá cấu trúc dữ liệu động với các node liên kết thông qua pointer.
             </p>
           </div>
 
           {/* Navigation Pills */}
-          <div className="flex bg-white dark:bg-slate-800 rounded-lg p-1 shadow-sm border border-gray-200 dark:border-slate-600">
+          <div className="flex bg-background rounded-lg p-1 shadow-sm border">
             <button
               onClick={() => setActiveSection("overview")}
-              className={`px-4 py-2 rounded-md font-medium text-sm transition-all duration-200 ${
+              className={`px-4 py-2 rounded-md font-medium text-sm transition-all ${
                 activeSection === "overview"
                   ? "bg-green-500 text-white shadow-sm"
-                  : "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700"
+                  : "text-muted-foreground hover:text-foreground hover:bg-muted"
               }`}
             >
               📚 Tổng quan
             </button>
             <button
               onClick={() => setActiveSection("interactive")}
-              className={`px-4 py-2 rounded-md font-medium text-sm transition-all duration-200 ${
+              className={`px-4 py-2 rounded-md font-medium text-sm transition-all ${
                 activeSection === "interactive"
                   ? "bg-teal-500 text-white shadow-sm"
-                  : "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700"
+                  : "text-muted-foreground hover:text-foreground hover:bg-muted"
               }`}
             >
               🎮 Tương tác
             </button>
             <button
               onClick={() => setActiveSection("implementation")}
-              className={`px-4 py-2 rounded-md font-medium text-sm transition-all duration-200 ${
+              className={`px-4 py-2 rounded-md font-medium text-sm transition-all ${
                 activeSection === "implementation"
                   ? "bg-emerald-500 text-white shadow-sm"
-                  : "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700"
+                  : "text-muted-foreground hover:text-foreground hover:bg-muted"
               }`}
             >
               💻 Cài đặt
@@ -714,24 +714,24 @@ if __name__ == "__main__":
       {activeSection === "overview" && (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Linked List Definition */}
-          <div className="bg-white dark:bg-slate-800 rounded-xl p-5 border border-green-200 dark:border-slate-600 shadow-md hover:shadow-lg transition-shadow">
+          <div className="bg-card rounded-lg p-6 border hover:shadow-sm transition-shadow">
             <div className="flex items-center gap-2 mb-3">
-              <div className="p-1.5 bg-green-100 dark:bg-green-900/30 rounded-lg">
+              <div className="p-1.5 bg-green-100 rounded-lg">
                 🔗
               </div>
-              <h4 className="text-lg font-bold text-green-800 dark:text-green-300">Danh Sách Liên Kết</h4>
+              <h4 className="text-lg font-semibold text-green-700">Danh Sách Liên Kết</h4>
             </div>
-            <p className="text-gray-700 dark:text-gray-300 mb-3 text-sm leading-relaxed">
+            <p className="text-muted-foreground mb-3 text-sm leading-relaxed">
               Cấu trúc dữ liệu tuyến tính với các node được lưu trữ không liên tiếp trong bộ nhớ.
               Mỗi node chứa dữ liệu và pointer đến node tiếp theo.
             </p>
 
             <div className="space-y-2">
-              <div className="bg-green-50 dark:bg-green-900/20 p-3 rounded-lg border border-green-200 dark:border-green-800">
-                <h5 className="font-semibold text-green-700 dark:text-green-300 mb-2 flex items-center gap-2">
+              <div className="bg-green-50 p-3 rounded-lg border border-green-200">
+                <h5 className="font-semibold text-green-700 mb-2 flex items-center gap-2">
                   ✅ Ưu điểm
                 </h5>
-                <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-300">
+                <ul className="space-y-1 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
                     Kích thước động
@@ -747,11 +747,11 @@ if __name__ == "__main__":
                 </ul>
               </div>
 
-              <div className="bg-red-50 dark:bg-red-900/20 p-3 rounded-lg border border-red-200 dark:border-red-800">
-                <h5 className="font-semibold text-red-700 dark:text-red-300 mb-2 flex items-center gap-2">
+              <div className="bg-red-50 p-3 rounded-lg border border-red-200">
+                <h5 className="font-semibold text-red-700 mb-2 flex items-center gap-2">
                   ❌ Nhược điểm
                 </h5>
-                <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-300">
+                <ul className="space-y-1 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 bg-red-500 rounded-full"></span>
                     Truy cập chậm O(n)

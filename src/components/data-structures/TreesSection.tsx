@@ -454,40 +454,40 @@ export function TreesSection() {
 
   return (
     <div className="space-y-6">
-      <div className="bg-white dark:bg-slate-800 rounded-lg p-6 border">
-        <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+      <div className="bg-card rounded-lg p-6 border">
+        <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
           <TreePine className="h-5 w-5" />
           🦀 Rust WASM Cây Tìm Kiếm Nhị Phân
         </h3>
 
         {/* Định nghĩa và giải thích cơ bản */}
-        <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg mb-4 border-l-4 border-green-500">
-          <h4 className="font-semibold text-green-800 dark:text-green-300 mb-2">🌳 Cây là gì?</h4>
-          <p className="text-gray-700 dark:text-gray-300 mb-3">
+        <div className="bg-muted/50 p-4 rounded-lg mb-4 border-l-4 border-green-500">
+          <h4 className="font-semibold text-green-700 mb-2">🌳 Cây là gì?</h4>
+          <p className="text-muted-foreground mb-3">
             <strong>Cây (Tree)</strong> là cấu trúc dữ liệu phân cấp gồm các nút (node) được kết nối bởi các cạnh (edge).
             Mỗi cây có một nút gốc (root) và các nút con tạo thành cấu trúc phân nhánh.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
-            <div className="bg-white dark:bg-slate-800 p-3 rounded">
-              <strong className="text-blue-600 dark:text-blue-400">📝 Thuật ngữ:</strong>
-              <ul className="mt-1 text-gray-600 dark:text-gray-300">
+            <div className="bg-background p-3 rounded border">
+              <strong className="text-blue-600">📝 Thuật ngữ:</strong>
+              <ul className="mt-1 text-muted-foreground">
                 <li>• Root: Nút gốc</li>
                 <li>• Leaf: Nút lá</li>
                 <li>• Parent/Child: Cha/Con</li>
                 <li>• Height: Chiều cao</li>
               </ul>
             </div>
-            <div className="bg-white dark:bg-slate-800 p-3 rounded">
-              <strong className="text-green-600 dark:text-green-400">✅ Ưu điểm:</strong>
-              <ul className="mt-1 text-gray-600 dark:text-gray-300">
+            <div className="bg-background p-3 rounded border">
+              <strong className="text-green-600">✅ Ưu điểm:</strong>
+              <ul className="mt-1 text-muted-foreground">
                 <li>• Tìm kiếm nhanh</li>
                 <li>• Sắp xếp tự động</li>
                 <li>• Duyệt có thứ tự</li>
               </ul>
             </div>
-            <div className="bg-white dark:bg-slate-800 p-3 rounded">
-              <strong className="text-orange-600 dark:text-orange-400">⚠️ Lưu ý:</strong>
-              <ul className="mt-1 text-gray-600 dark:text-gray-300">
+            <div className="bg-background p-3 rounded border">
+              <strong className="text-orange-600">⚠️ Lưu ý:</strong>
+              <ul className="mt-1 text-muted-foreground">
                 <li>• Có thể mất cân bằng</li>
                 <li>• Tốn bộ nhớ pointer</li>
                 <li>• Phức tạp hơn mảng</li>
@@ -496,34 +496,34 @@ export function TreesSection() {
           </div>
         </div>
 
-        <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg mb-4 border-l-4 border-purple-500">
-          <h4 className="font-semibold text-purple-800 dark:text-purple-300 mb-2">🔍 Cây Tìm Kiếm Nhị Phân (BST)</h4>
-          <p className="text-gray-700 dark:text-gray-300 mb-2">
+        <div className="bg-muted/50 p-4 rounded-lg mb-4 border-l-4 border-purple-500">
+          <h4 className="font-semibold text-purple-700 mb-2">🔍 Cây Tìm Kiếm Nhị Phân (BST)</h4>
+          <p className="text-muted-foreground mb-2">
             <strong>BST</strong> là cây nhị phân đặc biệt với quy tắc:
-            <span className="font-mono bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded mx-1">trái &lt; gốc &lt; phải</span>
+            <span className="font-mono bg-muted px-2 py-1 rounded mx-1">trái &lt; gốc &lt; phải</span>
           </p>
-          <div className="text-sm text-gray-600 dark:text-gray-400">
+          <div className="text-sm text-muted-foreground">
             Mỗi nút có tối đa 2 con: con trái chứa giá trị nhỏ hơn, con phải chứa giá trị lớn hơn nút cha.
           </div>
         </div>
 
         <div className="space-y-4">
           {/* Interactive BST Visualization */}
-          <div className="bg-gradient-to-r from-green-50 to-teal-50 dark:from-green-900/20 dark:to-teal-900/20 p-6 rounded-lg border-2 border-green-200 dark:border-green-800">
-            <h4 className="font-semibold text-green-800 dark:text-green-300 mb-4 flex items-center gap-2">
+          <div className="bg-muted/50 p-6 rounded-lg border">
+            <h4 className="font-semibold text-green-700 mb-4 flex items-center gap-2">
               🎮 Minh Họa Tương Tác - Binary Search Tree Operations
             </h4>
 
             {/* BST Visualization */}
             <div className="mb-6">
-              <div className="flex items-start justify-center mb-4 min-h-96 overflow-x-auto p-8 bg-gradient-to-b from-green-50 to-white dark:from-green-900/10 dark:to-slate-800 rounded-xl border border-green-200 dark:border-green-800">
+              <div className="flex items-start justify-center mb-4 min-h-96 overflow-x-auto p-8 bg-background rounded-lg border">
                 <div className="flex flex-col items-center w-full">
                   {animationTree ? (
                     <div className="scale-90 md:scale-100 transition-transform">
                       {renderTreeNode(animationTree)}
                     </div>
                   ) : (
-                    <div className="text-gray-500 italic text-center p-8 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg">
+                    <div className="text-muted-foreground italic text-center p-8 border-2 border-dashed border-border rounded-lg">
                       BST rỗng - Hãy thêm nút để bắt đầu
                     </div>
                   )}
@@ -532,8 +532,8 @@ export function TreesSection() {
 
               {/* Animation status */}
               {animationStep && (
-                <div className="bg-orange-100 dark:bg-orange-900/30 border border-orange-300 dark:border-orange-700 rounded-lg p-3 mb-4">
-                  <div className="font-medium text-orange-800 dark:text-orange-300">
+                <div className="bg-orange-50 border border-orange-200 rounded-lg p-3 mb-4">
+                  <div className="font-medium text-orange-700">
                     {animationStep}
                   </div>
                 </div>
@@ -541,22 +541,22 @@ export function TreesSection() {
 
               {/* Traversal path */}
               {traversalPath.length > 0 && (
-                <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-lg p-3 mb-4">
-                  <div className="font-medium text-blue-800 dark:text-blue-300">
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-4">
+                  <div className="font-medium text-blue-700">
                     🛤️ Đường dẫn: {traversalPath.join(' → ')}
                   </div>
                 </div>
               )}
 
               {/* Tree info */}
-              <div className="grid grid-cols-3 gap-4 text-sm text-gray-600 dark:text-gray-400 mb-4">
-                <div className="bg-white dark:bg-slate-800 p-3 rounded">
+              <div className="grid grid-cols-3 gap-4 text-sm text-muted-foreground mb-4">
+                <div className="bg-background p-3 rounded border">
                   <strong>Root:</strong> {animationTree ? animationTree.value : "NULL"}
                 </div>
-                <div className="bg-white dark:bg-slate-800 p-3 rounded">
+                <div className="bg-background p-3 rounded border">
                   <strong>Nodes:</strong> {animationTree ? countNodes(animationTree) : 0}
                 </div>
-                <div className="bg-white dark:bg-slate-800 p-3 rounded">
+                <div className="bg-background p-3 rounded border">
                   <strong>Height:</strong> {animationTree ? getTreeHeight(animationTree) : 0}
                 </div>
               </div>
@@ -619,7 +619,7 @@ export function TreesSection() {
                   >
                     Inorder (L→N→R)
                   </button>
-                  <div className="text-xs text-gray-500 dark:text-gray-400 text-center">
+                  <div className="text-xs text-muted-foreground text-center">
                     Duyệt theo thứ tự
                   </div>
                 </div>
@@ -711,7 +711,7 @@ export function TreesSection() {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Nhập số để thêm"
-                className="px-3 py-2 border rounded dark:bg-slate-600 dark:border-slate-500"
+                className="px-3 py-2 border rounded bg-background border-border"
               />
               <button
                 onClick={insertValueWasm}
@@ -725,7 +725,7 @@ export function TreesSection() {
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
                 placeholder="Nhập số để tìm/xóa"
-                className="px-3 py-2 border rounded dark:bg-slate-600 dark:border-slate-500"
+                className="px-3 py-2 border rounded bg-background border-border"
               />
               <button
                 onClick={searchInTree}
