@@ -82,7 +82,7 @@ export default function HomePage() {
                 🐹 Go
               </Link>
               <Link
-                href="/data-structures"
+                href="/desktop-docs/soft-skills/dsa/bai-0"
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-purple-600 px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-purple-700"
               >
                 <Binary className="size-4" />
@@ -138,7 +138,7 @@ export default function HomePage() {
             <RoadmapCard
               icon={Binary}
               title="Data Structures & Algorithms"
-              link="/data-structures"
+              link="/desktop-docs/soft-skills/dsa/bai-0"
               description="Master CS fundamentals with interactive examples and Rust implementations."
             />
             <RoadmapCard
@@ -278,22 +278,22 @@ export default function HomePage() {
         <RoadmapCard
           icon={Binary}
           title="Data Structures"
-          link="/data-structures"
+          link="/desktop-docs/soft-skills/dsa/bai-0"
           description="Master arrays, linked lists, trees, graphs, hash tables with visual examples."
         />
         <RoadmapCard
           icon={SortAsc}
           title="Algorithms"
-          link="/data-structures"
+          link="/desktop-docs/soft-skills/dsa/bai-0"
           description="Learn sorting, searching, graph algorithms with step-by-step implementations."
         />
         <RoadmapMultiCard
           roadmaps={[
-            { title: "Trees & Graphs", link: "/data-structures" },
-            { title: "Hash Tables", link: "/data-structures" },
+            { title: "Trees & Graphs", link: "/desktop-docs/soft-skills/dsa/bai-0" },
+            { title: "Hash Tables", link: "/desktop-docs/soft-skills/dsa/bai-0" },
           ]}
           description="Advanced data structures for efficient data management and retrieval."
-          secondaryRoadmaps={[{ title: "Dynamic Programming", link: "/data-structures" }]}
+          secondaryRoadmaps={[{ title: "Dynamic Programming", link: "/desktop-docs/soft-skills/dsa/bai-0" }]}
           secondaryDescription="Master complex algorithmic techniques with practical examples."
         />
       </RoleRoadmaps>
@@ -402,7 +402,7 @@ export default function HomePage() {
               🐹 Go Development
             </Link>
             <Link
-              href="/data-structures"
+              href="/desktop-docs/soft-skills/dsa/bai-0"
               className="grow rounded-lg bg-gradient-to-br from-purple-700 to-purple-600 p-4 text-sm text-white transition-all hover:from-purple-600 hover:to-purple-600 sm:text-base"
             >
               <Binary className="mb-3 h-5 w-5 text-purple-200 sm:mb-2" />
