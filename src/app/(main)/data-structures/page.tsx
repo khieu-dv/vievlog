@@ -116,41 +116,41 @@ export default function DataStructuresPage() {
     <div className="min-h-screen bg-background">
       <Header />
 
-      <div className="container mx-auto max-w-4xl px-3 sm:px-6 py-6 sm:py-8">
+      <div className="container mx-auto max-w-6xl px-4 py-8">
         {/* Header Section */}
-        <div className="mb-6 sm:mb-8 text-center">
-          <div className="mb-3 flex justify-center">
-            <div className="rounded-lg bg-primary/10 p-2">
-              <Binary className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
-            </div>
+        <div className="mb-8 text-center space-y-4">
+          <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
+            <Binary className="h-6 w-6 text-primary" />
           </div>
-          <h1 className="mb-2 text-2xl sm:text-3xl font-bold tracking-tight">
-            Cấu Trúc Dữ Liệu & Giải Thuật
-          </h1>
-          <p className="text-muted-foreground text-sm sm:text-base max-w-2xl mx-auto px-2">
-            Các ví dụ tương tác và cài đặt Rust cho các cấu trúc dữ liệu và giải thuật cơ bản.
-          </p>
+          <div className="space-y-2">
+            <h1 className="text-3xl font-bold tracking-tight text-foreground">
+              Cấu Trúc Dữ Liệu & Giải Thuật
+            </h1>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Các ví dụ tương tác và cài đặt Rust cho các cấu trúc dữ liệu và giải thuật cơ bản.
+            </p>
+          </div>
         </div>
 
         {/* Tab Navigation */}
-        <div className="mb-4 sm:mb-6">
-          <div className="border-b border-border">
-            <nav className="-mb-px flex space-x-3 sm:space-x-6 overflow-x-auto scrollbar-hide">
+        <div className="mb-8">
+          <div className="border-b">
+            <nav className="-mb-px flex gap-6 overflow-x-auto">
               {tabs.map((tab) => {
                 const Icon = tab.icon;
                 return (
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`flex items-center gap-1 sm:gap-2 py-2 sm:py-3 px-1 border-b-2 font-medium text-xs sm:text-sm whitespace-nowrap transition-colors ${
+                    className={`flex items-center gap-2 py-3 px-1 border-b-2 font-medium text-sm whitespace-nowrap transition-colors ${
                       activeTab === tab.id
                         ? "border-primary text-primary"
-                        : "border-transparent text-muted-foreground hover:text-foreground hover:border-muted-foreground/50"
+                        : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"
                     }`}
                   >
-                    <Icon className="h-3 w-3 sm:h-4 sm:w-4" />
-                    <span className="hidden xs:inline sm:inline">{tab.title}</span>
-                    <span className="xs:hidden sm:hidden">{tab.title.split(' ')[0]}</span>
+                    <Icon className="h-4 w-4" />
+                    <span className="hidden sm:inline">{tab.title}</span>
+                    <span className="sm:hidden">{tab.title.split(' ')[0]}</span>
                   </button>
                 );
               })}
@@ -159,17 +159,17 @@ export default function DataStructuresPage() {
         </div>
 
         {/* Tab Content */}
-        <div className="mb-4">
+        <div className="space-y-8">
           {activeTab === "overview" ? (
             <OverviewSection setActiveTab={setActiveTab} />
           ) : (
             tabs.find(tab => tab.id === activeTab)?.content
           )}
-        </div>
 
-        {/* Performance Comparison */}
-        <div>
-          <ComplexitySection />
+          {/* Performance Comparison */}
+          <div className="border-t pt-8">
+            <ComplexitySection />
+          </div>
         </div>
       </div>
 

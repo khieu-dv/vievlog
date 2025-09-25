@@ -36,7 +36,7 @@ export function HashTableSection() {
   const [insertVal, setInsertVal] = useState("");
   const [searchHashKey, setSearchHashKey] = useState("");
   const [highlightedBucket, setHighlightedBucket] = useState<number | null>(null);
-  const [highlightedEntry, setHighlightedEntry] = useState<{bucket: number, entry: number} | null>(null);
+  const [highlightedEntry, setHighlightedEntry] = useState<{ bucket: number, entry: number } | null>(null);
   const [animationStep, setAnimationStep] = useState<string>("");
   const [isAnimating, setIsAnimating] = useState(false);
   const [hashCalculation, setHashCalculation] = useState<string>("");
@@ -328,7 +328,7 @@ export function HashTableSection() {
     const newHashTable: HashBucket[] = Array(8).fill(null).map(() => ({ entries: [] }));
     const sampleData = [{ key: "name", value: "John" }, { key: "age", value: "25" }, { key: "city", value: "HN" }];
 
-    sampleData.forEach(({key, value}) => {
+    sampleData.forEach(({ key, value }) => {
       const hash = animationHashFunction(key);
       newHashTable[hash].entries.push({ key, value });
     });
@@ -357,12 +357,17 @@ export function HashTableSection() {
   }, []);
 
   return (
-    <div className="space-y-6">
-      <div className="p-4">
-        <h3 className="text-lg font-semibold mb-6 flex items-center gap-2">
-          <Hash className="h-5 w-5" />
-          🦀 Rust WASM Hash Table (Bảng Băm)
-        </h3>
+    <div className="space-y-8">
+      <div className="space-y-4">
+        <div className="space-y-2">
+          <h3 className="text-2xl font-bold tracking-tight flex items-center gap-2">
+            <Hash className="h-6 w-6 text-indigo-500" />
+            Hash Table (Bảng Băm)
+          </h3>
+          <p className="text-muted-foreground">
+            Cấu trúc dữ liệu key-value với thao tác tra cứu, chèn, xóa O(1) trung bình.
+          </p>
+        </div>
 
         {/* Định nghĩa và giải thích cơ bản */}
         <div className="bg-orange-50 dark:bg-orange-950/50 p-6 rounded-lg mb-6 border-l-4 border-orange-500">
@@ -427,11 +432,10 @@ export function HashTableSection() {
                 {animationHashTable.map((bucket, index) => (
                   <div
                     key={index}
-                    className={`border-2 rounded-lg p-3 transition-all duration-500 ${
-                      highlightedBucket === index
+                    className={`border-2 rounded-lg p-3 transition-all duration-500 ${highlightedBucket === index
                         ? "border-red-500 bg-yellow-100 dark:bg-yellow-900/30 scale-105 shadow-lg"
                         : "border-purple-300 dark:border-purple-600 bg-card"
-                    }`}
+                      }`}
                   >
                     <div className="text-sm font-bold text-purple-600 dark:text-purple-400 mb-2">
                       Bucket {index}
@@ -444,11 +448,10 @@ export function HashTableSection() {
                         {bucket.entries.map((entry, entryIndex) => (
                           <div
                             key={entryIndex}
-                            className={`text-xs p-2 rounded border transition-all duration-300 ${
-                              highlightedEntry?.bucket === index && highlightedEntry?.entry === entryIndex
+                            className={`text-xs p-2 rounded border transition-all duration-300 ${highlightedEntry?.bucket === index && highlightedEntry?.entry === entryIndex
                                 ? "bg-yellow-300 border-red-400 animate-pulse"
                                 : "bg-muted border-border"
-                            }`}
+                              }`}
                           >
                             <div className="font-mono">
                               <span className="text-blue-600 dark:text-blue-400">"{entry.key}"</span>
@@ -774,31 +777,28 @@ export function HashTableSection() {
                 <nav className="-mb-px flex space-x-8">
                   <button
                     onClick={() => setActiveLanguageTab("rust")}
-                    className={`py-2 px-1 border-b-2 font-medium text-sm ${
-                      activeLanguageTab === "rust"
+                    className={`py-2 px-1 border-b-2 font-medium text-sm ${activeLanguageTab === "rust"
                         ? "border-orange-500 text-orange-600 dark:text-orange-400"
                         : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"
-                    }`}
+                      }`}
                   >
                     Rust
                   </button>
                   <button
                     onClick={() => setActiveLanguageTab("cpp")}
-                    className={`py-2 px-1 border-b-2 font-medium text-sm ${
-                      activeLanguageTab === "cpp"
+                    className={`py-2 px-1 border-b-2 font-medium text-sm ${activeLanguageTab === "cpp"
                         ? "border-blue-500 text-blue-600 dark:text-blue-400"
                         : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"
-                    }`}
+                      }`}
                   >
                     C++
                   </button>
                   <button
                     onClick={() => setActiveLanguageTab("python")}
-                    className={`py-2 px-1 border-b-2 font-medium text-sm ${
-                      activeLanguageTab === "python"
+                    className={`py-2 px-1 border-b-2 font-medium text-sm ${activeLanguageTab === "python"
                         ? "border-green-500 text-green-600 dark:text-green-400"
                         : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"
-                    }`}
+                      }`}
                   >
                     Python
                   </button>

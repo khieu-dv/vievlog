@@ -5,11 +5,16 @@ import { MermaidDiagram } from "~/components/common/MermaidDiagram";
 
 export function ComplexitySection() {
   return (
-    <div>
-      <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-        <Activity className="h-5 w-5" />
-        So Sánh Độ Phức Tạp Giải Thuật
-      </h3>
+    <div className="space-y-6">
+      <div className="space-y-2">
+        <h3 className="text-2xl font-bold tracking-tight flex items-center gap-2">
+          <Activity className="h-6 w-6" />
+          So Sánh Độ Phức Tạp Giải Thuật
+        </h3>
+        <p className="text-muted-foreground">
+          Hiểu về Big O notation và cách so sánh hiệu suất các thuật toán khác nhau.
+        </p>
+      </div>
 
       {/* Định nghĩa và giải thích cơ bản */}
       <div className="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg mb-4 border-l-4 border-red-500">

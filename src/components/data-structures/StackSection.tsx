@@ -212,12 +212,17 @@ export function StackSection() {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="p-4">
-        <h3 className="text-lg font-semibold mb-6 flex items-center gap-2">
-          <Layers className="h-5 w-5" />
-          🦀 Rust WASM Stack (Ngăn Xếp)
-        </h3>
+    <div className="space-y-8">
+      <div className="space-y-4">
+        <div className="space-y-2">
+          <h3 className="text-2xl font-bold tracking-tight flex items-center gap-2">
+            <Layers className="h-6 w-6 text-purple-500" />
+            Stack (Ngăn Xếp)
+          </h3>
+          <p className="text-muted-foreground">
+            Cấu trúc dữ liệu LIFO (Last In, First Out) với các thao tác push và pop O(1).
+          </p>
+        </div>
 
         {/* Định nghĩa và giải thích cơ bản */}
         <div className="bg-red-50 dark:bg-red-950/50 p-6 rounded-lg mb-6 border-l-4 border-red-500">

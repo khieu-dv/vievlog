@@ -94,80 +94,107 @@ export function OverviewSection({ setActiveTab }: OverviewSectionProps) {
   ];
 
   return (
-    <div className="space-y-4 sm:space-y-6">
+    <div className="space-y-12">
       {/* Header Section */}
-      <div className="text-center">
-        <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1.5 text-xs sm:text-sm font-medium text-primary mb-3">
-          <Binary className="h-3 w-3 sm:h-4 sm:w-4" />
+      <div className="text-center space-y-4">
+        <div className="inline-flex items-center gap-2 rounded-full bg-muted px-3 py-1.5 text-sm font-medium text-muted-foreground">
+          <Binary className="h-4 w-4" />
           Computer Science Fundamentals
         </div>
-        <h2 className="text-xl sm:text-2xl font-bold mb-3">
-          Cấu Trúc Dữ Liệu & Giải Thuật
-        </h2>
-        <p className="text-muted-foreground text-sm sm:text-base max-w-2xl mx-auto px-2">
-          Khám phá nền tảng của khoa học máy tính với các ví dụ tương tác và triển khai bằng Rust.
-          Từ các cấu trúc dữ liệu cơ bản đến các thuật toán phức tạp.
-        </p>
+        <div className="space-y-2">
+          <h2 className="text-2xl font-bold tracking-tight">
+            Cấu Trúc Dữ Liệu & Giải Thuật
+          </h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto leading-7">
+            Khám phá nền tảng của khoa học máy tính với các ví dụ tương tác và triển khai bằng Rust.
+            Từ các cấu trúc dữ liệu cơ bản đến các thuật toán phức tạp.
+          </p>
+        </div>
       </div>
 
-      {/* Why Learn DSA - Simplified */}
-      <div className="mb-4">
-        <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-          <Zap className="h-5 w-5 text-yellow-500" />
-          Tại sao học DSA?
-        </h3>
-        <div className="grid gap-2 sm:gap-3 grid-cols-2 md:grid-cols-4">
-          <div className="flex items-center gap-2 p-2 rounded-lg bg-emerald-50 dark:bg-emerald-950/30">
-            <Clock className="h-4 w-4 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
+      {/* Why Learn DSA */}
+      <div className="space-y-6">
+        <div className="space-y-2">
+          <h3 className="text-xl font-semibold tracking-tight flex items-center gap-2">
+            <Zap className="h-5 w-5 text-amber-500" />
+            Tại sao học DSA?
+          </h3>
+          <p className="text-muted-foreground">
+            Các lợi ích cốt lõi khi nắm vững cấu trúc dữ liệu và giải thuật.
+          </p>
+        </div>
+
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <div className="flex items-center gap-3 p-4 rounded-lg border bg-card">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-100 dark:bg-emerald-900/20">
+              <Clock className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
+            </div>
             <div>
-              <div className="text-sm font-medium">Tối ưu hiệu suất</div>
+              <div className="font-medium">Tối ưu hiệu suất</div>
+              <div className="text-sm text-muted-foreground">O(n²) → O(log n)</div>
             </div>
           </div>
-          <div className="flex items-center gap-2 p-2 rounded-lg bg-blue-50 dark:bg-blue-950/30">
-            <Brain className="h-4 w-4 text-blue-600 dark:text-blue-400 flex-shrink-0" />
+
+          <div className="flex items-center gap-3 p-4 rounded-lg border bg-card">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-100 dark:bg-blue-900/20">
+              <Brain className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+            </div>
             <div>
-              <div className="text-sm font-medium">Tư duy thuật toán</div>
+              <div className="font-medium">Tư duy thuật toán</div>
+              <div className="text-sm text-muted-foreground">Problem solving</div>
             </div>
           </div>
-          <div className="flex items-center gap-2 p-2 rounded-lg bg-purple-50 dark:bg-purple-950/30">
-            <Zap className="h-4 w-4 text-purple-600 dark:text-purple-400 flex-shrink-0" />
+
+          <div className="flex items-center gap-3 p-4 rounded-lg border bg-card">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-purple-100 dark:bg-purple-900/20">
+              <Zap className="h-5 w-5 text-purple-600 dark:text-purple-400" />
+            </div>
             <div>
-              <div className="text-sm font-medium">Phỏng vấn kỹ thuật</div>
+              <div className="font-medium">Phỏng vấn kỹ thuật</div>
+              <div className="text-sm text-muted-foreground">Coding interview</div>
             </div>
           </div>
-          <div className="flex items-center gap-2 p-2 rounded-lg bg-orange-50 dark:bg-orange-950/30">
-            <Network className="h-4 w-4 text-orange-600 dark:text-orange-400 flex-shrink-0" />
+
+          <div className="flex items-center gap-3 p-4 rounded-lg border bg-card">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-orange-100 dark:bg-orange-900/20">
+              <Network className="h-5 w-5 text-orange-600 dark:text-orange-400" />
+            </div>
             <div>
-              <div className="text-sm font-medium">Hệ thống phức tạp</div>
+              <div className="font-medium">Hệ thống phức tạp</div>
+              <div className="text-sm text-muted-foreground">Scalable systems</div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Data Structures Overview - Simplified */}
-      <div className="mb-4">
-        <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-          <TreePine className="h-5 w-5 text-emerald-500" />
-          Cấu Trúc Dữ Liệu
-        </h3>
-        <div className="grid gap-2 grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
+      {/* Data Structures Overview */}
+      <div className="space-y-6">
+        <div className="space-y-2">
+          <h3 className="text-xl font-semibold tracking-tight flex items-center gap-2">
+            <TreePine className="h-5 w-5 text-emerald-500" />
+            Cấu Trúc Dữ Liệu
+          </h3>
+          <p className="text-muted-foreground">
+            Các cấu trúc dữ liệu cốt lõi với độ phức tạp thời gian tương ứng.
+          </p>
+        </div>
+
+        <div className="grid gap-3 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
           {dataStructures.map((ds, index) => {
             const Icon = ds.icon;
             return (
               <button
                 key={index}
-                className="group text-left p-3 rounded-lg hover:bg-muted/50 transition-all cursor-pointer border"
+                className="group flex flex-col items-center gap-3 p-4 rounded-lg border bg-card hover:bg-accent transition-all"
                 onClick={() => setActiveTab(ds.tabId)}
               >
-                <div className="flex flex-col items-center gap-2">
-                  <div className={`rounded-lg p-2 ${ds.color} transition-colors group-hover:scale-105`}>
-                    <Icon className="h-4 w-4" />
-                  </div>
-                  <div className="text-center">
-                    <h4 className="font-medium text-xs">{ds.name}</h4>
-                    <div className="text-xs font-mono text-muted-foreground mt-1">
-                      {ds.complexity}
-                    </div>
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-muted/50 group-hover:bg-muted transition-colors">
+                  <Icon className="h-5 w-5 text-muted-foreground" />
+                </div>
+                <div className="text-center space-y-1">
+                  <h4 className="font-medium text-sm leading-none">{ds.name}</h4>
+                  <div className="text-xs font-mono text-muted-foreground">
+                    {ds.complexity}
                   </div>
                 </div>
               </button>
@@ -176,30 +203,48 @@ export function OverviewSection({ setActiveTab }: OverviewSectionProps) {
         </div>
       </div>
 
-      {/* Algorithms Overview - Simplified */}
-      <div>
-        <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-          <SortAsc className="h-5 w-5 text-blue-500" />
-          Giải Thuật
-        </h3>
-        <div className="grid gap-2 grid-cols-2 sm:grid-cols-4">
+      {/* Algorithms Overview */}
+      <div className="space-y-6">
+        <div className="space-y-2">
+          <h3 className="text-xl font-semibold tracking-tight flex items-center gap-2">
+            <SortAsc className="h-5 w-5 text-blue-500" />
+            Giải Thuật
+          </h3>
+          <p className="text-muted-foreground">
+            Các thuật toán phổ biến với độ phức tạp và ví dụ ứng dụng.
+          </p>
+        </div>
+
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {algorithms.map((algo, index) => {
             const Icon = algo.icon;
             return (
               <button
                 key={index}
-                className="group text-left p-3 rounded-lg hover:bg-muted/50 transition-all cursor-pointer border"
+                className="group text-left p-6 rounded-lg border bg-card hover:bg-accent transition-all"
                 onClick={() => setActiveTab(algo.tabId)}
               >
-                <div className="flex flex-col items-center gap-2">
-                  <div className="rounded-lg bg-primary/10 p-2 group-hover:scale-105 transition-transform">
-                    <Icon className="h-4 w-4 text-primary" />
-                  </div>
-                  <div className="text-center">
-                    <h4 className="font-semibold text-xs">{algo.name}</h4>
-                    <div className="text-xs font-mono text-muted-foreground mt-1">
-                      {algo.complexity}
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
+                      <Icon className="h-5 w-5 text-primary" />
                     </div>
+                    <div>
+                      <h4 className="font-semibold">{algo.name}</h4>
+                      <div className="text-xs font-mono text-muted-foreground">
+                        {algo.complexity}
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-sm text-muted-foreground line-clamp-2">
+                    {algo.description}
+                  </p>
+                  <div className="flex flex-wrap gap-1">
+                    {algo.examples.map((example, i) => (
+                      <span key={i} className="inline-flex items-center px-2 py-1 rounded-md bg-muted text-xs font-medium">
+                        {example}
+                      </span>
+                    ))}
                   </div>
                 </div>
               </button>

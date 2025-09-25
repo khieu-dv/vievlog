@@ -399,48 +399,48 @@ if __name__ == "__main__":
   };
 
   return (
-    <div className="space-y-4">
-      {/* Header Section with Navigation Pills */}
-      <div className="mb-4">
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-          <div>
-            <h3 className="text-xl font-semibold mb-2 flex items-center gap-2">
-              <Layout className="h-5 w-5 text-blue-500" />
+    <div className="space-y-8">
+      {/* Header Section */}
+      <div className="space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div className="space-y-2">
+            <h3 className="text-2xl font-bold tracking-tight flex items-center gap-2">
+              <Layout className="h-6 w-6 text-blue-500" />
               Mảng & Vector
             </h3>
-            <p className="text-muted-foreground max-w-2xl">
-              Khám phá cấu trúc dữ liệu cơ bản nhất - từ mảng tĩnh đến vector động với các minh họa tương tác.
+            <p className="text-muted-foreground">
+              Khám phá cấu trúc dữ liệu cơ bản - từ mảng tĩnh đến vector động với các minh họa tương tác.
             </p>
           </div>
 
           {/* Navigation Pills */}
-          <div className="inline-flex rounded-lg border bg-card p-1">
+          <div className="inline-flex h-10 items-center justify-center rounded-md bg-muted p-1">
             <button
               onClick={() => setActiveSection("overview")}
-              className={`inline-flex items-center justify-center rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+              className={`inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
                 activeSection === "overview"
-                  ? "bg-primary text-primary-foreground shadow-sm"
-                  : "hover:bg-muted text-muted-foreground hover:text-foreground"
+                  ? "bg-background text-foreground shadow-sm"
+                  : "text-muted-foreground hover:text-foreground"
               }`}
             >
               📚 Tổng quan
             </button>
             <button
               onClick={() => setActiveSection("interactive")}
-              className={`inline-flex items-center justify-center rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+              className={`inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
                 activeSection === "interactive"
-                  ? "bg-primary text-primary-foreground shadow-sm"
-                  : "hover:bg-muted text-muted-foreground hover:text-foreground"
+                  ? "bg-background text-foreground shadow-sm"
+                  : "text-muted-foreground hover:text-foreground"
               }`}
             >
               🎮 Tương tác
             </button>
             <button
               onClick={() => setActiveSection("implementation")}
-              className={`inline-flex items-center justify-center rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+              className={`inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
                 activeSection === "implementation"
-                  ? "bg-primary text-primary-foreground shadow-sm"
-                  : "hover:bg-muted text-muted-foreground hover:text-foreground"
+                  ? "bg-background text-foreground shadow-sm"
+                  : "text-muted-foreground hover:text-foreground"
               }`}
             >
               💻 Cài đặt

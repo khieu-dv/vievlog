@@ -162,12 +162,17 @@ export function GraphsSection() {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="p-4">
-        <h3 className="text-lg font-semibold mb-6 flex items-center gap-2">
-          <Network className="h-5 w-5" />
-          🦀 Rust WASM Đồ Thị
-        </h3>
+    <div className="space-y-8">
+      <div className="space-y-4">
+        <div className="space-y-2">
+          <h3 className="text-2xl font-bold tracking-tight flex items-center gap-2">
+            <Network className="h-6 w-6 text-blue-500" />
+            Đồ Thị (Graph)
+          </h3>
+          <p className="text-muted-foreground">
+            Cấu trúc dữ liệu biểu diễn mối quan hệ giữa các đối tượng với vertex và edge.
+          </p>
+        </div>
 
         {/* Định nghĩa và giải thích cơ bản */}
         <div className="bg-indigo-50 dark:bg-indigo-950/50 p-6 rounded-lg mb-6 border-l-4 border-indigo-500">
@@ -203,11 +208,11 @@ export function GraphsSection() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
             <div>
               <strong>Directed (Có hướng):</strong> A → B (một chiều)
-              <br/><span className="text-gray-600 dark:text-gray-400">VD: Follow Twitter, đường một chiều</span>
+              <br /><span className="text-gray-600 dark:text-gray-400">VD: Follow Twitter, đường một chiều</span>
             </div>
             <div>
               <strong>Undirected (Vô hướng):</strong> A ↔ B (hai chiều)
-              <br/><span className="text-gray-600 dark:text-gray-400">VD: Kết bạn Facebook, đường hai chiều</span>
+              <br /><span className="text-gray-600 dark:text-gray-400">VD: Kết bạn Facebook, đường hai chiều</span>
             </div>
           </div>
         </div>
@@ -425,31 +430,28 @@ export function GraphsSection() {
                 <nav className="-mb-px flex space-x-8">
                   <button
                     onClick={() => setActiveLanguageTab("rust")}
-                    className={`py-2 px-1 border-b-2 font-medium text-sm ${
-                      activeLanguageTab === "rust"
+                    className={`py-2 px-1 border-b-2 font-medium text-sm ${activeLanguageTab === "rust"
                         ? "border-orange-500 text-orange-600 dark:text-orange-400"
                         : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"
-                    }`}
+                      }`}
                   >
                     Rust
                   </button>
                   <button
                     onClick={() => setActiveLanguageTab("cpp")}
-                    className={`py-2 px-1 border-b-2 font-medium text-sm ${
-                      activeLanguageTab === "cpp"
+                    className={`py-2 px-1 border-b-2 font-medium text-sm ${activeLanguageTab === "cpp"
                         ? "border-blue-500 text-blue-600 dark:text-blue-400"
                         : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"
-                    }`}
+                      }`}
                   >
                     C++
                   </button>
                   <button
                     onClick={() => setActiveLanguageTab("python")}
-                    className={`py-2 px-1 border-b-2 font-medium text-sm ${
-                      activeLanguageTab === "python"
+                    className={`py-2 px-1 border-b-2 font-medium text-sm ${activeLanguageTab === "python"
                         ? "border-green-500 text-green-600 dark:text-green-400"
                         : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"
-                    }`}
+                      }`}
                   >
                     Python
                   </button>

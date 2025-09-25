@@ -281,12 +281,17 @@ export function HeapSection() {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="p-4">
-        <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-          <TrendingUp className="h-5 w-5" />
-          🦀 Rust WASM Heap (Đống)
-        </h3>
+    <div className="space-y-8">
+      <div className="space-y-4">
+        <div className="space-y-2">
+          <h3 className="text-2xl font-bold tracking-tight flex items-center gap-2">
+            <TrendingUp className="h-6 w-6 text-orange-500" />
+            Heap (Đống)
+          </h3>
+          <p className="text-muted-foreground">
+            Cấu trúc dữ liệu dạng cây hoàn chỉnh với thao tác insert và extract-min/max O(log n).
+          </p>
+        </div>
 
         {/* Định nghĩa và giải thích cơ bản */}
         <div className="bg-muted/50 p-4 rounded-lg mb-4 border-l-4 border-rose-500">

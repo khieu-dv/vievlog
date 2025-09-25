@@ -453,12 +453,17 @@ export function TreesSection() {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="p-4">
-        <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-          <TreePine className="h-5 w-5" />
-          🦀 Rust WASM Cây Tìm Kiếm Nhị Phân
-        </h3>
+    <div className="space-y-8">
+      <div className="space-y-4">
+        <div className="space-y-2">
+          <h3 className="text-2xl font-bold tracking-tight flex items-center gap-2">
+            <TreePine className="h-6 w-6 text-green-500" />
+            Cây Tìm Kiếm Nhị Phân
+          </h3>
+          <p className="text-muted-foreground">
+            Cấu trúc dữ liệu phân cấp với khả năng tìm kiếm và sắp xếp hiệu quả O(log n).
+          </p>
+        </div>
 
         {/* Định nghĩa và giải thích cơ bản */}
         <div className="bg-muted/50 p-4 rounded-lg mb-4 border-l-4 border-green-500">

@@ -660,109 +660,112 @@ if __name__ == "__main__":
   };
 
   return (
-    <div className="max-w-7xl mx-auto space-y-6">
-      {/* Header Section with Navigation Pills */}
-      <div className="bg-muted/50 rounded-lg p-6 border shadow-sm">
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-          <div>
-            <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
-              <List className="h-5 w-5" />
-              Danh Sách Liên Kết
-            </h3>
-            <p className="text-muted-foreground text-base leading-relaxed max-w-2xl">
-              Khám phá cấu trúc dữ liệu động với các node liên kết thông qua pointer.
-            </p>
-          </div>
+    <div className="space-y-8">
+      {/* Header Section */}
+      <div className="space-y-4">
+        <div className="space-y-2">
+          <h3 className="text-2xl font-bold tracking-tight flex items-center gap-2">
+            <List className="h-6 w-6 text-emerald-500" />
+            Danh Sách Liên Kết
+          </h3>
+          <p className="text-muted-foreground">
+            Cấu trúc dữ liệu động với các node liên kết, hiệu quả cho thao tác chèn/xóa O(1).
+          </p>
+        </div>
+
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div></div>
 
           {/* Navigation Pills */}
-          <div className="flex bg-background rounded-lg p-1 shadow-sm border">
-            <button
-              onClick={() => setActiveSection("overview")}
-              className={`px-4 py-2 rounded-md font-medium text-sm transition-all ${
-                activeSection === "overview"
-                  ? "bg-green-500 text-white shadow-sm"
-                  : "text-muted-foreground hover:text-foreground hover:bg-muted"
-              }`}
-            >
-              📚 Tổng quan
-            </button>
-            <button
-              onClick={() => setActiveSection("interactive")}
-              className={`px-4 py-2 rounded-md font-medium text-sm transition-all ${
-                activeSection === "interactive"
-                  ? "bg-teal-500 text-white shadow-sm"
-                  : "text-muted-foreground hover:text-foreground hover:bg-muted"
-              }`}
-            >
-              🎮 Tương tác
-            </button>
-            <button
-              onClick={() => setActiveSection("implementation")}
-              className={`px-4 py-2 rounded-md font-medium text-sm transition-all ${
-                activeSection === "implementation"
-                  ? "bg-emerald-500 text-white shadow-sm"
-                  : "text-muted-foreground hover:text-foreground hover:bg-muted"
-              }`}
-            >
-              💻 Cài đặt
-            </button>
-          </div>
+          <div className="inline-flex h-10 items-center justify-center rounded-md bg-muted p-1">
+          <button
+            onClick={() => setActiveSection("overview")}
+            className={`inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
+              activeSection === "overview"
+                ? "bg-background text-foreground shadow-sm"
+                : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            📚 Tổng quan
+          </button>
+          <button
+            onClick={() => setActiveSection("interactive")}
+            className={`inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
+              activeSection === "interactive"
+                ? "bg-background text-foreground shadow-sm"
+                : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            🎮 Tương tác
+          </button>
+          <button
+            onClick={() => setActiveSection("implementation")}
+            className={`inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
+              activeSection === "implementation"
+                ? "bg-background text-foreground shadow-sm"
+                : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            💻 Cài đặt
+          </button>
+        </div>
         </div>
       </div>
 
       {/* Overview Section */}
       {activeSection === "overview" && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="space-y-8">
           {/* Linked List Definition */}
-          <div className="p-4">
-            <div className="flex items-center gap-2 mb-3">
-              <div className="p-1.5 bg-green-100 rounded-lg">
+          <div className="space-y-6">
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-100 dark:bg-emerald-900/20">
                 🔗
               </div>
-              <h4 className="text-lg font-semibold text-green-700">Danh Sách Liên Kết</h4>
+              <div>
+                <h4 className="text-lg font-semibold">Danh Sách Liên Kết</h4>
+                <p className="text-sm text-muted-foreground">Dynamic data structure với nodes liên kết</p>
+              </div>
             </div>
-            <p className="text-muted-foreground mb-3 text-sm leading-relaxed">
-              Cấu trúc dữ liệu tuyến tính với các node được lưu trữ không liên tiếp trong bộ nhớ.
-              Mỗi node chứa dữ liệu và pointer đến node tiếp theo.
-            </p>
 
-            <div className="space-y-2">
-              <div className="bg-green-50 p-3 rounded-lg border border-green-200">
-                <h5 className="font-semibold text-green-700 mb-2 flex items-center gap-2">
-                  ✅ Ưu điểm
-                </h5>
-                <ul className="space-y-1 text-sm text-muted-foreground">
+            <div className="grid gap-4 md:grid-cols-2">
+              <div className="rounded-lg border bg-card p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="h-2 w-2 rounded-full bg-emerald-500"></div>
+                  <h5 className="font-medium text-emerald-700 dark:text-emerald-400">Ưu điểm</h5>
+                </div>
+                <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
+                    <div className="h-1 w-1 rounded-full bg-muted-foreground/40"></div>
                     Kích thước động
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
-                    Thêm/xóa đầu nhanh O(1)
+                    <div className="h-1 w-1 rounded-full bg-muted-foreground/40"></div>
+                    Chèn/xóa O(1)
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
-                    Không cần biết trước kích thước
+                    <div className="h-1 w-1 rounded-full bg-muted-foreground/40"></div>
+                    Flexible memory
                   </li>
                 </ul>
               </div>
 
-              <div className="bg-red-50 p-3 rounded-lg border border-red-200">
-                <h5 className="font-semibold text-red-700 mb-2 flex items-center gap-2">
-                  ❌ Nhược điểm
-                </h5>
-                <ul className="space-y-1 text-sm text-muted-foreground">
+              <div className="rounded-lg border bg-card p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="h-2 w-2 rounded-full bg-red-500"></div>
+                  <h5 className="font-medium text-red-700 dark:text-red-400">Nhược điểm</h5>
+                </div>
+                <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 bg-red-500 rounded-full"></span>
+                    <div className="h-1 w-1 rounded-full bg-muted-foreground/40"></div>
                     Truy cập chậm O(n)
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 bg-red-500 rounded-full"></span>
-                    Tốn bộ nhớ cho pointer
+                    <div className="h-1 w-1 rounded-full bg-muted-foreground/40"></div>
+                    Extra memory overhead
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 bg-red-500 rounded-full"></span>
-                    Không cache-friendly
+                    <div className="h-1 w-1 rounded-full bg-muted-foreground/40"></div>
+                    Poor cache locality
                   </li>
                 </ul>
               </div>
@@ -770,48 +773,71 @@ if __name__ == "__main__":
           </div>
 
           {/* Use Cases & Applications */}
-          <div className="bg-white dark:bg-slate-800 rounded-xl p-5 border border-teal-200 dark:border-slate-600 shadow-md hover:shadow-lg transition-shadow">
-            <div className="flex items-center gap-2 mb-3">
-              <div className="p-1.5 bg-teal-100 dark:bg-teal-900/30 rounded-lg">
+          <div className="space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-100 dark:bg-blue-900/20">
                 🎯
               </div>
-              <h4 className="text-lg font-bold text-teal-800 dark:text-teal-300">Ứng Dụng Thực Tế</h4>
-            </div>
-            <p className="text-gray-700 dark:text-gray-300 mb-3 text-sm leading-relaxed">
-              Linked List phù hợp cho các trường hợp cần thêm/xóa thường xuyên và không cần truy cập ngẫu nhiên.
-            </p>
-
-            <div className="space-y-3">
-              <div className="bg-blue-50 dark:bg-blue-900/20 p-3 rounded-lg border border-blue-200 dark:border-blue-800">
-                <h6 className="font-semibold text-blue-700 dark:text-blue-300 mb-2">🎪 Ứng dụng phổ biến</h6>
-                <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-300">
-                  <li>• Undo/Redo trong text editor</li>
-                  <li>• Browser history navigation</li>
-                  <li>• Music playlist management</li>
-                  <li>• Implement Stack/Queue</li>
-                </ul>
+              <div>
+                <h4 className="text-lg font-semibold">Ứng Dụng Thực Tế</h4>
+                <p className="text-sm text-muted-foreground">Các trường hợp sử dụng phổ biến</p>
               </div>
+            </div>
+            <div className="rounded-lg border bg-card p-4">
+              <h5 className="font-medium mb-3 flex items-center gap-2">
+                <div className="h-2 w-2 rounded-full bg-blue-500"></div>
+                Ứng dụng phổ biến
+              </h5>
+              <div className="grid gap-3 sm:grid-cols-2">
+                <div className="flex items-center gap-3 text-sm">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-purple-100 dark:bg-purple-900/20">
+                    ↶
+                  </div>
+                  <span>Undo/Redo operations</span>
+                </div>
+                <div className="flex items-center gap-3 text-sm">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-green-100 dark:bg-green-900/20">
+                    🌐
+                  </div>
+                  <span>Browser history</span>
+                </div>
+                <div className="flex items-center gap-3 text-sm">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-orange-100 dark:bg-orange-900/20">
+                    🎵
+                  </div>
+                  <span>Music playlists</span>
+                </div>
+                <div className="flex items-center gap-3 text-sm">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-100 dark:bg-blue-900/20">
+                    📚
+                  </div>
+                  <span>Stack/Queue implementation</span>
+                </div>
+              </div>
+            </div>
 
-              {/* Complexity Comparison */}
-              <div className="bg-gray-50 dark:bg-slate-700 rounded-lg p-3 border">
-                <h5 className="font-medium mb-2 text-gray-800 dark:text-gray-200 text-sm">So với Array</h5>
-                <div className="grid grid-cols-2 gap-2 text-xs">
-                  <div className="flex justify-between items-center p-2 bg-white dark:bg-slate-800 rounded border">
-                    <span>Truy cập:</span>
-                    <span className="font-mono bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 px-2 py-1 rounded">O(n)</span>
-                  </div>
-                  <div className="flex justify-between items-center p-2 bg-white dark:bg-slate-800 rounded border">
-                    <span>Tìm kiếm:</span>
-                    <span className="font-mono bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 px-2 py-1 rounded">O(n)</span>
-                  </div>
-                  <div className="flex justify-between items-center p-2 bg-white dark:bg-slate-800 rounded border">
-                    <span>Thêm đầu:</span>
-                    <span className="font-mono bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-2 py-1 rounded">O(1)</span>
-                  </div>
-                  <div className="flex justify-between items-center p-2 bg-white dark:bg-slate-800 rounded border">
-                    <span>Xóa đầu:</span>
-                    <span className="font-mono bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-2 py-1 rounded">O(1)</span>
-                  </div>
+            {/* Complexity Comparison */}
+            <div className="rounded-lg border bg-card p-4">
+              <h5 className="font-medium mb-3 flex items-center gap-2">
+                <div className="h-2 w-2 rounded-full bg-orange-500"></div>
+                Độ phức tạp so với Array
+              </h5>
+              <div className="grid gap-3 sm:grid-cols-2">
+                <div className="flex items-center justify-between p-3 rounded-lg bg-muted/50">
+                  <span className="text-sm font-medium">Truy cập</span>
+                  <code className="text-xs font-mono bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300 px-2 py-1 rounded">O(n)</code>
+                </div>
+                <div className="flex items-center justify-between p-3 rounded-lg bg-muted/50">
+                  <span className="text-sm font-medium">Tìm kiếm</span>
+                  <code className="text-xs font-mono bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300 px-2 py-1 rounded">O(n)</code>
+                </div>
+                <div className="flex items-center justify-between p-3 rounded-lg bg-muted/50">
+                  <span className="text-sm font-medium">Thêm đầu</span>
+                  <code className="text-xs font-mono bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300 px-2 py-1 rounded">O(1)</code>
+                </div>
+                <div className="flex items-center justify-between p-3 rounded-lg bg-muted/50">
+                  <span className="text-sm font-medium">Xóa đầu</span>
+                  <code className="text-xs font-mono bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300 px-2 py-1 rounded">O(1)</code>
                 </div>
               </div>
             </div>
@@ -821,19 +847,17 @@ if __name__ == "__main__":
 
       {/* Interactive Section */}
       {activeSection === "interactive" && (
-        <div className="space-y-6">
+        <div className="space-y-8">
           {/* Interactive Linked List Visualization */}
-          <div className="bg-gradient-to-br from-green-50 via-teal-50 to-emerald-50 dark:from-green-900/20 dark:via-teal-900/20 dark:to-emerald-900/20 rounded-xl p-6 border border-green-200 dark:border-green-800 shadow-md">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="p-2 bg-gradient-to-r from-green-500 to-teal-500 rounded-full text-white text-sm">
+          <div className="space-y-6">
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-100 dark:bg-emerald-900/20">
                 🎮
               </div>
               <div>
-                <h4 className="text-lg font-bold text-green-800 dark:text-green-300">
-                  Minh Họa Tương Tác
-                </h4>
-                <p className="text-gray-600 dark:text-gray-400 text-sm">
-                  Thao tác trực tiếp với linked list để hiểu rõ cách hoạt động
+                <h4 className="text-lg font-semibold">Minh Họa Tương Tác</h4>
+                <p className="text-sm text-muted-foreground">
+                  Thao tác trực tiếp với linked list để hiểu cách hoạt động
                 </p>
               </div>
             </div>
@@ -990,7 +1014,7 @@ if __name__ == "__main__":
                   <button
                     onClick={animateSearch}
                     disabled={isAnimating || animationList.length === 0}
-                    className="w-full px-3 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-medium text-sm rounded-md hover:from-blue-600 hover:to-cyan-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                    className="w-full px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm rounded-md disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                   >
                     🔍 Tìm kiếm
                   </button>
@@ -1020,7 +1044,7 @@ if __name__ == "__main__":
                   <button
                     onClick={animateInsertHead}
                     disabled={isAnimating}
-                    className="w-full px-3 py-2 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-medium text-sm rounded-md hover:from-green-600 hover:to-emerald-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                    className="w-full px-3 py-2 bg-green-600 hover:bg-green-700 text-white font-medium text-sm rounded-md disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                   >
                     ➕ Thêm đầu
                   </button>
@@ -1042,14 +1066,14 @@ if __name__ == "__main__":
                   <button
                     onClick={animateInsertTail}
                     disabled={isAnimating || !insertValue}
-                    className="w-full px-3 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-medium text-sm rounded-md hover:from-purple-600 hover:to-pink-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                    className="w-full px-3 py-2 bg-purple-600 hover:bg-purple-700 text-white font-medium text-sm rounded-md disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                   >
                     ➕ Thêm cuối
                   </button>
                   <button
                     onClick={animateRemoveHead}
                     disabled={isAnimating || animationList.length === 0}
-                    className="w-full px-3 py-2 bg-gradient-to-r from-red-500 to-rose-500 text-white font-medium text-sm rounded-md hover:from-red-600 hover:to-rose-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                    className="w-full px-3 py-2 bg-red-600 hover:bg-red-700 text-white font-medium text-sm rounded-md disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                   >
                     ➖ Xóa đầu
                   </button>
@@ -1071,14 +1095,14 @@ if __name__ == "__main__":
                   <button
                     onClick={animateRemoveTail}
                     disabled={isAnimating || animationList.length === 0}
-                    className="w-full px-3 py-2 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-medium text-sm rounded-md hover:from-orange-600 hover:to-amber-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                    className="w-full px-3 py-2 bg-orange-600 hover:bg-orange-700 text-white font-medium text-sm rounded-md disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                   >
                     ➖ Xóa cuối
                   </button>
                   <button
                     onClick={resetLinkedList}
                     disabled={isAnimating}
-                    className="w-full px-3 py-2 bg-gradient-to-r from-gray-500 to-slate-500 text-white font-medium text-sm rounded-md hover:from-gray-600 hover:to-slate-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                    className="w-full px-3 py-2 bg-gray-600 hover:bg-gray-700 text-white font-medium text-sm rounded-md disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                   >
                     🔄 Reset
                   </button>
@@ -1121,16 +1145,14 @@ if __name__ == "__main__":
       {activeSection === "implementation" && (
         <div className="space-y-6">
           {/* WASM LinkedList Demo */}
-          <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-gray-200 dark:border-slate-600 shadow-md">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="p-2 bg-gradient-to-r from-orange-500 to-amber-500 rounded-full text-white text-sm">
+          <div className="rounded-lg border bg-card p-6">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-orange-100 dark:bg-orange-900/20">
                 🦀
               </div>
               <div>
-                <h4 className="text-lg font-bold text-orange-800 dark:text-orange-300">
-                  Rust WASM LinkedList
-                </h4>
-                <p className="text-gray-600 dark:text-gray-400 text-sm">
+                <h4 className="text-lg font-semibold">Rust WASM LinkedList</h4>
+                <p className="text-sm text-muted-foreground">
                   Demo tương tác với Rust WebAssembly
                 </p>
               </div>
@@ -1148,35 +1170,35 @@ if __name__ == "__main__":
                 <button
                   onClick={addToHead}
                   disabled={!wasmReady}
-                  className="px-4 py-2 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-medium text-sm rounded-md hover:from-green-600 hover:to-emerald-600 disabled:opacity-50 transition-all"
+                  className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white font-medium text-sm rounded-md disabled:opacity-50 transition-colors"
                 >
                   🦀 Thêm đầu
                 </button>
                 <button
                   onClick={addToTail}
                   disabled={!wasmReady}
-                  className="px-4 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-medium text-sm rounded-md hover:from-blue-600 hover:to-cyan-600 disabled:opacity-50 transition-all"
+                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm rounded-md disabled:opacity-50 transition-colors"
                 >
                   🦀 Thêm cuối
                 </button>
                 <button
                   onClick={removeHead}
                   disabled={!wasmReady}
-                  className="px-4 py-2 bg-gradient-to-r from-red-500 to-rose-500 text-white font-medium text-sm rounded-md hover:from-red-600 hover:to-rose-600 disabled:opacity-50 transition-all"
+                  className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white font-medium text-sm rounded-md disabled:opacity-50 transition-colors"
                 >
                   🦀 Xóa đầu
                 </button>
                 <button
                   onClick={removeTail}
                   disabled={!wasmReady}
-                  className="px-4 py-2 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-medium text-sm rounded-md hover:from-orange-600 hover:to-amber-600 disabled:opacity-50 transition-all"
+                  className="px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white font-medium text-sm rounded-md disabled:opacity-50 transition-colors"
                 >
                   🦀 Xóa cuối
                 </button>
                 <button
                   onClick={clear}
                   disabled={!wasmReady}
-                  className="px-4 py-2 bg-gradient-to-r from-gray-500 to-slate-500 text-white font-medium text-sm rounded-md hover:from-gray-600 hover:to-slate-600 disabled:opacity-50 transition-all"
+                  className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white font-medium text-sm rounded-md disabled:opacity-50 transition-colors"
                 >
                   🧹 Xóa tất cả
                 </button>
@@ -1237,30 +1259,30 @@ if __name__ == "__main__":
               <div className="flex bg-gray-100 dark:bg-slate-700 rounded-lg p-1 w-fit">
                 <button
                   onClick={() => setActiveLanguageTab("rust")}
-                  className={`px-4 py-2 rounded-md font-medium text-sm transition-all ${
+                  className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${
                     activeLanguageTab === "rust"
-                      ? "bg-orange-500 text-white shadow-sm"
-                      : "text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-slate-600"
+                      ? "bg-orange-100 text-orange-700 dark:bg-orange-900 dark:text-orange-300"
+                      : "text-muted-foreground hover:text-foreground hover:bg-accent"
                   }`}
                 >
                   🦀 Rust
                 </button>
                 <button
                   onClick={() => setActiveLanguageTab("cpp")}
-                  className={`px-4 py-2 rounded-md font-medium text-sm transition-all ${
+                  className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${
                     activeLanguageTab === "cpp"
-                      ? "bg-blue-500 text-white shadow-sm"
-                      : "text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-slate-600"
+                      ? "bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300"
+                      : "text-muted-foreground hover:text-foreground hover:bg-accent"
                   }`}
                 >
                   ⚡ C++
                 </button>
                 <button
                   onClick={() => setActiveLanguageTab("python")}
-                  className={`px-4 py-2 rounded-md font-medium text-sm transition-all ${
+                  className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${
                     activeLanguageTab === "python"
-                      ? "bg-green-500 text-white shadow-sm"
-                      : "text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-slate-600"
+                      ? "bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300"
+                      : "text-muted-foreground hover:text-foreground hover:bg-accent"
                   }`}
                 >
                   🐍 Python
@@ -1273,7 +1295,7 @@ if __name__ == "__main__":
                 language={activeLanguageTab}
                 onRun={handleRunCode}
                 isRunning={isRunningCode}
-                className="px-4 py-2 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600"
+                className="px-4 py-2 bg-green-600 hover:bg-green-700 transition-colors"
                 buttonText="▶️ Chạy Code"
               />
             </div>

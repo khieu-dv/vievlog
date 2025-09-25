@@ -281,12 +281,17 @@ export function QueueSection() {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="p-4">
-        <h3 className="text-lg font-semibold mb-6 flex items-center gap-2">
-          <ArrowRight className="h-5 w-5" />
-          🦀 Rust WASM Queue (Hàng Đợi)
-        </h3>
+    <div className="space-y-8">
+      <div className="space-y-4">
+        <div className="space-y-2">
+          <h3 className="text-2xl font-bold tracking-tight flex items-center gap-2">
+            <ArrowRight className="h-6 w-6 text-cyan-500" />
+            Queue (Hàng Đợi)
+          </h3>
+          <p className="text-muted-foreground">
+            Cấu trúc dữ liệu FIFO (First In, First Out) với enqueue và dequeue O(1).
+          </p>
+        </div>
 
         {/* Định nghĩa và giải thích cơ bản */}
         <div className="bg-cyan-50 dark:bg-cyan-950/50 p-6 rounded-lg mb-6 border-l-4 border-cyan-500">
