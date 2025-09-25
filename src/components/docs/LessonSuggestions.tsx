@@ -68,43 +68,56 @@ const getGenericLessonData = (totalLessons: number): LessonInfo[] => {
 
 const getSuggestions = (currentLesson: number, lessonData: LessonInfo[]): LessonInfo[] => {
   const suggestions: LessonInfo[] = [];
+  const addedIds = new Set<number>(); // Theo dõi IDs đã được thêm
   const totalLessons = lessonData.length - 1; // Excluding lesson 0
 
   // Find lesson by id helper
   const findLessonById = (id: number) => lessonData.find(lesson => lesson.id === id);
 
+  // Helper function to add lesson if not already added
+  const addLessonIfNotExists = (id: number) => {
+    if (!addedIds.has(id)) {
+      const lesson = findLessonById(id);
+      if (lesson) {
+        suggestions.push(lesson);
+        addedIds.add(id);
+        return true;
+      }
+    }
+    return false;
+  };
+
   // Luôn thêm bài 0 đầu tiên (trừ khi đang ở bài 0)
   if (currentLesson !== 0) {
-    const lesson0 = findLessonById(0);
-    if (lesson0) suggestions.push(lesson0);
+    addLessonIfNotExists(0);
   }
 
   if (currentLesson === 0) {
     // Bài 0: gợi ý 4 bài đầu tiên
     const nextLessons = Math.min(4, totalLessons);
     for (let i = 1; i <= nextLessons; i++) {
-      const lesson = findLessonById(i);
-      if (lesson) suggestions.push(lesson);
+      if (suggestions.length >= 4) break;
+      addLessonIfNotExists(i);
     }
   } else {
     // Thêm bài trước (nếu có)
-    if (currentLesson > 1) {
-      const prevLesson = findLessonById(currentLesson - 1);
-      if (prevLesson) suggestions.push(prevLesson);
+    if (currentLesson > 1 && suggestions.length < 4) {
+      addLessonIfNotExists(currentLesson - 1);
     }
 
     // Thêm bài tiếp theo (nếu có)
-    const nextLesson = findLessonById(currentLesson + 1);
-    if (nextLesson) suggestions.push(nextLesson);
+    if (suggestions.length < 4) {
+      addLessonIfNotExists(currentLesson + 1);
+    }
 
     // Thêm bài thứ 2 sau bài hiện tại (nếu có)
-    const nextNextLesson = findLessonById(currentLesson + 2);
-    if (nextNextLesson) suggestions.push(nextNextLesson);
+    if (suggestions.length < 4) {
+      addLessonIfNotExists(currentLesson + 2);
+    }
 
     // Nếu chưa đủ 4 gợi ý, thêm bài 1 (nếu không phải đang ở bài 1)
     if (suggestions.length < 4 && currentLesson !== 1) {
-      const lesson1 = findLessonById(1);
-      if (lesson1) suggestions.push(lesson1);
+      addLessonIfNotExists(1);
     }
   }
 
@@ -156,7 +169,7 @@ export default function LessonSuggestions({
         <div className="divide-y divide-gray-100">
           {suggestions.map((lesson, index) => (
             <Link
-              key={lesson.id}
+              key={`${lesson.id}-${index}`}
               href={`${basePath}/bai-${lesson.id}`}
               className="group flex items-center p-4 hover:bg-gray-50 transition-colors duration-150"
             >

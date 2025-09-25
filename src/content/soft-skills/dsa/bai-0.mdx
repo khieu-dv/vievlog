@@ -8,35 +8,117 @@
   </div>
 </div>
 
-## 📚 Tổng quan khóa học
-
-Khóa học **Data Structures & Algorithms** bao gồm **24 bài học** được chia thành **5 giai đoạn** học tập có hệ thống:
+## 1. 🗺️ Sơ đồ tổng quan khóa học
 
 ```mermaid
-graph TD
-    A[Bài 0: Giới thiệu] --> B[Giai đoạn 1: Nền tảng<br/>Bài 1-6]
-    B --> C[Giai đoạn 2: Complexity & Sorting<br/>Bài 7-12]
-    C --> D[Giai đoạn 3: Trees & Graphs<br/>Bài 13-18]
-    D --> E[Giai đoạn 4: Graph Algorithms<br/>Bài 19-21]
-    E --> F[Giai đoạn 5: Advanced Topics<br/>Bài 22-24]
-    
-    style A fill:#e1f5fe
-    style B fill:#f3e5f5
-    style C fill:#e8f5e8
-    style D fill:#fff3e0
-    style E fill:#fce4ec
-    style F fill:#f1f8e9
+flowchart TD
+    Start([📚 Bắt đầu khóa học DSA]) --> Foundation{🏗️ Giai đoạn 1<br/>Nền tảng<br/>3-4 tuần}
+
+    Foundation --> B1[Bài 1: Programming Fundamentals<br/>🔧 Language Selection →]
+    Foundation --> B2[Bài 2: Data Structures Intro<br/>📝 Basic concepts →]
+    Foundation --> B3[Bài 3: Arrays<br/>🔢 First data structure →]
+    Foundation --> B4[Bài 4: Linked Lists<br/>🔗 Dynamic structures →]
+    Foundation --> B5[Bài 5: Stacks & Queues<br/>📚 LIFO & FIFO →]
+    Foundation --> B6[Bài 6: Hash Tables<br/>🗂️ Key-value pairs →]
+
+    B1 --> Complexity{⚖️ Giai đoạn 2<br/>Complexity & Sorting<br/>2-3 tuần}
+    B2 --> Complexity
+    B3 --> Complexity
+    B4 --> Complexity
+    B5 --> Complexity
+    B6 --> Complexity
+
+    Complexity --> B7[Bài 7: Complexity Analysis<br/>📊 Performance metrics →]
+    Complexity --> B8[Bài 8: Big-O Notation<br/>⏱️ Time & space complexity →]
+    Complexity --> B9[Bài 9: Simple Sorting<br/>🔀 Bubble, Selection, Insertion →]
+    Complexity --> B10[Bài 10: Advanced Sorting<br/>🚀 Merge, Quick, Heap →]
+    Complexity --> B11[Bài 11: Heap Sort & Priority Queue<br/>🏔️ Heap data structure →]
+    Complexity --> B12[Bài 12: Searching Algorithms<br/>🔍 Linear, Binary search →]
+
+    B7 --> Trees{🌳 Giai đoạn 3<br/>Trees & Graphs<br/>3-4 tuần}
+    B8 --> Trees
+    B9 --> Trees
+    B10 --> Trees
+    B11 --> Trees
+    B12 --> Trees
+
+    Trees --> B13[Bài 13: Tree Basics<br/>🌲 Tree fundamentals →]
+    Trees --> B14[Bài 14: Tree Traversal<br/>🚶 DFS, BFS algorithms →]
+    Trees --> B15[Bài 15: Binary Search Trees<br/>🔍 BST operations →]
+    Trees --> B16[Bài 16: AVL Trees<br/>⚖️ Balanced trees →]
+    Trees --> B17[Bài 17: B-Trees<br/>🌴 Advanced structures →]
+    Trees --> B18[Bài 18: Graph Basics<br/>🕸️ Graph representation →]
+
+    B13 --> GraphAlgo{🛤️ Giai đoạn 4<br/>Graph Algorithms<br/>2-3 tuần}
+    B14 --> GraphAlgo
+    B15 --> GraphAlgo
+    B16 --> GraphAlgo
+    B17 --> GraphAlgo
+    B18 --> GraphAlgo
+
+    GraphAlgo --> B19[Bài 19: Graph Search<br/>🔍 BFS, DFS on graphs →]
+    GraphAlgo --> B20[Bài 20: Shortest Path<br/>🛣️ Dijkstra, Floyd-Warshall →]
+    GraphAlgo --> B21[Bài 21: Minimum Spanning Tree<br/>🌲 Kruskal, Prim →]
+
+    B19 --> Advanced{🚀 Giai đoạn 5<br/>Advanced Topics<br/>2-3 tuần}
+    B20 --> Advanced
+    B21 --> Advanced
+
+    Advanced --> B22[Bài 22: Advanced Problem Solving<br/>💡 Techniques & patterns →]
+    Advanced --> B23[Bài 23: Advanced Data Structures<br/>🏗️ Specialized structures →]
+    Advanced --> B24[Bài 24: Pattern Recognition<br/>🎯 Problem solving mastery →]
+
+    B22 --> Complete([🎉 Hoàn thành khóa học])
+    B23 --> Complete
+    B24 --> Complete
+
+    %% Click events for navigation
+    click B1 "/desktop-docs/soft-skills/dsa/bai-1" "Đi đến Bài 1"
+    click B2 "/desktop-docs/soft-skills/dsa/bai-2" "Đi đến Bài 2"
+    click B3 "/desktop-docs/soft-skills/dsa/bai-3" "Đi đến Bài 3"
+    click B4 "/desktop-docs/soft-skills/dsa/bai-4" "Đi đến Bài 4"
+    click B5 "/desktop-docs/soft-skills/dsa/bai-5" "Đi đến Bài 5"
+    click B6 "/desktop-docs/soft-skills/dsa/bai-6" "Đi đến Bài 6"
+    click B7 "/desktop-docs/soft-skills/dsa/bai-7" "Đi đến Bài 7"
+    click B8 "/desktop-docs/soft-skills/dsa/bai-8" "Đi đến Bài 8"
+    click B9 "/desktop-docs/soft-skills/dsa/bai-9" "Đi đến Bài 9"
+    click B10 "/desktop-docs/soft-skills/dsa/bai-10" "Đi đến Bài 10"
+    click B11 "/desktop-docs/soft-skills/dsa/bai-11" "Đi đến Bài 11"
+    click B12 "/desktop-docs/soft-skills/dsa/bai-12" "Đi đến Bài 12"
+    click B13 "/desktop-docs/soft-skills/dsa/bai-13" "Đi đến Bài 13"
+    click B14 "/desktop-docs/soft-skills/dsa/bai-14" "Đi đến Bài 14"
+    click B15 "/desktop-docs/soft-skills/dsa/bai-15" "Đi đến Bài 15"
+    click B16 "/desktop-docs/soft-skills/dsa/bai-16" "Đi đến Bài 16"
+    click B17 "/desktop-docs/soft-skills/dsa/bai-17" "Đi đến Bài 17"
+    click B18 "/desktop-docs/soft-skills/dsa/bai-18" "Đi đến Bài 18"
+    click B19 "/desktop-docs/soft-skills/dsa/bai-19" "Đi đến Bài 19"
+    click B20 "/desktop-docs/soft-skills/dsa/bai-20" "Đi đến Bài 20"
+    click B21 "/desktop-docs/soft-skills/dsa/bai-21" "Đi đến Bài 21"
+    click B22 "/desktop-docs/soft-skills/dsa/bai-22" "Đi đến Bài 22"
+    click B23 "/desktop-docs/soft-skills/dsa/bai-23" "Đi đến Bài 23"
+    click B24 "/desktop-docs/soft-skills/dsa/bai-24" "Đi đến Bài 24"
+
+    %% Styling
+    classDef phaseBox fill:#e1f5fe,stroke:#01579b,stroke-width:3px,color:#000
+    classDef lessonBox fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000,cursor:pointer
+    classDef startEnd fill:#c8e6c9,stroke:#1b5e20,stroke-width:3px,color:#000
+
+    class Foundation,Complexity,Trees,GraphAlgo,Advanced phaseBox
+    class B1,B2,B3,B4,B5,B6,B7,B8,B9,B10,B11,B12,B13,B14,B15,B16,B17,B18,B19,B20,B21,B22,B23,B24 lessonBox
+    class Start,Complete startEnd
 ```
 
-## 🗺️ Lộ trình học tập chi tiết
+### 📚 Phân chia giai đoạn học tập
 
-| Giai đoạn | Bài học | Nội dung chính | Thời gian ước tính |
-|-----------|---------|----------------|-------------------|
-| **1. Nền tảng** | 1-6 | Arrays, Linked Lists, Stacks/Queues, Hash Tables | 3-4 tuần |
-| **2. Complexity & Sorting** | 7-12 | Big-O, Sorting algorithms, Searching | 2-3 tuần |
-| **3. Trees & Graphs** | 13-18 | Binary Trees, BST, AVL Trees, Graph basics | 3-4 tuần |
-| **4. Graph Algorithms** | 19-21 | BFS/DFS, Shortest Path, MST | 2 tuần |
-| **5. Advanced Topics** | 22-24 | Dynamic Programming, Advanced DS, Patterns | 2-3 tuần |
+| Giai đoạn | Bài học | Trọng tâm | Thời gian ước tính |
+|-----------|---------|-----------|-------------------|
+| **Foundation** | 1-6 | Cấu trúc dữ liệu cơ bản, arrays, linked lists | 3-4 tuần |
+| **Complexity & Sorting** | 7-12 | Big-O, thuật toán sắp xếp và tìm kiếm | 2-3 tuần |
+| **Trees & Graphs** | 13-18 | Cây, duyệt cây, BST, AVL, đồ thị cơ bản | 3-4 tuần |
+| **Graph Algorithms** | 19-21 | BFS/DFS, đường đi ngắn nhất, MST | 2-3 tuần |
+| **Advanced Topics** | 22-24 | Kỹ thuật giải quyết vấn đề nâng cao | 2-3 tuần |
+
+
 
 ## 🎯 Đối tượng học viên
 
