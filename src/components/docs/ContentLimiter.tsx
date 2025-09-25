@@ -40,7 +40,7 @@ export function ContentLimiter({ children }: { children: React.ReactNode }) {
       <div className="mt-4 flex flex-col items-center gap-2">
         <p className="font-semibold">Đăng nhập để xem toàn bộ nội dung</p>
         <Button asChild>
-          <Link href="/auth/sign-in">Đăng nhập</Link>
+          <Link href={`/auth/sign-in?redirect=${encodeURIComponent(pathname)}`}>Đăng nhập</Link>
         </Button>
       </div>
     </>

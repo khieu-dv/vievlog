@@ -1,11 +1,13 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { useSession, signIn } from '../../../../lib/authClient';
 
 export function SignInPageClient() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectPath = searchParams.get('redirect');
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -28,7 +30,8 @@ export function SignInPageClient() {
 
     try {
       await signIn(formData.email, formData.password);
-      router.push("/"); // Chuyển hướng sau khi đăng nhập thành công
+      // Chuyển hướng về trang người dùng đang đọc hoặc trang home
+      router.push(redirectPath || "/");
     } catch (err: any) {
       console.error("Login error:", err);
       setError("Login failed. Please check your credentials.");
