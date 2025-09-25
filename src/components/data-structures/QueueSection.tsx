@@ -282,7 +282,7 @@ export function QueueSection() {
 
   return (
     <div className="space-y-6">
-      <div className="bg-card rounded-lg p-6 border">
+      <div className="p-4">
         <h3 className="text-lg font-semibold mb-6 flex items-center gap-2">
           <ArrowRight className="h-5 w-5" />
           🦀 Rust WASM Queue (Hàng Đợi)

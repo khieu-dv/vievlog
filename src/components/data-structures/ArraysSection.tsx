@@ -399,9 +399,9 @@ if __name__ == "__main__":
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Header Section with Navigation Pills */}
-      <div className="rounded-lg bg-gradient-to-br from-blue-50/50 to-indigo-50/50 dark:from-blue-950/20 dark:to-indigo-950/20 border p-6">
+      <div className="mb-4">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div>
             <h3 className="text-xl font-semibold mb-2 flex items-center gap-2">
@@ -453,7 +453,7 @@ if __name__ == "__main__":
       {activeSection === "overview" && (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Array Definition */}
-          <div className="rounded-lg border bg-card p-5 hover:shadow-sm transition-shadow">
+          <div className="p-4">
             <div className="flex items-center gap-3 mb-4">
               <div className="rounded-lg bg-blue-50 dark:bg-blue-950/50 p-2">
                 📊
@@ -509,7 +509,7 @@ if __name__ == "__main__":
           </div>
 
           {/* Vector Definition */}
-          <div className="bg-white dark:bg-slate-800 rounded-xl p-5 border border-purple-200 dark:border-slate-600 shadow-md hover:shadow-lg transition-shadow">
+          <div className="p-4">
             <div className="flex items-center gap-2 mb-3">
               <div className="p-1.5 bg-purple-100 dark:bg-purple-900/30 rounded-lg">
                 🔧
@@ -552,7 +552,7 @@ if __name__ == "__main__":
       {activeSection === "interactive" && (
         <div className="space-y-6">
           {/* Interactive Array Visualization */}
-          <div className="bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50 dark:from-purple-900/20 dark:via-pink-900/20 dark:to-blue-900/20 rounded-xl p-6 border border-purple-200 dark:border-purple-800 shadow-md">
+          <div className="p-4">
             <div className="flex items-center gap-2 mb-4">
               <div className="p-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full text-white text-sm">
                 🎮
@@ -805,7 +805,7 @@ if __name__ == "__main__":
           </div>
 
           {/* Visual Memory Layout */}
-          <div className="bg-white dark:bg-slate-800 rounded-2xl p-8 border border-gray-200 dark:border-slate-600 shadow-lg">
+          <div className="p-4">
             <div className="flex items-center gap-3 mb-6">
               <div className="p-3 bg-gradient-to-r from-indigo-500 to-blue-500 rounded-full text-white">
                 💾
@@ -847,7 +847,7 @@ if __name__ == "__main__":
       {activeSection === "implementation" && (
         <div className="space-y-6">
           {/* Simple Vector Demo */}
-          <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-gray-200 dark:border-slate-600 shadow-md">
+          <div className="p-4">
             <div className="flex items-center gap-2 mb-4">
               <div className="p-2 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full text-white text-sm">
                 🧪
@@ -908,7 +908,7 @@ if __name__ == "__main__":
           </div>
 
           {/* Code Implementation */}
-          <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-gray-200 dark:border-slate-600 shadow-md">
+          <div className="p-4">
             <div className="flex items-center gap-2 mb-4">
               <div className="p-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full text-white text-sm">
                 💻

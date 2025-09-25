@@ -714,7 +714,7 @@ if __name__ == "__main__":
       {activeSection === "overview" && (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Linked List Definition */}
-          <div className="bg-card rounded-lg p-6 border hover:shadow-sm transition-shadow">
+          <div className="p-4">
             <div className="flex items-center gap-2 mb-3">
               <div className="p-1.5 bg-green-100 rounded-lg">
                 🔗

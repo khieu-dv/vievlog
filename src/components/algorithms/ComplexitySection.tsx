@@ -5,7 +5,7 @@ import { MermaidDiagram } from "~/components/common/MermaidDiagram";
 
 export function ComplexitySection() {
   return (
-    <div className="mt-8 bg-white dark:bg-slate-800 rounded-lg p-6 border">
+    <div>
       <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
         <Activity className="h-5 w-5" />
         So Sánh Độ Phức Tạp Giải Thuật
