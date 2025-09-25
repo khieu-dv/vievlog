@@ -33,9 +33,10 @@ export function ContentLimiter({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <div className="relative max-h-[25rem] overflow-hidden">
+      <div className="relative max-h-[32rem] overflow-hidden">
         {children}
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent" />
+        {/* Hiệu ứng fade-out cho ~5 dòng cuối */}
+        <div className="absolute bottom-0 left-0 right-0 h-36 bg-gradient-to-t from-background from-0% via-background via-50% to-transparent to-100%" />
       </div>
       <div className="mt-4 flex flex-col items-center gap-2">
         <p className="font-semibold">Đăng nhập để xem toàn bộ nội dung</p>
