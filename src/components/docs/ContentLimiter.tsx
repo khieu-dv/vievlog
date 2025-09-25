@@ -9,6 +9,11 @@ export function ContentLimiter({ children }: { children: React.ReactNode }) {
   const { data: session, isPending } = useSession();
   const pathname = usePathname();
 
+  // Bypass limiter for URLs ending with 'bai-0'
+  if (pathname.endsWith('bai-0')) {
+    return <>{children}</>;
+  }
+
   // Don't limit content on the main docs page, only on specific articles
   if (pathname === '/docs') {
     return <>{children}</>;
