@@ -234,17 +234,17 @@ impl<T: Clone + PartialEq + std::fmt::Debug> BinaryTree<T> {
 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
 <div className="bg-green-50 border border-green-200 rounded-lg p-4">
 <h4 className="font-semibold text-green-800 mb-2">📊 Array Representation</h4>
-<p className="text-green-700 text-sm">
+<div className="text-green-700 text-sm">
 <strong>Ưu điểm:</strong> Tiết kiệm bộ nhớ, truy cập nhanh<br />
 <strong>Nhược điểm:</strong> Khó thay đổi kích thước, lãng phí với cây thưa
-</p>
+</div>
 </div>
 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
 <h4 className="font-semibold text-blue-800 mb-2">🔗 Linked Structure</h4>
-<p className="text-blue-700 text-sm">
+<div className="text-blue-700 text-sm">
 <strong>Ưu điểm:</strong> Linh hoạt, dễ mở rộng<br />
 <strong>Nhược điểm:</strong> Tốn bộ nhớ cho pointers, cache locality kém
-</p>
+</div>
 </div>
 </div>
 
@@ -320,8 +320,8 @@ graph LR
 <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
 <h4 className="font-semibold text-red-800 mb-2">⚠️ Lưu ý quan trọng</h4>
 <div className="text-red-700 text-sm">
-<p><strong>Rust Memory Safety:</strong> Sử dụng Rc&lt;RefCell&lt;T&gt;&gt; để tránh ownership conflicts khi có multiple references đến cùng một node.</p>
-<p><strong>Performance:</strong> Binary Tree thông thường không đảm bảo balanced, có thể degrade thành linked list (O(n) operations).</p>
+<div><strong>Rust Memory Safety:</strong> Sử dụng Rc&lt;RefCell&lt;T&gt;&gt; để tránh ownership conflicts khi có multiple references đến cùng một node.</div>
+<div><strong>Performance:</strong> Binary Tree thông thường không đảm bảo balanced, có thể degrade thành linked list (O(n) operations).</div>
 </div>
 </div>
 
