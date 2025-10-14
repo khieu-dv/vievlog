@@ -1,8 +1,33 @@
-# Cài đặt PocketBase Collection cho Comment System
-
-## 1. Tạo Collection `doc_comments_tbl`
+# Cài đặt PocketBase Collections
 
 Truy cập PocketBase Admin Panel tại: `https://pocketbase.vietopik.com/_/`
+
+## 1. Cập nhật Collection `users_tbl` - Thêm trường Premium Status
+
+### Thêm Field mới:
+
+1. Vào collection `users_tbl` trong PocketBase Admin
+2. Thêm field mới:
+   - **Field name**: `status`
+   - **Field type**: Boolean
+   - **Default value**: `false`
+   - **Required**: No (Optional)
+
+### Mô tả:
+- `status = true`: User có tài khoản Premium, xem được toàn bộ tài liệu
+- `status = false` (hoặc null): User thường, cần nâng cấp để xem toàn bộ nội dung
+
+### Cách kích hoạt Premium cho user:
+
+1. Vào PocketBase Admin Panel
+2. Tìm collection `users_tbl`
+3. Tìm user cần kích hoạt (theo email hoặc username)
+4. Edit record và đổi field `status` từ `false` → `true`
+5. Save lại
+
+---
+
+## 2. Tạo Collection `doc_comments_tbl`
 
 ### Schema Fields:
 

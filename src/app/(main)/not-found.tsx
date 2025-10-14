@@ -76,13 +76,6 @@ export default function NotFound() {
               >
                 {t('notFound.programmingDocs')}
               </Link>
-              <span className="text-slate-400">•</span>
-              <Link
-                href="/games"
-                className="text-sm text-primary hover:text-primary/80 underline"
-              >
-                {t('notFound.programmingGames')}
-              </Link>
             </div>
           </div>
         </div>

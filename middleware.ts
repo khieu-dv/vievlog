@@ -9,7 +9,6 @@ export function middleware(request: NextRequest) {
   
   // Redirect các trang đã thay đổi hoặc không tồn tại
   const redirects: Record<string, string> = {
-    '/games': '/games',
     '/profile/settings': '/profile',
     '/tutorials': '/docs',
     '/courses': '/docs',
