@@ -28,9 +28,9 @@ export function CustomNavbar() {
       logoLink="/"
     >
       <div className="flex items-center gap-4">
-        <Link href="/docs" className="hover:text-primary">
+        {/* <Link href="/docs" className="hover:text-primary">
           Docs
-        </Link>
+        </Link> */}
         {session ? (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
