@@ -14,7 +14,8 @@ import {
   ShoppingCart,
   BarChart,
   Users,
-  Mail
+  Mail,
+  Gauge
 } from "lucide-react";
 
 export default function ServicesPage() {
@@ -42,6 +43,17 @@ export default function ServicesPage() {
     "Maps, Location tracking",
     "Chat realtime",
     "Upload hình ảnh, video",
+  ];
+
+  const rustFeatures = [
+    "Backend API với Actix-web / Axum",
+    "WebAssembly cho web hiệu năng cao",
+    "Microservices an toàn, nhanh chóng",
+    "Real-time systems với Tokio",
+    "Database: PostgreSQL, Redis",
+    "GraphQL / gRPC APIs",
+    "CLI tools & automation",
+    "Zero-cost abstractions",
   ];
 
   const whyChooseUs = [
@@ -84,7 +96,7 @@ export default function ServicesPage() {
               </span>
             </h1>
             <p className="text-xl text-slate-600 dark:text-slate-300 mb-8 max-w-3xl mx-auto">
-              Chuyên thiết kế website bằng <strong>Next.js</strong> và phát triển ứng dụng di động <strong>Android/iOS</strong> bằng <strong>Flutter</strong>
+              Chuyên thiết kế website bằng <strong>Next.js</strong>, phát triển ứng dụng di động <strong>Android/iOS</strong> bằng <strong>Flutter</strong>, và xây dựng backend hiệu xuất cao với <strong>Rust</strong>
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
@@ -119,7 +131,7 @@ export default function ServicesPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Next.js Service */}
             <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/30 p-8 border border-blue-100 dark:border-blue-900 hover:shadow-2xl transition-all duration-300">
               <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl transform translate-x-32 -translate-y-32" />
@@ -185,6 +197,41 @@ export default function ServicesPage() {
                   <Zap className="h-5 w-5 text-cyan-600 dark:text-cyan-400" />
                   <span className="text-sm font-medium text-slate-600 dark:text-slate-400">
                     60 FPS mượt mà trên mọi thiết bị
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Rust Service */}
+            <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-950/30 dark:to-red-950/30 p-8 border border-orange-200 dark:border-orange-800 hover:shadow-2xl transition-all duration-300">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-orange-500/10 rounded-full blur-3xl transform translate-x-32 -translate-y-32" />
+
+              <div className="relative">
+                <div className="w-16 h-16 bg-orange-600 dark:bg-orange-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <Gauge className="h-8 w-8 text-white" />
+                </div>
+
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-4">
+                  Backend với Rust
+                </h3>
+
+                <p className="text-slate-600 dark:text-slate-400 mb-6">
+                  Xây dựng backend và web services hiệu xuất cao, an toàn với Rust - Ngôn ngữ được yêu thích nhất hiện nay
+                </p>
+
+                <ul className="space-y-3 mb-8">
+                  {rustFeatures.map((feature, index) => (
+                    <li key={index} className="flex items-start gap-2">
+                      <Check className="h-5 w-5 text-orange-600 dark:text-orange-400 mt-0.5 flex-shrink-0" />
+                      <span className="text-slate-700 dark:text-slate-300">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="flex items-center gap-4 pt-4 border-t border-orange-200 dark:border-orange-800">
+                  <Zap className="h-5 w-5 text-orange-600 dark:text-orange-400" />
+                  <span className="text-sm font-medium text-slate-600 dark:text-slate-400">
+                    Memory-safe, nhanh hơn C/C++
                   </span>
                 </div>
               </div>
