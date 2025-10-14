@@ -4,6 +4,9 @@ import { useRouter } from "next/navigation";
 import { useSession } from "../../../lib/authClient";
 import { Header } from "../../../components/common/Header";
 import { BasicUser } from '../../../lib/types';
+import { UpgradeAccountModal } from "../../../components/docs/UpgradeAccountModal";
+import { useState } from "react";
+import { Crown, CheckCircle, XCircle } from "lucide-react";
 
 // Define an extended session type
 type BasicSession = {
@@ -16,6 +19,7 @@ export function ProfilePageClient() {
     data: BasicSession | null | undefined;
     isPending: boolean;
   };
+  const [showUpgradeModal, setShowUpgradeModal] = useState(false);
 
   // Redirect to login if not authenticated
   if (!isPending && !data) {
@@ -115,6 +119,41 @@ export function ProfilePageClient() {
                         : "N/A"}
                     </p>
                   </div>
+
+                  <div>
+                    <label className="text-xs font-medium uppercase tracking-wide text-gray-500">
+                      Account Status
+                    </label>
+                    <div className="mt-2">
+                      {data?.user?.status === true ? (
+                        <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-yellow-100 to-orange-100 px-4 py-2 dark:from-yellow-900/30 dark:to-orange-900/30">
+                          <Crown className="h-5 w-5 text-yellow-600 dark:text-yellow-400" />
+                          <span className="font-semibold text-yellow-700 dark:text-yellow-300">
+                            Premium Account
+                          </span>
+                          <CheckCircle className="h-4 w-4 text-green-600 dark:text-green-400" />
+                        </div>
+                      ) : (
+                        <div className="space-y-3">
+                          <div className="inline-flex items-center gap-2 rounded-full bg-gray-100 px-4 py-2 dark:bg-gray-800">
+                            <XCircle className="h-4 w-4 text-gray-500" />
+                            <span className="font-medium text-gray-600 dark:text-gray-400">
+                              Free Account
+                            </span>
+                          </div>
+                          <div>
+                            <button
+                              onClick={() => setShowUpgradeModal(true)}
+                              className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 px-4 py-2 text-sm font-medium text-white hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all"
+                            >
+                              <Crown className="h-4 w-4" />
+                              Nâng cấp Premium - 200,000 VNĐ
+                            </button>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
                 </div>
 
                 {/* <div className="mt-8 flex justify-end">
@@ -127,6 +166,10 @@ export function ProfilePageClient() {
           </div>
         </div>
       </main>
+      <UpgradeAccountModal
+        isOpen={showUpgradeModal}
+        onClose={() => setShowUpgradeModal(false)}
+      />
       <footer className="bg-white py-6">
         <div className="container mx-auto max-w-4xl px-4 text-center text-sm text-gray-500">
           © {new Date().getFullYear()} VieVlog. All rights reserved.
