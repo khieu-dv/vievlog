@@ -45,8 +45,8 @@ export function Header({ showAuth = true, className }: HeaderProps) {
 
   const navigation = [
     { name: t("header.home"), href: "/" },
-    { name: "Rust WASM", href: "/media-studio" },
-    { name: "C++ WASM", href: "/cpp-wasm-demo" },
+    { name: "Rust WASM", href: "/cpp-wasm" },
+    { name: "C++ WASM", href: "/cpp-wasm" },
   ];
 
   return (
