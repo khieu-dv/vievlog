@@ -12,6 +12,7 @@ export type BasicUser = {
   image?: string | null;
   created: Date;
   updated: Date;
+  status?: boolean; // Premium account status: true = premium, false/null = free
 };
 
 export type Category = {
