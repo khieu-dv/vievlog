@@ -11,3 +11,4 @@ package-lock.json
 /public/_pagefind
 /rust-wasm/target
 /rust-wasm/wasm32-unknown-unknown
+target
