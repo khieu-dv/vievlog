@@ -6,6 +6,7 @@ import { ThemeProvider } from "../components/common/ThemeProvider";
 import Providers from "../components/common/Providers";
 import I18nProvider from "../components/common/I18nProvider";
 import ConditionalFloatingCodeEditor from "../components/common/ConditionalFloatingCodeEditor";
+import { NavigationHandler } from "../components/common/NavigationHandler";
 
 
 const geistSans = Geist({
@@ -88,6 +89,7 @@ export default function RootLayout({
         >
           <I18nProvider>
             <Providers>
+              <NavigationHandler />
               {children}
               <ConditionalFloatingCodeEditor />
               {/* <DevToolsDetector /> */}
