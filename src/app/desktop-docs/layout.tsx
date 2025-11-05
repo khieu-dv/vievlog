@@ -1,5 +1,4 @@
 import { Footer, Layout } from 'nextra-theme-docs'
-import { Head } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
 import type { Metadata } from 'next'
 import Link from 'next/link'
@@ -33,27 +32,24 @@ export default async function DocsLayout({ children }: DocsLayoutProps) {
   )
 
   return (
-    <html lang="en" dir="ltr" suppressHydrationWarning>
-      <Head faviconGlyph="📚" />
-      <body>
-        <Layout
-          navbar={<CustomNavbar />}
-          footer={<Footer>MIT {CURRENT_YEAR} © VieVlog.</Footer>}
-          sidebar={{ autoCollapse: true, defaultOpen: false, toggleButton: false }}
-          pageMap={filteredPageMap}
-          feedback={{ content: null }}
-          editLink={null}
-          navigation={{
-            prev: true,
-            next: true
-          }}
-        >
-          <div data-pagefind-body>
-            {children}
-          </div>
-        </Layout>
-        <ConditionalFloatingCodeEditor />
-      </body>
-    </html>
+    <>
+      <Layout
+        navbar={<CustomNavbar />}
+        footer={<Footer>MIT {CURRENT_YEAR} © VieVlog.</Footer>}
+        sidebar={{ autoCollapse: true, defaultOpen: false, toggleButton: false }}
+        pageMap={filteredPageMap}
+        feedback={{ content: null }}
+        editLink={null}
+        navigation={{
+          prev: true,
+          next: true
+        }}
+      >
+        <div data-pagefind-body>
+          {children}
+        </div>
+      </Layout>
+      <ConditionalFloatingCodeEditor />
+    </>
   )
 }

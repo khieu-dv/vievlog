@@ -21,7 +21,7 @@ const FloatingCodeEditor: React.FC = () => {
   const rafRef = useRef<number | null>(null);
   const screenDimensions = useRef({ width: 0, height: 0 });
   const lastPosition = useRef({ x: 0, y: 0 });
-  
+
   // Load cached code for current language on mount
   const [code, setCode] = useState(() => {
     if (typeof window !== 'undefined') {
@@ -87,9 +87,9 @@ function greetUser(name) {
 }
 
 console.log(greetUser("Developer"));`;
-    
+
     setCode(defaultCode);
-    
+
     // Clear all cached code for Quick Code Editor
     if (typeof window !== 'undefined') {
       const keysToRemove = [];
@@ -107,66 +107,66 @@ console.log(greetUser("Developer"));`;
   const handleMouseDown = (e: React.MouseEvent) => {
     if (isExpanded) return; // Don't allow dragging when expanded
     if (windowWidth < 640) return; // Don't allow dragging on mobile
-    
+
     // Don't drag if clicking on interactive elements
     const target = e.target as HTMLElement;
-    const isInteractive = target.tagName === 'BUTTON' || 
-                         target.tagName === 'SELECT' || 
-                         target.tagName === 'INPUT' ||
-                         target.closest('button') ||
-                         target.closest('select') ||
-                         target.closest('input') ||
-                         target.closest('.monaco-editor');
-    
+    const isInteractive = target.tagName === 'BUTTON' ||
+      target.tagName === 'SELECT' ||
+      target.tagName === 'INPUT' ||
+      target.closest('button') ||
+      target.closest('select') ||
+      target.closest('input') ||
+      target.closest('.monaco-editor');
+
     if (isInteractive) return;
-    
+
     // Cache screen dimensions for drag operation
     screenDimensions.current = {
       width: window.innerWidth,
       height: window.innerHeight
     };
-    
+
     // Ensure we have the current actual position
     const rect = editorRef.current?.getBoundingClientRect();
     let currentX = position.x;
     let currentY = position.y;
-    
+
     if (rect) {
       // Always use the actual DOM rect position for most accurate calculation
       // This accounts for any CSS transforms, scroll, or layout differences
       currentX = rect.left;
       currentY = rect.top;
-      
+
       // Update position state to match reality
       if (!isInitialPositioned) {
         setPosition({ x: currentX, y: currentY });
         setIsInitialPositioned(true);
       }
     }
-    
+
     // Store initial position for direction calculation
     lastPosition.current = { x: currentX, y: currentY };
-    
+
     setIsDragging(true);
-    
+
     // Debug logging
     console.log('Drag start - Mouse:', { x: e.clientX, y: e.clientY });
     console.log('Drag start - Element position:', { x: currentX, y: currentY });
     console.log('Drag start - Rect:', rect ? { left: rect.left, top: rect.top } : 'No rect');
-    
+
     // Calculate relative offset within the element
     const elementRect = rect || { left: 0, top: 0 };
     const offsetX = e.clientX - elementRect.left;
     const offsetY = e.clientY - elementRect.top;
-    
+
     console.log('Drag start - Relative offset:', { x: offsetX, y: offsetY });
-    
+
     // Store the relative offset
     setDragStart({
       x: offsetX,
       y: offsetY
     });
-    
+
     // Prevent text selection while dragging
     e.preventDefault();
   };
@@ -709,7 +709,7 @@ fn main() {
     rafRef.current = requestAnimationFrame(() => {
       const newX = e.clientX - dragStart.x;
       const newY = e.clientY - dragStart.y;
-      
+
       // Debug logging for drag move
       console.log('Drag move - Mouse:', { x: e.clientX, y: e.clientY });
       console.log('Drag move - DragStart:', dragStart);
@@ -725,16 +725,16 @@ fn main() {
       const threshold = 80;
       const warningThreshold = 120;
 
-      const isBeyondBounds = 
-        newX < -threshold || 
-        newY < -threshold || 
-        newX > screenWidth - threshold || 
+      const isBeyondBounds =
+        newX < -threshold ||
+        newY < -threshold ||
+        newX > screenWidth - threshold ||
         newY > screenHeight - threshold;
 
-      const isNearBounds = 
-        newX < -warningThreshold || 
-        newY < -warningThreshold || 
-        newX > screenWidth - warningThreshold || 
+      const isNearBounds =
+        newX < -warningThreshold ||
+        newY < -warningThreshold ||
+        newX > screenWidth - warningThreshold ||
         newY > screenHeight - warningThreshold;
 
       // Only update if state actually changed to avoid unnecessary re-renders
@@ -747,17 +747,17 @@ fn main() {
       if (isBeyondBounds && !isPopout) {
         const deltaX = newX - lastPosition.current.x;
         const deltaY = newY - lastPosition.current.y;
-        
+
         // Only trigger pop-out if moving AWAY from screen center
         const screenCenterX = screenWidth / 2;
         const screenCenterY = screenHeight / 2;
-        
-        const isMovingAwayFromCenter = 
+
+        const isMovingAwayFromCenter =
           (newX < 0 && deltaX < 0) ||                    // Moving left and going more left
           (newY < 0 && deltaY < 0) ||                    // Moving up and going more up  
           (newX > screenWidth && deltaX > 0) ||          // Moving right and going more right
           (newY > screenHeight && deltaY > 0);          // Moving down and going more down
-        
+
         if (isMovingAwayFromCenter) {
           handlePopout();
           return;
@@ -766,7 +766,7 @@ fn main() {
 
       // Update position tracking for next frame
       lastPosition.current = { x: newX, y: newY };
-      
+
       // Batch state update less frequently
       setPosition({ x: newX, y: newY });
       rafRef.current = null;
@@ -777,13 +777,13 @@ fn main() {
   const handleMouseUp = useCallback(() => {
     setIsDragging(false);
     setIsNearEdge(false);
-    
+
     // Cancel any pending RAF
     if (rafRef.current) {
       cancelAnimationFrame(rafRef.current);
       rafRef.current = null;
     }
-    
+
     // Reset CSS properties to use React state positioning
     if (editorRef.current) {
       editorRef.current.style.transform = '';
@@ -820,9 +820,9 @@ fn main() {
   // Send code updates to popout window
   useEffect(() => {
     if (isPopout && popoutWindowRef.current && !popoutWindowRef.current.closed) {
-      popoutWindowRef.current.postMessage({ 
-        type: 'updateCode', 
-        code: code 
+      popoutWindowRef.current.postMessage({
+        type: 'updateCode',
+        code: code
       }, '*');
     }
   }, [code, isPopout]);
@@ -830,9 +830,9 @@ fn main() {
   // Send language updates to popout window
   useEffect(() => {
     if (isPopout && popoutWindowRef.current && !popoutWindowRef.current.closed) {
-      popoutWindowRef.current.postMessage({ 
-        type: 'updateLanguage', 
-        languageId: currentLanguageId 
+      popoutWindowRef.current.postMessage({
+        type: 'updateLanguage',
+        languageId: currentLanguageId
       }, '*');
     }
   }, [currentLanguageId, isPopout]);
@@ -842,7 +842,7 @@ fn main() {
     const handleResize = () => {
       const newWidth = window.innerWidth;
       setWindowWidth(newWidth);
-      
+
       // Reset position when switching between mobile and desktop
       if ((windowWidth >= 640 && newWidth < 640) || (windowWidth < 640 && newWidth >= 640)) {
         setIsInitialPositioned(false);
@@ -907,12 +907,12 @@ fn main() {
                        transform floating-editor-enter
                        ${isExpanded
                 ? 'inset-4 lg:inset-8'
-                : windowWidth < 640 
+                : windowWidth < 640
                   ? 'w-auto h-[520px]'
                   : 'w-96 h-[600px] lg:w-[600px] lg:h-[500px] xl:w-[720px] xl:h-[600px]'
               }
-                       ${isDragging ? 'cursor-move shadow-2xl scale-[1.02]' : 
-                         (!isExpanded ? 'sm:cursor-grab hover:shadow-2xl hover:scale-[1.01]' : 'scale-100 hover:shadow-3xl')}
+                       ${isDragging ? 'cursor-move shadow-2xl scale-[1.02]' :
+                (!isExpanded ? 'sm:cursor-grab hover:shadow-2xl hover:scale-[1.01]' : 'scale-100 hover:shadow-3xl')}
                        ${isNearEdge ? 'shadow-2xl shadow-blue-500/30' : ''}
                        max-w-[calc(100vw-2rem)] max-h-[calc(100vh-2rem)]
                        ${!isExpanded ? 'sm:select-none' : ''}
@@ -922,31 +922,31 @@ fn main() {
               background: isExpanded
                 ? 'rgba(255, 255, 255, 0.98)'
                 : 'rgba(255, 255, 255, 0.95)',
-              ...(isExpanded 
-                ? {} 
+              ...(isExpanded
+                ? {}
                 : windowWidth < 640
                   ? {
-                      left: '1rem',
-                      right: '1rem',
-                      bottom: '24px',
-                      transform: 'none'
-                    }
+                    left: '1rem',
+                    right: '1rem',
+                    bottom: '24px',
+                    transform: 'none'
+                  }
                   : isInitialPositioned
                     ? {
-                        left: position.x,
-                        top: position.y,
-                        transform: 'none'
-                      }
+                      left: position.x,
+                      top: position.y,
+                      transform: 'none'
+                    }
                     : {
-                        right: '24px',
-                        bottom: '80px',
-                        transform: 'none'
-                      }
+                      right: '24px',
+                      bottom: '80px',
+                      transform: 'none'
+                    }
               )
             }}
           >
             {/* Header */}
-            <div 
+            <div
               ref={headerRef}
               className={`flex items-center justify-between px-4 py-2 border-b border-gray-200 dark:border-gray-700 rounded-t-2xl
                           bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950/50 dark:to-purple-950/50`}>
@@ -962,8 +962,8 @@ fn main() {
                 </div>
                 {!isExpanded && (
                   <div title="Click and drag anywhere on popup to move - Drag to edge to pop-out" className="hidden sm:flex items-center gap-1">
-                    <Move 
-                      className={`h-3 w-3 transition-colors ${isNearEdge ? 'text-blue-500' : 'text-gray-400 dark:text-gray-500'}`} 
+                    <Move
+                      className={`h-3 w-3 transition-colors ${isNearEdge ? 'text-blue-500' : 'text-gray-400 dark:text-gray-500'}`}
                     />
                     <span className="text-xs text-gray-400 dark:text-gray-500 hidden sm:inline">
                       Drag anywhere
