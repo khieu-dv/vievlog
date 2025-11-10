@@ -1,7 +1,6 @@
 import { generateStaticParamsFor, importPage } from 'nextra/pages'
 import { useMDXComponents as getMDXComponents } from '../../../../mdx-components'
 import CommentSection from '../../../components/docs/CommentSection'
-import { ContentLimiter } from '../../../components/docs/ContentLimiter'
 import type { Metadata } from 'next'
 
 export const generateStaticParams = generateStaticParamsFor('mdxPath')
@@ -32,9 +31,7 @@ export default async function Page(props: Props) {
 
   return (
     <Wrapper toc={toc} metadata={metadata} sourceCode={sourceCode}>
-      <ContentLimiter>
-        <MDXContent {...props} params={params} />
-      </ContentLimiter>
+      <MDXContent {...props} params={params} />
       <CommentSection docPath={docPath} />
     </Wrapper>
   )
