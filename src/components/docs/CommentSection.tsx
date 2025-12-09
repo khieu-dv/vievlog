@@ -18,7 +18,7 @@ export default function CommentSection({ docPath }: CommentSectionProps) {
   const [submitting, setSubmitting] = useState(false);
   const { data: session } = useSession();
 
-  // Extract lesson number from docPath (e.g., "soft-skills/rust/bai-1" -> 1)
+  // Extract lesson number from docPath (e.g., "coursese/rust/bai-1" -> 1)
   const getLessonNumber = (path: string): number => {
     const match = path.match(/bai-(\d+)$/);
     return match ? parseInt(match[1], 10) : 0;
@@ -28,8 +28,8 @@ export default function CommentSection({ docPath }: CommentSectionProps) {
 
   // Detect course type and get course info
   const getCourseInfo = (path: string) => {
-    if (path.includes('soft-skills/rust')) {
-      return { basePath: '/desktop-docs/soft-skills/rust', totalLessons: 18, showSuggestions: true };
+    if (path.includes('coursese/rust')) {
+      return { basePath: '/desktop-docs/coursese/rust', totalLessons: 18, showSuggestions: true };
     }
 
     // Add more course detection logic here

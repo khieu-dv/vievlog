@@ -25,7 +25,7 @@ const CURRENT_YEAR = new Date().getFullYear()
 export default async function DocsLayout({ children }: DocsLayoutProps) {
   const pageMap = await getPageMap()
 
-  const excludePages = ['posts', 'auth', 'profile', 'games', 'image-editor', 'video-generator', 'korean', 'desktop-docs', 'docs']
+  const excludePages = ['posts', 'auth', 'profile', 'games', 'image-editor', 'video-generator', 'korean', 'cpp-wasm', 'rust-wasm']
 
   const filteredPageMap = pageMap.filter(
     (item: any) => !excludePages.includes(item.name.toLowerCase())

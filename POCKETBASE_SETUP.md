@@ -14,6 +14,7 @@ Truy cập PocketBase Admin Panel tại: `https://pocketbase.vietopik.com/_/`
    - **Required**: No (Optional)
 
 ### Mô tả:
+
 - `status = true`: User có tài khoản Premium, xem được toàn bộ tài liệu
 - `status = false` (hoặc null): User thường, cần nâng cấp để xem toàn bộ nội dung
 
@@ -34,7 +35,7 @@ Truy cập PocketBase Admin Panel tại: `https://pocketbase.vietopik.com/_/`
 ```sql
 CREATE TABLE doc_comments_tbl (
   id TEXT PRIMARY KEY,
-  doc_path TEXT NOT NULL,      -- Đường dẫn docs (vd: "soft-skills/rust/bai-0/bai-1")
+  doc_path TEXT NOT NULL,      -- Đường dẫn docs (vd: "coursese/rust/bai-0/bai-1")
   content TEXT NOT NULL,       -- Nội dung comment
   author_id TEXT NOT NULL,     -- ID người dùng từ users_tbl
   author_name TEXT NOT NULL,   -- Tên hiển thị

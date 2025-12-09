@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 
 interface LessonSuggestionsProps {
   currentLesson: number; // 0-N, where 0 is intro lesson
-  basePath?: string; // e.g., "/desktop-docs/soft-skills/rust"
+  basePath?: string; // e.g., "/desktop-docs/coursese/rust"
   metaData?: Record<string, string>; // Meta data from _meta.ts files
   totalLessons?: number; // Fallback for backward compatibility
 }
@@ -42,7 +42,7 @@ const getMetaData = async (basePath: string): Promise<Record<string, string>> =>
     const courseName = pathParts[pathParts.length - 1];
 
     // Dynamically import the meta file
-    const metaModule = await import(`../../content/soft-skills/${courseName}/_meta.ts`);
+    const metaModule = await import(`../../content/coursese/${courseName}/_meta.ts`);
     return metaModule.default;
   } catch (error) {
     console.warn(`Could not load meta data for ${basePath}:`, error);
@@ -126,7 +126,7 @@ const getSuggestions = (currentLesson: number, lessonData: LessonInfo[]): Lesson
 
 export default function LessonSuggestions({
   currentLesson,
-  basePath = "/desktop-docs/soft-skills/rust",
+  basePath = "/desktop-docs/coursese/rust",
   metaData,
   totalLessons
 }: LessonSuggestionsProps) {
