@@ -5,7 +5,7 @@ import "./globals.css";
 import { ThemeProvider } from "../components/common/ThemeProvider";
 import Providers from "../components/common/Providers";
 import I18nProvider from "../components/common/I18nProvider";
-import ConditionalFloatingCodeEditor from "../components/common/ConditionalFloatingCodeEditor";
+// import ConditionalFloatingCodeEditor from "../components/common/ConditionalFloatingCodeEditor";
 import { NavigationHandler } from "../components/common/NavigationHandler";
 
 
@@ -91,7 +91,7 @@ export default function RootLayout({
             <Providers>
               <NavigationHandler />
               {children}
-              <ConditionalFloatingCodeEditor />
+              {/* <ConditionalFloatingCodeEditor /> */}
               {/* <DevToolsDetector /> */}
             </Providers>
           </I18nProvider>

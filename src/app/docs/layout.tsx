@@ -3,7 +3,7 @@ import { getPageMap } from 'nextra/page-map'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import './docs.css'
-import ConditionalFloatingCodeEditor from '../../components/common/ConditionalFloatingCodeEditor';
+// import ConditionalFloatingCodeEditor from '../../components/common/ConditionalFloatingCodeEditor';
 import { CustomNavbar } from '../../components/common/CustomNavbar';
 
 export const metadata: Metadata = {
@@ -45,7 +45,7 @@ export default async function DocsLayout({ children }: DocsLayoutProps) {
           {children}
         </div>
       </Layout>
-      <ConditionalFloatingCodeEditor />
+      {/* <ConditionalFloatingCodeEditor /> */}
     </>
   )
 }
