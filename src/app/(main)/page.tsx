@@ -53,11 +53,11 @@ export default function HomePage() {
   const { t } = useTranslation();
 
   return (
-    <div className="min-h-screen bg-white dark:bg-slate-900">
+    <div className="min-h-screen">
       <Header />
 
       {/* Core Technologies Section */}
-      <div className="border-b bg-gradient-to-b from-gray-200 to-white py-12 dark:border-b-gray-800 dark:from-gray-900 dark:to-slate-900 sm:py-16">
+      <div className="border-b py-12 dark:border-b-gray-800 sm:py-16">
         <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <h2 className="mb-3 text-2xl font-bold text-black dark:text-white sm:text-3xl">
@@ -108,7 +108,7 @@ export default function HomePage() {
       </div>
 
       {/* Core Technologies Learning Paths */}
-      <div className="bg-gradient-to-b from-gray-200 to-white py-4 dark:from-gray-900 dark:to-slate-900 sm:py-8 md:py-12">
+      <div className="py-4 sm:py-8 md:py-12">
         <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-left">
             <SectionBadge title="Learning Paths" />
@@ -166,7 +166,7 @@ export default function HomePage() {
             while Next.js covers React, TypeScript, and modern web development practices.
           </p>
 
-          <div className="rounded-xl border bg-white p-3 dark:border-gray-800 dark:bg-slate-950 sm:p-4">
+          <div className="rounded-xl border p-3 dark:border-gray-800 sm:p-4">
             <h2 className="mb-0 text-lg font-semibold sm:mb-1 sm:text-xl">
               Tips for Beginners
             </h2>
@@ -378,7 +378,7 @@ export default function HomePage() {
 
       {/* Explore More Section */}
       <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="-mt-5 mb-12 rounded-3xl bg-black p-5 dark:bg-gray-950">
+        <div className="-mt-5 mb-12 rounded-3xl p-5">
           <h2 className="mb-0.5 text-xl font-semibold text-white sm:mb-1 sm:text-2xl">
             Start Your Journey!
           </h2>
