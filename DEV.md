@@ -16,10 +16,6 @@ git push origin <tên-nhánh-của-bạn>
 
 rustup override set 1.85.0
 
-
-
-Bạn muốn cài **Emscripten** trên macOS thì làm theo các bước sau nhé 👇
-
 ---
 
 ## 🔹 1. Cài đặt các gói cần thiết
@@ -106,8 +102,3 @@ python3 -m http.server 8080
 ```
 
 Mở trình duyệt và vào `http://localhost:8080/hello.html` → bạn sẽ thấy chương trình chạy bằng WebAssembly.
-
----
-
-Bạn muốn mình viết script tự động cài đặt toàn bộ Emscripten trên macOS (chỉ cần copy-paste 1 lần chạy) không?
-
