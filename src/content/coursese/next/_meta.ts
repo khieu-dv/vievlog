@@ -1,0 +1,21 @@
+export default {
+    "lesson_0": "Bài 0: Khóa học NextJS",
+    "lesson_1": "Bài 1: Giới thiệu và Thiết lập Môi trường",
+    "lesson_2": "Bài 2: Cấu trúc Dự án và Routing cơ bản trong App Router",
+    "lesson_3": "Bài 3: TypeScript cơ bản cho React và NextJS",
+    "lesson_4": "Bài 4: TailwindCSS và Styling trong NextJS App Router",
+    "lesson_5": "Bài 5: ShadcnUI - Thư viện Component UI",
+    "lesson_6": "Bài 6: Xây dựng Layout và Navigation",
+    "lesson_7": "Bài 7: Server Components vs Client Components",
+    "lesson_8": "Bài 8: State Management trong NextJS App Router",
+    "lesson_9": "Bài 9: Data Fetching và API Integration",
+    "lesson_10": "Bài 10: Xác thực và Ủy quyền (Auth)",
+    "lesson_11": "Bài 11: Xây dựng trang Profile",
+    "lesson_12": "Bài 12: Chat Feature (Realtime)",
+    "lesson_13": "Bài 13: Quản lý Bài Viết và Media",
+    "lesson_14": "Bài 14: Quản lý Video và Player",
+    "lesson_15": "Bài 15: Internationalization (i18n)",
+    "lesson_16": "Bài 16: Performance Optimization",
+    "lesson_17": "Bài 17: Testing trong NextJS",
+    "lesson_18": "Bài 18: Triển khai và DevOps"
+};
