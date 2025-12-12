@@ -20,7 +20,7 @@ export default function MediaStudioPage() {
     {
       title: "🖼️ Image Editor",
       description: "Edit and enhance your images with powerful editing tools",
-      href: "/media-studio/image-editor",
+      href: "/rust-wasm/image-editor",
       icon: Camera,
       gradient: "from-purple-600 to-pink-600",
       hoverGradient: "hover:from-purple-700 hover:to-pink-700",
@@ -28,7 +28,7 @@ export default function MediaStudioPage() {
     {
       title: "🎥 Video Generator",
       description: "Create beautiful videos from your photos with smooth transitions",
-      href: "/media-studio/video-generator",
+      href: "/rust-wasm/video-generator",
       icon: Video,
       gradient: "from-blue-600 to-cyan-600",
       hoverGradient: "hover:from-blue-700 hover:to-cyan-700",
