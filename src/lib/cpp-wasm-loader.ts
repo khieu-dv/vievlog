@@ -146,11 +146,6 @@ export class CppWasm {
 // Global instance
 export const cppWasm = CppWasm.getInstance();
 
-// Hook for React components
-export function useCppWasm() {
-  return cppWasm;
-}
-
 // Declare global type for TypeScript
 declare global {
   interface Window {

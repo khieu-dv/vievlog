@@ -8,12 +8,6 @@ export interface ImageInfo {
   format: string;
 }
 
-export interface ImageProcessingResult {
-  success: boolean;
-  message: string;
-  processing_time_ms: number;
-}
-
 export class RustWasm {
   private static instance: RustWasm;
   private initialized = false;
@@ -268,11 +262,6 @@ export class RustWasm {
 
 // Global instance
 export const rustWasm = RustWasm.getInstance();
-
-// Hook for React components
-export function useRustWasm() {
-  return rustWasm;
-}
 
 // Declare global type for TypeScript
 declare global {

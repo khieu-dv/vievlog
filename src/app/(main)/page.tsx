@@ -1,47 +1,17 @@
 "use client";
 
 import {
-  Blocks,
-  Bot,
   Braces,
-  Camera,
-  CheckSquare,
-  Coins,
-  Component,
-  FolderKanban,
-  Gamepad2,
-  GitBranch,
   Globe2,
-  GraduationCap,
-  Megaphone,
-  MessageCircle,
-  MessageCircleCode,
-  PenSquare,
   Server,
-  ServerCog,
-  Shield,
-  ShieldHalf,
   Smartphone,
-  SquareKanban,
-  UsersRound,
-  Video,
-  Waypoints,
-  Workflow,
-  ArrowRight,
   Binary,
-  TreePine,
-  Network,
-  Hash,
   SortAsc
 } from 'lucide-react';
 import Link from "next/link";
-import { useEffect, useState, useCallback } from "react";
-import { useRouter } from "next/navigation";
-import axios from "axios";
 import { useTranslation } from "react-i18next";
 import { Footer } from "~/components/common/Footer";
 import { Header } from "~/components/common/Header";
-import { Button } from "~/components/ui/Button";
 import { RoadmapCard } from "~/components/ui/RoadmapCard";
 import { RoadmapMultiCard } from "~/components/ui/RoadmapMultiCard";
 import { RoleRoadmaps } from "~/components/ui/RoleRoadmaps";

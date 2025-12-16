@@ -6,7 +6,7 @@ export default tseslint.config(
   eslintJs.configs.recommended,
   tseslint.configs.recommendedTypeChecked,
   tseslint.configs.stylisticTypeChecked,
-  { ignores: [".vercel", ".next", "dist", "build"] },
+  { ignores: [".vercel", ".next", "dist", "build", "public/_pagefind", "rust-wasm/pkg", "cpp-wasm/src/wasm", "public/wasm", "src/wasm", "script-search"] },
   {
     files: ["**/*.{ts,tsx}"],
     ...eslintReact.configs["recommended-type-checked"],
@@ -18,7 +18,7 @@ export default tseslint.config(
     },
   },
   {
-    files: ["**/*.js"],
+    files: ["**/*.js", "**/*.cjs"],
     ...tseslint.configs.disableTypeChecked,
   },
 );
