@@ -25,24 +25,24 @@
   resolved "https://registry.npmjs.org/@babel/runtime/-/runtime-7.28.4.tgz"
   integrity sha512-Q/N6JNWvIvPnLDvjlE1OUBLPQHH6l3CltCEsHIujp45zQUSSh8K+gHnaEX45yAT1nyngnINhvWtzN+Nb9D8RAQ==
 
-"@biomejs/biome@2.3.8":
-  version "2.3.8"
-  resolved "https://registry.npmjs.org/@biomejs/biome/-/biome-2.3.8.tgz"
-  integrity sha512-Qjsgoe6FEBxWAUzwFGFrB+1+M8y/y5kwmg5CHac+GSVOdmOIqsAiXM5QMVGZJ1eCUCLlPZtq4aFAQ0eawEUuUA==
+"@biomejs/biome@2.3.9":
+  version "2.3.9"
+  resolved "https://registry.npmjs.org/@biomejs/biome/-/biome-2.3.9.tgz"
+  integrity sha512-js+34KpnY65I00k8P71RH0Uh2rJk4BrpxMGM5m2nBfM9XTlKE5N1URn5ydILPRyXXq4ebhKCjsvR+txS+D4z2A==
   optionalDependencies:
-    "@biomejs/cli-darwin-arm64" "2.3.8"
-    "@biomejs/cli-darwin-x64" "2.3.8"
-    "@biomejs/cli-linux-arm64" "2.3.8"
-    "@biomejs/cli-linux-arm64-musl" "2.3.8"
-    "@biomejs/cli-linux-x64" "2.3.8"
-    "@biomejs/cli-linux-x64-musl" "2.3.8"
-    "@biomejs/cli-win32-arm64" "2.3.8"
-    "@biomejs/cli-win32-x64" "2.3.8"
+    "@biomejs/cli-darwin-arm64" "2.3.9"
+    "@biomejs/cli-darwin-x64" "2.3.9"
+    "@biomejs/cli-linux-arm64" "2.3.9"
+    "@biomejs/cli-linux-arm64-musl" "2.3.9"
+    "@biomejs/cli-linux-x64" "2.3.9"
+    "@biomejs/cli-linux-x64-musl" "2.3.9"
+    "@biomejs/cli-win32-arm64" "2.3.9"
+    "@biomejs/cli-win32-x64" "2.3.9"
 
-"@biomejs/cli-darwin-arm64@2.3.8":
-  version "2.3.8"
-  resolved "https://registry.npmjs.org/@biomejs/cli-darwin-arm64/-/cli-darwin-arm64-2.3.8.tgz"
-  integrity sha512-HM4Zg9CGQ3txTPflxD19n8MFPrmUAjaC7PQdLkugeeC0cQ+PiVrd7i09gaBS/11QKsTDBJhVg85CEIK9f50Qww==
+"@biomejs/cli-darwin-arm64@2.3.9":
+  version "2.3.9"
+  resolved "https://registry.npmjs.org/@biomejs/cli-darwin-arm64/-/cli-darwin-arm64-2.3.9.tgz"
+  integrity sha512-hHbYYnna/WBwem5iCpssQQLtm5ey8ADuDT8N2zqosk6LVWimlEuUnPy6Mbzgu4GWVriyL5ijWd+1zphX6ll4/A==
 
 "@braintree/sanitize-url@^7.1.1":
   version "7.1.1"
@@ -496,15 +496,15 @@
     "@napi-rs/simple-git-win32-ia32-msvc" "0.1.22"
     "@napi-rs/simple-git-win32-x64-msvc" "0.1.22"
 
-"@next/env@16.0.8":
-  version "16.0.8"
-  resolved "https://registry.npmjs.org/@next/env/-/env-16.0.8.tgz"
-  integrity sha512-xP4WrQZuj9MdmLJy3eWFHepo+R3vznsMSS8Dy3wdA7FKpjCiesQ6DxZvdGziQisj0tEtCgBKJzjcAc4yZOgLEQ==
+"@next/env@16.0.10":
+  version "16.0.10"
+  resolved "https://registry.npmjs.org/@next/env/-/env-16.0.10.tgz"
+  integrity sha512-8tuaQkyDVgeONQ1MeT9Mkk8pQmZapMKFh5B+OrFUlG3rVmYTXcXlBetBgTurKXGaIZvkoqRT9JL5K3phXcgang==
 
-"@next/swc-darwin-arm64@16.0.8":
-  version "16.0.8"
-  resolved "https://registry.npmjs.org/@next/swc-darwin-arm64/-/swc-darwin-arm64-16.0.8.tgz"
-  integrity sha512-yjVMvTQN21ZHOclQnhSFbjBTEizle+1uo4NV6L4rtS9WO3nfjaeJYw+H91G+nEf3Ef43TaEZvY5mPWfB/De7tA==
+"@next/swc-darwin-arm64@16.0.10":
+  version "16.0.10"
+  resolved "https://registry.npmjs.org/@next/swc-darwin-arm64/-/swc-darwin-arm64-16.0.10.tgz"
+  integrity sha512-4XgdKtdVsaflErz+B5XeG0T5PeXKDdruDf3CRpnhN+8UebNa5N2H58+3GDgpn/9GBurrQ1uWW768FfscwYkJRg==
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
@@ -1400,10 +1400,10 @@
   dependencies:
     "@types/unist" "*"
 
-"@types/node@*", "@types/node@^24.10.2", "@types/node@>=18":
-  version "24.10.4"
-  resolved "https://registry.npmjs.org/@types/node/-/node-24.10.4.tgz"
-  integrity sha512-vnDVpYPMzs4wunl27jHrfmwojOGKya0xyM3sH+UE5iv5uPS6vX7UIoh6m+vQc5LGBq52HBKPIn/zcSZVzeDEZg==
+"@types/node@*", "@types/node@^25.0.2", "@types/node@>=18":
+  version "25.0.2"
+  resolved "https://registry.npmjs.org/@types/node/-/node-25.0.2.tgz"
+  integrity sha512-gWEkeiyYE4vqjON/+Obqcoeffmk0NF15WSBwSs7zwVA2bAbTaE0SJ7P0WNGoJn8uE7fiaV5a7dKYIJriEqOrmA==
   dependencies:
     undici-types "~7.16.0"
 
@@ -3368,10 +3368,10 @@ longest-streak@^3.0.0:
   resolved "https://registry.npmjs.org/longest-streak/-/longest-streak-3.1.0.tgz"
   integrity sha512-9Ri+o0JYgehTaVBBDoMqIl8GXtbWg711O3srftcHhZ0dqnETqLaoIK0x17fUw9rFSlK/0NlsKe0Ahhyl5pXE2g==
 
-lucide-react@^0.556.0:
-  version "0.556.0"
-  resolved "https://registry.npmjs.org/lucide-react/-/lucide-react-0.556.0.tgz"
-  integrity sha512-iOb8dRk7kLaYBZhR2VlV1CeJGxChBgUthpSP8wom9jfj79qovgG6qcSdiy6vkoREKPnbUYzJsCn4o4PtG3Iy+A==
+lucide-react@^0.561.0:
+  version "0.561.0"
+  resolved "https://registry.npmjs.org/lucide-react/-/lucide-react-0.561.0.tgz"
+  integrity sha512-Y59gMY38tl4/i0qewcqohPdEbieBy7SovpBL9IFebhc2mDd8x4PZSOsiFRkpPcOq6bj1r/mjH/Rk73gSlIJP2A==
 
 magic-string@^0.30.21:
   version "0.30.21"
@@ -4131,25 +4131,25 @@ next-themes@^0.4.0, next-themes@^0.4.6:
   resolved "https://registry.npmjs.org/next-themes/-/next-themes-0.4.6.tgz"
   integrity sha512-pZvgD5L0IEvX5/9GWyHMf3m8BKiVQwsCMHfoFosXtXBMnaS0ZnIJ9ST4b4NqLVKDEm8QBxoNNGNaBv2JNF6XNA==
 
-"next@>= 13", next@>=14, next@16.0.8:
-  version "16.0.8"
-  resolved "https://registry.npmjs.org/next/-/next-16.0.8.tgz"
-  integrity sha512-LmcZzG04JuzNXi48s5P+TnJBsTGPJunViNKV/iE4uM6kstjTQsQhvsAv+xF6MJxU2Pr26tl15eVbp0jQnsv6/g==
+"next@>= 13", next@>=14, next@16.0.10:
+  version "16.0.10"
+  resolved "https://registry.npmjs.org/next/-/next-16.0.10.tgz"
+  integrity sha512-RtWh5PUgI+vxlV3HdR+IfWA1UUHu0+Ram/JBO4vWB54cVPentCD0e+lxyAYEsDTqGGMg7qpjhKh6dc6aW7W/sA==
   dependencies:
-    "@next/env" "16.0.8"
+    "@next/env" "16.0.10"
     "@swc/helpers" "0.5.15"
     caniuse-lite "^1.0.30001579"
     postcss "8.4.31"
     styled-jsx "5.1.6"
   optionalDependencies:
-    "@next/swc-darwin-arm64" "16.0.8"
-    "@next/swc-darwin-x64" "16.0.8"
-    "@next/swc-linux-arm64-gnu" "16.0.8"
-    "@next/swc-linux-arm64-musl" "16.0.8"
-    "@next/swc-linux-x64-gnu" "16.0.8"
-    "@next/swc-linux-x64-musl" "16.0.8"
-    "@next/swc-win32-arm64-msvc" "16.0.8"
-    "@next/swc-win32-x64-msvc" "16.0.8"
+    "@next/swc-darwin-arm64" "16.0.10"
+    "@next/swc-darwin-x64" "16.0.10"
+    "@next/swc-linux-arm64-gnu" "16.0.10"
+    "@next/swc-linux-arm64-musl" "16.0.10"
+    "@next/swc-linux-x64-gnu" "16.0.10"
+    "@next/swc-linux-x64-musl" "16.0.10"
+    "@next/swc-win32-arm64-msvc" "16.0.10"
+    "@next/swc-win32-x64-msvc" "16.0.10"
     sharp "^0.34.4"
 
 nextra-theme-docs@^4.6.1:
