@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useEffect, useState, useCallback } from 'react';
-import { cn } from '~/lib/utils';
+import { cn } from '@/lib/utils';
 
 interface ColorWheelProps {
   value: { hue: number; saturation: number; lightness: number };

@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { CodeInputAnalyzer, InputFormat } from '~/lib/utils/codeInputAnalyzer';
+import { CodeInputAnalyzer, InputFormat } from '@/lib/utils/codeInputAnalyzer';
 
 export interface UseCodeInputAnalysisReturn {
   inputFormat: InputFormat;

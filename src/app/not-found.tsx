@@ -3,9 +3,9 @@
 import { ArrowLeft, Home, Search, FileQuestion } from "lucide-react";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
-import { Button } from "~/components/ui/Button";
-import { Header } from "~/components/common/Header";
-import { Footer } from "~/components/common/Footer";
+import { Button } from '@/components/ui/Button';
+import { Header } from '@/components/common/Header';
+import { Footer } from '@/components/common/Footer';
 import { Geist, Geist_Mono } from "next/font/google";
 import "./(main)/globals.css";
 

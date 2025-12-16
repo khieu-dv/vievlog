@@ -3,10 +3,10 @@
 import { LogOut, Menu, User, X, Globe } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { signOut, useSession } from "../../lib/authClient";
+import { signOut, useSession } from '@/features/auth/services/authClient';
 
 import { useState } from "react";
-import { cn } from "~/lib/utils";
+import { cn } from '@/lib/utils/index';
 import { Button } from "../ui/Button";
 import {
   DropdownMenu,

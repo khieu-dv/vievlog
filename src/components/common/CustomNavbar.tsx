@@ -3,7 +3,7 @@
 import { Navbar } from 'nextra-theme-docs'
 import Link from 'next/link'
 import { LogOut, User } from 'lucide-react'
-import { signOut, useSession } from '../../lib/authClient'
+import { signOut, useSession } from '@/features/auth/services/authClient'
 import { Button } from '../ui/Button'
 import {
   DropdownMenu,

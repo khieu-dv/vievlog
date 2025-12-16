@@ -1,4 +1,4 @@
-import { AuthLayout } from "~/components/common/layouts/auth-layout";
+import { AuthLayout } from '@/components/common/layouts/auth-layout';
 import { SignUpPageClient } from "./client";
 
 export default function SignUpPage() {

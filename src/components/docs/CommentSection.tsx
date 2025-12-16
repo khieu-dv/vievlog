@@ -2,9 +2,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useSession } from '~/lib/authClient';
-import { getDocPathFromUrl } from '~/lib/comments';
-import type { Comment } from '~/lib/comments';
+import { useSession } from '@/features/auth/services/authClient';
+import { getDocPathFromUrl } from '@/features/comments/services/comments';
+import type { Comment } from '@/features/comments/services/comments';
 import LessonSuggestions from './LessonSuggestions';
 
 interface CommentSectionProps {
@@ -18,7 +18,7 @@ export default function CommentSection({ docPath }: CommentSectionProps) {
   const [submitting, setSubmitting] = useState(false);
   const { data: session } = useSession();
 
-  // Extract lesson number from docPath (e.g., "coursese/rust/bai-1" -> 1)
+  // Extract lesson number from docPath (e.g., "courses/rust/bai-1" -> 1)
   const getLessonNumber = (path: string): number => {
     const match = path.match(/bai-(\d+)$/);
     return match ? parseInt(match[1], 10) : 0;
@@ -28,8 +28,8 @@ export default function CommentSection({ docPath }: CommentSectionProps) {
 
   // Detect course type and get course info
   const getCourseInfo = (path: string) => {
-    if (path.includes('coursese/rust')) {
-      return { basePath: '/desktop-docs/coursese/rust', totalLessons: 18, showSuggestions: true };
+    if (path.includes('courses/rust')) {
+      return { basePath: '/desktop-docs/courses/rust', totalLessons: 18, showSuggestions: true };
     }
 
     // Add more course detection logic here

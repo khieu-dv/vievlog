@@ -5,17 +5,14 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "build:rust": "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && . \"$HOME/.cargo/env\" && cd rust-wasm && wasm-pack build --target bundler --out-dir ../src/wasm/rust",
-    "build:cpp": "cd cpp-wasm && ./build.sh",
-    "build:wasm": "npm run build:rust && npm run build:cpp",
-    "postbuild": "node script-search/build-search.cjs",
+    "postbuild": "node scripts/build-search.cjs",
     "dev": "next dev --turbopack",
     "db:push": "drizzle-kit push",
     "db:auth": "bun addons/better.ts",
     "db:studio": "drizzle-kit studio",
     "ui": "bun x --bun shadcn@canary add",
     "latest": "bun update --latest && bun check",
-    "check": "knip && tsc --noEmit && eslint . && biome check --write .",
+    "check": "knip && tsc --noEmit && biome check --write .",
     "generate-meta": "node scripts/generate-meta.js",
     "generate-posts": "node scripts/generate-posts.js",
     "generate-posts-demo": "node scripts/generate-posts-demo.js",
@@ -63,9 +60,7 @@
     "magic-string": "^0.30.21",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.0.11",
-    "typescript": "5.9.3",
-    "typescript-eslint": "^8.49.0",
-    "wasm-pack": "^0.13.1"
+    "typescript": "5.9.3"
   },
   "packageManager": "yarn@4.7.0+sha512.5a0afa1d4c1d844b3447ee3319633797bcd6385d9a44be07993ae52ff4facabccafb4af5dcd1c2f9a94ac113e5e9ff56f6130431905884414229e284e37bb7c9"
 }

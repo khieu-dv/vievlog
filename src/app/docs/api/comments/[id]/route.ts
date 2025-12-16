@@ -1,6 +1,6 @@
 // ~/app/docs/api/comments/[id]/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import { deleteComment } from '~/lib/comments';
+import { deleteComment } from '@/features/comments/services/comments';
 
 export async function DELETE(
   request: NextRequest,

@@ -7,8 +7,23 @@ next-env.d.ts
 .yarn
 .env
 package-lock.json
-/scripts
 /public/_pagefind
-/rust-wasm/target
-/rust-wasm/wasm32-unknown-unknown
 target
+temp-search
+
+# Build outputs
+dist
+build
+
+# IDE
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea
+
+# OS
+.DS_Store
+*.swp
+*.swo

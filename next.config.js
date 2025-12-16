@@ -38,65 +38,9 @@ const nextConfig = {
   experimental: {
     turbo: {
       resolveAlias: {
-        "~": "./src",
+        "@": "./src",
       },
     },
-  },
-  // Support for WebAssembly
-  webpack: (config, { isServer }) => {
-    // Add WASM support
-    config.experiments = {
-      ...config.experiments,
-      asyncWebAssembly: true,
-    };
-
-    // Handle .wasm files
-    config.module.rules.push({
-      test: /\.wasm$/,
-      type: 'webassembly/async',
-    });
-
-    // Ensure WASM files are handled properly in production
-    if (!isServer) {
-      config.output.publicPath = `${config.output.publicPath || ''}`;
-    }
-
-    return config;
-  },
-  // Add headers for WASM files and static files
-  async headers() {
-    return [
-      {
-        source: '/wasm/:path*',
-        headers: [
-          {
-            key: 'Cross-Origin-Embedder-Policy',
-            value: 'require-corp',
-          },
-          {
-            key: 'Cross-Origin-Opener-Policy',
-            value: 'same-origin',
-          },
-        ],
-      },
-      {
-        source: '/games/unhaunter/pkg/:path*',
-        headers: [
-          {
-            key: 'Content-Type',
-            value: 'application/javascript',
-          },
-          {
-            key: 'Cross-Origin-Embedder-Policy',
-            value: 'require-corp',
-          },
-          {
-            key: 'Cross-Origin-Opener-Policy',
-            value: 'same-origin',
-          },
-        ],
-      },
-    ];
   },
 };
 

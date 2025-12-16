@@ -10,13 +10,13 @@ import {
 } from 'lucide-react';
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
-import { Footer } from "~/components/common/Footer";
-import { Header } from "~/components/common/Header";
-import { RoadmapCard } from "~/components/ui/RoadmapCard";
-import { RoadmapMultiCard } from "~/components/ui/RoadmapMultiCard";
-import { RoleRoadmaps } from "~/components/ui/RoleRoadmaps";
-import { SectionBadge } from "~/components/ui/SectionBadge";
-import { TipItem } from "~/components/ui/TipItem";
+import { Footer } from '@/components/common/Footer';
+import { Header } from '@/components/common/Header';
+import { RoadmapCard } from '@/components/ui/RoadmapCard';
+import { RoadmapMultiCard } from '@/components/ui/RoadmapMultiCard';
+import { RoleRoadmaps } from '@/components/ui/RoleRoadmaps';
+import { SectionBadge } from '@/components/ui/SectionBadge';
+import { TipItem } from '@/components/ui/TipItem';
 
 
 export default function HomePage() {
@@ -38,35 +38,35 @@ export default function HomePage() {
             </p>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
               <Link
-                href="/docs/coursese/rust/lesson_0"
+                href="/docs/courses/rust/lesson_0"
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-orange-600 px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-orange-700"
               >
                 <Braces className="size-4" />
                 🦀 Rust
               </Link>
               <Link
-                href="/docs/coursese/golang/lesson_0"
+                href="/docs/courses/golang/lesson_0"
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-600 px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-cyan-700"
               >
                 <Server className="size-4" />
                 🐹 Go
               </Link>
               <Link
-                href="/docs/coursese/golang/lesson_0"
+                href="/docs/courses/golang/lesson_0"
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-purple-600 px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-purple-700"
               >
                 <Binary className="size-4" />
                 🧠 DSA
               </Link>
               <Link
-                href="/docs/coursese/nextjs/lesson_0"
+                href="/docs/courses/nextjs/lesson_0"
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-black px-4 py-3 text-sm font-medium text-white transition-colors hover:opacity-80 dark:bg-white dark:text-black"
               >
                 <Globe2 className="size-4" />
                 ⚡ Next.js
               </Link>
               <Link
-                href="/docs/coursese/flutter/lesson_0"
+                href="/docs/courses/flutter/lesson_0"
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-700"
               >
                 <Smartphone className="size-4" />
@@ -96,31 +96,31 @@ export default function HomePage() {
             <RoadmapCard
               icon={Braces}
               title="Systems Programming"
-              link="/docs/coursese/rust/lesson_0"
+              link="/docs/courses/rust/lesson_0"
               description="Build fast, safe system software with Rust. Perfect for performance-critical applications."
             />
             <RoadmapCard
               icon={Server}
               title="Backend & Cloud"
-              link="/docs/coursese/golang/lesson_0"
+              link="/docs/courses/golang/lesson_0"
               description="Create scalable backends and cloud services with Go's simplicity and concurrency."
             />
             <RoadmapCard
               icon={Binary}
               title="Data Structures & Algorithms"
-              link="/docs/coursese/dsa/lesson_0"
+              link="/docs/courses/dsa/lesson_0"
               description="Master CS fundamentals with interactive examples and Rust implementations."
             />
             <RoadmapCard
               icon={Globe2}
               title="Modern Web Apps"
-              link="/docs/coursese/nextjs/lesson_0"
+              link="/docs/courses/nextjs/lesson_0"
               description="Build full-stack web applications with Next.js and React ecosystem."
             />
             <RoadmapCard
               icon={Smartphone}
               title="Cross-Platform Mobile"
-              link="/docs/coursese/flutter/lesson_0"
+              link="/docs/courses/flutter/lesson_0"
               description="Develop beautiful native mobile apps for iOS and Android with Flutter."
             />
           </div>
@@ -128,7 +128,7 @@ export default function HomePage() {
           <p className="my-4 text-sm text-gray-500 dark:text-gray-400 sm:my-7 sm:text-base">
             Each path includes related tools and frameworks. For example, Rust ecosystem includes{" "}
             <Link
-              href="/docs/coursese/rust/lesson_0"
+              href="/docs/courses/rust/lesson_0"
               className="font-medium underline underline-offset-2"
             >
               Actix, Tokio, Serde
@@ -188,19 +188,19 @@ export default function HomePage() {
         <RoadmapCard
           icon={Braces}
           title="Rust Fundamentals"
-          link="/docs/coursese/rust/lesson_0"
+          link="/docs/courses/rust/lesson_0"
           description="Master ownership, borrowing, lifetimes, and Rust's unique memory safety features."
         />
         <RoadmapCard
           icon={Server}
           title="Web Development"
-          link="/docs/coursese/rust/lesson_0"
+          link="/docs/courses/rust/lesson_0"
           description="Build web services with Actix-web, Warp, or Rocket frameworks."
         />
         <RoadmapMultiCard
-          roadmaps={[{ title: "Async Programming", link: "/docs/coursese/rust/lesson_0" }]}
+          roadmaps={[{ title: "Async Programming", link: "/docs/courses/rust/lesson_0" }]}
           description="Learn async/await with Tokio, async-std for concurrent applications."
-          secondaryRoadmaps={[{ title: "WebAssembly", link: "/docs/coursese/rust/lesson_0" }]}
+          secondaryRoadmaps={[{ title: "WebAssembly", link: "/docs/courses/rust/lesson_0" }]}
           secondaryDescription="Compile Rust to WebAssembly for high-performance web apps."
         />
       </RoleRoadmaps>
@@ -214,27 +214,27 @@ export default function HomePage() {
         <RoadmapCard
           icon={Server}
           title="Go Fundamentals"
-          link="/docs/coursese/golang/lesson_0"
+          link="/docs/courses/golang/lesson_0"
           description="Master goroutines, channels, interfaces, and Go's simplicity philosophy."
         />
         <RoadmapMultiCard
           roadmaps={[
-            { title: "Web Frameworks", link: "/docs/coursese/golang/lesson_0" },
-            { title: "Gin & Fiber", link: "/docs/coursese/golang/lesson_0" },
+            { title: "Web Frameworks", link: "/docs/courses/golang/lesson_0" },
+            { title: "Gin & Fiber", link: "/docs/courses/golang/lesson_0" },
           ]}
           description="Build REST APIs with Gin, Fiber, or Echo frameworks."
-          secondaryRoadmaps={[{ title: "gRPC & Microservices", link: "/docs/coursese/golang/lesson_0" }]}
+          secondaryRoadmaps={[{ title: "gRPC & Microservices", link: "/docs/courses/golang/lesson_0" }]}
           secondaryDescription="Learn gRPC for high-performance microservices communication."
         />
         <RoadmapMultiCard
           roadmaps={[
-            { title: "Docker & K8s", link: "/docs/coursese/golang/lesson_0" },
-            { title: "Database Integration", link: "/docs/coursese/golang/lesson_0" },
-            { title: "Testing", link: "/docs/coursese/golang/lesson_0" },
-            { title: "CLI Tools", link: "/docs/coursese/golang/lesson_0" },
+            { title: "Docker & K8s", link: "/docs/courses/golang/lesson_0" },
+            { title: "Database Integration", link: "/docs/courses/golang/lesson_0" },
+            { title: "Testing", link: "/docs/courses/golang/lesson_0" },
+            { title: "CLI Tools", link: "/docs/courses/golang/lesson_0" },
           ]}
           description="Go excels in DevOps tooling and cloud infrastructure."
-          secondaryRoadmaps={[{ title: "Concurrency Patterns", link: "/docs/coursese/golang/lesson_0" }]}
+          secondaryRoadmaps={[{ title: "Concurrency Patterns", link: "/docs/courses/golang/lesson_0" }]}
           secondaryDescription="Master Go's concurrency with practical patterns."
         />
       </RoleRoadmaps>
@@ -248,22 +248,22 @@ export default function HomePage() {
         <RoadmapCard
           icon={Binary}
           title="Data Structures"
-          link="/docs/coursese/dsa/lesson_0"
+          link="/docs/courses/dsa/lesson_0"
           description="Master arrays, linked lists, trees, graphs, hash tables with visual examples."
         />
         <RoadmapCard
           icon={SortAsc}
           title="Algorithms"
-          link="/docs/coursese/dsa/lesson_0"
+          link="/docs/courses/dsa/lesson_0"
           description="Learn sorting, searching, graph algorithms with step-by-step implementations."
         />
         <RoadmapMultiCard
           roadmaps={[
-            { title: "Trees & Graphs", link: "/docs/coursese/dsa/lesson_0" },
-            { title: "Hash Tables", link: "/docs/coursese/dsa/lesson_0" },
+            { title: "Trees & Graphs", link: "/docs/courses/dsa/lesson_0" },
+            { title: "Hash Tables", link: "/docs/courses/dsa/lesson_0" },
           ]}
           description="Advanced data structures for efficient data management and retrieval."
-          secondaryRoadmaps={[{ title: "Dynamic Programming", link: "/docs/coursese/dsa/lesson_0" }]}
+          secondaryRoadmaps={[{ title: "Dynamic Programming", link: "/docs/courses/dsa/lesson_0" }]}
           secondaryDescription="Master complex algorithmic techniques with practical examples."
         />
       </RoleRoadmaps>
@@ -278,35 +278,35 @@ export default function HomePage() {
           <RoadmapCard
             icon={Globe2}
             title="Next.js Fundamentals"
-            link="/docs/coursese/nextjs/lesson_0"
+            link="/docs/courses/nextjs/lesson_0"
             description="Learn App Router, Server Components, and modern Next.js patterns."
           />
           <RoadmapCard
             icon={Braces}
             title="React & TypeScript"
-            link="/docs/coursese/nextjs/lesson_0"
+            link="/docs/courses/nextjs/lesson_0"
             description="Master React 18+ features with TypeScript for type-safe development."
           />
         </div>
         <RoadmapMultiCard
           roadmaps={[
-            { title: "Styling Solutions", link: "/docs/coursese/nextjs/lesson_0" },
-            { title: "Tailwind CSS", link: "/docs/coursese/nextjs/lesson_0" },
-            { title: "shadcn/ui", link: "/docs/coursese/nextjs/lesson_0" },
-            { title: "State Management", link: "/docs/coursese/nextjs/lesson_0" },
+            { title: "Styling Solutions", link: "/docs/courses/nextjs/lesson_0" },
+            { title: "Tailwind CSS", link: "/docs/courses/nextjs/lesson_0" },
+            { title: "shadcn/ui", link: "/docs/courses/nextjs/lesson_0" },
+            { title: "State Management", link: "/docs/courses/nextjs/lesson_0" },
           ]}
           description="Build beautiful UIs with modern styling and state management."
         />
         <RoadmapMultiCard
           roadmaps={[
-            { title: "Database Integration", link: "/docs/coursese/nextjs/lesson_0" },
-            { title: "Authentication", link: "/docs/coursese/nextjs/lesson_0" },
+            { title: "Database Integration", link: "/docs/courses/nextjs/lesson_0" },
+            { title: "Authentication", link: "/docs/courses/nextjs/lesson_0" },
           ]}
           description="Full-stack features with Prisma, NextAuth, and more."
           secondaryRoadmaps={[
-            { title: "Deployment", link: "/docs/coursese/nextjs/lesson_0" },
-            { title: "Vercel", link: "/docs/coursese/nextjs/lesson_0" },
-            { title: "Performance", link: "/docs/coursese/nextjs/lesson_0" },
+            { title: "Deployment", link: "/docs/courses/nextjs/lesson_0" },
+            { title: "Vercel", link: "/docs/courses/nextjs/lesson_0" },
+            { title: "Performance", link: "/docs/courses/nextjs/lesson_0" },
           ]}
           secondaryDescription="Deploy and optimize your Next.js applications."
         />
@@ -321,26 +321,26 @@ export default function HomePage() {
         <RoadmapCard
           icon={Smartphone}
           title="Flutter Fundamentals"
-          link="/docs/coursese/flutter/lesson_0"
+          link="/docs/courses/flutter/lesson_0"
           description="Learn widgets, state management, and Dart programming language."
         />
         <RoadmapCard
           icon={Smartphone}
           title="Advanced Flutter"
-          link="/docs/coursese/flutter/lesson_0"
+          link="/docs/courses/flutter/lesson_0"
           description="Master animations, custom widgets, and platform-specific features."
         />
         <RoadmapMultiCard
           roadmaps={[
-            { title: "State Management", link: "/docs/coursese/flutter/lesson_0" },
-            { title: "BLoC & Riverpod", link: "/docs/coursese/flutter/lesson_0" },
-            { title: "GetX & Provider", link: "/docs/coursese/flutter/lesson_0" },
+            { title: "State Management", link: "/docs/courses/flutter/lesson_0" },
+            { title: "BLoC & Riverpod", link: "/docs/courses/flutter/lesson_0" },
+            { title: "GetX & Provider", link: "/docs/courses/flutter/lesson_0" },
           ]}
           description="Choose the right state management solution for your app."
           secondaryRoadmaps={[
-            { title: "Firebase Integration", link: "/docs/coursese/flutter/lesson_0" },
-            { title: "Native Features", link: "/docs/coursese/flutter/lesson_0" },
-            { title: "App Store Deployment", link: "/docs/coursese/flutter/lesson_0" },
+            { title: "Firebase Integration", link: "/docs/courses/flutter/lesson_0" },
+            { title: "Native Features", link: "/docs/courses/flutter/lesson_0" },
+            { title: "App Store Deployment", link: "/docs/courses/flutter/lesson_0" },
           ]}
           secondaryDescription="Integrate backend services and deploy to app stores."
         />
@@ -358,35 +358,35 @@ export default function HomePage() {
 
           <div className="my-4 grid grid-cols-1 gap-2 sm:my-5 sm:grid-cols-2 sm:gap-3 md:grid-cols-3 lg:grid-cols-5">
             <Link
-              href="/docs/coursese/rust/lesson_0"
+              href="/docs/courses/rust/lesson_0"
               className="grow rounded-lg bg-gradient-to-br from-orange-700 to-orange-600 p-4 text-sm text-white transition-all hover:from-orange-600 hover:to-orange-600 sm:text-base"
             >
               <Braces className="mb-3 h-5 w-5 text-orange-200 sm:mb-2" />
               🦀 Rust Mastery
             </Link>
             <Link
-              href="/docs/coursese/golang/lesson_0"
+              href="/docs/courses/golang/lesson_0"
               className="grow rounded-lg bg-gradient-to-br from-cyan-700 to-cyan-600 p-4 text-sm text-white transition-all hover:from-cyan-600 hover:to-cyan-600 sm:text-base"
             >
               <Server className="mb-3 h-5 w-5 text-cyan-200 sm:mb-2" />
               🐹 Go Development
             </Link>
             <Link
-              href="/docs/coursese/golang/lesson_0"
+              href="/docs/courses/golang/lesson_0"
               className="grow rounded-lg bg-gradient-to-br from-purple-700 to-purple-600 p-4 text-sm text-white transition-all hover:from-purple-600 hover:to-purple-600 sm:text-base"
             >
               <Binary className="mb-3 h-5 w-5 text-purple-200 sm:mb-2" />
               🧠 DSA Mastery
             </Link>
             <Link
-              href="/docs/coursese/nextjs/lesson_0"
+              href="/docs/courses/nextjs/lesson_0"
               className="grow rounded-lg bg-gradient-to-br from-gray-800 to-gray-700 p-4 text-sm text-white transition-all hover:from-gray-700 hover:to-gray-700 sm:text-base"
             >
               <Globe2 className="mb-3 h-5 w-5 text-gray-300 sm:mb-2" />
               ⚡ Next.js Pro
             </Link>
             <Link
-              href="/docs/coursese/flutter/lesson_0"
+              href="/docs/courses/flutter/lesson_0"
               className="grow rounded-lg bg-gradient-to-br from-blue-700 to-blue-600 p-4 text-sm text-white transition-all hover:from-blue-600 hover:to-blue-600 sm:text-base"
             >
               <Smartphone className="mb-3 h-5 w-5 text-blue-200 sm:mb-2" />

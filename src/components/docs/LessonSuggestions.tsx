@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 
 interface LessonSuggestionsProps {
   currentLesson: number; // 0-N, where 0 is intro lesson
-  basePath?: string; // e.g., "/desktop-docs/coursese/rust"
+  basePath?: string; // e.g., "/desktop-docs/courses/rust"
   metaData?: Record<string, string>; // Meta data from _meta.ts files
   totalLessons?: number; // Fallback for backward compatibility
 }
@@ -34,23 +34,21 @@ const getLessonDataFromMeta = (metaData: Record<string, string>): LessonInfo[] =
   return lessons;
 };
 
-// Fallback function to load meta data dynamically
-const getMetaData = async (basePath: string): Promise<Record<string, string>> => {
-  try {
-    // Extract course name from basePath
-    const pathParts = basePath.split('/');
-    const courseName = pathParts[pathParts.length - 1];
+// Note: Dynamic imports with template literals are not supported by Webpack/Turbopack
+// If you need custom lesson titles, they should be passed as props or loaded via API
+// const getMetaData = async (basePath: string): Promise<Record<string, string>> => {
+//   try {
+//     const pathParts = basePath.split('/');
+//     const courseName = pathParts[pathParts.length - 1];
+//     const metaModule = await import(`../../content/courses/${courseName}/_meta.ts`);
+//     return metaModule.default;
+//   } catch (error) {
+//     console.warn(`Could not load meta data for ${basePath}:`, error);
+//     return {};
+//   }
+// };
 
-    // Dynamically import the meta file
-    const metaModule = await import(`../../content/coursese/${courseName}/_meta.ts`);
-    return metaModule.default;
-  } catch (error) {
-    console.warn(`Could not load meta data for ${basePath}:`, error);
-    return {};
-  }
-};
-
-// Fallback function for backward compatibility
+// Generate generic lesson data
 const getGenericLessonData = (totalLessons: number): LessonInfo[] => {
   const lessons: LessonInfo[] = [
     { id: 0, title: "Giới thiệu khóa học" }
@@ -126,7 +124,7 @@ const getSuggestions = (currentLesson: number, lessonData: LessonInfo[]): Lesson
 
 export default function LessonSuggestions({
   currentLesson,
-  basePath = "/desktop-docs/coursese/rust",
+  basePath = "/desktop-docs/courses/rust",
   metaData,
   totalLessons
 }: LessonSuggestionsProps) {
@@ -134,26 +132,19 @@ export default function LessonSuggestions({
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const loadLessonData = async () => {
+    const loadLessonData = () => {
       if (metaData) {
         // Use provided meta data
         setLessonData(getLessonDataFromMeta(metaData));
-        setLoading(false);
-      } else {
-        // Try to load meta data dynamically
-        const meta = await getMetaData(basePath);
-        if (Object.keys(meta).length > 0) {
-          setLessonData(getLessonDataFromMeta(meta));
-        } else if (totalLessons) {
-          // Fallback to generic data
-          setLessonData(getGenericLessonData(totalLessons));
-        }
-        setLoading(false);
+      } else if (totalLessons) {
+        // Use generic lesson data as fallback
+        setLessonData(getGenericLessonData(totalLessons));
       }
+      setLoading(false);
     };
 
     loadLessonData();
-  }, [basePath, metaData, totalLessons]);
+  }, [metaData, totalLessons]);
 
   const suggestions = getSuggestions(currentLesson, lessonData);
 

@@ -6,8 +6,8 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "~/ui/primitives/dialog";
-import { Button } from "~/components/ui/Button";
+} from '@/components/ui/dialog';
+import { Button } from '@/components/ui/Button';
 import { ExternalLink, Crown } from "lucide-react";
 
 interface UpgradeAccountModalProps {

@@ -1,6 +1,6 @@
 // ~/app/docs/api/comments/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import { getComments, createComment } from '~/lib/comments';
+import { getComments, createComment } from '@/features/comments/services/comments';
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
