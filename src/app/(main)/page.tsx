@@ -32,7 +32,7 @@ const technologies = [
     emoji: "🦀",
     href: "/docs/courses/rust/lesson_0",
     icon: Braces,
-    color: "bg-orange-600 hover:bg-orange-700",
+    color: "bg-orange-600 dark:bg-orange-500 hover:bg-orange-700 dark:hover:bg-orange-600 text-white",
     description: "Systems programming with memory safety"
   },
   {
@@ -40,7 +40,7 @@ const technologies = [
     emoji: "🐹",
     href: "/docs/courses/golang/lesson_0",
     icon: Server,
-    color: "bg-cyan-600 hover:bg-cyan-700",
+    color: "bg-cyan-600 dark:bg-cyan-500 hover:bg-cyan-700 dark:hover:bg-cyan-600 text-white",
     description: "Simple, fast, and reliable backend development"
   },
   {
@@ -48,7 +48,7 @@ const technologies = [
     emoji: "🧠",
     href: "/docs/courses/dsa/lesson_0",
     icon: Binary,
-    color: "bg-purple-600 hover:bg-purple-700",
+    color: "bg-purple-600 dark:bg-purple-500 hover:bg-purple-700 dark:hover:bg-purple-600 text-white",
     description: "Computer science fundamentals"
   },
   {
@@ -56,7 +56,7 @@ const technologies = [
     emoji: "⚡",
     href: "/docs/courses/nextjs/lesson_0",
     icon: Globe2,
-    color: "bg-black hover:opacity-80 dark:bg-white dark:text-black",
+    color: "bg-foreground hover:bg-foreground/80 text-background",
     description: "Modern full-stack web framework"
   },
   {
@@ -64,7 +64,7 @@ const technologies = [
     emoji: "💙",
     href: "/docs/courses/flutter/lesson_0",
     icon: Smartphone,
-    color: "bg-blue-600 hover:bg-blue-700",
+    color: "bg-blue-600 dark:bg-blue-500 hover:bg-blue-700 dark:hover:bg-blue-600 text-white",
     description: "Cross-platform mobile development"
   },
 ];
@@ -75,35 +75,35 @@ const learningPaths = [
     description: "Build fast, safe system software with Rust. Perfect for performance-critical applications.",
     icon: Braces,
     link: "/docs/courses/rust/lesson_0",
-    color: "text-orange-600"
+    color: "text-orange-600 dark:text-orange-400"
   },
   {
     title: "Backend & Cloud",
     description: "Create scalable backends and cloud services with Go's simplicity and concurrency.",
     icon: Server,
     link: "/docs/courses/golang/lesson_0",
-    color: "text-cyan-600"
+    color: "text-cyan-600 dark:text-cyan-400"
   },
   {
     title: "Data Structures",
     description: "Master CS fundamentals with interactive examples and implementations.",
     icon: Binary,
     link: "/docs/courses/dsa/lesson_0",
-    color: "text-purple-600"
+    color: "text-purple-600 dark:text-purple-400"
   },
   {
     title: "Modern Web Apps",
     description: "Build full-stack web applications with Next.js and React ecosystem.",
     icon: Globe2,
     link: "/docs/courses/nextjs/lesson_0",
-    color: "text-slate-900 dark:text-white"
+    color: "text-foreground"
   },
   {
     title: "Cross-Platform Mobile",
     description: "Develop beautiful native mobile apps for iOS and Android with Flutter.",
     icon: Smartphone,
     link: "/docs/courses/flutter/lesson_0",
-    color: "text-blue-600"
+    color: "text-blue-600 dark:text-blue-400"
   },
 ];
 
@@ -158,7 +158,7 @@ export default function HomePage() {
                   <HoverCardTrigger asChild>
                     <Link
                       href={tech.href}
-                      className={`inline-flex items-center justify-center gap-2 rounded-xl ${tech.color} px-4 py-3 text-sm font-medium text-white transition-all hover:scale-105`}
+                      className={`inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-medium transition-all hover:scale-105 ${tech.color}`}
                     >
                       <tech.icon className="h-4 w-4" />
                       {tech.emoji} {tech.name}
@@ -253,10 +253,10 @@ export default function HomePage() {
 
           <Accordion type="single" collapsible className="w-full">
             {tips.map((tip, index) => (
-              <AccordionItem key={index} value={`item-${index}`}>
-                <AccordionTrigger className="text-left">
+              <AccordionItem key={index} value={`item-${index}`} className="border-b">
+                <AccordionTrigger className="text-left hover:no-underline">
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-green-600" />
+                    <CheckCircle2 className="h-5 w-5 text-green-600 dark:text-green-400" />
                     <span className="font-semibold">{tip.title}</span>
                   </div>
                 </AccordionTrigger>
@@ -290,7 +290,7 @@ export default function HomePage() {
           </div>
 
           <Tabs defaultValue="rust" className="w-full">
-            <TabsList className="grid w-full grid-cols-3 lg:w-auto">
+            <TabsList className="grid w-full grid-cols-3 lg:w-auto bg-muted">
               <TabsTrigger value="rust">🦀 Rust</TabsTrigger>
               <TabsTrigger value="go">🐹 Go</TabsTrigger>
               <TabsTrigger value="nextjs">⚡ Next.js</TabsTrigger>
