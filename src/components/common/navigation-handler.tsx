@@ -20,10 +20,10 @@ export function NavigationHandler() {
 
       const href = link.getAttribute('href');
 
-      // Nếu đang ở docs/desktop-docs/mobile-docs và click vào home link
+      // Nếu đang ở docs/docs/mobile-docs và click vào home link
       if (href === '/' && (
         pathname?.startsWith('/docs') ||
-        pathname?.startsWith('/desktop-docs') ||
+        pathname?.startsWith('/docs') ||
         pathname?.startsWith('/mobile-docs')
       )) {
         e.preventDefault();

@@ -18,9 +18,9 @@ export default function CommentSection({ docPath }: CommentSectionProps) {
   const [submitting, setSubmitting] = useState(false);
   const { data: session } = useSession();
 
-  // Extract lesson number from docPath (e.g., "courses/rust/bai-1" -> 1)
+  // Extract lesson number from docPath (e.g., "courses/rust/lesson_1" -> 1)
   const getLessonNumber = (path: string): number => {
-    const match = path.match(/bai-(\d+)$/);
+    const match = path.match(/lesson_(\d+)$/);
     return match ? parseInt(match[1], 10) : 0;
   };
 
@@ -29,21 +29,21 @@ export default function CommentSection({ docPath }: CommentSectionProps) {
   // Detect course type and get course info
   const getCourseInfo = (path: string) => {
     if (path.includes('courses/rust')) {
-      return { basePath: '/desktop-docs/courses/rust', totalLessons: 18, showSuggestions: true };
+      return { basePath: '/docs/courses/rust', totalLessons: 18, showSuggestions: true };
     }
 
     // Add more course detection logic here
     // Example for other courses:
     // if (path.includes('web-development/javascript')) {
-    //   return { basePath: '/desktop-docs/web-development/javascript', totalLessons: 20, showSuggestions: true };
+    //   return { basePath: '/docs/web-development/javascript', totalLessons: 20, showSuggestions: true };
     // }
 
     // Default: try to detect if it's a course with numbered lessons
-    const hasNumberedLessons = /bai-\d+/.test(path);
+    const hasNumberedLessons = /lesson_\d+/.test(path);
     if (hasNumberedLessons) {
       const pathParts = path.split('/');
       const coursePath = pathParts.slice(0, -1).join('/');
-      return { basePath: `/desktop-docs/${coursePath}`, totalLessons: 15, showSuggestions: true };
+      return { basePath: `/docs/${coursePath}`, totalLessons: 15, showSuggestions: true };
     }
 
     return { basePath: '', totalLessons: 0, showSuggestions: false };

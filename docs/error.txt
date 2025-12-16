@@ -49,7 +49,7 @@ See more info here: https://nextjs.org/docs/messages/react-hydration-error
                           ...
                     ...
         ...
-src/app/desktop-docs/layout.tsx (37:7) @ DocsLayout
+src/app/docs/layout.tsx (37:7) @ DocsLayout
 
 
   35 |   return (
@@ -85,7 +85,7 @@ Console Error
 
 You are mounting a new head component when a previous one has not first unmounted. It is an error to render more than one head component at a time and attributes and children of these components will likely fail in unpredictable ways. Please only render a single instance of <head> and if you need to mount a new one, ensure any previous ones have unmounted first.
 
-src/app/desktop-docs/layout.tsx (37:7) @ DocsLayout
+src/app/docs/layout.tsx (37:7) @ DocsLayout
 
 
   35 |   return (

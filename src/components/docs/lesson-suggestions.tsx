@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 
 interface LessonSuggestionsProps {
   currentLesson: number; // 0-N, where 0 is intro lesson
-  basePath?: string; // e.g., "/desktop-docs/courses/rust"
+  basePath?: string; // e.g., "/docs/courses/rust"
   metaData?: Record<string, string>; // Meta data from _meta.ts files
   totalLessons?: number; // Fallback for backward compatibility
 }
@@ -22,7 +22,7 @@ const getLessonDataFromMeta = (metaData: Record<string, string>): LessonInfo[] =
 
   // Convert meta data to lesson info
   Object.entries(metaData).forEach(([key, title]) => {
-    const match = key.match(/bai-(\d+)/);
+    const match = key.match(/lesson_(\d+)/);
     if (match) {
       const id = parseInt(match[1]);
       lessons.push({ id, title });
@@ -124,7 +124,7 @@ const getSuggestions = (currentLesson: number, lessonData: LessonInfo[]): Lesson
 
 export default function LessonSuggestions({
   currentLesson,
-  basePath = "/desktop-docs/courses/rust",
+  basePath = "/docs/courses/rust",
   metaData,
   totalLessons
 }: LessonSuggestionsProps) {
@@ -161,7 +161,7 @@ export default function LessonSuggestions({
           {suggestions.map((lesson, index) => (
             <Link
               key={`${lesson.id}-${index}`}
-              href={`${basePath}/bai-${lesson.id}`}
+              href={`${basePath}/lesson_${lesson.id}`}
               className="group flex items-center p-4 hover:bg-gray-50 transition-colors duration-150"
             >
               <div className="flex items-center gap-4 flex-1">
@@ -223,7 +223,7 @@ export default function LessonSuggestions({
           <div className="flex gap-2">
             {currentLesson > 0 && (
               <Link
-                href={`${basePath}/bai-${currentLesson - 1}`}
+                href={`${basePath}/lesson_${currentLesson - 1}`}
                 className="px-3 py-1 bg-white border border-gray-200 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors"
               >
                 ← Bài trước
@@ -231,7 +231,7 @@ export default function LessonSuggestions({
             )}
             {lessonData.find(lesson => lesson.id === currentLesson + 1) && (
               <Link
-                href={`${basePath}/bai-${currentLesson + 1}`}
+                href={`${basePath}/lesson_${currentLesson + 1}`}
                 className="px-3 py-1 bg-blue-600 text-white rounded-md text-sm font-medium hover:bg-blue-700 transition-colors"
               >
                 Bài tiếp theo →
