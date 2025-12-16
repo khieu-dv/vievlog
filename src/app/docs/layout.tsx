@@ -2,7 +2,7 @@ import { Footer, Layout } from 'nextra-theme-docs'
 import { getPageMap } from 'nextra/page-map'
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import './docs.css'
+import '@/styles/docs.css'
 import { CustomNavbar } from '../../components/common/CustomNavbar';
 
 export const metadata: Metadata = {
@@ -26,9 +26,12 @@ export default async function DocsLayout({ children }: DocsLayoutProps) {
 
   const excludePages = ['posts', 'auth', 'profile', 'games', 'image-editor', 'video-generator', 'korean']
 
-  const filteredPageMap = pageMap.filter(
-    (item: any) => !excludePages.includes(item.name.toLowerCase())
-  )
+  const filteredPageMap = pageMap
+    .filter((item: any) => !excludePages.includes(item.name.toLowerCase()))
+    .map((item: any, index: number) => ({
+      ...item,
+      key: item.route || item.name || `page-${index}`
+    }))
 
   return (
     <>
