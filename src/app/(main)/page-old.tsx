@@ -10,8 +10,8 @@ import {
 } from 'lucide-react';
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
-import { Footer } from '@/components/common/Footer';
-import { Header } from '@/components/common/Header';
+import { Footer } from '@/components/common/footer';
+import { Header } from '@/components/common/header';
 import { RoadmapCard } from '@/components/custom/roadmap-card';
 import { RoadmapMultiCard } from '@/components/custom/roadmap-multi-card';
 import { RoleRoadmaps } from '@/components/custom/role-roadmaps';

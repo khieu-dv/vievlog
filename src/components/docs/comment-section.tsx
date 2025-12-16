@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { useSession } from '@/features/auth/services/authClient';
 import { getDocPathFromUrl } from '@/features/comments/services/comments';
 import type { Comment } from '@/features/comments/services/comments';
-import LessonSuggestions from './LessonSuggestions';
+import LessonSuggestions from './lesson-suggestions';
 
 interface CommentSectionProps {
   docPath: string;

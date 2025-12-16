@@ -2,9 +2,9 @@
 
 import { useRouter } from "next/navigation";
 import { useSession } from '@/features/auth/services/authClient';
-import { Header } from "../../../components/common/Header";
+import { Header } from "../../../components/common/header";
 import { BasicUser } from '@/types';
-import { UpgradeAccountModal } from "../../../components/docs/UpgradeAccountModal";
+import { UpgradeAccountModal } from "../../../components/docs/upgrade-account-modal";
 import { useState } from "react";
 import { Crown, CheckCircle, XCircle } from "lucide-react";
 

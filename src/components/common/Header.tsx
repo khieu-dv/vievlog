@@ -15,7 +15,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import { ThemeToggle } from "./ThemeToggle";
+import { ThemeToggle } from "./theme-toggle";
 import { useTranslation } from "react-i18next";
 import { languages } from "./locales";
 

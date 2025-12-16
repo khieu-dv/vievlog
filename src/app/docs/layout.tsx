@@ -3,7 +3,7 @@ import { getPageMap } from 'nextra/page-map'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import '@/styles/docs.css'
-import { CustomNavbar } from '../../components/common/CustomNavbar';
+import { CustomNavbar } from '../../components/common/custom-navbar';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://vievlog.com'),

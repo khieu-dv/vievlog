@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
-import { 
-  Braces, 
-  Globe2, 
-  Server, 
-  Smartphone, 
+import {
+  Braces,
+  Globe2,
+  Server,
+  Smartphone,
   Binary,
   Sparkles,
   Rocket,
@@ -16,8 +16,8 @@ import {
   CheckCircle2,
   ArrowRight
 } from 'lucide-react';
-import { Header } from '@/components/common/Header';
-import { Footer } from '@/components/common/Footer';
+import { Header } from '@/components/common/header';
+import { Footer } from '@/components/common/footer';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
@@ -151,7 +151,7 @@ export default function HomePage() {
             <p className="mb-8 text-lg text-muted-foreground sm:text-xl">
               Focus on five powerful technologies that will define the future of software development.
             </p>
-            
+
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
               {technologies.map((tech) => (
                 <HoverCard key={tech.name}>
@@ -295,7 +295,7 @@ export default function HomePage() {
               <TabsTrigger value="go">🐹 Go</TabsTrigger>
               <TabsTrigger value="nextjs">⚡ Next.js</TabsTrigger>
             </TabsList>
-            
+
             <TabsContent value="rust" className="space-y-4 mt-6">
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                 <Card>
@@ -311,7 +311,7 @@ export default function HomePage() {
                     </Link>
                   </CardContent>
                 </Card>
-                
+
                 <Card>
                   <CardHeader>
                     <CardTitle>Web Development</CardTitle>
@@ -325,7 +325,7 @@ export default function HomePage() {
                     </Link>
                   </CardContent>
                 </Card>
-                
+
                 <Card>
                   <CardHeader>
                     <CardTitle>Async & WebAssembly</CardTitle>
@@ -341,7 +341,7 @@ export default function HomePage() {
                 </Card>
               </div>
             </TabsContent>
-            
+
             <TabsContent value="go" className="space-y-4 mt-6">
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                 <Card>
@@ -357,7 +357,7 @@ export default function HomePage() {
                     </Link>
                   </CardContent>
                 </Card>
-                
+
                 <Card>
                   <CardHeader>
                     <CardTitle>Web Frameworks</CardTitle>
@@ -371,7 +371,7 @@ export default function HomePage() {
                     </Link>
                   </CardContent>
                 </Card>
-                
+
                 <Card>
                   <CardHeader>
                     <CardTitle>Cloud & DevOps</CardTitle>
@@ -387,7 +387,7 @@ export default function HomePage() {
                 </Card>
               </div>
             </TabsContent>
-            
+
             <TabsContent value="nextjs" className="space-y-4 mt-6">
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                 <Card>
@@ -403,7 +403,7 @@ export default function HomePage() {
                     </Link>
                   </CardContent>
                 </Card>
-                
+
                 <Card>
                   <CardHeader>
                     <CardTitle>TypeScript</CardTitle>
@@ -417,7 +417,7 @@ export default function HomePage() {
                     </Link>
                   </CardContent>
                 </Card>
-                
+
                 <Card>
                   <CardHeader>
                     <CardTitle>Full-Stack Tools</CardTitle>

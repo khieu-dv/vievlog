@@ -2,10 +2,10 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "../components/common/ThemeProvider";
-import Providers from "../components/common/Providers";
-import I18nProvider from "../components/common/I18nProvider";
-import { NavigationHandler } from "../components/common/NavigationHandler";
+import { ThemeProvider } from "../components/common/theme-provider";
+import Providers from "../components/common/providers";
+import I18nProvider from "../components/common/i18n-provider";
+import { NavigationHandler } from "../components/common/navigation-handler";
 
 
 const geistSans = Geist({
