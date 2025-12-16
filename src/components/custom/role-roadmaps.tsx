@@ -1,7 +1,7 @@
 "use client";
 
 import { type ReactNode } from 'react';
-import { SectionBadge } from './SectionBadge';
+import { SectionBadge } from './section-badge';
 
 type RoleRoadmapsProps = {
   badge: string;

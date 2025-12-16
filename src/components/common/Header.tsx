@@ -7,14 +7,14 @@ import { signOut, useSession } from '@/features/auth/services/authClient';
 
 import { useState } from "react";
 import { cn } from '@/lib/utils/index';
-import { Button } from "../ui/Button";
+import { Button } from "../custom/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "../ui/DropdownMenu";
+} from "../ui/dropdown-menu";
 import { ThemeToggle } from "./ThemeToggle";
 import { useTranslation } from "react-i18next";
 import { languages } from "./locales";
